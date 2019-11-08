@@ -1,3 +1,4 @@
+import {dialog} from './ui/dialog';
 import {search} from './search';
 
 /**
@@ -7,5 +8,6 @@ import {search} from './search';
  * This declaration is used as a hint to the IDE and is not an actual global object at runtime.
  */
 class N {
-    search = search;
+  dialog = dialog;
+  search = search;
 }
