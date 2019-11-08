@@ -1,4 +1,6 @@
 import {dialog} from './ui/dialog';
+
+import {cache} from './cache';
 import {record} from './record';
 import {search} from './search';
 
@@ -9,7 +11,11 @@ import {search} from './search';
  * This declaration is used as a hint to the IDE and is not an actual global object at runtime.
  */
 class N {
+  // N/ui/
   dialog = dialog;
+  
+  // N/
+  cache = cache;
   record = record;
   search = search;
 }
