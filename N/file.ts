@@ -12,7 +12,7 @@ class file {
    * @param {Boolean} [options.isOnline] - The Available without Login status of a file
    * @returns {File}
    */
-  create() {
+  create(options) {
   }
   
   /**
@@ -21,7 +21,7 @@ class file {
    * @param {Number|String} options.id - Internal ID of the file
    * @returns {Number|String} - The internal ID of the deleted file
    */
-  delete() {
+  delete(options) {
   }
   
   /**
@@ -30,7 +30,7 @@ class file {
    * @param {Number|String} options.id - The internal ID of the file as a number or string, the absolute or relative path
    * @returns {File} - The internal ID of the deleted file
    */
-  load() {
+  load(options) {
   }
 }
 
