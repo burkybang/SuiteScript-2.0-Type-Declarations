@@ -1,4 +1,5 @@
 import {dialog} from './ui/dialog';
+import {record} from './record';
 import {search} from './search';
 
 /**
@@ -9,5 +10,6 @@ import {search} from './search';
  */
 class N {
   dialog = dialog;
+  record = record;
   search = search;
 }
