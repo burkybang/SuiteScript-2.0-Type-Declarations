@@ -497,24 +497,26 @@ namespace search {
     GATEWAY_NOTIFICATION = 'GatewayNotification',
   }
   
-  /**
-   * Return a new instance of search.Search object.
-   *
-   * @classDescription Encapsulation of a search.
-   * @constructor
-   * @param {string} typeOrJavaSearch (optional)  the record type you are searching
-   * @param {number} id  the internal ID of the search
-   * @param {Filter | array of search.Filter} filters (optional)  a single filter object or an array of filters used to
-   *     filter the search
-   * @param {Column|string|Column[]|string[]} columns (optional)  columns to be returned from the search
-   * @returns {Search}
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when provided filters contain a different type than search.Filter
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when provided columns contain a different type than search.Column
-   *     or string
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING when provided filters contain a different type than search.Setting
-   * @since 2015.2
-   */
   class Search {
+    /**
+     * Return a new instance of search.Search object.
+     *
+     * @classDescription Encapsulation of a search.
+     * @constructor
+     * @param {string} typeOrJavaSearch (optional)  the record type you are searching
+     * @param {number} id  the internal ID of the search
+     * @param {Filter | array of search.Filter} filters (optional)  a single filter object or an array of filters used to
+     *     filter the search
+     * @param {Column|string|Column[]|string[]} columns (optional)  columns to be returned from the search
+     * @returns {Search}
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when provided filters contain a different type than search.Filter
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when provided columns contain a different type than search.Column
+     *     or string
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING when provided filters contain a different type than search.Setting
+     * @since 2015.2
+     */
+    constructor() {
+    }
     
     /**
      * Search type.
@@ -646,18 +648,20 @@ namespace search {
     };
   }
   
-  /**
-   * Return a new instance of search.Filter object.
-   *
-   * @classDescription Encapsulation of a search filter.
-   * @protected
-   * @constructor
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-   *
-   * @since 2015.2
-   */
   class Filter {
+    /**
+     * Return a new instance of search.Filter object.
+     *
+     * @classDescription Encapsulation of a search filter.
+     * @protected
+     * @constructor
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
+     *
+     * @since 2015.2
+     */
+    constructor() {
+    }
     
     /**
      * Field name for this search filter.
@@ -716,17 +720,19 @@ namespace search {
     };
   }
   
-  /**
-   * Return a new instance of search.Column object.
-   *
-   * @classDescription Encapsulation of a search column.
-   * @protected
-   * @constructor
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-   *
-   * @since 2015.2
-   */
   class Column {
+    /**
+     * Return a new instance of search.Column object.
+     *
+     * @classDescription Encapsulation of a search column.
+     * @protected
+     * @constructor
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
+     *
+     * @since 2015.2
+     */
+    constructor() {
+    }
     
     /**
      * The name of the search column.
@@ -813,18 +819,20 @@ namespace search {
     };
   }
   
-  /**
-   * Return a new instance of search.Setting object.
-   *
-   * @classDescription Encapsulation of a search setting.
-   * @protected
-   * @constructor
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
-   *
-   * @since 2018.2
-   */
   class Setting {
+    /**
+     * Return a new instance of search.Setting object.
+     *
+     * @classDescription Encapsulation of a search setting.
+     * @protected
+     * @constructor
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
+     *
+     * @since 2018.2
+     */
+    constructor() {
+    }
     
     /**
      * Name for this search setting.
@@ -858,16 +866,18 @@ namespace search {
     };
   }
   
-  /**
-   * Return a new instance of search.ResultSet object.
-   *
-   * @classDescription Encapsulation of a search result set.
-   * @protected
-   * @constructor
-   *
-   * @since 2015.2
-   */
   class ResultSet {
+    /**
+     * Return a new instance of search.ResultSet object.
+     *
+     * @classDescription Encapsulation of a search result set.
+     * @protected
+     * @constructor
+     *
+     * @since 2015.2
+     */
+    constructor() {
+    }
     
     /**
      * List of columns contained in this result set.
@@ -920,16 +930,19 @@ namespace search {
     };
   }
   
-  /**
-   * Return a new instance of search.Result object.
-   *
-   * @classDescription Encapsulation of a search result.
-   * @protected
-   * @constructor
-   *
-   * @since 2015.2
-   */
   class Result {
+    /**
+     * Return a new instance of search.Result object.
+     *
+     * @classDescription Encapsulation of a search result.
+     * @protected
+     * @constructor
+     *
+     * @since 2015.2
+     */
+    constructor() {
+    
+    }
     
     /**
      * Record type of the result.
@@ -1005,11 +1018,13 @@ namespace search {
     };
   }
   
-  /**
-   * @protected
-   * @constructor
-   */
   class PagedData {
+    /**
+     * @protected
+     * @constructor
+     */
+    constructor() {
+    }
     
     /**
      * rows per page - defined in search definition [5 - 1000]
@@ -1029,11 +1044,13 @@ namespace search {
     pageRanges = undefined;
   }
   
-  /**
-   * @protected
-   * @constructor
-   */
   class PagedRange {
+    /**
+     * @protected
+     * @constructor
+     */
+    constructor() {
+    }
     
     /**
      * @returns {number}
