@@ -9,7 +9,7 @@
  * Return a new instance of mapreduce.Summary
  * @class
  * @classdesc Used for accessing Map/Reduce job output and metadata.
- * @return {Summary}
+ * @returns {Summary}
  * @constructor
  *
  * @since 2015.2
@@ -94,7 +94,7 @@ class Summary {
  * Return a new instance of mapreduce.InputSummary
  * @class
  * @classdesc Used for accessing Map/Reduce INPUT stage metadata.
- * @return {InputSummary}
+ * @returns {InputSummary}
  * @constructor
  *
  * @since 2015.2
@@ -147,7 +147,7 @@ class InputSummary {
  * Return a new instance of mapreduce.MapSummary
  * @class
  * @classdesc Used for accessing Map/Reduce MAP stage metadata.
- * @return {MapSummary}
+ * @returns {MapSummary}
  * @constructor
  *
  * @since 2015.2
@@ -222,7 +222,7 @@ class MapSummary {
  * Return a new instance of mapreduce.ReduceSummary
  * @class
  * @classdesc Used for accessing Map/Reduce REDUCE stage metadata.
- * @return {ReduceSummary}
+ * @returns {ReduceSummary}
  * @constructor
  *
  * @since 2015.2

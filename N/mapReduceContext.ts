@@ -9,7 +9,7 @@
  * Return a new instance of mapreduce.InputContext
  * @class
  * @classdesc Contains ObjectRefType enum.
- * @return {InputContext}
+ * @returns {InputContext}
  * @constructor
  *
  * @since 2015.2
@@ -47,7 +47,7 @@ class InputContext {
  * Return a new instance of mapreduce.MapContext
  * @class
  * @classdesc Contains the key/value pairs to process through the map stage.
- * @return {MapContext}
+ * @returns {MapContext}
  * @constructor
  *
  * @since 2015.2
@@ -117,7 +117,7 @@ class MapContext {
  * Return a new instance of mapreduce.ReduceContext
  * @class
  * @classdesc Contains the key/values groups to process through the reduce stage.
- * @return {ReduceContext}
+ * @returns {ReduceContext}
  * @constructor
  *
  * @since 2015.2
