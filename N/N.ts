@@ -1,6 +1,7 @@
 import {dialog} from './ui/dialog';
 
 import {cache} from './cache';
+import {file} from './file';
 import {record} from './record';
 import {search} from './search';
 
@@ -16,6 +17,7 @@ class N {
   
   // N/
   cache = cache;
+  file = file;
   record = record;
   search = search;
 }
