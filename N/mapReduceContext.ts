@@ -1,46 +1,45 @@
 /**
- * SuiteScript Map and Reduce Context module
+ * SuiteScript Map/Reduce Context
  *
- * @module N/mapReduceContext
  * @NApiVersion 2.x
  *
  */
-function mapReduceContext() {
-}
 
 /**
  * Return a new instance of mapreduce.InputContext
  * @class
  * @classdesc Contains ObjectRefType enum.
- * @return {mapreduce.InputContext}
+ * @return {InputContext}
  * @constructor
  *
  * @since 2015.2
  */
-function InputContext() {
+class InputContext {
   
   /**
    * @name InputContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the getInputData(inputContext) function was invoked again
    * @readonly
    */
-  this.prototype.isRestarted = undefined;
+  isRestarted = undefined;
+  
   /**
    * @name InputContext#ObjectRefType
    * @type {string} value - Enum describing valid "type" attribute values for ObjectRef.
    * @readonly
    */
-  this.prototype.ObjectRefType = undefined;
+  ObjectRefType = undefined;
+  
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
 
@@ -48,44 +47,49 @@ function InputContext() {
  * Return a new instance of mapreduce.MapContext
  * @class
  * @classdesc Contains the key/value pairs to process through the map stage.
- * @return {mapreduce.MapContext}
+ * @return {MapContext}
  * @constructor
  *
  * @since 2015.2
  */
-function MapContext() {
+class MapContext {
   
   /**
    * @name MapContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the map(mapContext) function was invoked again
    * @readonly
    */
-  this.prototype.isRestarted = undefined;
+  isRestarted = undefined;
+  
   /**
    * @name MapContext#executionNo
    * @type {int} executionNo - execution no for current map record, i.e. for which time is the map function for the current record executed
    * @readonly
    */
-  this.prototype.executionNo = undefined;
+  executionNo = undefined;
+  
   /**
    * @name MapContext#key
    * @type {string} key - The key to be processed through the map stage
    * @readonly
    */
-  this.prototype.key = undefined;
+  key = undefined;
+  
   /**
    * @name MapContext#value
    * @type {string} value - The value to be processed through the map stage.
    * @readonly
    */
-  this.prototype.value = undefined;
+  value = undefined;
+  
   /**
    * @name MapContext#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during particular map function execution.
    *      <pre> context.errors.each(function(key, value){...}); </pre>
    * @readonly
    */
-  this.prototype.errors = undefined;
+  errors = undefined;
+  
   /**
    * Writes the key value pairs
    *
@@ -93,19 +97,19 @@ function MapContext() {
    * @param {string} options.key - The key to write
    * @param {Object} options.value - The value to write
    */
-  this.prototype.write = function (options) {
+  write(options) {
   };
   
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
 
@@ -113,25 +117,27 @@ function MapContext() {
  * Return a new instance of mapreduce.ReduceContext
  * @class
  * @classdesc Contains the key/values groups to process through the reduce stage.
- * @return {mapreduce.ReduceContext}
+ * @return {ReduceContext}
  * @constructor
  *
  * @since 2015.2
  */
-function ReduceContext() {
+class ReduceContext {
   
   /**
    * @name ReduceContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the Rap(reduceContext) function was invoked again
    * @readonly
    */
-  this.prototype.isRestarted = undefined;
+  isRestarted = undefined;
+  
   /**
    * @name ReduceContext#executionNo
    * @type {int} executionNo - execution no for current reduce record list, i.e. for which time is the reduce function for the current reduce record list executed
    * @readonly
    */
-  this.prototype.executionNo = undefined;
+  executionNo = undefined;
+  
   /**
    * @name ReduceContext#key
    * @type {string} key - When the map/reduce process includes a map stage, the key is derived from the key written
@@ -139,7 +145,8 @@ function ReduceContext() {
    When the map stage is skipped, the key depends on the input type:
    * @readonly
    */
-  this.prototype.key = undefined;
+  key = undefined;
+  
   /**
    * @name MapContext#value
    * @type {string} values - When the map/reduce process includes a map stage, the values are derived from the values
@@ -147,14 +154,16 @@ function ReduceContext() {
    When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type:
    * @readonly
    */
-  this.prototype.values = undefined;
+  values = undefined;
+  
   /**
    * @name ReduceContext#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during particular reduce function execution.
    *      <pre> context.errors.iterator().each(function(key, value){...}); </pre>
    * @readonly
    */
-  this.prototype.errors = undefined;
+  errors = undefined;
+  
   /**
    * Writes the key/values groups
    *
@@ -162,24 +171,18 @@ function ReduceContext() {
    * @param {string} options.key - The key to write
    * @param {Object} options.value - The value to write
    */
-  this.prototype.write = function (options) {
+  write(options) {
   };
   
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
-
-mapReduceContext = new mapReduceContext();
-/**
- * @type {mapReduceContext}
- */
-N.prototype.mapReduceContext = mapReduceContext;

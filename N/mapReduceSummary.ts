@@ -1,12 +1,9 @@
 /**
- * SuiteScript mapReduceSummary module
+ * SuiteScript Map/Reduce Summary
  *
- * @module N/mapReduceSummary
  * @NApiVersion 2.x
  *
  */
-function mapReduceSummary() {
-}
 
 /**
  * Return a new instance of mapreduce.Summary
@@ -17,70 +14,79 @@ function mapReduceSummary() {
  *
  * @since 2015.2
  */
-function Summary() {
+class Summary {
   
   /**
    * @name Summary#dateCreated
    * @type {Date} dateCreated - Time M/R job began running.
    * @readonly
    */
-  this.prototype.dateCreated = undefined;
+  dateCreated = undefined;
+  
   /**
    * @name Summary#seconds
    * @type {Number} seconds - Total seconds elapsed while running.
    * @readonly
    */
-  this.prototype.seconds = undefined;
+  seconds = undefined;
+  
   /**
    * @name Summary#usage
    * @type {Number} usage - Total usage points consumed while running.
    * @readonly
    */
-  this.prototype.usage = undefined;
+  usage = undefined;
+  
   /**
    * @name Summary#concurrency
    * @type {Number} concurrency - Maximum number of queues utilized at the same time while running.
    * @readonly
    */
-  this.prototype.concurrency = undefined;
+  concurrency = undefined;
+  
   /**
    * @name Summary#yields
    * @type {Number} yields - Total number of times yielding the queue while running.
    * @readonly
    */
-  this.prototype.yields = undefined;
+  yields = undefined;
+  
   /**
    * @name Summary#output#iterator()
    * @type {Iterator} iterator - Iterator which provides keys and values written as output during the REDUCE phase.
    *      <pre> summary.output.iterator().each(function(key, value){...}); </pre>
    * @readonly
    */
-  this.prototype.output = undefined;
+  output = undefined;
+  
   /**
    * @name Summary#inputSummary
    * @type {InputSummary} inputSummary - Stats about the INPUT stage.
    */
-  this.prototype.inputSummary = undefined;
+  inputSummary = undefined;
+  
   /**
    * @name Summary#mapSummary
    * @type {mapSummary} mapSummary - Stats about the MAP stage.
    */
-  this.prototype.mapSummary = undefined;
+  mapSummary = undefined;
+  
   /**
    * @name Summary#reduceSummary
    * @type {reduceSummary} reduceSummary - Stats about the REDUCE stage.
    */
-  this.prototype.reduceSummary = undefined;
+  reduceSummary = undefined;
+  
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
 
@@ -93,43 +99,47 @@ function Summary() {
  *
  * @since 2015.2
  */
-function InputSummary() {
+class InputSummary {
   
   /**
    * @name InputSummary#dateCreated
    * @type {Date} dateCreated - Time M/R INPUT stage began running.
    * @readonly
    */
-  this.prototype.dateCreated = undefined;
+  dateCreated = undefined;
+  
   /**
    * @name InputSummary#seconds
    * @type {Number} seconds - Total seconds elapsed while during the INPUT stage.
    * @readonly
    */
-  this.prototype.seconds = undefined;
+  seconds = undefined;
+  
   /**
    * @name InputSummary#usage
    * @type {Number} usage - Total usage points consumed during the INPUT stage.
    * @readonly
    */
-  this.prototype.usage = undefined;
+  usage = undefined;
+  
   /**
    * @name InputSummary#error
    *  @type {SuiteScriptError} error - Serialized error is thrown out of getInputData() - if applicable
    *      <pre> var inputError = summary.input.error; </pre>
    * @readonly
    */
-  this.prototype.error = undefined;
+  error = undefined;
+  
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
 
@@ -142,62 +152,69 @@ function InputSummary() {
  *
  * @since 2015.2
  */
-function MapSummary() {
+class MapSummary {
   
   /**
    * @name MapSummary#dateCreated
    * @type {Date} dateCreated - Time MAP stage began running.
    * @readonly
    */
-  this.prototype.dateCreated = undefined;
+  dateCreated = undefined;
+  
   /**
    * @name MapSummary#seconds
    * @type {Number} seconds - Total seconds elapsed while running MAP stage.
    * @readonly
    */
-  this.prototype.seconds = undefined;
+  seconds = undefined;
+  
   /**
    * @name MapSummary#usage
    * @type {Number} usage - Total usage points consumed while running MAP stage.
    * @readonly
    */
-  this.prototype.usage = undefined;
+  usage = undefined;
+  
   /**
    * @name MapSummary#concurrency
    * @type {Number} concurrency - Maximum number of queues utilized at the same time while running MAP stage.
    * @readonly
    */
-  this.prototype.concurrency = undefined;
+  concurrency = undefined;
+  
   /**
    * @name MapSummary#yields
    * @type {Number} yields - Total number of times yielding the queue while running MAP stage.
    * @readonly
    */
-  this.prototype.yields = undefined;
+  yields = undefined;
+  
   /**
    * @name MapSummary#keys#iterator
    * @type {Iterator} iterator - Iterator which provides input keys processed during the MAP phase.
    *      <pre> summary.map.keys.iterator.each(function(key){...}); </pre>
    * @readonly
    */
-  this.prototype.keys = undefined;
+  keys = undefined;
+  
   /**
    * @name MapSummary#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during the MAP phase.
    *      <pre> summary.map.errors.each(function(key, value){...}); </pre>
    * @readonly
    */
-  this.prototype.errors = undefined;
+  errors = undefined;
+  
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
 
@@ -210,67 +227,68 @@ function MapSummary() {
  *
  * @since 2015.2
  */
-function ReduceSummary() {
+class ReduceSummary {
   
   /**
    * @name ReduceSummary#dateCreated
    * @type {Date} dateCreated - Time REDUCE stage began running.
    * @readonly
    */
-  this.prototype.dateCreated = undefined;
+  dateCreated = undefined;
+  
   /**
    * @name ReduceSummary#seconds
    * @type {Number} seconds - Total seconds elapsed while running REDUCE stage.
    * @readonly
    */
-  this.prototype.seconds = undefined;
+  seconds = undefined;
+  
   /**
    * @name ReduceSummary#usage
    * @type {Number} usage - Total usage points consumed while running REDUCE stage.
    * @readonly
    */
-  this.prototype.usage = undefined;
+  usage = undefined;
+  
   /**
    * @name ReduceSummary#concurrency
    * @type {Number} concurrency - Maximum number of queues utilized at the same time while running REDUCE stage.
    * @readonly
    */
-  this.prototype.concurrency = undefined;
+  concurrency = undefined;
+  
   /**
    * @name ReduceSummary#yields
    * @type {Number} yields - Total number of times yielding the queue while running REDUCE stage.
    * @readonly
    */
-  this.prototype.yields = undefined;
+  yields = undefined;
+  
   /**
    * @name ReduceSummary#keys#iterator
    * @type {Iterator} iterator - Iterator which provides input keys processed during the REDUCE phase.
    *      <pre> summary.reduce.iterator.keys.each(function(key){...}); </pre>
    * @readonly
    */
-  this.prototype.keys = undefined;
+  keys = undefined;
+  
   /**
    * @name ReduceSummary#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during the REDUCE phase.
    *      <pre> summary.reduce.errors.iterator().each(function(key, value){...}); </pre>
    * @readonly
    */
-  this.prototype.errors = undefined;
+  errors = undefined;
+  
   /**
    * @returns {string}
    */
-  this.prototype.toString = function () {
+  toString() {
   };
   
   /**
    * JSON.stringify() implementation.
    */
-  this.prototype.toJSON = function () {
+  toJSON() {
   };
 }
-
-mapReduceSummary = new mapReduceSummary();
-/**
- * @type {mapReduceSummary}
- */
-N.prototype.mapReduceSummary = mapReduceSummary;
