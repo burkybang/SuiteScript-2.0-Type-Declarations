@@ -1055,7 +1055,4 @@ namespace search {
     }
 }
 
-/**
- * @type {search}
- */
-N.prototype.search = search;
+export {search};
