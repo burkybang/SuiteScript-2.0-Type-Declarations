@@ -26,14 +26,14 @@ function email() {
  * @param {Object} options Email options
  * @param {number} options.author Sender of the email.
  * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
- * @param {string[]} options.cc CC (optional) recipients of the email, Interal ID or array of Email Addresses.
- * @param {string[]} options.bcc BCC (optional) recipients of the email as an EmailEntity, Interal ID or Email Address.
+ * @param {string[]} [options.cc] CC (optional) recipients of the email, Interal ID or array of Email Addresses.
+ * @param {string[]} [options.bcc] BCC (optional) recipients of the email as an EmailEntity, Interal ID or Email Address.
  * @param {string} options.subject Email subject.
  * @param {string} options.body Email Body/contents.
- * @param {string} options.replyTo (optional)
- * @param {file.File[]} options.attachments (optional) Email file attachments. Not supported in client side.
- * @param {RelatedRecords} options.relatedRecords (optional)
- * @param {boolean} options.isInternalOnly (optional) Do not show Message record when viewed from external Entity. Default to false
+ * @param {string} [options.replyTo] (optional)
+ * @param {file.File[]} [options.attachments] (optional) Email file attachments. Not supported in client side.
+ * @param {RelatedRecords} [options.relatedRecords] (optional)
+ * @param {boolean} [options.isInternalOnly] (optional) Do not show Message record when viewed from external Entity. Default to false
  * @returns {undefined}
  *
  */
@@ -61,14 +61,14 @@ email.prototype.send = function (options) {
  * @param {Object} options Email options
  * @param {number} options.author Sender of the email.
  * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
- * @param {string[]} options.cc CC (optional) recipients of the email, Interal ID or array of Email Addresses.
- * @param {string[]} options.bcc BCC (optional) recipients of the email as an EmailEntity, Interal ID or Email Address.
+ * @param {string[]} [options.cc] CC (optional) recipients of the email, Interal ID or array of Email Addresses.
+ * @param {string[]} [options.bcc] BCC (optional) recipients of the email as an EmailEntity, Interal ID or Email Address.
  * @param {string} options.subject Email subject.
  * @param {string} options.body Email Body/contents.
- * @param {string} options.replyTo (optional)
- * @param {file.File[]} options.attachments (optional) Email file attachments.  Not supported in client side.
- * @param {RelatedRecords} options.relatedRecords (optional)
- * @param {boolean} options.isInternalOnly (optional) Do not show Message record when viewed from external Entity. Default to false
+ * @param {string} [options.replyTo] (optional)
+ * @param {file.File[]} [options.attachments] (optional) Email file attachments.  Not supported in client side.
+ * @param {RelatedRecords} [options.relatedRecords] (optional)
+ * @param {boolean} [options.isInternalOnly] (optional) Do not show Message record when viewed from external Entity. Default to false
  * @returns {undefined}
  *
  */
