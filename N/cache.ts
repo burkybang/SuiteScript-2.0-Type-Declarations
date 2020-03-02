@@ -6,6 +6,21 @@
  *
  */
 
+class cache {
+  
+  /**
+   * Get a named, scoped cache.
+   *
+   * @param {Object} options
+   * @param {string} options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
+   * @param {string} [options.scope] The cache scope (optional). The default cache scope is SCRIPT.
+   * @returns {Cache}
+   */
+  getCache(options) {
+  }
+  
+}
+
 namespace cache {
   /**
    * Defines all possible cache scopes.
@@ -20,17 +35,6 @@ namespace cache {
     PRIVATE = 'PRIVATE',
     PROTECTED = 'PROTECTED',
     PUBLIC = 'PUBLIC',
-  }
-  
-  /**
-   * Get a named, scoped cache.
-   *
-   * @param {Object} options
-   * @param {string} options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
-   * @param {string} [options.scope] The cache scope (optional). The default cache scope is SCRIPT.
-   * @returns {Cache}
-   */
-  function getCache(options) {
   }
   
   /**
