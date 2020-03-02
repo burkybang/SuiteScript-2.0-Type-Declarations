@@ -864,6 +864,19 @@ namespace record {
      */
     setCurrentSublistText(options) {
     };
+
+    /**
+     * selects an existing line in a sublist (dynamic mode only)
+     * @param {Object} options
+     * @param {string} options.sublistId
+     * @param {number} options.line
+     * @return {Record} same record, for chaining
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @restriction only available in dynamic record
+     */
+    selectLine(options) {
+    };
     
     /**
      * save record updates to the system
