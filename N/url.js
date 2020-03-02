@@ -11,7 +11,7 @@ function url() {
 /**
  * @param {Object} options
  * @param {string} options.recordType
- * @param {string} options.recordId
+ * @param {string|number} options.recordId
  * @param {boolean} [options.isEditMode]
  * @param {Object} [options.params] Per url.format({query
  *
