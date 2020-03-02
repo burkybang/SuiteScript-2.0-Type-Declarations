@@ -624,7 +624,7 @@ namespace search {
      * Runs the current search with a paged interface.
      * @param {Object} options
      * @param {number} options.pageSize
-     * @returns {SearchPagedData} PagedData object that allows user to page through the search result
+     * @returns {PagedData} PagedData object that allows user to page through the search result
      * @since 2016.1
      */
     // function runPagedThis() {}
