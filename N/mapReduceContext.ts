@@ -15,27 +15,29 @@
  * @since 2015.2
  */
 class InputContext {
-  
+
   /**
    * @name InputContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the getInputData(inputContext) function was invoked again
    * @readonly
    */
-  isRestarted = undefined;
-  
+  isRestarted: boolean;
+
   /**
    * @name InputContext#ObjectRefType
-   * @type {string} value - Enum describing valid "type" attribute values for ObjectRef.
+   * @type {Object} value - Enum describing valid "type" attribute values for ObjectRef.
+   * @type {string|number} value.id
+   * @type {'search'} value.type
    * @readonly
    */
-  ObjectRefType = undefined;
-  
+  ObjectRefType: { id: string | number, value: 'search' };
+
   /**
    * @returns {string}
    */
   toString() {
   };
-  
+
   /**
    * JSON.stringify() implementation.
    */
@@ -53,35 +55,35 @@ class InputContext {
  * @since 2015.2
  */
 class MapContext {
-  
+
   /**
    * @name MapContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the map(mapContext) function was invoked again
    * @readonly
    */
-  isRestarted = undefined;
-  
+  isRestarted: boolean;
+
   /**
    * @name MapContext#executionNo
-   * @type {int} executionNo - execution no for current map record, i.e. for which time is the map function for the current record executed
+   * @type {number} executionNo - execution no for current map record, i.e. for which time is the map function for the current record executed
    * @readonly
    */
-  executionNo = undefined;
-  
+  executionNo: number;
+
   /**
    * @name MapContext#key
    * @type {string} key - The key to be processed through the map stage
    * @readonly
    */
-  key = undefined;
-  
+  key: string;
+
   /**
    * @name MapContext#value
    * @type {string} value - The value to be processed through the map stage.
    * @readonly
    */
-  value = undefined;
-  
+  value: string;
+
   /**
    * @name MapContext#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during particular map function execution.
@@ -89,7 +91,7 @@ class MapContext {
    * @readonly
    */
   errors = undefined;
-  
+
   /**
    * Writes the key value pairs
    *
@@ -99,13 +101,13 @@ class MapContext {
    */
   write(options) {
   };
-  
+
   /**
    * @returns {string}
    */
   toString() {
   };
-  
+
   /**
    * JSON.stringify() implementation.
    */
@@ -123,21 +125,21 @@ class MapContext {
  * @since 2015.2
  */
 class ReduceContext {
-  
+
   /**
    * @name ReduceContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the Rap(reduceContext) function was invoked again
    * @readonly
    */
-  isRestarted = undefined;
-  
+  isRestarted: boolean;
+
   /**
    * @name ReduceContext#executionNo
-   * @type {int} executionNo - execution no for current reduce record list, i.e. for which time is the reduce function for the current reduce record list executed
+   * @type {number} executionNo - execution no for current reduce record list, i.e. for which time is the reduce function for the current reduce record list executed
    * @readonly
    */
-  executionNo = undefined;
-  
+  executionNo: number;
+
   /**
    * @name ReduceContext#key
    * @type {string} key - When the map/reduce process includes a map stage, the key is derived from the key written
@@ -145,8 +147,8 @@ class ReduceContext {
    When the map stage is skipped, the key depends on the input type:
    * @readonly
    */
-  key = undefined;
-  
+  key: string;
+
   /**
    * @name MapContext#value
    * @type {string} values - When the map/reduce process includes a map stage, the values are derived from the values
@@ -154,8 +156,8 @@ class ReduceContext {
    When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type:
    * @readonly
    */
-  values = undefined;
-  
+  values: string;
+
   /**
    * @name ReduceContext#errors#iterator
    * @type {Iterator} iterator - Iterator which provides errors thrown during particular reduce function execution.
@@ -163,7 +165,7 @@ class ReduceContext {
    * @readonly
    */
   errors = undefined;
-  
+
   /**
    * Writes the key/values groups
    *
@@ -173,13 +175,13 @@ class ReduceContext {
    */
   write(options) {
   };
-  
+
   /**
    * @returns {string}
    */
   toString() {
   };
-  
+
   /**
    * JSON.stringify() implementation.
    */
