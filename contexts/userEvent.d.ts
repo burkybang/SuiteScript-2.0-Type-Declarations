@@ -1,44 +1,46 @@
+/// <reference path="../N/ui/serverWidget.d.ts" />
+
 /**
- * SuiteScript User Event Context
+ * SuiteScript User Event Script Context
  *
  * @NApiVersion 2.x
  *
  */
 
 /**
- * Return a new instance of userevent.BeforeLoad
+ * Return a new instance of userevent.BeforeLoadContext
  * @class
  * @classdesc beforeLoad event handler.
- * @returns {BeforeLoad}
+ * @return {BeforeLoadContext}
  * @constructor
  *
  * @since 2015.2
  */
-class BeforeLoad {
-
+interface BeforeLoadContext {
+  
   /**
-   * @name BeforeLoad#newRecord
-   * @type {Record} newRecord - The new record being loaded
+   * @name BeforeLoadContext#newRecord
+   * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord: Record;
-
+  newRecord
+  
   /**
-   * @name BeforeLoad#type
+   * @name BeforeLoadContext#type
    * @type {string} type - The action type that triggered this event
    * @readonly
    */
-  type: BeforeLoad.UserEventType;
-
+  type: BeforeLoadContext.UserEventType
+  
   /**
-   * @name BeforeLoad#form
-   * @type {Form} form - The current UI form
+   * @name BeforeLoadContext#form
+   * @type {serverWidget.Form} form - The current UI form
    * @readonly
    */
-  form: Form;
+  form: serverWidget.Form
 }
 
-namespace BeforeLoad {
+declare namespace BeforeLoadContext {
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',
@@ -67,39 +69,39 @@ namespace BeforeLoad {
 }
 
 /**
- * Return a new instance of userevent.BeforeSubmit
+ * Return a new instance of userevent.BeforeSubmitContext
  * @class
  * @classdesc beforeSubmit event handler.
- * @returns {BeforeSubmit}
+ * @return {BeforeSubmitContext}
  * @constructor
  *
  * @since 2015.2
  */
-class BeforeSubmit {
 
+interface BeforeSubmitContext {
   /**
-   * @name BeforeSubmit#newRecord
-   * @type {Record} newRecord - The new record being loaded
+   * @name BeforeSubmitContext#newRecord
+   * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord: Record;
-
+  newRecord
+  
   /**
-   * @name BeforeSubmit#oldRecord
-   * @type {Record} oldRecord - The old record before it was modified
+   * @name BeforeSubmitContext#oldRecord
+   * @type {record.Record} oldRecord - The old record before it was modified
    * @readonly
    */
-  oldRecord: Record;
-
+  oldRecord
+  
   /**
-   * @name BeforeSubmit#type
+   * @name BeforeSubmitContext#type
    * @type {string} type - The action type that triggered this event
    * @readonly
    */
-  type: BeforeSubmit.UserEventType;
+  type: BeforeSubmitContext.UserEventType
 }
 
-namespace BeforeSubmit {
+declare namespace BeforeSubmitContext {
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',
@@ -128,39 +130,39 @@ namespace BeforeSubmit {
 }
 
 /**
- * Return a new instance of userevent.AfterSubmit
+ * Return a new instance of userevent.AfterSubmitContext
  * @class
  * @classdesc afterSubmit event handler.
- * @returns {AfterSubmit}
+ * @return {AfterSubmitContext}
  * @constructor
  *
  * @since 2015.2
  */
-class AfterSubmit {
-
+interface AfterSubmitContext {
+  
   /**
-   * @name AfterSubmit#newRecord
-   * @type {Record} newRecord - The new record being loaded
+   * @name AfterSubmitContext#newRecord
+   * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord: Record;
-
+  newRecord
+  
   /**
-   * @name AfterSubmit#oldRecord
-   * @type {Record} oldRecord - The old record before it was modified
+   * @name AfterSubmitContext#oldRecord
+   * @type {record.Record} oldRecord - The old record before it was modified
    * @readonly
    */
-  oldRecord: Record;
-
+  oldRecord
+  
   /**
-   * @name AfterSubmit#type
+   * @name AfterSubmitContext#type
    * @type {string} type - The action type that triggered this event
    * @readonly
    */
-  type: AfterSubmit.UserEventType;
+  type: AfterSubmitContext.UserEventType
 }
 
-namespace AfterSubmit {
+declare namespace AfterSubmitContext {
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',
