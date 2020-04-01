@@ -5,14 +5,14 @@
  * @suiteScriptVersion 2.x
  *
  */
-class dialog {
+interface dialog {
   
   /**
    * Creates an Alert Dialog with an OK Button.
    *
    * @restriction Client SuiteScript only
    *
-   * @param {Object} options
+   * @param {Object} [options]
    * @param {string} [options.title] The title of the alert. Defaults to empty string.
    * @param {string} [options.message] The content of the alert. Defaults to empty string.
    *
@@ -21,15 +21,14 @@ class dialog {
    *                   OK returns true.
    * @since 2016.1
    */
-  alert(options) {
-  };
+  alert(options?: { title?: string, message?: string }): Promise<true>
   
   /**
    * Creates an Confirm Dialog with an OK and Cancel Button.
    *
    * @restriction Client SuiteScript only
    *
-   * @param {Object} options
+   * @param {Object} [options]
    * @param {string} [options.title] The title of the confirmation box. Defaults to empty string.
    * @param {string} [options.message] The content of the confirmation box. Defaults to empty string.
    *
@@ -38,15 +37,14 @@ class dialog {
    *           OK returns true and Cancel returns false.
    * @since 2016.1
    */
-  confirm(options) {
-  };
+  confirm(options?: { title?: string, message?: string }): Promise<boolean>
   
   /**
    * Creates an Dialog with the specified buttons.
    *
    * @restriction Client SuiteScript only
    *
-   * @param {Object} options
+   * @param {Object} [options]
    * @param {string} [options.title]   The title of the dialog box. Defaults to empty string.
    * @param {string} [options.message] The content of the dialog box. Defaults to empty string.
    * @param {string} [options.buttons] The list of buttons to add. Each item in the list requires a label and value.
@@ -60,8 +58,5 @@ class dialog {
    * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
    * @throws {SuiteScriptError} BUTTONS_MUST_INCLUDE_BOTH_A_LABEL_AND_VALUE if options.buttons is specified and one or more items do not have a label and/or value.
    */
-  create(options) {
-  };
+  create(options?: { title?: string, message?: string, buttons?: { label: string, value: any } }): Promise<boolean | any>
 }
-
-export {dialog};

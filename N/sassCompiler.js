@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript SASS Compiler module (Server Side)
  *
@@ -23,7 +25,7 @@ function Output() {
   /**
    * Total amount of source files.
    * @name Output#sourceFileCount
-   * @type number
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    */
@@ -31,7 +33,7 @@ function Output() {
   /**
    * Total size of source files in bytes.
    * @name Output#sourceSize
-   * @type number
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    */
@@ -39,7 +41,7 @@ function Output() {
   /**
    * Total duration of the compilation.
    * @name Output#compileTime
-   * @type number
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    */
@@ -47,7 +49,7 @@ function Output() {
   /**
    * Returns the object type name (sassCompiler.Output)
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -55,7 +57,7 @@ function Output() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {{type: string, sourceFileCount: *, sourceSize: *, compileTime: *}}
+   * @return {{type: string, sourceFileCount: *, sourceSize: *, compileTime: *}}
    */
   this.prototype.toJSON = function () {
   };

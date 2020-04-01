@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript record action module
  *
@@ -18,7 +20,7 @@ function action() {
  * @param {string} options.recordType record type
  * @param {string} (optional) options.recordId record instance ID
  * @param {string} (optional) options.id action ID
- * @returns {Object} a set of actions (@see Action) defined on the record type indexed by action ID
+ * @return {Object} a set of actions (@see Action) defined on the record type indexed by action ID
  * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
  * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
  * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
@@ -39,7 +41,7 @@ action.prototype.find = function (options) {
  * @param {string} options.recordType record type
  * @param {string} options.id action ID
  * @param {string} (optional) options.recordId record instance ID
- * @returns {Action} record action executor for action specified by options
+ * @return {Action} record action executor for action specified by options
  * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
  * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
  * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
@@ -59,7 +61,7 @@ action.prototype['get'] = function (options) {
  * @param {string} options.id action ID
  * @param {Object} options.params action arguments
  * @param {string} options.params.recordId record instance ID
- * @returns {Object} action result; the actual return value returned by the action implementation is stored in the response property
+ * @return {Object} action result; the actual return value returned by the action implementation is stored in the response property
  * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
  * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
  * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type

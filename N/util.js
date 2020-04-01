@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript 2.0 util global object
  *
@@ -13,7 +15,7 @@ var util = {
    *
    * @param {Object|Array} iterable
    * @param {Function} callback
-   * @returns {Object|Array} iterable - original collection
+   * @return {Object|Array} iterable - original collection
    */
   each: function (iterable, callback) {
   },
@@ -23,7 +25,7 @@ var util = {
    *
    * @param {Object} receiver
    * @param {Object} contributor
-   * @returns {Object} receiver
+   * @return {Object} receiver
    */
   extend: function (receiver, contributor) {
   },
@@ -33,7 +35,7 @@ var util = {
    *
    * @param {Object} receiver
    * @param {Object} contributor
-   * @returns {Object} receiver
+   * @return {Object} receiver
    */
   deepExtend: function (receiver, contributor) {
   },
@@ -44,7 +46,7 @@ var util = {
    * @name util.isObject
    *
    * @param {*} obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isObject: function (obj) {
   },
@@ -55,7 +57,7 @@ var util = {
    * @name util.isFunction
    *
    * @param {*} obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isFunction: function (obj) {
   },
@@ -66,7 +68,7 @@ var util = {
    * @name util.isArray
    *
    * @param {*} obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isArray: function (obj) {
   },
@@ -77,7 +79,7 @@ var util = {
    * @name util.isBoolean
    *
    * @param {*} obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isBoolean: function (obj) {
   },
@@ -88,7 +90,7 @@ var util = {
    * @name util.isString
    *
    * @param {*} obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isString: function (obj) {
   },
@@ -99,7 +101,7 @@ var util = {
    * @name util.isNumber
    *
    * @param obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isNumber: function (obj) {
   },
@@ -111,7 +113,7 @@ var util = {
    * @name util.isDate
    *
    * @param obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isDate: function (obj) {
   },
@@ -122,7 +124,7 @@ var util = {
    * @name util.isRegExp
    *
    * @param obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isRegExp: function (obj) {
   },
@@ -133,7 +135,7 @@ var util = {
    * @name util.isError
    *
    * @param obj
-   * @returns {boolean}
+   * @return {boolean}
    */
   isError: function (obj) {
   },

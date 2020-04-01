@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript module
  *
@@ -40,14 +42,14 @@ runtime.prototype.isFeatureInEffect = function (options) {
 
 /**
  * @name runtime#queueCount
- * @type number
+ * @type {number}
  * @readonly
  * @since 2015.2
  */
 runtime.prototype.queueCount = undefined;
 /**
  * @name runtime#processorCount
- * @type number
+ * @type {number}
  * @readonly
  * @since 2018.1
  */
@@ -56,28 +58,28 @@ runtime.prototype.processorCount = undefined;
  * The version of NetSuite the current account is runnning.
  *
  * @name runtime#version
- * @type string
+ * @type {string}
  * @readonly
  * @since 2015.2
  */
 runtime.prototype.version = undefined;
 /**
  * @name runtime#accountId
- * @type string
+ * @type {string}
  * @readonly
  * @since 2015.2
  */
 runtime.prototype.accountId = undefined;
 /**
  * @name runtime#envType
- * @type string
+ * @type {string}
  * @readonly
  * @since 2015.2
  */
 runtime.prototype.envType = undefined;
 /**
  * @name runtime#executionContext
- * @type string
+ * @type {string}
  * @readonly
  * @since 2015.2
  */
@@ -111,7 +113,7 @@ runtime.prototype.EnvType = runtimeEnvType;
 
 /**
  * @name runtime#ContextType
- * @type object
+ * @type {object}
  * @readonly
  * @since 2018.1
  */
@@ -139,7 +141,7 @@ function Script() {
   /**
    * Current script log level
    * @name Script#logLevel
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -147,7 +149,7 @@ function Script() {
   /**
    * Current script id
    * @name Script#id
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -155,7 +157,7 @@ function Script() {
   /**
    * Current script runtime version
    * @name Script#apiVersion
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -163,7 +165,7 @@ function Script() {
   /**
    * The deploymentId for the current script deployment
    * @name Script#deploymentId
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -171,7 +173,7 @@ function Script() {
   /**
    * The bundle IDs the current script belongs to
    * @name Script#bundleIds
-   * @type string[]
+   * @type {string[]}
    * @readonly
    * @since 2015.2
    */
@@ -198,7 +200,7 @@ function Script() {
   /**
    * Percentage complete specified for the current scheduled script execution
    * @name Script#percentComplete
-   * @type number
+   * @type {number}
    * @throws {SuiteScriptError} SSS_OPERATION_UNAVAILABLE
    * @since 2015.2
    */
@@ -271,7 +273,7 @@ function User() {
   /**
    * Returns the currently logged in user's e-mail address
    * @name User#email
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -279,7 +281,7 @@ function User() {
   /**
    * Returns the currently logged in user's name
    * @name User#name
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -287,7 +289,7 @@ function User() {
   /**
    * Returns the internal ID of the currently logged in user's location
    * @name User#location
-   * @type number
+   * @type {number}
    * @readonly
    * @since 2015.2
    */
@@ -295,7 +297,7 @@ function User() {
   /**
    * Returns the internal ID of the currently logged in user's department
    * @name User#department
-   * @type number
+   * @type {number}
    * @readonly
    * @since 2015.2
    */
@@ -303,7 +305,7 @@ function User() {
   /**
    * Returns the internal ID of the currently logged in user's role
    * @name User#role
-   * @type number
+   * @type {number}
    * @readonly
    * @since 2015.2
    */
@@ -311,7 +313,7 @@ function User() {
   /**
    * Returns the internal ID of the currently logged in user's center type (role center)
    * @name User#roleCenter  The string value of the logged in user's center - for example, SALES, ACCOUNTING, CLASSIC.
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -319,7 +321,7 @@ function User() {
   /**
    * Returns the custom scriptId of the role (as opposed to the internal numerical ID).
    * @name User#roleId
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
@@ -327,7 +329,7 @@ function User() {
   /**
    * Returns the currently logged in user's internal ID
    * @name User#id
-   * @type number
+   * @type {number}
    * @readonly
    * @since 2015.2
    */
@@ -335,7 +337,7 @@ function User() {
   /**
    * Returns the internal ID of the currently logged in user's subsidiary
    * @name User#subsidiary
-   * @type number
+   * @type {number}
    * @readonly
    * @since 2015.2
    */

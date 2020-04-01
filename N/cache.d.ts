@@ -3,10 +3,9 @@
  *
  * @module N/cache
  * @NApiVersion 2.x
- *
  */
 
-class cache {
+interface cache {
   
   /**
    * Get a named, scoped cache.
@@ -14,14 +13,13 @@ class cache {
    * @param {Object} options
    * @param {string} options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
    * @param {string} [options.scope] The cache scope (optional). The default cache scope is SCRIPT.
-   * @returns {Cache}
+   * @return {Cache}
    */
-  getCache(options) {
-  }
+  getCache(options: { name: string, scope?: string }): cache.Cache
   
 }
 
-namespace cache {
+declare namespace cache {
   /**
    * Defines all possible cache scopes.
    *
@@ -43,25 +41,25 @@ namespace cache {
    * @protected
    * @constructor
    */
-  class Cache {
+  interface Cache {
     
     /**
      The name of the cache.
      * @name Cache#name
-     * @type string
+     * @type {string}
      * @readonly
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    name = undefined;
+    name: string
     
     /**
      The scope of the cache.
      * @name Cache#scope
-     * @type string
+     * @type {string}
      * @readonly
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    scope = undefined;
+    scope: string
     
     /**
      * Get a value from the cache. If the key is not present, the loader will be called to generate the value which will
@@ -75,13 +73,12 @@ namespace cache {
      * @param {string} options.key The cache key used to identify the value.
      * @param {Function} [options.loader] A function which will return the value if it is not present in the cache.
      * The callback signature for the loader is loader({ key : key }), which allows the loader to be pre-defined in a key-agnostic way (used to get different values for the same cache type, for example).
-     * @param {Object} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be
+     * @param {number} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be
      * automatically purged when the TTL expires, if it is still in the cache.
      *
-     * @returns {string}
+     * @return {string}
      */
-    get(options) {
-    };
+    get(options: { key: string, loader?: Function, ttl?: number }): string
     
     /**
      * Remove a value from the cache. If values in the cache were retrieved from a record, the associated cache keys
@@ -93,8 +90,7 @@ namespace cache {
      * @param {Object} options
      * @param {string} options.key The cache key used to identify the value.
      */
-    remove(options) {
-    };
+    remove(options: { key: string }): void
     
     /**
      * Put a value into the cache. Note that "get" can be called with a loader as simpler alternative. If the value
@@ -104,13 +100,10 @@ namespace cache {
      *
      * @param {Object} options
      * @param {string} options.key The cache key used to identify the value.
-     * @param {Object} options.value The value to cache.
-     * @param {Object} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
+     * @param {string} options.value The value to cache.
+     * @param {number} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
      * The default TTL is no limit; the minimal value is 5 minutes.
      */
-    put(options) {
-    };
+    put(options: { key: string, value: string, ttl?: number }): void
   }
 }
-
-export {cache};

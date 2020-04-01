@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript module
  *

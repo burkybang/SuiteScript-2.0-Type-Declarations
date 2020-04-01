@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript selectFieldOptions module
  *
@@ -22,18 +24,18 @@ function selectFieldOptions() {
  * @param {string} [options.searchText=]
  * @param {number|string} [options.segment=1]
  *
- * @returns {Object} result
- * @returns {Object[]} result.filters
- * @returns {string} result.filters[].value
- * @returns {string} result.filters[].label
- * @returns {Object[]} result.segments
- * @returns {string} result.segments[].value
- * @returns {string} result.segments[].label
- * @returns {Object[]} result.options
- * @returns {string} result.options[].key
- * @returns {string} result.options[].value
- * @returns {string} result.options[].label
- * @returns {string[]} result.options[].description
+ * @return {Object} result
+ * @return {Object[]} result.filters
+ * @return {string} result.filters[].value
+ * @return {string} result.filters[].label
+ * @return {Object[]} result.segments
+ * @return {string} result.segments[].value
+ * @return {string} result.segments[].label
+ * @return {Object[]} result.options
+ * @return {string} result.options[].key
+ * @return {string} result.options[].value
+ * @return {string} result.options[].label
+ * @return {string[]} result.options[].description
  *
  * @throws {SuiteScriptError} MISSING_REQD_ARGUMENT if options is missing
  * @throws {SuiteScriptError} MISSING_REQD_ARGUMENT if options.record is missing
@@ -59,18 +61,18 @@ selectFieldOptions.prototype['get'] = function (options) {
  * @param {string} [options.searchText=]
  * @param {number|string} [options.segment=1]
  *
- * @returns {Object} result
- * @returns {Object[]} result.filters
- * @returns {string} result.filters[].value
- * @returns {string} result.filters[].label
- * @returns {Object[]} result.segments
- * @returns {string} result.segments[].value
- * @returns {string} result.segments[].label
- * @returns {Object[]} result.options
- * @returns {string} result.options[].key
- * @returns {string} result.options[].value
- * @returns {string} result.options[].label
- * @returns {string[]} result.options[].description
+ * @return {Object} result
+ * @return {Object[]} result.filters
+ * @return {string} result.filters[].value
+ * @return {string} result.filters[].label
+ * @return {Object[]} result.segments
+ * @return {string} result.segments[].value
+ * @return {string} result.segments[].label
+ * @return {Object[]} result.options
+ * @return {string} result.options[].key
+ * @return {string} result.options[].value
+ * @return {string} result.options[].label
+ * @return {string[]} result.options[].description
  */
 function fetchOptions() {
 }

@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript email common module
  *
@@ -34,7 +36,7 @@ function email() {
  * @param {file.File[]} [options.attachments] (optional) Email file attachments. Not supported in client side.
  * @param {RelatedRecords} [options.relatedRecords] (optional)
  * @param {boolean} [options.isInternalOnly] (optional) Do not show Message record when viewed from external Entity. Default to false
- * @returns {undefined}
+ * @return {undefined}
  *
  */
 // function sendEmail() {}
@@ -69,7 +71,7 @@ email.prototype.send = function (options) {
  * @param {file.File[]} [options.attachments] (optional) Email file attachments.  Not supported in client side.
  * @param {RelatedRecords} [options.relatedRecords] (optional)
  * @param {boolean} [options.isInternalOnly] (optional) Do not show Message record when viewed from external Entity. Default to false
- * @returns {undefined}
+ * @return {undefined}
  *
  */
 // function sendBulkEmail() {}
@@ -86,7 +88,7 @@ email.prototype.sendBulk = function (options) {
  * @param {Object} options Email options
  * @param {Number} options.campaignEventId  The internal ID of the campaign event.
  * @param {Number} options.recipientId The internal ID of the recipient. Note that the recipient must have an email.
- * @returns {Number} A campaign response ID (tracking code) as an integer, or -1 if the send fails
+ * @return {Number} A campaign response ID (tracking code) as an integer, or -1 if the send fails
  *
  */
 // function sendCampaignEventEmail() {}

@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript module
  *
@@ -13,7 +15,7 @@ function task() {
  *
  * @param {Object} options
  * @param {string} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
- * @returns {task.ScheduledScriptTask | task.MapReduceScriptTask | task.CsvImportTask | task.EntityDeduplicationTask | task.WorkflowTriggerTask | task.SearchTask }
+ * @return {task.ScheduledScriptTask | task.MapReduceScriptTask | task.CsvImportTask | task.EntityDeduplicationTask | task.WorkflowTriggerTask | task.SearchTask }
  */
 task.prototype.create = function (options) {
 };
@@ -26,7 +28,7 @@ task.prototype.create = function (options) {
  *
  * @param {Object} options
  * @param {string} options.taskId
- * @returns {task.TaskStatus}
+ * @return {task.TaskStatus}
  */
 task.prototype.checkStatus = function (options) {
 };
@@ -117,32 +119,32 @@ function ScheduledScriptTask() {
   /**
    * The ID of the task.
    * @name ScheduledScriptTask#id
-   * @type string
+   * @type {string}
    */
   this.prototype.id = undefined;
   /**
    * Private setter of the ID of the task.
    * @name ScheduledScriptTask#_id
-   * @type string
+   * @type {string}
    */
   this.prototype._id = undefined;
   /**
    * The Internal ID or Script ID of the Script record.
    * @name ScheduledScriptTask#scriptId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.scriptId = undefined;
   /**
    * The Internal ID or Script ID of the Script Deployment record.
    * @name ScheduledScriptTask#deploymentId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.deploymentId = undefined;
   /**
    * Key/value pairs which override static script parameter field values on the deployment.
    * Used to dynamically pass context to the script.
    * @name ScheduledScriptTask#params
-   * @type Object
+   * @type {Object}
    */
   this.prototype.params = undefined;
   /**
@@ -150,7 +152,7 @@ function ScheduledScriptTask() {
    *
    * @governance 20 units
    *
-   * @returns {String} taskId
+   * @return {String} taskId
    * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
    */
   this.prototype.submit = function () {
@@ -159,7 +161,7 @@ function ScheduledScriptTask() {
   /**
    * Returns the object type name (task.ScheduledScriptTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -167,7 +169,7 @@ function ScheduledScriptTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -182,7 +184,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name ScheduledScriptTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -190,7 +192,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * Script ID.
    * @name ScheduledScriptTaskStatus#scriptId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -198,7 +200,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * Script deployment ID.
    * @name ScheduledScriptTaskStatus#deploymentId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -206,7 +208,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name ScheduledScriptTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -214,7 +216,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * Returns the object type name (task.ScheduledScriptTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -222,7 +224,7 @@ function ScheduledScriptTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -237,39 +239,39 @@ function MapReduceScriptTask() {
   /**
    * The ID of the task.
    * @name MapReduceScriptTask#id
-   * @type string
+   * @type {string}
    */
   this.prototype.id = undefined;
   /**
    * Private setter of the ID of the task.
    * @name MapReduceScriptTask#_id
-   * @type string
+   * @type {string}
    */
   this.prototype._id = undefined;
   /**
    * The Internal ID or Script ID of the Script record.
    * @name MapReduceScriptTask#scriptId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.scriptId = undefined;
   /**
    * The Internal ID or Script ID of the Script Deployment record.
    * @name MapReduceScriptTask#deploymentId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.deploymentId = undefined;
   /**
    * Key/value pairs which override static script parameter field values on the deployment.
    * Used to dynamically pass context to the script.
    * @name MapReduceScriptTask#params
-   * @type Object
+   * @type {Object}
    */
   this.prototype.params = undefined;
   /**
    * Submits the task and returns an unique ID.
    *
    * @governance 20 units
-   * @returns {String} taskId
+   * @return {String} taskId
    */
   this.prototype.submit = function () {
   };
@@ -277,7 +279,7 @@ function MapReduceScriptTask() {
   /**
    * Returns the object type name (task.MapReduceScriptTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -285,7 +287,7 @@ function MapReduceScriptTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -300,7 +302,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name MapReduceScriptTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -308,7 +310,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * Script ID.
    * @name MapReduceScriptTaskStatus#scriptId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -316,7 +318,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * Script deployment ID.
    * @name MapReduceScriptTaskStatus#deploymentId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -324,7 +326,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name MapReduceScriptTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -332,7 +334,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * Represents the current stage of the Map/Reduce script. Returns one of the task.MapReduceStage enum values.
    * @name MapReduceScriptTaskStatus#stage
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -341,7 +343,7 @@ function MapReduceScriptTaskStatus() {
    * Get percentage of completion for the current stage. Note that INPUT and SUMMARIZE are either 0% or 100% complete at any given time.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPercentageCompleted = function () {
   };
@@ -350,7 +352,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of records/rows not yet processed by the MAP phase.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingMapCount = function () {
   };
@@ -359,7 +361,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of record/row inputs to the MAP phase.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getTotalMapCount = function () {
   };
@@ -368,7 +370,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of bytes not yet processed by the MAP phase (a component of total size).
    *
    * @governance 25 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingMapSize = function () {
   };
@@ -377,7 +379,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of records/rows not yet processed by the REDUCE phase.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingReduceCount = function () {
   };
@@ -386,7 +388,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of record/row inputs to the REDUCE phase.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getTotalReduceCount = function () {
   };
@@ -395,7 +397,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of bytes not yet processed by the REDUCE phase (a component of total size).
    *
    * @governance 25 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingReduceSize = function () {
   };
@@ -404,7 +406,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of records/rows not yet iterated by the script.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingOutputCount = function () {
   };
@@ -413,7 +415,7 @@ function MapReduceScriptTaskStatus() {
    * Returns the total size in bytes of all key/value pairs written as output (a component of total size).
    *
    * @governance 25 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getPendingOutputSize = function () {
   };
@@ -422,7 +424,7 @@ function MapReduceScriptTaskStatus() {
    * Total number of record/row inputs to the OUTPUT phase.
    *
    * @governance 10 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getTotalOutputCount = function () {
   };
@@ -431,7 +433,7 @@ function MapReduceScriptTaskStatus() {
    * Returns the total size in bytes of all stored work in progress.
    *
    * @governance 25 units
-   * @returns {Number}
+   * @return {Number}
    */
   this.prototype.getCurrentTotalSize = function () {
   };
@@ -439,7 +441,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * Returns the object type name (task.MapReduceScriptTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -447,7 +449,7 @@ function MapReduceScriptTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -462,13 +464,13 @@ function SearchTask() {
   /**
    * The ID of the task.
    * @name SearchTask#id
-   * @type int
+   * @type {number}
    */
   this.prototype.id = undefined;
   /**
    * An ID of saved search to be executed during the task.
    * @name SearchTask#savedSearchId
-   * @type int
+   * @type {number}
    */
   this.prototype.savedSearchId = undefined;
   /**
@@ -477,7 +479,7 @@ function SearchTask() {
    * There's no synchronization between fileId and filePath attributes.
    * @name SearchTask#fileId
    * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
-   * @type int
+   * @type {number}
    */
   this.prototype.fileId = undefined;
   /**
@@ -486,7 +488,7 @@ function SearchTask() {
    * There's no synchronization between fileId and filePath attributes.
    * @name SearchTask#filePath
    * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
-   * @type int
+   * @type {number}
    */
   this.prototype.filePath = undefined;
   /**
@@ -504,7 +506,7 @@ function SearchTask() {
    * "1":{"type":"task.MapReduceScriptTask","id":"MAPREDUCETASK_0268697b126d1705061d0d69027f7b39560f01001c_7a02acb4bdebf0103120b09302170720aa57bca4","scriptId":"customscript_as_ftr_mr","deploymentId":"customdeploy_mr_dpl","params":{"custscript_mr_as_srch_res":"SuiteScripts/ExportFile.csv"}}}
    *
    * @name SearchTask#inboundDependencies
-   * @type Object[]
+   * @type {Object[]}
    * @readonly
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
    */
@@ -514,7 +516,7 @@ function SearchTask() {
    *
    * @governance 100 units
    *
-   * @returns {String} taskId
+   * @return {String} taskId
    * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {error.SuiteScriptError} YOU_DO_NOT_HAVE_ACCESS_TO_THE_MEDIA_ITEM_YOU_SELECTED if you do not have permission to access the file
@@ -536,7 +538,7 @@ function SearchTask() {
   /**
    * Returns the object type name (task.SearchTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -544,7 +546,7 @@ function SearchTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -572,7 +574,7 @@ function SearchTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name SearchTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -580,7 +582,7 @@ function SearchTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name SearchTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -588,7 +590,7 @@ function SearchTaskStatus() {
   /**
    * Represents the fileId of exported file.
    * @name SearchTaskStatus#fileId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -596,7 +598,7 @@ function SearchTaskStatus() {
   /**
    * Represents id of saved search being used for export.
    * @name SearchTaskStatus#savedSearchId
-   * @type int
+   * @type {number}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -604,7 +606,7 @@ function SearchTaskStatus() {
   /**
    * Returns the object type name (task.SearchTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -612,7 +614,7 @@ function SearchTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -627,31 +629,31 @@ function CsvImportTask() {
   /**
    * The ID of the task.
    * @name CsvImportTask#id
-   * @type string
+   * @type {string}
    */
   this.prototype.id = undefined;
   /**
    * A file.File object containing data to be imported OR a string containing raw CSV text to be imported.
    * @name CsvImportTask#importFile
-   * @type file.File | string
+   * @type {file.File | string}
    */
   this.prototype.importFile = undefined;
   /**
    * Internal ID or script ID of a saved import map to be used for the import.
    * @name CsvImportTask#mappingId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.mappingId = undefined;
   /**
    * Overrides the CSV import queue preference.
    * @name CsvImportTask#queueId
-   * @type int
+   * @type {number}
    */
   this.prototype.queueId = undefined;
   /**
    * The name of the import job to be shown on the status page for CSV imports.
    * @name CsvImportTask#name
-   * @type string
+   * @type {string}
    */
   this.prototype.name = undefined;
   /**
@@ -659,7 +661,7 @@ function CsvImportTask() {
    * The key defines the internal ID of the record sublist for which data is being imported.
    * The value is a file.File object containing data to be imported OR a string containing raw CSV text to be imported.
    * @name CsvImportTask#linkedFiles
-   * @type Object
+   * @type {Object}
    */
   this.prototype.linkedFiles = undefined;
   /**
@@ -667,7 +669,7 @@ function CsvImportTask() {
    *
    * @governance 100 units
    *
-   * @returns {String} taskId
+   * @return {String} taskId
    * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
    */
   this.prototype.submit = function () {
@@ -676,7 +678,7 @@ function CsvImportTask() {
   /**
    * Returns the object type name (task.CsvImportTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -684,7 +686,7 @@ function CsvImportTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -700,7 +702,7 @@ function CsvImportTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name CsvImportTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -708,7 +710,7 @@ function CsvImportTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name CsvImportTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -716,7 +718,7 @@ function CsvImportTaskStatus() {
   /**
    * Returns the object type name (task.CsvImportTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -724,7 +726,7 @@ function CsvImportTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -739,37 +741,37 @@ function EntityDeduplicationTask() {
   /**
    * The ID of the task.
    * @name EntityDeduplicationTask#id
-   * @type string
+   * @type {string}
    */
   this.prototype.id = undefined;
   /**
    * Represents the entity type. Use values from the task.DedupeEntityType enum.
    * @name EntityDeduplicationTask#entityType
-   * @type string
+   * @type {string}
    */
   this.prototype.entityType = undefined;
   /**
    * Master record ID.
    * @name EntityDeduplicationTask#masterRecordId
-   * @type int
+   * @type {number}
    */
   this.prototype.masterRecordId = undefined;
   /**
    * Master selection mode. Use values from the task.MasterSelectionMode enum.
    * @name EntityDeduplicationTask#masterSelectionMode
-   * @type string
+   * @type {string}
    */
   this.prototype.masterSelectionMode = undefined;
   /**
    * Deduplication mode. Use values from the task.DedupeMode enum.
    * @name EntityDeduplicationTask#dedupeMode
-   * @type string
+   * @type {string}
    */
   this.prototype.dedupeMode = undefined;
   /**
    * Records to deduplicate.
    * @name EntityDeduplicationTask#recordIds
-   * @type int[]
+   * @type {number[]}
    */
   this.prototype.recordIds = undefined;
   /**
@@ -777,7 +779,7 @@ function EntityDeduplicationTask() {
    *
    * @governance 100 units
    *
-   * @returns {String} taskId
+   * @return {String} taskId
    * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
    */
   this.prototype.submit = function () {
@@ -786,7 +788,7 @@ function EntityDeduplicationTask() {
   /**
    * Returns the object type name (task.EntityDeduplicationTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -794,7 +796,7 @@ function EntityDeduplicationTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -810,7 +812,7 @@ function EntityDeduplicationTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name EntityDeduplicationTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -818,7 +820,7 @@ function EntityDeduplicationTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name EntityDeduplicationTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -826,7 +828,7 @@ function EntityDeduplicationTaskStatus() {
   /**
    * Returns the object type name (task.EntityDeduplicationTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -834,7 +836,7 @@ function EntityDeduplicationTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -849,32 +851,32 @@ function WorkflowTriggerTask() {
   /**
    * The ID of the task.
    * @name WorkflowTriggerTask#id
-   * @type string
+   * @type {string}
    */
   this.prototype.id = undefined;
   /**
    * The record type of the workflow base record.
    * @name WorkflowTriggerTask#recordType
-   * @type string
+   * @type {string}
    */
   this.prototype.recordType = undefined;
   /**
    * The internal ID of the base record.
    * @name WorkflowTriggerTask#recordId
-   * @type int
+   * @type {number}
    */
   this.prototype.recordId = undefined;
   /**
-   * The internal ID (int) or script ID (string) for the workflow definition. This is the ID that appears in the ID field on the Workflow Definition Page.
+   * The internal ID (number) or script ID (string) for the workflow definition. This is the ID that appears in the ID field on the Workflow Definition Page.
    * @name WorkflowTriggerTask#workflowId
-   * @type int | string
+   * @type {number | string}
    */
   this.prototype.workflowId = undefined;
   /**
    * Key/value pairs which override static script parameter field values on the deployment.
    * Used to dynamically pass context to the script.
    * @name WorkflowTriggerTask#params
-   * @type Object
+   * @type {Object}
    */
   this.prototype.params = undefined;
   /**
@@ -882,7 +884,7 @@ function WorkflowTriggerTask() {
    *
    * @governance 20 units
    *
-   * @returns {String} taskId
+   * @return {String} taskId
    * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
    */
   this.prototype.submit = function () {
@@ -891,7 +893,7 @@ function WorkflowTriggerTask() {
   /**
    * Returns the object type name (task.WorkflowTriggerTask).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -899,7 +901,7 @@ function WorkflowTriggerTask() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };
@@ -915,7 +917,7 @@ function WorkflowTriggerTaskStatus() {
   /**
    * The taskId associated with the specified task.
    * @name WorkflowTriggerTaskStatus#taskId
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -923,7 +925,7 @@ function WorkflowTriggerTaskStatus() {
   /**
    * Represents the task status. Returns one of the task.TaskStatus enum values.
    * @name WorkflowTriggerTaskStatus#status
-   * @type string
+   * @type {string}
    * @readonly
    * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
    */
@@ -931,7 +933,7 @@ function WorkflowTriggerTaskStatus() {
   /**
    * Returns the object type name (task.WorkflowTriggerTaskStatus).
    *
-   * @returns {string}
+   * @return {string}
    */
   this.prototype.toString = function () {
   };
@@ -939,7 +941,7 @@ function WorkflowTriggerTaskStatus() {
   /**
    * JSON.stringify() implementation.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   this.prototype.toJSON = function () {
   };

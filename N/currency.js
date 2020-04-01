@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript currency module
  *
@@ -15,8 +17,8 @@ function currency() {
  * @governance 10 units
  *
  * @param {Object} options
- * @param {int|string} options.source The source currency ID or String
- * @param {int|string} options.target The target currency ID or String
+ * @param {number|string} options.source The source currency ID or String
+ * @param {number|string} options.target The target currency ID or String
  * @param {Date} options.date [optional] The date of the desired effective currency rate. Defaults to today.
  *
  * @return {number}

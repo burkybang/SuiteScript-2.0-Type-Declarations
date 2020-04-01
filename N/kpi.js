@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript KPI api
  *
@@ -32,7 +34,7 @@ function kpi() {
  * @param {string} [options.periodRangeId] Standard date range id (values provided by kpi.PeriodRangeId).
  * @param {string|number} [options.searchId] Script Id or Internal Id of the Saved Search which drives the KPI. Only
  *     applicable when options.kpiId is kpi.Type.Custom.
- * @returns {KpiResult}
+ * @return {KpiResult}
  * @throws {error.SuiteScriptError} REQUIRED_PARAM_MISSING if options is missing or one of mandatory options properties not
  *     set
  *
@@ -47,7 +49,7 @@ function calculate() {
  *
  * @param {Object} options
  * @param {string} options.scorecardId A valid KPI Scorecard Id, either standard (Internal ID) or custom (Script ID).
- * @returns {Scorecard}
+ * @return {Scorecard}
  * @throws {error.SuiteScriptError} REQUIRED_PARAM_MISSING if options is missing or one of mandatory options properties not set
  *
  * @since 2019.1

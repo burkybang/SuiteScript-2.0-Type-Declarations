@@ -1,3 +1,5 @@
+// todo: Convert to TypeScript definition
+
 /**
  * SuiteScript error module
  *
@@ -29,42 +31,42 @@ function SuiteScriptError() {
   
   /**
    * @name SuiteScriptError#id
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
   this.prototype.id = undefined;
   /**
    * @name SuiteScriptError#name
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
   this.prototype.name = undefined;
   /**
    * @name SuiteScriptError#message
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
   this.prototype.message = undefined;
   /**
    * @name SuiteScriptError#stack
-   * @type string[]
+   * @type {string[]}
    * @readonly
    * @since 2015.2
    */
   this.prototype.stack = undefined;
   /**
    * @name SuiteScriptError#cause
-   * @type Anything
+   * @type {Anything}
    * @readonly
    * @since 2016.1
    */
   this.prototype.cause = undefined;
   /**
    * @name SuiteScriptError#notifyOff
-   * @type boolean
+   * @type {boolean}
    * @readonly
    * @since 2016.2
    */
@@ -80,14 +82,14 @@ function UserEventError() {
   
   /**
    * @name SuiteScriptError#recordId
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
   this.prototype.recordId = undefined;
   /**
    * @name SuiteScriptError#eventType
-   * @type string
+   * @type {string}
    * @readonly
    * @since 2015.2
    */
