@@ -1,3 +1,4 @@
+/// <reference path="../N/record.d.ts" />
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
@@ -23,7 +24,7 @@ interface BeforeLoadContext {
    * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord
+  newRecord: record.Record
   
   /**
    * @name BeforeLoadContext#type
@@ -84,14 +85,14 @@ interface BeforeSubmitContext {
    * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord
+  newRecord: record.Record
   
   /**
    * @name BeforeSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
    * @readonly
    */
-  oldRecord
+  oldRecord: record.Record
   
   /**
    * @name BeforeSubmitContext#type
@@ -145,14 +146,14 @@ interface AfterSubmitContext {
    * @type {record.Record} newRecord - The new record being loaded
    * @readonly
    */
-  newRecord
+  newRecord: record.Record
   
   /**
    * @name AfterSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
    * @readonly
    */
-  oldRecord
+  oldRecord: record.Record
   
   /**
    * @name AfterSubmitContext#type
