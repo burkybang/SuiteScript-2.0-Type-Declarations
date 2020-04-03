@@ -47,7 +47,7 @@ interface dialog {
    * @param {Object} [options]
    * @param {string} [options.title]   The title of the dialog box. Defaults to empty string.
    * @param {string} [options.message] The content of the dialog box. Defaults to empty string.
-   * @param {string} [options.buttons] The list of buttons to add. Each item in the list requires a label and value.
+   * @param {{label:string, value:*}[]} [options.buttons] The list of buttons to add. Each item in the list requires a label and value.
    *                                            If empty, defaults to a button with label "OK" and value true.
    *
    * @return {Promise<*>} A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
@@ -58,5 +58,5 @@ interface dialog {
    * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
    * @throws {SuiteScriptError} BUTTONS_MUST_INCLUDE_BOTH_A_LABEL_AND_VALUE if options.buttons is specified and one or more items do not have a label and/or value.
    */
-  create(options?: { title?: string, message?: string, buttons?: { label: string, value: any } }): Promise<any>
+  create(options?: { title?: string, message?: string, buttons?: { label: string, value: any }[] }): Promise<any>
 }
