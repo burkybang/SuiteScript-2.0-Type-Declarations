@@ -2,7 +2,7 @@
 /// <reference path="./search.d.ts" />
 
 /**
- * SuiteScript module
+ * SuiteScript redirect module
  * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424286105.html
  *
  * @module N/redirect
