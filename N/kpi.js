@@ -1,4 +1,5 @@
 // todo: Convert to TypeScript definition
+// todo: Is this a real module?
 
 /**
  * SuiteScript KPI api
