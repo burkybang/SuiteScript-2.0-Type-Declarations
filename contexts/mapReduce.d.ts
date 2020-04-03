@@ -1,10 +1,10 @@
+/// <reference path="../N/error.d.ts" />
+
 /**
  * SuiteScript Map/Reduce Script Context
  *
  * @NApiVersion 2.x
- *
  */
-
 
 /**
  * Return a new instance of GetInputContext
@@ -22,7 +22,7 @@ interface GetInputContext {
    * @type {boolean} isRestarted - Indicates whether the getInputData(inputContext) function was invoked again
    * @readonly
    */
-  isRestarted: boolean;
+  isRestarted: boolean
   
   /**
    * @name GetInputContext#ObjectRefType
@@ -31,18 +31,18 @@ interface GetInputContext {
    * @type {'search'} value.type
    * @readonly
    */
-  ObjectRefType: { id: string | number, value: 'search' };
+  ObjectRefType: { id: string | number, value: 'search' }
   
   /**
    * @return {string}
    */
-  toString(): string;
+  toString(): string
   
   /**
    * JSON.stringify() implementation.
    * @return {Object}
    */
-  toJSON(): Object;
+  toJSON(): Object
 }
 
 /**
@@ -61,28 +61,28 @@ interface MapContext {
    * @type {string} key - The key to be processed through the map stage
    * @readonly
    */
-  key: string;
+  key: string
   
   /**
    * @name MapContext#value
    * @type {string} value - The value to be processed through the map stage.
    * @readonly
    */
-  value: string;
+  value: string
   
   /**
    * @name MapContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the map(mapContext) function was invoked again
    * @readonly
    */
-  isRestarted: boolean;
+  isRestarted: boolean
   
   /**
    * @name MapContext#executionNo
    * @type {number} executionNo - execution no for current map record, i.e. for which time is the map function for the current record executed
    * @readonly
    */
-  executionNo: number;
+  executionNo: number
   
   /**
    * @name MapContext#errors#iterator
@@ -90,7 +90,7 @@ interface MapContext {
    *      <pre> context.errors.each(function(key, value){...}); </pre>
    * @readonly
    */
-  errors;
+  errors
   
   /**
    * Writes the key value pairs
@@ -100,18 +100,18 @@ interface MapContext {
    * @param {Object} options.value - The value to write
    * @return {void}
    */
-  write(options: { key: string, value: Object }): void;
+  write(options: { key: string, value: Object }): void
   
   /**
    * @return {string}
    */
-  toString(): string;
+  toString(): string
   
   /**
    * JSON.stringify() implementation.
    * @return {Object}
    */
-  toJSON(): Object;
+  toJSON(): Object
 }
 
 /**
@@ -130,14 +130,14 @@ interface ReduceContext {
    * @type {boolean} isRestarted - Indicates whether the Rap(reduceContext) function was invoked again
    * @readonly
    */
-  isRestarted: boolean;
+  isRestarted: boolean
   
   /**
    * @name ReduceContext#executionNo
    * @type {number} executionNo - execution no for current reduce record list, i.e. for which time is the reduce function for the current reduce record list executed
    * @readonly
    */
-  executionNo: number;
+  executionNo: number
   
   /**
    * @name ReduceContext#key
@@ -146,7 +146,7 @@ interface ReduceContext {
    When the map stage is skipped, the key depends on the input type:
    * @readonly
    */
-  key: string;
+  key: string
   
   /**
    * @name MapContext#value
@@ -155,7 +155,7 @@ interface ReduceContext {
    When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type:
    * @readonly
    */
-  values: string[];
+  values: string[]
   
   /**
    * @name ReduceContext#errors#iterator
@@ -163,7 +163,7 @@ interface ReduceContext {
    *      <pre> context.errors.iterator().each(function(key, value){...}); </pre>
    * @readonly
    */
-  errors;
+  errors
   
   /**
    * Writes the key/values groups
@@ -172,18 +172,18 @@ interface ReduceContext {
    * @param {string} options.key - The key to write
    * @param {Object} options.value - The value to write
    */
-  write(options: { key: string, value: Object }): void;
+  write(options: { key: string, value: Object }): void
   
   /**
    * @return {string}
    */
-  toString(): string;
+  toString(): string
   
   /**
    * JSON.stringify() implementation.
    * @return {Object}
    */
-  toJSON(): Object;
+  toJSON(): Object
 }
 
 /**
@@ -202,72 +202,72 @@ interface SummarizeContext {
    * @type {Date} dateCreated - Time M/R job began running.
    * @readonly
    */
-  dateCreated: Date;
+  dateCreated: Date
   
   /**
    * @name SummarizeContext#seconds
    * @type {number} seconds - Total seconds elapsed while running.
    * @readonly
    */
-  seconds: number;
+  seconds: number
   
   /**
    * @name SummarizeContext#usage
    * @type {number} usage - Total usage points consumed while running.
    * @readonly
    */
-  usage: number;
+  usage: number
   
   /**
    * @name SummarizeContext#concurrency
    * @type {number} concurrency - Maximum number of queues utilized at the same time while running.
    * @readonly
    */
-  concurrency: number;
+  concurrency: number
   
   /**
    * @name SummarizeContext#yields
    * @type {number} yields - Total number of times yielding the queue while running.
    * @readonly
    */
-  yields: number;
+  yields: number
   
   /**
    * @name SummarizeContext#output#iterator()
    * @type {Iterator} iterator - Iterator which provides keys and values written as output during the REDUCE phase.
-   *      <pre> summary.output.iterator().each(function(key, value){...}); </pre>
+   *      <pre> summary.output.iterator().each(function(key, value){...}) </pre>
    * @readonly
    */
-  output;
+  output
   
   /**
    * @name SummarizeContext#inputSummary
    * @type {InputSummary} inputSummary - Stats about the INPUT stage.
    */
-  inputSummary: SummarizeContext.InputSummary;
+  inputSummary: SummarizeContext.InputSummary
   
   /**
    * @name SummarizeContext#mapSummary
    * @type {MapSummary} mapSummary - Stats about the MAP stage.
    */
-  mapSummary: SummarizeContext.MapSummary;
+  mapSummary: SummarizeContext.MapSummary
   
   /**
    * @name SummarizeContext#reduceSummary
    * @type {ReduceSummary} reduceSummary - Stats about the REDUCE stage.
    */
-  reduceSummary: SummarizeContext.ReduceSummary;
+  reduceSummary: SummarizeContext.ReduceSummary
   
   /**
    * @return {string}
    */
-  toString(): string;
+  toString(): string
   
   /**
    * JSON.stringify() implementation.
    * @return {Object}
    */
-  toJSON(): Object;
+  toJSON(): Object
 }
 
 declare namespace SummarizeContext {
@@ -288,40 +288,40 @@ declare namespace SummarizeContext {
      * @type {Date} dateCreated - Time M/R INPUT stage began running.
      * @readonly
      */
-    dateCreated: Date;
+    dateCreated: Date
     
     /**
      * @name InputSummary#seconds
      * @type {number} seconds - Total seconds elapsed while during the INPUT stage.
      * @readonly
      */
-    seconds: number;
+    seconds: number
     
     /**
      * @name InputSummary#usage
      * @type {number} usage - Total usage points consumed during the INPUT stage.
      * @readonly
      */
-    usage: number;
+    usage: number
     
     /**
      * @name InputSummary#error
-     *  @type {SuiteScriptError} error - Serialized error is thrown out of getInputData() - if applicable
+     *  @type {error.SuiteScriptError} error - Serialized error is thrown out of getInputData() - if applicable
      *      <pre> var inputError = summary.input.error; </pre>
      * @readonly
      */
-    error;
+    error: error.SuiteScriptError
     
     /**
      * @return {string}
      */
-    toString(): string;
+    toString(): string
     
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
-    toJSON(): Object;
+    toJSON(): Object
   }
   
   /**
@@ -340,35 +340,35 @@ declare namespace SummarizeContext {
      * @type {Date} dateCreated - Time MAP stage began running.
      * @readonly
      */
-    dateCreated: Date;
+    dateCreated: Date
     
     /**
      * @name MapSummary#seconds
      * @type {number} seconds - Total seconds elapsed while running MAP stage.
      * @readonly
      */
-    seconds: number;
+    seconds: number
     
     /**
      * @name MapSummary#usage
      * @type {number} usage - Total usage points consumed while running MAP stage.
      * @readonly
      */
-    usage: number;
+    usage: number
     
     /**
      * @name MapSummary#concurrency
      * @type {number} concurrency - Maximum number of queues utilized at the same time while running MAP stage.
      * @readonly
      */
-    concurrency: number;
+    concurrency: number
     
     /**
      * @name MapSummary#yields
      * @type {number} yields - Total number of times yielding the queue while running MAP stage.
      * @readonly
      */
-    yields: number;
+    yields: number
     
     /**
      * @name MapSummary#keys#iterator
@@ -376,7 +376,7 @@ declare namespace SummarizeContext {
      *      <pre> summary.map.keys.iterator.each(function(key){...}); </pre>
      * @readonly
      */
-    keys;
+    keys
     
     /**
      * @name MapSummary#errors#iterator
@@ -384,18 +384,18 @@ declare namespace SummarizeContext {
      *      <pre> summary.map.errors.each(function(key, value){...}); </pre>
      * @readonly
      */
-    errors;
+    errors
     
     /**
      * @return {string}
      */
-    toString(): string;
+    toString(): string
     
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
-    toJSON(): Object;
+    toJSON(): Object
   }
   
   /**
@@ -414,35 +414,35 @@ declare namespace SummarizeContext {
      * @type {Date} dateCreated - Time REDUCE stage began running.
      * @readonly
      */
-    dateCreated: Date;
+    dateCreated: Date
     
     /**
      * @name ReduceSummary#seconds
      * @type {number} seconds - Total seconds elapsed while running REDUCE stage.
      * @readonly
      */
-    seconds: number;
+    seconds: number
     
     /**
      * @name ReduceSummary#usage
      * @type {number} usage - Total usage points consumed while running REDUCE stage.
      * @readonly
      */
-    usage: number;
+    usage: number
     
     /**
      * @name ReduceSummary#concurrency
      * @type {number} concurrency - Maximum number of queues utilized at the same time while running REDUCE stage.
      * @readonly
      */
-    concurrency: number;
+    concurrency: number
     
     /**
      * @name ReduceSummary#yields
      * @type {number} yields - Total number of times yielding the queue while running REDUCE stage.
      * @readonly
      */
-    yields: number;
+    yields: number
     
     /**
      * @name ReduceSummary#keys#iterator
@@ -450,7 +450,7 @@ declare namespace SummarizeContext {
      *      <pre> summary.reduce.iterator.keys.each(function(key){...}); </pre>
      * @readonly
      */
-    keys;
+    keys
     
     /**
      * @name ReduceSummary#errors#iterator
@@ -458,17 +458,17 @@ declare namespace SummarizeContext {
      *      <pre> summary.reduce.errors.iterator().each(function(key, value){...}); </pre>
      * @readonly
      */
-    errors;
+    errors
     
     /**
      * @return {string}
      */
-    toString();
+    toString()
     
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
-    toJSON(): Object;
+    toJSON(): Object
   }
 }

@@ -4,13 +4,13 @@
  * SuiteScript Portlet Script Context
  *
  * @NApiVersion 2.x
- *
  */
 
 interface PortletParams {
   /**
    * The portlet object used for rendering
    * @type {Portlet}
+   *
    * @readonly
    */
   portlet: PortletParams.Portlet
@@ -18,6 +18,7 @@ interface PortletParams {
   /**
    * The column index for the portlet on the dashboard (1=left, 2=center, 3=right)
    * @type {1|2|3}
+   *
    * @readonly
    */
   column: 1 | 2 | 3
@@ -25,6 +26,7 @@ interface PortletParams {
   /**
    * The customer ID for the selected customer
    * @type {string}
+   *
    * @readonly
    */
   entity: string
@@ -54,6 +56,7 @@ declare namespace PortletParams {
     
     /**
      * file Id for Portlet form script
+     *
      * @name Portlet#clientScriptFileId
      * @type {number}
      */
@@ -61,6 +64,7 @@ declare namespace PortletParams {
     
     /**
      * file Path for Portlet form script
+     *
      * @name Portlet#clientScriptModulePath
      * @type {string}
      *
@@ -71,6 +75,7 @@ declare namespace PortletParams {
     
     /**
      * Add a Column to the Portlete
+     *
      * @param {Object} options
      * @param {string} options.id
      * @param {string} options.type
@@ -82,6 +87,7 @@ declare namespace PortletParams {
     
     /**
      * Add an Edit or Edit/View column
+     *
      * @param {Object} options
      * @param {string} options.column
      * @param {string} [options.showHrefCol]
@@ -95,6 +101,7 @@ declare namespace PortletParams {
     
     /**
      * Add a field to the form
+     *
      * @param {Object} options
      * @param {string} options.id
      * @param {string} options.type
@@ -106,6 +113,7 @@ declare namespace PortletParams {
     
     /**
      * Add a field to the form
+     *
      * @param {Object} options
      * @param {string} options.text
      * @param {string} [options.url]
@@ -116,6 +124,7 @@ declare namespace PortletParams {
     
     /**
      * Add a row (Array of name/value pairs or search.Result)
+     *
      * @param {Object} options
      * @param {search.Result|Object<string, string>} options.row
      * @return {Portlet}
@@ -124,6 +133,7 @@ declare namespace PortletParams {
     
     /**
      * Add a field to the form
+     *
      * @param {Object} options
      * @param {string} options.url
      * @param {string} [options.label]
@@ -134,6 +144,7 @@ declare namespace PortletParams {
     
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+     *
      * @param {Object} options
      * @param {search.Result[]|Object<string, string>[]} options.rows
      * @return {Portlet}

@@ -2,7 +2,6 @@
  * SuiteScript Suitelet Script Context
  *
  * @NApiVersion 2.x
- *
  */
 
 interface ExecuteContext {
@@ -10,12 +9,17 @@ interface ExecuteContext {
   /**
    * @name ExecuteContext#type
    * @type {string} type - The context in which the script is executed
+   *
    * @readonly
    */
   type: ExecuteContext.InvocationType
 }
 
 declare namespace ExecuteContext {
+  
+  /**
+   * @enum
+   */
   export enum InvocationType {
     // The normal execution according to the deployment options specified in the UI.
     SCHEDULED = 'SCHEDULED',

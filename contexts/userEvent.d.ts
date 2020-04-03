@@ -5,15 +5,10 @@
  * SuiteScript User Event Script Context
  *
  * @NApiVersion 2.x
- *
  */
 
 /**
  * Return a new instance of userevent.BeforeLoadContext
- * @class
- * @classdesc beforeLoad event handler.
- * @return {BeforeLoadContext}
- * @constructor
  *
  * @since 2015.2
  */
@@ -22,6 +17,7 @@ interface BeforeLoadContext {
   /**
    * @name BeforeLoadContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
+   *
    * @readonly
    */
   newRecord: record.Record
@@ -29,6 +25,7 @@ interface BeforeLoadContext {
   /**
    * @name BeforeLoadContext#type
    * @type {string} type - The action type that triggered this event
+   *
    * @readonly
    */
   type: BeforeLoadContext.UserEventType
@@ -36,12 +33,17 @@ interface BeforeLoadContext {
   /**
    * @name BeforeLoadContext#form
    * @type {serverWidget.Form} form - The current UI form
+   *
    * @readonly
    */
   form: serverWidget.Form
 }
 
 declare namespace BeforeLoadContext {
+  
+  /**
+   * @enum
+   */
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',
@@ -71,10 +73,6 @@ declare namespace BeforeLoadContext {
 
 /**
  * Return a new instance of userevent.BeforeSubmitContext
- * @class
- * @classdesc beforeSubmit event handler.
- * @return {BeforeSubmitContext}
- * @constructor
  *
  * @since 2015.2
  */
@@ -83,6 +81,7 @@ interface BeforeSubmitContext {
   /**
    * @name BeforeSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
+   *
    * @readonly
    */
   newRecord: record.Record
@@ -90,6 +89,7 @@ interface BeforeSubmitContext {
   /**
    * @name BeforeSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
+   *
    * @readonly
    */
   oldRecord: record.Record
@@ -97,12 +97,17 @@ interface BeforeSubmitContext {
   /**
    * @name BeforeSubmitContext#type
    * @type {string} type - The action type that triggered this event
+   *
    * @readonly
    */
   type: BeforeSubmitContext.UserEventType
 }
 
 declare namespace BeforeSubmitContext {
+  
+  /**
+   * @enum
+   */
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',
@@ -132,10 +137,6 @@ declare namespace BeforeSubmitContext {
 
 /**
  * Return a new instance of userevent.AfterSubmitContext
- * @class
- * @classdesc afterSubmit event handler.
- * @return {AfterSubmitContext}
- * @constructor
  *
  * @since 2015.2
  */
@@ -144,6 +145,7 @@ interface AfterSubmitContext {
   /**
    * @name AfterSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
+   *
    * @readonly
    */
   newRecord: record.Record
@@ -151,6 +153,7 @@ interface AfterSubmitContext {
   /**
    * @name AfterSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
+   *
    * @readonly
    */
   oldRecord: record.Record
@@ -158,12 +161,17 @@ interface AfterSubmitContext {
   /**
    * @name AfterSubmitContext#type
    * @type {string} type - The action type that triggered this event
+   *
    * @readonly
    */
   type: AfterSubmitContext.UserEventType
 }
 
 declare namespace AfterSubmitContext {
+  
+  /**
+   * @enum
+   */
   export enum UserEventType {
     COPY = 'copy',
     CREATE = 'create',

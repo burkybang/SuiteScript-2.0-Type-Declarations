@@ -4,7 +4,6 @@
  * SuiteScript Suitelet Script Context
  *
  * @NApiVersion 2.x
- *
  */
 
 interface OnRequestContext {
@@ -12,6 +11,7 @@ interface OnRequestContext {
   /**
    * @name SuiteletContext#request
    * @type {http.ServerRequest} request - The incoming request object
+   *
    * @readonly
    */
   request: http.ServerRequest
@@ -19,6 +19,7 @@ interface OnRequestContext {
   /**
    * @name SuiteletContext#response
    * @type {http.ServerResponse} response - The outgoing response object
+   *
    * @readonly
    */
   response: http.ServerResponse
