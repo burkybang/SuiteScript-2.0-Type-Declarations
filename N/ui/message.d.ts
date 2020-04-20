@@ -12,7 +12,7 @@ interface message {
    *
    * @restriction Client SuiteScript only
    * @param {Object} options
-   * @param {Type} options.type The type of message, see message.Type
+   * @param {message.Type} options.type The type of message, see message.Type
    * @param {string} [options.title] The title of the message. Defaults to empty string.
    * @param {string} [options.message] The content of the message. Defaults to empty string.
    * @param {number|string} [options.duration] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
@@ -25,6 +25,7 @@ interface message {
 }
 
 declare namespace message {
+  
   /**
    * Enum for message types
    * @enum
@@ -36,7 +37,6 @@ declare namespace message {
     WARNING,
     ERROR,
   }
-  
   
   /**
    * Return a new instance of Message, used to show/hide messages
