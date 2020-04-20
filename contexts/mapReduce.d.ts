@@ -9,7 +9,7 @@
 /**
  * Return a new instance of GetInputContext
  * @class
- * @classdesc Contains ObjectRefType enum.
+ * @classdesc References the object that contains the input data.
  * @return {GetInputContext}
  * @constructor
  *
@@ -25,13 +25,13 @@ interface GetInputContext {
   isRestarted: boolean
   
   /**
-   * @name GetInputContext#ObjectRefType
-   * @type {Object} value - Enum describing valid "type" attribute values for ObjectRef.
+   * @name GetInputContext#ObjectRef
+   * @type {Object} ObjectRef
    * @type {string|number} value.id
    * @type {'search'} value.type
    * @readonly
    */
-  ObjectRefType: { id: string | number, value: 'search' }
+  ObjectRef: { id: string | number, value: 'search' }
   
   /**
    * @return {string}
