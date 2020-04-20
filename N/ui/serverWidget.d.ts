@@ -319,12 +319,12 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id    id of the filed to add
      * @param {string} options.label the UI label for the field
-     * @param {FieldType} options.type  the type for this field
+     * @param {FieldType|string} options.type  the type for this field
      * @param {string} [options.source] The internal id of the source list for this field if the field is a select
      * @param {string} [options.container] Used to specify either a tab or a field group
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType, source?: string, container?: string }): Field
+    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
     
     /**
      * Gets field from sublist
@@ -455,7 +455,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     defaultValue: string
-  
+    
     /**
      * If Rich Text Editing is enabled, you can use this property to set the height of the rich text field only.
      *
@@ -463,7 +463,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     richTextHeight: number
-  
+    
     /**
      * If Rich Text Editing is enabled, you can use this property to set the width of the rich text field only.
      *
@@ -471,7 +471,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     richTextWidth: number
-  
+    
     /**
      * The label of the field
      *
@@ -479,7 +479,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string
-  
+    
     /**
      * The number of empty field spaces before/above this field
      *
@@ -487,7 +487,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     padding: number
-  
+    
     /**
      * Update the breakType of the field
      *
@@ -496,7 +496,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     updateBreakType(options: { breakType: FieldBreakType }): Field
-  
+    
     /**
      * Update the layout type of the field
      *
@@ -566,7 +566,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Button {
-  
+    
     /**
      * The label of the button
      *
@@ -891,13 +891,13 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id  Id for the field
      * @param {string} options.label Label for the field
-     * @param {FieldType} options.type  Type for the field
+     * @param {FieldType|string} options.type  Type for the field
      * @param {string} [options.source] The internalId or scriptId of the source list for this field if
      * it is a select (List/Record) field.
      * @param {string} [options.container]  Id for the field group of tab to place the field in
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType, source?: string, container?: string }): Field
+    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
     
     /**
      * Add a field group to the assistant
@@ -987,14 +987,14 @@ declare namespace serverWidget {
      * @type {string}
      */
     title: string
-  
+    
     /**
      * The script file id to be used in the form
      * @name Form#clientScriptFileId
      * @type {number}
      */
     clientScriptFileId: number
-  
+    
     /**
      * The script file path to be used in the form
      * @name Form#clientScriptModulePath
@@ -1061,12 +1061,12 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id Internal id for the field
      * @param {string} options.label UI label for the field
-     * @param {FieldType} options.type  Type of the field
+     * @param {FieldType|string} options.type  Type of the field
      * @param {string} [options.source]  The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
      * @param {string} [options.container]   Tab or Field Group to add the field to
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType, source?: string, container?: string }): Field
+    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
     
     /**
      * Add a field group to the form
@@ -1274,12 +1274,12 @@ declare namespace serverWidget {
      * Add a Column to the List page
      * @param {Object} options
      * @param {string} options.id   The internal id for the column
-     * @param {FieldType} options.type  The type for the column
+     * @param {FieldType|string} options.type  The type for the column
      * @param {string} options.label  The ui label for the column
      * @param {string} [options.align] The layout justification for this column.
      * @return {ListColumn}
      */
-    addColumn(options: { id: string, type: FieldType, label: string, align?: string }): ListColumn
+    addColumn(options: { id: string, type: FieldType | string, label: string, align?: string }): ListColumn
     
     /**
      * Add an Edit or Edit/View column
