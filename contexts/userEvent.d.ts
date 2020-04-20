@@ -1,4 +1,5 @@
 /// <reference path="../N/record.d.ts" />
+/// <reference path="../N/http.d.ts" />
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
@@ -9,6 +10,7 @@
 
 /**
  * Return a new instance of userevent.BeforeLoadContext
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
  *
  * @since 2015.2
  */
@@ -37,8 +39,19 @@ interface BeforeLoadContext {
    * @readonly
    */
   form: serverWidget.Form
+  
+  /**
+   * @name BeforeLoadContext#request
+   * @type {http.ServerRequest} request
+   *
+   * @readonly
+   */
+  request: http.ServerRequest
 }
 
+/**
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
+ */
 declare namespace BeforeLoadContext {
   
   /**
@@ -73,10 +86,10 @@ declare namespace BeforeLoadContext {
 
 /**
  * Return a new instance of userevent.BeforeSubmitContext
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
  *
  * @since 2015.2
  */
-
 interface BeforeSubmitContext {
   /**
    * @name BeforeSubmitContext#newRecord
@@ -103,6 +116,9 @@ interface BeforeSubmitContext {
   type: BeforeSubmitContext.UserEventType
 }
 
+/**
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
+ */
 declare namespace BeforeSubmitContext {
   
   /**
@@ -113,19 +129,19 @@ declare namespace BeforeSubmitContext {
     CREATE = 'create',
     VIEW = 'view',
     EDIT = 'edit',
-    XEDIT = 'xedit',
+    XEDIT = 'xedit', // inline editing
     DELETE = 'delete',
     DROPSHIP = 'dropship',
     SPECIALORDER = 'specialorder',
     ORDERITEMS = 'orderitems',
-    CANCEL = 'cancel',
-    APPROVE = 'approve',
-    REJECT = 'reject',
-    PACK = 'pack',
-    SHIP = 'ship',
-    EDITFORECAST = 'editforecast',
-    REASSIGN = 'reassign',
-    MARKCOMPLETE = 'markcomplete',
+    CANCEL = 'cancel', // only available for certain record types
+    APPROVE = 'approve', // only available for certain record types
+    REJECT = 'reject', // only available for certain record types
+    PACK = 'pack', // only available for certain record types, for example Item Fulfillment records
+    SHIP = 'ship', // only available for certain record types, for example Item Fulfillment records
+    EDITFORECAST = 'editforecast', // specify this type for a beforeSubmit script to execute when users update opportunity and estimate records using the Forecast Editor
+    REASSIGN = 'reassign', // specify this type for a beforeSubmit script to execute when users click Grab on case records
+    MARKCOMPLETE = 'markcomplete', // specify this type for a beforeSubmit script to execute when users click Mark Complete on call and task records
     PRINT = 'print',
     EMAIL = 'email',
     CHANGEPASSWORD = 'changepassword',
@@ -137,6 +153,7 @@ declare namespace BeforeSubmitContext {
 
 /**
  * Return a new instance of userevent.AfterSubmitContext
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
  *
  * @since 2015.2
  */
@@ -167,6 +184,9 @@ interface AfterSubmitContext {
   type: AfterSubmitContext.UserEventType
 }
 
+/**
+ * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
+ */
 declare namespace AfterSubmitContext {
   
   /**
@@ -177,16 +197,16 @@ declare namespace AfterSubmitContext {
     CREATE = 'create',
     VIEW = 'view',
     EDIT = 'edit',
-    XEDIT = 'xedit',
+    XEDIT = 'xedit', // inline editing; only returns the fields edited and not the full record
     DELETE = 'delete',
-    DROPSHIP = 'dropship',
+    DROPSHIP = 'dropship', // for purchase orders with items specified as "drop ship"
     SPECIALORDER = 'specialorder',
     ORDERITEMS = 'orderitems',
-    CANCEL = 'cancel',
-    APPROVE = 'approve',
-    REJECT = 'reject',
-    PACK = 'pack',
-    SHIP = 'ship',
+    CANCEL = 'cancel', // only available for certain record types
+    APPROVE = 'approve', // only available for certain record types
+    REJECT = 'reject', // only available for certain record types
+    PACK = 'pack', // only available for certain record types, for example Item Fulfillment records
+    SHIP = 'ship', // only available for certain record types, for example Item Fulfillment records
     EDITFORECAST = 'editforecast',
     REASSIGN = 'reassign',
     MARKCOMPLETE = 'markcomplete',
