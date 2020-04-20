@@ -26,12 +26,13 @@ interface GetInputContext {
   
   /**
    * @name GetInputContext#ObjectRef
-   * @type {Object} ObjectRef
-   * @type {string|number} value.id
-   * @type {'search'} value.type
+   * @type {{
+   *   id: number,
+   *   value: 'search',
+   * }} ObjectRef
    * @readonly
    */
-  ObjectRef: { id: string | number, value: 'search' }
+  ObjectRef: { id: number, value: 'search' }
   
   /**
    * @return {string}
