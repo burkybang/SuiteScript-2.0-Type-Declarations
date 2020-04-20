@@ -10,7 +10,7 @@
 
 /**
  * Return a new instance of userevent.BeforeLoadContext
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
  *
  * @since 2015.2
  */
@@ -50,7 +50,7 @@ interface BeforeLoadContext {
 }
 
 /**
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html
  */
 declare namespace BeforeLoadContext {
   
@@ -86,7 +86,7 @@ declare namespace BeforeLoadContext {
 
 /**
  * Return a new instance of userevent.BeforeSubmitContext
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
  *
  * @since 2015.2
  */
@@ -117,7 +117,7 @@ interface BeforeSubmitContext {
 }
 
 /**
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html
  */
 declare namespace BeforeSubmitContext {
   
@@ -153,7 +153,7 @@ declare namespace BeforeSubmitContext {
 
 /**
  * Return a new instance of userevent.AfterSubmitContext
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
  *
  * @since 2015.2
  */
@@ -185,7 +185,7 @@ interface AfterSubmitContext {
 }
 
 /**
- * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html
  */
 declare namespace AfterSubmitContext {
   
