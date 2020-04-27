@@ -1232,6 +1232,17 @@ declare namespace record {
      * @restriction only available in dynamic record
      */
     getCurrentSublistField(options: { sublistId: string, fieldId: string }): Field
+  
+    /**
+     * Get the select options for a field
+     * @restriction Dynamic mode only
+     *
+     * @param {Object} options
+     * @param {string} [options.filter] A search string to filter the select options that are returned.
+     * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
+     * @return {{value:string, text:string}[]}
+     */
+    getSelectOptions(options: { filter?: string, filteroperator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
     
     /**
      * Set the value for the associated header in the matrix
