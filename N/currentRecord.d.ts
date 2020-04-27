@@ -774,13 +774,13 @@ declare namespace currentRecord {
      * @param {Object} options
      * @param {string} [options.filter] A search string to filter the select options that are returned.
      * @param {'contains'|'is'|'startswith'} [options.operator='contains']  Defaults to the "contains" operator
-     * @return {{value:number, text:string}[]}
+     * @return {{value:string, text:string}[]}
      *
      * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
      *
      * @since 2016.2
      */
-    getSelectOptions(options: { filter?: string, operator?: 'contains' | 'is' | 'startswith' }): { value: number, text: string }[]
+    getSelectOptions(options: { filter?: string, operator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
     
     /**
      * Inserts an option into certain types of select and multiselect fields
