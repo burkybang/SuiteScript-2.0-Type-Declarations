@@ -10,7 +10,7 @@ interface url {
   /**
    * Returns the URL string to a NetSuite record
    * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358667680.html
-   * 
+   *
    * @param {Object} options
    * @param {string} options.recordType
    * @param {number|string} options.recordId
@@ -92,10 +92,15 @@ declare namespace url {
    * @readonly
    */
   export enum HostType {
+    // The domain for UI access - <accountID>.app.netsuite.com
     APPLICATION = 'APPLICATION',
+    // The domain for customer center - ?
     CUSTOMER_CENTER = 'CUSTOMERCENTER',
+    // The domain for calling a RESTlet from an external source - <accountID>.restlets.api.netsuite.com
     RESTLET = 'RESTLETS',
+    // The domain for SOAP web services requests - <accountID>.suitetalk.api.netsuite.com
     SUITETALK = 'SUITETALK',
+    // The domain for forms hosted online, usually in Suitelets - <accountID>.extforms.netsuite.com
     FORM = 'FORMS',
   }
 }
