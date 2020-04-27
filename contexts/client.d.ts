@@ -20,11 +20,11 @@ interface PageInitContext {
   /**
    * The access mode of the current record
    *
-   * @type {'copy'|'created'|'edit'}
+   * @type {'copy'|'create'|'edit'}
    *
    * @readonly
    */
-  mode: 'copy' | 'created' | 'edit'
+  mode: 'copy' | 'create' | 'edit'
 }
 
 interface ValidateFieldContext {
