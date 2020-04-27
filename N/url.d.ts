@@ -73,7 +73,7 @@ interface url {
    *
    * @param {Object} options
    * @param {string} options.domain
-   * @param {Object.<string, string|number|boolean>} [options.params]
+   * @param {Object.<string, string|number|boolean>} options.params
    *
    * @return {string} url
    *
