@@ -35,7 +35,7 @@ interface url {
    *
    * @since 2015.1
    */
-  resolveTaskLink(options: { id: string, params: { [key: string]: string | number | boolean } }): string
+  resolveTaskLink(options: { id: string, params?: { [key: string]: string | number | boolean } }): string
   
   /**
    * Returns an external or internal URL string to a script
@@ -51,7 +51,7 @@ interface url {
    *
    * @since 2015.1
    */
-  resolveScript(options: { scriptId: string, deploymentId: string, returnExternalUrl?: boolean, params: { [key: string]: string | number | boolean } }): string
+  resolveScript(options: { scriptId: string, deploymentId: string, returnExternalUrl?: boolean, params?: { [key: string]: string | number | boolean } }): string
   
   /**
    * Returns a domain name for a NetSuite account
