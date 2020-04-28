@@ -1,8 +1,11 @@
 /**
+ * SuiteScript file module
+ * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205693274.html
+ *
  * @module N/file
  * @NApiVersion 2.x
- *
  */
+
 interface file {
   
   /**
@@ -18,7 +21,7 @@ interface file {
    * @param {boolean} [options.isOnline] - The Available without Login status of a file
    * @return {file.File}
    */
-  create(options: { name: string, fileType: file.Type, contents?: string, description?: string, folder?: number, encoding?: file.Encoding, inInactive?: boolean, isOnline?: boolean }): file.File;
+  create(options: { name: string, fileType: file.Type, contents?: string, description?: string, folder?: number, encoding?: file.Encoding, inInactive?: boolean, isOnline?: boolean }): file.File
   
   /**
    * Method used to delete an existing file from the NetSuite File Cabinet
@@ -26,7 +29,7 @@ interface file {
    * @param {number|string} options.id - Internal ID of the file
    * @return {number|string} - The internal ID of the deleted file
    */
-  delete(options: { id: number | string }): number | string;
+  delete(options: { id: number | string }): number | string
   
   /**
    * Loads an existing file from the NetSuite File Cabinet
@@ -34,7 +37,7 @@ interface file {
    * @param {number|string} options.id - The internal ID of the file as a number or string, the absolute or relative path
    * @return {file.File} - The internal ID of the loaded file
    */
-  load(options: { id: number | string }): file.File;
+  load(options: { id: number | string }): file.File
 }
 
 declare namespace file {
@@ -100,73 +103,73 @@ declare namespace file {
      * @type {string}
      * @readonly
      */
-    description: string;
+    description: string
     
     /**
      * @type {Encoding}
      * @readonly
      */
-    encoding: Encoding;
+    encoding: Encoding
     
     /**
      * @type {Type}
      * @readonly
      */
-    fileType: Type;
+    fileType: Type
     
     /**
      * @type {number|string}
      * @readonly
      */
-    folder: number | string;
+    folder: number | string
     
     /**
      * @type {number}
      * @readonly
      */
-    id: number;
+    id: number
     
     /**
      * @type {boolean}
      * @readonly
      */
-    isInactive: boolean;
+    isInactive: boolean
     
     /**
      * @type {boolean}
      * @readonly
      */
-    isOnline: boolean;
+    isOnline: boolean
     
     /**
      * @type {boolean}
      * @readonly
      */
-    isText: boolean;
+    isText: boolean
     
     /**
      * @type {string}
      * @readonly
      */
-    name: string;
+    name: string
     
     /**
      * @type {string}
      * @readonly
      */
-    path: string;
+    path: string
     
     /**
      * @type {number}
      * @readonly
      */
-    size: number;
+    size: number
     
     /**
      * @type {string}
      * @readonly
      */
-    url: string;
+    url: string
     
     /**
      * Method used to return the content of the file
