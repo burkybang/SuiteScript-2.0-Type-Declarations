@@ -1,4 +1,4 @@
-/// <reference path="../N/record.d.ts" />
+/// <reference path="../N/currentRecord.d.ts" />
 
 /**
  * SuiteScript Client Script Context
@@ -11,11 +11,11 @@ interface PageInitContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The access mode of the current record
@@ -32,11 +32,11 @@ interface ValidateFieldContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -80,11 +80,11 @@ interface FieldChangedContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -128,11 +128,11 @@ interface PostSourcingContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -158,11 +158,11 @@ interface LineInitContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -179,11 +179,11 @@ interface ValidateLineContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -200,11 +200,11 @@ interface ValidateInsertContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -221,11 +221,11 @@ interface ValidateDeleteContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -242,11 +242,11 @@ interface SublistChangedContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
   
   /**
    * The internal ID of the sublist
@@ -263,9 +263,9 @@ interface SaveRecordContext {
   /**
    * The current record the user is manipulating in the UI
    *
-   * @type {record.Record}
+   * @type {currentRecord.CurrentRecord}
    *
    * @readonly
    */
-  currentRecord: record.Record
+  currentRecord: currentRecord.CurrentRecord
 }

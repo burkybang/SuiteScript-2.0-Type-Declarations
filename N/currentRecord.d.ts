@@ -771,7 +771,7 @@ declare namespace currentRecord {
      *
      * @restriction Only the first 1,000 available options are returned in an array. If there are more than 1,000 available options, an empty array [] is returned.
      *
-     * @param {Object} options
+     * @param {Object} [options]
      * @param {string} [options.filter] A search string to filter the select options that are returned.
      * @param {'contains'|'is'|'startswith'} [options.operator='contains']  Defaults to the "contains" operator
      * @return {{value:string, text:string}[]}
@@ -780,7 +780,7 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    getSelectOptions(options: { filter?: string, operator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
+    getSelectOptions(options?: { filter?: string, operator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
     
     /**
      * Inserts an option into certain types of select and multiselect fields
@@ -801,6 +801,22 @@ declare namespace currentRecord {
     insertSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): void
     
     /**
+     * Inserts an option into certain types of select and multiselect fields
+     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098.html
+     *
+     * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
+     *
+     * @param {string|number} value The internal id of the option
+     * @param {string} text  The display text for this option
+     * @return {void}
+     *
+     * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
+     *
+     * @since 2016.2
+     */
+    insertSelectOption(value: string | number, text: string): void
+    
+    /**
      * Removes a select option from certain types of select and multiselect fields
      * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4780315055.html
      *
@@ -814,7 +830,7 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    removeSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): void
+    removeSelectOption(options: { value: string | number }): void
   }
   
   /**

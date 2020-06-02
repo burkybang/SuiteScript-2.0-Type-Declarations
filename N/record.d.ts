@@ -1,4 +1,5 @@
 /// <reference path="./format.d.ts" />
+/// <reference path="./ui/serverWidget.d.ts" />
 
 /**
  * SuiteScript record common module
@@ -1232,7 +1233,7 @@ declare namespace record {
      * @restriction only available in dynamic record
      */
     getCurrentSublistField(options: { sublistId: string, fieldId: string }): Field
-  
+    
     /**
      * Get the select options for a field
      * @restriction Dynamic mode only
@@ -1576,7 +1577,7 @@ declare namespace record {
      * @readonly
      * @since 2015.2
      */
-    type: format.Type
+    type: serverWidget.FieldType
     
     /**
      * Return the sublistId of the field

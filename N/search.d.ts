@@ -12,7 +12,7 @@ interface search {
    * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
    * @param {Object} options  the options object
    * @param {Type|string} options.type  the record internal ID of the record type you are searching
-   * @param {Filter|Filter[]|Array<(string|number|Array<(string|number|Array<(string|number|[])>)>)>} [options.filters]  a single filter object or an array of filter objects or a search filter expression
+   * @param {Filter|Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
    * @param {Column|Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
    * @param {Setting|Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
    * @param {string} [options.title]  name of the search (when saved)
@@ -23,7 +23,14 @@ interface search {
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
    * @since 2015.2
    */
-  create(options: { type: search.Type | string, filters?: search.Filter | search.Filter[] | Array<(string | number | Array<(string | number | Array<(string | number | [])>)>)>, columns?: search.Column | search.Column[] | string, settings?: search.Setting | search.Setting[] | string, title?: string, id?: string }): search.Search
+  create(options: {
+    type: search.Type | string,
+    filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
+    columns?: search.Column | search.Column[] | string,
+    settings?: search.Setting | search.Setting[] | string,
+    title?: string,
+    id?: string,
+  }): search.Search
   
   /**
    * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
@@ -110,38 +117,67 @@ interface search {
   
   /**
    * Creates a search.Column object.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757.html}
+   *
    * @param {Object} options  the options object
    * @param {string} options.name  the search return column name
    * @param {string} [options.join]  the join ID for this search return column
-   * @param {Summary} [options.summary]  the summary type for this column
+   * @param {Summary|string} [options.summary]  the summary type for this column
    * @param {string} [options.formula]  formula used for this column
    * @param {string} [options.function]  function used for this column
    * @param {string} [options.label]  label used for this column
-   * @param {Sort} [options.sort]  sort direction for this column use values from the Sort enum
+   * @param {Sort|string} [options.sort]  sort direction for this column use values from the Sort enum
    * @return {Column} the created column object
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
    * @throws {SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
    * @since 2015.2
    */
-  createColumn(options: { name: string, join?: string, summary?: search.Summary, formula?: string, function?: string, label?: string, sort?: search.Sort }): search.Column
+  createColumn(options: {
+    name: string,
+    join?: string,
+    summary?: search.Summary | string,
+    formula?: string,
+    function?:
+      'percentOfTotal' | // % of Total, Output: percent
+      'absoluteValue' | // Absolute Value, Output: integer
+      'ageInDays' | // Age In Days, Date Function, Output: integer
+      'ageInHours' | // Age In Hours, Date Function, Output: integer
+      'ageInMonths' | // Age In Months, Date Function, Output: integer
+      'ageInWeeks' | // Age In Weeks, Date Function, Output: integer
+      'ageInYears' | // Age In Years, Date Function, Output: integer
+      'calendarWeek' | // Calendar Week, Date Function, Output: date
+      'day' | // Day, Date Function, Output: date
+      'month' | // Month, Date Function, Output: text
+      'negate' | // Negate, Output: integer
+      'numberAsTime' | // Number as Time, Output: text
+      'quarter' | // Quarter, Date Function, Output: text
+      'rank' | // Rank, Output: integer
+      'round' | // Round, Output: float
+      'roundToHundredths' | // Round to Hundredths, Output: float
+      'roundToTenths' | // Round to Tenths, Output: float
+      'weekOfYear' | // Week of Year, Date Function, Output: text
+      'year' // Year, Date Function, Output: text
+    label?: string,
+    sort?: search.Sort | string,
+  }): search.Column
   
   /**
    * Creates a search.Filter object.
    * @param {Object} options  the options object
    * @param {string} options.name  internal ID of the search field
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
-   * @param {Operator} options.operator  search operator
+   * @param {Operator|string} options.operator  search operator
    * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
    * @param {string} [options.formula]  formula used for this filter
-   * @param {Summary} [options.summary]  summary type used for this filter
+   * @param {Summary|string} [options.summary]  summary type used for this filter
    * @return {Filter} the created filter object
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
    * @throws {SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
    * @since 2015.2
    */
-  createFilter(options: { name: string, join?: string, operator: search.Operator, values?: string | Date | number | string[] | Date[], formula?: string, summary?: search.Summary }): search.Filter
+  createFilter(options: { name: string, join?: string, operator: search.Operator | string, values?: string | Date | number | string[] | Date[], formula?: string, summary?: search.Summary | string }): search.Filter
   
   /**
    * Creates a search.Setting object.
@@ -166,7 +202,7 @@ declare namespace search {
      * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
      * @param {Object} options  the options object
      * @param {Type|string} options.type  the record internal ID of the record type you are searching
-     * @param {Filter|Filter[]|Array<(string|number|Array<(string|number|Array<(string|number|[])>)>)>} [options.filters]  a single filter object or an array of filter objects or a search filter expression
+     * @param {Filter|Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
      * @param {Column|Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
      * @param {Setting|Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
      * @param {string} [options.title]  name of the search (when saved)
@@ -177,11 +213,18 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
      * @since 2015.2
      */
-    promise(options: { type: search.Type | string, filters?: Filter | Filter[] | Array<(string | number | Array<(string | number | Array<(string | number | [])>)>)>, columns?: Column | Column[] | string, settings?: Setting | Setting[] | string, title?: string, id?: string }): Promise<Search>
+    promise(options: {
+      type: search.Type | string,
+      filters?: Filter | Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
+      columns?: Column | Column[] | string,
+      settings?: Setting | Setting[] | string,
+      title?: string,
+      id?: string,
+    }): Promise<Search>
   }
   
   export interface load {
-  
+    
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
@@ -210,7 +253,7 @@ declare namespace search {
   }*/
   
   export interface duplicates {
-  
+    
     /**
      * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
      * Note that this API only works for records that support duplicate record detection. These records include
@@ -228,7 +271,7 @@ declare namespace search {
   }
   
   export interface global {
-  
+    
     /**
      * Performs a global search against a single keyword or multiple keywords.
      * @governance 10 units
@@ -614,15 +657,15 @@ declare namespace search {
      * @type {Filter|Filter[]}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
      */
-    filters: Filter|Filter[]
+    filters: Filter | Filter[]
     
     /**
      * Allows to set or get the search filters in the form of a search filter expression.
      * @name Search#filterExpression
-     * @type {Array<(string|number|Array<(string|number|Array<(string|number|[])>)>)>}
+     * @type {(string|number|(string|number|(string|number|[])[])[])[]}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when setting invalid search filter expression
      */
-    filterExpression: Array<(string | number | Array<(string | number | Array<(string | number | [])>)>)>
+    filterExpression: (string | number | (string | number | (string | number | [])[])[])[]
     
     /**
      * Columns to be returned from the search.
@@ -631,16 +674,16 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or
      *     string
      */
-    columns: Column|string|Column[]|string[]
+    columns: Column | string | Column[] | string[]
     
     /**
-     * Columns to be returned from the search.
+     * Array of search.Setting objects or a string array of column names.
      * @name Search#settings
      * @type {Setting|string|Setting[]|string[]}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
      */
-    settings: Setting|string|Setting[]|string[]
+    settings: Setting | string | Setting[] | string[]
     
     /**
      * Name of the saved search. Needs to be set before saving the search.
@@ -873,7 +916,26 @@ declare namespace search {
      * @type {string}
      * @throws {SuiteScriptError} INVALID_SRCH_FUNCTN when setting an unknown function is attempted
      */
-    function: string
+    function:
+      'percentOfTotal' | // % of Total, Output: percent
+      'absoluteValue' | // Absolute Value, Output: integer
+      'ageInDays' | // Age In Days, Date Function, Output: integer
+      'ageInHours' | // Age In Hours, Date Function, Output: integer
+      'ageInMonths' | // Age In Months, Date Function, Output: integer
+      'ageInWeeks' | // Age In Weeks, Date Function, Output: integer
+      'ageInYears' | // Age In Years, Date Function, Output: integer
+      'calendarWeek' | // Calendar Week, Date Function, Output: date
+      'day' | // Day, Date Function, Output: date
+      'month' | // Month, Date Function, Output: text
+      'negate' | // Negate, Output: integer
+      'numberAsTime' | // Number as Time, Output: text
+      'quarter' | // Quarter, Date Function, Output: text
+      'rank' | // Rank, Output: integer
+      'round' | // Round, Output: float
+      'roundToHundredths' | // Round to Hundredths, Output: float
+      'roundToTenths' | // Round to Tenths, Output: float
+      'weekOfYear' | // Week of Year, Date Function, Output: text
+      'year' // Year, Date Function, Output: text
     
     /**
      * The sort direction for this search column. Use values from the Sort enum.
@@ -1039,11 +1101,11 @@ declare namespace search {
     /**
      * Record internal ID of the result.
      * @name Result#id
-     * @type {number}
+     * @type {string}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    id: number
+    id: string
     
     /**
      * List of columns contained in this result.
@@ -1084,7 +1146,7 @@ declare namespace search {
      * @return {string} UI display name (text value) of the search result column
      * @since 2015.2
      */
-    getText(options: { name: string, join?: string, summary?: Summary }): string
+    getText(options: Column | { name: string, join?: string, summary?: Summary }): string
     
     /**
      * Returns the object type name (search.Result)

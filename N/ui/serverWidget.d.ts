@@ -10,6 +10,7 @@
  *
  */
 interface serverWidget {
+  
   /**
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
    *
@@ -201,7 +202,7 @@ declare namespace serverWidget {
     /**
      * The Tab's field help
      *
-     * @name Field#helpText
+     * @name Tab#helpText
      * @type {string}
      */
     helpText: string
@@ -1262,7 +1263,6 @@ declare namespace serverWidget {
     
     /**
      * Add a Button to the list page
-     *
      * @param {Object} options
      * @param {string} options.id the script id for button
      * @param {string} options.label the ui label of button

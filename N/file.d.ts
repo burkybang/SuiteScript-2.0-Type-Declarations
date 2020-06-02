@@ -21,7 +21,16 @@ interface file {
    * @param {boolean} [options.isOnline] - The Available without Login status of a file
    * @return {file.File}
    */
-  create(options: { name: string, fileType: file.Type, contents?: string, description?: string, folder?: number, encoding?: file.Encoding, inInactive?: boolean, isOnline?: boolean }): file.File
+  create(options: {
+    name: string,
+    fileType: file.Type,
+    contents?: string,
+    description?: string,
+    folder?: number,
+    encoding?: file.Encoding,
+    inInactive?: boolean,
+    isOnline?: boolean,
+  }): file.File
   
   /**
    * Method used to delete an existing file from the NetSuite File Cabinet
@@ -29,7 +38,9 @@ interface file {
    * @param {number|string} options.id - Internal ID of the file
    * @return {number|string} - The internal ID of the deleted file
    */
-  delete(options: { id: number | string }): number | string
+  delete(options: {
+    id: number | string,
+  }): number | string
   
   /**
    * Loads an existing file from the NetSuite File Cabinet
@@ -37,7 +48,9 @@ interface file {
    * @param {number|string} options.id - The internal ID of the file as a number or string, the absolute or relative path
    * @return {file.File} - The internal ID of the loaded file
    */
-  load(options: { id: number | string }): file.File
+  load(options: {
+    id: number | string,
+  }): file.File
 }
 
 declare namespace file {
@@ -186,18 +199,22 @@ declare namespace file {
     /**
      * Method used to return the iterator of segments delimited by a separator
      * @param {Object} options
-     * @param {String} options.separator - The separator to use to divide the segments
+     * @param {string} options.separator - The separator to use to divide the segments
      * @return {Iterator}
      */
-    getSegments(options)
+    getSegments(options: {
+      separator: string,
+    })
     
     /**
      * Method used to insert a line to the end of a file
      * @param {Object} options
-     * @param {String} options.value - String to insert at the end of the file
+     * @param {string} options.value - String to insert at the end of the file
      * @return {File}
      */
-    appendLine(options): File
+    appendLine(options: {
+      value: string,
+    }): File
     
     /**
      * Method used to reset the file contents
@@ -232,7 +249,9 @@ declare namespace file {
      * @param {string} options.tag - String containing a tag
      * @return {string}
      */
-    readUntil(options: { tag: string }): string
+    readUntil(options: {
+      tag: string,
+    }): string
     
     
     /**
@@ -241,6 +260,8 @@ declare namespace file {
      * @param {number} options.number - The number of characters to read
      * @return {string}
      */
-    readChars(options: { number: number }): string
+    readChars(options: {
+      number: number,
+    }): string
   }
 }
