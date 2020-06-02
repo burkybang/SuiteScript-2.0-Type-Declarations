@@ -9,7 +9,7 @@ interface transaction {
   
   /**
    * Method used to void a transaction record object and return an id that indicates the type of void performed
-   * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692.html}
    *
    * @param {Object} options
    * @param {transaction.Type|string} options.type record type to be voided
@@ -31,7 +31,7 @@ declare namespace transaction {
   
     /!**
      * Method used to void a transaction record object asynchronously and return an ID that indicates the type of void performed
-     * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256.html}
      *
      * @param {Object} options
      * @param {string} options.type record type to be voided
@@ -50,7 +50,7 @@ declare namespace transaction {
   
   /**
    * Enumeration that holds the string values for supported transaction record types
-   * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897.html}
    *
    * @enum
    * @readonly

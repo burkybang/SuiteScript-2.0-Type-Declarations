@@ -1,6 +1,6 @@
 /**
  * SuiteScript Suitelet Script Context
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407979858.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407979858.html}
  *
  * @NApiVersion 2.x
  */
@@ -20,7 +20,7 @@ declare namespace ExecuteContext {
   
   /**
    * @enum
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532.html}
    */
   export enum InvocationType {
     // The normal execution according to the deployment options specified in the UI.

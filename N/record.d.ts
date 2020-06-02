@@ -3,7 +3,7 @@
 
 /**
  * SuiteScript record common module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267255811.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267255811.html}
  *
  * @module N/record
  * @NApiVersion 2.x
@@ -12,7 +12,7 @@ interface record {
   
   /**
    * Create a new record object based on provided type
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
    *
    * @governance 10 units for transactions, 2 for custom records, 5 for all other records
    *
@@ -30,7 +30,7 @@ interface record {
   
   /**
    * Load an existing nlobjRecord from the database based on provided type, id
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
    *
    * @governance 10 units for transactions, 2 for custom records, 5 for all other records
    *
@@ -49,7 +49,7 @@ interface record {
   
   /**
    * Copy a record object based on provided type, id
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
    *
    * @governance 10 units for transactions, 2 for custom records, 5 for all other records
    *
@@ -68,7 +68,7 @@ interface record {
   
   /**
    * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
    *
    * @governance 10 units for transactions, 2 for custom records, 5 for all other records
    *
@@ -88,7 +88,7 @@ interface record {
   
   /**
    * Delete a record object based on provided type, id and return the id of deleted record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372.html}
    *
    * @governance 20 units for transactions, 4 for custom records, 10 for all other records
    *
@@ -105,7 +105,7 @@ interface record {
   
   /**
    * Commit record field updates to the system
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788.html}
    *
    * @governance 10 units for transactions, 2 for custom records, 5 for all other records
    * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
@@ -127,7 +127,7 @@ interface record {
   
   /**
    * Attach record to another record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169.html}
    *
    * @governance 10 units
    *
@@ -145,7 +145,7 @@ interface record {
   
   /**
    * Detach record from another record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360.html}
    *
    * @governance 10 units
    *
@@ -168,7 +168,7 @@ declare namespace record {
     
     /**
      * Create a new record object based on provided type
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690.html}
      *
      * @param {Object} options
      * @param {Type|string} options.type record type
@@ -187,7 +187,7 @@ declare namespace record {
     
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173.html}
      *
      * @param {Object} options
      * @param {Type|string} options.type record type
@@ -207,7 +207,7 @@ declare namespace record {
     
     /**
      * Copy a record object based on provided type, id
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922.html}
      *
      * @param {Object} options
      * @param {Type|string} options.type record type
@@ -227,7 +227,7 @@ declare namespace record {
     
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375.html}
      *
      * @param {Object} options
      * @param {string} options.fromType record type to be transformed from
@@ -248,7 +248,7 @@ declare namespace record {
   
     /!**
      * Delete a record object based on provided type, id and return the id of deleted record
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302.html}
      *
      * @param {Object} options
      * @param {Type|string} options.type record type
@@ -266,7 +266,7 @@ declare namespace record {
     
     /**
      * Commit record field updates to the system
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813.html}
      *
      * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
      *
@@ -290,7 +290,7 @@ declare namespace record {
     
     /**
      * Attach record to another record
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175.html}
      *
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
@@ -309,7 +309,7 @@ declare namespace record {
     
     /**
      * Detach record from another record
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016.html}
      *
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
@@ -651,13 +651,13 @@ declare namespace record {
   }
   
   /**
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
    */
   export interface Record {
     
     /**
      * The internal ID of the record
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656.html}
      *
      * @type {number}
      * @readonly
@@ -666,7 +666,7 @@ declare namespace record {
     
     /**
      * The type of the record
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706984.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706984.html}
      *
      * @restriction This property is not available for subrecords
      *
@@ -677,7 +677,7 @@ declare namespace record {
     
     /**
      * Indicates whether the record is in dynamic or standard mode
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316.html}
      *
      * @type {boolean}
      * @readonly
@@ -1070,7 +1070,7 @@ declare namespace record {
     
     /**
      * Save record updates to the system
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
      *
      * @governance 20 units for transactions, 4 for custom records, 10 for all other records
      *
@@ -1378,7 +1378,7 @@ declare namespace record {
   }
   
   /**
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
    */
   export namespace Record {
     
@@ -1400,7 +1400,7 @@ declare namespace record {
       
       /**
        * Save record updates to the system
-       * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html}
        *
        * @param {Object} [options]
        * @param {boolean} [options.enableSourcing=false] enable sourcing during record update

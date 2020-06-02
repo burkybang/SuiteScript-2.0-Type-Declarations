@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript record action module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537.html}
  *
  * @module N/action
  * @suiteScriptVersion 2.x
@@ -16,7 +16,7 @@ interface action {
    * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
    * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
    * again when executing an Action object from the result set.
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605.html}
    *
    * @param {Object} options
    * @param {record.Record|string} options.recordType record type
@@ -48,7 +48,7 @@ interface action {
    * action object is only returned if the given record instance qualifies for execution of the given record action.
    * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
    * again when executing the Action object.
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818.html}
    *
    * @param {Object} options
    * @param {string} options.recordType record type
@@ -70,7 +70,7 @@ interface action {
   
   /**
    * Executes a record action and returns its result.
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388.html}
    *
    * @param {Object} options
    * @param {record.Record|string} options.recordType record type
@@ -98,7 +98,7 @@ interface action {
   /**
    * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
    * The options.params parameter is mutually exclusive to options.condition and options.paramCallback.
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927.html}
    *
    * @governance 50 units
    *
@@ -141,7 +141,7 @@ declare namespace action {
      * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
      * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
      * again when executing an Action object from the result set.
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246.html}
      *
      * @param {Object} options
      * @param {record.Record|string} options.recordType record type
@@ -176,7 +176,7 @@ declare namespace action {
      * action object is only returned if the given record instance qualifies for execution of the given record action.
      * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
      * again when executing the Action object.
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970.html}
      *
      * @param {Object} options
      * @param {string} options.recordType record type
@@ -197,7 +197,7 @@ declare namespace action {
     }): Promise<action.Action>
     
     /**
-     * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360.html}
      *
      * todo: Finish this
      *
@@ -211,7 +211,7 @@ declare namespace action {
     
     /**
      * Executes a record action and returns its result.
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030.html}
      *
      * @param {Object} options
      * @param {record.Record|string} options.recordType record type
@@ -238,7 +238,7 @@ declare namespace action {
   }
   
   /**
-   * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html}
    *
    * todo: Finish this
    */
@@ -267,7 +267,7 @@ declare namespace action {
   }
   
   /**
-   * @see https://tstdrv1588307.app.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html}
    *
    * todo: Finish this
    */

@@ -1,6 +1,6 @@
 /**
  * SuiteScript file module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205693274.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205693274.html}
  *
  * @module N/file
  * @NApiVersion 2.x

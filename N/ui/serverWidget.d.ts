@@ -450,7 +450,7 @@ declare namespace serverWidget {
     
     /**
      * The default value of the field
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520.html}
      *
      * @name Field#defaultValue
      * @type {string}
@@ -1058,7 +1058,7 @@ declare namespace serverWidget {
     
     /**
      * Add a field to the form
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245.html}
      *
      * @param {Object} options
      * @param {string} options.id Internal id for the field

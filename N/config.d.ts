@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript config common module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
  *
  * @module N/config
  * @NApiVersion 2.x
@@ -11,7 +11,7 @@ interface config {
   
   /**
    * Load a configuration object with a specific type
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439.html}
    *
    * @governance 10 units
    * @restriction Server SuiteScript only
@@ -29,13 +29,13 @@ interface config {
 }
 
 /**
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
  */
 declare namespace config {
   
   /**
    * Enum configuration type values.
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632.html}
    * 
    * @readonly
    * @enum {string}

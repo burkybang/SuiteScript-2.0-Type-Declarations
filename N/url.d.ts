@@ -1,6 +1,6 @@
 /**
  * SuiteScript module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552918.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552918.html}
  *
  * @module N/url
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface url {
   
   /**
    * Returns the URL string to a NetSuite record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358667680.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358667680.html}
    *
    * @param {Object} options
    * @param {string} options.recordType
@@ -25,7 +25,7 @@ interface url {
   
   /**
    * Returns the internal URL to a NetSuite Tasklink
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672296.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672296.html}
    *
    * @param {Object} options
    * @param {string} options.id
@@ -39,7 +39,7 @@ interface url {
   
   /**
    * Returns an external or internal URL string to a script
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672433.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672433.html}
    *
    * @param {Object} options
    * @param {string} options.scriptId
@@ -55,7 +55,7 @@ interface url {
   
   /**
    * Returns a domain name for a NetSuite account
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4861456597.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4861456597.html}
    *
    * @param {Object} options
    * @param {url.HostType} options.hostType
@@ -69,7 +69,7 @@ interface url {
   
   /**
    * Creates a serialized representation of an object containing query parameters
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672703.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672703.html}
    *
    * @param {Object} options
    * @param {string} options.domain
@@ -86,7 +86,7 @@ declare namespace url {
   
   /**
    * Enumeration whose string values each describe a category of domain name
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834765371.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834765371.html}
    *
    * @enum
    * @readonly

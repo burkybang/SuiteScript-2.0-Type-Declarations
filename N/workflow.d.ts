@@ -1,6 +1,6 @@
 /**
  * SuiteScript workflow module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558.html}
  *
  * @module N/workflow
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface workflow {
   
   /**
    * Triggers a workflow on a record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916.html}
    *
    * @governance 20 units
    *
@@ -26,7 +26,7 @@ interface workflow {
   
   /**
    * Triggers a workflow on a record
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270.html}
    *
    * @governance 20 units
    *

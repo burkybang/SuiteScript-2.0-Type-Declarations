@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript sftp common module
- * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932.html
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932.html}
  *
  * @restriction Server-side scripts only
  *
@@ -16,7 +16,7 @@ interface sftp {
   
   /**
    * Constant representing the minimun time allowed for transferring data over connection
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823.html}
    *
    * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {1}
@@ -29,7 +29,7 @@ interface sftp {
   
   /**
    * Constant representing the maximum time allowed for transferring data over connection
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286.html}
    *
    * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {20}
@@ -42,7 +42,7 @@ interface sftp {
   
   /**
    * Constant representing the minimun port number
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099.html}
    *
    * @name Connection#MIN_PORT_NUMBER
    * @type {0}
@@ -55,7 +55,7 @@ interface sftp {
   
   /**
    * Constant representing the maximum port number
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056.html}
    *
    * @name Connection#MAX_PORT_NUMBER
    * @type {65535}
@@ -68,7 +68,7 @@ interface sftp {
   
   /**
    * Constant representing the default port number
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135.html}
    *
    * @name Connection#DEFAULT_PORT_NUMBER
    * @type {22}
@@ -81,7 +81,7 @@ interface sftp {
   
   /**
    * Establishes a connection with a remote server and returns a connection object representing that connection
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472.html}
    *
    * @param {Object} options
    * @param {string} options.url - host of remote account
@@ -116,7 +116,7 @@ declare namespace sftp {
   
   /**
    * Holds the values to be used to sort listed files and directories
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613.html}
    *
    * @enum
    * @readonly
@@ -134,7 +134,7 @@ declare namespace sftp {
   
   /**
    * Return new instance of SftpConnection used for performing operations over a connection
-   * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733.html
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733.html}
    *
    * @since 2016.2
    */
@@ -142,7 +142,7 @@ declare namespace sftp {
     
     /**
      * Constant representing the max time allowed for transferring data over connection
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937.html}
      *
      * @name Connection#MAX_TRANSFER_TIMEOUT
      * @type {300}
@@ -155,7 +155,7 @@ declare namespace sftp {
     
     /**
      * Constant representing the max file size allowed to be transferred
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973.html}
      *
      * @name Connection#MAX_FILE_SIZE
      * @type {100000000}
@@ -168,7 +168,7 @@ declare namespace sftp {
     
     /**
      * Downloads a file from the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030.html}
      *
      * @governance 100 points
      *
@@ -191,7 +191,7 @@ declare namespace sftp {
     
     /**
      * Uploads a file to the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910.html}
      *
      * @governance 100 points
      *
@@ -215,7 +215,7 @@ declare namespace sftp {
     
     /**
      * Creates an empty directory on the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024.html}
      *
      * @governance 10 points
      *
@@ -232,7 +232,7 @@ declare namespace sftp {
     
     /**
      * Deletes an empty directory on the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344.html}
      *
      * @governance 10 points
      *
@@ -250,7 +250,7 @@ declare namespace sftp {
     
     /**
      * Deletes a file on the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670.html}
      *
      * @governance 10 points
      *
@@ -267,7 +267,7 @@ declare namespace sftp {
     
     /**
      * Moves a file or directory from one location to another on the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961.html}
      *
      * @governance 10 points
      *
@@ -284,7 +284,7 @@ declare namespace sftp {
     
     /**
      * Lists the files and directories in a directory on the remote server
-     * @see https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176.html
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176.html}
      * @
      *
      * @governance 10 points
