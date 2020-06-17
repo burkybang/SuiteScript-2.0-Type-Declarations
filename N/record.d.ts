@@ -1,4 +1,5 @@
 /// <reference path="./format.d.ts" />
+/// <reference path="./currentRecord.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
 
 /**
@@ -26,7 +27,7 @@ interface record {
    *
    * @since 2015.2
    */
-  create(options: { type: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record
+  create(options: { type: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record | currentRecord.CurrentRecord
   
   /**
    * Load an existing nlobjRecord from the database based on provided type, id
