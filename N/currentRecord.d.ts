@@ -361,6 +361,19 @@ declare namespace currentRecord {
     selectLine(options: { sublistId: string, line: number }): CurrentRecord
     
     /**
+     * Save record updates to the system
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
+     *
+     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+     *
+     * @param {Object} [options]
+     * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+     * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return {number} id of submitted record
+     */
+    save(options?: { enableSourcing?: boolean, ignoreMandatoryFields?: boolean }): number
+    
+    /**
      * Return a value indicating if the field has a subrecord
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381.html}
      *
