@@ -46,7 +46,7 @@ interface BeforeLoadContext {
    *
    * @readonly
    */
-  request: http.ServerRequest
+  request?: http.ServerRequest
 }
 
 /**
