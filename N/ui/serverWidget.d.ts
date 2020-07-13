@@ -453,9 +453,9 @@ declare namespace serverWidget {
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520.html}
      *
      * @name Field#defaultValue
-     * @type {string}
+     * @type {string|string[]|number|Date|boolean}
      */
-    defaultValue: string
+    defaultValue: string | string[] | number | Date | boolean
     
     /**
      * If Rich Text Editing is enabled, you can use this property to set the height of the rich text field only.
