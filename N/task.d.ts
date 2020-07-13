@@ -135,7 +135,7 @@ declare namespace task {
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
      * @name ScheduledScriptTask#params
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      */
     params: { [key: string]: string }
     

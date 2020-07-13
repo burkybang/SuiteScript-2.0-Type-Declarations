@@ -13,8 +13,8 @@ interface format {
    *
    * @param {Object} options
    * @param {string} options.value the data you wish to parse
-   * @param {string} options.type the field type i.e. DATE, CURRENCY, INTEGER
-   * @param {string} options.timezone (optional & applicable to type DATETIME only) specifies which timezone the value is from.
+   * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
    *                                  default is the timezone set in the user's preferences
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
@@ -23,15 +23,19 @@ interface format {
    *
    * @since 2015.2
    */
-  parse(options)
+  parse(options: {
+    value: string,
+    type: format.Type,
+    timezone?: format.Timezone,
+  })
   
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
    *
    * @param {Object} options
    * @param {Date|string|number} options.value the data you wish to format
-   * @param {string} options.type the field type i.e. DATE, CURRENCY, INTEGER
-   * @param {string} options.timezone (optional & applicable to type DATETIME only) specifies which timezone to format to.
+   * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
    *                                  default is the timezone set in the user's preferences
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
@@ -40,7 +44,11 @@ interface format {
    *
    * @since 2015.2
    */
-  format(options)
+  format(options: {
+    value: Date | string | number,
+    type: format.Type,
+    timezone?: format.Timezone,
+  })
 }
 
 declare namespace format {
