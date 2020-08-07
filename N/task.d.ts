@@ -1,4 +1,5 @@
 /// <reference path="./file.d.ts" />
+/// <reference path="./record.d.ts" />
 
 /**
  * SuiteScript module
@@ -7,16 +8,61 @@
  * @NApiVersion 2.x
  */
 interface task {
-  
+
   /**
    * Creates a task of the given type and returns the task object.
    *
    * @param {Object} options
    * @param {task.TaskType} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param {number|string} [options.scriptId]
+   * @param {string} [options.deploymentId]
+   * @param {Object<string, string|string[]|number|Date|boolean>} [options.params]
+   * @param {file.File|string} [options.importFile]
+   * @param {number|string} [options.mappingId]
+   * @param {number|string} [options.queueId]
+   * @param {string} [options.name]
+   * @param {Object<string, file.File|string>} [options.linkedFiles]
+   * @param {string} [options.entityType]
+   * @param {number|string} [options.masterRecordId]
+   * @param {string} [options.masterSelectionMode]
+   * @param {string} [options.dedupeMode]
+   * @param {(number|string)[]} [options.recordIds]
+   * @param {record.Type|string} [options.recordType]
+   * @param {number|string} [options.recordId]
+   * @param {number|string} [options.workflowId]
+   * @param {number|string} [options.savedSearchId]
+   * @param {number|string} [options.fileId]
+   * @param {number|string} [options.filePath]
    * @return {task.ScheduledScriptTask|task.MapReduceScriptTask|task.CsvImportTask|task.EntityDeduplicationTask|task.WorkflowTriggerTask|task.SearchTask}
    */
-  create(options: { taskType: task.TaskType }): task.ScheduledScriptTask | task.MapReduceScriptTask | task.CsvImportTask | task.EntityDeduplicationTask | task.WorkflowTriggerTask | task.SearchTask
-  
+  create(options: {
+    taskType: task.TaskType,
+    scriptId?: number | string,
+    deploymentId?: string,
+    params?: { [p: string]: string | string[] | number | Date | boolean },
+    importFile?: file.File | string,
+    mappingId?: number | string,
+    queueId?: number | string,
+    name?: string,
+    linkedFiles?: { [p: string]: file.File | string },
+    entityType?: string,
+    masterRecordId?: number | string,
+    masterSelectionMode?: string,
+    dedupeMode?: string,
+    recordIds?: (number | string)[],
+    recordType?: record.Type | string,
+    recordId?: number | string,
+    workflowId?: number | string,
+    savedSearchId?: number | string,
+    fileId?: number | string,
+    filePath?: number | string,
+  }): task.ScheduledScriptTask
+    | task.MapReduceScriptTask
+    | task.CsvImportTask
+    | task.EntityDeduplicationTask
+    | task.WorkflowTriggerTask
+    | task.SearchTask
+
   /**
    * Check current status of a submitted task. The task to be checked is identified by its task ID.
    *
@@ -31,7 +77,7 @@ interface task {
 }
 
 declare namespace task {
-  
+
   /**
    * @enum
    */
@@ -43,7 +89,7 @@ declare namespace task {
     WORKFLOW_TRIGGER = 'WORKFLOW_TRIGGER',
     SEARCH = 'SEARCH',
   }
-  
+
   /**
    * @enum
    */
@@ -53,7 +99,7 @@ declare namespace task {
     COMPLETE = 'COMPLETE',
     FAILED = 'FAILED',
   }
-  
+
   /**
    * @enum
    */
@@ -63,7 +109,7 @@ declare namespace task {
     MOST_POPULATED_FIELDS = 'MOST_POPULATED_FIELDS',
     SELECT_BY_ID = 'SELECT_BY_ID',
   }
-  
+
   /**
    * @enum
    */
@@ -73,7 +119,7 @@ declare namespace task {
     MAKE_MASTER_PARENT = 'MAKE_MASTER_PARENT',
     MARK_AS_NOT_DUPES = 'MARK_AS_NOT_DUPES',
   }
-  
+
   /**
    * @enum
    */
@@ -85,7 +131,7 @@ declare namespace task {
     LEAD = 'LEAD',
     PROSPECT = 'PROSPECT',
   }
-  
+
   /**
    * @enum
    */
@@ -96,41 +142,41 @@ declare namespace task {
     REDUCE = 'REDUCE',
     SUMMARIZE = 'SUMMARIZE',
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface ScheduledScriptTask {
-    
+
     /**
      * The ID of the task.
      * @name ScheduledScriptTask#id
      * @type {string}
      */
     id: string
-    
+
     /**
      * Private setter of the ID of the task.
      * @name ScheduledScriptTask#_id
      * @type {string}
      */
     _id: string
-    
+
     /**
      * The Internal ID or Script ID of the Script record.
      * @name ScheduledScriptTask#scriptId
      * @type {number | string}
      */
     scriptId: number | string
-    
+
     /**
      * The Internal ID or Script ID of the Script Deployment record.
      * @name ScheduledScriptTask#deploymentId
      * @type {number | string}
      */
     deploymentId: number | string
-    
+
     /**
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
@@ -138,7 +184,7 @@ declare namespace task {
      * @type {Object<string, string>}
      */
     params: { [key: string]: string }
-    
+
     /**
      * Submits the task and returns an unique ID.
      *
@@ -148,14 +194,14 @@ declare namespace task {
      * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.ScheduledScriptTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -163,13 +209,13 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface ScheduledScriptTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name ScheduledScriptTaskStatus#taskId
@@ -178,7 +224,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Script ID.
      * @name ScheduledScriptTaskStatus#scriptId
@@ -187,7 +233,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     scriptId: number
-    
+
     /**
      * Script deployment ID.
      * @name ScheduledScriptTaskStatus#deploymentId
@@ -196,7 +242,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     deploymentId: number
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name ScheduledScriptTaskStatus#status
@@ -205,14 +251,14 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Returns the object type name (task.ScheduledScriptTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -220,41 +266,41 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface MapReduceScriptTask {
-    
+
     /**
      * The ID of the task.
      * @name MapReduceScriptTask#id
      * @type {string}
      */
     id: string
-    
+
     /**
      * Private setter of the ID of the task.
      * @name MapReduceScriptTask#_id
      * @type {string}
      */
     _id: string
-    
+
     /**
      * The Internal ID or Script ID of the Script record.
      * @name MapReduceScriptTask#scriptId
      * @type {number | string}
      */
     scriptId: number | string
-    
+
     /**
      * The Internal ID or Script ID of the Script Deployment record.
      * @name MapReduceScriptTask#deploymentId
      * @type {number | string}
      */
     deploymentId: number | string
-    
+
     /**
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
@@ -262,7 +308,7 @@ declare namespace task {
      * @type {Object.<string, string>}
      */
     params: { [key: string]: string }
-    
+
     /**
      * Submits the task and returns an unique ID.
      *
@@ -270,14 +316,14 @@ declare namespace task {
      * @return {string} taskId
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.MapReduceScriptTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -285,13 +331,13 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface MapReduceScriptTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name MapReduceScriptTaskStatus#taskId
@@ -300,7 +346,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Script ID.
      * @name MapReduceScriptTaskStatus#scriptId
@@ -309,7 +355,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     scriptId: number
-    
+
     /**
      * Script deployment ID.
      * @name MapReduceScriptTaskStatus#deploymentId
@@ -318,7 +364,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     deploymentId: number
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name MapReduceScriptTaskStatus#status
@@ -327,7 +373,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Represents the current stage of the Map/Reduce script. Returns one of the task.MapReduceStage enum values.
      * @name MapReduceScriptTaskStatus#stage
@@ -336,7 +382,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     stage: string
-    
+
     /**
      * Get percentage of completion for the current stage. Note that INPUT and SUMMARIZE are either 0% or 100% complete at any given time.
      *
@@ -344,7 +390,7 @@ declare namespace task {
      * @return {number}
      */
     getPercentageCompleted(): number
-    
+
     /**
      * Total number of records/rows not yet processed by the MAP phase.
      *
@@ -352,7 +398,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingMapCount(): number
-    
+
     /**
      * Total number of record/row inputs to the MAP phase.
      *
@@ -360,7 +406,7 @@ declare namespace task {
      * @return {number}
      */
     getTotalMapCount(): number
-    
+
     /**
      * Total number of bytes not yet processed by the MAP phase (a component of total size).
      *
@@ -368,7 +414,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingMapSize(): number
-    
+
     /**
      * Total number of records/rows not yet processed by the REDUCE phase.
      *
@@ -376,7 +422,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingReduceCount(): number
-    
+
     /**
      * Total number of record/row inputs to the REDUCE phase.
      *
@@ -384,7 +430,7 @@ declare namespace task {
      * @return {number}
      */
     getTotalReduceCount(): number
-    
+
     /**
      * Total number of bytes not yet processed by the REDUCE phase (a component of total size).
      *
@@ -392,7 +438,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingReduceSize(): number
-    
+
     /**
      * Total number of records/rows not yet iterated by the script.
      *
@@ -400,7 +446,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingOutputCount(): number
-    
+
     /**
      * Returns the total size in bytes of all key/value pairs written as output (a component of total size).
      *
@@ -408,7 +454,7 @@ declare namespace task {
      * @return {number}
      */
     getPendingOutputSize(): number
-    
+
     /**
      * Total number of record/row inputs to the OUTPUT phase.
      *
@@ -416,7 +462,7 @@ declare namespace task {
      * @return {number}
      */
     getTotalOutputCount(): number
-    
+
     /**
      * Returns the total size in bytes of all stored work in progress.
      *
@@ -424,14 +470,14 @@ declare namespace task {
      * @return {number}
      */
     getCurrentTotalSize(): number
-    
+
     /**
      * Returns the object type name (task.MapReduceScriptTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -439,27 +485,27 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface SearchTask {
-    
+
     /**
      * The ID of the task.
      * @name SearchTask#id
      * @type {number}
      */
     id: number
-    
+
     /**
      * An ID of saved search to be executed during the task.
      * @name SearchTask#savedSearchId
      * @type {number}
      */
     savedSearchId: number
-    
+
     /**
      * Id of CVS file to export results of search into. See N/file.
      * If fileId is provided then parameter filePath is ignored.
@@ -469,7 +515,7 @@ declare namespace task {
      * @type {number}
      */
     fileId: number
-    
+
     /**
      * Path of CVS file to export results of search into. See N/file.
      * If fileId is provided then parameter filePath is ignored.
@@ -479,7 +525,7 @@ declare namespace task {
      * @type {number}
      */
     filePath: number
-    
+
     /**
      * Completion scripts which will be run when the async search finishes.
      * When submission succeeds an id attribute will be added into each completion task.
@@ -500,7 +546,7 @@ declare namespace task {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
     inboundDependencies: Object[]
-    
+
     /**
      * Submits the task and returns an unique ID. Sets inbound dependency (task) id in inboundDependencies attribute on successful submit.
      *
@@ -523,21 +569,21 @@ declare namespace task {
      * @throws {error.SuiteScriptError} ASYNC_SEARCH_SEARCH_ID_NOT_FOUND search id was not found
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.SearchTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
      * @return {Object}
      */
     toJSON(): Object
-    
+
     /**
      * Adds an inbound dependency (completion script).
      *
@@ -549,14 +595,14 @@ declare namespace task {
      */
     addInboundDependency(options): void
   }
-  
+
   /**
    * Represents the status of
    * @protected
    * @constructor
    */
   export interface SearchTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name SearchTaskStatus#taskId
@@ -565,7 +611,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name SearchTaskStatus#status
@@ -574,7 +620,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Represents the fileId of exported file.
      * @name SearchTaskStatus#fileId
@@ -583,7 +629,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     fileId: number
-    
+
     /**
      * Represents id of saved search being used for export.
      * @name SearchTaskStatus#savedSearchId
@@ -592,14 +638,14 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     savedSearchId: number
-    
+
     /**
      * Returns the object type name (task.SearchTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -607,48 +653,48 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface CsvImportTask {
-    
+
     /**
      * The ID of the task.
      * @name CsvImportTask#id
      * @type {string}
      */
     id: string
-    
+
     /**
      * A file.File object containing data to be imported OR a string containing raw CSV text to be imported.
      * @name CsvImportTask#importFile
      * @type {file.File | string}
      */
     importFile: file.File | string
-    
+
     /**
      * Internal ID or script ID of a saved import map to be used for the import.
      * @name CsvImportTask#mappingId
      * @type {number | string}
      */
     mappingId: number | string
-    
+
     /**
      * Overrides the CSV import queue preference.
      * @name CsvImportTask#queueId
      * @type {number}
      */
     queueId: number
-    
+
     /**
      * The name of the import job to be shown on the status page for CSV imports.
      * @name CsvImportTask#name
      * @type {string}
      */
     name: string
-    
+
     /**
      * A map of key/value pairs "sublist->file" for a multi-file import job.
      * The key defines the internal ID of the record sublist for which data is being imported.
@@ -657,7 +703,7 @@ declare namespace task {
      * @type {Object}
      */
     linkedFiles: Object
-    
+
     /**
      * Submits the task and returns an unique ID.
      *
@@ -667,14 +713,14 @@ declare namespace task {
      * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.CsvImportTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -682,14 +728,14 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    *
    * @protected
    * @constructor
    */
   export interface CsvImportTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name CsvImportTaskStatus#taskId
@@ -698,7 +744,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name CsvImportTaskStatus#status
@@ -707,14 +753,14 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Returns the object type name (task.CsvImportTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -722,55 +768,55 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface EntityDeduplicationTask {
-    
+
     /**
      * The ID of the task.
      * @name EntityDeduplicationTask#id
      * @type {string}
      */
     id: string
-    
+
     /**
      * Represents the entity type. Use values from the task.DedupeEntityType enum.
      * @name EntityDeduplicationTask#entityType
      * @type {string}
      */
     entityType: string
-    
+
     /**
      * Master record ID.
      * @name EntityDeduplicationTask#masterRecordId
      * @type {number}
      */
     masterRecordId: number
-    
+
     /**
      * Master selection mode. Use values from the task.MasterSelectionMode enum.
      * @name EntityDeduplicationTask#masterSelectionMode
      * @type {string}
      */
     masterSelectionMode: string
-    
+
     /**
      * Deduplication mode. Use values from the task.DedupeMode enum.
      * @name EntityDeduplicationTask#dedupeMode
      * @type {string}
      */
     dedupeMode: string
-    
+
     /**
      * Records to deduplicate.
      * @name EntityDeduplicationTask#recordIds
      * @type {number[]}
      */
     recordIds: number[]
-    
+
     /**
      * Submits the task and returns an unique ID.
      *
@@ -780,14 +826,14 @@ declare namespace task {
      * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.EntityDeduplicationTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -795,14 +841,14 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    *
    * @protected
    * @constructor
    */
   export interface EntityDeduplicationTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name EntityDeduplicationTaskStatus#taskId
@@ -811,7 +857,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name EntityDeduplicationTaskStatus#status
@@ -820,14 +866,14 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Returns the object type name (task.EntityDeduplicationTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -835,41 +881,41 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface WorkflowTriggerTask {
-    
+
     /**
      * The ID of the task.
      * @name WorkflowTriggerTask#id
      * @type {string}
      */
     id: string
-    
+
     /**
      * The record type of the workflow base record.
      * @name WorkflowTriggerTask#recordType
      * @type {string}
      */
     recordType: string
-    
+
     /**
      * The internal ID of the base record.
      * @name WorkflowTriggerTask#recordId
      * @type {number}
      */
     recordId: number
-    
+
     /**
      * The internal ID (number) or script ID (string) for the workflow definition. This is the ID that appears in the ID field on the Workflow Definition Page.
      * @name WorkflowTriggerTask#workflowId
      * @type {number | string}
      */
     workflowId: number | string
-    
+
     /**
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
@@ -877,7 +923,7 @@ declare namespace task {
      * @type {Object.<string, string>}
      */
     params: { [key: string]: string }
-    
+
     /**
      * Submits the task and returns an unique ID.
      *
@@ -887,14 +933,14 @@ declare namespace task {
      * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
-    
+
     /**
      * Returns the object type name (task.WorkflowTriggerTask).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -902,14 +948,14 @@ declare namespace task {
      */
     toJSON(): Object
   }
-  
+
   /**
    *
    * @protected
    * @constructor
    */
   export interface WorkflowTriggerTaskStatus {
-    
+
     /**
      * The taskId associated with the specified task.
      * @name WorkflowTriggerTaskStatus#taskId
@@ -918,7 +964,7 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
-    
+
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values.
      * @name WorkflowTriggerTaskStatus#status
@@ -927,14 +973,14 @@ declare namespace task {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
-    
+
     /**
      * Returns the object type name (task.WorkflowTriggerTaskStatus).
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *

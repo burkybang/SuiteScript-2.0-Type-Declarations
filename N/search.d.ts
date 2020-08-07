@@ -93,7 +93,7 @@ interface search {
    * @param {Type|string} options.type  the record internal ID of the record type you are searching
    * @param {string|number} options.id  the internalId of the record
    * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
-   * @return {Object.<string, string|{value:string, text:string}[]>} search results in the form of key/value pairs example:
+   * @return {Object<string, string|{value:string, text:string}[]>} search results in the form of key/value pairs example:
    *     {
    *         foo: 'bar',
    *         name.join: 'othervalue',
@@ -113,7 +113,7 @@ interface search {
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @since 2015.2
    */
-  lookupFields(options: { type: search.Type | string, id: string | number, columns: string | string[] }): { [key: string]: string | { value: string, text: string }[] }
+  lookupFields(options: { type: search.Type | string, id: string | number, columns: string | string[] }): { [key: string]: (string | { value: string, text: string }[]) }
   
   /**
    * Creates a search.Column object.

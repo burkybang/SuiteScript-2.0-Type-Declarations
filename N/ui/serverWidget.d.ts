@@ -10,7 +10,7 @@
  *
  */
 interface serverWidget {
-  
+
   /**
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
    *
@@ -22,7 +22,7 @@ interface serverWidget {
    * @since 2015.2
    */
   createAssistant(options: { title: string, hideNavBar?: boolean }): serverWidget.Assistant
-  
+
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
    *
@@ -34,7 +34,7 @@ interface serverWidget {
    * @since 2015.2
    */
   createForm(options: { title: string, hideNavBar?: boolean }): serverWidget.Form
-  
+
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
    *
@@ -49,7 +49,7 @@ interface serverWidget {
 }
 
 declare namespace serverWidget {
-  
+
   /**
    * @enum
    * @readonly
@@ -81,7 +81,7 @@ declare namespace serverWidget {
     TIMEOFDAY = 'TIMEOFDAY',
     URL = 'URL',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -90,7 +90,7 @@ declare namespace serverWidget {
     BREADCRUMB = 'BREADCRUMB',
     CROSSLINK = 'CROSSLINK',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -101,7 +101,7 @@ declare namespace serverWidget {
     LIST = 'LIST',
     STATICLIST = 'STATICLIST',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -111,7 +111,7 @@ declare namespace serverWidget {
     STARTCOL = 'STARTCOL',
     STARTROW = 'STARTROW',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -125,7 +125,7 @@ declare namespace serverWidget {
     MIDROW = 'MIDROW',
     ENDROW = 'ENDROW',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -138,7 +138,7 @@ declare namespace serverWidget {
     ENTRY = 'ENTRY',
     INLINE = 'INLINE',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -147,7 +147,7 @@ declare namespace serverWidget {
     NORMAL = 'NORMAL',
     HIDDEN = 'HIDDEN',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -157,7 +157,7 @@ declare namespace serverWidget {
     LEFT = 'LEFT',
     RIGHT = 'RIGHT',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -168,7 +168,7 @@ declare namespace serverWidget {
     PLAIN = 'plain',
     NORMAL = 'normal',
   }
-  
+
   /**
    * @enum
    * @readonly
@@ -180,7 +180,7 @@ declare namespace serverWidget {
     FINISH = 'finish',
     JUMP = 'jump',
   }
-  
+
   /**
    * Encapsulates a Tab in a serverWidget.Form
    *
@@ -190,7 +190,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Tab {
-    
+
     /**
      * The label of the Tab
      *
@@ -198,7 +198,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string
-    
+
     /**
      * The Tab's field help
      *
@@ -207,7 +207,7 @@ declare namespace serverWidget {
      */
     helpText: string
   }
-  
+
   /**
    * Encalsulates a Sublist in a Form or a serverWidget.Assistant
    *
@@ -217,7 +217,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Sublist {
-    
+
     /**
      * The label of the field group
      *
@@ -225,7 +225,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string
-    
+
     /**
      * The number of lines in the Sublist
      *
@@ -234,7 +234,7 @@ declare namespace serverWidget {
      * @readonly
      */
     lineCount: number
-    
+
     /**
      * Set an id of a field that is to have unique values accross the rows in the sublist
      *
@@ -243,7 +243,7 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     updateUniqueFieldId(options: { id: string }): Sublist
-    
+
     /**
      * Id of a field designated as a totalling column, which is used to calculate and display a running total for the sublist
      *
@@ -252,7 +252,7 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     updateTotallingFieldId(options: { id: string }): Sublist
-    
+
     /**
      * Display type of the sublist
      *
@@ -260,14 +260,14 @@ declare namespace serverWidget {
      * @type {SublistDisplayType}
      */
     displayType: SublistDisplayType
-    
+
     /**
      * Inline help text to this sublist
      * @name Sublist#helpText
      * @type {string}
      */
     helpText: string
-    
+
     /**
      * Adds a button to the sublist
      *
@@ -278,7 +278,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     addButton(options: { id: string, label: string, functionName?: string }): Button
-    
+
     /**
      * Returns string value of a sublist field.
      *
@@ -288,7 +288,7 @@ declare namespace serverWidget {
      * @return {string}
      */
     getSublistValue(options: { id: string, line: number }): string
-    
+
     /**
      * Set the value of a field on the list
      *
@@ -299,21 +299,21 @@ declare namespace serverWidget {
      * @return {void}
      */
     setSublistValue(options: { id: string, line: number, value: string }): void
-    
+
     /**
      * Adds refresh all buttons to the sublist
      *
      * @return {Button}
      */
     addRefreshButton(): Button
-    
+
     /**
      * Adds a "Mark All" and an "Unmark All" button to a sublist.
      *
      * @return {Button[]}
      */
     addMarkAllButtons(): Button[]
-    
+
     /**
      * Add a field, column,  to the Sublist
      *
@@ -326,7 +326,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
-    
+
     /**
      * Gets field from sublist
      *
@@ -336,7 +336,7 @@ declare namespace serverWidget {
      */
     getField(options): Field
   }
-  
+
   /**
    * Encapsulate a field group on an Assistant or a Form objects.
    *
@@ -346,7 +346,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface FieldGroup {
-    
+
     /**
      * Is the field group collapsible
      *
@@ -354,7 +354,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isCollapsible: boolean
-    
+
     /**
      * Is the field group collapsed
      *
@@ -362,7 +362,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isCollapsed: boolean
-    
+
     /**
      * Is the field group's border hidden
      *
@@ -370,7 +370,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isBorderHidden: boolean
-    
+
     /**
      * Do all the fields in this group display in a single column
      *
@@ -378,7 +378,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isSingleColumn: boolean
-    
+
     /**
      * The label of the field group
      *
@@ -387,7 +387,7 @@ declare namespace serverWidget {
      */
     label: string
   }
-  
+
   /**
    * Return a wrapped an nlobjField
    *
@@ -397,7 +397,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Field {
-    
+
     /**
      * The internal id of the field
      *
@@ -406,7 +406,7 @@ declare namespace serverWidget {
      * @readonly
      */
     id: string
-    
+
     /**
      * The type of the field
      *
@@ -415,7 +415,7 @@ declare namespace serverWidget {
      * @readonly
      */
     type: FieldType
-    
+
     /**
      * The text that gets displayed in lieu of the field value for URL fields
      *
@@ -423,7 +423,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     linkText: string
-    
+
     /**
      * The max length of the field
      *
@@ -431,7 +431,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     maxLength: number
-    
+
     /**
      * Is the field mandatory
      *
@@ -439,7 +439,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isMandatory: boolean
-    
+
     /**
      * The alias for the field. By default the alias is the field id
      *
@@ -447,7 +447,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     alias: string
-    
+
     /**
      * The default value of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520.html}
@@ -456,7 +456,7 @@ declare namespace serverWidget {
      * @type {string|string[]|number|Date|boolean}
      */
     defaultValue: string | string[] | number | Date | boolean
-    
+
     /**
      * If Rich Text Editing is enabled, you can use this property to set the height of the rich text field only.
      *
@@ -464,7 +464,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     richTextHeight: number
-    
+
     /**
      * If Rich Text Editing is enabled, you can use this property to set the width of the rich text field only.
      *
@@ -472,7 +472,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     richTextWidth: number
-    
+
     /**
      * The label of the field
      *
@@ -480,7 +480,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string
-    
+
     /**
      * The number of empty field spaces before/above this field
      *
@@ -488,7 +488,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     padding: number
-    
+
     /**
      * Update the breakType of the field
      *
@@ -497,7 +497,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     updateBreakType(options: { breakType: FieldBreakType }): Field
-    
+
     /**
      * Update the layout type of the field
      *
@@ -506,7 +506,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     updateLayoutType(options: { layoutType: FieldLayoutType }): Field
-    
+
     /**
      * Sets the height and width for the field. Only supported on multi-selects,
      * long text, rich text, and fields that get rendered as INPUT (type=text) fields.
@@ -518,7 +518,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     updateDisplaySize(options: { height: number, width: number }): Field
-    
+
     /**
      * Udpdate the field display type
      *
@@ -527,7 +527,17 @@ declare namespace serverWidget {
      * @return {Field}
      */
     updateDisplayType(options: { displayType: FieldDisplayType | string }): Field
-    
+
+    /**
+     * Set help text for a field
+     *
+     * @param {Object} options
+     * @param {string} options.help The help text for the field
+     * @param {boolean} [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
+     * @return {Field}
+     */
+    setHelpText(options: { help: string, showInlineForAssistant?: boolean }): Field
+
     /**
      * Get the select options for a field
      * @restriction Dynamic mode only
@@ -538,16 +548,7 @@ declare namespace serverWidget {
      * @return {{value:string, text:string}[]}
      */
     getSelectOptions(options: { filter?: string, filteroperator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
-    
-    /**
-     * Set help text for a field
-     *
-     * @param {Object} options
-     * @param {string} options.help The help text for the field
-     * @param {boolean} [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
-     */
-    setHelpText(options: { help: string, showInlineForAssistant?: boolean }): boolean
-    
+
     /**
      * Add a select option to a select field
      *
@@ -555,10 +556,11 @@ declare namespace serverWidget {
      * @param {string|number} options.value The internal id of the option
      * @param {string} options.text  The display text for this option
      * @param {boolean} [options.isSelected] If true, this option is selected
+     * @return {void}
      */
-    addSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): boolean
+    addSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): void
   }
-  
+
   /**
    * Return a wrapped an nlobjButton
    *
@@ -568,7 +570,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Button {
-    
+
     /**
      * The label of the button
      *
@@ -576,7 +578,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string
-    
+
     /**
      * Is the button disabled
      *
@@ -584,7 +586,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isDisabled: boolean
-    
+
     /**
      * Is the button hidden
      *
@@ -593,7 +595,7 @@ declare namespace serverWidget {
      */
     isHidden: boolean
   }
-  
+
   /**
    * Return a wrapped an nlobjAssistantStep
    *
@@ -603,7 +605,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface AssistantStep {
-    
+
     /**
      * The internal id of the step
      *
@@ -612,7 +614,7 @@ declare namespace serverWidget {
      * @readonly
      */
     id: string;
-    
+
     /**
      * The label of the step
      *
@@ -620,7 +622,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     label: string;
-    
+
     /**
      * The numerical order of the step
      *
@@ -628,7 +630,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     stepNumber: number
-    
+
     /**
      * Help text for the step
      *
@@ -636,7 +638,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     helpText: number
-    
+
     /**
      * Get all sublist fields' internal ids entered by the user during this step
      *
@@ -645,21 +647,21 @@ declare namespace serverWidget {
      * @return {string[]}
      */
     getSublistFieldIds(options: { group: string }): string[]
-    
+
     /**
      * Use this method to get all sublists entered by the user during this step
      *
      * @return {string[]}
      */
     getSubmittedSublistIds(): string[]
-    
+
     /**
      * Get all ids for fields in the assistant step
      *
      * @return {string[]}
      */
     getFieldIds(): string[]
-    
+
     /**
      * Get the value of a field
      *
@@ -668,7 +670,7 @@ declare namespace serverWidget {
      * @return {string|string[]}
      */
     getValue(options: { id: string }): string | string[]
-    
+
     /**
      * Get the number of lines in a sublist
      *
@@ -677,7 +679,7 @@ declare namespace serverWidget {
      * @return {number}
      */
     getLineCount(options: { group: string }): number
-    
+
     /**
      * Get the value of a field in a sublist
      *
@@ -689,7 +691,7 @@ declare namespace serverWidget {
      */
     getSublistValue(options: { group: string, id: string, line: number }): string
   }
-  
+
   /**
    * Return a wrapped an nlobjAssistant
    *
@@ -700,7 +702,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Assistant {
-    
+
     /**
      * The current step of the assistant
      *
@@ -709,7 +711,7 @@ declare namespace serverWidget {
      * @readonly
      */
     currentStep: AssistantStep
-    
+
     /**
      * An error message for the current step. If you choose, you can use HTML tags to format the message.
      *
@@ -717,7 +719,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     errorHtml: string
-    
+
     /**
      * Mark the last page in an assistant. Set the rich text to display a completion message on the last page.
      *
@@ -725,7 +727,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     finishedHtml: string
-    
+
     /**
      * Show or hide the assistant step numbers
      *
@@ -733,7 +735,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     hideStepNumber: boolean
-    
+
     /**
      * Use this method to enforce a sequential ordering of assistant steps. If steps are ordered,
      * users must complete the current step before the assistant will allow them to proceed to
@@ -744,7 +746,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     isNotOrdered: boolean
-    
+
     /**
      * Overall title of the Assistant
      *
@@ -752,7 +754,7 @@ declare namespace serverWidget {
      * @type {string}
      */
     title: string
-    
+
     /**
      * Show/hide the Add to Shortcuts link that appears in the top-right corner of an assistant page.
      *
@@ -760,7 +762,7 @@ declare namespace serverWidget {
      * @type {boolean}
      */
     hideAddToShortcutsLink: boolean
-    
+
     /**
      * Set the default values of many fields at once
      *
@@ -768,7 +770,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     updateDefaultValues(options: { values: Object[] }): void
-    
+
     /**
      * The script file id to be used in the assistant
      *
@@ -776,7 +778,7 @@ declare namespace serverWidget {
      * @type {number}
      */
     clientScriptFileId: number
-    
+
     /**
      * The script file path to be used in the assistant
      *
@@ -787,7 +789,7 @@ declare namespace serverWidget {
      * @example './client_script.js' - Relative path
      */
     clientScriptModulePath: string
-    
+
     /**
      * Set the splash screen for an assistant page.
      *
@@ -799,7 +801,7 @@ declare namespace serverWidget {
      * in the text2 parameter.
      */
     setSplash(options: { title: string, text1: string, text2: string }): void
-    
+
     /**
      * Get a Field object from its id
      *
@@ -808,7 +810,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     getField(options: { id: string }): Field
-    
+
     /**
      * Get a FieldGroup  object from its id
      *
@@ -817,49 +819,49 @@ declare namespace serverWidget {
      * @return {FieldGroup}
      */
     getFieldGroup(options: { id: string }): FieldGroup
-    
+
     /**
      * Get the name of last action taken by the user
      *
      * @return {string}
      */
     getLastAction(): string
-    
+
     /**
      * Get the step the last submitted action came from
      *
      * @return {AssistantStep}
      */
     getLastStep(): AssistantStep
-    
+
     /**
      * Get next logical step corresponding to the user's last submitted action
      *
      * @return {AssistantStep}
      */
     getNextStep(): AssistantStep
-    
+
     /**
      * Get the number of steps
      *
      * @return {number}
      */
     getStepCount(): number
-    
+
     /**
      * True if the assistant has an error set
      *
      * @return {boolean}
      */
     hasErrorHtml(): boolean
-    
+
     /**
      * Is the assistant finished
      *
      * @return {boolean}
      */
     isFinished(): boolean
-    
+
     /**
      * Get the a step given its id
      *
@@ -868,7 +870,7 @@ declare namespace serverWidget {
      * @return {AssistantStep}
      */
     getStep(options: { id: string }): AssistantStep
-    
+
     /**
      * Get a Sublist  object from its id
      *
@@ -877,7 +879,7 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     getSublist(options: { id: string }): Sublist
-    
+
     /**
      * Add a step to the assistant
      * @param {Object} options
@@ -886,7 +888,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     addStep(options: { id: string, label: string }): void
-    
+
     /**
      * Add a field to the Assistant
      *
@@ -900,7 +902,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
-    
+
     /**
      * Add a field group to the assistant
      *
@@ -910,7 +912,7 @@ declare namespace serverWidget {
      * @return {FieldGroup}
      */
     addFieldGroup(options: { id: string, label: string }): FieldGroup
-    
+
     /**
      * Add a Sublist to the assistant
      *
@@ -921,14 +923,14 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     addSublist(options: { id: string, label: string, type: SublistType }): Sublist
-    
+
     /**
      * Get all ids for fields in the assistant
      *
      * @return {string[]}
      */
     getFieldIds(): string[]
-    
+
     /**
      * Get all field ids in the given assistant field group
      * @param {Object} options
@@ -936,28 +938,28 @@ declare namespace serverWidget {
      * @return {string[]}
      */
     getFieldIdsByFieldGroup(options: { id: string }): string[]
-    
+
     /**
      * Get all ids for field groups in the assistant
      *
      * @return {string[]}
      */
     getFieldGroupIds(): string[]
-    
+
     /**
      * Get all ids for sublists in the assistant
      *
      * @return {string[]}
      */
     getSublistIds(): string[]
-    
+
     /**
      * Get all steps in the assistant
      *
      * @return {AssistantStep[]}
      */
     getSteps(): AssistantStep[]
-    
+
     /**
      *  Use this method to manage redirects in an assistant. In most cases, an assistant redirects to itself
      *  The sendRedirect(response) method is like a wrapper method that performs this redirect. This method
@@ -971,7 +973,7 @@ declare namespace serverWidget {
      */
     sendRedirect(options: { response: http.ServerResponse }): void
   }
-  
+
   /**
    * Primary object used to encapsulate a NetSuite-looking form.
    *
@@ -982,21 +984,21 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface Form {
-    
+
     /**
      * The form title
      * @name Form#title
      * @type {string}
      */
     title: string
-    
+
     /**
      * The script file id to be used in the form
      * @name Form#clientScriptFileId
      * @type {number}
      */
     clientScriptFileId: number
-    
+
     /**
      * The script file path to be used in the form
      * @name Form#clientScriptModulePath
@@ -1006,7 +1008,7 @@ declare namespace serverWidget {
      * @example './client_script.js' - Relative path
      */
     clientScriptModulePath: string
-    
+
     /**
      * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
      * once the pageInit script is completed. The method takes either an already created Message object or the options
@@ -1018,7 +1020,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     addPageInitMessage(options: { message: message.Message }): void
-    
+
     /**
      * Adds a button to the ui form
      *
@@ -1029,7 +1031,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     addButton(options: { label: string, id?: string, functionName?: string }): Button
-    
+
     /**
      * add a credential field to the ui form
      *
@@ -1043,7 +1045,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     addCredentialField(options: { id: string, label: string, restrictToDomains?: string | string[], restrictToScriptIds?: string | string[], restrictToCurrentUser?: boolean, container?: string }): Field
-    
+
     /**
      * add a secret key field to the ui form
      *                                        `
@@ -1055,7 +1057,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     addSecretKeyField(options: { id: string, restrictToScriptIds?: string | string[], restrictToCurrentUser?: boolean, container?: string }): Field
-    
+
     /**
      * Add a field to the form
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245.html}
@@ -1069,7 +1071,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
-    
+
     /**
      * Add a field group to the form
      * @param {Object} options
@@ -1080,7 +1082,7 @@ declare namespace serverWidget {
      * @return {FieldGroup}
      */
     addFieldGroup(options: { id: string, label: string, tab?: string }): FieldGroup
-    
+
     /**
      * Add a link to the form
      * @param {Object} options
@@ -1090,7 +1092,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     addPageLink(options: { type: FormPageLinkType, title: string, url: string }): void
-    
+
     /**
      * Add a Sublist to the form
      * @param {Object} options
@@ -1101,7 +1103,7 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     addSublist(options: { id: string, label: string, type: SublistType, tab?: string }): Sublist
-    
+
     /**
      * Add a Subtab to the form
      * @param {Object} options
@@ -1111,7 +1113,7 @@ declare namespace serverWidget {
      * @return {Tab}
      */
     addSubtab(options: { id: string, label: string, tab?: string }): Tab
-    
+
     /**
      * Add a Tab to the form
      * @param {Object} options
@@ -1120,7 +1122,7 @@ declare namespace serverWidget {
      * @return {Tab}
      */
     addTab(options: { id: string, label: string }): Tab
-    
+
     /**
      * Add a Reset button to the form
      * @param {Object} [options]
@@ -1128,7 +1130,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     addResetButton(options: { label: string }): Button
-    
+
     /**
      * Add a Submit button to the form
      * @param {Object} [options]
@@ -1136,7 +1138,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     addSubmitButton(options: { label: string }): Button
-    
+
     /**
      * Get a Button object from its id
      * @param {Object} options
@@ -1144,7 +1146,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     getButton(options: { id: string }): Button
-    
+
     /**
      * Get a Field object from its id
      * @param {Object} options
@@ -1152,7 +1154,7 @@ declare namespace serverWidget {
      * @return {Field}
      */
     getField(options: { id: string }): Field
-    
+
     /**
      * Get a Subtab object from its id
      * @param {Object} options
@@ -1160,7 +1162,7 @@ declare namespace serverWidget {
      * @return {Tab}
      */
     getSubtab(options: { id: string }): Tab
-    
+
     /**
      * Get a Subtab object from its id
      * @param {Object} options
@@ -1168,13 +1170,13 @@ declare namespace serverWidget {
      * @return {Tab}
      */
     getTab(options: { id: string }): Tab
-    
+
     /**
      * Get all the Tab objects
      * @return {Tab[]}
      */
     getTabs(): Tab[]
-    
+
     /**
      * Get a Sublist object from its id
      * @param {Object} options
@@ -1182,7 +1184,7 @@ declare namespace serverWidget {
      * @return {Sublist}
      */
     getSublist(options: { id: string }): Sublist
-    
+
     /**
      * Insert a field before another field
      * @param {Object} options
@@ -1191,7 +1193,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     insertField(options: { field: Field, nextfield: string }): void
-    
+
     /**
      * Insert a sublist before another sublist
      * @param {Object} options
@@ -1200,7 +1202,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     insertSublist(options: { sublist: Sublist, nextsublist: string }): void
-    
+
     /**
      * Insert a subtab before another sublist
      * @param {Object} options
@@ -1209,7 +1211,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     insertSubtab(options: { subtab: Tab, nextsubtab: string }): void
-    
+
     /**
      * Insert a Tab before another tab
      * @param {Object} options
@@ -1218,7 +1220,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     insertTab(options: { tab: Tab, nexttab: string }): void
-    
+
     /**
      * Remove a button given its id
      * @param {Object} options
@@ -1226,7 +1228,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     removeButton(options: { id: string }): void
-    
+
     /**
      * Set the default values of many fields at once
      * @param {Object[]} values
@@ -1234,7 +1236,7 @@ declare namespace serverWidget {
      */
     updateDefaultValues(options: { values: { [key: string]: string }[] }): void
   }
-  
+
   /**
    * Primary object used to encapsulate a list page
    *
@@ -1244,7 +1246,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface List {
-    
+
     /**
      * Sets the display style for this list
      * @name List#style
@@ -1252,7 +1254,7 @@ declare namespace serverWidget {
      * @since 2015.2
      */
     style: string
-    
+
     /**
      * List title
      * @name List#title
@@ -1260,7 +1262,7 @@ declare namespace serverWidget {
      * @since 2015.2
      */
     title: string
-    
+
     /**
      * Add a Button to the list page
      * @param {Object} options
@@ -1270,7 +1272,7 @@ declare namespace serverWidget {
      * @return {Button}
      */
     addButton(options: { id: string, label: string, functionName?: string }): Button
-    
+
     /**
      * Add a Column to the List page
      * @param {Object} options
@@ -1281,7 +1283,7 @@ declare namespace serverWidget {
      * @return {ListColumn}
      */
     addColumn(options: { id: string, type: FieldType | string, label: string, align?: string }): ListColumn
-    
+
     /**
      * Add an Edit or Edit/View column
      * @param {Object} options
@@ -1292,7 +1294,7 @@ declare namespace serverWidget {
      * @return {ListColumn}
      */
     addEditColumn(options: { column: ListColumn, showView?: boolean, showHrefCol?: boolean }): ListColumn
-    
+
     /**
      * Adds a navigation cross-link to the list page
      * @param {Object} options
@@ -1302,7 +1304,7 @@ declare namespace serverWidget {
      * @return {List}
      */
     addPageLink(options: { type: FormPageLinkType, title: string, url: string }): List
-    
+
     /**
      * Add a row (Array of name/value pairs or search.Result)
      * @param {Object} options
@@ -1310,7 +1312,7 @@ declare namespace serverWidget {
      * @return {List}
      */
     addRow(options: { row: search.Result | { [key: string]: string } }): List
-    
+
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
      * @param {Object} options
@@ -1318,14 +1320,14 @@ declare namespace serverWidget {
      * @return {List}
      */
     addRows(options: { rows: search.Result[] | { [key: string]: string }[] }): List
-    
+
     /**
      * The script file id to be used in the list page
      * @name List#clientScriptFileId
      * @type {number}
      */
     clientScriptFileId: number
-    
+
     /**
      * The script file path to be used in the list page
      * @name List#clientScriptModulePath
@@ -1336,7 +1338,7 @@ declare namespace serverWidget {
      */
     clientScriptModulePath: string
   }
-  
+
   /**
    * Return a wrapped an nlobjListColumn
    *
@@ -1347,7 +1349,7 @@ declare namespace serverWidget {
    * @since 2015.2
    */
   export interface ListColumn {
-    
+
     /**
      * Adds a URL parameter (optionally defined per row) to the list column's URL
      * @param {Object} options
@@ -1357,13 +1359,13 @@ declare namespace serverWidget {
      * @return {ListColumn}
      */
     addParamToURL(options: { param: string, value: string, dynamic?: boolean }): ListColumn
-    
+
     /**
      * @name ColumnList#label Label this list column
      * @type {string} string
      */
     label: string
-    
+
     /**
      * Sets the base URL for the list column
      * @param {Object} options

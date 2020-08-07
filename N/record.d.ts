@@ -27,7 +27,25 @@ interface record {
    *
    * @since 2015.2
    */
-  create(options: { type: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record | currentRecord.CurrentRecord
+  create(options: { type: record.Type | string, isDynamic?: false, defaultValues?: { [key: string]: any } }): record.Record
+
+  /**
+   * Create a new record object based on provided type
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
+   *
+   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+   *
+   * @param {Object} options
+   * @param {Type|string} options.type record type
+   * @param {boolean} options.isDynamic record is dynamic
+   * @param {Object} [options.defaultValues={}] record default values
+   * @return {CurrentRecord}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+   *
+   * @since 2015.2
+   */
+  create(options: { type: record.Type | string, isDynamic: true, defaultValues?: { [key: string]: any } }): currentRecord.CurrentRecord
   
   /**
    * Load an existing nlobjRecord from the database based on provided type, id

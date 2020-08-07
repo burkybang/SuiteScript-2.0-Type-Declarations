@@ -113,11 +113,11 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @return {string}
+     * @return {string|string[]}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    getText(options: { fieldId: string }): string
+    getText(options: { fieldId: string }): string | string[]
     
     /**
      * Set value of the field by text representation
@@ -460,6 +460,13 @@ declare namespace currentRecord {
      * @return {CurrentRecord} same record, for chaining
      */
     removeCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): CurrentRecord
+    
+    /**
+     * Return array of names of all body fields, including machine header field and matrix header fields
+     *
+     * @return {string[]}
+     */
+    getFields(): string[]
     
     /**
      * Returns the specified sublist
