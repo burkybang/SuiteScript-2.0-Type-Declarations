@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 
-interface PageInitContext {
+type PageInitContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -27,7 +27,7 @@ interface PageInitContext {
   mode: 'copy' | 'create' | 'edit'
 }
 
-interface ValidateFieldContext {
+type ValidateFieldContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -75,7 +75,7 @@ interface ValidateFieldContext {
   columnNum: number
 }
 
-interface FieldChangedContext {
+type FieldChangedContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -123,7 +123,7 @@ interface FieldChangedContext {
   columnNum: number
 }
 
-interface PostSourcingContext {
+type PostSourcingContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -153,7 +153,7 @@ interface PostSourcingContext {
   fieldId: string
 }
 
-interface LineInitContext {
+type LineInitContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -174,7 +174,7 @@ interface LineInitContext {
   sublistId: string
 }
 
-interface ValidateLineContext {
+type ValidateLineContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -195,7 +195,7 @@ interface ValidateLineContext {
   sublistId: string
 }
 
-interface ValidateInsertContext {
+type ValidateInsertContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -216,7 +216,7 @@ interface ValidateInsertContext {
   sublistId: string
 }
 
-interface ValidateDeleteContext {
+type ValidateDeleteContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -237,7 +237,7 @@ interface ValidateDeleteContext {
   sublistId: string
 }
 
-interface SublistChangedContext {
+type SublistChangedContext = {
   
   /**
    * The current record the user is manipulating in the UI
@@ -258,7 +258,7 @@ interface SublistChangedContext {
   sublistId: string
 }
 
-interface SaveRecordContext {
+type SaveRecordContext = {
   
   /**
    * The current record the user is manipulating in the UI

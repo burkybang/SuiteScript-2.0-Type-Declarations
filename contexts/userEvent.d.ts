@@ -14,7 +14,7 @@
  *
  * @since 2015.2
  */
-interface BeforeLoadContext {
+type BeforeLoadContext = {
   
   /**
    * @name BeforeLoadContext#newRecord
@@ -90,7 +90,7 @@ declare namespace BeforeLoadContext {
  *
  * @since 2015.2
  */
-interface BeforeSubmitContext {
+type BeforeSubmitContext = {
   /**
    * @name BeforeSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
@@ -157,7 +157,7 @@ declare namespace BeforeSubmitContext {
  *
  * @since 2015.2
  */
-interface AfterSubmitContext {
+type AfterSubmitContext = {
   
   /**
    * @name AfterSubmitContext#newRecord

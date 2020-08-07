@@ -15,7 +15,7 @@
  *
  * @since 2015.2
  */
-interface GetInputContext {
+type GetInputContext = {
   
   /**
    * @name GetInputContext#isRestarted
@@ -55,7 +55,7 @@ interface GetInputContext {
  *
  * @since 2015.2
  */
-interface MapContext {
+type MapContext = {
   
   /**
    * @name MapContext#key
@@ -124,7 +124,7 @@ interface MapContext {
  *
  * @since 2015.2
  */
-interface ReduceContext {
+type ReduceContext = {
   
   /**
    * @name ReduceContext#isRestarted
@@ -196,7 +196,7 @@ interface ReduceContext {
  *
  * @since 2015.2
  */
-interface SummarizeContext {
+type SummarizeContext = {
   
   /**
    * @name SummarizeContext#dateCreated
@@ -282,7 +282,7 @@ declare namespace SummarizeContext {
    *
    * @since 2015.2
    */
-  export interface InputSummary {
+  export type InputSummary = {
     
     /**
      * @name InputSummary#dateCreated
@@ -334,7 +334,7 @@ declare namespace SummarizeContext {
    *
    * @since 2015.2
    */
-  export interface MapSummary {
+  export type MapSummary = {
     
     /**
      * @name MapSummary#dateCreated
@@ -408,7 +408,7 @@ declare namespace SummarizeContext {
    *
    * @since 2015.2
    */
-  export interface ReduceSummary {
+  export type ReduceSummary = {
     
     /**
      * @name ReduceSummary#dateCreated
