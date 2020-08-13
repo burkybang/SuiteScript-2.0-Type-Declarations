@@ -132,7 +132,7 @@ interface record {
    * @param {Object} options
    * @param {Type|string} options.type record type
    * @param {number|string} options.id record id
-   * @param {Object.<string, string|string[]|number|Date|boolean>} options.values field and value mapping to be submitted
+   * @param {Object.<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
    * @param {Object} [options.options] additonal flags for submission
    * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
    * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
@@ -142,7 +142,7 @@ interface record {
    *
    * @since 2015.2
    */
-  submitFields(options: { type: record.Type | string, id: number | string, values: { [key: string]: string | string[] | number | Date | boolean }, options?: { enablesourcing?: boolean, ignoreMandatoryFields?: boolean } }): number
+  submitFields(options: { type: record.Type | string, id: number | string, values: { [key: string]: string | number | (string | number)[] | Date | boolean }, options?: { enablesourcing?: boolean, ignoreMandatoryFields?: boolean } }): number
   
   /**
    * Attach record to another record
@@ -829,12 +829,12 @@ declare namespace record {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @param {string|string[]|number|Date|boolean} options.value
+     * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    setValue(options: { fieldId: string, value: string | string[] | number | Date | boolean, ignoreFieldChange?: boolean }): Record
+    setValue(options: { fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
     
     /**
      * Get value of the field in text representation
@@ -894,12 +894,12 @@ declare namespace record {
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
-     * @param {string|string[]|number|Date|boolean} options.value
+     * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      */
-    setSublistValue(options: { sublistId: string, fieldId: string, line: number, value: string | string[] | number | Date | boolean }): Record
+    setSublistValue(options: { sublistId: string, fieldId: string, line: number, value: string | number | (string | number)[] | Date | boolean }): Record
     
     /**
      * Return value of a sublist field in text representation
@@ -1036,14 +1036,14 @@ declare namespace record {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
-     * @param {string|string[]|number|Date|boolean} options.value
+     * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
-    setCurrentSublistValue(options: { sublistId: string, fieldId: string, value: string | string[] | number | Date | boolean, ignoreFieldChange?: boolean }): Record
+    setCurrentSublistValue(options: { sublistId: string, fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
     
     /**
      * Return the value for field in the current selected line by text representation
@@ -1271,12 +1271,12 @@ declare namespace record {
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
-     * @param {string|string[]|number|Date|boolean} options.value the value to set it to
+     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    setMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number, value: string | string[] | number | Date | boolean, ignoreFieldChange?: boolean }): Record
+    setMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
     
     /**
      * Get the value for the associated header in the matrix
@@ -1298,12 +1298,12 @@ declare namespace record {
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
      * @param {number} options.line the line number for the field
-     * @param {string|string[]|number|Date|boolean} options.value the value to set it to
+     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @return {Record} same record, for chaining
      * @restriction only available in deferred dynamic record
      */
-    setMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number, value: string | string[] | number | Date | boolean }): Record
+    setMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number, value: string | number | (string | number)[] | Date | boolean }): Record
     
     /**
      * Get the value for the associated field in the matrix
@@ -1374,13 +1374,13 @@ declare namespace record {
      * @param {string} options.sublistId - the id of sublist in which the matrix is in.
      * @param {string} options.fieldId - the id of the matrix field
      * @param {number} options.column - the column number for the field
-     * @param {string|string[]|number|Date|boolean} options.value - the value to set it to
+     * @param {string|number|(string|number)[]|Date|boolean} options.value - the value to set it to
      * @param {boolean} [options.ignoreFieldChange] - Ignore the field change script (default false)
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @restriction only available in dynamic record
      */
-    setCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, value: string | string[] | number | Date | boolean, ignoreFieldChange?: boolean }): Record
+    setCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
     
     /**
      * Get the value for the line currently selected in the matrix
