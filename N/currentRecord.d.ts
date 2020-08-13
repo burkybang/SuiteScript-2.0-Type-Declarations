@@ -13,7 +13,7 @@
  * @NApiVersion 2.x
  */
 interface currentRecord {
-
+  
   /**
    * Retrieves a currentRecord object that represents the record active on the current page
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637729624.html}
@@ -30,9 +30,9 @@ interface currentRecord {
 }
 
 declare namespace currentRecord {
-
+  
   export interface get {
-
+    
     /**
      * Retrieves a promise for a currentRecord object that represents the record active on the current page
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637734729.html}
@@ -47,9 +47,9 @@ declare namespace currentRecord {
      */
     promise(): Promise<CurrentRecord>
   }
-
+  
   export interface CurrentRecord {
-
+    
     /**
      * The internal ID of the record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576907.html}
@@ -58,7 +58,7 @@ declare namespace currentRecord {
      * @readonly
      */
     id: number
-
+    
     /**
      * The type of the record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576636.html}
@@ -69,7 +69,7 @@ declare namespace currentRecord {
      * @readonly
      */
     type: record.Type | string
-
+    
     /**
      * Indicates whether the record is in dynamic or standard mode
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576809.html}
@@ -78,7 +78,7 @@ declare namespace currentRecord {
      * @readonly
      */
     isDynamic: boolean
-
+    
     /**
      * Return value of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256.html}
@@ -91,7 +91,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
     getValue(options: { fieldId: string }): string | string[] | number | Date | boolean
-
+    
     /**
      * Set value of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499.html}
@@ -106,7 +106,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setValue(options: { fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean, forceSyncSourcing?: boolean }): CurrentRecord
-
+    
     /**
      * Get value of the field in text representation
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421.html}
@@ -118,7 +118,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     getText(options: { fieldId: string }): string | string[]
-
+    
     /**
      * Set value of the field by text representation
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945.html}
@@ -136,7 +136,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setText(options: { fieldId: string, text: string | string[], ignoreFieldChange?: boolean, forceSyncSourcing?: boolean }): CurrentRecord
-
+    
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586103.html}
@@ -150,7 +150,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      */
     findSublistLineWithValue(options: { sublistId: string, fieldId: string, value: string | string[] | number | Date | boolean }): number
-
+    
     /**
      * Return value of a sublist field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237.html}
@@ -166,7 +166,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
     getSublistValue(options: { sublistId: string, fieldId: string, line: number }): string | string[] | number | Date | boolean
-
+    
     /**
      * Return value of a sublist field in text representation
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397.html}
@@ -182,7 +182,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      */
     getSublistText(options: { sublistId: string, fieldId: string, line: number }): string
-
+    
     /**
      * Return line count of sublist
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890.html}
@@ -192,7 +192,7 @@ declare namespace currentRecord {
      * @return {number}
      */
     getLineCount(options: { sublistId: string }): number
-
+    
     /**
      * Insert a sublist line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252.html}
@@ -210,7 +210,7 @@ declare namespace currentRecord {
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
      */
     insertLine(options: { sublistId: string, line: number, ignoreRecalc?: boolean }): CurrentRecord
-
+    
     /**
      * Remove a sublist line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252.html}
@@ -228,7 +228,7 @@ declare namespace currentRecord {
      *     editable
      */
     removeLine(options: { sublistId: string, line: number, ignoreRecalc?: boolean }): CurrentRecord
-
+    
     /**
      * Select a new line at the end of sublist
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046.html}
@@ -243,7 +243,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      */
     selectNewLine(options: { sublistId: string }): CurrentRecord
-
+    
     /**
      * Cancel the current selected line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866.html}
@@ -258,7 +258,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      */
     cancelLine(options: { sublistId: string }): CurrentRecord
-
+    
     /**
      * Commit the current selected line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703.html}
@@ -273,7 +273,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      */
     commitLine(options: { sublistId: string }): CurrentRecord
-
+    
     /**
      * Return value of a sublist field on the current selected sublist line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213.html}
@@ -289,7 +289,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistValue(options: { sublistId: string, fieldId: string }): string | string[] | number | Date | boolean
-
+    
     /**
      * Set the value for field in the current selected line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473.html}
@@ -307,7 +307,7 @@ declare namespace currentRecord {
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistValue(options: { sublistId: string, fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean, forceSyncSourcing?: boolean }): CurrentRecord
-
+    
     /**
      * Return the value for field in the current selected line by text representation
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436.html}
@@ -323,7 +323,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistText(options: { sublistId: string, fieldId: string }): string
-
+    
     /**
      * Set the value for field in the current selected line by text representation
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678.html}
@@ -343,7 +343,7 @@ declare namespace currentRecord {
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistText(options: { sublistId: string, fieldId: string, text: string, ignoreFieldChange?: boolean, forceSyncSourcing?: boolean }): CurrentRecord
-
+    
     /**
      * Selects an existing line in a sublist (dynamic mode only)
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249.html}
@@ -359,7 +359,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      */
     selectLine(options: { sublistId: string, line: number }): CurrentRecord
-
+    
     /**
      * Save record updates to the system
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
@@ -372,7 +372,7 @@ declare namespace currentRecord {
      * @return {number} id of submitted record
      */
     save(options?: { enableSourcing?: boolean, ignoreMandatoryFields?: boolean }): number
-
+    
     /**
      * Return a value indicating if the field has a subrecord
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381.html}
@@ -382,7 +382,7 @@ declare namespace currentRecord {
      * @return {boolean}
      */
     hasSubrecord(options: { fieldId: string }): boolean
-
+    
     /**
      * Get the subrecord for the associated field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010.html}
@@ -397,7 +397,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
      */
     getSubrecord(options: { fieldId: string }): CurrentRecord
-
+    
     /**
      * Remove the subrecord for the associated field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399.html}
@@ -407,7 +407,7 @@ declare namespace currentRecord {
      * @return {CurrentRecord} same record, for chaining
      */
     removeSubrecord(options: { fieldId: string }): CurrentRecord
-
+    
     /**
      * Return a value indicating if the associated sublist field has a subrecord
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581548.html}
@@ -421,7 +421,7 @@ declare namespace currentRecord {
      * @return {boolean}
      */
     hasSublistSubrecord(options: { sublistId: string, fieldId: string, line: number }): boolean
-
+    
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582063.html}
@@ -434,7 +434,7 @@ declare namespace currentRecord {
      * @return {boolean}
      */
     hasCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): boolean
-
+    
     /**
      * Get the subrecord for the associated sublist field on the current line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570.html}
@@ -447,7 +447,7 @@ declare namespace currentRecord {
      * @return {CurrentRecord} client-side subrecord implementation
      */
     getCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): CurrentRecord
-
+    
     /**
      * Remove the subrecord for the associated sublist field on the current line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076.html}
@@ -460,14 +460,14 @@ declare namespace currentRecord {
      * @return {CurrentRecord} same record, for chaining
      */
     removeCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): CurrentRecord
-
+    
     /**
      * Return array of names of all body fields, including machine header field and matrix header fields
      *
      * @return {string[]}
      */
     getFields(): string[]
-
+    
     /**
      * Returns the specified sublist
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811.html}
@@ -477,7 +477,7 @@ declare namespace currentRecord {
      * @return {Sublist}
      */
     getSublist(options: { sublistId: string }): Sublist
-
+    
     /**
      * Return field object from record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044.html}
@@ -489,7 +489,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      */
     getField(options: { fieldId: string }): Field
-
+    
     /**
      * Return field object from record's sublist
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583684.html}
@@ -504,7 +504,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
      */
     getSublistField(options: { sublistId: string, fieldId: string, line: number }): Field
-
+    
     /**
      * Set the value for the associated header in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241.html}
@@ -521,7 +521,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): CurrentRecord
-
+    
     /**
      * Get the value for the associated header in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584433.html}
@@ -535,7 +535,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number }): string | string[] | number | Date | boolean
-
+    
     /**
      * Set the value for the associated field in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037.html}
@@ -554,7 +554,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number, value: string | number | (string | number)[] | Date | boolean }): CurrentRecord
-
+    
     /**
      * Get the value for the associated field in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584028.html}
@@ -569,7 +569,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number }): string | string[] | number | Date | boolean
-
+    
     /**
      * Get the field for the specified header in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584607.html}
@@ -583,7 +583,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderField(options: { sublistId: string, fieldId: string, column: number }): Field
-
+    
     /**
      * Get the field for the specified sublist in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584261.html}
@@ -598,7 +598,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixSublistField(options: { sublistId: string, fieldId: string, column: number, line: number }): Field
-
+    
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586269.html}
@@ -614,7 +614,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      */
     findMatrixSublistLineWithValue(options: { sublistId: string, fieldId: string, value: string | string[] | number | Date | boolean, column: number }): number
-
+    
     /**
      * Returns the number of columns for the specified matrix.
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584779.html}
@@ -627,7 +627,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderCount(options: { sublistId: string, fieldId: string }): number
-
+    
     /**
      * Set the value for the line currently selected in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872.html}
@@ -646,7 +646,7 @@ declare namespace currentRecord {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean, forceSyncSourcing?: boolean }): CurrentRecord
-
+    
     /**
      * Get the value for the line currently selected in the matrix
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585905.html}
@@ -663,7 +663,7 @@ declare namespace currentRecord {
      */
     getCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number }): string | string[] | number | Date | boolean
   }
-
+  
   /**
    * Encapsulates a body or sublist field on the current record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846.html}
@@ -671,7 +671,7 @@ declare namespace currentRecord {
    * @since 2016.2
    */
   export interface Field {
-
+    
     /**
      * The internal id of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794247756.html}
@@ -683,7 +683,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     id: string
-
+    
     /**
      * The type of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794225547.html}
@@ -695,7 +695,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     type: serverWidget.FieldType
-
+    
     /**
      * The sublist ID of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1490026603.html}
@@ -707,7 +707,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     sublistId: string
-
+    
     /**
      * The label of the field
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794248033.html}
@@ -718,7 +718,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     label: string
-
+    
     /**
      * Is the field mandatory?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794223029.html}
@@ -729,7 +729,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isMandatory: boolean
-
+    
     /**
      * Is the field disabled?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794215939.html}
@@ -740,7 +740,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isDisabled: boolean
-
+    
     /**
      * Is the field a popup list field?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794222162.html}
@@ -751,7 +751,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isPopup: boolean
-
+    
     /**
      * Is the field set to display on the record form?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214205.html}
@@ -762,7 +762,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isDisplay: boolean
-
+    
     /**
      * Is the field visible on the record form?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214500.html}
@@ -773,7 +773,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isVisible: boolean
-
+    
     /**
      * Can the field be edited on the record form?
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794213415.html}
@@ -784,7 +784,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     isReadOnly: boolean
-
+    
     /**
      * Returns an array of available options on a standard or custom select, multiselect, or radio field as key-value pairs
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834781098.html}
@@ -801,7 +801,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     getSelectOptions(options?: { filter?: string, operator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
-
+    
     /**
      * Inserts an option into certain types of select and multiselect fields
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098.html}
@@ -819,7 +819,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     insertSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): void
-
+    
     /**
      * Inserts an option into certain types of select and multiselect fields
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098.html}
@@ -835,7 +835,7 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     insertSelectOption(value: string | number, text: string): void
-
+    
     /**
      * Removes a select option from certain types of select and multiselect fields
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4780315055.html}
@@ -852,7 +852,7 @@ declare namespace currentRecord {
      */
     removeSelectOption(options: { value: string | number }): void
   }
-
+  
   /**
    * Encapsulates a sublist on the current record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846.html}
@@ -862,7 +862,7 @@ declare namespace currentRecord {
   export interface Sublist {
     // todo: Complete this
   }
-
+  
   /**
    * Encapsulates a column of a sublist on the current record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619693.html}

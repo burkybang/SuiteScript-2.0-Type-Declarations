@@ -28,7 +28,7 @@ interface record {
    * @since 2015.2
    */
   create(options: { type: record.Type | string, isDynamic?: false, defaultValues?: { [key: string]: any } }): record.Record
-
+  
   /**
    * Create a new record object based on provided type
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
