@@ -19,15 +19,21 @@ interface record {
    *
    * @param {Object} options
    * @param {Type|string} options.type record type
-   * @param {boolean} [options.isDynamic=false] record is dynamic
-   * @param {Object} [options.defaultValues={}] record default values
+   * @param {false} [options.isDynamic=false] record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {Record}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
    *
    * @since 2015.2
    */
-  create(options: { type: record.Type | string, isDynamic?: false, defaultValues?: { [key: string]: any } }): record.Record
+  create(options: {
+    type: record.Type | string,
+    isDynamic?: false,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): record.Record
   
   /**
    * Create a new record object based on provided type
@@ -37,15 +43,21 @@ interface record {
    *
    * @param {Object} options
    * @param {Type|string} options.type record type
-   * @param {boolean} options.isDynamic record is dynamic
-   * @param {Object} [options.defaultValues={}] record default values
+   * @param {true} options.isDynamic record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {CurrentRecord}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
    *
    * @since 2015.2
    */
-  create(options: { type: record.Type | string, isDynamic: true, defaultValues?: { [key: string]: any } }): currentRecord.CurrentRecord
+  create(options: {
+    type: record.Type | string,
+    isDynamic: true,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): currentRecord.CurrentRecord
   
   /**
    * Load an existing nlobjRecord from the database based on provided type, id
@@ -56,15 +68,48 @@ interface record {
    * @param {Object} options
    * @param {Type|string} options.type record type
    * @param {number|string} options.id record id
-   * @param {boolean} [options.isDynamic=false] record is dynamic
-   * @param {Object} [options.defaultValues={}] record default values
+   * @param {false} [options.isDynamic=false] record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {Record}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
    *
    * @since 2015.2
    */
-  load(options: { type: record.Type | string, id: number | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record
+  load(options: {
+    type: record.Type | string,
+    id: number | string,
+    isDynamic?: false,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): record.Record
+  
+  /**
+   * Load an existing nlobjRecord from the database based on provided type, id
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
+   *
+   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+   *
+   * @param {Object} options
+   * @param {Type|string} options.type record type
+   * @param {number|string} options.id record id
+   * @param {true} options.isDynamic record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
+   * @return {CurrentRecord}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+   *
+   * @since 2015.2
+   */
+  load(options: {
+    type: record.Type | string,
+    id: number | string,
+    isDynamic: true,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): currentRecord.CurrentRecord
   
   /**
    * Copy a record object based on provided type, id
@@ -75,15 +120,48 @@ interface record {
    * @param {Object} options
    * @param {Type|string} options.type record type
    * @param {number|string} options.id record id
-   * @param {boolean} [options.isDynamic=false] record is dynamic
-   * @param {Object} [options.defaultValues={}] record default values
+   * @param {false} [options.isDynamic=false] record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {Record}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
    *
    * @since 2015.2
    */
-  copy(options: { type: record.Type | string, id: number | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record
+  copy(options: {
+    type: record.Type | string,
+    id: number | string,
+    isDynamic?: false,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): record.Record
+  
+  /**
+   * Copy a record object based on provided type, id
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
+   *
+   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+   *
+   * @param {Object} options
+   * @param {Type|string} options.type record type
+   * @param {number|string} options.id record id
+   * @param {true} options.isDynamic record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
+   * @return {Record}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+   *
+   * @since 2015.2
+   */
+  copy(options: {
+    type: record.Type | string,
+    id: number | string,
+    isDynamic: true,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): currentRecord.CurrentRecord
   
   /**
    * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
@@ -95,15 +173,51 @@ interface record {
    * @param {Type|string} options.fromType record type to be transformed from
    * @param {number|string} options.fromId record id to be transformed from
    * @param {Type|string} options.toType record type to be transformed to
-   * @param {boolean} [options.isDynamic=false] record is dynamic
-   * @param {Object} [options.defaultValues={}] transformed record's default values
+   * @param {false} [options.isDynamic=false] record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
    * @return {Record}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
    *
    * @since 2015.2
    */
-  transform(options: { fromType: record.Type | string, fromId: number | string, toType: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): record.Record
+  transform(options: {
+    fromType: record.Type | string,
+    fromId: number | string,
+    toType: record.Type | string,
+    isDynamic?: false,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): record.Record
+  
+  /**
+   * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
+   *
+   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+   *
+   * @param {Object} options
+   * @param {Type|string} options.fromType record type to be transformed from
+   * @param {number|string} options.fromId record id to be transformed from
+   * @param {Type|string} options.toType record type to be transformed to
+   * @param {true} options.isDynamic record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
+   * @return {CurrentRecord}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
+   *
+   * @since 2015.2
+   */
+  transform(options: {
+    fromType: record.Type | string,
+    fromId: number | string,
+    toType: record.Type | string,
+    isDynamic: true,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): currentRecord.CurrentRecord
   
   /**
    * Delete a record object based on provided type, id and return the id of deleted record
@@ -120,7 +234,10 @@ interface record {
    *
    * @since 2015.2
    */
-  delete(options: { type: record.Type | string, id: number | string }): number
+  delete(options: {
+    type: record.Type | string,
+    id: number | string,
+  }): number
   
   /**
    * Commit record field updates to the system
@@ -142,7 +259,17 @@ interface record {
    *
    * @since 2015.2
    */
-  submitFields(options: { type: record.Type | string, id: number | string, values: { [key: string]: string | number | (string | number)[] | Date | boolean }, options?: { enablesourcing?: boolean, ignoreMandatoryFields?: boolean } }): number
+  submitFields(options: {
+    type: record.Type | string,
+    id: number | string,
+    values: {
+      [key: string]: string | number | (string | number)[] | Date | boolean
+    },
+    options?: {
+      enablesourcing?: boolean,
+      ignoreMandatoryFields?: boolean,
+    },
+  }): number
   
   /**
    * Attach record to another record
@@ -160,7 +287,19 @@ interface record {
    *
    * @since 2015.2
    */
-  attach(options: { record: record.Record | { type: record.Type | string, id: number | string }, to: record.Record | { type: record.Type | string, id: number | string }, attributes?: { [key: string]: string | number } }): void
+  attach(options: {
+    record: record.Record | {
+      type: record.Type | string,
+      id: number | string,
+    },
+    to: record.Record | {
+      type: record.Type | string,
+      id: number | string
+    },
+    attributes?: {
+      [key: string]: string | number,
+    },
+  }): void
   
   /**
    * Detach record from another record
@@ -178,7 +317,19 @@ interface record {
    *
    * @since 2015.2
    */
-  detach(options: { record: record.Record | { type: record.Type | string, id: number | string }, from: record.Record | { type: record.Type | string, id: number | string }, attributes?: { [key: string]: string | number } }): void
+  detach(options: {
+    record: record.Record | {
+      type: record.Type | string,
+      id: number | string,
+    },
+    from: record.Record | {
+      type: record.Type | string,
+      id: number | string,
+    },
+    attributes?: {
+      [key: string]: string | number,
+    },
+  }): void
 }
 
 declare namespace record {

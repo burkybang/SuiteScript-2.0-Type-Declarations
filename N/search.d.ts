@@ -6,7 +6,7 @@
  *
  */
 interface search {
-  
+
   /**
    * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
    * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
@@ -31,7 +31,7 @@ interface search {
     title?: string,
     id?: string,
   }): search.Search
-  
+
   /**
    * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
    * in conjunction with Search.save().
@@ -44,7 +44,7 @@ interface search {
    * @since 2015.2
    */
   load(options: { id: string | number }): search.Search
-  
+
   /**
    * Deletes an existing saved search.
    * @governance 5 units
@@ -56,7 +56,7 @@ interface search {
    * @since 2015.2
    */
   delete(options: { id: string | number }): void
-  
+
   /**
    * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
    * Note that this API only works for records that support duplicate record detection. These records include
@@ -72,7 +72,7 @@ interface search {
    * @since 2015.2
    */
   duplicates(option: { type: search.Type | string, fields?: { [key: string]: string | number }, id?: number }): search.Result[]
-  
+
   /**
    * Performs a global search against a single keyword or multiple keywords.
    * @governance 10 units
@@ -84,7 +84,7 @@ interface search {
    * @since 2015.2
    */
   global(options: { keywords: string }): search.Result[]
-  
+
   /**
    * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
    * Note that the notation for joined fields is: join_id.field_name
@@ -114,7 +114,7 @@ interface search {
    * @since 2015.2
    */
   lookupFields(options: { type: search.Type | string, id: string | number, columns: string | string[] }): { [key: string]: (string | { value: string, text: string }[]) }
-  
+
   /**
    * Creates a search.Column object.
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757.html}
@@ -161,7 +161,7 @@ interface search {
     label?: string,
     sort?: search.Sort | string,
   }): search.Column
-  
+
   /**
    * Creates a search.Filter object.
    * @param {Object} options  the options object
@@ -178,7 +178,7 @@ interface search {
    * @since 2015.2
    */
   createFilter(options: { name: string, join?: string, operator: search.Operator | string, values?: string | Date | number | string[] | Date[], formula?: string, summary?: search.Summary | string }): search.Filter
-  
+
   /**
    * Creates a search.Setting object.
    * @param {Object} options  the options object
@@ -194,9 +194,9 @@ interface search {
 }
 
 declare namespace search {
-  
+
   export interface create {
-    
+
     /**
      * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
      * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
@@ -222,9 +222,9 @@ declare namespace search {
       id?: string,
     }): Promise<Search>
   }
-  
+
   export interface load {
-    
+
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
@@ -237,7 +237,7 @@ declare namespace search {
      */
     promise(options: { id: string | number }): Promise<Search>
   }
-  
+
   /*export interface delete {
   
     /!**
@@ -251,9 +251,9 @@ declare namespace search {
      *!/
     promise(options: { id: string | number }): Promise<void>
   }*/
-  
+
   export interface duplicates {
-    
+
     /**
      * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
      * Note that this API only works for records that support duplicate record detection. These records include
@@ -269,9 +269,9 @@ declare namespace search {
      */
     promise(option: { type: search.Type | string, fields?: { [key: string]: string | number }, id?: number }): Promise<Result[]>
   }
-  
+
   export interface global {
-    
+
     /**
      * Performs a global search against a single keyword or multiple keywords.
      * @governance 10 units
@@ -284,9 +284,9 @@ declare namespace search {
      */
     promise(option: { keywords: string }): Promise<Result[]>
   }
-  
+
   export interface lookupFields {
-    
+
     /**
      * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
      * Note that the notation for joined fields is: join_id.field_name
@@ -316,7 +316,7 @@ declare namespace search {
      */
     promise(options: { type: search.Type | string, id: string | number, columns: string | string[] }): Promise<{ [key: string]: string | { value: string, text: string }[] }>
   }
-  
+
   export enum Operator {
     AFTER = 'after',
     ALLOF = 'allof',
@@ -357,7 +357,7 @@ declare namespace search {
     STARTSWITH = 'startswith',
     WITHIN = 'within',
   }
-  
+
   export enum Summary {
     GROUP = 'GROUP',
     COUNT = 'COUNT',
@@ -366,13 +366,13 @@ declare namespace search {
     MIN = 'MIN',
     MAX = 'MAX',
   }
-  
+
   export enum Sort {
     ASC = 'ASC',
     DESC = 'DESC',
     NONE = 'NONE',
   }
-  
+
   export enum Type {
     ACCOUNT = 'account',
     ACCOUNTING_BOOK = 'accountingbook',
@@ -630,9 +630,9 @@ declare namespace search {
     PAYMENT_EVENT = 'PaymentEvent',
     GATEWAY_NOTIFICATION = 'GatewayNotification',
   }
-  
+
   export interface Search {
-    
+
     /**
      * Search type.
      * @name Search#searchType
@@ -641,7 +641,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     searchType: string
-    
+
     /**
      * Internal ID of the search.
      * @name Search#searchId
@@ -650,7 +650,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     searchId: number
-    
+
     /**
      * Search filters.
      * @name Search#filters
@@ -658,7 +658,7 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
      */
     filters: Filter | Filter[]
-    
+
     /**
      * Allows to set or get the search filters in the form of a search filter expression.
      * @name Search#filterExpression
@@ -666,7 +666,7 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when setting invalid search filter expression
      */
     filterExpression: (string | number | (string | number | (string | number | [])[])[])[]
-    
+
     /**
      * Columns to be returned from the search.
      * @name Search#columns
@@ -675,7 +675,7 @@ declare namespace search {
      *     string
      */
     columns: Column | string | Column[] | string[]
-    
+
     /**
      * Array of search.Setting objects or a string array of column names.
      * @name Search#settings
@@ -684,14 +684,14 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
      */
     settings: Setting | string | Setting[] | string[]
-    
+
     /**
      * Name of the saved search. Needs to be set before saving the search.
      * @name Search#title
      * @type {string}
      */
     title: string
-    
+
     /**
      * Customer ID of the saved search (string starting with 'customsearch'). If not set, then it is automatically
      * generated upon save.
@@ -699,14 +699,14 @@ declare namespace search {
      * @type {string}
      */
     id: string
-    
+
     /**
      * Specifies whether the search is public or private.
      * @name Search#isPublic
      * @type {boolean}
      */
     isPublic: boolean
-    
+
     /**
      * Saves the current search as a saved search. Before calling save() the title property must be set. The optional
      * id property may also be set, if it's not then it's automatically generated. The title and id properties may be
@@ -722,14 +722,14 @@ declare namespace search {
      * @since 2015.2
      */
     save(): number
-    
+
     /**
      * Runs the current search.
      * @return {ResultSet} the result set object
      * @since 2015.2
      */
     run(): ResultSet
-    
+
     /**
      * Runs the current search with a paged interface.
      * @param {Object} [options]
@@ -738,24 +738,24 @@ declare namespace search {
      * @since 2016.1
      */
     runPaged(options?: { pageSize?: number }): PagedData
-    
+
     /**
      * Returns the object type name (search.Search)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export namespace Search {
-    
+
     export interface save {
-      
+
       /**
        * Saves the current search as a saved search. Before calling save() the title property must be set. The optional
        * id property may also be set, if it's not then it's automatically generated. The title and id properties may be
@@ -771,9 +771,9 @@ declare namespace search {
        */
       promise(): Promise<number>
     }
-    
+
     export interface runPaged {
-      
+
       /**
        * Runs the current search with a paged interface.
        * @param {Object} [options]
@@ -784,9 +784,9 @@ declare namespace search {
       promise(): Promise<PagedData>
     }
   }
-  
+
   export interface Filter {
-    
+
     /**
      * Return a new instance of search.Filter object.
      *
@@ -799,7 +799,7 @@ declare namespace search {
      * @since 2015.2
      */
     constructor(): Filter
-    
+
     /**
      * Field name for this search filter.
      * @name Filter#name
@@ -808,7 +808,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
-    
+
     /**
      * Join ID for this search filter.
      * @name Filter#join
@@ -817,7 +817,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     join: string
-    
+
     /**
      * Filter operator.
      * @name Filter#operator
@@ -826,7 +826,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     operator: Operator
-    
+
     /**
      * Summary type for this search filter.
      * @name Filter#summary
@@ -834,29 +834,29 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
      */
     summary: Summary
-    
+
     /**
      * Formula used for this search filter.
      * @name Filter#formula
      * @type {string}
      */
     formula: string
-    
+
     /**
      * Returns the object type name (search.Filter)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface Column {
-    
+
     /**
      * Return a new instance of search.Column object.
      *
@@ -868,7 +868,7 @@ declare namespace search {
      * @since 2015.2
      */
     constructor(): Column
-    
+
     /**
      * The name of the search column.
      * @name Column#name
@@ -877,7 +877,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
-    
+
     /**
      * The join ID for this search column.
      * @name Column#join
@@ -886,7 +886,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     join: string
-    
+
     /**
      * The summary type for this search column.
      * @name Column#summary
@@ -895,21 +895,21 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     summary: Summary
-    
+
     /**
      * The formula used for this search column.
      * @name Column#formula
      * @type {string}
      */
     formula: string
-    
+
     /**
      * The label used for this search column.
      * @name Column#label
      * @type {string}
      */
     label: string
-    
+
     /**
      * The function used in this search column.
      * @name Column#function
@@ -936,14 +936,14 @@ declare namespace search {
       'roundToTenths' | // Round to Tenths, Output: float
       'weekOfYear' | // Week of Year, Date Function, Output: text
       'year' // Year, Date Function, Output: text
-    
+
     /**
      * The sort direction for this search column. Use values from the Sort enum.
      * @name Column#sort
      * @type {Sort}
      */
     sort: Sort
-    
+
     /**
      * Returns the search column for which the minimal or maximal value should be found when returning the search.Column
      * value. For example, can be set to find the most recent or earliest date, or the largest or smallest amount for a
@@ -956,22 +956,22 @@ declare namespace search {
      * @since 2015.2
      */
     setWhenOrderedBy(options: { name: string, join: string }): Column
-    
+
     /**
      * Returns the object type name (search.Column)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface Setting {
-    
+
     /**
      * Return a new instance of search.Setting object.
      *
@@ -984,7 +984,7 @@ declare namespace search {
      * @since 2018.2
      */
     constructor()
-    
+
     /**
      * Name for this search setting.
      * @name Option#name
@@ -993,7 +993,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
-    
+
     /**
      * value for this search setting.
      * @name Option#value
@@ -1002,22 +1002,22 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     value: string
-    
+
     /**
      * Returns the object type name (search.Setting)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface ResultSet {
-    
+
     /**
      * Return a new instance of search.ResultSet object.
      *
@@ -1028,7 +1028,7 @@ declare namespace search {
      * @since 2015.2
      */
     constructor()
-    
+
     /**
      * List of columns contained in this result set.
      * @name ResultSet#columns
@@ -1037,7 +1037,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[]
-    
+
     /**
      * Retrieve a slice of the search result set. Only 1000 results can be returned at a time. If there are fewer results
      * available than requested, then the array will be truncated.
@@ -1049,7 +1049,7 @@ declare namespace search {
      * @since 2015.2
      */
     getRange(options: { start: number, end: number }): Result[]
-    
+
     /**
      * Calls the developer-defined callback function for every result in this set. The result set processed by each()
      * may have maximum 4000 rows. The callback function has the following signature: boolean callback(result.Result
@@ -1062,22 +1062,22 @@ declare namespace search {
      * @since 2015.2
      */
     each(callback: (result: Result) => boolean): void
-    
+
     /**
      * Returns the object type name (search.ResultSet)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface Result {
-    
+
     /**
      * Return a new instance of search.Result object.
      *
@@ -1088,7 +1088,7 @@ declare namespace search {
      * @since 2015.2
      */
     constructor()
-    
+
     /**
      * Record type of the result.
      * @name Result#recordType
@@ -1097,7 +1097,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     recordType: string
-    
+
     /**
      * Record internal ID of the result.
      * @name Result#id
@@ -1106,7 +1106,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     id: string
-    
+
     /**
      * List of columns contained in this result.
      * @name Result#columns
@@ -1115,7 +1115,7 @@ declare namespace search {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[]
-    
+
     /**
      * Returns the value of a specified search return column. The column may be specified in two ways:
      * 1) by providing a search.Column object
@@ -1130,7 +1130,7 @@ declare namespace search {
      * @since 2015.2
      */
     getValue(options: Column | { name: string, join?: string, summary?: Summary }): string
-    
+
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.
      * Note that this method is supported on select, image and document fields only.
@@ -1147,60 +1147,79 @@ declare namespace search {
      * @since 2015.2
      */
     getText(options: Column | { name: string, join?: string, summary?: Summary }): string
-    
+
     /**
      * Returns the object type name (search.Result)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface PagedData {
-    
+
     /**
      * @protected
      * @constructor
      */
     constructor()
-    
+
     /**
      * rows per page - defined in search definition [5 - 1000]
      * @type {number}
      */
     pageSize: number
-    
+
     /**
      * total row count
      * @type {number}
      */
     count: number
-    
+
     /**
      * @type {PageRange[]}
      */
     pageRanges: PageRange[]
+
+    /**
+     * @param {Object} options
+     * @param {number} options.index
+     * @return {search.Page}
+     */
+    fetch(options: { index: number }): search.Page
   }
-  
-  export interface PageRange {
-    
+
+  export interface Page {
+
     /**
      * @protected
      * @constructor
      */
     constructor()
-    
+
+    // todo: Finish this
+    // https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486547978.html
+  }
+
+  export interface PageRange {
+
+    /**
+     * @protected
+     * @constructor
+     */
+    constructor()
+
     /**
      * Human-readable label with beginning and ending range identifiers
      * @type {string}
      */
     compoundLabel: string
-    
+
     /**
      * The index of the pageRange
      * @type {number}

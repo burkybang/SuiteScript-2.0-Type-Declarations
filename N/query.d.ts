@@ -9,11 +9,11 @@ interface query {
   /**
    * Create a Query object with a single query component based on the given query type.
    * @param {Object} options
-   * @param {query.Type} options.type The query type. Use the Type enum.
+   * @param {query.Type|string} options.type The query type. Use the Type enum.
    * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
    * @return {Query}
    */
-  create(options: { type: query.Type })
+  create(options: { type: query.Type | string }): query.Query
   
   /**
    * Loads query by id
@@ -24,7 +24,7 @@ interface query {
    * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
    * @return {Query}
    */
-  load(options: { id: number })
+  load(options: { id: number }): query.Query
   
   /**
    * Deletes query by id
@@ -33,9 +33,9 @@ interface query {
    * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
    * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
    * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
-   * @return {Query}
+   * @return {void}
    */
-  delete(options: { id: number })
+  delete(options: { id: number }): void
   
   /**
    * Creates a query.RelativeDate object that represents a date relative to the current date
@@ -44,7 +44,7 @@ interface query {
    * @param {number} options.value Value to use to create the relative date
    * @return {RelativeDate}
    */
-  createRelativeDate(options: { dateId: query.DateId, value: number })
+  createRelativeDate(options: { dateId: query.DateId, value: number }): query.RelativeDate
 }
 
 
@@ -728,6 +728,49 @@ declare namespace query {
     WORK_CALENDAR = 'workcalendar',
   }
   
+  export enum PeriodAdjustment {
+    ALL = 'ALL',
+    NOT_LAST = 'NOT_LAST',
+  }
+  
+  export enum PeriodCode {
+    FIRST_FISCAL_QUARTER_LAST_FY = 'Q1LFY',
+    FIRST_FISCAL_QUARTER_THIS_FY = 'Q1TFY',
+    FISCAL_QUARTER_BEFORE_LAST = 'QBL',
+    FISCAL_YEAR_BEFORE_LAST = 'FYBL',
+    FOURTH_FISCAL_QUARTER_LAST_FY = 'Q4LFY',
+    FOURTH_FISCAL_QUARTER_THIS_FY = 'Q4TFY',
+    LAST_FISCAL_QUARTER = 'LQ',
+    LAST_FISCAL_QUARTER_ONE_FISCAL_YEAR_AGO = 'LQOLFY',
+    LAST_FISCAL_QUARTER_TO_PERIOD = 'LFQTP',
+    LAST_FISCAL_YEAR = 'LFY',
+    LAST_FISCAL_YEAR_TO_PERIOD = 'LFYTP',
+    LAST_PERIOD = 'LP',
+    LAST_PERIOD_ONE_FISCAL_QUARTER_AGO = 'LPOLQ',
+    LAST_PERIOD_ONE_FISCAL_YEAR_AGO = 'LPOLFY',
+    LAST_ROLLING_18_PERIODS = 'LR18FP',
+    LAST_ROLLING_6_FISCAL_QUARTERS = 'LR6FQ',
+    PERIOD_BEFORE_LAST = 'PBL',
+    SAME_FISCAL_QUARTER_LAST_FY = 'TQOLFY',
+    SAME_FISCAL_QUARTER_LAST_FY_TO_PERIOD = 'TFQOLFYTP',
+    SAME_PERIOD_LAST_FY = 'TPOLFY',
+    SAME_PERIOD_LAST_FISCAL_QUARTER = 'TPOLQ',
+    SECOND_FISCAL_QUARTER_LAST_FY = 'Q2LFY',
+    SECOND_FISCAL_QUARTER_THIS_FY = 'Q2TFY',
+    THIRD_FISCAL_QUARTER_LAST_FY = 'Q3LFY',
+    THIRD_FISCAL_QUARTER_THIS_FY = 'Q3TFY',
+    THIS_FISCAL_QUARTER = 'TQ',
+    THIS_FISCAL_QUARTER_TO_PERIOD = 'TFQTP',
+    THIS_FISCAL_YEAR = 'TFY',
+    THIS_FISCAL_YEAR_TO_PERIOD = 'TFYTP',
+    THIS_PERIOD = 'TP',
+  }
+  
+  export enum PeriodType {
+    START = 'START',
+    END = 'END',
+  }
+  
   /**
    * The query definition.
    */
@@ -817,12 +860,14 @@ declare namespace query {
     /**
      * Execute the query and return paged results.
      * @governance 10 points
+     * @param {Object} [options]
+     * @param {number} [options.pageSize]
      * @return {PagedData} the paged query object
      */
     // function runPagedThis() {}
     // runPagedThis.prototype.promise = function() {}
     // runPaged = new runPagedThis()
-    runPaged(): PagedData
+    runPaged(options?: { pageSize?: number }): PagedData
     
     /**
      * join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
@@ -868,13 +913,20 @@ declare namespace query {
      * @param {Object} options
      * @param {string} [options.fieldId] Name of the condition
      * @param {Operator} [options.operator] Operator used by the condition
-     * @param {string[]|Date[]} [options.values] Array of values to use for the condition
+     * @param {string|number|boolean|Date|query.RelativeDate|query.Period|string[]|number[]|boolean[]|Date[]|query.RelativeDate[]|query.Period[]} [options.values] Array of values to use for the condition
      * @param {string} [options.formula] Formula used to create the condition
      * @param {string} [options.type] Explicitly define the formula's return type
      * @param {Aggregate} [options.aggregate] Run an aggregate function on the condition
      * @return {Condition}
      */
-    createCondition(options: { fieldId?: string, operator?: Operator, values?: string[] | Date[], formula?: string, type?: string, aggregate?: Aggregate }): Condition
+    createCondition(options: {
+      fieldId?: string,
+      operator?: Operator,
+      values?: string | number | boolean | Date | RelativeDate | Period | string[] | number[] | boolean[] | Date[] | RelativeDate[] | Period[],
+      formula?: string,
+      type?: string,
+      aggregate?: Aggregate,
+    }): Condition
     
     /**
      * Create a Column object based on the root component of the Query. This is a shortcut for Query.root.createColumn.
@@ -893,7 +945,21 @@ declare namespace query {
      * @param {RelativeDate|Date} [options.context.params.date] Date to use for the actual exchange rate between the base currency and the currency to convert to
      * @return {Column}
      */
-    createColumn(options: { fieldId?: string, formula?: string, type?: string, aggregate?: Aggregate, alias?: string, groupBy?: boolean, context?: { name?: string, params?: { currencyId?: number, date?: RelativeDate | Date } } }): Column
+    createColumn(options: {
+      fieldId?: string,
+      formula?: string,
+      type?: string,
+      aggregate?: Aggregate,
+      alias?: string,
+      groupBy?: boolean,
+      context?: {
+        name?: string,
+        params?: {
+          currencyId?: number,
+          date?: RelativeDate | Date,
+        },
+      },
+    }): Column
     
     /**
      * Create a Sort object based on the root component of the Query. This is a shortcut for Query.root.createSort.
@@ -906,7 +972,13 @@ declare namespace query {
      * @param {boolean} [options.nullsLast] Indicates whether query results with null values are listed at the end of the query results
      * @return {Sort}
      */
-    createSort(options: { column: Column | Object, ascending?: boolean, caseSensitive?: boolean, locale?: SortLocale, nullsLast?: boolean }): Sort
+    createSort(options: {
+      column: Column | Object,
+      ascending?: boolean,
+      caseSensitive?: boolean,
+      locale?: SortLocale,
+      nullsLast?: boolean,
+    }): Sort
     
     /**
      * Create a new Condition object that corresponds to a logical conjunction (AND) of the Condition objects given to
@@ -1370,6 +1442,11 @@ declare namespace query {
     iterator()
     
     /**
+     * @return {Object<string, string|number|(string|number)[]|Date|boolean>}
+     */
+    asMappedResults(): { [p: string]: string | number | (string | number)[] | Date | boolean }[]
+    
+    /**
      * The actual query results.
      * @name ResultSet#results
      * @type {Result[]}
@@ -1427,13 +1504,13 @@ declare namespace query {
    * Encapsulates a set of paged query results. This object also contains information about the set of paged results it encapsulates.
    */
   export interface PagedData {
-  
+    
     /**
      * Standard object for iterating through results.
      * @return {Iterator}
      */
     iterator()
-  
+    
     /**
      * Describes the total number of paged query result rows.
      * @name PagedData#count
@@ -1442,7 +1519,7 @@ declare namespace query {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     count: number
-  
+    
     /**
      * Describes the number of query result rows per page.
      * @name PagedData#pageSize
@@ -1451,7 +1528,7 @@ declare namespace query {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     pageSize: number
-  
+    
     /**
      * Holds an array of page ranges for the paged query results.
      * @name PagedData#pageRanges
@@ -1466,7 +1543,7 @@ declare namespace query {
    * Encapsulates the range of query results for a page.
    */
   export interface PageRange {
-  
+    
     /**
      * Describes the array index for this page range.
      * @name PageRange#index
@@ -1475,7 +1552,7 @@ declare namespace query {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     index: number
-  
+    
     /**
      * Describes the number of query result rows in this page range.
      * @name PageRange#size
@@ -1484,6 +1561,39 @@ declare namespace query {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     size: number
+  }
+  
+  /**
+   * A period of time to use in query conditions.
+   */
+  export interface Period {
+    
+    /**
+     * The adjustment of the period.
+     * @name Period#adjustment
+     * @type {number}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    adjustment: query.PeriodAdjustment
+    
+    /**
+     * The code of the period.
+     * @name Period#code
+     * @type {number}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    code: query.PeriodCode
+    
+    /**
+     * The type of the period.
+     * @name Period#type
+     * @type {number}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    type: query.PeriodType
   }
   
 }
