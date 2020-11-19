@@ -7,7 +7,7 @@
  */
 
 type PageInitContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -16,7 +16,7 @@ type PageInitContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The access mode of the current record
    *
@@ -28,7 +28,7 @@ type PageInitContext = {
 }
 
 type ValidateFieldContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -37,7 +37,7 @@ type ValidateFieldContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -46,7 +46,7 @@ type ValidateFieldContext = {
    * @readonly
    */
   sublistId: string
-  
+
   /**
    * The internal ID of the field being validated
    *
@@ -55,7 +55,7 @@ type ValidateFieldContext = {
    * @readonly
    */
   fieldId: string
-  
+
   /**
    * The index of the line if the field is in a sublist or matrix
    *
@@ -64,7 +64,7 @@ type ValidateFieldContext = {
    * @readonly
    */
   lineNum: number
-  
+
   /**
    * The index of the column if the field is in a matrix
    *
@@ -76,7 +76,7 @@ type ValidateFieldContext = {
 }
 
 type FieldChangedContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -85,7 +85,7 @@ type FieldChangedContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -94,7 +94,7 @@ type FieldChangedContext = {
    * @readonly
    */
   sublistId: string
-  
+
   /**
    * The internal ID of the field that was changed
    *
@@ -103,7 +103,7 @@ type FieldChangedContext = {
    * @readonly
    */
   fieldId: string
-  
+
   /**
    * The index of the line if the field is in a sublist or matrix
    *
@@ -112,7 +112,7 @@ type FieldChangedContext = {
    * @readonly
    */
   lineNum: number
-  
+
   /**
    * The index of the column if the field is in a matrix
    *
@@ -124,7 +124,7 @@ type FieldChangedContext = {
 }
 
 type PostSourcingContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -133,7 +133,7 @@ type PostSourcingContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -142,7 +142,7 @@ type PostSourcingContext = {
    * @readonly
    */
   sublistId: string
-  
+
   /**
    * The internal ID of the field that triggered postSourcing
    *
@@ -154,7 +154,7 @@ type PostSourcingContext = {
 }
 
 type LineInitContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -163,7 +163,7 @@ type LineInitContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -175,7 +175,7 @@ type LineInitContext = {
 }
 
 type ValidateLineContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -184,7 +184,7 @@ type ValidateLineContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -196,7 +196,7 @@ type ValidateLineContext = {
 }
 
 type ValidateInsertContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -205,7 +205,7 @@ type ValidateInsertContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -217,7 +217,7 @@ type ValidateInsertContext = {
 }
 
 type ValidateDeleteContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -226,7 +226,7 @@ type ValidateDeleteContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -238,7 +238,7 @@ type ValidateDeleteContext = {
 }
 
 type SublistChangedContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *
@@ -247,7 +247,7 @@ type SublistChangedContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-  
+
   /**
    * The internal ID of the sublist
    *
@@ -259,7 +259,7 @@ type SublistChangedContext = {
 }
 
 type SaveRecordContext = {
-  
+
   /**
    * The current record the user is manipulating in the UI
    *

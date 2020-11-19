@@ -3,14 +3,14 @@
 /// <reference path="./ui/serverWidget.d.ts" />
 
 /**
- * SuiteScript record common module
+ * SuiteScript record module
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267255811.html}
  *
  * @module N/record
  * @NApiVersion 2.x
  */
 interface record {
-  
+
   /**
    * Create a new record object based on provided type
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
@@ -34,7 +34,7 @@ interface record {
       [key: string]: any,
     },
   }): record.Record
-  
+
   /**
    * Create a new record object based on provided type
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
@@ -58,7 +58,7 @@ interface record {
       [key: string]: any,
     },
   }): currentRecord.CurrentRecord
-  
+
   /**
    * Load an existing nlobjRecord from the database based on provided type, id
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
@@ -84,7 +84,7 @@ interface record {
       [key: string]: any,
     },
   }): record.Record
-  
+
   /**
    * Load an existing nlobjRecord from the database based on provided type, id
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
@@ -110,7 +110,7 @@ interface record {
       [key: string]: any,
     },
   }): currentRecord.CurrentRecord
-  
+
   /**
    * Copy a record object based on provided type, id
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
@@ -136,7 +136,7 @@ interface record {
       [key: string]: any,
     },
   }): record.Record
-  
+
   /**
    * Copy a record object based on provided type, id
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
@@ -162,7 +162,7 @@ interface record {
       [key: string]: any,
     },
   }): currentRecord.CurrentRecord
-  
+
   /**
    * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
@@ -190,7 +190,7 @@ interface record {
       [key: string]: any,
     },
   }): record.Record
-  
+
   /**
    * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
@@ -218,7 +218,7 @@ interface record {
       [key: string]: any,
     },
   }): currentRecord.CurrentRecord
-  
+
   /**
    * Delete a record object based on provided type, id and return the id of deleted record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372.html}
@@ -238,7 +238,7 @@ interface record {
     type: record.Type | string,
     id: number | string,
   }): number
-  
+
   /**
    * Commit record field updates to the system
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788.html}
@@ -249,7 +249,7 @@ interface record {
    * @param {Object} options
    * @param {Type|string} options.type record type
    * @param {number|string} options.id record id
-   * @param {Object.<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
+   * @param {Object<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
    * @param {Object} [options.options] additonal flags for submission
    * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
    * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
@@ -263,14 +263,14 @@ interface record {
     type: record.Type | string,
     id: number | string,
     values: {
-      [key: string]: string | number | (string | number)[] | Date | boolean
+      [key: string]: string | number | (string | number)[] | Date | boolean,
     },
     options?: {
       enablesourcing?: boolean,
       ignoreMandatoryFields?: boolean,
     },
   }): number
-  
+
   /**
    * Attach record to another record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169.html}
@@ -280,7 +280,7 @@ interface record {
    * @param {Object} options
    * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
    * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-   * @param {Object.<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
    * @return {void}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
@@ -294,13 +294,13 @@ interface record {
     },
     to: record.Record | {
       type: record.Type | string,
-      id: number | string
+      id: number | string,
     },
     attributes?: {
       [key: string]: string | number,
     },
   }): void
-  
+
   /**
    * Detach record from another record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360.html}
@@ -310,7 +310,7 @@ interface record {
    * @param {Object} options
    * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
    * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-   * @param {Object.<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
    * @return {void}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
@@ -333,9 +333,9 @@ interface record {
 }
 
 declare namespace record {
-  
+
   export interface create {
-    
+
     /**
      * Create a new record object based on provided type
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690.html}
@@ -350,11 +350,17 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    promise(options: { type: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): Promise<Record>
+    promise(options: {
+      type: record.Type | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [key: string]: any,
+      },
+    }): Promise<Record>
   }
-  
+
   export interface load {
-    
+
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173.html}
@@ -370,11 +376,18 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    promise(options: { type: record.Type | string, id: number | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): Promise<Record>
+    promise(options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [key: string]: any,
+      },
+    }): Promise<Record>
   }
-  
+
   export interface copy {
-    
+
     /**
      * Copy a record object based on provided type, id
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922.html}
@@ -390,11 +403,18 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    promise(options: { type: record.Type | string, id: number | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): Promise<Record>
+    promise(options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [key: string]: any,
+      },
+    }): Promise<Record>
   }
-  
+
   export interface transform {
-    
+
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375.html}
@@ -411,9 +431,17 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    promise(options: { fromType: record.Type | string, fromId: number | string, toType: record.Type | string, isDynamic?: boolean, defaultValues?: { [key: string]: any } }): Promise<Record>
+    promise(options: {
+      fromType: record.Type | string,
+      fromId: number | string,
+      toType: record.Type | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [key: string]: any,
+      },
+    }): Promise<Record>
   }
-  
+
   /*export interface delete {
   
     /!**
@@ -431,9 +459,9 @@ declare namespace record {
      *!/
     promise(options: { type: record.Type | string, id: number | string }): Promise<number>
   }*/
-  
+
   export interface submitFields {
-    
+
     /**
      * Commit record field updates to the system
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813.html}
@@ -443,7 +471,7 @@ declare namespace record {
      * @param {Object} options
      * @param {Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {Object.<string, *>} options.values field and value mapping to be submitted
+     * @param {Object<string, *>} options.values field and value mapping to be submitted
      * @param {Object} [options.options] additonal flags for submission
      * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
      * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
@@ -453,11 +481,21 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    promise(options: { type: record.Type | string, id: number | string, values: { [key: string]: any }, options?: { enablesourcing?: boolean, ignoreMandatoryFields?: boolean } }): Promise<number>
+    promise(options: {
+      type: record.Type | string,
+      id: number | string,
+      values: {
+        [key: string]: any,
+      },
+      options?: {
+        enablesourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      },
+    }): Promise<number>
   }
-  
+
   export interface attach {
-    
+
     /**
      * Attach record to another record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175.html}
@@ -465,18 +503,30 @@ declare namespace record {
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
      * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-     * @param {Object.<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
      * @return {Promise<void>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
      *
      * @since 2015.2
      */
-    promise(options: { record: Record | { type: record.Type | string, id: number | string }, to: Record | { type: record.Type | string, id: number | string }, attributes?: { [key: string]: string | number } }): Promise<void>
+    promise(options: {
+      record: Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      to: Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      attributes?: {
+        [key: string]: string | number,
+      },
+    }): Promise<void>
   }
-  
+
   export interface detach {
-    
+
     /**
      * Detach record from another record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016.html}
@@ -484,16 +534,28 @@ declare namespace record {
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
      * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-     * @param {Object.<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
      * @return {Promise<void>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
      *
      * @since 2015.2
      */
-    promise(options: { record: Record | { type: record.Type | string, id: number | string }, from: Record | { type: record.Type | string, id: number | string }, attributes?: { [key: string]: string | number } }): Promise<void>
+    promise(options: {
+      record: Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      from: Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      attributes?: {
+        [key: string]: string | number,
+      }
+    }): Promise<void>
   }
-  
+
   /**
    * Enum for record Type.
    * @enum {string}
@@ -729,9 +791,9 @@ declare namespace record {
     WORK_ORDER_ISSUE = 'workorderissue',
     WORKPLACE = 'workplace',
   }
-  
+
   export interface Column {
-    
+
     /**
      * @name Column#id
      * @type {string}
@@ -739,7 +801,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     id: string
-    
+
     /**
      * @name Column#label
      * @type {string}
@@ -747,7 +809,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     label: string
-    
+
     /**
      * @name Column#sublistId
      * @type {string}
@@ -755,7 +817,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     sublistId: string
-    
+
     /**
      * @name Column#type
      * @type {format.Type}
@@ -764,9 +826,9 @@ declare namespace record {
      */
     type: format.Type
   }
-  
+
   export interface Macro {
-    
+
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
      *
@@ -775,8 +837,10 @@ declare namespace record {
      * @param {string} [options.params] The macro arguments
      * @return {Macro}
      */
-    constructor(options: { id: string }): Macro
-    
+    constructor(options: {
+      id: string,
+    }): Macro
+
     /**
      * @name Macro#id
      * @type {string}
@@ -784,7 +848,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     id: string
-    
+
     /**
      * @name Macro#label
      * @type {string}
@@ -792,7 +856,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     label: string
-    
+
     /**
      * @name Macro#description
      * @type {string}
@@ -800,7 +864,7 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     description: string
-    
+
     /**
      * @name Macro#attributes
      * @type {Object}
@@ -808,23 +872,31 @@ declare namespace record {
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     attributes: Object
-    
+
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
      *
      * @param {Object} options
      * @param {string} options.id macro id
-     * @param {Object.<string, *>} [options.params] The macro arguments
+     * @param {Object<string, *>} [options.params] The macro arguments
      * @return {notifications: [], response: {}}
      */
-    execute(options: { id: string, params?: { [key: string]: any } }): { notifications: [], response: {} }
+    execute(options: {
+      id: string,
+      params?: {
+        [key: string]: any,
+      },
+    }): {
+      notifications: [],
+      response: {}
+    }
   }
-  
+
   /**
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
    */
   export interface Record {
-    
+
     /**
      * The internal ID of the record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656.html}
@@ -833,7 +905,7 @@ declare namespace record {
      * @readonly
      */
     id: number
-    
+
     /**
      * The type of the record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706984.html}
@@ -844,7 +916,7 @@ declare namespace record {
      * @readonly
      */
     type: record.Type | string
-    
+
     /**
      * Indicates whether the record is in dynamic or standard mode
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316.html}
@@ -853,29 +925,7 @@ declare namespace record {
      * @readonly
      */
     isDynamic: boolean
-    
-    /**
-     * Primary object used to encapsulate a record object.
-     *
-     * @protected
-     * @param {Object} options
-     * @param {Object} options.recordObj (server-generated object holding the full metadata and data for a record type,
-     *     including all scripting and customization. See RecordSerializationKey.java)
-     * @param {number} options.recordObj.id
-     * @param {boolean} options.recordObj.isSubrecord = true if the record instance is a subrecord
-     * @param {boolean} options.recordObj.isReadOnly = true if the record instance is read only instance
-     * @param {boolean} options.recordObj.isDynamic = true if the record instance is a dynamic record
-     * @param {boolean} options.recordObj.isCurrentRecord
-     * @param {boolean} options.recordObj.isUserEvent
-     * @param {Object} options.recordObj.recordContext
-     * @param {Metadata} options.recordObj.metadata (record metadata data used to populate the model controller)
-     * @param {ModelController} options.recordObj.data (record data used to populate the model)
-     * @param {RecordStateController} options.recordObj.state (record state to use to pre-populate the model controller)
-     * @return {Record} client-side record implementation
-     * @constructor
-     */
-    constructor(options): Record
-    
+
     /**
      * Provides a macro to execute
      *
@@ -883,33 +933,43 @@ declare namespace record {
      * @param {string} options.id macro id
      * @return {Function} executor function for macro specified by options, or null if not found
      */
-    getMacro(options: { id: string }): Function
-    
+    getMacro(options: {
+      id: string,
+    }): Function
+
     /**
      * Provides available macros
      *
      * @return {Object} a set of macros (@see Macro) defined on the record indexed by macroId
      */
     getMacros(): Object
-    
+
     /**
      * Performs macro operation and returns result
      *
      * @param {Object} options
      * @param {string} options.id macro id
-     * @param {Object.<string, *>} [options.params] macro arguments
+     * @param {Object<string, *>} [options.params] macro arguments
      * @return {{notifications: [], response: {}}}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
      */
-    executeMacro(options: { id: string, params?: { [key: string]: any } }): { notifications: [], response: {} }
-    
+    executeMacro(options: {
+      id: string,
+      params?: {
+        [key: string]: any,
+      },
+    }): {
+      notifications: [],
+      response: {}
+    }
+
     /**
      * Provide scripting context for records
      *
      * getScriptContext is only in recordDefinition.js and not in dynamicrecord.js, so it is only visible inside NetSuite.
      */
     // getScriptingContext()
-    
+
     /**
      * Executes record action and returns its result. Record ID and type is automatically taken from this record instance.
      *
@@ -921,14 +981,14 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
      */
     // executeAction(options)
-    
+
     /**
      * Provides available record actions for this record instance.
      *
      * @return {Object} a set of actions (@see Action) defined on the record indexed by action ID
      */
     // getActions()
-    
+
     /**
      * Returns an executable record action for this record instance.
      *
@@ -938,7 +998,7 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
      */
     // getAction(options)
-    
+
     /**
      * Remove body field data
      *
@@ -947,23 +1007,23 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    
+
     // removeField(options)
-    
+
     /**
      * Return array of names of all body fields, including machine header field and matrix header fields
      *
      * @return {string[]}
      */
     getFields(): string[]
-    
+
     /**
      * Return array of names of all sublists
      *
      * @return {string[]}
      */
     getSublists(): string[]
-    
+
     /**
      * Return value of the field
      *
@@ -973,8 +1033,10 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
-    getValue(options: { fieldId: string }): string | string[] | number | Date | boolean
-    
+    getValue(options: {
+      fieldId: string,
+    }): string | string[] | number | Date | boolean
+
     /**
      * Set value of the field
      *
@@ -985,8 +1047,12 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    setValue(options: { fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
-    
+    setValue(options: {
+      fieldId: string,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Get value of the field in text representation
      *
@@ -995,8 +1061,10 @@ declare namespace record {
      * @return {string}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    getText(options: { fieldId: string }): string
-    
+    getText(options: {
+      fieldId: string,
+    }): string
+
     /**
      * Set value of the field by text representation
      *
@@ -1010,8 +1078,12 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    setText(options: { fieldId: string, text: string | string[], ignoreFieldChange?: boolean }): Record
-    
+    setText(options: {
+      fieldId: string,
+      text: string | string[],
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
      *
@@ -1022,8 +1094,12 @@ declare namespace record {
      * @return {number}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      */
-    findSublistLineWithValue(options: { sublistId: string, fieldId: string, value: string | string[] | number | Date | boolean }): number
-    
+    findSublistLineWithValue(options: {
+      sublistId: string,
+      fieldId: string,
+      value: string | string[] | number | Date | boolean,
+    }): number
+
     /**
      * Return value of a sublist field
      *
@@ -1036,8 +1112,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
-    getSublistValue(options: { sublistId: string, fieldId: string, line: number }): string | string[] | number | Date | boolean
-    
+    getSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): string | string[] | number | Date | boolean
+
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
      *
@@ -1050,8 +1130,13 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      */
-    setSublistValue(options: { sublistId: string, fieldId: string, line: number, value: string | number | (string | number)[] | Date | boolean }): Record
-    
+    setSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+      value: string | number | (string | number)[] | Date | boolean,
+    }): Record
+
     /**
      * Return value of a sublist field in text representation
      *
@@ -1064,8 +1149,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      */
-    getSublistText(options: { sublistId: string, fieldId: string, line: number }): string
-    
+    getSublistText(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): string
+
     /**
      * Set the value of a sublist field in text representation (available for deferred dynamic only)
      *
@@ -1078,8 +1167,13 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      */
-    setSublistText(options: { sublistId: string, fieldId: string, line: number, text: string }): Record
-    
+    setSublistText(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+      text: string,
+    }): Record
+
     /**
      * Return line count of sublist
      *
@@ -1087,8 +1181,10 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {number}
      */
-    getLineCount(options: { sublistId: string }): number
-    
+    getLineCount(options: {
+      sublistId: string,
+    }): number
+
     /**
      * Insert a sublist line
      *
@@ -1103,8 +1199,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
      */
-    insertLine(options: { sublistId: string, line: number, ignoreRecalc?: boolean }): Record
-    
+    insertLine(options: {
+      sublistId: string,
+      line: number,
+      ignoreRecalc?: boolean,
+    }): Record
+
     /**
      * Commits and copies the currently selected line into a new line, which will be the new selected line.
      *
@@ -1114,8 +1214,10 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or not editable
      */
-    copyLine(options: { sublistId: string }): Record
-    
+    copyLine(options: {
+      sublistId: string,
+    }): Record
+
     /**
      * Remove a sublist line
      *
@@ -1130,8 +1232,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable
      */
-    removeLine(options: { sublistId: string, line: number, ignoreRecalc?: boolean }): Record
-    
+    removeLine(options: {
+      sublistId: string,
+      line: number,
+      ignoreRecalc?: boolean,
+    }): Record
+
     /**
      * Select a new line at the end of sublist
      *
@@ -1142,8 +1248,10 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      * @restriction only available in dynamic record
      */
-    selectNewLine(options: { sublistId: string }): Record
-    
+    selectNewLine(options: {
+      sublistId: string,
+    }): Record
+
     /**
      * Cancel the current selected line
      *
@@ -1154,8 +1262,10 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      * @restriction only available in dynamic record
      */
-    cancelLine(options: { sublistId: string }): Record
-    
+    cancelLine(options: {
+      sublistId: string,
+    }): Record
+
     /**
      * Commit the current selected line
      *
@@ -1166,8 +1276,10 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      * @restriction only available in dynamic record
      */
-    commitLine(options: { sublistId: string }): Record
-    
+    commitLine(options: {
+      sublistId: string,
+    }): Record
+
     /**
      * Return value of a sublist field on the current selected sublist line
      *
@@ -1179,8 +1291,11 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      * @restriction only available in dynamic record
      */
-    getCurrentSublistValue(options: { sublistId: string, fieldId: string }): string | string[] | number | Date | boolean
-    
+    getCurrentSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+    }): string | string[] | number | Date | boolean
+
     /**
      * Set the value for field in the current selected line
      *
@@ -1194,8 +1309,13 @@ declare namespace record {
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
-    setCurrentSublistValue(options: { sublistId: string, fieldId: string, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
-    
+    setCurrentSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Return the value for field in the current selected line by text representation
      *
@@ -1207,8 +1327,11 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      * @restriction only available in dynamic record
      */
-    getCurrentSublistText(options: { sublistId: string, fieldId: string }): string
-    
+    getCurrentSublistText(options: {
+      sublistId: string,
+      fieldId: string,
+    }): string
+
     /**
      * Set the value for field in the current selected line by text representation
      *
@@ -1223,8 +1346,13 @@ declare namespace record {
      *     if user tries to edit readonly sublist field
      * @restriction only available in dynamic record
      */
-    setCurrentSublistText(options: { sublistId: string, fieldId: string, text: string, ignoreFieldChange?: boolean }): Record
-    
+    setCurrentSublistText(options: {
+      sublistId: string,
+      fieldId: string,
+      text: string,
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Selects an existing line in a sublist (dynamic mode only)
      *
@@ -1236,8 +1364,11 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      * @restriction only available in dynamic record
      */
-    selectLine(options: { sublistId: string, line: number }): Record
-    
+    selectLine(options: {
+      sublistId: string,
+      line: number,
+    }): Record
+
     /**
      * Save record updates to the system
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
@@ -1249,8 +1380,11 @@ declare namespace record {
      * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return {number} id of submitted record
      */
-    save(options?: { enableSourcing?: boolean, ignoreMandatoryFields?: boolean }): number
-    
+    save(options?: {
+      enableSourcing?: boolean,
+      ignoreMandatoryFields?: boolean,
+    }): number
+
     /**
      * Return a value indicating if the field has a subrecord
      *
@@ -1258,8 +1392,10 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {boolean}
      */
-    hasSubrecord(options: { fieldId: string }): boolean
-    
+    hasSubrecord(options: {
+      fieldId: string,
+    }): boolean
+
     /**
      * Get the subrecord for the associated field
      *
@@ -1270,8 +1406,10 @@ declare namespace record {
      * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
      * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
      */
-    getSubrecord(options: { fieldId: string }): Record
-    
+    getSubrecord(options: {
+      fieldId: string,
+    }): Record
+
     /**
      * Remove the subrecord for the associated field
      *
@@ -1279,8 +1417,10 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {Record} same record, for chaining
      */
-    removeSubrecord(options: { fieldId: string }): Record
-    
+    removeSubrecord(options: {
+      fieldId: string,
+    }): Record
+
     /**
      * Return a value indicating if the associated sublist field has a subrecord
      *
@@ -1291,8 +1431,12 @@ declare namespace record {
      * @return {boolean}
      * @restriction only available in deferred dynamic record
      */
-    hasSublistSubrecord(options: { sublistId: string, fieldId: string, line: number }): boolean
-    
+    hasSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): boolean
+
     /**
      * Get the subrecord for the associated sublist field
      *
@@ -1303,8 +1447,12 @@ declare namespace record {
      * @return {Record} client-side subrecord implementation
      * @restriction only available in deferred dynamic record
      */
-    getSublistSubrecord(options: { sublistId: string, fieldId: string, line: number }): Record
-    
+    getSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): Record
+
     /**
      * Remove the subrecord for the associated sublist field
      *
@@ -1315,8 +1463,12 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @restriction only available in deferred dynamic record
      */
-    removeSublistSubrecord(options: { sublistId: string, fieldId: string, line: number }): Record
-    
+    removeSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): Record
+
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
      *
@@ -1326,8 +1478,11 @@ declare namespace record {
      * @return {boolean}
      * @restriction only available in dynamic record
      */
-    hasCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): boolean
-    
+    hasCurrentSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+    }): boolean
+
     /**
      * Get the subrecord for the associated sublist field on the current line
      *
@@ -1337,8 +1492,11 @@ declare namespace record {
      * @return {Record} client-side subrecord implementation
      * @restriction only available in dynamic record
      */
-    getCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): Record
-    
+    getCurrentSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+    }): Record
+
     /**
      * Remove the subrecord for the associated sublist field on the current line
      *
@@ -1348,8 +1506,11 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @restriction only available in dynamic record
      */
-    removeCurrentSublistSubrecord(options: { sublistId: string, fieldId: string }): Record
-    
+    removeCurrentSublistSubrecord(options: {
+      sublistId: string,
+      fieldId: string,
+    }): Record
+
     /**
      * Returns the specified sublist
      *
@@ -1357,8 +1518,10 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {Sublist}
      */
-    getSublist(options: { sublistId: string }): Sublist
-    
+    getSublist(options: {
+      sublistId: string,
+    }): Sublist
+
     /**
      * Return array of names of all fields in a sublist﻿
      *
@@ -1367,8 +1530,10 @@ declare namespace record {
      * @return {string[]}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined﻿
      */
-    getSublistFields(options: { sublistId: string }): string[]
-    
+    getSublistFields(options: {
+      sublistId: string,
+    }): string[]
+
     /**
      * Return field object from record
      *
@@ -1377,8 +1542,10 @@ declare namespace record {
      * @return {Field}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      */
-    getField(options: { fieldId: string }): Field
-    
+    getField(options: {
+      fieldId: string,
+    }): Field
+
     /**
      * Return field object from record's sublist
      *
@@ -1390,8 +1557,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
      */
-    getSublistField(options: { sublistId: string, fieldId: string, line: number }): Field
-    
+    getSublistField(options: {
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    }): Field
+
     /**
      * Return field object from record's sublist current line
      *
@@ -1402,8 +1573,11 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @restriction only available in dynamic record
      */
-    getCurrentSublistField(options: { sublistId: string, fieldId: string }): Field
-    
+    getCurrentSublistField(options: {
+      sublistId: string,
+      fieldId: string,
+    }): Field
+
     /**
      * Get the select options for a field
      * @restriction Dynamic mode only
@@ -1413,8 +1587,14 @@ declare namespace record {
      * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
      * @return {{value:string, text:string}[]}
      */
-    getSelectOptions(options: { filter?: string, filteroperator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
-    
+    getSelectOptions(options: {
+      filter?: string,
+      filteroperator?: 'contains' | 'is' | 'startswith'
+    }): {
+      value: string,
+      text: string,
+    }[]
+
     /**
      * Set the value for the associated header in the matrix
      *
@@ -1427,8 +1607,14 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    setMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
-    
+    setMatrixHeaderValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Get the value for the associated header in the matrix
      *
@@ -1439,8 +1625,12 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @return {string|string[]|number|Date|boolean}
      */
-    getMatrixHeaderValue(options: { sublistId: string, fieldId: string, column: number }): string | string[] | number | Date | boolean
-    
+    getMatrixHeaderValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    }): string | string[] | number | Date | boolean
+
     /**
      * Set the value for the associated field in the matrix
      *
@@ -1454,8 +1644,14 @@ declare namespace record {
      * @return {Record} same record, for chaining
      * @restriction only available in deferred dynamic record
      */
-    setMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number, value: string | number | (string | number)[] | Date | boolean }): Record
-    
+    setMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+      value: string | number | (string | number)[] | Date | boolean,
+    }): Record
+
     /**
      * Get the value for the associated field in the matrix
      *
@@ -1467,8 +1663,13 @@ declare namespace record {
      * @return {string|string[]|number|Date|boolean}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, line: number }): string | string[] | number | Date | boolean
-    
+    getMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+    }): string | string[] | number | Date | boolean
+
     /**
      * Get the field for the specified header in the matrix
      *
@@ -1479,8 +1680,12 @@ declare namespace record {
      * @return {Field}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixHeaderField(options: { sublistId: string, fieldId: string, column: number }): Field
-    
+    getMatrixHeaderField(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    }): Field
+
     /**
      * Get the field for the specified sublist in the matrix
      *
@@ -1492,8 +1697,13 @@ declare namespace record {
      * @return {Field}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixSublistField(options: { sublistId: string, fieldId: string, column: number, line: number }): Field
-    
+    getMatrixSublistField(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+    }): Field
+
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
      *
@@ -1505,8 +1715,13 @@ declare namespace record {
      * @return {number} line number
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    findMatrixSublistLineWithValue(options: { sublistId: string, fieldId: string, value: string | string[] | number | Date | boolean, column: number }): number
-    
+    findMatrixSublistLineWithValue(options: {
+      sublistId: string,
+      fieldId: string,
+      value: string | string[] | number | Date | boolean,
+      column: number,
+    }): number
+
     /**
      * Returns the number of columns for the specified matrix.
      *
@@ -1516,8 +1731,11 @@ declare namespace record {
      * @return {number}
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixHeaderCount(options: { sublistId: string, fieldId: string }): number
-    
+    getMatrixHeaderCount(options: {
+      sublistId: string,
+      fieldId: string,
+    }): number
+
     /**
      * Set the value for the line currently selected in the matrix
      *
@@ -1531,8 +1749,14 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @restriction only available in dynamic record
      */
-    setCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number, value: string | number | (string | number)[] | Date | boolean, ignoreFieldChange?: boolean }): Record
-    
+    setCurrentMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    }): Record
+
     /**
      * Get the value for the line currently selected in the matrix
      *
@@ -1544,30 +1768,42 @@ declare namespace record {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @restriction only available in dynamic record
      */
-    getCurrentMatrixSublistValue(options: { sublistId: string, fieldId: string, column: number }): string | string[] | number | Date | boolean
+    getCurrentMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    }): string | string[] | number | Date | boolean
   }
-  
+
   /**
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
    */
   export namespace Record {
-    
+
     export interface executeMacro {
-      
+
       /**
        * Performs macro operation and returns result
        *
        * @param {Object} options
        * @param {string} options.id macro id
-       * @param {Object.<string, *>} [options.params] macro arguments
+       * @param {Object<string, *>} [options.params] macro arguments
        * @return {Promise<{notifications: [], response: {}}>}
        * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
        */
-      promise(options: { id: string, params?: { [key: string]: any } }): Promise<{ notifications: [], response: {} }>
+      promise(options: {
+        id: string,
+        params?: {
+          [key: string]: any,
+        },
+      }): Promise<{
+        notifications: [],
+        response: {},
+      }>
     }
-    
+
     export interface save {
-      
+
       /**
        * Save record updates to the system
        * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html}
@@ -1577,26 +1813,29 @@ declare namespace record {
        * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
        * @return {Promise<number>} id of submitted record
        */
-      promise(options?: { enableSourcing?: boolean, ignoreMandatoryFields?: boolean }): Promise<number>
+      promise(options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): Promise<number>
     }
   }
-  
+
   export interface Sublist {
-    
+
     /**
      * Return a new instance of sublist object
      *
      * @param {Object} sublist
      * @param {string} sublist.type type of sublist
      * @param {SublistState} sublist.sublistState SublistState
-     
+
      * @return {Sublist}
      * @constructor
      *
      * @since 2015.2
      */
     constructor(sublist): Sublist
-    
+
     /**
      * The name of the sublist.
      *
@@ -1605,7 +1844,7 @@ declare namespace record {
      * @readonly
      */
     getName(): string
-    
+
     /**
      * The type of the sublist.
      *
@@ -1614,7 +1853,7 @@ declare namespace record {
      * @readonly
      */
     getType(): string
-    
+
     /**
      * The sublist is changed
      *
@@ -1623,7 +1862,7 @@ declare namespace record {
      * @readonly
      */
     isChanged(): boolean
-    
+
     /**
      * The sublist is hidden
      *
@@ -1632,7 +1871,7 @@ declare namespace record {
      * @readonly
      */
     isHidden(): boolean
-    
+
     /**
      * The sublist is display
      *
@@ -1641,7 +1880,7 @@ declare namespace record {
      * @readonly
      */
     isDisplay(): boolean
-    
+
     /**
      * A flag to indicate whether or not the sublist supports multi-line buffer feature.
      *
@@ -1650,14 +1889,14 @@ declare namespace record {
      * @readonly
      */
     isMultilineEditable(): boolean
-    
+
     /**
      * Returns the object type name (sublist.Sublist)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -1665,15 +1904,15 @@ declare namespace record {
      */
     toJSON(): Object
   }
-  
+
   export interface Field {
-    
+
     /**
      * @protected
      * @constructor
      */
     constructor(): Field
-    
+
     /**
      * Return label of the field
      *
@@ -1683,7 +1922,7 @@ declare namespace record {
      * @since 2015.2
      */
     label: string
-    
+
     /**
      * Return id of the field
      *
@@ -1693,7 +1932,7 @@ declare namespace record {
      * @since 2015.2
      */
     id: string
-    
+
     /**
      * Disabled state of the field
      *
@@ -1702,7 +1941,7 @@ declare namespace record {
      * @since 2015.2
      */
     isDisabled: boolean
-    
+
     /**
      * Display state of the field
      *
@@ -1711,7 +1950,7 @@ declare namespace record {
      * @since 2015.2
      */
     isDisplay: boolean
-    
+
     /**
      * Mandatory state of the field
      *
@@ -1720,7 +1959,7 @@ declare namespace record {
      * @since 2015.2
      */
     isMandatory: boolean
-    
+
     /**
      * Read Only state of the field
      *
@@ -1729,7 +1968,7 @@ declare namespace record {
      * @since 2015.2
      */
     isReadOnly: boolean
-    
+
     /**
      * Visible state of the field
      *
@@ -1738,7 +1977,7 @@ declare namespace record {
      * @since 2015.2
      */
     isVisible: boolean
-    
+
     /**
      * Return type of the field
      *
@@ -1748,7 +1987,7 @@ declare namespace record {
      * @since 2015.2
      */
     type: serverWidget.FieldType
-    
+
     /**
      * Return the sublistId of the field
      *
@@ -1758,7 +1997,7 @@ declare namespace record {
      * @since 2015.2
      */
     sublistId: string
-    
+
     /**
      * Returns if the field is a popup
      *
@@ -1768,14 +2007,14 @@ declare namespace record {
      * @since 2015.2
      */
     isPopup: boolean
-    
+
     /**
      * Get JSON format of the object
      *
      * @return {{id: *, label: *, type: *}}
      */
     toJSON(): Object
-    
+
     /**
      * @return {string}
      */

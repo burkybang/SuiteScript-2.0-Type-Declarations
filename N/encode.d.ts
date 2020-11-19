@@ -5,9 +5,8 @@
  * @module N/encode
  * @NApiVersion 2.x
  */
-
 interface encode {
-  
+
   /**
    * Converts a string to another type of encoding
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165.html}
@@ -20,15 +19,20 @@ interface encode {
    *
    * @since 2015.1
    */
-  convert(options: { string: string, inputEncoding: encode.Encoding, outputEncoding: encode.Encoding }): string
+  convert(options: {
+    string: string,
+    inputEncoding: encode.Encoding,
+    outputEncoding: encode.Encoding,
+  }): string
 }
 
 declare namespace encode {
-  
+
   /**
+   * Holds the string values for the supported character set encoding
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177.html}
-   * 
-   * @enum
+   *
+   * @enum {string}
    */
   export enum Encoding {
     UTF_8 = 'UTF_8',

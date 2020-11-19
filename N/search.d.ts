@@ -1,9 +1,9 @@
 /**
- * SuiteScript search common module
+ * SuiteScript search module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345764122.html}
  *
  * @module N/search
- * @suiteScriptVersion 2.x
- *
+ * @NApiVersion 2.x
  */
 interface search {
 
@@ -43,7 +43,9 @@ interface search {
    * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
    * @since 2015.2
    */
-  load(options: { id: string | number }): search.Search
+  load(options: {
+    id: string | number,
+  }): search.Search
 
   /**
    * Deletes an existing saved search.
@@ -55,7 +57,9 @@ interface search {
    * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
    * @since 2015.2
    */
-  delete(options: { id: string | number }): void
+  delete(options: {
+    id: string | number,
+  }): void
 
   /**
    * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
@@ -65,13 +69,19 @@ interface search {
    * @governance 10 units
    * @param {Object} options  the options object
    * @param {Type|string} options.type  the record type you are checking duplicates for
-   * @param {Object.<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
+   * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
    * @param {number} [options.id]  internalId of existing record
    * @return {Result[]} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @since 2015.2
    */
-  duplicates(option: { type: search.Type | string, fields?: { [key: string]: string | number }, id?: number }): search.Result[]
+  duplicates(option: {
+    type: search.Type | string,
+    fields?: {
+      [key: string]: string | number,
+    },
+    id?: number,
+  }): search.Result[]
 
   /**
    * Performs a global search against a single keyword or multiple keywords.
@@ -83,7 +93,9 @@ interface search {
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @since 2015.2
    */
-  global(options: { keywords: string }): search.Result[]
+  global(options: {
+    keywords: string,
+  }): search.Result[]
 
   /**
    * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
@@ -113,7 +125,16 @@ interface search {
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @since 2015.2
    */
-  lookupFields(options: { type: search.Type | string, id: string | number, columns: string | string[] }): { [key: string]: (string | { value: string, text: string }[]) }
+  lookupFields(options: {
+    type: search.Type | string,
+    id: string | number,
+    columns: string | string[],
+  }): {
+    [key: string]: (string | {
+      value: string,
+      text: string,
+    }[]),
+  }
 
   /**
    * Creates a search.Column object.
@@ -177,7 +198,14 @@ interface search {
    * @throws {SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
    * @since 2015.2
    */
-  createFilter(options: { name: string, join?: string, operator: search.Operator | string, values?: string | Date | number | string[] | Date[], formula?: string, summary?: search.Summary | string }): search.Filter
+  createFilter(options: {
+    name: string,
+    join?: string,
+    operator: search.Operator | string,
+    values?: string | Date | number | string[] | Date[],
+    formula?: string,
+    summary?: search.Summary | string,
+  }): search.Filter
 
   /**
    * Creates a search.Setting object.
@@ -190,7 +218,10 @@ interface search {
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
    * @since 2015.2
    */
-  createSetting(options: { name: string, value: string }): search.Setting
+  createSetting(options: {
+    name: string,
+    value: string,
+  }): search.Setting
 }
 
 declare namespace search {
@@ -235,7 +266,9 @@ declare namespace search {
      * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
      * @since 2015.2
      */
-    promise(options: { id: string | number }): Promise<Search>
+    promise(options: {
+      id: string | number,
+    }): Promise<Search>
   }
 
   /*export interface delete {
@@ -261,13 +294,19 @@ declare namespace search {
      * on how you want to search for duplicates.
      * @param {Object} options  the options object
      * @param {Type|string} options.type  the record type you are checking duplicates for
-     * @param {Object.<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
+     * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
      * @param {number} [options.id]  internalId of existing record
      * @return {Promise<Result[]>} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @since 2015.2
      */
-    promise(option: { type: search.Type | string, fields?: { [key: string]: string | number }, id?: number }): Promise<Result[]>
+    promise(option: {
+      type: search.Type | string,
+      fields?: {
+        [key: string]: string | number,
+      },
+      id?: number,
+    }): Promise<Result[]>
   }
 
   export interface global {
@@ -282,7 +321,9 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @since 2015.2
      */
-    promise(option: { keywords: string }): Promise<Result[]>
+    promise(option: {
+      keywords: string,
+    }): Promise<Result[]>
   }
 
   export interface lookupFields {
@@ -314,9 +355,21 @@ declare namespace search {
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @since 2015.2
      */
-    promise(options: { type: search.Type | string, id: string | number, columns: string | string[] }): Promise<{ [key: string]: string | { value: string, text: string }[] }>
+    promise(options: {
+      type: search.Type | string,
+      id: string | number,
+      columns: string | string[],
+    }): Promise<{
+      [key: string]: string | {
+        value: string,
+        text: string,
+      }[],
+    }>
   }
 
+  /**
+   * @enum {string}
+   */
   export enum Operator {
     AFTER = 'after',
     ALLOF = 'allof',
@@ -358,6 +411,9 @@ declare namespace search {
     WITHIN = 'within',
   }
 
+  /**
+   * @enum {string}
+   */
   export enum Summary {
     GROUP = 'GROUP',
     COUNT = 'COUNT',
@@ -367,12 +423,18 @@ declare namespace search {
     MAX = 'MAX',
   }
 
+  /**
+   * @enum {string}
+   */
   export enum Sort {
     ASC = 'ASC',
     DESC = 'DESC',
     NONE = 'NONE',
   }
 
+  /**
+   * @enum {string}
+   */
   export enum Type {
     ACCOUNT = 'account',
     ACCOUNTING_BOOK = 'accountingbook',
@@ -737,7 +799,9 @@ declare namespace search {
      * @return {PagedData} PagedData object that allows user to page through the search result
      * @since 2016.1
      */
-    runPaged(options?: { pageSize?: number }): PagedData
+    runPaged(options?: {
+      pageSize?: number,
+    }): PagedData
 
     /**
      * Returns the object type name (search.Search)
@@ -955,7 +1019,10 @@ declare namespace search {
      * @return {Column} this search column
      * @since 2015.2
      */
-    setWhenOrderedBy(options: { name: string, join: string }): Column
+    setWhenOrderedBy(options: {
+      name: string,
+      join: string,
+    }): Column
 
     /**
      * Returns the object type name (search.Column)
@@ -1048,7 +1115,10 @@ declare namespace search {
      * @return {Result[]} the requested slice of the search result set
      * @since 2015.2
      */
-    getRange(options: { start: number, end: number }): Result[]
+    getRange(options: {
+      start: number,
+      end: number,
+    }): Result[]
 
     /**
      * Calls the developer-defined callback function for every result in this set. The result set processed by each()
@@ -1129,7 +1199,11 @@ declare namespace search {
      * @return {string} string value of the search result column
      * @since 2015.2
      */
-    getValue(options: Column | { name: string, join?: string, summary?: Summary }): string
+    getValue(options: Column | {
+      name: string,
+      join?: string,
+      summary?: Summary,
+    }): string
 
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.
@@ -1146,7 +1220,11 @@ declare namespace search {
      * @return {string} UI display name (text value) of the search result column
      * @since 2015.2
      */
-    getText(options: Column | { name: string, join?: string, summary?: Summary }): string
+    getText(options: Column | {
+      name: string,
+      join?: string,
+      summary?: Summary,
+    }): string
 
     /**
      * Returns the object type name (search.Result)
@@ -1191,7 +1269,9 @@ declare namespace search {
      * @param {number} options.index
      * @return {search.Page}
      */
-    fetch(options: { index: number }): search.Page
+    fetch(options: {
+      index: number,
+    }): search.Page
   }
 
   export interface Page {

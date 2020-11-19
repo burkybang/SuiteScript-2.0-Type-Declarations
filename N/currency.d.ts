@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 interface currency {
-  
+
   /**
    * Retrieves the exchange rate between two currencies based on the specified date.
    * The return value comes from the Exchange Rate column of the Currency Exchange Rates record.
@@ -26,5 +26,9 @@ interface currency {
    *
    * @since 2015.2
    */
-  exchangeRate(options: { source: number | string, target: number | string, date?: Date }): number
+  exchangeRate(options: {
+    source: number | string,
+    target: number | string,
+    date?: Date,
+  }): number
 }

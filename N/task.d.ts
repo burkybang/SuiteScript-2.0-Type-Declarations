@@ -2,7 +2,8 @@
 /// <reference path="./record.d.ts" />
 
 /**
- * SuiteScript module
+ * SuiteScript task module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345787858.html}
  *
  * @module N/task
  * @NApiVersion 2.x
@@ -39,12 +40,12 @@ interface task {
     taskType: task.TaskType,
     scriptId?: number | string,
     deploymentId?: string,
-    params?: { [p: string]: string | string[] | number | Date | boolean },
+    params?: { [key: string]: string | string[] | number | Date | boolean },
     importFile?: file.File | string,
     mappingId?: number | string,
     queueId?: number | string,
     name?: string,
-    linkedFiles?: { [p: string]: file.File | string },
+    linkedFiles?: { [key: string]: file.File | string },
     entityType?: string,
     masterRecordId?: number | string,
     masterSelectionMode?: string,
@@ -79,7 +80,7 @@ interface task {
 declare namespace task {
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum TaskType {
     SCHEDULED_SCRIPT = 'SCHEDULED_SCRIPT',
@@ -91,7 +92,7 @@ declare namespace task {
   }
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum TaskStatus {
     PENDING = 'PENDING',
@@ -101,7 +102,7 @@ declare namespace task {
   }
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum MasterSelectionMode {
     CREATED_EARLIEST = 'CREATED_EARLIEST',
@@ -111,7 +112,7 @@ declare namespace task {
   }
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum DedupeMode {
     MERGE = 'MERGE',
@@ -121,7 +122,7 @@ declare namespace task {
   }
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum DedupeEntityType {
     CUSTOMER = 'CUSTOMER',
@@ -133,7 +134,7 @@ declare namespace task {
   }
 
   /**
-   * @enum
+   * @enum {string}
    */
   export enum MapReduceStage {
     GET_INPUT = 'GET_INPUT',
@@ -305,9 +306,11 @@ declare namespace task {
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
      * @name MapReduceScriptTask#params
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      */
-    params: { [key: string]: string }
+    params: {
+      [key: string]: string,
+    }
 
     /**
      * Submits the task and returns an unique ID.
@@ -588,12 +591,11 @@ declare namespace task {
      * Adds an inbound dependency (completion script).
      *
      * @param {Object} options
-     * @param {Object} options.taskType task.TaskType.SCHEDULED_SCRIPT | task.TaskType.MAP_REDUCE
-     * @param {Object} options.scriptId
-     * @param {Object} [options.deploymentId] optional, the script has to be deployed, a free deployment id can be detected automatically if available
-     * @param {Object} [options.params] a previosly created script parameter has to be set to async search csv result file id if the file is needed in the script, e.g. {'custscript_srch_res' : 'File.csv'}
+     * @param {ScheduledScriptTask | MapReduceScriptTask} options.dependentScript
      */
-    addInboundDependency(options): void
+    addInboundDependency(options: {
+      dependentScript: ScheduledScriptTask | MapReduceScriptTask,
+    }): void
   }
 
   /**
@@ -920,9 +922,11 @@ declare namespace task {
      * Key/value pairs which override static script parameter field values on the deployment.
      * Used to dynamically pass context to the script.
      * @name WorkflowTriggerTask#params
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      */
-    params: { [key: string]: string }
+    params: {
+      [key: string]: string,
+    }
 
     /**
      * Submits the task and returns an unique ID.

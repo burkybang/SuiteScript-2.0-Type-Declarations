@@ -5,9 +5,8 @@
  * @module N/file
  * @NApiVersion 2.x
  */
-
 interface file {
-  
+
   /**
    * Method used to create a new file in the NetSuite File Cabinet
    * @param {Object} options
@@ -31,7 +30,7 @@ interface file {
     inInactive?: boolean,
     isOnline?: boolean,
   }): file.File
-  
+
   /**
    * Method used to delete an existing file from the NetSuite File Cabinet
    * @param {Object} options
@@ -41,7 +40,7 @@ interface file {
   delete(options: {
     id: number | string,
   }): number | string
-  
+
   /**
    * Loads an existing file from the NetSuite File Cabinet
    * @param {Object} options
@@ -54,7 +53,12 @@ interface file {
 }
 
 declare namespace file {
-  
+
+  /**
+   * Holds the string values for the supported character set encoding
+   *
+   * @enum {string}
+   */
   export enum Encoding {
     UTF_8 = 'Unicode',
     WINDOWS_1252 = 'Western',
@@ -65,7 +69,10 @@ declare namespace file {
     GB2312 = 'Chinese Simplified',
     BIG5 = 'Chinese Tradition',
   }
-  
+
+  /**
+   * @enum {string}
+   */
   export enum Type {
     APPCACHE = 'APPCACHE',
     AUTOCAD = 'AUTOCAD',
@@ -109,93 +116,93 @@ declare namespace file {
     XSD = 'XSD',
     ZIP = 'ZIP',
   }
-  
+
   export interface File {
-    
+
     /**
      * @type {string}
      * @readonly
      */
     description: string
-    
+
     /**
      * @type {Encoding}
      * @readonly
      */
     encoding: Encoding
-    
+
     /**
      * @type {Type}
      * @readonly
      */
     fileType: Type
-    
+
     /**
      * @type {number|string}
      * @readonly
      */
     folder: number | string
-    
+
     /**
      * @type {number}
      * @readonly
      */
     id: number
-    
+
     /**
      * @type {boolean}
      * @readonly
      */
     isInactive: boolean
-    
+
     /**
      * @type {boolean}
      * @readonly
      */
     isOnline: boolean
-    
+
     /**
      * @type {boolean}
      * @readonly
      */
     isText: boolean
-    
+
     /**
      * @type {string}
      * @readonly
      */
     name: string
-    
+
     /**
      * @type {string}
      * @readonly
      */
     path: string
-    
+
     /**
      * @type {number}
      * @readonly
      */
     size: number
-    
+
     /**
      * @type {string}
      * @readonly
      */
     url: string
-    
+
     /**
      * Method used to return the content of the file
      * @return {string}
      */
     getContents(): string
-    
+
     /**
      * Method used to return the reader object for performing special read operations
      * @return {Reader}
      */
     getReader(): Reader
-    
+
     /**
      * Method used to return the iterator of segments delimited by a separator
      * @param {Object} options
@@ -205,7 +212,7 @@ declare namespace file {
     getSegments(options: {
       separator: string,
     })
-    
+
     /**
      * Method used to insert a line to the end of a file
      * @param {Object} options
@@ -215,24 +222,24 @@ declare namespace file {
     appendLine(options: {
       value: string,
     }): File
-    
+
     /**
      * Method used to reset the file contents
      * @return {void}
      */
     resetStream(): void
-    
+
     /**
      * Upload a new file or save an updated file to the NetSuite File Cabinet
      * @return {number} - The internal ID of the file
      */
     save(): number
   }
-  
+
   export namespace File.lines {
-    
+
     export interface iterator {
-      
+
       /**
        * Method used to pass the next line as an argument to a developer-defined function
        * @param {function(Object)} callback
@@ -241,7 +248,7 @@ declare namespace file {
       each(callback: (line: Object) => boolean): void
     }
   }
-  
+
   export interface Reader {
     /**
      * Returns string from current position to the next occurrence of options.tag
@@ -252,8 +259,8 @@ declare namespace file {
     readUntil(options: {
       tag: string,
     }): string
-    
-    
+
+
     /**
      * Returns the next options.number characters from the current position
      * @param {Object} options

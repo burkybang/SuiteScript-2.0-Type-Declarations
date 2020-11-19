@@ -1,13 +1,14 @@
 /// <reference path="./file.d.ts" />
 
 /**
- * SuiteScript email common module
+ * SuiteScript email module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552361.html}
  *
  * @module N/email
- * @suiteScriptVersion 2.x
+ * @NApiVersion 2.x
  */
 interface email {
-  
+
   /**
    * Send email with bounce back
    *
@@ -60,7 +61,7 @@ interface email {
     },
     isInternalOnly?: boolean,
   }): void
-  
+
   /**
    * Send email without bounce back
    *
@@ -113,7 +114,7 @@ interface email {
     },
     isInternalOnly?: boolean,
   }): void
-  
+
   /**
    * Send a single "on-demand" campaign email to a specified recipient and return a campaign response ID to track the email
    * @governance 10 units
@@ -132,5 +133,5 @@ interface email {
     campaignEventId: number | string,
     recipientId: number | string,
   }): number
-  
+
 }

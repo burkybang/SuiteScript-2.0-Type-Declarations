@@ -1,12 +1,12 @@
 /**
- * SuiteScript transaction common module
+ * SuiteScript transaction module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413162576.html}
  *
  * @module N/transaction
- * @suiteScriptVersion 2.x
- *
+ * @NApiVersion 2.x
  */
 interface transaction {
-  
+
   /**
    * Method used to void a transaction record object and return an id that indicates the type of void performed
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692.html}
@@ -22,11 +22,14 @@ interface transaction {
    *
    * @since 2015.2
    */
-  void(options: { type: transaction.Type | string, id: number | string }): number
+  void(options: {
+    type: transaction.Type | string,
+    id: number | string,
+  }): number
 }
 
 declare namespace transaction {
-  
+
   /*export interface void {
   
     /!**
@@ -46,13 +49,13 @@ declare namespace transaction {
      *!/
     promise(): Promise<number>
   }*/
-  
-  
+
+
   /**
    * Enumeration that holds the string values for supported transaction record types
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897.html}
    *
-   * @enum
+   * @enum {string}
    * @readonly
    *
    * @since 2015.2

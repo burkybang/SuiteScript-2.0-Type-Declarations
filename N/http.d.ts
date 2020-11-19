@@ -2,14 +2,14 @@
 /// <reference path="./ui/serverWidget.d.ts" />
 
 /**
- * SuiteScript module
+ * SuiteScript http module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296361104.html}
  *
  * @module N/http
- * @suiteScriptVersion 2.x
- *
+ * @NApiVersion 2.x
  */
 interface http {
-  
+
   /**
    * Send a HTTP GET request and return server response.
    *
@@ -18,7 +18,7 @@ interface http {
    *
    * @param {Object} options
    * @param {string} options.url the HTTP URL being requested
-   * @param {Object.<string, string>} [options.headers] request HTTP headers
+   * @param {Object<string, string>} [options.headers] request HTTP headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
@@ -29,8 +29,13 @@ interface http {
   // function getHttp() {}
   // getHttp.prototype.promise = function() {};
   // http.prototype['get'] = new getHttp();
-  get(options: { url: string, headers?: { [key: string]: string } }): http.ClientResponse
-  
+  get(options: {
+    url: string,
+    headers?: {
+      [key: string]: string,
+    },
+  }): http.ClientResponse
+
   /**
    * Send a HTTP POST request and return server response.
    *
@@ -40,7 +45,7 @@ interface http {
    * @param {Object} options
    * @param {string} options.url the HTTP URL being requested
    * @param {string|Object} config.body POST data
-   * @param {Object.<string, string>} [options.headers] request HTTP headers
+   * @param {Object<string, string>} [options.headers] request HTTP headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
@@ -51,8 +56,14 @@ interface http {
   // function postHttp() {}
   // postHttp.prototype.promise = function() {};
   // http.prototype.post = new postHttp();
-  post(options: { url: string, body: string | Object, headers?: { [key: string]: string } }): http.ClientResponse
-  
+  post(options: {
+    url: string,
+    body: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): http.ClientResponse
+
   /**
    * Send a HTTP PUT request and return server response.
    *
@@ -62,7 +73,7 @@ interface http {
    * @param {Object} options
    * @param {string} options.url the HTTP URL being requested
    * @param {string|Object} options.body PUT data
-   * @param {Object.<string, string>} [options.headers] request HTTP headers
+   * @param {Object<string, string>} [options.headers] request HTTP headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
@@ -73,8 +84,14 @@ interface http {
   // function putHttp() {}
   // putHttp.prototype.promise = function() {};
   // http.prototype.put = new putHttp();
-  put(options: { url: string, body: string | Object, headers?: { [key: string]: string } }): http.ClientResponse
-  
+  put(options: {
+    url: string,
+    body: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): http.ClientResponse
+
   /**
    * Send a HTTP DELETE request and return server response.
    *
@@ -83,7 +100,7 @@ interface http {
    *
    * @param {Object} options
    * @param {string} options.url the HTTP URL being requested
-   * @param {Object.<string, string>} [options.headers] request HTTP headers
+   * @param {Object<string, string>} [options.headers] request HTTP headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
@@ -94,8 +111,13 @@ interface http {
   // function deleteHttp() {}
   // deleteHttp.prototype.promise = function() {};
   // http.prototype['delete'] = new deleteHttp();
-  delete(options: { url: string, headers?: { [key: string]: string } }): http.ClientResponse
-  
+  delete(options: {
+    url: string,
+    headers?: {
+      [key: string]: string,
+    },
+  }): http.ClientResponse
+
   /**
    * Send a HTTP request and return server response.
    *
@@ -106,7 +128,7 @@ interface http {
    * @param {http.Method} options.method HTTP method of the request
    * @param {string} options.url the HTTP URL being requested
    * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
-   * @param {Object.<string, string>} [options.headers] request HTTP headers
+   * @param {Object<string, string>} [options.headers] request HTTP headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
@@ -117,13 +139,20 @@ interface http {
   // function requestHttp() {}
   // requestHttp.prototype.promise = function() {};
   // http.prototype.request = new requestHttp();
-  request(options: { method:http.Method, url: string, body?: string | Object, headers?: { [key: string]: string } }): http.ClientResponse
+  request(options: {
+    method: http.Method,
+    url: string,
+    body?: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): http.ClientResponse
 }
 
 declare namespace http {
   /**
-   * Enum describing available HTTP methods.
-   * @enum
+   * Enum describing available HTTP methods
+   * @enum {string}
    * @readonly
    */
   export enum Method {
@@ -133,10 +162,10 @@ declare namespace http {
     DELETE = 'DELETE',
     HEAD = 'HEAD',
   }
-  
+
   /**
    * Enum describing available commerce API cache durations.
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum CacheDuration {
@@ -145,10 +174,10 @@ declare namespace http {
     MEDIUM = 'MEDIUM',
     LONG = 'LONG',
   }
-  
+
   /**
    * Enum describing available redirect types
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum RedirectType {
@@ -158,7 +187,7 @@ declare namespace http {
     MEDIA_ITEM = 'MEDIAITEM',
     TASK_LINK = 'TASKLINK',
   }
-  
+
   /**
    * Return a new instance of ClientResponse used to store the result of a HTTP request.
    *
@@ -170,7 +199,7 @@ declare namespace http {
    * @since 2015.2
    */
   export interface ClientResponse {
-    
+
     /**
      * Response code.
      * @name ClientResponse#code
@@ -179,16 +208,18 @@ declare namespace http {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     code: number
-    
+
     /**
      * Response headers.
      * @name ClientResponse#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Response body.
      * @name ClientResponse#body
@@ -197,14 +228,14 @@ declare namespace http {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     body: string
-    
+
     /**
      * Returns the object type name (http.ClientResponse)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -212,7 +243,7 @@ declare namespace http {
      */
     toJSON(): Object
   }
-  
+
   /**
    * Return a new instance of ServerRequest object that carries incoming HTTP request info.
    *
@@ -223,16 +254,18 @@ declare namespace http {
    * @since 2015.2
    */
   export interface ServerRequest {
-    
+
     /**
      * Server request headers.
      * @name ServerRequest#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Server request clientIpAddress.
      * @name ServerRequest#clientIpAddress
@@ -241,25 +274,29 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     clientIpAddress: string
-    
+
     /**
      * Server request parameters.
      * @name ServerRequest#parameters
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    parameters: { [key: string]: string }
-    
+    parameters: {
+      [key: string]: string,
+    }
+
     /**
      * Server request files.
      * @name ServerRequest#files
-     * @type {Object.<string, *>}
+     * @type {Object<string, *>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    files: { [key: string]: any }
-    
+    files: {
+      [key: string]: any
+    }
+
     /**
      * Server request body.
      * @name ServerRequest#body
@@ -268,7 +305,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     body: string
-    
+
     /**
      * Server request HTTP method.
      * @name ServerRequest#method
@@ -277,7 +314,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     method: Method
-    
+
     /**
      * Server request URL.
      * @name ServerRequest#url
@@ -286,7 +323,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     url: string
-    
+
     /**
      * Returns the number of lines in a sublist.
      * @param {Object} options
@@ -294,8 +331,10 @@ declare namespace http {
      * @return {number} the integer value of the number of line items in the sublist
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getLineCount(options: { group: string }): number
-    
+    getLineCount(options: {
+      group: string,
+    }): number
+
     /**
      * Returns the value of a sublist line item.
      * @param {Object} options
@@ -305,15 +344,19 @@ declare namespace http {
      * @return {string} the string value of the line item
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getSublistValue(options: { group: string, name: string, line: number }): string
-    
+    getSublistValue(options: {
+      group: string,
+      name: string,
+      line: number,
+    }): string
+
     /**
      * Returns the object type name (http.ServerRequest)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -321,7 +364,7 @@ declare namespace http {
      */
     toJSON(): Object
   }
-  
+
   /**
    * Return a new instance of ServerResponse object that carries the response to an incoming HTTP request.
    *
@@ -332,17 +375,19 @@ declare namespace http {
    * @since 2015.2
    */
   export interface ServerResponse {
-    
+
     /**
      * Server response headers.
      * @name ServerResponse#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @return {Object} key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Sets the value of a response header.
      * @param {Object} options
@@ -352,8 +397,11 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_HEADER if the header name or value is invalid
      */
-    setHeader(options: { name: string, value: string }): void
-    
+    setHeader(options: {
+      name: string,
+      value: string,
+    }): void
+
     /**
      * Adds a header to the response. If this header has already been set, this will add another line for that header.
      * @param {Object} options
@@ -363,8 +411,11 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_HEADER if the header name or value is invalid
      */
-    addHeader(options: { name: string, value: string }): void
-    
+    addHeader(options: {
+      name: string,
+      value: string,
+    }): void
+
     /**
      * Sets the redirect URL by resolving to a NetSuite resource. Note that all parameters must be prefixed with custparam.
      * @param {Object} options
@@ -372,7 +423,7 @@ declare namespace http {
      * @param {string} options.identifier the primary id for this resource
      * @param {string} [options.id] the secondary id for this resource
      * @param {boolean} [options.editMode] for RECORD calls, this determines whether to return a URL for the record in edit mode or view mode
-     * @param {Object.<string, string>} [options.parameters] additional URL parameters as name/value pairs
+     * @param {Object<string, string>} [options.parameters] additional URL parameters as name/value pairs
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL_CATEGORY if type is none of RECORD, TASKLINK or SUITELET
@@ -380,8 +431,16 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if type is RECORD and an invalid record type is passed in the options.identifier parameter
      * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if type is SUITELET and an invalid script ID and deployment ID are passed in the options.identifier and options.id parameters
      */
-    sendRedirect(options: { type: string, identifier: string, id?: string, editMode?: boolean, parameters?: { [key: string]: string } }): void
-    
+    sendRedirect(options: {
+      type: string,
+      identifier: string,
+      id?: string,
+      editMode?: boolean,
+      parameters?: {
+        [key: string]: string,
+      },
+    }): void
+
     /**
      * Write information (text/xml/html) to the response.
      * @param {Object} options
@@ -390,8 +449,10 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
      */
-    write(options: { output: string }): void
-    
+    write(options: {
+      output: string,
+    }): void
+
     /**
      * Write line information (text/xml/html) to the response.
      * @param {Object} options
@@ -400,8 +461,10 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
      */
-    writeLine(options: { output: string }): void
-    
+    writeLine(options: {
+      output: string,
+    }): void
+
     /**
      * Generates a page using a page element object.
      * @param {Object} options
@@ -409,8 +472,10 @@ declare namespace http {
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    writePage(options: { pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List }): void
-    
+    writePage(options: {
+      pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
+    }): void
+
     /**
      * Write a file to the response.
      * @param {Object} options
@@ -420,8 +485,11 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a file.File object
      */
-    writeFile(options: { file: file.File, isInline?: boolean }): void
-    
+    writeFile(options: {
+      file: file.File,
+      isInline?: boolean,
+    }): void
+
     /**
      * Returns the value for a header returned in the response.
      * @param {Object} options
@@ -429,8 +497,10 @@ declare namespace http {
      * @return {string|string[]} the value of the header; if multiple values are assigned to the header name, they are returned as an array
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getHeader(options: { name: string }): string | string[]
-    
+    getHeader(options: {
+      name: string,
+    }): string | string[]
+
     /**
      * Generates and renders a PDF directly to the response.
      * @param {Object} options
@@ -439,8 +509,10 @@ declare namespace http {
      * @governance 10 units
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    renderPdf(options: { xmlString: string }): void
-    
+    renderPdf(options: {
+      xmlString: string,
+    }): void
+
     /**
      * Sets CDN caching for a period of time.
      * @param {Object} options
@@ -449,13 +521,13 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
     setCdnCacheable(options): void
-    
+
     /**
      * Returns the object type name (http.ServerResponse)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}

@@ -1,12 +1,11 @@
 /**
- * SuiteScript Message Module (Client Side)
+ * SuiteScript message module (Client Side)
  *
  * @module N/ui/message
- * @suiteScriptVersion 2.x
- *
+ * @NApiVersion 2.x
  */
 interface message {
-  
+
   /**
    * Creates a message which can be shown/hidden near the top of the page.
    *
@@ -21,14 +20,19 @@ interface message {
    *
    * @since 2016.1
    */
-  create(options: { type: message.Type, title?: string, message?: string, duratin?: number | string }): message.Message
+  create(options: {
+    type: message.Type,
+    title?: string,
+    message?: string,
+    duratin?: number | string,
+  }): message.Message
 }
 
 declare namespace message {
-  
+
   /**
    * Enum for message types
-   * @enum
+   * @enum {number}
    * @readonly
    */
   export enum Type {
@@ -37,7 +41,7 @@ declare namespace message {
     WARNING,
     ERROR,
   }
-  
+
   /**
    * Return a new instance of Message, used to show/hide messages
    * @class
@@ -48,7 +52,7 @@ declare namespace message {
    * @since 2015.2
    */
   export interface Message {
-    
+
     /**
      * Shows the message.
      *
@@ -62,8 +66,10 @@ declare namespace message {
      *
      * @since 2016.1
      */
-    show(options?: { duration?: number | string }): void
-    
+    show(options?: {
+      duration?: number | string,
+    }): void
+
     /**
      * Hides the message
      *
@@ -74,14 +80,14 @@ declare namespace message {
      * @since 2016.1
      */
     hide(): void
-    
+
     /**
      * Returns the object type name (message.Message)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *

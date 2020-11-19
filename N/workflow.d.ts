@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 interface workflow {
-  
+
   /**
    * Triggers a workflow on a record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916.html}
@@ -17,13 +17,20 @@ interface workflow {
    * @param {string} options.recordType Record type ID of the workflow base record
    * @param {number|string} options.recordId Internal ID of the base record
    * @param {number|string} options.workflowId Internal ID or script ID of the workflow definition
-   * @param {Object.<string, *>} [options.defaultValues] Object containing key/value pairs providing default values for field defined on the specified workflow
+   * @param {Object<string, *>} [options.defaultValues] Object containing key/value pairs providing default values for field defined on the specified workflow
    * @return {number} Internal ID of workflow instance that was initiated
    *
    * @since 2015.2
    */
-  initiate(options: { recordType: string, recordId: number | string, workflowId: number | string, defaultValues?: { [key: string]: any } }): number
-  
+  initiate(options: {
+    recordType: string,
+    recordId: number | string,
+    workflowId: number | string,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): number
+
   /**
    * Triggers a workflow on a record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270.html}
@@ -41,5 +48,11 @@ interface workflow {
    *
    * @since 2015.2
    */
-  trigger(options: { recordId: number | string, workflowId: number | string, workflowInstanceId?: number | string, actionId?: number | string, stateId?: number | string }): number
+  trigger(options: {
+    recordId: number | string,
+    workflowId: number | string,
+    workflowInstanceId?: number | string,
+    actionId?: number | string,
+    stateId?: number | string,
+  }): number
 }

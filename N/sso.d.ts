@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 interface sso {
-  
+
   /**
    * Generate a new SuiteSignOn token for a user
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4425177089.html}

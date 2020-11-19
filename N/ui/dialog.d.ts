@@ -6,9 +6,9 @@
  * @suiteScriptVersion 2.x
  */
 interface dialog {
-  
+
   /**
-   * Creates an Alert Dialog with an OK Button.
+   * Creates an Alert Dialog with an OK Button
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851.html}
    *
    * @restriction Client SuiteScript only
@@ -22,10 +22,13 @@ interface dialog {
    *                   OK returns true.
    * @since 2016.1
    */
-  alert(options?: { title?: string, message?: string }): Promise<true>
-  
+  alert(options?: {
+    title?: string,
+    message?: string,
+  }): Promise<true>
+
   /**
-   * Creates an Confirm Dialog with an OK and Cancel Button.
+   * Creates an Confirm Dialog with an OK and Cancel Button
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943.html}
    *
    * @restriction Client SuiteScript only
@@ -39,10 +42,13 @@ interface dialog {
    *           OK returns true and Cancel returns false.
    * @since 2016.1
    */
-  confirm(options?: { title?: string, message?: string }): Promise<boolean>
-  
+  confirm(options?: {
+    title?: string,
+    message?: string,
+  }): Promise<boolean>
+
   /**
-   * Creates an Dialog with the specified buttons.
+   * Creates an Dialog with the specified buttons
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497804898.html}
    *
    * @restriction Client SuiteScript only
@@ -61,5 +67,12 @@ interface dialog {
    * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
    * @throws {SuiteScriptError} BUTTONS_MUST_INCLUDE_BOTH_A_LABEL_AND_VALUE if options.buttons is specified and one or more items do not have a label and/or value.
    */
-  create(options?: { title?: string, message?: string, buttons?: { label: string, value: any }[] }): Promise<any>
+  create<T>(options?: {
+    title?: string,
+    message?: string,
+    buttons?: {
+      label: string,
+      value: T,
+    }[],
+  }): Promise<T>
 }

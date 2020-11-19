@@ -1,14 +1,14 @@
 /// <reference path="./record.d.ts" />
 
 /**
- * SuiteScript config common module
+ * SuiteScript config module
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
  *
  * @module N/config
  * @NApiVersion 2.x
  */
 interface config {
-  
+
   /**
    * Load a configuration object with a specific type
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439.html}
@@ -25,18 +25,18 @@ interface config {
    *
    * @since 2015.2
    */
-  load(options: {type: config.Type, isDynamic?: boolean}): record.Record
+  load(options: { type: config.Type, isDynamic?: boolean }): record.Record
 }
 
 /**
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
  */
 declare namespace config {
-  
+
   /**
    * Enum configuration type values.
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632.html}
-   * 
+   *
    * @readonly
    * @enum {string}
    * @since 2015.2

@@ -5,7 +5,6 @@
  *
  * @module N/sassCompiler
  * @NApiVersion 2.x
- *
  */
 function sassCompiler() {
 }
@@ -21,46 +20,46 @@ function sassCompiler() {
  * @since 2018.1
  */
 function Output() {
-  
-  /**
-   * Total amount of source files.
-   * @name Output#sourceFileCount
-   * @type {number}
-   * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
-   */
-  this.prototype.sourceFileCount = undefined;
-  /**
-   * Total size of source files in bytes.
-   * @name Output#sourceSize
-   * @type {number}
-   * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
-   */
-  this.prototype.sourceSize = undefined;
-  /**
-   * Total duration of the compilation.
-   * @name Output#compileTime
-   * @type {number}
-   * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
-   */
-  this.prototype.compileTime = undefined;
-  /**
-   * Returns the object type name (sassCompiler.Output)
-   *
-   * @return {string}
-   */
-  this.prototype.toString = function () {
-  };
-  
-  /**
-   * JSON.stringify() implementation.
-   *
-   * @return {{type: string, sourceFileCount: *, sourceSize: *, compileTime: *}}
-   */
-  this.prototype.toJSON = function () {
-  };
+
+    /**
+     * Total amount of source files.
+     * @name Output#sourceFileCount
+     * @type {number}
+     * @readonly
+     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    this.prototype.sourceFileCount = undefined;
+    /**
+     * Total size of source files in bytes.
+     * @name Output#sourceSize
+     * @type {number}
+     * @readonly
+     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    this.prototype.sourceSize = undefined;
+    /**
+     * Total duration of the compilation.
+     * @name Output#compileTime
+     * @type {number}
+     * @readonly
+     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    this.prototype.compileTime = undefined;
+    /**
+     * Returns the object type name (sassCompiler.Output)
+     *
+     * @return {string}
+     */
+    this.prototype.toString = function () {
+    };
+
+    /**
+     * JSON.stringify() implementation.
+     *
+     * @return {{type: string, sourceFileCount: *, sourceSize: *, compileTime: *}}
+     */
+    this.prototype.toJSON = function () {
+    };
 }
 
 /**

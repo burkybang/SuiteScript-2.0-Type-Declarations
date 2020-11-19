@@ -1,16 +1,16 @@
-/// <reference path="./ui/serverWidget.d.ts" />
 /// <reference path="./file.d.ts" />
+/// <reference path="./ui/serverWidget.d.ts" />
 /// <reference path="./crypto.d.ts" />
 
 /**
- * SuiteScript https module (Client Side)
- * @private Ignore for JSDoc stub generation
+ * SuiteScript https module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418229131.html}
+ *
  * @module N/https
  * @NApiVersion 2.x
- *
  */
 interface https {
-  
+
   /**
    * Send a HTTPS GET request and return server response.
    *
@@ -19,7 +19,7 @@ interface https {
    *
    * @param {Object} options
    * @param {string} options.url the HTTPS URL being requested
-   * @param {Object.<string, string>} [options.headers] request HTTPS headers
+   * @param {Object<string, string>} [options.headers] request HTTPS headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -30,8 +30,13 @@ interface https {
   // function getHttps() {}
   // getHttps.prototype.promise = function() {};
   // https.prototype['get'] = new getHttps();
-  get(options: { url: string, headers?: { [key: string]: string } }): https.ClientResponse
-  
+  get(options: {
+    url: string,
+    headers?: {
+      [key: string]: string,
+    },
+  }): https.ClientResponse
+
   /**
    * Send a HTTPS POST request and return server response.
    *
@@ -41,7 +46,7 @@ interface https {
    * @param {Object} options
    * @param {string} options.url the HTTPS URL being requested
    * @param {string|Object} options.body POST data
-   * @param {Object.<string, string>} [options.headers] request HTTPS headers
+   * @param {Object<string, string>} [options.headers] request HTTPS headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -52,8 +57,14 @@ interface https {
   // function postHttps() {}
   // postHttps.prototype.promise = function() {};
   // post = new postHttps();
-  post(options: { url: string, body: string | Object, headers?: { [key: string]: string } }): https.ClientResponse
-  
+  post(options: {
+    url: string,
+    body: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): https.ClientResponse
+
   /**
    * Send a HTTPS PUT request and return server response.
    *
@@ -63,7 +74,7 @@ interface https {
    * @param {Object} options
    * @param {string} options.url the HTTPS URL being requested
    * @param {string|Object} options.body PUT data
-   * @param {Object.<string, string>} [options.headers] request HTTPS headers
+   * @param {Object<string, string>} [options.headers] request HTTPS headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -74,8 +85,14 @@ interface https {
   // function putHttps() {}
   // putHttps.prototype.promise = function() {};
   // put = new putHttps();
-  put(options: { url: string, body: string | Object, headers?: { [key: string]: string } }): https.ClientResponse
-  
+  put(options: {
+    url: string,
+    body: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): https.ClientResponse
+
   /**
    * Send a HTTPS DELETE request and return server response.
    *
@@ -84,7 +101,7 @@ interface https {
    *
    * @param {Object} options
    * @param {string} options.url the HTTPS URL being requested
-   * @param {Object.<string, string>} [options.headers] request HTTPS headers
+   * @param {Object<string, string>} [options.headers] request HTTPS headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -95,8 +112,13 @@ interface https {
   // function deleteHttps() {}
   // deleteHttps.prototype.promise = function() {};
   // https.prototype['delete'] = new deleteHttps();
-  delete(options: { url: string, headers?: { [key: string]: string } }): https.ClientResponse
-  
+  delete(options: {
+    url: string,
+    headers?: {
+      [key: string]: string,
+    },
+  }): https.ClientResponse
+
   /**
    * Send a HTTPS request and return server response.
    *
@@ -107,7 +129,7 @@ interface https {
    * @param {https.Method} options.method HTTPS method of the request
    * @param {string} options.url the HTTPS URL being requested
    * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
-   * @param {Object.<string, string>} [options.headers] request HTTPS headers
+   * @param {Object<string, string>} [options.headers] request HTTPS headers
    * @return {ClientResponse}
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -118,8 +140,15 @@ interface https {
   // function requestHttps() {}
   // requestHttps.prototype.promise = function() {};
   // request = new requestHttps();
-  request(options: { method: https.Method, url: string, body?: string | Object, headers?: { [key: string]: string } }): https.ClientResponse
-  
+  request(options: {
+    method: https.Method,
+    url: string,
+    body?: string | Object,
+    headers?: {
+      [key: string]: string,
+    },
+  }): https.ClientResponse
+
   /**
    *
    * @param {Object} options
@@ -129,8 +158,11 @@ interface https {
    *
    * .promise
    */
-  createSecureKey(options: { guid: string, encoding?: https.Encoding }): crypto_.SecretKey
-  
+  createSecureKey(options: {
+    guid: string,
+    encoding?: https.Encoding,
+  }): crypto_.SecretKey
+
   /**
    *
    * @param {Object} options
@@ -140,14 +172,17 @@ interface https {
    *
    * .promise
    */
-  createSecureString(options: { input: string, inputEncoding?: https.Encoding }): https.SecureString
+  createSecureString(options: {
+    input: string,
+    inputEncoding?: https.Encoding,
+  }): https.SecureString
 }
 
 declare namespace https {
-  
+
   /**
    * Enum describing available HTTPS methods.
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum Method {
@@ -157,10 +192,10 @@ declare namespace https {
     DELETE = 'DELETE',
     HEAD = 'HEAD',
   }
-  
+
   /**
    * Enum describing available commerce API cache durations.
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum CacheDuration {
@@ -169,10 +204,10 @@ declare namespace https {
     MEDIUM = 'MEDIUM',
     LONG = 'LONG',
   }
-  
+
   /**
    * Enum describing available redirect types
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum RedirectType {
@@ -182,10 +217,10 @@ declare namespace https {
     MEDIA_ITEM = 'MEDIAITEM',
     TASK_LINK = 'TASKLINK',
   }
-  
+
   /**
    * Enum describing available encodings
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum Encoding {
@@ -196,10 +231,10 @@ declare namespace https {
     BASE_64_URL_SAFE = 'BASE_64_URL_SAFE',
     HEX = 'HEX',
   }
-  
+
   /**
    * Enum describing available hashing algorithms
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum HashAlg {
@@ -208,7 +243,7 @@ declare namespace https {
     SHA512 = 'SHA512',
     MD5 = 'MD5',
   }
-  
+
   /**
    * Return a new instance of ClientResponse used to store the result of a HTTPS request.
    *
@@ -220,7 +255,7 @@ declare namespace https {
    * @since 2015.2
    */
   export interface ClientResponse {
-    
+
     /**
      * Response code.
      * @name ClientResponse#code
@@ -229,16 +264,18 @@ declare namespace https {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     code: number
-    
+
     /**
      * Response headers.
      * @name ClientResponse#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Response body.
      * @name ClientResponse#body
@@ -247,14 +284,14 @@ declare namespace https {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     body: string
-    
+
     /**
      * Returns the object type name (https.ClientResponse)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -262,7 +299,7 @@ declare namespace https {
      */
     toJSON(): Object
   }
-  
+
   /**
    * Return a new instance of ServerRequest object that carries incoming HTTPS request info.
    *
@@ -273,16 +310,18 @@ declare namespace https {
    * @since 2015.2
    */
   export interface ServerRequest {
-    
+
     /**
      * Server request headers.
      * @name ServerRequest#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Server request clientIpAddress.
      * @name ServerRequest#clientIpAddress
@@ -291,25 +330,29 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     clientIpAddress: string
-    
+
     /**
      * Server request parameters.
      * @name ServerRequest#parameters
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    parameters: { [key: string]: string }
-    
+    parameters: {
+      [key: string]: string,
+    }
+
     /**
      * Server request files.
      * @name ServerRequest#files
-     * @type {Object.<string, *>}
+     * @type {Object<string, *>}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    files: { [key: string]: any }
-    
+    files: {
+      [key: string]: any,
+    }
+
     /**
      * Server request body.
      * @name ServerRequest#body
@@ -318,7 +361,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     body: string
-    
+
     /**
      * Server request HTTPS method.
      * @name ServerRequest#method
@@ -327,7 +370,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     method: Method
-    
+
     /**
      * Server request URL.
      * @name ServerRequest#url
@@ -336,7 +379,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     url: string
-    
+
     /**
      * Returns the number of lines in a sublist.
      * @param {Object} options
@@ -344,8 +387,10 @@ declare namespace https {
      * @return {number} the integer value of the number of line items in the sublist
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getLineCount(options: { group: string }): number
-    
+    getLineCount(options: {
+      group: string,
+    }): number
+
     /**
      * Returns the value of a sublist line item.
      * @param {Object} options
@@ -355,15 +400,19 @@ declare namespace https {
      * @return {string} the string value of the line item
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getSublistValue(options: { group: string, name: string, line: number }): string
-    
+    getSublistValue(options: {
+      group: string,
+      name: string,
+      line: number,
+    }): string
+
     /**
      * Returns the object type name (https.ServerRequest)
      *
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      *
@@ -371,7 +420,7 @@ declare namespace https {
      */
     toJSON(): Object
   }
-  
+
   /**
    * Return a new instance of ServerResponse object that carries the response to an incoming HTTPS request.
    *
@@ -382,17 +431,19 @@ declare namespace https {
    * @since 2015.2
    */
   export interface ServerResponse {
-    
+
     /**
      * Server response headers.
      * @name ServerResponse#headers
-     * @type {Object.<string, string>}
+     * @type {Object<string, string>}
      * @return {Object} key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    headers: { [key: string]: string }
-    
+    headers: {
+      [key: string]: string,
+    }
+
     /**
      * Sets the value of a response header.
      * @param {Object} options
@@ -402,8 +453,11 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_HEADER if the header name or value is invalid
      */
-    setHeader(options: { name: string, value: string }): void
-    
+    setHeader(options: {
+      name: string,
+      value: string,
+    }): void
+
     /**
      * Adds a header to the response. If this header has already been set, this will add another line for that header.
      * @param {Object} options
@@ -413,8 +467,11 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_HEADER if the header name or value is invalid
      */
-    addHeader(options: { name: string, value: string }): void
-    
+    addHeader(options: {
+      name: string,
+      value: string,
+    }): void
+
     /**
      * Sets the redirect URL by resolving to a NetSuite resource. Note that all parameters must be prefixed with custparam.
      * @param {Object} options
@@ -422,7 +479,7 @@ declare namespace https {
      * @param {string} options.identifier the primary id for this resource
      * @param {string} [options.id] the secondary id for this resource
      * @param {boolean} [options.editMode] for RECORD calls, this determines whether to return a URL for the record in edit mode or view mode
-     * @param {Object.<string, string>} [options.parameters] additional URL parameters as name/value pairs
+     * @param {Object<string, string>} [options.parameters] additional URL parameters as name/value pairs
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL_CATEGORY if type is none of RECORD, TASKLINK or SUITELET
@@ -430,8 +487,16 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if type is RECORD and an invalid record type is passed in the options.identifier parameter
      * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if type is SUITELET and an invalid script ID and deployment ID are passed in the options.identifier and options.id parameters
      */
-    sendRedirect(options: { type: string, identifier: string, id?: string, editMode?: boolean, parameters?: { [key: string]: string } }): void
-    
+    sendRedirect(options: {
+      type: string,
+      identifier: string,
+      id?: string,
+      editMode?: boolean,
+      parameters?: {
+        [key: string]: string,
+      }
+    }): void
+
     /**
      * Write information (text/xml/html) to the response.
      * @param {Object} options
@@ -440,8 +505,10 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
      */
-    write(options: { output: string }): void
-    
+    write(options: {
+      output: string,
+    }): void
+
     /**
      * Write line information (text/xml/html) to the response.
      * @param {Object} options
@@ -450,8 +517,10 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
      */
-    writeLine(options: { output: string }): void
-    
+    writeLine(options: {
+      output: string,
+    }): void
+
     /**
      * Generates a page using a page element object.
      * @param {Object} options
@@ -459,8 +528,10 @@ declare namespace https {
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    writePage(options: { pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List }): void
-    
+    writePage(options: {
+      pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
+    }): void
+
     /**
      * Write a file to the response.
      * @param {Object} options
@@ -470,8 +541,11 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a file.File object
      */
-    writeFile(options: { file: file.File, isInline?: boolean }): void
-    
+    writeFile(options: {
+      file: file.File,
+      isInline?: boolean,
+    }): void
+
     /**
      * Returns the value for a header returned in the response.
      * @param {Object} options
@@ -479,8 +553,10 @@ declare namespace https {
      * @return {string|string[]} the value of the header; if multiple values are assigned to the header name, they are returned as an array
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getHeader(options: { name: string }): string | string[]
-    
+    getHeader(options: {
+      name: string,
+    }): string | string[]
+
     /**
      * Generates and renders a PDF directly to the response.
      * @param {Object} options
@@ -489,8 +565,10 @@ declare namespace https {
      * @governance 10 units
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    renderPdf(options: { xmlString: string }): void
-    
+    renderPdf(options: {
+      xmlString: string,
+    }): void
+
     /**
      * Sets CDN caching for a period of time.
      * @param {Object} options
@@ -499,57 +577,69 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
     setCdnCacheable(options): void
-    
+
     /**
      * Returns the object type name (https.ServerResponse)
      * @return {string}
      */
     toString(): string
-    
+
     /**
      * JSON.stringify() implementation.
      * @return {Object}
      */
     toJSON(): Object
   }
-  
+
   export interface SecureString {
-    
+
     /**
      * @param {Object} options
      * @param {https.SecureString} options.secureString
      * @return {https.SecureString}
      */
-    appendSecureString(options: { secureString: https.SecureString }): https.SecureString
-    
+    appendSecureString(options: {
+      secureString: https.SecureString,
+    }): https.SecureString
+
     /**
      * @param {Object} options
      * @param {string} options.input
      * @param {https.Encoding} options.inputEncoding
      * @return {https.SecureString}
      */
-    appendString(options: { input: string, inputEncoding: https.Encoding }): https.SecureString
-    
+    appendString(options: {
+      input: string,
+      inputEncoding: https.Encoding,
+    }): https.SecureString
+
     /**
      * @param {Object} options
      * @param {https.Encoding} options.toEncoding
      * @return {https.SecureString}
      */
-    convertEncoding(options: { toEncoding: https.Encoding }): https.SecureString
-    
+    convertEncoding(options: {
+      toEncoding: https.Encoding,
+    }): https.SecureString
+
     /**
      * @param {Object} options
      * @param {https.HashAlg} options.algorithm
      * @return {https.SecureString}
      */
-    hash(options: { algorithm: https.HashAlg }): https.SecureString
-    
+    hash(options: {
+      algorithm: https.HashAlg,
+    }): https.SecureString
+
     /**
      * @param {Object} options
      * @param {https.HashAlg} options.algorithm
      * @param {crypto_.SecretKey} options.key
      * @return {https.SecureString}
      */
-    hmac(options: { algorithm: https.HashAlg, key: crypto_.SecretKey }): https.SecureString
+    hmac(options: {
+      algorithm: https.HashAlg,
+      key: crypto_.SecretKey,
+    }): https.SecureString
   }
 }

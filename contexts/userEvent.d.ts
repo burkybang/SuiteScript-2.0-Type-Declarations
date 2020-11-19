@@ -55,7 +55,7 @@ type BeforeLoadContext = {
 declare namespace BeforeLoadContext {
   
   /**
-   * @enum
+   * @enum {string}
    */
   export enum UserEventType {
     COPY = 'copy',
@@ -122,7 +122,7 @@ type BeforeSubmitContext = {
 declare namespace BeforeSubmitContext {
   
   /**
-   * @enum
+   * @enum {string}
    */
   export enum UserEventType {
     COPY = 'copy',
@@ -190,7 +190,7 @@ type AfterSubmitContext = {
 declare namespace AfterSubmitContext {
   
   /**
-   * @enum
+   * @enum {string}
    */
   export enum UserEventType {
     COPY = 'copy',

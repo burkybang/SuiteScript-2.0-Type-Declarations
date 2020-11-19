@@ -1,49 +1,57 @@
 /**
  * SuiteScript crypto module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358549582.html}
  *
  * @module N/crypto
  * @NApiVersion 2.x
  */
 interface crypto_ {
-  
+
   /**
-   *
    * @param options
    * @param {string} options.guid
    * @param {crypto_.Encoding} [options.encoding]
    * @return {crypto_.SecretKey}
    */
-  createSecretKey(options: { guid: string, encoding?: crypto_.Encoding }): crypto_.SecretKey
-  
+  createSecretKey(options: {
+    guid: string,
+    encoding?: crypto_.Encoding,
+  }): crypto_.SecretKey
+
   /**
-   *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
    * @return {crypto_.Hash}
    */
-  createHash(options: { algorithm: crypto_.HashAlg }): crypto_.Hash
-  
+  createHash(options: {
+    algorithm: crypto_.HashAlg,
+  }): crypto_.Hash
+
   /**
-   *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
    * @param {crypto_.SecretKey} options.key
    * @return {crypto_.Hmac}
    */
-  createHmac(options: { algorithm: crypto_.HashAlg, key: crypto_.SecretKey }): crypto_.Hmac
-  
+  createHmac(options: {
+    algorithm: crypto_.HashAlg,
+    key: crypto_.SecretKey,
+  }): crypto_.Hmac
+
   /**
-   *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
    * @param {crypto_.SecretKey} options.key
    * @param {crypto_.Padding} options.padding
    * @return {crypto_.Cipher}
    */
-  createCipher(options: { algorithm: crypto_.HashAlg, key: crypto_.SecretKey, padding: crypto_.Padding }): crypto_.Cipher
-  
+  createCipher(options: {
+    algorithm: crypto_.HashAlg,
+    key: crypto_.SecretKey,
+    padding: crypto_.Padding,
+  }): crypto_.Cipher
+
   /**
-   *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
    * @param {crypto_.SecretKey} options.key
@@ -51,14 +59,19 @@ interface crypto_ {
    * @param {string} options.iv
    * @return {crypto_.Decipher}
    */
-  createDecipher(options: { algorithm: crypto_.HashAlg, key: crypto_.SecretKey, padding: crypto_.Padding, iv: string }): crypto_.Decipher
+  createDecipher(options: {
+    algorithm: crypto_.HashAlg,
+    key: crypto_.SecretKey,
+    padding: crypto_.Padding,
+    iv: string,
+  }): crypto_.Decipher
 }
 
 declare namespace crypto_ {
-  
+
   /**
    * Enum describing available crypto hashing algorithms
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum HashAlg {
@@ -67,19 +80,19 @@ declare namespace crypto_ {
     SHA512 = 'SHA512',
     MD5 = 'MD5',
   }
-  
+
   /**
    * Enum describing available crypto encryption algorithms
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum EncryptionAlg {
     AES = 'AES',
   }
-  
+
   /**
    * Enum describing available encodings
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum Encoding {
@@ -90,17 +103,17 @@ declare namespace crypto_ {
     BASE_64_URL_SAFE = 'BASE_64_URL_SAFE',
     HEX = 'HEX',
   }
-  
+
   /**
    * Enum describing available padding options
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum Padding {
     NoPadding = 'NoPadding',
     PKCS5Padding = 'PKCS5Padding',
   }
-  
+
   /**
    * Returns a new instance of SecretKey used for hmac, cipher and decipher
    *
@@ -114,36 +127,36 @@ declare namespace crypto_ {
    * @constructor
    */
   export interface SecretKey {
-    
+
     /**
      * @type {string}
      */
     guid: string
-    
+
     /**
      * @type {Encoding}
      */
     encoding: Encoding
   }
-  
+
   /**
    *
    * @protected
    * @constructor
    */
   export interface CipherPayload {
-    
+
     /**
      * @type {string}
      */
     iv: string
-    
+
     /**
      * @type {string}
      */
     ciphertext: string
   }
-  
+
   /**
    * @class
    * @classdesc Encapsulation of a Hash
@@ -154,29 +167,34 @@ declare namespace crypto_ {
    * @since 2015.2
    */
   export interface Hash {
-    
+
     /**
      * @param {Object} options
      * @param {string} options.input
      * @param {Encoding} options.inputEncoding
      * @return {void}
      */
-    update(options: { input: string, inputEncoding: Encoding }): void
-    
+    update(options: {
+      input: string,
+      inputEncoding: Encoding,
+    }): void
+
     /**
      * @param {Object} options
      * @param {Encoding} options.outputEncoding
      * @return {string}
      */
-    digest(options: { outputEncoding: Encoding }): string
-    
+    digest(options: {
+      outputEncoding: Encoding,
+    }): string
+
     /**
      * Returns the object type name (crypto_.Hash)
      * @return {string}
      */
     toString(): string
   }
-  
+
   /**
    * @class
    * @classdesc Encapsulation of a Hash
@@ -187,72 +205,86 @@ declare namespace crypto_ {
    * @since 2015.2
    */
   export interface Hmac {
-    
+
     /**
      * @param {Object} options
      * @param {string} options.input
      * @param {Encoding} options.inputEncoding
      * @return {void}
      */
-    update(options: { input: string, inputEncoding: Encoding }): void
-    
+    update(options: {
+      input: string,
+      inputEncoding: Encoding,
+    }): void
+
     /**
      * @param {Object} options
      * @param {Encoding} options.outputEncoding
      * @return {string}
      */
-    digest(options: { outputEncoding: Encoding }): string
-    
+    digest(options: {
+      outputEncoding: Encoding,
+    }): string
+
     /**
      * Returns the object type name (crypto_.Hash)
      * @return {string}
      */
     toString(): string
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface Cipher {
-    
+
     /**
      * @param {Object} options
      * @param {string} options.input
      * @param {Encoding} options.inputEncoding
      * @return {void}
      */
-    update(options: { input: string, inputEncoding: Encoding }): void
-    
+    update(options: {
+      input: string,
+      inputEncoding: Encoding,
+    }): void
+
     /**
      * @param {Object} options
      * @param {string} options.outputEncoding
      * @return {CipherPayload}
      */
-    final(options: { outputEncoding: Encoding }): CipherPayload
+    final(options: {
+      outputEncoding: Encoding,
+    }): CipherPayload
   }
-  
+
   /**
    * @protected
    * @constructor
    */
   export interface Decipher {
-    
+
     /**
-     *
      * @param {Object} options
      * @param {string} options.input
      * @param {Encoding} options.inputEncoding
      * @return {void}
      *
      */
-    update(options: { input: string, inputEncoding: Encoding }): void
-    
+    update(options: {
+      input: string,
+      inputEncoding: Encoding,
+    }): void
+
     /**
      * @param {Object} options
      * @param {Encoding} options.outputEncoding
      * @return {string}
      */
-    final(options: { outputEncoding: Encoding }): string
+    final(options: {
+      outputEncoding: Encoding,
+    }): string
   }
 }

@@ -3,11 +3,11 @@
 /// <reference path="../http.d.ts" />
 
 /**
- * SuiteScript module
+ * SuiteScript serverWidget module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532.html}
  *
  * @module N/ui/serverWidget
  * @NApiVersion 2.x
- *
  */
 interface serverWidget {
 
@@ -21,7 +21,10 @@ interface serverWidget {
    * @return {Assistant}
    * @since 2015.2
    */
-  createAssistant(options: { title: string, hideNavBar?: boolean }): serverWidget.Assistant
+  createAssistant(options: {
+    title: string,
+    hideNavBar?: boolean,
+  }): serverWidget.Assistant
 
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
@@ -33,7 +36,10 @@ interface serverWidget {
    * @return {Form}
    * @since 2015.2
    */
-  createForm(options: { title: string, hideNavBar?: boolean }): serverWidget.Form
+  createForm(options: {
+    title: string,
+    hideNavBar?: boolean,
+  }): serverWidget.Form
 
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
@@ -45,13 +51,16 @@ interface serverWidget {
    * @return {List}
    * @since 2015.2
    */
-  createList(options: { title: string, hideNavBar?: boolean }): serverWidget.List
+  createList(options: {
+    title: string,
+    hideNavBar?: boolean,
+  }): serverWidget.List
 }
 
 declare namespace serverWidget {
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum FieldType {
@@ -83,7 +92,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum FormPageLinkType {
@@ -92,7 +101,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum SublistType {
@@ -103,7 +112,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum FieldBreakType {
@@ -113,7 +122,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum FieldLayoutType {
@@ -127,7 +136,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum FieldDisplayType {
@@ -140,7 +149,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum SublistDisplayType {
@@ -149,7 +158,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum LayoutJustification {
@@ -159,7 +168,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum ListStyle {
@@ -170,7 +179,7 @@ declare namespace serverWidget {
   }
 
   /**
-   * @enum
+   * @enum {string}
    * @readonly
    */
   export enum AssistantSubmitAction {
@@ -242,7 +251,9 @@ declare namespace serverWidget {
      * @param {string} options.id The id of the field to use as a unique field
      * @return {Sublist}
      */
-    updateUniqueFieldId(options: { id: string }): Sublist
+    updateUniqueFieldId(options: {
+      id: string,
+    }): Sublist
 
     /**
      * Id of a field designated as a totalling column, which is used to calculate and display a running total for the sublist
@@ -251,7 +262,9 @@ declare namespace serverWidget {
      * @param {string} options.id The id of the field to use as a total field
      * @return {Sublist}
      */
-    updateTotallingFieldId(options: { id: string }): Sublist
+    updateTotallingFieldId(options: {
+      id: string,
+    }): Sublist
 
     /**
      * Display type of the sublist
@@ -277,7 +290,11 @@ declare namespace serverWidget {
      * @param {string} [options.functionName] the function name to be triggered onClick for the button
      * @return {Button}
      */
-    addButton(options: { id: string, label: string, functionName?: string }): Button
+    addButton(options: {
+      id: string,
+      label: string,
+      functionName?: string,
+    }): Button
 
     /**
      * Returns string value of a sublist field.
@@ -287,7 +304,10 @@ declare namespace serverWidget {
      * @param {number} options.line Line number
      * @return {string}
      */
-    getSublistValue(options: { id: string, line: number }): string
+    getSublistValue(options: {
+      id: string,
+      line: number,
+    }): string
 
     /**
      * Set the value of a field on the list
@@ -298,7 +318,11 @@ declare namespace serverWidget {
      * @param {string} options.value value to set on the field
      * @return {void}
      */
-    setSublistValue(options: { id: string, line: number, value: string }): void
+    setSublistValue(options: {
+      id: string,
+      line: number,
+      value: string,
+    }): void
 
     /**
      * Adds refresh all buttons to the sublist
@@ -325,7 +349,13 @@ declare namespace serverWidget {
      * @param {string} [options.container] Used to specify either a tab or a field group
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
+    addField(options: {
+      id: string,
+      label: string,
+      type: FieldType | string,
+      source?: string,
+      container?: string,
+    }): Field
 
     /**
      * Gets field from sublist
@@ -496,7 +526,9 @@ declare namespace serverWidget {
      * @param {FieldBreakType} options.breakType
      * @return {Field}
      */
-    updateBreakType(options: { breakType: FieldBreakType }): Field
+    updateBreakType(options: {
+      breakType: FieldBreakType,
+    }): Field
 
     /**
      * Update the layout type of the field
@@ -505,7 +537,9 @@ declare namespace serverWidget {
      * @param {FieldLayoutType} options.layoutType
      * @return {Field}
      */
-    updateLayoutType(options: { layoutType: FieldLayoutType }): Field
+    updateLayoutType(options: {
+      layoutType: FieldLayoutType,
+    }): Field
 
     /**
      * Sets the height and width for the field. Only supported on multi-selects,
@@ -517,7 +551,10 @@ declare namespace serverWidget {
      * @param {number} options.width
      * @return {Field}
      */
-    updateDisplaySize(options: { height: number, width: number }): Field
+    updateDisplaySize(options: {
+      height: number,
+      width: number,
+    }): Field
 
     /**
      * Udpdate the field display type
@@ -526,7 +563,9 @@ declare namespace serverWidget {
      * @param {FieldDisplayType|string} options.displayType
      * @return {Field}
      */
-    updateDisplayType(options: { displayType: FieldDisplayType | string }): Field
+    updateDisplayType(options: {
+      displayType: FieldDisplayType | string,
+    }): Field
 
     /**
      * Set help text for a field
@@ -536,7 +575,10 @@ declare namespace serverWidget {
      * @param {boolean} [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
      * @return {Field}
      */
-    setHelpText(options: { help: string, showInlineForAssistant?: boolean }): Field
+    setHelpText(options: {
+      help: string,
+      showInlineForAssistant?: boolean,
+    }): Field
 
     /**
      * Get the select options for a field
@@ -547,7 +589,13 @@ declare namespace serverWidget {
      * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
      * @return {{value:string, text:string}[]}
      */
-    getSelectOptions(options: { filter?: string, filteroperator?: 'contains' | 'is' | 'startswith' }): { value: string, text: string }[]
+    getSelectOptions(options: {
+      filter?: string,
+      filteroperator?: 'contains' | 'is' | 'startswith'
+    }): {
+      value: string,
+      text: string,
+    }[]
 
     /**
      * Add a select option to a select field
@@ -558,7 +606,11 @@ declare namespace serverWidget {
      * @param {boolean} [options.isSelected] If true, this option is selected
      * @return {void}
      */
-    addSelectOption(options: { value: string | number, text: string, isSelected?: boolean }): void
+    addSelectOption(options: {
+      value: string | number,
+      text: string,
+      isSelected?: boolean,
+    }): void
   }
 
   /**
@@ -646,7 +698,9 @@ declare namespace serverWidget {
      * @param {string} options.group  The internal id of the sublist
      * @return {string[]}
      */
-    getSublistFieldIds(options: { group: string }): string[]
+    getSublistFieldIds(options: {
+      group: string,
+    }): string[]
 
     /**
      * Use this method to get all sublists entered by the user during this step
@@ -669,7 +723,9 @@ declare namespace serverWidget {
      * @param {string} options.id Internal id for the field
      * @return {string|string[]}
      */
-    getValue(options: { id: string }): string | string[]
+    getValue(options: {
+      id: string,
+    }): string | string[]
 
     /**
      * Get the number of lines in a sublist
@@ -678,7 +734,9 @@ declare namespace serverWidget {
      * @param {string} options.group internal Id of the sublist
      * @return {number}
      */
-    getLineCount(options: { group: string }): number
+    getLineCount(options: {
+      group: string,
+    }): number
 
     /**
      * Get the value of a field in a sublist
@@ -689,7 +747,11 @@ declare namespace serverWidget {
      * @param {number} options.line line number
      * @return {string}
      */
-    getSublistValue(options: { group: string, id: string, line: number }): string
+    getSublistValue(options: {
+      group: string,
+      id: string,
+      line: number,
+    }): string
   }
 
   /**
@@ -769,7 +831,9 @@ declare namespace serverWidget {
      * @param {Object[]} values
      * @return {void}
      */
-    updateDefaultValues(options: { values: Object[] }): void
+    updateDefaultValues(options: {
+      values: Object[],
+    }): void
 
     /**
      * The script file id to be used in the assistant
@@ -800,7 +864,11 @@ declare namespace serverWidget {
      * @return {void}
      * in the text2 parameter.
      */
-    setSplash(options: { title: string, text1: string, text2: string }): void
+    setSplash(options: {
+      title: string,
+      text1: string,
+      text2: string
+    }): void
 
     /**
      * Get a Field object from its id
@@ -809,7 +877,9 @@ declare namespace serverWidget {
      * @param {string} options.id Internal id for the field
      * @return {Field}
      */
-    getField(options: { id: string }): Field
+    getField(options: {
+      id: string,
+    }): Field
 
     /**
      * Get a FieldGroup  object from its id
@@ -818,7 +888,9 @@ declare namespace serverWidget {
      * @param {string} options.id Id of the field group
      * @return {FieldGroup}
      */
-    getFieldGroup(options: { id: string }): FieldGroup
+    getFieldGroup(options: {
+      id: string,
+    }): FieldGroup
 
     /**
      * Get the name of last action taken by the user
@@ -869,7 +941,9 @@ declare namespace serverWidget {
      * @param {string} options.id Id for the step
      * @return {AssistantStep}
      */
-    getStep(options: { id: string }): AssistantStep
+    getStep(options: {
+      id: string,
+    }): AssistantStep
 
     /**
      * Get a Sublist  object from its id
@@ -878,7 +952,9 @@ declare namespace serverWidget {
      * @param {string} options.id  Id for the sublist
      * @return {Sublist}
      */
-    getSublist(options: { id: string }): Sublist
+    getSublist(options: {
+      id: string,
+    }): Sublist
 
     /**
      * Add a step to the assistant
@@ -887,7 +963,10 @@ declare namespace serverWidget {
      * @param {string} options.label UI label for the step
      * @return {void}
      */
-    addStep(options: { id: string, label: string }): void
+    addStep(options: {
+      id: string,
+      label: string,
+    }): void
 
     /**
      * Add a field to the Assistant
@@ -901,7 +980,13 @@ declare namespace serverWidget {
      * @param {string} [options.container]  Id for the field group of tab to place the field in
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
+    addField(options: {
+      id: string,
+      label: string,
+      type: FieldType | string,
+      source?: string,
+      container?: string,
+    }): Field
 
     /**
      * Add a field group to the assistant
@@ -911,7 +996,10 @@ declare namespace serverWidget {
      * @param {string} options.label UI label for the field group
      * @return {FieldGroup}
      */
-    addFieldGroup(options: { id: string, label: string }): FieldGroup
+    addFieldGroup(options: {
+      id: string,
+      label: string,
+    }): FieldGroup
 
     /**
      * Add a Sublist to the assistant
@@ -922,7 +1010,11 @@ declare namespace serverWidget {
      * @param {SublistType} options.type  Type of sublist
      * @return {Sublist}
      */
-    addSublist(options: { id: string, label: string, type: SublistType }): Sublist
+    addSublist(options: {
+      id: string,
+      label: string,
+      type: SublistType,
+    }): Sublist
 
     /**
      * Get all ids for fields in the assistant
@@ -937,7 +1029,9 @@ declare namespace serverWidget {
      * @param {string} options.id Id of the field group
      * @return {string[]}
      */
-    getFieldIdsByFieldGroup(options: { id: string }): string[]
+    getFieldIdsByFieldGroup(options: {
+      id: string,
+    }): string[]
 
     /**
      * Get all ids for field groups in the assistant
@@ -971,7 +1065,9 @@ declare namespace serverWidget {
      * @param {ServerResponse} options.response
      * @return {void}
      */
-    sendRedirect(options: { response: http.ServerResponse }): void
+    sendRedirect(options: {
+      response: http.ServerResponse,
+    }): void
   }
 
   /**
@@ -1019,7 +1115,9 @@ declare namespace serverWidget {
      * @param {Object} options the message options object as described in N/ui/message: create()
      * @return {void}
      */
-    addPageInitMessage(options: { message: message.Message }): void
+    addPageInitMessage(options: {
+      message: message.Message,
+    }): void
 
     /**
      * Adds a button to the ui form
@@ -1030,7 +1128,11 @@ declare namespace serverWidget {
      * @param {string} [options.functionName] the function name to be triggered onClick for the button
      * @return {Button}
      */
-    addButton(options: { label: string, id?: string, functionName?: string }): Button
+    addButton(options: {
+      label: string,
+      id?: string,
+      functionName?: string,
+    }): Button
 
     /**
      * add a credential field to the ui form
@@ -1044,7 +1146,14 @@ declare namespace serverWidget {
      * @param {string} [options.container]  Id of the form tab where the credential is placed
      * @return {Field}
      */
-    addCredentialField(options: { id: string, label: string, restrictToDomains?: string | string[], restrictToScriptIds?: string | string[], restrictToCurrentUser?: boolean, container?: string }): Field
+    addCredentialField(options: {
+      id: string,
+      label: string,
+      restrictToDomains?: string | string[],
+      restrictToScriptIds?: string | string[],
+      restrictToCurrentUser?: boolean,
+      container?: string,
+    }): Field
 
     /**
      * add a secret key field to the ui form
@@ -1056,7 +1165,12 @@ declare namespace serverWidget {
      * @param {string} [options.container]  Id of the form tab or group where the key is placed
      * @return {Field}
      */
-    addSecretKeyField(options: { id: string, restrictToScriptIds?: string | string[], restrictToCurrentUser?: boolean, container?: string }): Field
+    addSecretKeyField(options: {
+      id: string,
+      restrictToScriptIds?: string | string[],
+      restrictToCurrentUser?: boolean,
+      container?: string,
+    }): Field
 
     /**
      * Add a field to the form
@@ -1070,7 +1184,13 @@ declare namespace serverWidget {
      * @param {string} [options.container]   Tab or Field Group to add the field to
      * @return {Field}
      */
-    addField(options: { id: string, label: string, type: FieldType | string, source?: string, container?: string }): Field
+    addField(options: {
+      id: string,
+      label: string,
+      type: FieldType | string,
+      source?: string,
+      container?: string,
+    }): Field
 
     /**
      * Add a field group to the form
@@ -1081,7 +1201,11 @@ declare namespace serverWidget {
      *
      * @return {FieldGroup}
      */
-    addFieldGroup(options: { id: string, label: string, tab?: string }): FieldGroup
+    addFieldGroup(options: {
+      id: string,
+      label: string,
+      tab?: string,
+    }): FieldGroup
 
     /**
      * Add a link to the form
@@ -1091,7 +1215,11 @@ declare namespace serverWidget {
      * @param {string} options.url  The URL the link navigates to
      * @return {void}
      */
-    addPageLink(options: { type: FormPageLinkType, title: string, url: string }): void
+    addPageLink(options: {
+      type: FormPageLinkType,
+      title: string,
+      url: string,
+    }): void
 
     /**
      * Add a Sublist to the form
@@ -1102,7 +1230,12 @@ declare namespace serverWidget {
      * @param {string} [options.tab] The id of the tab where to add the sublist to
      * @return {Sublist}
      */
-    addSublist(options: { id: string, label: string, type: SublistType, tab?: string }): Sublist
+    addSublist(options: {
+      id: string,
+      label: string,
+      type: SublistType,
+      tab?: string,
+    }): Sublist
 
     /**
      * Add a Subtab to the form
@@ -1112,7 +1245,11 @@ declare namespace serverWidget {
      * @param {string} [options.tab] The tab under which to display this subtab. If empty, it is added to the main tab.
      * @return {Tab}
      */
-    addSubtab(options: { id: string, label: string, tab?: string }): Tab
+    addSubtab(options: {
+      id: string,
+      label: string,
+      tab?: string,
+    }): Tab
 
     /**
      * Add a Tab to the form
@@ -1121,7 +1258,10 @@ declare namespace serverWidget {
      * @param {string} options.label The UI label for the tab
      * @return {Tab}
      */
-    addTab(options: { id: string, label: string }): Tab
+    addTab(options: {
+      id: string,
+      label: string,
+    }): Tab
 
     /**
      * Add a Reset button to the form
@@ -1129,7 +1269,9 @@ declare namespace serverWidget {
      * @param {string} [options.label]  The UI label used for this button. If no label is provided, the label defaults to Reset.
      * @return {Button}
      */
-    addResetButton(options: { label: string }): Button
+    addResetButton(options: {
+      label: string,
+    }): Button
 
     /**
      * Add a Submit button to the form
@@ -1137,7 +1279,9 @@ declare namespace serverWidget {
      * @param {string} [options.label] The UI label for this button. If no label is provided, the label defaults to Save.
      * @return {Button}
      */
-    addSubmitButton(options: { label: string }): Button
+    addSubmitButton(options: {
+      label: string,
+    }): Button
 
     /**
      * Get a Button object from its id
@@ -1145,7 +1289,9 @@ declare namespace serverWidget {
      * @param {string} options.id The id of the button to get
      * @return {Button}
      */
-    getButton(options: { id: string }): Button
+    getButton(options: {
+      id: string,
+    }): Button
 
     /**
      * Get a Field object from its id
@@ -1153,7 +1299,9 @@ declare namespace serverWidget {
      * @param {string} options.id The id for the field to get
      * @return {Field}
      */
-    getField(options: { id: string }): Field
+    getField(options: {
+      id: string,
+    }): Field
 
     /**
      * Get a Subtab object from its id
@@ -1161,7 +1309,9 @@ declare namespace serverWidget {
      * @param {string} options.id  The id for the Tab to get
      * @return {Tab}
      */
-    getSubtab(options: { id: string }): Tab
+    getSubtab(options: {
+      id: string,
+    }): Tab
 
     /**
      * Get a Subtab object from its id
@@ -1169,7 +1319,9 @@ declare namespace serverWidget {
      * @param {string} options.id  The id for the Tab to get
      * @return {Tab}
      */
-    getTab(options: { id: string }): Tab
+    getTab(options: {
+      id: string,
+    }): Tab
 
     /**
      * Get all the Tab objects
@@ -1183,7 +1335,9 @@ declare namespace serverWidget {
      * @param {string} options.id The id for the Sublist to get
      * @return {Sublist}
      */
-    getSublist(options: { id: string }): Sublist
+    getSublist(options: {
+      id: string,
+    }): Sublist
 
     /**
      * Insert a field before another field
@@ -1192,7 +1346,10 @@ declare namespace serverWidget {
      * @param {string} options.nextfield  Id of the field to insert before
      * @return {void}
      */
-    insertField(options: { field: Field, nextfield: string }): void
+    insertField(options: {
+      field: Field,
+      nextfield: string,
+    }): void
 
     /**
      * Insert a sublist before another sublist
@@ -1201,7 +1358,10 @@ declare namespace serverWidget {
      * @param {string} options.nextsublist  Id of the sublist to insert before
      * @return {void}
      */
-    insertSublist(options: { sublist: Sublist, nextsublist: string }): void
+    insertSublist(options: {
+      sublist: Sublist,
+      nextsublist: string,
+    }): void
 
     /**
      * Insert a subtab before another sublist
@@ -1210,7 +1370,10 @@ declare namespace serverWidget {
      * @param {string} options.nextsubtab The id of the sublist/subtab you are inserting in front of
      * @return {void}
      */
-    insertSubtab(options: { subtab: Tab, nextsubtab: string }): void
+    insertSubtab(options: {
+      subtab: Tab,
+      nextsubtab: string,
+    }): void
 
     /**
      * Insert a Tab before another tab
@@ -1219,7 +1382,10 @@ declare namespace serverWidget {
      * @param {string} options.nexttab    Id of the tab to insert before
      * @return {void}
      */
-    insertTab(options: { tab: Tab, nexttab: string }): void
+    insertTab(options: {
+      tab: Tab,
+      nexttab: string,
+    }): void
 
     /**
      * Remove a button given its id
@@ -1227,14 +1393,20 @@ declare namespace serverWidget {
      * @param {string} options.id   Id of the button to remove
      * @return {void}
      */
-    removeButton(options: { id: string }): void
+    removeButton(options: {
+      id: string,
+    }): void
 
     /**
      * Set the default values of many fields at once
      * @param {Object[]} values
      * @return {void}
      */
-    updateDefaultValues(options: { values: { [key: string]: string }[] }): void
+    updateDefaultValues(options: {
+      values: {
+        [key: string]: string
+      }[]
+    }): void
   }
 
   /**
@@ -1271,7 +1443,11 @@ declare namespace serverWidget {
      * @param {string} [options.functionName] the function name to be triggered onClick for the button
      * @return {Button}
      */
-    addButton(options: { id: string, label: string, functionName?: string }): Button
+    addButton(options: {
+      id: string,
+      label: string,
+      functionName?: string,
+    }): Button
 
     /**
      * Add a Column to the List page
@@ -1282,7 +1458,12 @@ declare namespace serverWidget {
      * @param {string} [options.align] The layout justification for this column.
      * @return {ListColumn}
      */
-    addColumn(options: { id: string, type: FieldType | string, label: string, align?: string }): ListColumn
+    addColumn(options: {
+      id: string,
+      type: FieldType | string,
+      label: string,
+      align?: string,
+    }): ListColumn
 
     /**
      * Add an Edit or Edit/View column
@@ -1293,7 +1474,11 @@ declare namespace serverWidget {
      * list and will be used to determine whether the URL for this link is clickable
      * @return {ListColumn}
      */
-    addEditColumn(options: { column: ListColumn, showView?: boolean, showHrefCol?: boolean }): ListColumn
+    addEditColumn(options: {
+      column: ListColumn,
+      showView?: boolean,
+      showHrefCol?: boolean,
+    }): ListColumn
 
     /**
      * Adds a navigation cross-link to the list page
@@ -1303,7 +1488,11 @@ declare namespace serverWidget {
      * @param {string} options.url  The URL used for this link
      * @return {List}
      */
-    addPageLink(options: { type: FormPageLinkType, title: string, url: string }): List
+    addPageLink(options: {
+      type: FormPageLinkType,
+      title: string,
+      url: string,
+    }): List
 
     /**
      * Add a row (Array of name/value pairs or search.Result)
@@ -1311,7 +1500,9 @@ declare namespace serverWidget {
      * @param {search.Result|Object<string, string>} options.row  An Array of rows containing name/value pairs containing the values for corresponding
      * @return {List}
      */
-    addRow(options: { row: search.Result | { [key: string]: string } }): List
+    addRow(options: {
+      row: search.Result | { [key: string]: string }
+    }): List
 
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
@@ -1319,7 +1510,9 @@ declare namespace serverWidget {
      * @param {search.Result[]|Object<string, string>[]} options.rows Array of search.Result or name/value pair Arrays
      * @return {List}
      */
-    addRows(options: { rows: search.Result[] | { [key: string]: string }[] }): List
+    addRows(options: {
+      rows: search.Result[] | { [key: string]: string }[]
+    }): List
 
     /**
      * The script file id to be used in the list page
@@ -1358,7 +1551,11 @@ declare namespace serverWidget {
      * @param {boolean} [options.dynamic]  If true, then the parameter value is actually an alias that is calculated per row
      * @return {ListColumn}
      */
-    addParamToURL(options: { param: string, value: string, dynamic?: boolean }): ListColumn
+    addParamToURL(options: {
+      param: string,
+      value: string,
+      dynamic?: boolean,
+    }): ListColumn
 
     /**
      * @name ColumnList#label Label this list column
@@ -1374,6 +1571,9 @@ declare namespace serverWidget {
      * @param {boolean} [options.dynamic] If true, then the URL is actually an alias that is calculated per row
      * @return {ListColumn}
      */
-    setURL(options: { url: string, dynamic?: boolean }): ListColumn
+    setURL(options: {
+      url: string,
+      dynamic?: boolean,
+    }): ListColumn
   }
 }

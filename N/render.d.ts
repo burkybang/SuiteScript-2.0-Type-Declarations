@@ -5,14 +5,14 @@
 /// <reference path="./http.d.ts" />
 
 /**
- * SuiteScript module
+ * SuiteScript render module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412042824.html}
  *
  * @module N/render
  * @NApiVersion 2.x
- *
  */
 interface render {
-  
+
   /**
    * Use this method to create a PDF or HTML object of a transaction
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452452331542.html}
@@ -28,8 +28,13 @@ interface render {
    *
    * @return {file.File}
    */
-  transaction(options: { entityId: number, printMode?: string, formId?: number, inCustLocale?: boolean }): file.File
-  
+  transaction(options: {
+    entityId: number,
+    printMode?: string,
+    formId?: number,
+    inCustLocale?: boolean,
+  }): file.File
+
   /**
    * Use this method to create a PDF or HTML object of a statement
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455095458983.html}
@@ -49,8 +54,17 @@ interface render {
    *
    * @return {file.File}
    */
-  statement(options: { entityId: number, printMode?: string, formId?: number, inCustLocale?: boolean, startDate?: Date, statementDate?: Date, openTransactionsOnly?: boolean, consolidateStatements?: boolean }): file.File
-  
+  statement(options: {
+    entityId: number,
+    printMode?: string,
+    formId?: number,
+    inCustLocale?: boolean,
+    startDate?: Date,
+    statementDate?: Date,
+    openTransactionsOnly?: boolean,
+    consolidateStatements?: boolean,
+  }): file.File
+
   /**
    * Use this method to create a PDF or HTML object of a packing slip
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458625732421.html}
@@ -67,8 +81,14 @@ interface render {
    *
    * @return {file.File}
    */
-  packingSlip(options: { entityId: number, printMode?: string, formId?: number, inCustLocale?: boolean, fulfillmentId?: number }): file.File
-  
+  packingSlip(options: {
+    entityId: number,
+    printMode?: string,
+    formId?: number,
+    inCustLocale?: boolean,
+    fulfillmentId?: number,
+  }): file.File
+
   /**
    * Use this method to create a PDF or HTML object of a picking ticket
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456921936034.html}
@@ -86,8 +106,15 @@ interface render {
    *
    * @return {file.File}
    */
-  pickingTicket(options: { entityId: number, printMode?: string, formId?: number, inCustLocale?: boolean, shipgroup?: number, location?: number }): file.File
-  
+  pickingTicket(options: {
+    entityId: number,
+    printMode?: string,
+    formId?: number,
+    inCustLocale?: boolean,
+    shipgroup?: number,
+    location?: number,
+  }): file.File
+
   /**
    * Use this method to create a PDF or HTML object of a bill of material
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457552429198.html}
@@ -101,19 +128,22 @@ interface render {
    *
    * @return {file.File}
    */
-  bom(options: { entityId: number, printMode?: string }): file.File
-  
+  bom(options: {
+    entityId: number,
+    printMode?: string,
+  }): file.File
+
   /**
    * Use this method to produce HTML and PDF printed forms with advanced PDF/HTML templates
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455028930663.html}
    *
    * @governance 0 units
    * @restriction Supported by all server side scirpts
-   
+
    * @return {render.TemplateRenderer}
    */
   create(): render.TemplateRenderer
-  
+
   /**
    * Method used to pass XML to the Big Faceless Organization (BFO) tag library (which is stored by NetSuite), and return a PDF file.
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459185424803.html}
@@ -126,8 +156,10 @@ interface render {
    *
    * @return {file.File}
    */
-  xmlToPdf(options: { xmlString: xml.Document | string }): file.File
-  
+  xmlToPdf(options: {
+    xmlString: xml.Document | string,
+  }): file.File
+
   /**
    * Creates a render.EmailMergeResult object for a mail merge with an existing scriptable email template
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454332824706.html}
@@ -144,11 +176,27 @@ interface render {
    *
    * @return {render.EmailMergeResult}
    */
-  mergeEmail(options: { templateId: number, entity: { id: number, type: record.Type | string }, recipient: { id: number, type: record.Type | string }, customRecord: { id: number, type: record.Type | string }, supportCaseId: number, transactionId: number }): render.EmailMergeResult
+  mergeEmail(options: {
+    templateId: number,
+    entity: {
+      id: number,
+      type: record.Type | string,
+    },
+    recipient: {
+      id: number,
+      type: record.Type | string,
+    },
+    customRecord: {
+      id: number,
+      type: record.Type | string,
+    },
+    supportCaseId: number,
+    transactionId: number,
+  }): render.EmailMergeResult
 }
 
 declare namespace render {
-  
+
   /**
    * Enum print mode type values.
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412215015.html}
@@ -161,7 +209,7 @@ declare namespace render {
     HTML = 'HTML',
     DEFAULT = 'DEFAULT',
   }
-  
+
   /**
    * Enum data source type values.
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619588793.html}
@@ -175,7 +223,7 @@ declare namespace render {
     OBJECT = 'OBJECT',
     JSON = 'JSON',
   }
-  
+
   /**
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4417244174.html}
    *
@@ -183,7 +231,7 @@ declare namespace render {
    * @constructor
    */
   export interface EmailMergeResult {
-    
+
     /**
      * The subject of the email distribution in string format
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212830.html}
@@ -195,7 +243,7 @@ declare namespace render {
      * @since 2015.2
      */
     subject: string
-    
+
     /**
      * The body of the email distribution in string format
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212816.html}
@@ -207,19 +255,19 @@ declare namespace render {
      * @since 2015.2
      */
     body: string
-    
+
     /**
      * get JSON format of the object
      * @return {Object}
      */
     toJSON(): Object
-    
+
     /**
      * @return {string}
      */
     toString(): string
   }
-  
+
   /**
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412065265.html}
    *
@@ -227,7 +275,7 @@ declare namespace render {
    * @constructor
    */
   export interface TemplateRenderer {
-    
+
     /**
      * Template content
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453133789062.html}
@@ -237,7 +285,7 @@ declare namespace render {
      * @since 2015.2
      */
     templateContent: string
-    
+
     /**
      * Sets template content by scriptId
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528574899.html}
@@ -248,8 +296,10 @@ declare namespace render {
      *
      * @since 2016.1
      */
-    setTemplateByScriptId(options: { scriptId: string }): void
-    
+    setTemplateByScriptId(options: {
+      scriptId: string,
+    }): void
+
     /**
      * Sets template content by internal Id (nKey)
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528552999.html}
@@ -260,8 +310,10 @@ declare namespace render {
      *
      * @since 2016.1
      */
-    setTemplateById(options: { id: number }): void
-    
+    setTemplateById(options: {
+      id: number,
+    }): void
+
     /**
      * Binds a record to a template variable
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890.html}
@@ -273,8 +325,11 @@ declare namespace render {
      *
      * @since 2015.2
      */
-    addRecord(options: { templateName: string, record: record.Record }): void
-    
+    addRecord(options: {
+      templateName: string,
+      record: record.Record,
+    }): void
+
     /**
      * Binds a search result to a template variable
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456249023436.html}
@@ -286,8 +341,11 @@ declare namespace render {
      *
      * @since 2015.2
      */
-    addSearchResults(options: { templateName: string, searchResult: search.Result }): void
-    
+    addSearchResults(options: {
+      templateName: string,
+      searchResult: search.Result,
+    }): void
+
     /**
      * Adds XML or JSON as custom data source to an advanced PDF/HTML template
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528541027.html}
@@ -300,8 +358,12 @@ declare namespace render {
      *
      * @since 2016.1
      */
-    addCustomDataSource(options: { alias: string, format: render.DataSource, data: Object | Document | string }): void
-    
+    addCustomDataSource(options: {
+      alias: string,
+      format: render.DataSource,
+      data: Object | Document | string,
+    }): void
+
     /**
      * Return template content in string form
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455231872558.html}
@@ -311,7 +373,7 @@ declare namespace render {
      * @since 2015.2
      */
     renderAsString(): string
-    
+
     /**
      * Writes template content to a server response
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459426513671.html}
@@ -322,8 +384,10 @@ declare namespace render {
      *
      * @since 2015.2
      */
-    renderToResponse(options: { response: http.ServerResponse }): void
-    
+    renderToResponse(options: {
+      response: http.ServerResponse,
+    }): void
+
     /**
      * Uses the advanced template to produce a PDF printed form
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452241760253.html}
@@ -333,7 +397,7 @@ declare namespace render {
      * @since 2015.2
      */
     renderAsPdf(): file.File
-    
+
     /**
      * Renders a server response into a PDF file
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366.html}
@@ -342,13 +406,13 @@ declare namespace render {
      * @return {void}
      */
     renderPdfToResponse(response: http.ServerResponse): void
-    
+
     /**
      * get JSON format of the object
      * @return {Object}
      */
     toJSON(): Object
-    
+
     /**
      * @return {string}
      */

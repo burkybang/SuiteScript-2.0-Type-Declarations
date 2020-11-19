@@ -4,7 +4,6 @@
  *
  * @NApiVersion 2.x
  */
-
 type ExecuteContext = {
   
   /**
@@ -19,7 +18,7 @@ type ExecuteContext = {
 declare namespace ExecuteContext {
   
   /**
-   * @enum
+   * @enum {string}
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532.html}
    */
   export enum InvocationType {

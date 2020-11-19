@@ -14,7 +14,7 @@ type PortletParams = {
    * @readonly
    */
   portlet: PortletParams.Portlet
-  
+
   /**
    * The column index for the portlet on the dashboard (1=left, 2=center, 3=right)
    * @type {1|2|3}
@@ -22,7 +22,7 @@ type PortletParams = {
    * @readonly
    */
   column: 1 | 2 | 3
-  
+
   /**
    * The customer ID for the selected customer
    * @type {string}
@@ -33,7 +33,7 @@ type PortletParams = {
 }
 
 declare namespace PortletParams {
-  
+
   /**
    * Scriptable Portlet.
    * @param delegate
@@ -41,19 +41,19 @@ declare namespace PortletParams {
    * @constructor
    */
   export type Portlet = {
-    
+
     /**
      * @name Portlet#title
      * @type {string}
      */
     title: string
-    
+
     /**
      * @name Portlet#html
      * @type {string}
      */
     html: string
-    
+
     /**
      * file Id for Portlet form script
      *
@@ -61,7 +61,7 @@ declare namespace PortletParams {
      * @type {number}
      */
     clientScriptFileId: number
-    
+
     /**
      * file Path for Portlet form script
      *
@@ -72,7 +72,7 @@ declare namespace PortletParams {
      * @example './client_script.js' - Relative path
      */
     clientScriptModulePath: string
-    
+
     /**
      * Add a Column to the Portlete
      *
@@ -83,8 +83,13 @@ declare namespace PortletParams {
      * @param {string} [options.align]
      * @return {ListColumn}
      */
-    addColumn(options: { id: string, type: string, label: string, align?: string }): serverWidget.ListColumn
-    
+    addColumn(options: {
+      id: string,
+      type: string,
+      label: string,
+      align?: string,
+    }): serverWidget.ListColumn
+
     /**
      * Add an Edit or Edit/View column
      *
@@ -97,8 +102,15 @@ declare namespace PortletParams {
      * @param {string} [options.linkParamName]
      * @return {serverWidget.ListColumn}
      */
-    addEditColumn(options: { column: string, showHrefCol?: string, showView?: string, link?: string, linkParam?: string, linkParamName?: string }): serverWidget.ListColumn
-    
+    addEditColumn(options: {
+      column: string,
+      showHrefCol?: string,
+      showView?: string,
+      link?: string,
+      linkParam?: string,
+      linkParamName?: string,
+    }): serverWidget.ListColumn
+
     /**
      * Add a field to the form
      *
@@ -109,8 +121,13 @@ declare namespace PortletParams {
      * @param {string} [options.source]
      * @return {Field}
      */
-    addField(options: { id: string, type: string, label: string, source?: string }): serverWidget.Field
-    
+    addField(options: {
+      id: string,
+      type: string,
+      label: string,
+      source?: string,
+    }): serverWidget.Field
+
     /**
      * Add a field to the form
      *
@@ -120,8 +137,12 @@ declare namespace PortletParams {
      * @param {number} [options.align]
      * @return {Portlet}
      */
-    addLine(options: { text: string, url?: string, align?: string }): Portlet
-    
+    addLine(options: {
+      text: string,
+      url?: string,
+      align?: string,
+    }): Portlet
+
     /**
      * Add a row (Array of name/value pairs or search.Result)
      *
@@ -129,8 +150,12 @@ declare namespace PortletParams {
      * @param {search.Result|Object<string, string>} options.row
      * @return {Portlet}
      */
-    addRow(options: { row: search.Result | { [key: string]: string } }): Portlet
-    
+    addRow(options: {
+      row: search.Result | {
+        [key: string]: string,
+      },
+    }): Portlet
+
     /**
      * Add a field to the form
      *
@@ -140,8 +165,12 @@ declare namespace PortletParams {
      * @param {string} [options.target]
      * @return {serverWidget.Button}
      */
-    setSubmitButton(options: { url: string, label?: string, target?: string }): serverWidget.Button
-    
+    setSubmitButton(options: {
+      url: string,
+      label?: string,
+      target?: string,
+    }): serverWidget.Button
+
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
      *
@@ -149,6 +178,10 @@ declare namespace PortletParams {
      * @param {search.Result[]|Object<string, string>[]} options.rows
      * @return {Portlet}
      */
-    addRows(options: { rows: search.Result[] | { [key: string]: string }[] }): Portlet
+    addRows(options: {
+      rows: search.Result[] | {
+        [key: string]: string,
+      }[],
+    }): Portlet
   }
 }

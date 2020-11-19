@@ -1,13 +1,12 @@
 /**
  * SuiteScript format module
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388721627.html}
  *
  * @module N/format
  * @NApiVersion 2.x
- *
  */
-
 interface format {
-  
+
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
    *
@@ -28,7 +27,7 @@ interface format {
     type: format.Type,
     timezone?: format.Timezone,
   })
-  
+
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
    *
@@ -52,9 +51,9 @@ interface format {
 }
 
 declare namespace format {
-  
+
   /**
-   * Enum for field types.
+   * Enum for field types
    * @enum {string}
    */
   export enum Type {
@@ -97,9 +96,9 @@ declare namespace format {
     ADDRESS = 'address',
     TEXT = 'text',
   }
-  
+
   /**
-   * Enum for Time Zones.
+   * Enum for Time Zones
    * @enum {string}
    */
   export enum Timezone {
