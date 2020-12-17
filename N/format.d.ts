@@ -15,10 +15,9 @@ interface format {
    * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
    * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
    *                                  default is the timezone set in the user's preferences
+   * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
-   *
-   * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @since 2015.2
    */
@@ -26,7 +25,7 @@ interface format {
     value: string,
     type: format.Type,
     timezone?: format.Timezone,
-  })
+  }): Date | string | number
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
@@ -36,10 +35,9 @@ interface format {
    * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
    * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
    *                                  default is the timezone set in the user's preferences
+   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
-   *
-   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @since 2015.2
    */
@@ -47,7 +45,7 @@ interface format {
     value: Date | string | number,
     type: format.Type,
     timezone?: format.Timezone,
-  })
+  }): string
 }
 
 declare namespace format {
