@@ -19,6 +19,30 @@ interface record {
    *
    * @param {Object} options
    * @param {Type|string} options.type record type
+   * @param {boolean} [options.isDynamic=false] record is dynamic
+   * @param {Object<string, *>} [options.defaultValues={}] record default values
+   * @return {Record|CurrentRecord}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+   *
+   * @since 2015.2
+   */
+  /*create<B extends boolean>(options: {
+    type: record.Type | string,
+    isDynamic?: B,
+    defaultValues?: {
+      [key: string]: any,
+    },
+  }): B extends true ? currentRecord.CurrentRecord : record.Record*/
+
+  /**
+   * Create a new record object based on provided type
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
+   *
+   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+   *
+   * @param {Object} options
+   * @param {Type|string} options.type record type
    * @param {false} [options.isDynamic=false] record is dynamic
    * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {Record}
@@ -572,6 +596,7 @@ declare namespace record {
     ASSEMBLY_BUILD = 'assemblybuild',
     ASSEMBLY_ITEM = 'assemblyitem',
     ASSEMBLY_UNBUILD = 'assemblyunbuild',
+    BALANCE_TRX_BY_SEGMENTS = 'balancetrxbysegments',
     BILLING_ACCOUNT = 'billingaccount',
     BILLING_CLASS = 'billingclass',
     BILLING_RATE_CARD = 'billingratecard',
@@ -583,12 +608,16 @@ declare namespace record {
     BLANKET_PURCHASE_ORDER = 'blanketpurchaseorder',
     BOM = 'bom',
     BOM_REVISION = 'bomrevision',
-    BUNDLE_INSTALLATION_SCRIPT = 'bundleinstallationscript',
+    BONUS = 'bonus',
+    BONUS_TYPE = 'bonustype',
+    BUDGET_EXCHANGE_RATE = 'budgetexchangerate',
     BULK_OWNERSHIP_TRANSFER = 'bulkownershiptransfer',
+    BUNDLE_INSTALLATION_SCRIPT = 'bundleinstallationscript',
     CALENDAR_EVENT = 'calendarevent',
     CAMPAIGN = 'campaign',
     CAMPAIGN_RESPONSE = 'campaignresponse',
     CAMPAIGN_TEMPLATE = 'campaigntemplate',
+    CARDHOLDER_AUTHENTICATION = 'cardholderauthentication',
     CASH_REFUND = 'cashrefund',
     CASH_SALE = 'cashsale',
     CHARGE = 'charge',
@@ -620,7 +649,9 @@ declare namespace record {
     CUSTOMER_REFUND = 'customerrefund',
     CUSTOMER_STATUS = 'customerstatus',
     CUSTOMER_SUBSIDIARY_RELATIONSHIP = 'customersubsidiaryrelationship',
+    CUSTOM_PURCHASE = 'custompurchase',
     CUSTOM_RECORD = 'customrecord',
+    CUSTOM_SALE = 'customsale',
     CUSTOM_TRANSACTION = 'customtransaction',
     DEPARTMENT = 'department',
     DEPOSIT = 'deposit',
@@ -630,13 +661,21 @@ declare namespace record {
     DOWNLOAD_ITEM = 'downloaditem',
     EMAIL_TEMPLATE = 'emailtemplate',
     EMPLOYEE = 'employee',
+    EMPLOYEE_CHANGE_REQUEST = 'employeechangerequest',
+    EMPLOYEE_CHANGE_REQUEST_TYPE = 'employeechangerequesttype',
+    EMPLOYEE_STATUS = 'employeestatus',
+    EMPLOYEE_TYPE = 'employeetype',
     ENTITY_ACCOUNT_MAPPING = 'entityaccountmapping',
     ESTIMATE = 'estimate',
+    EXPENSE_AMORTIZATION_EVENT = 'expenseamortizationevent',
     EXPENSE_CATEGORY = 'expensecategory',
+    EXPENSE_PLAN = 'expenseplan',
     EXPENSE_REPORT = 'expensereport',
     FAIR_VALUE_PRICE = 'fairvalueprice',
+    FINANCIAL_INSTITUTION = 'financialinstitution',
     FIXED_AMOUNT_PROJECT_REVENUE_RULE = 'fixedamountprojectrevenuerule',
     FOLDER = 'folder',
+    FORMAT_PROFILE = 'formatprofile',
     FULFILLMENT_REQUEST = 'fulfillmentrequest',
     GENERAL_TOKEN = 'generaltoken',
     GENERIC_RESOURCE = 'genericresource',
@@ -644,6 +683,8 @@ declare namespace record {
     GIFT_CERTIFICATE_ITEM = 'giftcertificateitem',
     GLOBAL_ACCOUNT_MAPPING = 'globalaccountmapping',
     GLOBAL_INVENTORY_RELATIONSHIP = 'globalinventoryrelationship',
+    GL_NUMBERING_SEQUENCE = 'glnumberingsequence',
+    GOAL = 'goal',
     INBOUND_SHIPMENT = 'inboundshipment',
     INTERCOMP_ALLOCATION_SCHEDULE = 'intercompallocationschedule',
     INTER_COMPANY_JOURNAL_ENTRY = 'intercompanyjournalentry',
@@ -658,14 +699,19 @@ declare namespace record {
     INVENTORY_STATUS_CHANGE = 'inventorystatuschange',
     INVENTORY_TRANSFER = 'inventorytransfer',
     INVOICE = 'invoice',
+    INVOICE_GROUP = 'invoicegroup',
     ISSUE = 'issue',
     ISSUE_PRODUCT = 'issueproduct',
     ISSUE_PRODUCT_VERSION = 'issueproductversion',
     ITEM_ACCOUNT_MAPPING = 'itemaccountmapping',
+    ITEM_COLLECTION = 'itemcollection',
+    ITEM_COLLECTION_ITEM_MAP = 'itemcollectionitemmap',
     ITEM_DEMAND_PLAN = 'itemdemandplan',
     ITEM_FULFILLMENT = 'itemfulfillment',
     ITEM_GROUP = 'itemgroup',
     ITEM_LOCATION_CONFIGURATION = 'itemlocationconfiguration',
+    ITEM_PROCESS_FAMILY = 'itemprocessfamily',
+    ITEM_PROCESS_GROUP = 'itemprocessgroup',
     ITEM_RECEIPT = 'itemreceipt',
     ITEM_REVISION = 'itemrevision',
     ITEM_SUPPLY_PLAN = 'itemsupplyplan',
@@ -685,6 +731,7 @@ declare namespace record {
     MAP_REDUCE_SCRIPT = 'mapreducescript',
     MARKUP_ITEM = 'markupitem',
     MASSUPDATE_SCRIPT = 'massupdatescript',
+    MEM_DOC = 'memdoc',
     MERCHANDISE_HIERARCHY_LEVEL = 'merchandisehierarchylevel',
     MERCHANDISE_HIERARCHY_NODE = 'merchandisehierarchynode',
     MERCHANDISE_HIERARCHY_VERSION = 'merchandisehierarchyversion',
@@ -696,6 +743,7 @@ declare namespace record {
     NOTE_TYPE = 'notetype',
     OPPORTUNITY = 'opportunity',
     ORDER_SCHEDULE = 'orderschedule',
+    ORDER_TYPE = 'ordertype',
     OTHER_CHARGE_ITEM = 'otherchargeitem',
     OTHER_NAME = 'othername',
     OTHER_NAME_CATEGORY = 'othernamecategory',
@@ -708,9 +756,18 @@ declare namespace record {
     PAYMENT_ITEM = 'paymentitem',
     PAYMENT_METHOD = 'paymentmethod',
     PAYROLL_ITEM = 'payrollitem',
-    PERIOD_END_JOURNAL = 'periodendjournal',
     PCT_COMPLETE_PROJECT_REVENUE_RULE = 'pctcompleteprojectrevenuerule',
+    PERFORMANCE_METRIC = 'performancemetric',
+    PERFORMANCE_REVIEW = 'performancereview',
+    PERFORMANCE_REVIEW_SCHEDULE = 'performancereviewschedule',
+    PERIOD_END_JOURNAL = 'periodendjournal',
     PHONE_CALL = 'phonecall',
+    PICK_STRATEGY = 'pickstrategy',
+    PICK_TASK = 'picktask',
+    PLANNED_ORDER = 'plannedorder',
+    PLANNING_ITEM_CATEGORY = 'planningitemcategory',
+    PLANNING_ITEM_GROUP = 'planningitemgroup',
+    PLANNING_RULE_GROUP = 'planningrulegroup',
     PORTLET = 'portlet',
     PRICE_BOOK = 'pricebook',
     PRICE_LEVEL = 'pricelevel',
@@ -753,9 +810,13 @@ declare namespace record {
     SUBSCRIPTION_LINE = 'subscriptionline',
     SUBSCRIPTION_PLAN = 'subscriptionplan',
     SUBSIDIARY = 'subsidiary',
+    SUBSIDIARY_SETTINGS = 'subsidiarysettings',
     SUBTOTAL_ITEM = 'subtotalitem',
     SUITELET = 'suitelet',
     SUPPLY_CHAIN_SNAPSHOT = 'supplychainsnapshot',
+    SUPPLY_CHAIN_SNAPSHOT_SIMULATION = 'supplychainsnapshotsimulation',
+    SUPPLY_CHANGE_ORDER = 'supplychangeorder',
+    SUPPLY_PLAN_DEFINITION = 'supplyplandefinition',
     SUPPORT_CASE = 'supportcase',
     TASK = 'task',
     TAX_ACCT = 'taxacct',
@@ -774,6 +835,7 @@ declare namespace record {
     TOPIC = 'topic',
     TRANSFER_ORDER = 'transferorder',
     UNITS_TYPE = 'unitstype',
+    UNLOCKED_TIME_PERIOD = 'unlockedtimeperiod',
     USAGE = 'usage',
     USEREVENT_SCRIPT = 'usereventscript',
     VENDOR = 'vendor',
@@ -781,15 +843,20 @@ declare namespace record {
     VENDOR_CATEGORY = 'vendorcategory',
     VENDOR_CREDIT = 'vendorcredit',
     VENDOR_PAYMENT = 'vendorpayment',
+    VENDOR_PREPAYMENT = 'vendorprepayment',
+    VENDOR_PREPAYMENT_APPLICATION = 'vendorprepaymentapplication',
     VENDOR_RETURN_AUTHORIZATION = 'vendorreturnauthorization',
     VENDOR_SUBSIDIARY_RELATIONSHIP = 'vendorsubsidiaryrelationship',
+    WAVE = 'wave',
+    WBS = 'wbs',
     WEBSITE = 'website',
     WORKFLOW_ACTION_SCRIPT = 'workflowactionscript',
+    WORKPLACE = 'workplace',
     WORK_ORDER = 'workorder',
     WORK_ORDER_CLOSE = 'workorderclose',
     WORK_ORDER_COMPLETION = 'workordercompletion',
     WORK_ORDER_ISSUE = 'workorderissue',
-    WORKPLACE = 'workplace',
+    ZONE = 'zone',
   }
 
   export interface Column {
