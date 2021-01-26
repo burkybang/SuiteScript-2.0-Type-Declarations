@@ -1416,13 +1416,23 @@ declare namespace serverWidget {
 
     /**
      * Set the default values of many fields at once
-     * @param {Object[]} values
+     * @param {Object<string, string>} values
+     * @return {void}
+     */
+    updateDefaultValues(values: {
+      [key: string]: string,
+    }): void
+
+    /**
+     * Set the default values of many fields at once
+     * @param {Object} options
+     * @param {Object<string, string>} options.values
      * @return {void}
      */
     updateDefaultValues(options: {
       values: {
-        [key: string]: string
-      }[]
+        [key: string]: string,
+      },
     }): void
 
     /**
