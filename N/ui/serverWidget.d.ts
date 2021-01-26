@@ -1268,12 +1268,19 @@ declare namespace serverWidget {
 
     /**
      * Add a Reset button to the form
-     * @param {Object} [options]
-     * @param {string} [options.label]  The UI label used for this button. If no label is provided, the label defaults to Reset.
+     * @param {string} [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
      * @return {Button}
      */
-    addResetButton(options: {
-      label: string,
+    addResetButton(label?: string): Button
+
+    /**
+     * Add a Reset button to the form
+     * @param {Object} [options]
+     * @param {string} [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
+     * @return {Button}
+     */
+    addResetButton(options?: {
+      label?: string,
     }): Button
 
     /**
