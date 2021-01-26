@@ -1285,12 +1285,19 @@ declare namespace serverWidget {
 
     /**
      * Add a Submit button to the form
-     * @param {Object} [options]
-     * @param {string} [options.label] The UI label for this button. If no label is provided, the label defaults to Save.
+     * @param {string} [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
      * @return {Button}
      */
-    addSubmitButton(options: {
-      label: string,
+    addSubmitButton(label?: string): Button
+
+    /**
+     * Add a Submit button to the form
+     * @param {Object} [options]
+     * @param {string} [options.label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
+     * @return {Button}
+     */
+    addSubmitButton(options?: {
+      label?: string,
     }): Button
 
     /**
