@@ -93,6 +93,11 @@ declare namespace message {
      *
      * @return {{type: string, title: string, message: string}}
      */
-    toJSON(): Object
+    toJSON(): {
+      type: Type,
+      title: string,
+      message: string,
+      duration: number,
+    }
   }
 }

@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
 /// <reference path="./crypto.d.ts" />
@@ -293,11 +294,10 @@ declare namespace https {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ClientResponse>
   }
 
   /**
@@ -414,11 +414,10 @@ declare namespace https {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ServerRequest>
   }
 
   /**
@@ -585,10 +584,10 @@ declare namespace https {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ServerResponse>
   }
 
   export interface SecureString {

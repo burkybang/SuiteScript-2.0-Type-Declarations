@@ -1,3 +1,5 @@
+/// <reference path="../typings.d.ts" />
+
 /**
  * SuiteScript module
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296359529.html}
@@ -90,15 +92,15 @@ interface runtime {
   executionContext: runtime.ContextType
 
   /**
-   * get JSON format of the object
-   * @return {string}
-   */
-  toJSON(): string
-
-  /**
    * @return {string}
    */
   toString(): string
+
+  /**
+   * Convert to JSON object
+   * @return {Object<string, *>}
+   */
+  toJSON(): ExcludeMethods<runtime>
 }
 
 
@@ -236,7 +238,7 @@ declare namespace runtime {
      */
     getParameter(options: {
       name: string,
-    }): number | Date | string | string[]
+    }): number | Date | string | string[] | boolean
 
     /**
      * Percentage complete specified for the current scheduled script execution
@@ -248,17 +250,16 @@ declare namespace runtime {
     percentComplete: number
 
     /**
-     * get JSON format of the object
-     * @return {string}
-     *
-     */
-    toJSON(): string
-
-    /**
      * @return {string}
      *
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<Script>
   }
 
   /**
@@ -292,17 +293,16 @@ declare namespace runtime {
     }): void
 
     /**
-     * get JSON format of the object
-     * @return {string}
-     *
-     */
-    toJSON(): string
-
-    /**
      * @return {string}
      *
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<Session>
   }
 
   /**
@@ -415,16 +415,15 @@ declare namespace runtime {
     }): string
 
     /**
-     * get JSON format of the object
-     * @return {string}
-     *
-     */
-    toJSON(): string
-
-    /**
      * @return {string}
      *
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<User>
   }
 }

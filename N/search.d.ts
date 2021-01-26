@@ -1,3 +1,5 @@
+/// <reference path="../typings.d.ts" />
+
 /**
  * SuiteScript search module
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345764122.html}
@@ -879,10 +881,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Search>
   }
 
   export namespace Search {
@@ -982,10 +984,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Filter>
   }
 
   export interface Column {
@@ -1100,10 +1102,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Column>
   }
 
   export interface Setting {
@@ -1146,10 +1148,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Setting>
   }
 
   export interface ResultSet {
@@ -1209,10 +1211,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ResultSet>
   }
 
   export interface Result {
@@ -1305,10 +1307,10 @@ declare namespace search {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Result>
   }
 
   export interface PagedData {

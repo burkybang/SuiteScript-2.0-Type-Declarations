@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="./format.d.ts" />
 /// <reference path="./currentRecord.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
@@ -1965,11 +1966,10 @@ declare namespace record {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {{id: string, type: string, isChanged: boolean, isDisplay: boolean}}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Sublist>
   }
 
   export interface Field {
@@ -2076,15 +2076,14 @@ declare namespace record {
     isPopup: boolean
 
     /**
-     * Get JSON format of the object
-     *
-     * @return {{id: *, label: *, type: *}}
-     */
-    toJSON(): Object
-
-    /**
      * @return {string}
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<Field>
   }
 }

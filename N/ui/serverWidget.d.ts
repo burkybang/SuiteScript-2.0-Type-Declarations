@@ -1,3 +1,4 @@
+/// <reference path="../../typings.d.ts" />
 /// <reference path="./message.d.ts" />
 /// <reference path="../search.d.ts" />
 /// <reference path="../http.d.ts" />
@@ -1407,6 +1408,12 @@ declare namespace serverWidget {
         [key: string]: string
       }[]
     }): void
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<Form>
   }
 
   /**
@@ -1434,6 +1441,23 @@ declare namespace serverWidget {
      * @since 2015.2
      */
     title: string
+
+    /**
+     * The script file id to be used in the list page
+     * @name List#clientScriptFileId
+     * @type {number}
+     */
+    clientScriptFileId: number
+
+    /**
+     * The script file path to be used in the list page
+     * @name List#clientScriptModulePath
+     * @type {string}
+     *
+     * @example 'SuiteScripts/client_script.js' - Absolute path
+     * @example './client_script.js' - Relative path
+     */
+    clientScriptModulePath: string
 
     /**
      * Add a Button to the list page
@@ -1513,23 +1537,6 @@ declare namespace serverWidget {
     addRows(options: {
       rows: search.Result[] | { [key: string]: string }[]
     }): List
-
-    /**
-     * The script file id to be used in the list page
-     * @name List#clientScriptFileId
-     * @type {number}
-     */
-    clientScriptFileId: number
-
-    /**
-     * The script file path to be used in the list page
-     * @name List#clientScriptModulePath
-     * @type {string}
-     *
-     * @example 'SuiteScripts/client_script.js' - Absolute path
-     * @example './client_script.js' - Relative path
-     */
-    clientScriptModulePath: string
   }
 
   /**
@@ -1544,6 +1551,12 @@ declare namespace serverWidget {
   export interface ListColumn {
 
     /**
+     * @name ColumnList#label Label this list column
+     * @type {string} string
+     */
+    label: string
+
+    /**
      * Adds a URL parameter (optionally defined per row) to the list column's URL
      * @param {Object} options
      * @param {string} options.param  Name for the parameter
@@ -1556,12 +1569,6 @@ declare namespace serverWidget {
       value: string,
       dynamic?: boolean,
     }): ListColumn
-
-    /**
-     * @name ColumnList#label Label this list column
-     * @type {string} string
-     */
-    label: string
 
     /**
      * Sets the base URL for the list column

@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./xml.d.ts" />
 /// <reference path="./record.d.ts" />
@@ -257,15 +258,15 @@ declare namespace render {
     body: string
 
     /**
-     * get JSON format of the object
-     * @return {Object}
-     */
-    toJSON(): Object
-
-    /**
      * @return {string}
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<EmailMergeResult>
   }
 
   /**
@@ -408,14 +409,14 @@ declare namespace render {
     renderPdfToResponse(response: http.ServerResponse): void
 
     /**
-     * get JSON format of the object
-     * @return {Object}
-     */
-    toJSON(): Object
-
-    /**
      * @return {string}
      */
     toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<TemplateRenderer>
   }
 }

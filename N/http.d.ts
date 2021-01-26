@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
 
@@ -237,11 +238,10 @@ declare namespace http {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ClientResponse>
   }
 
   /**
@@ -294,7 +294,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     files: {
-      [key: string]: any
+      [key: string]: any,
     }
 
     /**
@@ -358,11 +358,10 @@ declare namespace http {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ServerRequest>
   }
 
   /**
@@ -529,9 +528,9 @@ declare namespace http {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ServerResponse>
   }
 }

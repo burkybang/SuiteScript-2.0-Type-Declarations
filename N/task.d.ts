@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./record.d.ts" />
 
@@ -204,11 +205,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ScheduledScriptTask>
   }
 
   /**
@@ -261,11 +261,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ScheduledScriptTaskStatus>
   }
 
   /**
@@ -328,11 +327,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<MapReduceScriptTask>
   }
 
   /**
@@ -482,11 +480,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<MapReduceScriptTaskStatus>
   }
 
   /**
@@ -574,20 +571,6 @@ declare namespace task {
     submit(): string
 
     /**
-     * Returns the object type name (task.SearchTask).
-     *
-     * @return {string}
-     */
-    toString(): string
-
-    /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
-     */
-    toJSON(): Object
-
-    /**
      * Adds an inbound dependency (completion script).
      *
      * @param {Object} options
@@ -596,6 +579,19 @@ declare namespace task {
     addInboundDependency(options: {
       dependentScript: ScheduledScriptTask | MapReduceScriptTask,
     }): void
+
+    /**
+     * Returns the object type name (task.SearchTask).
+     *
+     * @return {string}
+     */
+    toString(): string
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<SearchTask>
   }
 
   /**
@@ -649,11 +645,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<SearchTaskStatus>
   }
 
   /**
@@ -724,11 +719,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<CsvImportTask>
   }
 
   /**
@@ -764,11 +758,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<CsvImportTaskStatus>
   }
 
   /**
@@ -837,11 +830,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<EntityDeduplicationTask>
   }
 
   /**
@@ -877,11 +869,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<EntityDeduplicationTaskStatus>
   }
 
   /**
@@ -946,11 +937,10 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<WorkflowTriggerTask>
   }
 
   /**
@@ -986,10 +976,9 @@ declare namespace task {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     *
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<WorkflowTriggerTaskStatus>
   }
 }

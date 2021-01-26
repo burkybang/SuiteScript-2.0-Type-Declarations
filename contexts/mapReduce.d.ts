@@ -1,3 +1,4 @@
+/// <reference path="../typings.d.ts" />
 /// <reference path="../N/error.d.ts" />
 
 /**
@@ -43,10 +44,10 @@ type GetInputContext = {
   toString(): string
 
   /**
-   * JSON.stringify() implementation.
-   * @return {Object}
+   * Convert to JSON object
+   * @return {Object<string, *>}
    */
-  toJSON(): Object
+  toJSON(): ExcludeMethods<GetInputContext>
 }
 
 /**
@@ -115,10 +116,10 @@ type MapContext = {
   toString(): string
 
   /**
-   * JSON.stringify() implementation.
-   * @return {Object}
+   * Convert to JSON object
+   * @return {Object<string, *>}
    */
-  toJSON(): Object
+  toJSON(): ExcludeMethods<MapContext>
 }
 
 /**
@@ -190,10 +191,10 @@ type ReduceContext = {
   toString(): string
 
   /**
-   * JSON.stringify() implementation.
-   * @return {Object}
+   * Convert to JSON object
+   * @return {Object<string, *>}
    */
-  toJSON(): Object
+  toJSON(): ExcludeMethods<ReduceContext>
 }
 
 /**
@@ -274,10 +275,10 @@ type SummarizeContext = {
   toString(): string
 
   /**
-   * JSON.stringify() implementation.
-   * @return {Object}
+   * Convert to JSON object
+   * @return {Object<string, *>}
    */
-  toJSON(): Object
+  toJSON(): ExcludeMethods<SummarizeContext>
 }
 
 declare namespace SummarizeContext {
@@ -328,10 +329,10 @@ declare namespace SummarizeContext {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<InputSummary>
   }
 
   /**
@@ -402,10 +403,10 @@ declare namespace SummarizeContext {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<MapSummary>
   }
 
   /**
@@ -473,12 +474,12 @@ declare namespace SummarizeContext {
     /**
      * @return {string}
      */
-    toString()
+    toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<ReduceSummary>
   }
 }

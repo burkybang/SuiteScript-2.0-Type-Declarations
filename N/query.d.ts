@@ -1,3 +1,5 @@
+/// <reference path="../typings.d.ts" />
+
 /**
  * SuiteScript query module
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060.html}
@@ -1037,10 +1039,10 @@ declare namespace query {
     toString(): string
 
     /**
-     * JSON.stringify() implementation.
-     * @return {Object}
+     * Convert to JSON object
+     * @return {Object<string, *>}
      */
-    toJSON(): Object
+    toJSON(): ExcludeMethods<Query>
   }
 
   /**
