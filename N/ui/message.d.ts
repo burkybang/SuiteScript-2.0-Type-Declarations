@@ -57,8 +57,22 @@ declare namespace message {
      * Shows the message.
      *
      * @restriction Client SuiteScript only
+     * @param {number} [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
+     *
+     * @return {void}
+     *
+     * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
+     *
+     * @since 2016.1
+     */
+    show(duration?: number): void
+
+    /**
+     * Shows the message.
+     *
+     * @restriction Client SuiteScript only
      * @param {Object} [options]
-     * @param {number|string} [options.duration] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
+     * @param {number|string} [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
      *
      * @return {void}
      *
