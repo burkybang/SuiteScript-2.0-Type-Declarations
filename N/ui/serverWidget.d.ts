@@ -1161,6 +1161,7 @@ declare namespace serverWidget {
      *                                        `
      * @param {Object} options
      * @param {string} options.id the script id of field
+     * @param {string} options.label the label of field
      * @param {string|string[]} [options.restrictToScriptIds]  List of scripts where the key can be used
      * @param {boolean} [options.restrictToCurrentUser=false] Restrict the use of this key to the user that created it
      * @param {string} [options.container]  Id of the form tab or group where the key is placed
@@ -1168,6 +1169,7 @@ declare namespace serverWidget {
      */
     addSecretKeyField(options: {
       id: string,
+      label: string,
       restrictToScriptIds?: string | string[],
       restrictToCurrentUser?: boolean,
       container?: string,
