@@ -144,9 +144,9 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_DOM_EXCEPTION if node cannot be appended for some reason
      */
-    appendChild(options: {
-      newChild: Node,
-    }): Node
+    appendChild<NewChildNode extends Node>(options: {
+      newChild: NewChildNode,
+    }): NewChildNode
 
     /**
      * Returns a duplicate of this node, i.e., serves as a generic copy constructor for nodes. The duplicate node has no parent.
@@ -200,10 +200,10 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be inserted for some reason
      */
-    insertBefore(options: {
-      newChild: Node,
+    insertBefore<NewChildNode extends Node>(options: {
+      newChild: NewChildNode,
       refChild: Node,
-    }): Node
+    }): NewChildNode
 
     /**
      * This method checks if the specified namespaceURI is the default namespace or not
@@ -289,9 +289,9 @@ declare namespace xml {
      * @return {Node} the node removed
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
      */
-    removeChild(options: {
-      oldChild: Node,
-    }): Node
+    removeChild<OldChildNode extends Node>(options: {
+      oldChild: OldChildNode,
+    }): OldChildNode
 
     /**
      * Replaces the child node oldChild with newChild in the list of children, and returns the oldChild node
@@ -304,10 +304,10 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be replaced for some reason
      */
-    replaceChild(options: {
-      newChild: Node,
+    replaceChild<NewChildNode extends Node>(options: {
+      newChild: NewChildNode,
       oldChild: Node,
-    }): Node
+    }): NewChildNode
 
     /**
      * A map of key/value (string->Attr) pairs containing the attributes of this node (if it is an Element) or null otherwise
@@ -539,9 +539,9 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be adopted for some reason
      */
-    adoptNode(options: {
-      source: Node,
-    }): Node
+    adoptNode<SourceNode extends Node>(options: {
+      source: SourceNode,
+    }): SourceNode
 
     /**
      * Creates an attribute node of the given name
@@ -708,10 +708,10 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be imported for some reason
      */
-    importNode(options: {
-      importedNode: Node,
+    importNode<ImportedNode extends Node>(options: {
+      importedNode: ImportedNode,
       deep: boolean,
-    }): Node
+    }): ImportedNode
 
     /**
      * The Document Type Declaration associated with this document
@@ -936,9 +936,9 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
-    removeAttributeNode(options: {
-      oldAttr: Attr,
-    }): Attr
+    removeAttributeNode<OldAttr extends Attr>(options: {
+      oldAttr: OldAttr,
+    }): OldAttr
 
     /**
      * Removes an attribute by local name and namespace URI
@@ -981,9 +981,9 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
-    setAttributeNode(options: {
-      newAttr: Attr,
-    }): Attr
+    setAttributeNode<NewAttr extends Attr>(options: {
+      newAttr: NewAttr,
+    }): NewAttr
 
     /**
      * Adds a new attribute node
@@ -995,9 +995,9 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
-    setAttributeNodeNS(options: {
-      newAttr: Attr,
-    }): Attr
+    setAttributeNodeNS<NewAttr extends Attr>(options: {
+      newAttr: NewAttr,
+    }): NewAttr
 
     /**
      * Adds a new attribute. If an attribute with the same local name and namespace URI is already present on the element, its prefix is changed
