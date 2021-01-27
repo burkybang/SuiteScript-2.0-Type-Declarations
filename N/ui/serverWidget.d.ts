@@ -250,22 +250,22 @@ declare namespace serverWidget {
      *
      * @param {Object} options
      * @param {string} options.id The id of the field to use as a unique field
-     * @return {Sublist}
+     * @return {Sublist} same object for chaining
      */
     updateUniqueFieldId(options: {
       id: string,
-    }): Sublist
+    }): this
 
     /**
      * Id of a field designated as a totalling column, which is used to calculate and display a running total for the sublist
      *
      * @param {Object} options
      * @param {string} options.id The id of the field to use as a total field
-     * @return {Sublist}
+     * @return {Sublist} same object for chaining
      */
     updateTotallingFieldId(options: {
       id: string,
-    }): Sublist
+    }): this
 
     /**
      * Display type of the sublist
@@ -525,22 +525,22 @@ declare namespace serverWidget {
      *
      * @param {Object} options
      * @param {FieldBreakType} options.breakType
-     * @return {Field}
+     * @return {Field} same object for chaining
      */
     updateBreakType(options: {
       breakType: FieldBreakType,
-    }): Field
+    }): this
 
     /**
      * Update the layout type of the field
      *
      * @param {Object} options
      * @param {FieldLayoutType} options.layoutType
-     * @return {Field}
+     * @return {Field} same object for chaining
      */
     updateLayoutType(options: {
       layoutType: FieldLayoutType,
-    }): Field
+    }): this
 
     /**
      * Sets the height and width for the field. Only supported on multi-selects,
@@ -550,23 +550,23 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {number} options.height
      * @param {number} options.width
-     * @return {Field}
+     * @return {Field} same object for chaining
      */
     updateDisplaySize(options: {
       height: number,
       width: number,
-    }): Field
+    }): this
 
     /**
      * Udpdate the field display type
      *
      * @param {Object} options
      * @param {FieldDisplayType|string} options.displayType
-     * @return {Field}
+     * @return {Field} same object for chaining
      */
     updateDisplayType(options: {
       displayType: FieldDisplayType | string,
-    }): Field
+    }): this
 
     /**
      * Set help text for a field
@@ -574,12 +574,12 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.help The help text for the field
      * @param {boolean} [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
-     * @return {Field}
+     * @return {Field} same object for chaining
      */
     setHelpText(options: {
       help: string,
       showInlineForAssistant?: boolean,
-    }): Field
+    }): this
 
     /**
      * Get the select options for a field

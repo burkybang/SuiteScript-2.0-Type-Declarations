@@ -25,7 +25,10 @@ interface config {
    *
    * @since 2015.2
    */
-  load(options: { type: config.Type, isDynamic?: boolean }): record.Record
+  load(options: {
+    type: config.Type,
+    isDynamic?: boolean,
+  }): record.Record
 }
 
 /**

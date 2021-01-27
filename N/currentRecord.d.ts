@@ -101,7 +101,7 @@ declare namespace currentRecord {
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
@@ -110,7 +110,7 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Get value of the field in text representation
@@ -138,7 +138,7 @@ declare namespace currentRecord {
      *     parameter accepts only a single string value.
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
@@ -147,7 +147,7 @@ declare namespace currentRecord {
       text: string | string[],
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
@@ -227,7 +227,7 @@ declare namespace currentRecord {
      * @param {string} options.sublistId
      * @param {number} options.line
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
@@ -239,7 +239,7 @@ declare namespace currentRecord {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Remove a sublist line
@@ -249,7 +249,7 @@ declare namespace currentRecord {
      * @param {string} options.sublistId
      * @param {number} options.line
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
@@ -261,7 +261,7 @@ declare namespace currentRecord {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Select a new line at the end of sublist
@@ -271,14 +271,14 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {CurrentRecord}
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      */
     selectNewLine(options: {
       sublistId: string,
-    }): CurrentRecord
+    }): this
 
     /**
      * Cancel the current selected line
@@ -288,14 +288,14 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      */
     cancelLine(options: {
       sublistId: string,
-    }): CurrentRecord
+    }): this
 
     /**
      * Commit the current selected line
@@ -305,14 +305,14 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      */
     commitLine(options: {
       sublistId: string,
-    }): CurrentRecord
+    }): this
 
     /**
      * Return value of a sublist field on the current selected sublist line
@@ -343,7 +343,7 @@ declare namespace currentRecord {
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
@@ -355,7 +355,7 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Return the value for field in the current selected line by text representation
@@ -388,7 +388,7 @@ declare namespace currentRecord {
      * @param {string} options.text
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
@@ -400,7 +400,7 @@ declare namespace currentRecord {
       text: string,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
@@ -411,7 +411,7 @@ declare namespace currentRecord {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {number} options.line
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
@@ -419,7 +419,7 @@ declare namespace currentRecord {
     selectLine(options: {
       sublistId: string,
       line: number,
-    }): CurrentRecord
+    }): this
 
     /**
      * Save record updates to the system
@@ -472,11 +472,11 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      */
     removeSubrecord(options: {
       fieldId: string,
-    }): CurrentRecord
+    }): this
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
@@ -537,12 +537,12 @@ declare namespace currentRecord {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      */
     removeCurrentSublistSubrecord(options: {
       sublistId: string,
       fieldId: string,
-    }): CurrentRecord
+    }): this
 
     /**
      * Return array of names of all body fields, including machine header field and matrix header fields
@@ -606,7 +606,7 @@ declare namespace currentRecord {
      * @param {number} options.column the column number for the field
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -617,7 +617,7 @@ declare namespace currentRecord {
       column: number,
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Get the value for the associated header in the matrix
@@ -649,7 +649,7 @@ declare namespace currentRecord {
      * @param {number} options.column the column number for the field
      * @param {number} options.line the line number for the field
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -660,7 +660,7 @@ declare namespace currentRecord {
       column: number,
       line: number,
       value: string | number | (string | number)[] | Date | boolean
-    }): CurrentRecord
+    }): this
 
     /**
      * Get the value for the associated field in the matrix
@@ -770,7 +770,7 @@ declare namespace currentRecord {
      * @param {string|number|(string|number)[]|Date|boolean} options.value - the value to set it to
      * @param {boolean} [options.ignoreFieldChange=false] - Ignore the field change script (default false)
      * @param {boolean} [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
-     * @return {CurrentRecord} same record, for chaining
+     * @return {CurrentRecord} same object for chaining
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
@@ -781,7 +781,7 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): CurrentRecord
+    }): this
 
     /**
      * Get the value for the line currently selected in the matrix

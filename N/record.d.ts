@@ -903,11 +903,11 @@ declare namespace record {
      * @param {Object} options
      * @param {string} options.id macro id
      * @param {string} [options.params] The macro arguments
-     * @return {Macro}
+     * @return {Macro} same object for chaining
      */
     constructor(options: {
       id: string,
-    }): Macro
+    }): this
 
     /**
      * @name Macro#id
@@ -1003,7 +1003,7 @@ declare namespace record {
      */
     getMacro(options: {
       id: string,
-    }): Function
+    }): Macro
 
     /**
      * Provides available macros
@@ -1072,7 +1072,7 @@ declare namespace record {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
 
@@ -1112,14 +1112,14 @@ declare namespace record {
      * @param {string} options.fieldId
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setValue(options: {
       fieldId: string,
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
-    }): Record
+    }): this
 
     /**
      * Get value of the field in text representation
@@ -1143,14 +1143,14 @@ declare namespace record {
      *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
      *     parameter accepts only a single string value.
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setText(options: {
       fieldId: string,
       text: string | string[],
       ignoreFieldChange?: boolean,
-    }): Record
+    }): this
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
@@ -1194,7 +1194,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @param {number} options.line
      * @param {string|number|(string|number)[]|Date|boolean} options.value
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      */
@@ -1203,7 +1203,7 @@ declare namespace record {
       fieldId: string,
       line: number,
       value: string | number | (string | number)[] | Date | boolean,
-    }): Record
+    }): this
 
     /**
      * Return value of a sublist field in text representation
@@ -1231,7 +1231,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @param {number} options.line
      * @param {string} options.text
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      */
@@ -1240,7 +1240,7 @@ declare namespace record {
       fieldId: string,
       line: number,
       text: string,
-    }): Record
+    }): this
 
     /**
      * Return line count of sublist
@@ -1260,7 +1260,7 @@ declare namespace record {
      * @param {string} options.sublistId
      * @param {number} options.line
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
      *     are missing
@@ -1271,20 +1271,20 @@ declare namespace record {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): Record
+    }): this
 
     /**
      * Commits and copies the currently selected line into a new line, which will be the new selected line.
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or not editable
      */
     copyLine(options: {
       sublistId: string,
-    }): Record
+    }): this
 
     /**
      * Remove a sublist line
@@ -1293,7 +1293,7 @@ declare namespace record {
      * @param {string} options.sublistId
      * @param {number} options.line
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
      *     missing
@@ -1304,49 +1304,49 @@ declare namespace record {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): Record
+    }): this
 
     /**
      * Select a new line at the end of sublist
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {Record}
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      * @restriction only available in dynamic record
      */
     selectNewLine(options: {
       sublistId: string,
-    }): Record
+    }): this
 
     /**
      * Cancel the current selected line
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      * @restriction only available in dynamic record
      */
     cancelLine(options: {
       sublistId: string,
-    }): Record
+    }): this
 
     /**
      * Commit the current selected line
      *
      * @param {Object} options
      * @param {string} options.sublistId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      * @restriction only available in dynamic record
      */
     commitLine(options: {
       sublistId: string,
-    }): Record
+    }): this
 
     /**
      * Return value of a sublist field on the current selected sublist line
@@ -1372,7 +1372,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
@@ -1382,7 +1382,7 @@ declare namespace record {
       fieldId: string,
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
-    }): Record
+    }): this
 
     /**
      * Return the value for field in the current selected line by text representation
@@ -1408,7 +1408,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @param {string} options.text
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
@@ -1419,7 +1419,7 @@ declare namespace record {
       fieldId: string,
       text: string,
       ignoreFieldChange?: boolean,
-    }): Record
+    }): this
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
@@ -1427,7 +1427,7 @@ declare namespace record {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {number} options.line
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      * @restriction only available in dynamic record
@@ -1435,7 +1435,7 @@ declare namespace record {
     selectLine(options: {
       sublistId: string,
       line: number,
-    }): Record
+    }): this
 
     /**
      * Save record updates to the system
@@ -1483,11 +1483,11 @@ declare namespace record {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      */
     removeSubrecord(options: {
       fieldId: string,
-    }): Record
+    }): this
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
@@ -1528,7 +1528,7 @@ declare namespace record {
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @restriction only available in deferred dynamic record
      */
     removeSublistSubrecord(options: {
@@ -1571,7 +1571,7 @@ declare namespace record {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @restriction only available in dynamic record
      */
     removeCurrentSublistSubrecord(options: {
@@ -1672,7 +1672,7 @@ declare namespace record {
      * @param {number} options.column the column number for the field
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setMatrixHeaderValue(options: {
@@ -1709,7 +1709,7 @@ declare namespace record {
      * @param {number} options.line the line number for the field
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @restriction only available in deferred dynamic record
      */
     setMatrixSublistValue(options: {
@@ -1813,7 +1813,7 @@ declare namespace record {
      * @param {number} options.column - the column number for the field
      * @param {string|number|(string|number)[]|Date|boolean} options.value - the value to set it to
      * @param {boolean} [options.ignoreFieldChange] - Ignore the field change script (default false)
-     * @return {Record} same record, for chaining
+     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      * @restriction only available in dynamic record
      */

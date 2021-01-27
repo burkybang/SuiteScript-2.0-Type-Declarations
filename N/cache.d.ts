@@ -95,6 +95,7 @@ declare namespace cache {
      *
      * @param {Object} options
      * @param {string} options.key The cache key used to identify the value.
+     * @return {void}
      */
     remove(options: {
       key: string,
@@ -111,6 +112,7 @@ declare namespace cache {
      * @param {string} options.value The value to cache.
      * @param {number} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
      * The default TTL is no limit; the minimal value is 5 minutes.
+     * @return {void}
      */
     put(options: {
       key: string,
