@@ -600,8 +600,8 @@ declare namespace https {
      * @return {https.SecureString}
      */
     appendSecureString(options: {
-      secureString: https.SecureString,
-    }): https.SecureString
+      secureString: SecureString,
+    }): SecureString
 
     /**
      * @param {Object} options
@@ -611,8 +611,8 @@ declare namespace https {
      */
     appendString(options: {
       input: string,
-      inputEncoding: https.Encoding,
-    }): https.SecureString
+      inputEncoding: Encoding,
+    }): SecureString
 
     /**
      * @param {Object} options
@@ -620,8 +620,8 @@ declare namespace https {
      * @return {https.SecureString}
      */
     convertEncoding(options: {
-      toEncoding: https.Encoding,
-    }): https.SecureString
+      toEncoding: Encoding,
+    }): SecureString
 
     /**
      * @param {Object} options
@@ -629,8 +629,8 @@ declare namespace https {
      * @return {https.SecureString}
      */
     hash(options: {
-      algorithm: https.HashAlg,
-    }): https.SecureString
+      algorithm: HashAlg,
+    }): SecureString
 
     /**
      * @param {Object} options
@@ -639,8 +639,8 @@ declare namespace https {
      * @return {https.SecureString}
      */
     hmac(options: {
-      algorithm: https.HashAlg,
+      algorithm: HashAlg,
       key: crypto_.SecretKey,
-    }): https.SecureString
+    }): SecureString
   }
 }
