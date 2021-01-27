@@ -548,11 +548,13 @@ declare namespace http {
     /**
      * Sets CDN caching for a period of time.
      * @param {Object} options
-     * @param {string} options.type constant value to represent the caching duration, see http.CacheDuration enum
+     * @param {http.CacheDuration} options.type constant value to represent the caching duration, see http.CacheDuration enum
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    setCdnCacheable(options): void
+    setCdnCacheable(options: {
+      type: CacheDuration,
+    }): void
 
     /**
      * Returns the object type name (http.ServerResponse)
