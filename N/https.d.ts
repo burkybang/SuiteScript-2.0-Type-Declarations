@@ -297,7 +297,7 @@ declare namespace https {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ClientResponse>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -417,7 +417,7 @@ declare namespace https {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ServerRequest>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -589,7 +589,7 @@ declare namespace https {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ServerResponse>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface SecureString {

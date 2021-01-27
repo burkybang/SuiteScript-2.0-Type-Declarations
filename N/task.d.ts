@@ -208,7 +208,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ScheduledScriptTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -264,7 +264,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ScheduledScriptTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -330,7 +330,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<MapReduceScriptTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -483,7 +483,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<MapReduceScriptTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -591,7 +591,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<SearchTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -648,7 +648,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<SearchTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -722,7 +722,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<CsvImportTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -761,7 +761,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<CsvImportTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -833,7 +833,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<EntityDeduplicationTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -872,7 +872,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<EntityDeduplicationTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -940,7 +940,7 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<WorkflowTriggerTask>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -979,6 +979,6 @@ declare namespace task {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<WorkflowTriggerTaskStatus>
+    toJSON(): ExcludeMethods<this>
   }
 }

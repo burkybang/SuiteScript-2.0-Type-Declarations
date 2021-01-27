@@ -1042,7 +1042,7 @@ declare namespace query {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Query>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**

@@ -266,7 +266,7 @@ declare namespace render {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<EmailMergeResult>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -417,6 +417,6 @@ declare namespace render {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<TemplateRenderer>
+    toJSON(): ExcludeMethods<this>
   }
 }

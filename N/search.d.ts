@@ -884,7 +884,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Search>
+    toJSON(): ExcludeMethods<this>
   }
 
   export namespace Search {
@@ -987,7 +987,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Filter>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface Column {
@@ -1105,7 +1105,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Column>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface Setting {
@@ -1151,7 +1151,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Setting>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface ResultSet {
@@ -1214,7 +1214,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ResultSet>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface Result {
@@ -1310,7 +1310,7 @@ declare namespace search {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Result>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface PagedData {

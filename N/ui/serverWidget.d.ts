@@ -1439,7 +1439,7 @@ declare namespace serverWidget {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Form>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**

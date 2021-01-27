@@ -1969,7 +1969,7 @@ declare namespace record {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Sublist>
+    toJSON(): ExcludeMethods<this>
   }
 
   export interface Field {
@@ -2084,6 +2084,6 @@ declare namespace record {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Field>
+    toJSON(): ExcludeMethods<this>
   }
 }

@@ -259,7 +259,7 @@ declare namespace runtime {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Script>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -302,7 +302,7 @@ declare namespace runtime {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<Session>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -424,6 +424,6 @@ declare namespace runtime {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<User>
+    toJSON(): ExcludeMethods<this>
   }
 }

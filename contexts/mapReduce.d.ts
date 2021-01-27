@@ -47,7 +47,7 @@ interface GetInputContext {
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<GetInputContext>
+  toJSON(): ExcludeMethods<this>
 }
 
 /**
@@ -119,7 +119,7 @@ interface MapContext {
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<MapContext>
+  toJSON(): ExcludeMethods<this>
 }
 
 /**
@@ -194,7 +194,7 @@ interface ReduceContext {
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<ReduceContext>
+  toJSON(): ExcludeMethods<this>
 }
 
 /**
@@ -278,7 +278,7 @@ interface SummarizeContext {
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<SummarizeContext>
+  toJSON(): ExcludeMethods<this>
 }
 
 declare namespace SummarizeContext {
@@ -332,7 +332,7 @@ declare namespace SummarizeContext {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<InputSummary>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -406,7 +406,7 @@ declare namespace SummarizeContext {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<MapSummary>
+    toJSON(): ExcludeMethods<this>
   }
 
   /**
@@ -480,6 +480,6 @@ declare namespace SummarizeContext {
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<ReduceSummary>
+    toJSON(): ExcludeMethods<this>
   }
 }
