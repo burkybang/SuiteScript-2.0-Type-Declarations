@@ -9,6 +9,7 @@ interface format {
 
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989.html}
    *
    * @param {Object} options
    * @param {string} options.value the data you wish to parse
@@ -29,6 +30,7 @@ interface format {
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892.html}
    *
    * @param {Object} options
    * @param {Date|string|number} options.value the data you wish to format
@@ -52,6 +54,8 @@ declare namespace format {
 
   /**
    * Enum for field types
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232.html}
+   *
    * @enum {string}
    */
   export enum Type {
@@ -102,6 +106,8 @@ declare namespace format {
 
   /**
    * Enum for Time Zones
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795.html}
+   *
    * @enum {string}
    */
   export enum Timezone {
