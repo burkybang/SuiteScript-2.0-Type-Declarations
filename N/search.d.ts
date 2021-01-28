@@ -88,6 +88,17 @@ interface search {
   /**
    * Performs a global search against a single keyword or multiple keywords.
    * @governance 10 units
+   * @param {string} keywords  global search keywords string or expression
+   * @return {Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2
+   *                                   results are limited to 1000 rows returns empty array if nothing is found
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @since 2015.2
+   */
+  global(keywords: string): search.Result[]
+
+  /**
+   * Performs a global search against a single keyword or multiple keywords.
+   * @governance 10 units
    * @param {Object} options  the options object
    * @param {string} options.keywords  global search keywords string or expression
    * @return {Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2
