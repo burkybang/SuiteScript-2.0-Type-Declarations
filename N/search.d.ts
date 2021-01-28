@@ -127,15 +127,15 @@ interface search {
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @since 2015.2
    */
-  lookupFields(options: {
+  lookupFields<ColumnName extends string>(options: {
     type: search.Type | string,
     id: string | number,
-    columns: string | string[],
+    columns: ColumnName | ColumnName[],
   }): {
-    [key: string]: (string | {
+    [key in ColumnName]: (string | {
       value: string,
       text: string,
-    }[]),
+    }[])
   }
 
   /**
