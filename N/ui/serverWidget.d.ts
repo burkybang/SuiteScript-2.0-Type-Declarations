@@ -1110,6 +1110,15 @@ declare namespace serverWidget {
      * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
      * once the pageInit script is completed. The method takes either an already created Message object or the options
      * object that would be used for creating the message.
+     * @param {message.Message} message the message object to be displayed in browser
+     * @return {void}
+     */
+    addPageInitMessage(message: message.Message): void
+
+    /**
+     * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+     * once the pageInit script is completed. The method takes either an already created Message object or the options
+     * object that would be used for creating the message.
      * @param {Object} options
      * @param {message.Type} options.type The type of message, see message.Type
      * @param {string} [options.title] The title of the message. Defaults to empty string.
