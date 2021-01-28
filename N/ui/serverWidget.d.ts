@@ -1111,9 +1111,25 @@ declare namespace serverWidget {
      * once the pageInit script is completed. The method takes either an already created Message object or the options
      * object that would be used for creating the message.
      * @param {Object} options
+     * @param {message.Type} options.type The type of message, see message.Type
+     * @param {string} [options.title] The title of the message. Defaults to empty string.
+     * @param {string} [options.message] The content of the message. Defaults to empty string.
+     * @param {number|string} [options.duration] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
+     * @return {void}
+     */
+    addPageInitMessage(options: {
+      type: message.Type,
+      title?: string,
+      message?: string,
+      duratin?: number | string,
+    }): void
+
+    /**
+     * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+     * once the pageInit script is completed. The method takes either an already created Message object or the options
+     * object that would be used for creating the message.
+     * @param {Object} options
      * @param {message.Message} options.message the message object to be displayed in browser
-     * -- or --
-     * @param {Object} options the message options object as described in N/ui/message: create()
      * @return {void}
      */
     addPageInitMessage(options: {
