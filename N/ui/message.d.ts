@@ -24,7 +24,7 @@ interface message {
     type: message.Type,
     title?: string,
     message?: string,
-    duratin?: number | string,
+    duration?: number | string,
   }): message.Message
 }
 

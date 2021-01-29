@@ -1130,7 +1130,7 @@ declare namespace serverWidget {
       type: message.Type,
       title?: string,
       message?: string,
-      duratin?: number | string,
+      duration?: number | string,
     }): void
 
     /**
