@@ -20,30 +20,6 @@ interface record {
    *
    * @param {Object} options
    * @param {Type|string} options.type record type
-   * @param {boolean} [options.isDynamic=false] record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {Record|CurrentRecord}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
-   *
-   * @since 2015.2
-   */
-  /*create<B extends boolean>(options: {
-    type: record.Type | string,
-    isDynamic?: B,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): B extends true ? currentRecord.CurrentRecord : record.Record*/
-
-  /**
-   * Create a new record object based on provided type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
    * @param {false} [options.isDynamic=false] record is dynamic
    * @param {Object<string, *>} [options.defaultValues={}] record default values
    * @return {Record}
@@ -582,7 +558,9 @@ declare namespace record {
   }
 
   /**
-   * Enum for record Type.
+   * Enum for record Type
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273205732.html}
+   *
    * @enum {string}
    */
   export enum Type {
@@ -860,94 +838,237 @@ declare namespace record {
     ZONE = 'zone',
   }
 
+  /**
+   * Encapsulates a column of a sublist on a standard or custom record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600354269.html}
+   */
   export interface Column {
 
     /**
-     * @name Column#id
+     * Returns the internal ID of the column
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600364069.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2015.2
      */
     id: string
 
     /**
-     * @name Column#label
+     * Returns the label of the column
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600366751.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2015.2
      */
     label: string
 
     /**
-     * @name Column#sublistId
+     * Returns the internal ID of the standard or custom sublist that contains the column
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600369846.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2015.2
      */
     sublistId: string
 
     /**
-     * @name Column#type
+     * Returns the column type
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600370892.html}
+     *
      * @type {format.Type}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2015.2
      */
     type: format.Type
+
+    /**
+     * Indicates whether the column is disabled
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158592991246.html}
+     *
+     * @type {boolean}
+     *
+     * @since 2020.2
+     */
+    isDisabled: boolean
+
+    /**
+     * Indicates whether the column is displayed
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593019143.html}
+     *
+     * @type {boolean}
+     *
+     * @since 2020.2
+     */
+    isDisplay: boolean
+
+    /**
+     * Indicates whether the column is mandatory
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593030499.html}
+     *
+     * @type {boolean}
+     *
+     * @since 2020.2
+     */
+    isMandatory: boolean
+
+    /**
+     * Indicates whether the column is sortable
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593039336.html}
+     *
+     * @type {boolean}
+     *
+     * @since 2020.2
+     */
+    isSortable: boolean
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {'sublist.Column'}
+     *
+     * @since 2015.2
+     */
+    toString(): 'sublist.Column'
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {Object<string, *>}
+     *
+     * @since 2015.2
+     */
+    toJSON(): ExcludeMethods<this>
   }
 
+  /**
+   * Encapsulates a record macro
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1529089092.html}
+   *
+   * @since 2018.2
+   */
   export interface Macro {
 
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730768.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
-     * @param {string} [options.params] The macro arguments
-     * @return {Macro} same object for chaining
+     * @param {Object<string, *>} [options.params] The macro arguments
+     * @return {{notifications: [], response: {}}}
+     *
+     * @since 2018.2
      */
     constructor(options: {
       id: string,
-    }): this
+      params?: {
+        [key: string]: any,
+      },
+    }): {
+      notifications: any[],
+      response: Object,
+    }
 
     /**
-     * @name Macro#id
+     * Performs a macro operation and returns its result in a plain JavaScript object
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730798.html}
+     *
+     * @param {Object} options
+     * @param {string} options.id macro id
+     * @param {Object<string, *>} [options.params] The macro arguments
+     * @return {Promise<{notifications: [], response: {}}>}
+     *
+     * @since 2018.2
+     */
+    promise(options: {
+      id: string,
+      params?: {
+        [key: string]: any,
+      },
+    }): Promise<{
+      notifications: any[],
+      response: Object,
+    }>
+
+    /**
+     * The ID of the macro
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731173.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2018.2
      */
     id: string
 
     /**
-     * @name Macro#label
+     * The label of the macro
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731186.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2018.2
      */
     label: string
 
     /**
-     * @name Macro#description
+     * The description of the macro
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731199.html}
+     *
      * @type {string}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2018.2
      */
     description: string
 
     /**
-     * @name Macro#attributes
+     * The defined attributes of the macro
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731214.html}
+     *
      * @type {Object}
+     *
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     *
+     * @since 2018.2
      */
     attributes: Object
 
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
      * @param {Object<string, *>} [options.params] The macro arguments
-     * @return {notifications: [], response: {}}
+     * @return {{notifications: [], response: {}}}
+     *
+     * @since 2018.2
      */
     execute(options: {
       id: string,
@@ -955,13 +1076,64 @@ declare namespace record {
         [key: string]: any,
       },
     }): {
-      notifications: [],
-      response: {}
+      notifications: any[],
+      response: Object,
+    }
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {'Macro'}
+     *
+     * @since 2015.2
+     */
+    toString(): 'Macro'
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {Object<string, *>}
+     *
+     * @since 2015.2
+     */
+    toJSON(): ExcludeMethods<this>
+  }
+
+  export namespace Macro {
+
+    export interface execute {
+
+      /**
+       * Performs a macro operation and returns its result in a plain JavaScript object
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748.html}
+       *
+       * @param {Object} options
+       * @param {string} options.id macro id
+       * @param {Object<string, *>} [options.params] The macro arguments
+       * @return {Promise<{notifications: [], response: {}}>}
+       *
+       * @since 2018.2
+       */
+      promise(options: {
+        id: string,
+        params?: {
+          [key: string]: any,
+        },
+      }): Promise<{
+        notifications: any[],
+        response: Object,
+      }>
+
     }
   }
 
   /**
+   * Encapsulates a NetSuite record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
+   *
+   * @since 2015.2
    */
   export interface Record {
 
@@ -970,7 +1142,10 @@ declare namespace record {
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656.html}
      *
      * @type {number}
+     *
      * @readonly
+     *
+     * @since 2015.2
      */
     id: number
 
@@ -981,7 +1156,10 @@ declare namespace record {
      * @restriction This property is not available for subrecords
      *
      * @type {record.Type|string}
+     *
      * @readonly
+     *
+     * @since 2015.2
      */
     type: record.Type | string
 
@@ -990,36 +1168,51 @@ declare namespace record {
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316.html}
      *
      * @type {boolean}
+     *
      * @readonly
+     *
+     * @since 2015.2
      */
     isDynamic: boolean
 
     /**
-     * Provides a macro to execute
+     * Provides a macro to be executed
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992196.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
      * @return {Function} executor function for macro specified by options, or null if not found
+     *
+     * @since 2018.2
      */
     getMacro(options: {
       id: string,
     }): Macro
 
     /**
-     * Provides available macros
+     * Provides a plain JavaScript object of available macro objects defined for a record type, indexed by the Macro ID
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992211.html}
      *
-     * @return {Object} a set of macros (@see Macro) defined on the record indexed by macroId
+     * @return {Object<string, record.Macro>} a set of macros (@see Macro) defined on the record indexed by macroId
+     *
+     * @since 2018.2
      */
-    getMacros(): Object
+    getMacros(): {
+      [key: string]: Macro,
+    }
 
     /**
      * Performs macro operation and returns result
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
      * @param {Object<string, *>} [options.params] macro arguments
      * @return {{notifications: [], response: {}}}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+     *
+     * @since 2018.2
      */
     executeMacro(options: {
       id: string,
@@ -1027,79 +1220,38 @@ declare namespace record {
         [key: string]: any,
       },
     }): {
-      notifications: [],
-      response: {}
+      notifications: any[],
+      response: Object,
     }
 
     /**
-     * Provide scripting context for records
+     * Return value of the field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686.html}
      *
-     * getScriptContext is only in recordDefinition.js and not in dynamicrecord.js, so it is only visible inside NetSuite.
-     */
-    // getScriptingContext()
-
-    /**
-     * Executes record action and returns its result. Record ID and type is automatically taken from this record instance.
+     * @param {string} fieldId
+     * @return {string|string[]|number|Date|boolean}
      *
-     * @param {Object} options
-     * @param {string} options.id action ID
-     * @param {Object} [options.params] action arguments
-     * @return {Object} action result the actual return value returned by the action implementation is stored in the
-     *     response property
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
-     */
-    // executeAction(options)
-
-    /**
-     * Provides available record actions for this record instance.
-     *
-     * @return {Object} a set of actions (@see Action) defined on the record indexed by action ID
-     */
-    // getActions()
-
-    /**
-     * Returns an executable record action for this record instance.
-     *
-     * @param {Object} options
-     * @param {string} options.id action ID
-     * @return {?Action} record action executor for action specified by options
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
-     */
-    // getAction(options)
-
-    /**
-     * Remove body field data
-     *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-
-    // removeField(options)
-
-    /**
-     * Return array of names of all body fields, including machine header field and matrix header fields
+     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      *
-     * @return {string[]}
+     * @since 2015.2
      */
-    getFields(): string[]
-
-    /**
-     * Return array of names of all sublists
-     *
-     * @return {string[]}
-     */
-    getSublists(): string[]
+    getValue(
+      fieldId: string,
+    ): string | string[] | number | Date | boolean
 
     /**
      * Return value of the field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
+     *
+     * @since 2015.2
      */
     getValue(options: {
       fieldId: string,
@@ -1107,13 +1259,36 @@ declare namespace record {
 
     /**
      * Set value of the field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868.html}
+     *
+     * @param {string} fieldId
+     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {boolean} [ignoreFieldChange=false] Ignore the field change script
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    setValue(
+      fieldId: string,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set value of the field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
      */
     setValue(options: {
       fieldId: string,
@@ -1123,11 +1298,30 @@ declare namespace record {
 
     /**
      * Get value of the field in text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769.html}
+     *
+     * @param {string} fieldId
+     * @return {string}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    getText(
+      fieldId: string,
+    ): string
+
+    /**
+     * Get value of the field in text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {string}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
      */
     getText(options: {
       fieldId: string,
@@ -1135,6 +1329,29 @@ declare namespace record {
 
     /**
      * Set value of the field by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034.html}
+     *
+     * @param {string} fieldId
+     * @param {string|string[]} text ----- The text or texts to change the field value to.
+     *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
+     *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
+     *     parameter accepts only a single string value.
+     * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    setText(
+      fieldId: string,
+      text: string | string[],
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set value of the field by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1144,7 +1361,10 @@ declare namespace record {
      *     parameter accepts only a single string value.
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     *
+     * @since 2015.2
      */
     setText(options: {
       fieldId: string,
@@ -1154,13 +1374,36 @@ declare namespace record {
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {string|string[]|number|Date|boolean} value
+     * @return {number}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     *
+     * @since 2015.2
+     */
+    findSublistLineWithValue(
+      sublistId: string,
+      fieldId: string,
+      value: string | string[] | number | Date | boolean,
+    ): number
+
+    /**
+     * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {string|string[]|number|Date|boolean} options.value
      * @return {number}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     *
+     * @since 2015.2
      */
     findSublistLineWithValue(options: {
       sublistId: string,
@@ -1170,15 +1413,40 @@ declare namespace record {
 
     /**
      * Return value of a sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     *
+     * @since 2015.2
+     */
+    getSublistValue(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): string | string[] | number | Date | boolean
+
+    /**
+     * Return value of a sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {string|string[]|number|Date|boolean}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     *
+     * @since 2015.2
      */
     getSublistValue(options: {
       sublistId: string,
@@ -1188,6 +1456,29 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     *
+     * @since 2015.2
+     */
+    setSublistValue(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+      value: string | number | (string | number)[] | Date | boolean,
+    ): this
+
+    /**
+     * Set the value of a sublist field (available for deferred dynamic only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1195,8 +1486,11 @@ declare namespace record {
      * @param {number} options.line
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     *
+     * @since 2015.2
      */
     setSublistValue(options: {
       sublistId: string,
@@ -1207,15 +1501,40 @@ declare namespace record {
 
     /**
      * Return value of a sublist field in text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {string}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
+     *
+     * @since 2015.2
+     */
+    getSublistText(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): string
+
+    /**
+     * Return value of a sublist field in text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {string}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
+     *
+     * @since 2015.2
      */
     getSublistText(options: {
       sublistId: string,
@@ -1225,6 +1544,29 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field in text representation (available for deferred dynamic only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @param {string} text
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     *
+     * @since 2015.2
+     */
+    setSublistText(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+      text: string,
+    ): this
+
+    /**
+     * Set the value of a sublist field in text representation (available for deferred dynamic only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1232,8 +1574,11 @@ declare namespace record {
      * @param {number} options.line
      * @param {string} options.text
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     *
+     * @since 2015.2
      */
     setSublistText(options: {
       sublistId: string,
@@ -1244,10 +1589,26 @@ declare namespace record {
 
     /**
      * Return line count of sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892.html}
+     *
+     * @param {string} sublistId
+     * @return {number}
+     *
+     * @since 2015.2
+     */
+    getLineCount(
+      sublistId: string,
+    ): number
+
+    /**
+     * Return line count of sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @return {number}
+     *
+     * @since 2015.2
      */
     getLineCount(options: {
       sublistId: string,
@@ -1255,17 +1616,44 @@ declare namespace record {
 
     /**
      * Insert a sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {number} options.line
-     * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
+     * @param {string} sublistId
+     * @param {number} line
+     * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
      *     are missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
+     *
+     * @since 2015.2
+     */
+    insertLine(
+      sublistId: string,
+      line: number,
+      ignoreRecalc?: boolean,
+    ): this
+
+    /**
+     * Insert a sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId
+     * @param {number} options.line
+     * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
+     *     are missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
+     *
+     * @since 2015.2
      */
     insertLine(options: {
       sublistId: string,
@@ -1274,31 +1662,45 @@ declare namespace record {
     }): this
 
     /**
-     * Commits and copies the currently selected line into a new line, which will be the new selected line.
-     *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @return {Record} same object for chaining
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or not editable
-     */
-    copyLine(options: {
-      sublistId: string,
-    }): this
-
-    /**
      * Remove a sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {number} options.line
-     * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
+     * @param {string} sublistId
+     * @param {number} line
+     * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
      *     missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable
+     *
+     * @since 2015.2
+     */
+    removeLine(
+      sublistId: string,
+      line: number,
+      ignoreRecalc?: boolean,
+    ): this
+
+    /**
+     * Remove a sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId
+     * @param {number} options.line
+     * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
+     *     missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     *     editable
+     *
+     * @since 2015.2
      */
     removeLine(options: {
       sublistId: string,
@@ -1308,27 +1710,108 @@ declare namespace record {
 
     /**
      * Select a new line at the end of sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+     *
+     * @since 2015.2
+     */
+    selectNewLine(
+      sublistId: string,
+    ): this
+
+    /**
+     * Select a new line at the end of sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     selectNewLine(options: {
       sublistId: string,
     }): this
 
     /**
+     * Selects an existing line in a sublist (dynamic mode only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {number} line
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     *
+     * @since 2015.2
+     */
+    selectLine(
+      sublistId: string,
+      line: number,
+    ): this
+
+    /**
+     * Selects an existing line in a sublist (dynamic mode only)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId
+     * @param {number} options.line
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     *
+     * @since 2015.2
+     */
+    selectLine(options: {
+      sublistId: string,
+      line: number,
+    }): this
+
+    /**
      * Cancel the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+     *
+     * @since 2015.2
+     */
+    cancelLine(
+      sublistId: string,
+    ): this
+
+    /**
+     * Cancel the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     cancelLine(options: {
       sublistId: string,
@@ -1336,13 +1819,34 @@ declare namespace record {
 
     /**
      * Commit the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+     *
+     * @since 2015.2
+     */
+    commitLine(
+      sublistId: string,
+    ): this
+
+    /**
+     * Commit the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     commitLine(options: {
       sublistId: string,
@@ -1350,14 +1854,37 @@ declare namespace record {
 
     /**
      * Return value of a sublist field on the current selected sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     *
+     * @since 2015.2
+     */
+    getCurrentSublistValue(
+      sublistId: string,
+      fieldId: string,
+    ): string | string[] | number | Date | boolean
+
+    /**
+     * Return value of a sublist field on the current selected sublist line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     getCurrentSublistValue(options: {
       sublistId: string,
@@ -1366,6 +1893,30 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     *     if user tries to edit readonly sublist field
+     *
+     * @since 2015.2
+     */
+    setCurrentSublistValue(
+      sublistId: string,
+      fieldId: string,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set the value for field in the current selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1373,9 +1924,12 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
+     *
+     * @since 2015.2
      */
     setCurrentSublistValue(options: {
       sublistId: string,
@@ -1386,14 +1940,37 @@ declare namespace record {
 
     /**
      * Return the value for field in the current selected line by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {number}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     *
+     * @since 2015.2
+     */
+    getCurrentSublistText(
+      sublistId: string,
+      fieldId: string,
+    ): string
+
+    /**
+     * Return the value for field in the current selected line by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {number}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     getCurrentSublistText(options: {
       sublistId: string,
@@ -1402,6 +1979,32 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {string} text
+     * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     *     if user tries to edit readonly sublist field
+     *
+     * @since 2015.2
+     */
+    setCurrentSublistText(
+      sublistId: string,
+      fieldId: string,
+      text: string,
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set the value for field in the current selected line by text representation
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1409,10 +2012,12 @@ declare namespace record {
      * @param {string} options.text
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     setCurrentSublistText(options: {
       sublistId: string,
@@ -1422,20 +2027,22 @@ declare namespace record {
     }): this
 
     /**
-     * Selects an existing line in a sublist (dynamic mode only)
+     * Save record updates to the system
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {number} options.line
-     * @return {Record} same object for chaining
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
-     * @restriction only available in dynamic record
+     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+     *
+     * @param {boolean} [enableSourcing=false] enable sourcing during record update
+     * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return {number} id of submitted record
+     *
+     * @since 2015.2
      */
-    selectLine(options: {
-      sublistId: string,
-      line: number,
-    }): this
+
+    save(
+      enableSourcing?: boolean,
+      ignoreMandatoryFields?: boolean,
+    ): number
 
     /**
      * Save record updates to the system
@@ -1447,7 +2054,10 @@ declare namespace record {
      * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
      * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return {number} id of submitted record
+     *
+     * @since 2015.2
      */
+
     save(options?: {
       enableSourcing?: boolean,
       ignoreMandatoryFields?: boolean,
@@ -1455,10 +2065,26 @@ declare namespace record {
 
     /**
      * Return a value indicating if the field has a subrecord
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392.html}
+     *
+     * @param {string} fieldId
+     * @return {boolean}
+     *
+     * @since 2015.2
+     */
+    hasSubrecord(
+      fieldId: string,
+    ): boolean
+
+    /**
+     * Return a value indicating if the field has a subrecord
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {boolean}
+     *
+     * @since 2015.2
      */
     hasSubrecord(options: {
       fieldId: string,
@@ -1466,13 +2092,34 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996.html}
+     *
+     * @param {string} fieldId
+     * @return {Record} client-side subrecord implementation
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+     * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+     *
+     * @since 2015.2
+     */
+    getSubrecord(
+      fieldId: string,
+    ): Record
+
+    /**
+     * Get the subrecord for the associated field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {Record} client-side subrecord implementation
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
      * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+     *
+     * @since 2015.2
      */
     getSubrecord(options: {
       fieldId: string,
@@ -1480,10 +2127,26 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374.html}
+     *
+     * @param {string} fieldId
+     * @return {Record} same object for chaining
+     *
+     * @since 2015.2
+     */
+    removeSubrecord(
+      fieldId: string,
+    ): this
+
+    /**
+     * Remove the subrecord for the associated field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {Record} same object for chaining
+     *
+     * @since 2015.2
      */
     removeSubrecord(options: {
       fieldId: string,
@@ -1491,13 +2154,34 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332.html}
+     * @restriction only available in deferred dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {boolean}
+     *
+     * @since 2015.2
+     */
+    hasSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): boolean
+
+    /**
+     * Return a value indicating if the associated sublist field has a subrecord
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332.html}
+     * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {boolean}
-     * @restriction only available in deferred dynamic record
+     *
+     * @since 2015.2
      */
     hasSublistSubrecord(options: {
       sublistId: string,
@@ -1507,13 +2191,34 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506.html}
+     * @restriction only available in deferred dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {Record} client-side subrecord implementation
+     *
+     * @since 2015.2
+     */
+    getSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): Record
+
+    /**
+     * Get the subrecord for the associated sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506.html}
+     * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {Record} client-side subrecord implementation
-     * @restriction only available in deferred dynamic record
+     *
+     * @since 2015.2
      */
     getSublistSubrecord(options: {
       sublistId: string,
@@ -1523,13 +2228,34 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585.html}
+     * @restriction only available in deferred dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {Record} same object for chaining
+     *
+     * @since 2015.2
+     */
+    removeSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): Record
+
+    /**
+     * Remove the subrecord for the associated sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585.html}
+     * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {Record} same object for chaining
-     * @restriction only available in deferred dynamic record
+     *
+     * @since 2015.2
      */
     removeSublistSubrecord(options: {
       sublistId: string,
@@ -1539,12 +2265,31 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {boolean}
+     *
+     * @since 2015.2
+     */
+    hasCurrentSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+    ): boolean
+
+    /**
+     * Return a value indicating if the associated sublist field has a subrecord on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {boolean}
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     hasCurrentSublistSubrecord(options: {
       sublistId: string,
@@ -1553,12 +2298,31 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {Record} client-side subrecord implementation
+     *
+     * @since 2015.2
+     */
+    getCurrentSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+    ): Record
+
+    /**
+     * Get the subrecord for the associated sublist field on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {Record} client-side subrecord implementation
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     getCurrentSublistSubrecord(options: {
       sublistId: string,
@@ -1567,12 +2331,31 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {Record} same object for chaining
+     *
+     * @since 2015.2
+     */
+    removeCurrentSublistSubrecord(
+      sublistId: string,
+      fieldId: string,
+    ): Record
+
+    /**
+     * Remove the subrecord for the associated sublist field on the current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {Record} same object for chaining
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     removeCurrentSublistSubrecord(options: {
       sublistId: string,
@@ -1581,49 +2364,116 @@ declare namespace record {
 
     /**
      * Returns the specified sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398.html}
+     *
+     * @param {string} sublistId
+     * @return {Sublist}
+     *
+     * @since 2015.2
+     */
+    getSublist(
+      sublistId: string,
+    ): Sublist
+
+    /**
+     * Returns the specified sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @return {Sublist}
+     *
+     * @since 2015.2
      */
     getSublist(options: {
       sublistId: string,
     }): Sublist
 
     /**
-     * Return array of names of all fields in a sublist﻿
+     * Return array of names of all sublists
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599718205.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
      * @return {string[]}
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined﻿
+     *
+     * @since 2015.2
      */
-    getSublistFields(options: {
-      sublistId: string,
-    }): string[]
+    getSublists(): string[]
 
     /**
      * Return field object from record
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320.html}
+     *
+     * @param {string} fieldId
+     * @return {Field}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    getField(
+      fieldId: string,
+    ): Field
+
+    /**
+     * Return field object from record
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
      * @return {Field}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     *
+     * @since 2015.2
      */
     getField(options: {
       fieldId: string,
     }): Field
 
     /**
+     * Return array of field IDs of all body fields including machine header fields and matrix header fields
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152646.html}
+     *
+     * @return {string[]}
+     *
+     * @since 2015.2
+     */
+    getFields(): string[]
+
+    /**
      * Return field object from record's sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882.html}
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @param {number} line
+     * @return {Field}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     *
+     * @since 2015.2
+     */
+    getSublistField(
+      sublistId: string,
+      fieldId: string,
+      line: number,
+    ): Field
+
+    /**
+     * Return field object from record's sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
      * @return {Field}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     *
+     * @since 2015.2
      */
     getSublistField(options: {
       sublistId: string,
@@ -1632,14 +2482,67 @@ declare namespace record {
     }): Field
 
     /**
+     * Return array of names of all fields in a sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943.html}
+     *
+     * @param {string} sublistId
+     * @return {string[]}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    getSublistFields(
+      sublistId: string,
+    ): string[]
+
+    /**
+     * Return array of names of all fields in a sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId
+     * @return {string[]}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
+     *
+     * @since 2015.2
+     */
+    getSublistFields(options: {
+      sublistId: string,
+    }): string[]
+
+    /**
      * Return field object from record's sublist current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @param {string} fieldId
+     * @return {Field}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     *
+     * @since 2015.2
+     */
+    getCurrentSublistField(
+      sublistId: string,
+      fieldId: string,
+    ): Field
+
+    /**
+     * Return field object from record's sublist current line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @return {Field}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     getCurrentSublistField(options: {
       sublistId: string,
@@ -1647,106 +2550,37 @@ declare namespace record {
     }): Field
 
     /**
-     * Get the select options for a field
-     * @restriction Dynamic mode only
+     * Get the field for the specified header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237.html}
      *
-     * @param {Object} options
-     * @param {string} [options.filter] A search string to filter the select options that are returned.
-     * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
-     * @return {{value:string, text:string}[]}
-     */
-    getSelectOptions(options: {
-      filter?: string,
-      filteroperator?: 'contains' | 'is' | 'startswith'
-    }): {
-      value: string,
-      text: string,
-    }[]
-
-    /**
-     * Set the value for the associated header in the matrix
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @return {Field}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
-     * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
-     * @return {Record} same object for chaining
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
      */
-    setMatrixHeaderValue(options: {
+    getMatrixHeaderField(
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
-      ignoreFieldChange?: boolean,
-    }): Record
-
-    /**
-     * Get the value for the associated header in the matrix
-     *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @return {string|string[]|number|Date|boolean}
-     */
-    getMatrixHeaderValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-    }): string | string[] | number | Date | boolean
-
-    /**
-     * Set the value for the associated field in the matrix
-     *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {number} options.line the line number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @return {Record} same object for chaining
-     * @restriction only available in deferred dynamic record
-     */
-    setMatrixSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      line: number,
-      value: string | number | (string | number)[] | Date | boolean,
-    }): Record
-
-    /**
-     * Get the value for the associated field in the matrix
-     *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {number} options.line the line number for the field
-     * @return {string|string[]|number|Date|boolean}
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    getMatrixSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      line: number,
-    }): string | string[] | number | Date | boolean
+    ): Field
 
     /**
      * Get the field for the specified header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
      * @return {Field}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
      */
     getMatrixHeaderField(options: {
       sublistId: string,
@@ -1756,6 +2590,28 @@ declare namespace record {
 
     /**
      * Get the field for the specified sublist in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @param {number} line the line number for the field
+     * @return {Field}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixSublistField(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+    ): Field
+
+    /**
+     * Get the field for the specified sublist in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -1763,7 +2619,10 @@ declare namespace record {
      * @param {number} options.column the column number for the field
      * @param {number} options.line the line number for the field
      * @return {Field}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
      */
     getMatrixSublistField(options: {
       sublistId: string,
@@ -1773,7 +2632,207 @@ declare namespace record {
     }): Field
 
     /**
+     * Get the value for the associated header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixHeaderValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    ): string | string[] | number | Date | boolean
+
+    /**
+     * Get the value for the associated header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId the id of sublist in which the matrix is in.
+     * @param {string} options.fieldId the id of the matrix field
+     * @param {number} options.column the column number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixHeaderValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    }): string | string[] | number | Date | boolean
+
+    /**
+     * Set the value for the associated header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @param {boolean} [ignoreFieldChange] Ignore the field change script (default false)
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    setMatrixHeaderValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set the value for the associated header in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId the id of sublist in which the matrix is in.
+     * @param {string} options.fieldId the id of the matrix field
+     * @param {number} options.column the column number for the field
+     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    setMatrixHeaderValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    }): this
+
+    /**
+     * Get the value for the associated field in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @param {number} line the line number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixSublistValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+    ): string | string[] | number | Date | boolean
+
+    /**
+     * Get the value for the associated field in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373.html}
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId the id of sublist in which the matrix is in.
+     * @param {string} options.fieldId the id of the matrix field
+     * @param {number} options.column the column number for the field
+     * @param {number} options.line the line number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+    }): string | string[] | number | Date | boolean
+
+    /**
+     * Set the value for the associated field in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458.html}
+     * @restriction only available in deferred dynamic record
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {number} column the column number for the field
+     * @param {number} line the line number for the field
+     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    setMatrixSublistValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+      value: string | number | (string | number)[] | Date | boolean,
+    ): this
+
+    /**
+     * Set the value for the associated field in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458.html}
+     * @restriction only available in deferred dynamic record
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId the id of sublist in which the matrix is in.
+     * @param {string} options.fieldId the id of the matrix field
+     * @param {number} options.column the column number for the field
+     * @param {number} options.line the line number for the field
+     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    setMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      line: number,
+      value: string | number | (string | number)[] | Date | boolean,
+    }): this
+
+    /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @param {string|string[]|number|Date|boolean} value the value to search for
+     * @param {number} column the column number for the field
+     * @return {number} line number
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    findMatrixSublistLineWithValue(
+      sublistId: string,
+      fieldId: string,
+      value: string | string[] | number | Date | boolean,
+      column: number,
+    ): number
+
+    /**
+     * Returns the line number of the first line that contains the specified value in the specified column of the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -1781,7 +2840,10 @@ declare namespace record {
      * @param {string|string[]|number|Date|boolean} options.value the value to search for
      * @param {number} options.column the column number for the field
      * @return {number} line number
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
      */
     findMatrixSublistLineWithValue(options: {
       sublistId: string,
@@ -1792,12 +2854,33 @@ declare namespace record {
 
     /**
      * Returns the number of columns for the specified matrix.
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537.html}
+     *
+     * @param {string} sublistId the id of sublist in which the matrix is in.
+     * @param {string} fieldId the id of the matrix field
+     * @return {number}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getMatrixHeaderCount(
+      sublistId: string,
+      fieldId: string,
+    ): number
+
+    /**
+     * Returns the number of columns for the specified matrix.
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
      * @param {string} options.fieldId the id of the matrix field
      * @return {number}
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
      */
     getMatrixHeaderCount(options: {
       sublistId: string,
@@ -1805,7 +2888,74 @@ declare namespace record {
     }): number
 
     /**
+     * Get the value for the line currently selected in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId - the id of sublist in which the matrix is in.
+     * @param {string} fieldId - the id of the matrix field
+     * @param {number} column - the column number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getCurrentMatrixSublistValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    ): string | string[] | number | Date | boolean
+
+    /**
+     * Get the value for the line currently selected in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {Object} options
+     * @param {string} options.sublistId - the id of sublist in which the matrix is in.
+     * @param {string} options.fieldId - the id of the matrix field
+     * @param {number} options.column - the column number for the field
+     * @return {string|string[]|number|Date|boolean}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    getCurrentMatrixSublistValue(options: {
+      sublistId: string,
+      fieldId: string,
+      column: number,
+    }): string | string[] | number | Date | boolean
+
+    /**
      * Set the value for the line currently selected in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541.html}
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId - the id of sublist in which the matrix is in.
+     * @param {string} fieldId - the id of the matrix field
+     * @param {number} column - the column number for the field
+     * @param {string|number|(string|number)[]|Date|boolean} value - the value to set it to
+     * @param {boolean} [ignoreFieldChange] - Ignore the field change script (default false)
+     * @return {Record} same object for chaining
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     *
+     * @since 2015.2
+     */
+    setCurrentMatrixSublistValue(
+      sublistId: string,
+      fieldId: string,
+      column: number,
+      value: string | number | (string | number)[] | Date | boolean,
+      ignoreFieldChange?: boolean,
+    ): this
+
+    /**
+     * Set the value for the line currently selected in the matrix
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541.html}
+     * @restriction only available in dynamic record
      *
      * @param {Object} options
      * @param {string} options.sublistId - the id of sublist in which the matrix is in.
@@ -1814,8 +2964,10 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} options.value - the value to set it to
      * @param {boolean} [options.ignoreFieldChange] - Ignore the field change script (default false)
      * @return {Record} same object for chaining
+     *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @restriction only available in dynamic record
+     *
+     * @since 2015.2
      */
     setCurrentMatrixSublistValue(options: {
       sublistId: string,
@@ -1823,28 +2975,36 @@ declare namespace record {
       column: number,
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
-    }): Record
+    }): this
 
     /**
-     * Get the value for the line currently selected in the matrix
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
      *
-     * @param {Object} options
-     * @param {string} options.sublistId - the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId - the id of the matrix field
-     * @param {number} options.column - the column number for the field
-     * @return {string|string[]|number|Date|boolean}
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @restriction only available in dynamic record
+     * @return {'standard record'|'dynamic record'}
+     *
+     * @since 2015.2
      */
-    getCurrentMatrixSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-    }): string | string[] | number | Date | boolean
+    toString(): 'standard record' | 'dynamic record'
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {Object<string, *>}
+     *
+     * @since 2015.2
+     */
+    toJSON(): ExcludeMethods<this> & {
+      [p: string]: any,
+    }
   }
 
   /**
+   *
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
+   *
+   * @since 2015.2
    */
   export namespace Record {
 
@@ -1852,12 +3012,16 @@ declare namespace record {
 
       /**
        * Performs macro operation and returns result
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072.html}
        *
        * @param {Object} options
        * @param {string} options.id macro id
        * @param {Object<string, *>} [options.params] macro arguments
        * @return {Promise<{notifications: [], response: {}}>}
+       *
        * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+       *
+       * @since 2015.2
        */
       promise(options: {
         id: string,
@@ -1879,7 +3043,10 @@ declare namespace record {
        * @param {Object} [options]
        * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
        * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
        * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
        */
       promise(options?: {
         enableSourcing?: boolean,
@@ -1888,201 +3055,205 @@ declare namespace record {
     }
   }
 
+  /**
+   * Encapsulates a sublist on a standard or custom record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574625.html}
+   *
+   * @since 2015.2
+   */
   export interface Sublist {
 
     /**
-     * Return a new instance of sublist object
      *
-     * @param {Object} sublist
-     * @param {string} sublist.type type of sublist
-     * @param {SublistState} sublist.sublistState SublistState
-
-     * @return {Sublist}
-     * @constructor
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600577122.html}
      *
-     * @since 2015.2
-     */
-    constructor(sublist): Sublist
-
-    /**
-     * The name of the sublist.
-     *
-     * @name Sublist#name
      * @type {string}
-     * @readonly
-     */
-    getName(): string
-
-    /**
-     * The type of the sublist.
      *
-     * @name Sublist#type
-     * @type {string}
      * @readonly
-     */
-    getType(): string
-
-    /**
-     * The sublist is changed
      *
-     * @name Sublist#isChanged
-     * @type {boolean}
-     * @readonly
-     */
-    isChanged(): boolean
-
-    /**
-     * The sublist is hidden
-     *
-     * @name Sublist#isHidden
-     * @type {boolean}
-     * @readonly
-     */
-    isHidden(): boolean
-
-    /**
-     * The sublist is display
-     *
-     * @name Sublist#isDisplay
-     * @type {boolean}
-     * @readonly
-     */
-    isDisplay(): boolean
-
-    /**
-     * A flag to indicate whether or not the sublist supports multi-line buffer feature.
-     *
-     * @name Sublist#isMultilineEditable
-     * @type {boolean}
-     * @readonly
-     */
-    isMultilineEditable(): boolean
-
-    /**
-     * Returns the object type name (sublist.Sublist)
-     *
-     * @return {string}
-     */
-    toString(): string
-
-    /**
-     * Convert to JSON object
-     * @return {Object<string, *>}
-     */
-    toJSON(): ExcludeMethods<this>
-  }
-
-  export interface Field {
-
-    /**
-     * @protected
-     * @constructor
-     */
-    constructor(): Field
-
-    /**
-     * Return label of the field
-     *
-     * @name Field#label
-     * @type {string}
-     * @readonly
-     * @since 2015.2
-     */
-    label: string
-
-    /**
-     * Return id of the field
-     *
-     * @name Field#id
-     * @type {string}
-     * @readonly
      * @since 2015.2
      */
     id: string
 
     /**
-     * Disabled state of the field
+     * Returns the sublist type
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600594177.html}
      *
-     * @name Field#isDisabled
-     * @type {boolean}
+     * @type {serverWidget.SublistType}
+     *
+     * @readonly
+     *
      * @since 2015.2
      */
-    isDisabled: boolean
+    type: Lowercase<serverWidget.SublistType>
 
     /**
-     * Display state of the field
+     * A flag to indicate whether or not the sublist supports multi-line buffer feature
+     * @see Not Documented in NetSuite Help Center
      *
-     * @name Field#isDisplay
      * @type {boolean}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    isMultilineEditable: boolean
+
+    /**
+     * Indicates whether the sublist has changed on the record form
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574626.html}
+     *
+     * @type {boolean}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    isChanged: boolean
+
+    /**
+     * Indicates whether the sublist is displayed on the record form
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600593345.html}
+     *
+     * @type {boolean}
+     *
+     * @readonly
+     *
      * @since 2015.2
      */
     isDisplay: boolean
 
     /**
-     * Mandatory state of the field
+     * Returns a column in the sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417.html}
      *
-     * @name Field#isMandatory
+     * @param {string} fieldId
+     * @return {record.Column}
+     *
+     * @since 2015.2
+     */
+    getColumn(
+      fieldId: string,
+    ): Column
+
+    /**
+     * Returns a column in the sublist
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417.html}
+     *
+     * @param {Object} options
+     * @param {string} options.fieldId
+     * @return {record.Column}
+     *
+     * @since 2015.2
+     */
+    getColumn(options: {
+      fieldId: string,
+    }): Column
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {'sublist.Sublist'}
+     *
+     * @since 2015.2
+     */
+    toString(): 'sublist.Sublist'
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     *
+     * @return {Object<string, *>}
+     *
+     * @since 2015.2
+     */
+    toJSON(): ExcludeMethods<this>
+  }
+
+  /**
+   * Encapsulates a body or sublist field on a standard or custom record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738444.html}
+   *
+   * @since 2015.2
+   */
+  export interface Field {
+
+    /**
+     * Returns the UI label for a standard or custom field body or sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738555.html}
+     *
+     * @type {string}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    label: string
+
+    /**
+     * Returns the internal ID of a standard or custom body or sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754429.html}
+     *
+     * @type {string}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    id: string
+
+    /**
+     * Return type of the field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754577.html}
+     *
+     * @type {format.Type}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    type: Lowercase<serverWidget.FieldType>
+
+    /**
+     * Returns the sublist ID if this field is a sublist field
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834774974.html}
+     *
+     * @type {string}
+     *
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    sublistId?: string
+
+    /**
+     * Returns true if the standard or custom field is mandatory on the record form or false otherwise
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435755588.html}
+     *
      * @type {boolean}
+     *
      * @since 2015.2
      */
     isMandatory: boolean
 
     /**
-     * Read Only state of the field
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
      *
-     * @name Field#isReadOnly
-     * @type {boolean}
+     * @return {'Field'}
+     *
      * @since 2015.2
      */
-    isReadOnly: boolean
-
-    /**
-     * Visible state of the field
-     *
-     * @name Field#isVisible
-     * @type {boolean}
-     * @since 2015.2
-     */
-    isVisible: boolean
-
-    /**
-     * Return type of the field
-     *
-     * @name Field#type
-     * @type {format.Type}
-     * @readonly
-     * @since 2015.2
-     */
-    type: serverWidget.FieldType
-
-    /**
-     * Return the sublistId of the field
-     *
-     * @name Field#sublistId
-     * @type {string}
-     * @readonly
-     * @since 2015.2
-     */
-    sublistId: string
-
-    /**
-     * Returns if the field is a popup
-     *
-     * @name Field#isPopup
-     * @type {boolean}
-     * @readonly
-     * @since 2015.2
-     */
-    isPopup: boolean
-
-    /**
-     * @return {string}
-     */
-    toString(): string
+    toString(): 'Field'
 
     /**
      * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     *
      * @return {Object<string, *>}
+     *
+     * @since 2015.2
      */
     toJSON(): ExcludeMethods<this>
   }
