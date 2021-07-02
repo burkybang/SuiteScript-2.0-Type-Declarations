@@ -47,7 +47,7 @@ interface util {
   extend<R extends object, C extends object>(receiver: R, contributor: C): C & R
 
   /**
-   * @see Unknown
+   * @see Not Documented in NetSuite Help Center
    *
    * @memberof util
    * @name util.deepExtend
@@ -145,7 +145,7 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Number or String object or primitive, and false otherwise
-   * @see Unknown
+   * @see Not Documented in NetSuite Help Center
    *
    * @memberof util
    * @name util.isNumberOrString
@@ -181,7 +181,7 @@ interface util {
 
   /**
    * Determines if a variable refers to an Error
-   * @see Unknown
+   * @see Not Documented in NetSuite Help Center
    *
    * @memberof util
    * @name util.isError
@@ -193,7 +193,7 @@ interface util {
 
   /**
    * Remove leading and trailing whitespace from a string
-   * @see Unknown
+   * @see Not Documented in NetSuite Help Center
    *
    * @memberof util
    * @name util.trim

@@ -91,7 +91,7 @@ interface action {
     id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
     params?: {
       recordId: number | string,
-      [key: string]: number | string,
+      [p: string]: number | string,
     },
   }): Object
 
@@ -123,7 +123,7 @@ interface action {
     id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
     params?: {
       recordId: number | string,
-      [key: string]: number | string,
+      [p: string]: number | string,
     },
     condition?: string,
     paramCallback?: string,
@@ -232,7 +232,7 @@ declare namespace action {
       id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
       params?: {
         recordId: number | string,
-        [key: string]: number | string,
+        [p: string]: number | string,
       },
     }): Promise<Object>
   }
@@ -254,7 +254,7 @@ declare namespace action {
 
     parameters: {
       recordId: number | string,
-      [key: string]: number | string,
+      [p: string]: number | string,
     }
 
     promise(options: {}): Promise<Object>

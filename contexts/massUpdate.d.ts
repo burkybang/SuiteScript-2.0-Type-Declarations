@@ -4,7 +4,7 @@
  * @NApiVersion 2.x
  */
 type EachParams = {
-  
+
   /**
    * The internal ID of the record being processed
    *
@@ -13,7 +13,7 @@ type EachParams = {
    * @readonly
    */
   id: number
-  
+
   /**
    * The record type of the record being processed
    *

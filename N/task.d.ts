@@ -41,12 +41,12 @@ interface task {
     taskType: task.TaskType,
     scriptId?: number | string,
     deploymentId?: string,
-    params?: { [key: string]: string | string[] | number | Date | boolean },
+    params?: { [p: string]: string | string[] | number | Date | boolean },
     importFile?: file.File | string,
     mappingId?: number | string,
     queueId?: number | string,
     name?: string,
-    linkedFiles?: { [key: string]: file.File | string },
+    linkedFiles?: { [p: string]: file.File | string },
     entityType?: string,
     masterRecordId?: number | string,
     masterSelectionMode?: string,
@@ -90,6 +90,9 @@ declare namespace task {
     ENTITY_DEDUPLICATION = 'ENTITY_DEDUPLICATION',
     WORKFLOW_TRIGGER = 'WORKFLOW_TRIGGER',
     SEARCH = 'SEARCH',
+    QUERY = 'QUERY',
+    SUITEQL = 'SUITEQL',
+    RECORD_ACTION = 'RECORD_ACTION',
   }
 
   /**
@@ -185,7 +188,7 @@ declare namespace task {
      * @name ScheduledScriptTask#params
      * @type {Object<string, string>}
      */
-    params: { [key: string]: string }
+    params: { [p: string]: string }
 
     /**
      * Submits the task and returns an unique ID.
@@ -308,7 +311,7 @@ declare namespace task {
      * @type {Object<string, string>}
      */
     params: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -916,7 +919,7 @@ declare namespace task {
      * @type {Object<string, string>}
      */
     params: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**

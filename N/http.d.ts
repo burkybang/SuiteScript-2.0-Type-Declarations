@@ -33,7 +33,7 @@ interface http {
   get(options: {
     url: string,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): http.ClientResponse
 
@@ -61,7 +61,7 @@ interface http {
     url: string,
     body: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): http.ClientResponse
 
@@ -89,7 +89,7 @@ interface http {
     url: string,
     body: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): http.ClientResponse
 
@@ -115,7 +115,7 @@ interface http {
   delete(options: {
     url: string,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): http.ClientResponse
 
@@ -145,7 +145,7 @@ interface http {
     url: string,
     body?: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): http.ClientResponse
 }
@@ -218,7 +218,7 @@ declare namespace http {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -263,7 +263,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -283,7 +283,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     parameters: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -294,7 +294,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     files: {
-      [key: string]: any,
+      [p: string]: any,
     }
 
     /**
@@ -384,7 +384,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -436,7 +436,7 @@ declare namespace http {
       id?: string,
       editMode?: boolean,
       parameters?: {
-        [key: string]: string,
+        [p: string]: string,
       },
     }): void
 

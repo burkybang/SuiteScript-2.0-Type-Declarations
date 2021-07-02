@@ -27,7 +27,7 @@ interface workflow {
     recordId: number | string,
     workflowId: number | string,
     defaultValues?: {
-      [key: string]: any,
+      [p: string]: any,
     },
   }): number
 

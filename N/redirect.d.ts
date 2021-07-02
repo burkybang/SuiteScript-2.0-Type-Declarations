@@ -25,7 +25,7 @@ interface redirect {
   redirect(options: {
     url: string,
     parameters?: {
-      [key: string]: any,
+      [p: string]: any,
     },
   }): void
 
@@ -48,7 +48,7 @@ interface redirect {
     deploymentId: string,
     isExternal?: boolean,
     parameters?: {
-      [key: string]: any,
+      [p: string]: any,
     },
   }): void
 
@@ -68,10 +68,10 @@ interface redirect {
    */
   toRecord(options: {
     type: record.Type | string,
-    id: number | string,
+    id?: number | string,
     isEditMode?: boolean,
     parameters?: {
-      [key: string]: any,
+      [p: string]: any,
     },
   }): void
 
@@ -90,7 +90,7 @@ interface redirect {
   toTaskLink(options: {
     id: number | string,
     parameters?: {
-      [key: string]: any,
+      [p: string]: any,
     },
   }): void
 

@@ -5,7 +5,7 @@
  * @NApiVersion 2.x
  */
 type ExecuteContext = {
-  
+
   /**
    * @name ExecuteContext#type
    * @type {string} type - The context in which the script is executed
@@ -16,7 +16,7 @@ type ExecuteContext = {
 }
 
 declare namespace ExecuteContext {
-  
+
   /**
    * @enum {string}
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532.html}

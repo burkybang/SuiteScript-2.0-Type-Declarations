@@ -320,7 +320,7 @@ declare namespace xml {
      *
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    attributes: { [key: string]: Attr }
+    attributes: { [p: string]: Attr }
 
     /**
      * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI

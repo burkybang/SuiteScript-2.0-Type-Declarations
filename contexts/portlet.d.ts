@@ -152,7 +152,7 @@ declare namespace PortletParams {
      */
     addRow(options: {
       row: search.Result | {
-        [key: string]: string,
+        [p: string]: string,
       },
     }): Portlet
 
@@ -180,7 +180,7 @@ declare namespace PortletParams {
      */
     addRows(options: {
       rows: search.Result[] | {
-        [key: string]: string,
+        [p: string]: string,
       }[],
     }): Portlet
   }

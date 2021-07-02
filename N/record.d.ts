@@ -12,340 +12,41 @@
  */
 interface record {
 
-  /**
-   * Create a new record object based on provided type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {false} [options.isDynamic=false] record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {Record}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
-   *
-   * @since 2015.2
-   */
-  create(options: {
-    type: record.Type | string,
-    isDynamic?: false,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): record.Record
+  create: {
 
-  /**
-   * Create a new record object based on provided type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {true} options.isDynamic record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {CurrentRecord}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
-   *
-   * @since 2015.2
-   */
-  create(options: {
-    type: record.Type | string,
-    isDynamic: true,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): currentRecord.CurrentRecord
-
-  /**
-   * Load an existing nlobjRecord from the database based on provided type, id
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @param {false} [options.isDynamic=false] record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {Record}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
-   *
-   * @since 2015.2
-   */
-  load(options: {
-    type: record.Type | string,
-    id: number | string,
-    isDynamic?: false,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): record.Record
-
-  /**
-   * Load an existing nlobjRecord from the database based on provided type, id
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @param {true} options.isDynamic record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {CurrentRecord}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
-   *
-   * @since 2015.2
-   */
-  load(options: {
-    type: record.Type | string,
-    id: number | string,
-    isDynamic: true,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): currentRecord.CurrentRecord
-
-  /**
-   * Copy a record object based on provided type, id
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @param {false} [options.isDynamic=false] record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {Record}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
-   *
-   * @since 2015.2
-   */
-  copy(options: {
-    type: record.Type | string,
-    id: number | string,
-    isDynamic?: false,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): record.Record
-
-  /**
-   * Copy a record object based on provided type, id
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @param {true} options.isDynamic record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] record default values
-   * @return {Record}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
-   *
-   * @since 2015.2
-   */
-  copy(options: {
-    type: record.Type | string,
-    id: number | string,
-    isDynamic: true,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): currentRecord.CurrentRecord
-
-  /**
-   * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.fromType record type to be transformed from
-   * @param {number|string} options.fromId record id to be transformed from
-   * @param {Type|string} options.toType record type to be transformed to
-   * @param {false} [options.isDynamic=false] record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
-   * @return {Record}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
-   *
-   * @since 2015.2
-   */
-  transform(options: {
-    fromType: record.Type | string,
-    fromId: number | string,
-    toType: record.Type | string,
-    isDynamic?: false,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): record.Record
-
-  /**
-   * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.fromType record type to be transformed from
-   * @param {number|string} options.fromId record id to be transformed from
-   * @param {Type|string} options.toType record type to be transformed to
-   * @param {true} options.isDynamic record is dynamic
-   * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
-   * @return {CurrentRecord}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
-   *
-   * @since 2015.2
-   */
-  transform(options: {
-    fromType: record.Type | string,
-    fromId: number | string,
-    toType: record.Type | string,
-    isDynamic: true,
-    defaultValues?: {
-      [key: string]: any,
-    },
-  }): currentRecord.CurrentRecord
-
-  /**
-   * Delete a record object based on provided type, id and return the id of deleted record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372.html}
-   *
-   * @governance 20 units for transactions, 4 for custom records, 10 for all other records
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @return {number} recordId
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
-   *
-   * @since 2015.2
-   */
-  delete(options: {
-    type: record.Type | string,
-    id: number | string,
-  }): number
-
-  /**
-   * Commit record field updates to the system
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788.html}
-   *
-   * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-   * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
-   *
-   * @param {Object} options
-   * @param {Type|string} options.type record type
-   * @param {number|string} options.id record id
-   * @param {Object<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
-   * @param {Object} [options.options] additonal flags for submission
-   * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
-   * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-   * @return {number} id of submitted record
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
-   *
-   * @since 2015.2
-   */
-  submitFields(options: {
-    type: record.Type | string,
-    id: number | string,
-    values: {
-      [key: string]: string | number | (string | number)[] | Date | boolean,
-    },
-    options?: {
-      enablesourcing?: boolean,
-      ignoreMandatoryFields?: boolean,
-    },
-  }): number
-
-  /**
-   * Attach record to another record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169.html}
-   *
-   * @governance 10 units
-   *
-   * @param {Object} options
-   * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
-   * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
-   * @return {void}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
-   *
-   * @since 2015.2
-   */
-  attach(options: {
-    record: record.Record | {
+    /**
+     * Create a new record object based on provided type
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @return {record.Record|currentRecord.CurrentRecord}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
       type: record.Type | string,
-      id: number | string,
-    },
-    to: record.Record | {
-      type: record.Type | string,
-      id: number | string,
-    },
-    attributes?: {
-      [key: string]: string | number,
-    },
-  }): void
-
-  /**
-   * Detach record from another record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360.html}
-   *
-   * @governance 10 units
-   *
-   * @param {Object} options
-   * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
-   * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
-   * @return {void}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
-   *
-   * @since 2015.2
-   */
-  detach(options: {
-    record: record.Record | {
-      type: record.Type | string,
-      id: number | string,
-    },
-    from: record.Record | {
-      type: record.Type | string,
-      id: number | string,
-    },
-    attributes?: {
-      [key: string]: string | number,
-    },
-  }): void
-}
-
-declare namespace record {
-
-  export interface create {
+      isDynamic?: boolean,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): record.Record | currentRecord.CurrentRecord
 
     /**
      * Create a new record object based on provided type
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690.html}
      *
      * @param {Object} options
-     * @param {Type|string} options.type record type
+     * @param {record.Type|string} options.type record type
      * @param {boolean} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
-     * @return {Promise<Record>}
+     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -355,23 +56,49 @@ declare namespace record {
       type: record.Type | string,
       isDynamic?: boolean,
       defaultValues?: {
-        [key: string]: any,
+        [p: string]: any,
       },
-    }): Promise<Record>
+    }): Promise<record.Record | currentRecord.CurrentRecord>
   }
 
-  export interface load {
+  load: {
+
+    /**
+     * Load an existing nlobjRecord from the database based on provided type, id
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @return {record.Record|currentRecord.CurrentRecord}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): record.Record | currentRecord.CurrentRecord
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173.html}
      *
      * @param {Object} options
-     * @param {Type|string} options.type record type
+     * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
      * @param {boolean} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
-     * @return {Promise<Record>}
+     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -382,23 +109,49 @@ declare namespace record {
       id: number | string,
       isDynamic?: boolean,
       defaultValues?: {
-        [key: string]: any,
+        [p: string]: any,
       },
-    }): Promise<Record>
+    }): Promise<record.Record | currentRecord.CurrentRecord>
   }
 
-  export interface copy {
+  copy: {
+
+    /**
+     * Copy a record object based on provided type, id
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @return {Record}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): record.Record | currentRecord.CurrentRecord
 
     /**
      * Copy a record object based on provided type, id
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922.html}
      *
      * @param {Object} options
-     * @param {Type|string} options.type record type
+     * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
      * @param {boolean} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
-     * @return {Promise<Record>}
+     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -409,12 +162,40 @@ declare namespace record {
       id: number | string,
       isDynamic?: boolean,
       defaultValues?: {
-        [key: string]: any,
+        [p: string]: any,
       },
-    }): Promise<Record>
+    }): Promise<record.Record | currentRecord.CurrentRecord>
   }
 
-  export interface transform {
+  transform: {
+
+    /**
+     * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.fromType record type to be transformed from
+     * @param {number|string} options.fromId record id to be transformed from
+     * @param {record.Type|string} options.toType record type to be transformed to
+     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
+     * @return {Record}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      fromType: record.Type | string,
+      fromId: number | string,
+      toType: record.Type | string,
+      isDynamic?: boolean,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): record.Record | currentRecord.CurrentRecord
 
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
@@ -426,7 +207,7 @@ declare namespace record {
      * @param {string} options.toType record type to be transformed to
      * @param {boolean} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] transformed record's default values
-     * @return {Promise<Record>}
+     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -438,30 +219,85 @@ declare namespace record {
       toType: record.Type | string,
       isDynamic?: boolean,
       defaultValues?: {
-        [key: string]: any,
+        [p: string]: any,
       },
-    }): Promise<Record>
+    }): Promise<record.Record | currentRecord.CurrentRecord>
   }
 
-  /*export interface delete {
-  
-    /!**
+  delete: {
+
+    /**
+     * Delete a record object based on provided type, id and return the id of deleted record
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372.html}
+     *
+     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @return {number} recordId
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      id: number | string,
+    }): number
+
+    /**
      * Delete a record object based on provided type, id and return the id of deleted record
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302.html}
      *
      * @param {Object} options
-     * @param {Type|string} options.type record type
+     * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
      * @return {Promise<number>} recordId
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
      * @since 2015.2
-     *!/
-    promise(options: { type: record.Type | string, id: number | string }): Promise<number>
-  }*/
+     */
+    promise(options: {
+      type: record.Type | string,
+      id: number | string,
+    }): Promise<number>
+  }
 
-  export interface submitFields {
+  submitFields: {
+
+    /**
+     * Commit record field updates to the system
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @param {Object<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
+     * @param {Object} [options.options] additonal flags for submission
+     * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
+     * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return {number} id of submitted record
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      id: number | string,
+      values: {
+        [p: string]: string | number | (string | number)[] | Date | boolean,
+      },
+      options?: {
+        enablesourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      },
+    }): number
 
     /**
      * Commit record field updates to the system
@@ -470,7 +306,7 @@ declare namespace record {
      * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
      *
      * @param {Object} options
-     * @param {Type|string} options.type record type
+     * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
      * @param {Object<string, *>} options.values field and value mapping to be submitted
      * @param {Object} [options.options] additonal flags for submission
@@ -486,7 +322,7 @@ declare namespace record {
       type: record.Type | string,
       id: number | string,
       values: {
-        [key: string]: any,
+        [p: string]: any,
       },
       options?: {
         enablesourcing?: boolean,
@@ -495,7 +331,37 @@ declare namespace record {
     }): Promise<number>
   }
 
-  export interface attach {
+  attach: {
+
+    /**
+     * Attach record to another record
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169.html}
+     *
+     * @governance 10 units
+     *
+     * @param {Object} options
+     * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
+     * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
+     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @return {void}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      record: record.Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      to: record.Record | {
+        type: record.Type | string,
+        id: number | string,
+      },
+      attributes?: {
+        [p: string]: string | number,
+      },
+    }): void
 
     /**
      * Attach record to another record
@@ -512,50 +378,83 @@ declare namespace record {
      * @since 2015.2
      */
     promise(options: {
-      record: Record | {
+      record: record.Record | {
         type: record.Type | string,
         id: number | string,
       },
-      to: Record | {
+      to: record.Record | {
         type: record.Type | string,
         id: number | string,
       },
       attributes?: {
-        [key: string]: string | number,
+        [p: string]: string | number,
       },
     }): Promise<void>
   }
 
-  export interface detach {
+  detach: {
 
     /**
      * Detach record from another record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360.html}
+     *
+     * @governance 10 units
      *
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
      * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
      * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
-     * @return {Promise<void>}
+     * @return {void}
      *
      * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
      *
      * @since 2015.2
      */
-    promise(options: {
-      record: Record | {
+    (options: {
+      record: record.Record | {
         type: record.Type | string,
         id: number | string,
       },
-      from: Record | {
+      from: record.Record | {
         type: record.Type | string,
         id: number | string,
       },
       attributes?: {
-        [key: string]: string | number,
-      }
-    }): Promise<void>
+        [p: string]: string | number,
+      },
+    }): void
   }
+
+  /**
+   * Detach record from another record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016.html}
+   *
+   * @param {Object} options
+   * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
+   * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+   * @return {Promise<void>}
+   *
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
+   *
+   * @since 2015.2
+   */
+  promise(options: {
+    record: record.Record | {
+      type: record.Type | string,
+      id: number | string,
+    },
+    from: record.Record | {
+      type: record.Type | string,
+      id: number | string,
+    },
+    attributes?: {
+      [p: string]: string | number,
+    }
+  }): Promise<void>
+}
+
+declare namespace record {
 
   /**
    * Enum for record Type
@@ -979,7 +878,7 @@ declare namespace record {
     constructor(options: {
       id: string,
       params?: {
-        [key: string]: any,
+        [p: string]: any,
       },
     }): {
       notifications: any[],
@@ -1000,7 +899,7 @@ declare namespace record {
     promise(options: {
       id: string,
       params?: {
-        [key: string]: any,
+        [p: string]: any,
       },
     }): Promise<{
       notifications: any[],
@@ -1059,25 +958,48 @@ declare namespace record {
      */
     attributes: Object
 
-    /**
-     * Performs a macro operation and returns its result in a plain JavaScript object
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726.html}
-     *
-     * @param {Object} options
-     * @param {string} options.id macro id
-     * @param {Object<string, *>} [options.params] The macro arguments
-     * @return {{notifications: [], response: {}}}
-     *
-     * @since 2018.2
-     */
-    execute(options: {
-      id: string,
-      params?: {
-        [key: string]: any,
-      },
-    }): {
-      notifications: any[],
-      response: Object,
+    execute: {
+      /**
+       * Performs a macro operation and returns its result in a plain JavaScript object
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726.html}
+       *
+       * @param {Object} options
+       * @param {string} options.id macro id
+       * @param {Object<string, *>} [options.params] The macro arguments
+       * @return {{notifications: [], response: {}}}
+       *
+       * @since 2018.2
+       */
+      (options: {
+        id: string,
+        params?: {
+          [p: string]: any,
+        },
+      }): {
+        notifications: any[],
+        response: Object,
+      }
+
+      /**
+       * Performs a macro operation and returns its result in a plain JavaScript object
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748.html}
+       *
+       * @param {Object} options
+       * @param {string} options.id macro id
+       * @param {Object<string, *>} [options.params] The macro arguments
+       * @return {Promise<{notifications: [], response: {}}>}
+       *
+       * @since 2018.2
+       */
+      promise(options: {
+        id: string,
+        params?: {
+          [p: string]: any,
+        },
+      }): Promise<{
+        notifications: any[],
+        response: Object,
+      }>
     }
 
     /**
@@ -1099,34 +1021,6 @@ declare namespace record {
      * @since 2015.2
      */
     toJSON(): ExcludeMethods<this>
-  }
-
-  export namespace Macro {
-
-    export interface execute {
-
-      /**
-       * Performs a macro operation and returns its result in a plain JavaScript object
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748.html}
-       *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] The macro arguments
-       * @return {Promise<{notifications: [], response: {}}>}
-       *
-       * @since 2018.2
-       */
-      promise(options: {
-        id: string,
-        params?: {
-          [key: string]: any,
-        },
-      }): Promise<{
-        notifications: any[],
-        response: Object,
-      }>
-
-    }
   }
 
   /**
@@ -1198,30 +1092,56 @@ declare namespace record {
      * @since 2018.2
      */
     getMacros(): {
-      [key: string]: Macro,
+      [p: string]: Macro,
     }
 
-    /**
-     * Performs macro operation and returns result
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174.html}
-     *
-     * @param {Object} options
-     * @param {string} options.id macro id
-     * @param {Object<string, *>} [options.params] macro arguments
-     * @return {{notifications: [], response: {}}}
-     *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
-     *
-     * @since 2018.2
-     */
-    executeMacro(options: {
-      id: string,
-      params?: {
-        [key: string]: any,
-      },
-    }): {
-      notifications: any[],
-      response: Object,
+    executeMacro: {
+
+      /**
+       * Performs macro operation and returns result
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174.html}
+       *
+       * @param {Object} options
+       * @param {string} options.id macro id
+       * @param {Object<string, *>} [options.params] macro arguments
+       * @return {{notifications: [], response: {}}}
+       *
+       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+       *
+       * @since 2018.2
+       */
+      (options: {
+        id: string,
+        params?: {
+          [p: string]: any,
+        },
+      }): {
+        notifications: any[],
+        response: Object,
+      }
+
+      /**
+       * Performs macro operation and returns result
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072.html}
+       *
+       * @param {Object} options
+       * @param {string} options.id macro id
+       * @param {Object<string, *>} [options.params] macro arguments
+       * @return {Promise<{notifications: [], response: {}}>}
+       *
+       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+       *
+       * @since 2015.2
+       */
+      promise(options: {
+        id: string,
+        params?: {
+          [p: string]: any,
+        },
+      }): Promise<{
+        notifications: [],
+        response: {},
+      }>
     }
 
     /**
@@ -2026,42 +1946,77 @@ declare namespace record {
       ignoreFieldChange?: boolean,
     }): this
 
-    /**
-     * Save record updates to the system
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
-     *
-     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
-     *
-     * @param {boolean} [enableSourcing=false] enable sourcing during record update
-     * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {number} id of submitted record
-     *
-     * @since 2015.2
-     */
+    save: {
 
-    save(
-      enableSourcing?: boolean,
-      ignoreMandatoryFields?: boolean,
-    ): number
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): number
 
-    /**
-     * Save record updates to the system
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
-     *
-     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
-     *
-     * @param {Object} [options]
-     * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-     * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {number} id of submitted record
-     *
-     * @since 2015.2
-     */
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): number
 
-    save(options?: {
-      enableSourcing?: boolean,
-      ignoreMandatoryFields?: boolean,
-    }): number
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html}
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): Promise<number>
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html}
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): Promise<number>
+    }
+
 
     /**
      * Return a value indicating if the field has a subrecord
@@ -2997,61 +2952,6 @@ declare namespace record {
      */
     toJSON(): ExcludeMethods<this> & {
       [p: string]: any,
-    }
-  }
-
-  /**
-   *
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
-   *
-   * @since 2015.2
-   */
-  export namespace Record {
-
-    export interface executeMacro {
-
-      /**
-       * Performs macro operation and returns result
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072.html}
-       *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] macro arguments
-       * @return {Promise<{notifications: [], response: {}}>}
-       *
-       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
-       *
-       * @since 2015.2
-       */
-      promise(options: {
-        id: string,
-        params?: {
-          [key: string]: any,
-        },
-      }): Promise<{
-        notifications: [],
-        response: {},
-      }>
-    }
-
-    export interface save {
-
-      /**
-       * Save record updates to the system
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328.html}
-       *
-       * @param {Object} [options]
-       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-       *
-       * @return {Promise<number>} id of submitted record
-       *
-       * @since 2015.2
-       */
-      promise(options?: {
-        enableSourcing?: boolean,
-        ignoreMandatoryFields?: boolean,
-      }): Promise<number>
     }
   }
 

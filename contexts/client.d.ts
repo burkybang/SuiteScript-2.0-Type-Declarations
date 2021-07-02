@@ -63,7 +63,7 @@ type ValidateFieldContext = {
    *
    * @readonly
    */
-  lineNum: number
+  line: number
 
   /**
    * The index of the column if the field is in a matrix
@@ -72,7 +72,7 @@ type ValidateFieldContext = {
    *
    * @readonly
    */
-  columnNum: number
+  column: number
 }
 
 type FieldChangedContext = {
@@ -111,7 +111,7 @@ type FieldChangedContext = {
    *
    * @readonly
    */
-  lineNum: number
+  line: number
 
   /**
    * The index of the column if the field is in a matrix
@@ -120,7 +120,7 @@ type FieldChangedContext = {
    *
    * @readonly
    */
-  columnNum: number
+  column: number
 }
 
 type PostSourcingContext = {
@@ -256,6 +256,15 @@ type SublistChangedContext = {
    * @readonly
    */
   sublistId: string
+
+  /**
+   * The type of change to the sublist
+   *
+   * @type {string}
+   *
+   * @readonly
+   */
+  operation: 'commit' | 'insert' | 'remove'
 }
 
 type SaveRecordContext = {

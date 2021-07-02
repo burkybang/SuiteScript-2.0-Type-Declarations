@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 type OnActionContext = {
-  
+
   /**
    * The new record. Saving is not permitted
    *
@@ -15,7 +15,7 @@ type OnActionContext = {
    * @readonly
    */
   newRecord: record.Record
-  
+
   /**
    * The old record. Saving is not permitted
    *

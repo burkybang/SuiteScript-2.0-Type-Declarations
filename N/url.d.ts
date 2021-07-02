@@ -26,7 +26,7 @@ interface url {
     recordId: number | string,
     isEditMode?: boolean,
     params?: {
-      [key: string]: string | number | boolean,
+      [p: string]: string | number | boolean,
     },
   }): string
 
@@ -45,7 +45,7 @@ interface url {
   resolveTaskLink(options: {
     id: string,
     params?: {
-      [key: string]: string | number | boolean,
+      [p: string]: string | number | boolean,
     },
   }): string
 
@@ -68,7 +68,7 @@ interface url {
     deploymentId: string,
     returnExternalUrl?: boolean,
     params?: {
-      [key: string]: string | number | boolean,
+      [p: string]: string | number | boolean,
     },
   }): string
 
@@ -104,7 +104,7 @@ interface url {
   format(options: {
     domain: string,
     params: {
-      [key: string]: string | number | boolean,
+      [p: string]: string | number | boolean,
     },
   }): string
 }

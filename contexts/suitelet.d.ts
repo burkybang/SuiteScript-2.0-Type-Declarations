@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 type OnRequestContext = {
-  
+
   /**
    * @name SuiteletContext#request
    * @type {http.ServerRequest} request - The incoming request object
@@ -14,7 +14,7 @@ type OnRequestContext = {
    * @readonly
    */
   request: http.ServerRequest
-  
+
   /**
    * @name SuiteletContext#response
    * @type {http.ServerResponse} response - The outgoing response object

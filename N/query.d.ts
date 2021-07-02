@@ -1522,7 +1522,7 @@ declare namespace query {
      * @return {Object<string, string|number|(string|number)[]|Date|boolean>}
      */
     asMappedResults(): {
-      [key: string]: string | number | (string | number)[] | Date | boolean,
+      [p: string]: string | number | (string | number)[] | Date | boolean,
     }[]
 
     /**

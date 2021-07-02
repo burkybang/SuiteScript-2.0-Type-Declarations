@@ -9,144 +9,334 @@
  */
 interface search {
 
-  /**
-   * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
-   * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
-   * @param {Object} options  the options object
-   * @param {Type|string} options.type  the record internal ID of the record type you are searching
-   * @param {Filter|Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
-   * @param {Column|Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
-   * @param {Setting|Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
-   * @param {string} [options.title]  name of the search (when saved)
-   * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
-   * @return {Search} the created search
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
-   * @since 2015.2
-   */
-  create(options: {
-    type: search.Type | string,
-    filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
-    columns?: search.Column | search.Column[] | string,
-    settings?: search.Setting | search.Setting[] | string,
-    title?: string,
-    id?: string,
-  }): search.Search
+  create: {
 
-  /**
-   * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
-   * in conjunction with Search.save().
-   * @governance 5 units
-   * @param {Object} options  the options object
-   * @param {string|number} options.id  the customer ID or internal ID of the search
-   * @return {Search} the loaded search
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-   * @since 2015.2
-   */
-  load(options: {
-    id: string | number,
-  }): search.Search
+    /**
+     * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
+     * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
+     *
+     * @param {Object} options  the options object
+     * @param {search.Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {search.Filter|search.Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
+     * @param {search.Column|search.Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
+     * @param {search.Setting|search.Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
+     * @param {string} [options.title]  name of the search (when saved)
+     * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
+     * @return {search.Search} the created search
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: search.Type | string,
+      filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
+      columns?: search.Column | search.Column[] | string,
+      settings?: search.Setting | search.Setting[] | string,
+      title?: string,
+      id?: string,
+    }): search.Search
 
-  /**
-   * Deletes an existing saved search.
-   * @governance 5 units
-   * @param {Object} options  the options object
-   * @param {string|number} options.id  the customer ID or internal ID of the search
-   * @return {void}
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-   * @since 2015.2
-   */
-  delete(options: {
-    id: string | number,
-  }): void
+    /**
+     * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
+     * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
+     *
+     * @param {Object} options  the options object
+     * @param {search.Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {search.Filter|search.Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
+     * @param {search.Column|search.Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
+     * @param {search.Setting|search.Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
+     * @param {string} [options.title]  name of the search (when saved)
+     * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
+     * @return {Promise<search.Search>} the created search
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      type: search.Type | string,
+      filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
+      columns?: search.Column | search.Column[] | string,
+      settings?: search.Setting | search.Setting[] | string,
+      title?: string,
+      id?: string,
+    }): Promise<search.Search>
+  }
 
-  /**
-   * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
-   * Note that this API only works for records that support duplicate record detection. These records include
-   * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
-   * on how you want to search for duplicates.
-   * @governance 10 units
-   * @param {Object} options  the options object
-   * @param {Type|string} options.type  the record type you are checking duplicates for
-   * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
-   * @param {number} [options.id]  internalId of existing record
-   * @return {Result[]} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @since 2015.2
-   */
-  duplicates(option: {
-    type: search.Type | string,
-    fields?: {
-      [key: string]: string | number,
-    },
-    id?: number,
-  }): search.Result[]
+  load: {
 
-  /**
-   * Performs a global search against a single keyword or multiple keywords.
-   * @governance 10 units
-   * @param {string} keywords  global search keywords string or expression
-   * @return {Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2
-   *                                   results are limited to 1000 rows returns empty array if nothing is found
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @since 2015.2
-   */
-  global(keywords: string): search.Result[]
+    /**
+     * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
+     * in conjunction with Search.save().
+     * @governance 5 units
+     *
+     * @param {Object} options  the options object
+     * @param {string|number} options.id  the customer ID or internal ID of the search
+     * @return {search.Search} the loaded search
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    (options: {
+      id: string | number,
+    }): search.Search
 
-  /**
-   * Performs a global search against a single keyword or multiple keywords.
-   * @governance 10 units
-   * @param {Object} options  the options object
-   * @param {string} options.keywords  global search keywords string or expression
-   * @return {Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2
-   *                                   results are limited to 1000 rows returns empty array if nothing is found
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @since 2015.2
-   */
-  global(options: {
-    keywords: string,
-  }): search.Result[]
+    /**
+     * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
+     * in conjunction with Search.save().
+     *
+     * @param {Object} options  the options object
+     * @param {string|number} options.id  the customer ID or internal ID of the search
+     * @return {Promise<search.Search>} the loaded search
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      id: string | number,
+    }): Promise<search.Search>
+  }
 
-  /**
-   * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-   * Note that the notation for joined fields is: join_id.field_name
-   * @governance 1 unit
-   * @param {Object} options  the options object
-   * @param {Type|string} options.type  the record internal ID of the record type you are searching
-   * @param {string|number} options.id  the internalId of the record
-   * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
-   * @return {Object<string, string|{value:string, text:string}[]>} search results in the form of key/value pairs example:
-   *     {
-   *         foo: 'bar',
-   *         name.join: 'othervalue',
-   *         select: [{
-   *             value: '123',
-   *             text: 'Some UI text'
-   *         }],
-   *         multiselect1: [],
-   *         multiselect2: [{
-   *             value: '3',
-   *             text: 'Green'
-   *         },{
-   *             value: '5',
-   *             text: 'Pinkish yellow'
-   *         }]
-   *     }
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @since 2015.2
-   */
-  lookupFields<ColumnName extends string>(options: {
-    type: search.Type | string,
-    id: string | number,
-    columns: ColumnName | ColumnName[],
-  }): {
-    [key in ColumnName]: (string | {
-      value: string,
-      text: string,
-    }[])
+  delete: {
+
+    /**
+     * Deletes an existing saved search.
+     * @governance 5 units
+     *
+     * @param {Object} options  the options object
+     * @param {string|number} options.id  the customer ID or internal ID of the search
+     * @return {void}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    (options: {
+      id: string | number,
+    }): void
+
+    /**
+     * Deletes an existing saved search.
+     *
+     * @param {Object} options  the options object
+     * @param {string|number} options.id  the customer ID or internal ID of the search
+     * @return {Promise<void>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      id: string | number,
+    }): Promise<void>
+  }
+
+  duplicates: {
+
+    /**
+     * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
+     * Note that this API only works for records that support duplicate record detection. These records include
+     * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
+     * on how you want to search for duplicates.
+     * @governance 10 units
+     *
+     * @param {Object} options  the options object
+     * @param {search.Type|string} options.type  the record type you are checking duplicates for
+     * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
+     * @param {number} [options.id]  internalId of existing record
+     * @return {search.Result[]} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    (option: {
+      type: search.Type | string,
+      fields?: {
+        [p: string]: string | number,
+      },
+      id?: number,
+    }): search.Result[]
+
+
+    /**
+     * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
+     * Note that this API only works for records that support duplicate record detection. These records include
+     * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
+     * on how you want to search for duplicates.
+     *
+     * @param {Object} options  the options object
+     * @param {search.Type|string} options.type  the record type you are checking duplicates for
+     * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
+     * @param {number} [options.id]  internalId of existing record
+     * @return {Promise<search.Result[]>} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    promise(option: {
+      type: search.Type | string,
+      fields?: {
+        [p: string]: string | number,
+      },
+      id?: number,
+    }): Promise<search.Result[]>
+  }
+
+  global: {
+
+    /**
+     * Performs a global search against a single keyword or multiple keywords.
+     * @governance 10 units
+     *
+     * @param {Object} options  the options object
+     * @param {string} options.keywords  global search keywords string or expression
+     * @return {search.Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      keywords: string,
+    }): search.Result[]
+
+    /**
+     * Performs a global search against a single keyword or multiple keywords.
+     * @governance 10 units
+     *
+     * @param {string} keywords  global search keywords string or expression
+     * @return {search.Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    (keywords: string): search.Result[]
+
+    /**
+     * Performs a global search against a single keyword or multiple keywords.
+     *
+     * @param {Object} options  the options object
+     * @param {string} options.keywords  global search keywords string or expression
+     * @return {Promise<search.Result[]>} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    promise(option: {
+      keywords: string,
+    }): Promise<search.Result[]>
+
+    /**
+     * Performs a global search against a single keyword or multiple keywords.
+     *
+     * @param {string} keywords  global search keywords string or expression
+     * @return {Promise<search.Result[]>} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    promise(keywords: string): Promise<search.Result[]>
+  }
+
+  lookupFields: {
+
+    /**
+     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
+     * Note that the notation for joined fields is: join_id.field_name
+     * @governance 1 unit
+     *
+     * @param {Object} options  the options object
+     * @param {Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {string|number} options.id  the internalId of the record
+     * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Object<string, string|{value:string, text:string}[]>} search results in the form of key/value pairs example:
+     *     {
+     *         foo: 'bar',
+     *         'name.join': 'othervalue',
+     *         select: [{
+     *             value: '123',
+     *             text: 'Some UI text'
+     *         }],
+     *         multiselect1: [],
+     *         multiselect2: [{
+     *             value: '3',
+     *             text: 'Green'
+     *         },{
+     *             value: '5',
+     *             text: 'Pinkish yellow'
+     *         }]
+     *     }
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */<ColumnName extends string>(options: {
+      type: search.Type | string,
+      id: string | number,
+      columns: ColumnName | ColumnName[],
+    }): {
+      [key in ColumnName]: (string | {
+        value: string,
+        text: string,
+      }[])
+    }
+
+    /**
+     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
+     * Note that the notation for joined fields is: join_id.field_name
+     *
+     * @param {Object} options  the options object
+     * @param {Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {string|number} options.id  the internalId of the record
+     * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Promise<Object<string, string|{value:string, text:string}[]>>} search results in the form of key/value pairs example:
+     *     {
+     *         foo: 'bar',
+     *         'name.join': 'othervalue',
+     *         select: [{
+     *             value: '123',
+     *             text: 'Some UI text'
+     *         }],
+     *         multiselect1: [],
+     *         multiselect2: [{
+     *             value: '3',
+     *             text: 'Green'
+     *         },{
+     *             value: '5',
+     *             text: 'Pinkish yellow'
+     *         }]
+     *     }
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    promise<ColumnName extends string>(options: {
+      type: search.Type | string,
+      id: string | number,
+      columns: ColumnName | ColumnName[],
+    }): Promise<{
+      [key in ColumnName]: (string | {
+        value: string,
+        text: string,
+      }[])
+    }>
   }
 
   /**
@@ -156,15 +346,17 @@ interface search {
    * @param {Object} options  the options object
    * @param {string} options.name  the search return column name
    * @param {string} [options.join]  the join ID for this search return column
-   * @param {Summary|string} [options.summary]  the summary type for this column
+   * @param {search.Summary|string} [options.summary]  the summary type for this column
    * @param {string} [options.formula]  formula used for this column
    * @param {string} [options.function]  function used for this column
    * @param {string} [options.label]  label used for this column
-   * @param {Sort|string} [options.sort]  sort direction for this column use values from the Sort enum
-   * @return {Column} the created column object
+   * @param {search.Sort|string} [options.sort]  sort direction for this column use values from the Sort enum
+   * @return {search.Column} the created column object
+   *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
    * @throws {SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
+   *
    * @since 2015.2
    */
   createColumn(options: {
@@ -198,17 +390,20 @@ interface search {
 
   /**
    * Creates a search.Filter object.
+   *
    * @param {Object} options  the options object
    * @param {string} options.name  internal ID of the search field
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
-   * @param {Operator|string} options.operator  search operator
+   * @param {search.Operator|string} options.operator  search operator
    * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
    * @param {string} [options.formula]  formula used for this filter
-   * @param {Summary|string} [options.summary]  summary type used for this filter
-   * @return {Filter} the created filter object
+   * @param {search.Summary|string} [options.summary]  summary type used for this filter
+   * @return {search.Filter} the created filter object
+   *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
    * @throws {SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
+   *
    * @since 2015.2
    */
   createFilter(options: {
@@ -222,13 +417,16 @@ interface search {
 
   /**
    * Creates a search.Setting object.
+   *
    * @param {Object} options  the options object
    * @param {string} options.name  name of the result setting parameter
    * @param {string} options.value  value of the result settting parameter
-   * @return {Setting} the created setting object
+   * @return {search.Setting} the created setting object
+   *
    * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
    * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
+   *
    * @since 2015.2
    */
   createSetting(options: {
@@ -238,147 +436,6 @@ interface search {
 }
 
 declare namespace search {
-
-  export interface create {
-
-    /**
-     * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
-     * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
-     * @param {Object} options  the options object
-     * @param {Type|string} options.type  the record internal ID of the record type you are searching
-     * @param {Filter|Filter[]|(string|number|(string|number|(string|number|[])[])[])[]} [options.filters]  a single filter object or an array of filter objects or a search filter expression
-     * @param {Column|Column[]|string} [options.columns]  a single search.Column or string or an array that contains elements of the two types
-     * @param {Setting|Setting[]|string} [options.settings]  a single search.Setting or string or an array that contains elements of the two types
-     * @param {string} [options.title]  name of the search (when saved)
-     * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
-     * @return {Promise<Search>} the created search
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
-     * @since 2015.2
-     */
-    promise(options: {
-      type: search.Type | string,
-      filters?: Filter | Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
-      columns?: Column | Column[] | string,
-      settings?: Setting | Setting[] | string,
-      title?: string,
-      id?: string,
-    }): Promise<Search>
-  }
-
-  export interface load {
-
-    /**
-     * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
-     * in conjunction with Search.save().
-     * @param {Object} options  the options object
-     * @param {string|number} options.id  the customer ID or internal ID of the search
-     * @return {Promise<Search>} the loaded search
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     * @since 2015.2
-     */
-    promise(options: {
-      id: string | number,
-    }): Promise<Search>
-  }
-
-  /*export interface delete {
-  
-    /!**
-     * Deletes an existing saved search.
-     * @param {Object} options  the options object
-     * @param {string|number} options.id  the customer ID or internal ID of the search
-     * @return {Promise<void>}
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     * @since 2015.2
-     *!/
-    promise(options: { id: string | number }): Promise<void>
-  }*/
-
-  export interface duplicates {
-
-    /**
-     * Performs a search for duplicate records based on the account's Duplicate Detection configuration.
-     * Note that this API only works for records that support duplicate record detection. These records include
-     * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
-     * on how you want to search for duplicates.
-     * @param {Object} options  the options object
-     * @param {Type|string} options.type  the record type you are checking duplicates for
-     * @param {Object<string, string|number>} [options.fields]  a set of key/value pairs used to detect duplicate (e.g. email:'foo@bar.com')
-     * @param {number} [options.id]  internalId of existing record
-     * @return {Promise<Result[]>} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @since 2015.2
-     */
-    promise(option: {
-      type: search.Type | string,
-      fields?: {
-        [key: string]: string | number,
-      },
-      id?: number,
-    }): Promise<Result[]>
-  }
-
-  export interface global {
-
-    /**
-     * Performs a global search against a single keyword or multiple keywords.
-     * @governance 10 units
-     * @param {Object} options  the options object
-     * @param {string} options.keywords  global search keywords string or expression
-     * @return {Promise<Result[]>} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2
-     *                                   results are limited to 1000 rows returns empty array if nothing is found
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @since 2015.2
-     */
-    promise(option: {
-      keywords: string,
-    }): Promise<Result[]>
-  }
-
-  export interface lookupFields {
-
-    /**
-     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-     * Note that the notation for joined fields is: join_id.field_name
-     * @param {Object} options  the options object
-     * @param {Type|string} options.type  the record internal ID of the record type you are searching
-     * @param {string|number} options.id  the internalId of the record
-     * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
-     * @return {Promise<Object<string, string|{value:string, text:string}[]>>} search results in the form of key/value pairs example:
-     *     {
-     *         foo: 'bar',
-     *         name.join: 'othervalue',
-     *         select: [{
-     *             value: '123',
-     *             text: 'Some UI text'
-     *         }],
-     *         multiselect1: [],
-     *         multiselect2: [{
-     *             value: '3',
-     *             text: 'Green'
-     *         },{
-     *             value: '5',
-     *             text: 'Pinkish yellow'
-     *         }]
-     *     }
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @since 2015.2
-     */
-    promise(options: {
-      type: search.Type | string,
-      id: string | number,
-      columns: string | string[],
-    }): Promise<{
-      [key: string]: string | {
-        value: string,
-        text: string,
-      }[],
-    }>
-  }
 
   /**
    * @enum {string}
@@ -798,7 +855,7 @@ declare namespace search {
     /**
      * Search filters.
      * @name Search#filters
-     * @type {Filter|Filter[]}
+     * @type {search.Filter|search.Filter[]}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
      */
     filters: Filter | Filter[]
@@ -814,16 +871,15 @@ declare namespace search {
     /**
      * Columns to be returned from the search.
      * @name Search#columns
-     * @type {Column|string|Column[]|string[]}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or
-     *     string
+     * @type {search.Column|string|search.Column[]|string[]}
+     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or string
      */
     columns: Column | string | Column[] | string[]
 
     /**
      * Array of search.Setting objects or a string array of column names.
      * @name Search#settings
-     * @type {Setting|string|Setting[]|string[]}
+     * @type {search.Setting|string|search.Setting[]|string[]}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
      */
@@ -869,7 +925,7 @@ declare namespace search {
 
     /**
      * Runs the current search.
-     * @return {ResultSet} the result set object
+     * @return {search.ResultSet} the result set object
      * @since 2015.2
      */
     run(): ResultSet
@@ -878,7 +934,7 @@ declare namespace search {
      * Runs the current search with a paged interface.
      * @param {Object} [options]
      * @param {number} [options.pageSize]
-     * @return {PagedData} PagedData object that allows user to page through the search result
+     * @return {search.PagedData} PagedData object that allows user to page through the search result
      * @since 2016.1
      */
     runPaged(options?: {
@@ -934,19 +990,6 @@ declare namespace search {
   export interface Filter {
 
     /**
-     * Return a new instance of search.Filter object.
-     *
-     * @classDescription Encapsulation of a search filter.
-     * @protected
-     * @constructor
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-     *
-     * @since 2015.2
-     */
-    constructor(): Filter
-
-    /**
      * Field name for this search filter.
      * @name Filter#name
      * @type {string}
@@ -967,7 +1010,7 @@ declare namespace search {
     /**
      * Filter operator.
      * @name Filter#operator
-     * @type {Operator}
+     * @type {search.Operator}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -976,7 +1019,7 @@ declare namespace search {
     /**
      * Summary type for this search filter.
      * @name Filter#summary
-     * @type {Summary}
+     * @type {search.Summary}
      * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
      */
     summary: Summary
@@ -1004,18 +1047,6 @@ declare namespace search {
   export interface Column {
 
     /**
-     * Return a new instance of search.Column object.
-     *
-     * @classDescription Encapsulation of a search column.
-     * @protected
-     * @constructor
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-     *
-     * @since 2015.2
-     */
-    constructor(): Column
-
-    /**
      * The name of the search column.
      * @name Column#name
      * @type {string}
@@ -1036,7 +1067,7 @@ declare namespace search {
     /**
      * The summary type for this search column.
      * @name Column#summary
-     * @type {Summary}
+     * @type {search.Summary}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1086,7 +1117,7 @@ declare namespace search {
     /**
      * The sort direction for this search column. Use values from the Sort enum.
      * @name Column#sort
-     * @type {Sort}
+     * @type {search.Sort}
      */
     sort: Sort
 
@@ -1122,19 +1153,6 @@ declare namespace search {
   export interface Setting {
 
     /**
-     * Return a new instance of search.Setting object.
-     *
-     * @classDescription Encapsulation of a search setting.
-     * @protected
-     * @constructor
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
-     *
-     * @since 2018.2
-     */
-    constructor()
-
-    /**
      * Name for this search setting.
      * @name Option#name
      * @type {string}
@@ -1168,20 +1186,9 @@ declare namespace search {
   export interface ResultSet {
 
     /**
-     * Return a new instance of search.ResultSet object.
-     *
-     * @classDescription Encapsulation of a search result set.
-     * @protected
-     * @constructor
-     *
-     * @since 2015.2
-     */
-    constructor()
-
-    /**
      * List of columns contained in this result set.
      * @name ResultSet#columns
-     * @type {Column[]}
+     * @type {search.Column[]}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1194,7 +1201,7 @@ declare namespace search {
      * @param {Object} options  the options object
      * @param {number} options.start  the index number of the first result to return, inclusive
      * @param {number} options.end  the index number of the last result to return, exclusive
-     * @return {Result[]} the requested slice of the search result set
+     * @return {search.Result[]} the requested slice of the search result set
      * @since 2015.2
      */
     getRange(options: {
@@ -1209,7 +1216,7 @@ declare namespace search {
      * continues. Note that the work done in the context of the callback function counts towards the governance of the
      * script that called it.
      * @governance 10 units
-     * @param {function(Result)} callback  the function called for each result in the result set
+     * @param {function(result: Result): boolean} callback  the function called for each result in the result set
      * @return {void}
      * @since 2015.2
      */
@@ -1229,17 +1236,6 @@ declare namespace search {
   }
 
   export interface Result {
-
-    /**
-     * Return a new instance of search.Result object.
-     *
-     * @classDescription Encapsulation of a search result.
-     * @protected
-     * @constructor
-     *
-     * @since 2015.2
-     */
-    constructor()
 
     /**
      * Record type of the result.
@@ -1262,7 +1258,7 @@ declare namespace search {
     /**
      * List of columns contained in this result.
      * @name Result#columns
-     * @type {Column[]}
+     * @type {search.Column[]}
      * @readonly
      * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1274,20 +1270,42 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
-     * @param {string|search.Column} column  search return column name or object whose value you want to return
-     * - or -
+     * @param {string} columnName  search return column name or object whose value you want to return
+     * @return {string|boolean} value of the search result column
+     * @since 2015.2
+     */
+    getValue(columnName: string): string | boolean
+
+    /**
+     * Returns the value of a specified search return column.
+     * The column may be specified in three ways:
+     * 1) by providing a column name string
+     * 2) by providing a search.Column object
+     * 3) by providing name, join and summary parameters
+     * @param {search.Column} column  search return column name or object whose value you want to return
+     * @return {string|boolean} value of the search result column
+     * @since 2015.2
+     */
+    getValue(column: Column): string | boolean
+
+    /**
+     * Returns the value of a specified search return column.
+     * The column may be specified in three ways:
+     * 1) by providing a column name string
+     * 2) by providing a search.Column object
+     * 3) by providing name, join and summary parameters
      * @param {Object} options  the options object
      * @param {string} options.name  the name of the search column whose value you want to return
      * @param {string} [options.join]  the join ID for this search column
-     * @param {string} [options.summary]  the summary type used for this search column
-     * @return {string} string value of the search result column
+     * @param {search.Summary|string} [options.summary]  the summary type used for this search column
+     * @return {string|boolean} value of the search result column
      * @since 2015.2
      */
-    getValue(options: string | Column | {
+    getValue(options: {
       name: string,
       join?: string,
       summary?: Summary,
-    }): string
+    }): string | boolean
 
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.
@@ -1296,16 +1314,40 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
-     * @param {string|Column} column  search return column name or object whose value you want to return
-     * - or -
-     * @param {Object} options  the options object
-     * @param {string} options.name  the name of the search column whose value you want to return
-     * @param {string} [options.join]  the join ID for this search column
-     * @param {Summary} [options.summary]  the summary type used for this search column
+     * @param {string} columnName  search return column name or object whose value you want to return
      * @return {string} UI display name (text value) of the search result column
      * @since 2015.2
      */
-    getText(options: string | Column | {
+    getText(columnName: string): string
+
+    /**
+     * Returns the UI display name (i.e. the text value) of a specified search return column.
+     * Note that this method is supported on select, image and document fields only.
+     * The column may be specified in three ways:
+     * 1) by providing a column name string
+     * 2) by providing a search.Column object
+     * 3) by providing name, join and summary parameters
+     * @param {search.Column} column  search return column name or object whose value you want to return
+     * @return {string} UI display name (text value) of the search result column
+     * @since 2015.2
+     */
+    getText(column: Column): string
+
+    /**
+     * Returns the UI display name (i.e. the text value) of a specified search return column.
+     * Note that this method is supported on select, image and document fields only.
+     * The column may be specified in three ways:
+     * 1) by providing a column name string
+     * 2) by providing a search.Column object
+     * 3) by providing name, join and summary parameters
+     * @param {Object} options  the options object
+     * @param {string} options.name  the name of the search column whose value you want to return
+     * @param {string} [options.join]  the join ID for this search column
+     * @param {search.Summary|string} [options.summary]  the summary type used for this search column
+     * @return {string} UI display name (text value) of the search result column
+     * @since 2015.2
+     */
+    getText(options: {
       name: string,
       join?: string,
       summary?: Summary,
@@ -1327,12 +1369,6 @@ declare namespace search {
   export interface PagedData {
 
     /**
-     * @protected
-     * @constructor
-     */
-    constructor()
-
-    /**
      * rows per page - defined in search definition [5 - 1000]
      * @type {number}
      */
@@ -1345,7 +1381,7 @@ declare namespace search {
     count: number
 
     /**
-     * @type {PageRange[]}
+     * @type {search.PageRange[]}
      */
     pageRanges: PageRange[]
 
@@ -1362,22 +1398,67 @@ declare namespace search {
   export interface Page {
 
     /**
-     * @protected
-     * @constructor
+     * The results from a paginated search
+     * @type {search.Result[]}
      */
-    constructor()
+    data: Result[]
 
-    // todo: Finish this
-    // https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486547978.html
+    /**
+     * Indicates whether the page is within the first range of the result set
+     * @type {boolean}
+     */
+    isFirst: boolean
+
+    /**
+     * Indicates whether a page is within the last range of the result set
+     * @type {boolean}
+     */
+    isLast: boolean
+
+    /**
+     * The PagedData Object used to fetch this Page Object
+     * @type {search.PagedData}
+     */
+    pagedData: PagedData
+
+    /**
+     * The PageRange Object used to fetch this Page Object
+     * @type {search.PageRange}
+     */
+    pageRange: PageRange
+
+    next: {
+
+      /**
+       * Method used to fetch the next segment of data
+       * @return {search.Page}
+       */
+      (): Page
+
+      /**
+       * Method used to asynchronously fetch the next segment of data
+       * @return {Promise<search.Page>}
+       */
+      promise(): Promise<Page>
+    }
+
+    prev: {
+
+      /**
+       * Method used to fetch the previous segment of data
+       * @return {search.Page}
+       */
+      (): Page
+
+      /**
+       * Method used to asynchronously fetch the previous segment of data
+       * @return {Promise<search.Page>}
+       */
+      promise(): Promise<Page>
+    }
   }
 
   export interface PageRange {
-
-    /**
-     * @protected
-     * @constructor
-     */
-    constructor()
 
     /**
      * Human-readable label with beginning and ending range identifiers

@@ -34,7 +34,7 @@ interface https {
   get(options: {
     url: string,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): https.ClientResponse
 
@@ -62,7 +62,7 @@ interface https {
     url: string,
     body: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): https.ClientResponse
 
@@ -90,7 +90,7 @@ interface https {
     url: string,
     body: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): https.ClientResponse
 
@@ -116,7 +116,7 @@ interface https {
   delete(options: {
     url: string,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): https.ClientResponse
 
@@ -146,7 +146,7 @@ interface https {
     url: string,
     body?: string | Object,
     headers?: {
-      [key: string]: string,
+      [p: string]: string,
     },
   }): https.ClientResponse
 
@@ -274,7 +274,7 @@ declare namespace https {
      * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -319,7 +319,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -339,7 +339,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     parameters: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -350,7 +350,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     files: {
-      [key: string]: any,
+      [p: string]: any,
     }
 
     /**
@@ -440,7 +440,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
-      [key: string]: string,
+      [p: string]: string,
     }
 
     /**
@@ -492,7 +492,7 @@ declare namespace https {
       id?: string,
       editMode?: boolean,
       parameters?: {
-        [key: string]: string,
+        [p: string]: string,
       }
     }): void
 

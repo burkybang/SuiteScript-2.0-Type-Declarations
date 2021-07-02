@@ -16,9 +16,23 @@ interface serverWidget {
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
    *
    * @restriction Server SuiteScript only
-   * @param {Object} config
-   * @param {string} config.title form title
-   * @param {boolean} config.hideNavBar (optional)
+   * @param {string} title form title
+   * @param {boolean} [hideNavBar=false] (optional)
+   * @return {Assistant}
+   * @since 2015.2
+   */
+  createAssistant(
+    title: string,
+    hideNavBar?: boolean,
+  ): serverWidget.Assistant
+
+  /**
+   * Instantiate a assistant object (specifying the title, and whether to hide the menu)
+   *
+   * @restriction Server SuiteScript only
+   * @param {Object} options
+   * @param {string} options.title form title
+   * @param {boolean} [options.hideNavBar=false] (optional)
    * @return {Assistant}
    * @since 2015.2
    */
@@ -31,9 +45,23 @@ interface serverWidget {
    * Instantiate a form object (specifying the title, and whether to hide the menu)
    *
    * @restriction Server SuiteScript only
-   * @param {Object} config
-   * @param {string} config.title form title
-   * @param {boolean} config.hideNavBar (optional)
+   * @param {string} title form title
+   * @param {boolean} [hideNavBar=false] (optional)
+   * @return {Form}
+   * @since 2015.2
+   */
+  createForm(
+    title: string,
+    hideNavBar?: boolean,
+  ): serverWidget.Form
+
+  /**
+   * Instantiate a form object (specifying the title, and whether to hide the menu)
+   *
+   * @restriction Server SuiteScript only
+   * @param {Object} options
+   * @param {string} options.title form title
+   * @param {boolean} [options.hideNavBar=false] (optional)
    * @return {Form}
    * @since 2015.2
    */
@@ -46,9 +74,23 @@ interface serverWidget {
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
    *
    * @restriction This API is available to Suitelets only.
-   * @param {Object} config
-   * @param {string} config.title list title
-   * @param {boolean} [config.hideNavBa]
+   * @param {string} title list title
+   * @param {boolean} [hideNavBar=false]
+   * @return {List}
+   * @since 2015.2
+   */
+  createList(
+    title: string,
+    hideNavBar?: boolean,
+  ): serverWidget.List
+
+  /**
+   * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
+   *
+   * @restriction This API is available to Suitelets only.
+   * @param {Object} options
+   * @param {string} options.title list title
+   * @param {boolean} [options.hideNavBar=false]
    * @return {List}
    * @since 2015.2
    */
@@ -361,11 +403,23 @@ declare namespace serverWidget {
     /**
      * Gets field from sublist
      *
+     * @param {string} id    id of the field to get
+     * @return {Field}
+     */
+    getField(
+      id: string,
+    ): Field
+
+    /**
+     * Gets field from sublist
+     *
      * @param {Object} options
      * @param {string} options.id    id of the field to get
      * @return {Field}
      */
-    getField(options): Field
+    getField(options: {
+      id: string,
+    }): Field
   }
 
   /**
@@ -585,12 +639,12 @@ declare namespace serverWidget {
      * Get the select options for a field
      * @restriction Dynamic mode only
      *
-     * @param {Object} options
+     * @param {Object} [options]
      * @param {string} [options.filter] A search string to filter the select options that are returned.
      * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
      * @return {{value:string, text:string}[]}
      */
-    getSelectOptions(options: {
+    getSelectOptions(options?: {
       filter?: string,
       filteroperator?: 'contains' | 'is' | 'startswith'
     }): {
@@ -604,7 +658,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string|number} options.value The internal id of the option
      * @param {string} options.text  The display text for this option
-     * @param {boolean} [options.isSelected] If true, this option is selected
+     * @param {boolean} [options.isSelected=false] If true, this option is selected
      * @return {void}
      */
     addSelectOption(options: {
@@ -1445,7 +1499,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     updateDefaultValues(values: {
-      [key: string]: string,
+      [p: string]: string,
     }): void
 
     /**
@@ -1456,7 +1510,7 @@ declare namespace serverWidget {
      */
     updateDefaultValues(options: {
       values: {
-        [key: string]: string,
+        [p: string]: string,
       },
     }): void
 
@@ -1576,7 +1630,7 @@ declare namespace serverWidget {
      * @return {List}
      */
     addRow(options: {
-      row: search.Result | { [key: string]: string }
+      row: search.Result | { [p: string]: string }
     }): List
 
     /**
@@ -1586,7 +1640,7 @@ declare namespace serverWidget {
      * @return {List}
      */
     addRows(options: {
-      rows: search.Result[] | { [key: string]: string }[]
+      rows: search.Result[] | { [p: string]: string }[]
     }): List
   }
 

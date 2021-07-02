@@ -15,7 +15,7 @@
  * @since 2015.2
  */
 type BeforeLoadContext = {
-  
+
   /**
    * @name BeforeLoadContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
@@ -23,7 +23,7 @@ type BeforeLoadContext = {
    * @readonly
    */
   newRecord: record.Record
-  
+
   /**
    * @name BeforeLoadContext#type
    * @type {string} type - The action type that triggered this event
@@ -31,7 +31,7 @@ type BeforeLoadContext = {
    * @readonly
    */
   type: BeforeLoadContext.UserEventType
-  
+
   /**
    * @name BeforeLoadContext#form
    * @type {serverWidget.Form} form - The current UI form
@@ -39,7 +39,7 @@ type BeforeLoadContext = {
    * @readonly
    */
   form: serverWidget.Form
-  
+
   /**
    * @name BeforeLoadContext#request
    * @type {http.ServerRequest} request
@@ -53,7 +53,7 @@ type BeforeLoadContext = {
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html}
  */
 declare namespace BeforeLoadContext {
-  
+
   /**
    * @enum {string}
    */
@@ -98,7 +98,7 @@ type BeforeSubmitContext = {
    * @readonly
    */
   newRecord: record.Record
-  
+
   /**
    * @name BeforeSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
@@ -106,7 +106,7 @@ type BeforeSubmitContext = {
    * @readonly
    */
   oldRecord: record.Record
-  
+
   /**
    * @name BeforeSubmitContext#type
    * @type {string} type - The action type that triggered this event
@@ -120,7 +120,7 @@ type BeforeSubmitContext = {
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html}
  */
 declare namespace BeforeSubmitContext {
-  
+
   /**
    * @enum {string}
    */
@@ -158,7 +158,7 @@ declare namespace BeforeSubmitContext {
  * @since 2015.2
  */
 type AfterSubmitContext = {
-  
+
   /**
    * @name AfterSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
@@ -166,7 +166,7 @@ type AfterSubmitContext = {
    * @readonly
    */
   newRecord: record.Record
-  
+
   /**
    * @name AfterSubmitContext#oldRecord
    * @type {record.Record} oldRecord - The old record before it was modified
@@ -174,7 +174,7 @@ type AfterSubmitContext = {
    * @readonly
    */
   oldRecord: record.Record
-  
+
   /**
    * @name AfterSubmitContext#type
    * @type {string} type - The action type that triggered this event
@@ -188,7 +188,7 @@ type AfterSubmitContext = {
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html}
  */
 declare namespace AfterSubmitContext {
-  
+
   /**
    * @enum {string}
    */

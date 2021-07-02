@@ -141,7 +141,7 @@ declare namespace file {
      * @type {number|string}
      * @readonly
      */
-    folder: number | string
+    folder: number
 
     /**
      * @type {number}
