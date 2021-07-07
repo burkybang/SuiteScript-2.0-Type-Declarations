@@ -11,143 +11,266 @@
  */
 interface http {
 
-  /**
-   * Send a HTTP GET request and return server response.
-   *
-   * @governance 10 units
-   * @restriction Server SuiteScript only
-   *
-   * @param {Object} options
-   * @param {string} options.url the HTTP URL being requested
-   * @param {Object<string, string>} [options.headers] request HTTP headers
-   * @return {ClientResponse}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-   * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
-   *
-   * @since 2015.2
-   */
-  // function getHttp() {}
-  // getHttp.prototype.promise = function() {};
-  // http.prototype['get'] = new getHttp();
-  get(options: {
-    url: string,
-    headers?: {
-      [p: string]: string,
-    },
-  }): http.ClientResponse
+  get: {
 
-  /**
-   * Send a HTTP POST request and return server response.
-   *
-   * @governance 10 units
-   * @restriction Server SuiteScript only
-   *
-   * @param {Object} options
-   * @param {string} options.url the HTTP URL being requested
-   * @param {string|Object} config.body POST data
-   * @param {Object<string, string>} [options.headers] request HTTP headers
-   * @return {ClientResponse}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-   * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
-   *
-   * @since 2015.2
-   */
-  // function postHttp() {}
-  // postHttp.prototype.promise = function() {};
-  // http.prototype.post = new postHttp();
-  post(options: {
-    url: string,
-    body: string | Object,
-    headers?: {
-      [p: string]: string,
-    },
-  }): http.ClientResponse
+    /**
+     * Send a HTTP GET request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {ClientResponse}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      url: string,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): http.ClientResponse
 
-  /**
-   * Send a HTTP PUT request and return server response.
-   *
-   * @governance 10 units
-   * @restriction Server SuiteScript only
-   *
-   * @param {Object} options
-   * @param {string} options.url the HTTP URL being requested
-   * @param {string|Object} options.body PUT data
-   * @param {Object<string, string>} [options.headers] request HTTP headers
-   * @return {ClientResponse}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-   * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
-   *
-   * @since 2015.2
-   */
-  // function putHttp() {}
-  // putHttp.prototype.promise = function() {};
-  // http.prototype.put = new putHttp();
-  put(options: {
-    url: string,
-    body: string | Object,
-    headers?: {
-      [p: string]: string,
-    },
-  }): http.ClientResponse
+    /**
+     * Send a HTTP GET request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      url: string,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  }
 
-  /**
-   * Send a HTTP DELETE request and return server response.
-   *
-   * @governance 10 units
-   * @restriction Server SuiteScript only
-   *
-   * @param {Object} options
-   * @param {string} options.url the HTTP URL being requested
-   * @param {Object<string, string>} [options.headers] request HTTP headers
-   * @return {ClientResponse}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-   * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
-   *
-   * @since 2015.2
-   */
-  // function deleteHttp() {}
-  // deleteHttp.prototype.promise = function() {};
-  // http.prototype['delete'] = new deleteHttp();
-  delete(options: {
-    url: string,
-    headers?: {
-      [p: string]: string,
-    },
-  }): http.ClientResponse
+  post: {
 
-  /**
-   * Send a HTTP request and return server response.
-   *
-   * @governance 10 units
-   * @restriction Server SuiteScript only
-   *
-   * @param {Object} options
-   * @param {http.Method} options.method HTTP method of the request
-   * @param {string} options.url the HTTP URL being requested
-   * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
-   * @param {Object<string, string>} [options.headers] request HTTP headers
-   * @return {ClientResponse}
-   *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-   * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
-   *
-   * @since 2015.2
-   */
-  // function requestHttp() {}
-  // requestHttp.prototype.promise = function() {};
-  // http.prototype.request = new requestHttp();
-  request(options: {
-    method: http.Method,
-    url: string,
-    body?: string | Object,
-    headers?: {
-      [p: string]: string,
-    },
-  }): http.ClientResponse
+    /**
+     * Send a HTTP POST request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} config.body POST data
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {ClientResponse}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      url: string,
+      body: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): http.ClientResponse
+
+    /**
+     * Send a HTTP POST request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} config.body POST data
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      url: string,
+      body: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  }
+
+  put: {
+
+    /**
+     * Send a HTTP PUT request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} options.body PUT data
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {ClientResponse}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      url: string,
+      body: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): http.ClientResponse
+
+    /**
+     * Send a HTTP PUT request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} options.body PUT data
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      url: string,
+      body: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  }
+
+  delete: {
+
+    /**
+     * Send a HTTP DELETE request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {ClientResponse}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      url: string,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): http.ClientResponse
+
+    /**
+     * Send a HTTP DELETE request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {string} options.url the HTTP URL being requested
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      url: string,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  }
+
+  request: {
+
+    /**
+     * Send a HTTP request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {http.Method} options.method HTTP method of the request
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {ClientResponse}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      method: http.Method,
+      url: string,
+      body?: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): http.ClientResponse
+
+    /**
+     * Send a HTTP request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server SuiteScript only
+     *
+     * @param {Object} options
+     * @param {http.Method} options.method HTTP method of the request
+     * @param {string} options.url the HTTP URL being requested
+     * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
+     * @param {Object<string, string|number>} [options.headers] request HTTP headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      method: http.Method,
+      url: string,
+      body?: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  }
 }
 
 declare namespace http {
