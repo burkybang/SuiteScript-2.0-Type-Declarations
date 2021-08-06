@@ -274,6 +274,44 @@ interface https {
   }
 
   /**
+   * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774.html}
+   *
+   * @governance 10 units
+   * @restriction Server SuiteScript only
+   *
+   * @param {Object} options
+   * @param {string|number} options.scriptId The internal ID or script ID of the script record
+   * @param {string} options.deploymentId The script ID of the script deployment record
+   * @param {https.Method} [options.method=https.Method.GET] HTTPS method of the request
+   * @param {Object<string, string|number>} [options.headers] Request HTTPS headers
+   * @param {string|Object} [options.body] The PUT/POST data. This is ignored if the options.method is not POST or PUT
+   * @param {Object<string, string|number>} [options.urlParams] The parameters to be appended to the target URL as a query string
+   * @return {https.ClientResponse}
+   *
+   * @throws {SuiteScriptError} INVALID_SCRIPT_DEPLOYMENT_ID_1 If the options.deploymentId parameter does not reference a valid deployment for the script.
+   * @throws {SuiteScriptError} SSS_AUTHORIZATION_HEADER_NOT_ALLOWED The authorization header is set.
+   * @throws {SuiteScriptError} SSS_INVALID_HEADER The options.headers parameter is in an invalid format or contains an invalid header.
+   * @throws {SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 The options.scriptId parameter does not reference a RESTlet script.
+   * @throws {SuiteScriptError} SSS_INVALID_URL_PARAMS The options.urlParams parameter is in an invalid format.
+   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The options.body, options.deploymentID, or options.scriptID parameter is not specified.
+   *
+   * @since 2020.2
+   */
+  requestRestlet(options: {
+    scriptId: string | number,
+    deploymentId: string,
+    method?: https.Method,
+    headers?: {
+      [p: string]: string | number,
+    },
+    body?: string | Object,
+    urlParams?: {
+      [p: string]: string | number,
+    },
+  }): https.ClientResponse
+
+  /**
    *
    * @param {Object} options
    * @param {string} options.guid
