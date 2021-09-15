@@ -25,7 +25,7 @@ interface file {
     fileType: file.Type,
     contents?: string,
     description?: string,
-    folder?: number,
+    folder?: number | string,
     encoding?: file.Encoding,
     inInactive?: boolean,
     isOnline?: boolean,

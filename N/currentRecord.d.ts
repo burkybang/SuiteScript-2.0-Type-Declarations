@@ -457,6 +457,21 @@ declare namespace currentRecord {
     }): this
 
     /**
+     * Return the line number of the currently selected line
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731.html}
+     *
+     * @restriction only available in dynamic record
+     *
+     * @param {string} sublistId
+     * @return {number}
+     *
+     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     */
+    getCurrentSublistIndex(
+      sublistId: string,
+    ): number
+
+    /**
      * Return value of a sublist field on the current selected sublist line
      * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213.html}
      *
