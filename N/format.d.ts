@@ -25,7 +25,7 @@ interface format {
   parse(options: {
     value: string,
     type: format.Type,
-    timezone?: format.Timezone,
+    timezone?: format.Timezone | string,
   }): Date | string | number
 
   /**
@@ -46,7 +46,7 @@ interface format {
   format(options: {
     value: Date | string | number,
     type: format.Type,
-    timezone?: format.Timezone,
+    timezone?: format.Timezone | string,
   }): string
 }
 
