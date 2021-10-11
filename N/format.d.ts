@@ -18,7 +18,7 @@ interface format {
    *                                  default is the timezone set in the user's preferences
    * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
    * @since 2015.2
    */
@@ -39,7 +39,7 @@ interface format {
    *                                  default is the timezone set in the user's preferences
    * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
    * @since 2015.2
    */

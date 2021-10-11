@@ -24,10 +24,10 @@ interface action {
    * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} [options.id] action ID
    * @return {Object<'allocate'|'approve'|'reject'|'submit'|'cancel', action.Action>} a set of actions (@see Action) defined on the record type indexed by action ID
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
-   * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
-   * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
+   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
    *
    * @since 2018.2
    */
@@ -56,11 +56,11 @@ interface action {
    * @param {string} options.id action ID
    * @return {action.Action} record action executor for action specified by options
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
-   * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
    *                                                  the specified record instance does not qualify for executing the action
-   * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
    */
   get(options: {
     recordType: record.Record | string,
@@ -79,10 +79,10 @@ interface action {
    * @param {number|string} options.params.recordId record instance ID
    * @return {Object} action result; the actual return value returned by the action implementation is stored in the response property
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
-   * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
-   * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
    *
    * @since 2018.2
    */
@@ -111,10 +111,10 @@ interface action {
    * @param {string} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
    * @return {string}
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
-   * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
-   * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
    *
    * @since 2019.1
    */
@@ -149,10 +149,10 @@ declare namespace action {
      * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} [options.id] action ID
      * @return {Promise<Object<'allocate'|'approve'|'reject'|'submit'|'cancel', action.Action>>>} a set of actions (@see Action) defined on the record type indexed by action ID
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-     * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
-     * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      *
      * @since 2018.2
      */
@@ -184,11 +184,11 @@ declare namespace action {
      * @param {string} options.id action ID
      * @return {Promise<action.Action>} record action executor for action specified by options
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-     * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
      *                                                  the specified record instance does not qualify for executing the action
-     * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */
     promise(options: {
       recordType: record.Record | string,
@@ -220,10 +220,10 @@ declare namespace action {
      * @param {number|string} options.params.recordId record instance ID
      * @return {Promise<Object>} action result; the actual return value returned by the action implementation is stored in the response property
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-     * @throws {SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
-     * @throws {SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
      *
      * @since 2018.2
      */

@@ -196,7 +196,7 @@ declare namespace task {
      * @governance 20 units
      *
      * @return {string} taskId
-     * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
+     * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
 
@@ -225,7 +225,7 @@ declare namespace task {
      * @name ScheduledScriptTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -234,7 +234,7 @@ declare namespace task {
      * @name ScheduledScriptTaskStatus#scriptId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     scriptId: number
 
@@ -243,7 +243,7 @@ declare namespace task {
      * @name ScheduledScriptTaskStatus#deploymentId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     deploymentId: number
 
@@ -252,7 +252,7 @@ declare namespace task {
      * @name ScheduledScriptTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 
@@ -347,7 +347,7 @@ declare namespace task {
      * @name MapReduceScriptTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -356,7 +356,7 @@ declare namespace task {
      * @name MapReduceScriptTaskStatus#scriptId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     scriptId: number
 
@@ -365,7 +365,7 @@ declare namespace task {
      * @name MapReduceScriptTaskStatus#deploymentId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     deploymentId: number
 
@@ -374,7 +374,7 @@ declare namespace task {
      * @name MapReduceScriptTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 
@@ -383,7 +383,7 @@ declare namespace task {
      * @name MapReduceScriptTaskStatus#stage
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     stage: string
 
@@ -556,7 +556,7 @@ declare namespace task {
      * @governance 100 units
      *
      * @return {string} taskId
-     * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
+     * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} YOU_DO_NOT_HAVE_ACCESS_TO_THE_MEDIA_ITEM_YOU_SELECTED if you do not have permission to access the file
      * @throws {error.SuiteScriptError} THAT_RECORD_DOES_NOT_EXIST if file object references non existing file
@@ -609,7 +609,7 @@ declare namespace task {
      * @name SearchTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -618,7 +618,7 @@ declare namespace task {
      * @name SearchTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 
@@ -627,7 +627,7 @@ declare namespace task {
      * @name SearchTaskStatus#fileId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     fileId: number
 
@@ -636,7 +636,7 @@ declare namespace task {
      * @name SearchTaskStatus#savedSearchId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     savedSearchId: number
 
@@ -710,7 +710,7 @@ declare namespace task {
      * @governance 100 units
      *
      * @return {string} taskId
-     * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
+     * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
 
@@ -740,7 +740,7 @@ declare namespace task {
      * @name CsvImportTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -749,7 +749,7 @@ declare namespace task {
      * @name CsvImportTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 
@@ -821,7 +821,7 @@ declare namespace task {
      * @governance 100 units
      *
      * @return {string} taskId
-     * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
+     * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
 
@@ -851,7 +851,7 @@ declare namespace task {
      * @name EntityDeduplicationTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -860,7 +860,7 @@ declare namespace task {
      * @name EntityDeduplicationTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 
@@ -928,7 +928,7 @@ declare namespace task {
      * @governance 20 units
      *
      * @return {string} taskId
-     * @throws {SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
+     * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string
 
@@ -958,7 +958,7 @@ declare namespace task {
      * @name WorkflowTriggerTaskStatus#taskId
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     taskId: string
 
@@ -967,7 +967,7 @@ declare namespace task {
      * @name WorkflowTriggerTaskStatus#status
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     status: string
 

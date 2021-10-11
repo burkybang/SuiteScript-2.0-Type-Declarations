@@ -17,8 +17,8 @@ interface sso {
    * @param {string} options.suiteSignOnId
    * @return {string}
    *
-   * @throws {SuiteScriptError} SSS_SSO_CONFIG_REQD Thrown when the SuiteSignOn record is not configured for use with this script
-   * @throws {SuiteScriptError} INVALID_SSO Thrown when the provided SuiteSignOn record ID is not valid.
+   * @throws {error.SuiteScriptError} SSS_SSO_CONFIG_REQD Thrown when the SuiteSignOn record is not configured for use with this script
+   * @throws {error.SuiteScriptError} INVALID_SSO Thrown when the provided SuiteSignOn record ID is not valid.
    */
   generateSuiteSignOnToken(options: {
     suiteSignOnId: string,

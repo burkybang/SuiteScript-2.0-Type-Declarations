@@ -64,8 +64,8 @@ interface dialog {
    *           The value parameter of the button clicked is returned.
    * @since 2016.1
    *
-   * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
-   * @throws {SuiteScriptError} BUTTONS_MUST_INCLUDE_BOTH_A_LABEL_AND_VALUE if options.buttons is specified and one or more items do not have a label and/or value.
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
+   * @throws {error.SuiteScriptError} BUTTONS_MUST_INCLUDE_BOTH_A_LABEL_AND_VALUE if options.buttons is specified and one or more items do not have a label and/or value.
    */
   create<T>(options?: {
     title?: string,

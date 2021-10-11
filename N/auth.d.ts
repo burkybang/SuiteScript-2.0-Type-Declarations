@@ -17,8 +17,8 @@ interface auth {
    * @param {boolean} [options.onlyThisAccount=true]
    * @return {void}
    *
-   * @throws {SuiteScriptError} INVALID_PSWD When password does not conform to rules.
-   * @throws {SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
+   * @throws {error.SuiteScriptError} INVALID_PSWD When password does not conform to rules.
+   * @throws {error.SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
    */
   changeEmail(options: {
     password: string,
@@ -35,8 +35,8 @@ interface auth {
    * @param {string} options.newPassword
    * @return {void}
    *
-   * @throws {SuiteScriptError} INVALID_PSWD When password does not conform to rules.
-   * @throws {SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
+   * @throws {error.SuiteScriptError} INVALID_PSWD When password does not conform to rules.
+   * @throws {error.SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
    */
   changePassword(options: {
     currentPassword: string,

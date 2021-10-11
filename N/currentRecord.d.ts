@@ -20,7 +20,7 @@ interface currentRecord {
    *
    * @return {currentRecord.CurrentRecord}
    *
-   * @throws {SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
+   * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
    *
    * @since 2016.2
    */
@@ -39,7 +39,7 @@ declare namespace currentRecord {
      *
      * @return {Promise<CurrentRecord>}
      *
-     * @throws {SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
+     * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
      *
      * @since 2016.2
      */
@@ -84,8 +84,8 @@ declare namespace currentRecord {
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
     getValue(
       fieldId: string,
@@ -99,8 +99,8 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
     getValue(options: {
       fieldId: string,
@@ -116,7 +116,7 @@ declare namespace currentRecord {
      * @param {boolean} [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setValue(
       fieldId: string,
@@ -136,7 +136,7 @@ declare namespace currentRecord {
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setValue(options: {
       fieldId: string,
@@ -152,7 +152,7 @@ declare namespace currentRecord {
      * @param {string} fieldId
      * @return {string|string[]}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     getText(
       fieldId: string,
@@ -166,7 +166,7 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {string|string[]}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     getText(options: {
       fieldId: string,
@@ -183,7 +183,7 @@ declare namespace currentRecord {
      *     parameter accepts only a single string value.
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setText(
       fieldId: string,
@@ -204,7 +204,7 @@ declare namespace currentRecord {
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
     setText(options: {
       fieldId: string,
@@ -223,7 +223,7 @@ declare namespace currentRecord {
      * @param {string|string[]|number|Date|boolean} options.value
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      */
     findSublistLineWithValue(options: {
       sublistId: string,
@@ -240,9 +240,9 @@ declare namespace currentRecord {
      * @param {number} line
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
     getSublistValue(
       sublistId: string,
@@ -260,9 +260,9 @@ declare namespace currentRecord {
      * @param {number} options.line
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
     getSublistValue(options: {
       sublistId: string,
@@ -280,9 +280,9 @@ declare namespace currentRecord {
      * @param {number} options.line
      * @return {string}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      */
     getSublistText(options: {
       sublistId: string,
@@ -323,10 +323,10 @@ declare namespace currentRecord {
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
      *     are missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
      */
     insertLine(options: {
@@ -345,10 +345,10 @@ declare namespace currentRecord {
      * @param {boolean} [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
      *     missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable
      */
     removeLine(options: {
@@ -366,8 +366,8 @@ declare namespace currentRecord {
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      */
     selectNewLine(
       sublistId: string,
@@ -383,8 +383,8 @@ declare namespace currentRecord {
      * @param {string} options.sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      */
     selectNewLine(options: {
       sublistId: string,
@@ -399,8 +399,8 @@ declare namespace currentRecord {
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      */
     cancelLine(
       sublistId: string,
@@ -416,8 +416,8 @@ declare namespace currentRecord {
      * @param {string} options.sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      */
     cancelLine(options: {
       sublistId: string,
@@ -432,8 +432,8 @@ declare namespace currentRecord {
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      */
     commitLine(
       sublistId: string,
@@ -449,8 +449,8 @@ declare namespace currentRecord {
      * @param {string} options.sublistId
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      */
     commitLine(options: {
       sublistId: string,
@@ -465,7 +465,7 @@ declare namespace currentRecord {
      * @param {string} sublistId
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      */
     getCurrentSublistIndex(
       sublistId: string,
@@ -481,8 +481,8 @@ declare namespace currentRecord {
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistValue(
       sublistId: string,
@@ -500,8 +500,8 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistValue(options: {
       sublistId: string,
@@ -517,8 +517,8 @@ declare namespace currentRecord {
      * @param {string|number|(string|number)[]|Date|boolean} value
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistValue(
@@ -539,8 +539,8 @@ declare namespace currentRecord {
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistValue(options: {
@@ -561,8 +561,8 @@ declare namespace currentRecord {
      * @param {string} fieldId
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistText(
       sublistId: string,
@@ -580,8 +580,8 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistText(options: {
       sublistId: string,
@@ -601,8 +601,8 @@ declare namespace currentRecord {
      * @param {boolean} [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistText(
@@ -627,8 +627,8 @@ declare namespace currentRecord {
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      */
     setCurrentSublistText(options: {
@@ -649,8 +649,8 @@ declare namespace currentRecord {
      * @param {number} line
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      */
     selectLine(
       sublistId: string,
@@ -668,8 +668,8 @@ declare namespace currentRecord {
      * @param {number} options.line
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      */
     selectLine(options: {
       sublistId: string,
@@ -712,10 +712,10 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {CurrentRecord} client-side subrecord implementation
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
-     * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
-     * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
-     * @throws {SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+     * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+     * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
      */
     getSubrecord(options: {
       fieldId: string,
@@ -836,7 +836,7 @@ declare namespace currentRecord {
      * @param {string} fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      */
     getField(
       fieldId: string,
@@ -850,7 +850,7 @@ declare namespace currentRecord {
      * @param {string} options.fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      */
     getField(options: {
       fieldId: string,
@@ -866,8 +866,8 @@ declare namespace currentRecord {
      * @param {number} options.line
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
      */
     getSublistField(options: {
       sublistId: string,
@@ -887,8 +887,8 @@ declare namespace currentRecord {
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setMatrixHeaderValue(options: {
       sublistId: string,
@@ -908,7 +908,7 @@ declare namespace currentRecord {
      * @param {number} options.column the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderValue(options: {
       sublistId: string,
@@ -930,8 +930,8 @@ declare namespace currentRecord {
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setMatrixSublistValue(options: {
       sublistId: string,
@@ -952,7 +952,7 @@ declare namespace currentRecord {
      * @param {number} options.line the line number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixSublistValue(options: {
       sublistId: string,
@@ -971,7 +971,7 @@ declare namespace currentRecord {
      * @param {number} options.column the column number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderField(options: {
       sublistId: string,
@@ -990,7 +990,7 @@ declare namespace currentRecord {
      * @param {number} options.line the line number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixSublistField(options: {
       sublistId: string,
@@ -1010,8 +1010,8 @@ declare namespace currentRecord {
      * @param {number} options.column the column number for the field
      * @return {number} line number
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      */
     findMatrixSublistLineWithValue(options: {
       sublistId: string,
@@ -1029,7 +1029,7 @@ declare namespace currentRecord {
      * @param {string} options.fieldId the id of the matrix field
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getMatrixHeaderCount(options: {
       sublistId: string,
@@ -1051,7 +1051,7 @@ declare namespace currentRecord {
      * @param {boolean} [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     setCurrentMatrixSublistValue(options: {
       sublistId: string,
@@ -1074,7 +1074,7 @@ declare namespace currentRecord {
      * @param {number} options.column - the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
     getCurrentMatrixSublistValue(options: {
       sublistId: string,
@@ -1215,7 +1215,7 @@ declare namespace currentRecord {
      * @param {'contains'|'is'|'startswith'} [options.operator='contains']  Defaults to the "contains" operator
      * @return {{value:string, text:string}[]}
      *
-     * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
+     * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
      *
      * @since 2016.2
      */
@@ -1237,7 +1237,7 @@ declare namespace currentRecord {
      * @param {string} text  The display text for this option
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
+     * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
      *
      * @since 2016.2
      */
@@ -1255,7 +1255,7 @@ declare namespace currentRecord {
      * @param {boolean} [options.isSelected=false] If true, this option is selected
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
+     * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
      *
      * @since 2016.2
      */
@@ -1275,7 +1275,7 @@ declare namespace currentRecord {
      * @param {string|number} options.value The internal id of the option
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
+     * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
      *
      * @since 2016.2
      */

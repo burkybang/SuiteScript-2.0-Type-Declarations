@@ -21,8 +21,8 @@ interface currency {
    *
    * @return {number}
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if id parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_CURRENCY_ID if an invalid currency (source or target) is specified
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if id parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY_ID if an invalid currency (source or target) is specified
    *
    * @since 2015.2
    */

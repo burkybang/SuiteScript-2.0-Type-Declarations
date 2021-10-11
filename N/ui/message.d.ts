@@ -61,7 +61,7 @@ declare namespace message {
      *
      * @return {void}
      *
-     * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
      *
      * @since 2016.1
      */
@@ -76,7 +76,7 @@ declare namespace message {
      *
      * @return {void}
      *
-     * @throws {SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
      *
      * @since 2016.1
      */

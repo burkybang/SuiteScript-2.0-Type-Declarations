@@ -26,7 +26,7 @@ interface record {
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {record.Record|currentRecord.CurrentRecord}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
      * @since 2015.2
      */
@@ -48,7 +48,7 @@ interface record {
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
      * @since 2015.2
      */
@@ -76,7 +76,7 @@ interface record {
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {record.Record|currentRecord.CurrentRecord}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
      * @since 2015.2
      */
@@ -100,7 +100,7 @@ interface record {
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
      * @since 2015.2
      */
@@ -129,7 +129,7 @@ interface record {
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {Record}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
      * @since 2015.2
      */
@@ -153,7 +153,7 @@ interface record {
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
      * @since 2015.2
      */
@@ -183,7 +183,7 @@ interface record {
      * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
      * @return {Record}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
      *
      * @since 2015.2
      */
@@ -209,7 +209,7 @@ interface record {
      * @param {Object} [options.defaultValues={}] transformed record's default values
      * @return {Promise<record.Record|currentRecord.CurrentRecord>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
      * @since 2015.2
      */
@@ -237,7 +237,7 @@ interface record {
      * @param {number|string} options.id record id
      * @return {number} recordId
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
      * @since 2015.2
      */
@@ -255,7 +255,7 @@ interface record {
      * @param {number|string} options.id record id
      * @return {Promise<number>} recordId
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
      * @since 2015.2
      */
@@ -283,7 +283,7 @@ interface record {
      * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return {number} id of submitted record
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
      * @since 2015.2
      */
@@ -314,7 +314,7 @@ interface record {
      * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return {Promise<number>} id of submitted record
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
      * @since 2015.2
      */
@@ -345,7 +345,7 @@ interface record {
      * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
      *
      * @since 2015.2
      */
@@ -373,7 +373,7 @@ interface record {
      * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
      * @return {Promise<void>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
      *
      * @since 2015.2
      */
@@ -406,7 +406,7 @@ interface record {
      * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
      *
      * @since 2015.2
      */
@@ -435,7 +435,7 @@ interface record {
    * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
    * @return {Promise<void>}
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
    *
    * @since 2015.2
    */
@@ -750,7 +750,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
@@ -763,7 +763,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
@@ -776,7 +776,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
@@ -789,7 +789,7 @@ declare namespace record {
      * @type {format.Type}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
@@ -913,7 +913,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
@@ -926,7 +926,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
@@ -939,7 +939,7 @@ declare namespace record {
      * @type {string}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
@@ -952,7 +952,7 @@ declare namespace record {
      * @type {Object}
      *
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
@@ -1106,7 +1106,7 @@ declare namespace record {
        * @param {Object<string, *>} [options.params] macro arguments
        * @return {{notifications: [], response: {}}}
        *
-       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
        *
        * @since 2018.2
        */
@@ -1129,7 +1129,7 @@ declare namespace record {
        * @param {Object<string, *>} [options.params] macro arguments
        * @return {Promise<{notifications: [], response: {}}>}
        *
-       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
        *
        * @since 2015.2
        */
@@ -1151,8 +1151,8 @@ declare namespace record {
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      *
      * @since 2015.2
      */
@@ -1168,8 +1168,8 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      *
      * @since 2015.2
      */
@@ -1186,7 +1186,7 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1206,7 +1206,7 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1223,7 +1223,7 @@ declare namespace record {
      * @param {string} fieldId
      * @return {string}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1239,7 +1239,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {string}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1259,7 +1259,7 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1282,7 +1282,7 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -1301,7 +1301,7 @@ declare namespace record {
      * @param {string|string[]|number|Date|boolean} value
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      *
      * @since 2015.2
      */
@@ -1321,7 +1321,7 @@ declare namespace record {
      * @param {string|string[]|number|Date|boolean} options.value
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      *
      * @since 2015.2
      */
@@ -1340,9 +1340,9 @@ declare namespace record {
      * @param {number} line
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      *
      * @since 2015.2
      */
@@ -1362,9 +1362,9 @@ declare namespace record {
      * @param {number} options.line
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      *
      * @since 2015.2
      */
@@ -1384,8 +1384,8 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} value
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      *
      * @since 2015.2
      */
@@ -1407,8 +1407,8 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} options.value
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      *
      * @since 2015.2
      */
@@ -1428,9 +1428,9 @@ declare namespace record {
      * @param {number} line
      * @return {string}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      *
      * @since 2015.2
      */
@@ -1450,9 +1450,9 @@ declare namespace record {
      * @param {number} options.line
      * @return {string}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      *
      * @since 2015.2
      */
@@ -1472,8 +1472,8 @@ declare namespace record {
      * @param {string} text
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      *
      * @since 2015.2
      */
@@ -1495,8 +1495,8 @@ declare namespace record {
      * @param {string} options.text
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      *
      * @since 2015.2
      */
@@ -1543,10 +1543,10 @@ declare namespace record {
      * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
      *     are missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
      *
      * @since 2015.2
@@ -1567,10 +1567,10 @@ declare namespace record {
      * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
      *     are missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
      *
      * @since 2015.2
@@ -1590,10 +1590,10 @@ declare namespace record {
      * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
      *     missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable
      *
      * @since 2015.2
@@ -1614,10 +1614,10 @@ declare namespace record {
      * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
      *     missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
      *     editable
      *
      * @since 2015.2
@@ -1636,8 +1636,8 @@ declare namespace record {
      * @param {string} sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      *
      * @since 2015.2
      */
@@ -1654,8 +1654,8 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
      *
      * @since 2015.2
      */
@@ -1672,8 +1672,8 @@ declare namespace record {
      * @param {number} line
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      *
      * @since 2015.2
      */
@@ -1692,8 +1692,8 @@ declare namespace record {
      * @param {number} options.line
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
      *
      * @since 2015.2
      */
@@ -1710,8 +1710,8 @@ declare namespace record {
      * @param {string} sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      *
      * @since 2015.2
      */
@@ -1728,8 +1728,8 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
      *
      * @since 2015.2
      */
@@ -1745,8 +1745,8 @@ declare namespace record {
      * @param {string} sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      *
      * @since 2015.2
      */
@@ -1763,8 +1763,8 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
      *
      * @since 2015.2
      */
@@ -1781,8 +1781,8 @@ declare namespace record {
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      *
      * @since 2015.2
      */
@@ -1801,8 +1801,8 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      *
      * @since 2015.2
      */
@@ -1821,8 +1821,8 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      *
      * @since 2015.2
@@ -1845,8 +1845,8 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      *
      * @since 2015.2
@@ -1867,8 +1867,8 @@ declare namespace record {
      * @param {string} fieldId
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      *
      * @since 2015.2
      */
@@ -1887,8 +1887,8 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      *
      * @since 2015.2
      */
@@ -1908,8 +1908,8 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      *
      * @since 2015.2
@@ -1933,8 +1933,8 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
      *     if user tries to edit readonly sublist field
      *
      * @since 2015.2
@@ -2052,9 +2052,9 @@ declare namespace record {
      * @param {string} fieldId
      * @return {Record} client-side subrecord implementation
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
-     * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
-     * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+     * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
      *
      * @since 2015.2
      */
@@ -2070,9 +2070,9 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {Record} client-side subrecord implementation
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
-     * @throws {SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
-     * @throws {SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+     * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
      *
      * @since 2015.2
      */
@@ -2361,7 +2361,7 @@ declare namespace record {
      * @param {string} fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -2377,7 +2377,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      *
      * @since 2015.2
      */
@@ -2404,8 +2404,8 @@ declare namespace record {
      * @param {number} line
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
      *
      * @since 2015.2
      */
@@ -2425,8 +2425,8 @@ declare namespace record {
      * @param {number} options.line
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
      *
      * @since 2015.2
      */
@@ -2443,7 +2443,7 @@ declare namespace record {
      * @param {string} sublistId
      * @return {string[]}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
      *
      * @since 2015.2
      */
@@ -2459,7 +2459,7 @@ declare namespace record {
      * @param {string} options.sublistId
      * @return {string[]}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
      *
      * @since 2015.2
      */
@@ -2476,7 +2476,7 @@ declare namespace record {
      * @param {string} fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      *
      * @since 2015.2
      */
@@ -2495,7 +2495,7 @@ declare namespace record {
      * @param {string} options.fieldId
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      *
      * @since 2015.2
      */
@@ -2513,7 +2513,7 @@ declare namespace record {
      * @param {number} column the column number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2533,7 +2533,7 @@ declare namespace record {
      * @param {number} options.column the column number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2553,7 +2553,7 @@ declare namespace record {
      * @param {number} line the line number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2575,7 +2575,7 @@ declare namespace record {
      * @param {number} options.line the line number for the field
      * @return {Field}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2595,7 +2595,7 @@ declare namespace record {
      * @param {number} column the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2615,7 +2615,7 @@ declare namespace record {
      * @param {number} options.column the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2636,7 +2636,7 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange] Ignore the field change script (default false)
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2660,7 +2660,7 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2682,7 +2682,7 @@ declare namespace record {
      * @param {number} line the line number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2704,7 +2704,7 @@ declare namespace record {
      * @param {number} options.line the line number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2727,7 +2727,7 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2752,7 +2752,7 @@ declare namespace record {
      * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2774,7 +2774,7 @@ declare namespace record {
      * @param {number} column the column number for the field
      * @return {number} line number
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2796,7 +2796,7 @@ declare namespace record {
      * @param {number} options.column the column number for the field
      * @return {number} line number
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2815,7 +2815,7 @@ declare namespace record {
      * @param {string} fieldId the id of the matrix field
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2833,7 +2833,7 @@ declare namespace record {
      * @param {string} options.fieldId the id of the matrix field
      * @return {number}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2852,7 +2852,7 @@ declare namespace record {
      * @param {number} column - the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2873,7 +2873,7 @@ declare namespace record {
      * @param {number} options.column - the column number for the field
      * @return {string|string[]|number|Date|boolean}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2895,7 +2895,7 @@ declare namespace record {
      * @param {boolean} [ignoreFieldChange] - Ignore the field change script (default false)
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */
@@ -2920,7 +2920,7 @@ declare namespace record {
      * @param {boolean} [options.ignoreFieldChange] - Ignore the field change script (default false)
      * @return {Record} same object for chaining
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
      * @since 2015.2
      */

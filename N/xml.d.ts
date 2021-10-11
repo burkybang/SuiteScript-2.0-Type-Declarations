@@ -28,8 +28,8 @@ interface xml {
    * @param {number|string} options.xsdFilePathOrId ID or path to the XSD file to validate the XML object against
    * @param {number|string} [options.importFolderPathOrId] ID or path to a folder in the file cabinet containing additional XSD schemas which are imported by the parent XSD provided via "xsdFilePathOrId"
    *
-   * @throws {SuiteScriptError} SSS_XML_DOES_NOT_CONFORM_TO_SCHEMA if XML provided is invalid with respect to the provided schema
-   * @throws {SuiteScriptError} SSS_INVALID_XML_SCHEMA_OR_DEPENDENCY if schema is an incorrectly structured XSD, or a dependent schema could not be found
+   * @throws {error.SuiteScriptError} SSS_XML_DOES_NOT_CONFORM_TO_SCHEMA if XML provided is invalid with respect to the provided schema
+   * @throws {error.SuiteScriptError} SSS_INVALID_XML_SCHEMA_OR_DEPENDENCY if schema is an incorrectly structured XSD, or a dependent schema could not be found
    * @return {void}
    *
    * @since 2015.2
@@ -142,7 +142,7 @@ declare namespace xml {
      * @param {Node} options.newChild the node to add
      * @return {Node} the node added
      *
-     * @throws {SuiteScriptError} SSS_DOM_EXCEPTION if node cannot be appended for some reason
+     * @throws {error.SuiteScriptError} SSS_DOM_EXCEPTION if node cannot be appended for some reason
      */
     appendChild<NewChildNode extends Node>(options: {
       newChild: NewChildNode,
@@ -167,7 +167,7 @@ declare namespace xml {
      * @param {Node} options.other the node to compare against the reference node
      * @return {number} how the node is positioned relatively to the reference node
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION when the nodes cannot be compared
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION when the nodes cannot be compared
      */
     compareDocumentPosition(options: {
       other: Node,
@@ -198,7 +198,7 @@ declare namespace xml {
      * @param {Node} options.refChild the reference node, i.e., the node before which the new node will be inserted
      * @return {Node} the node being inserted
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be inserted for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be inserted for some reason
      */
     insertBefore<NewChildNode extends Node>(options: {
       newChild: NewChildNode,
@@ -287,7 +287,7 @@ declare namespace xml {
      *
      * @param {Node} options.oldChild the node being removed
      * @return {Node} the node removed
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
      */
     removeChild<OldChildNode extends Node>(options: {
       oldChild: OldChildNode,
@@ -302,7 +302,7 @@ declare namespace xml {
      * @param {Node} options.oldChild the node being replaced in the list
      * @return {Node} the node replaced
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be replaced for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be replaced for some reason
      */
     replaceChild<NewChildNode extends Node>(options: {
       newChild: NewChildNode,
@@ -318,7 +318,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     attributes: { [p: string]: Attr }
 
@@ -331,7 +331,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     baseURI: string
 
@@ -344,7 +344,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     childNodes: Node[]
 
@@ -357,7 +357,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     firstChild: Node
 
@@ -370,7 +370,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     lastChild: Node
 
@@ -383,7 +383,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     localName: string
 
@@ -396,7 +396,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     namespaceURI: string
 
@@ -409,7 +409,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     nextSibling: NodeType
 
@@ -422,7 +422,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     nodeName: string
 
@@ -435,7 +435,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     nodeType: NodeType
 
@@ -447,7 +447,7 @@ declare namespace xml {
      * @name Node#nodeValue
      * @type {string}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
      */
     nodeValue: string
 
@@ -461,7 +461,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     ownerDocument: Document
 
@@ -475,7 +475,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     parentNode: Node
 
@@ -487,7 +487,7 @@ declare namespace xml {
      * @name Node#prefix
      * @type {string}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to set the property value
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to set the property value
      */
     prefix: string
 
@@ -500,7 +500,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     previousSibling: Node
 
@@ -511,7 +511,7 @@ declare namespace xml {
      * @name Node#textContent
      * @type {string}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
      */
     textContent: string
   }
@@ -537,7 +537,7 @@ declare namespace xml {
      * @param {Node} options.source the node to move into this document
      * @return {Node} the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be adopted for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be adopted for some reason
      */
     adoptNode<SourceNode extends Node>(options: {
       source: SourceNode,
@@ -551,7 +551,7 @@ declare namespace xml {
      * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
      * @return {Attr} new attribute node object with name and attribute value set as expected and localName, prefix, and namespaceURI set to null
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
      */
     createAttribute(options: {
       name: string,
@@ -567,7 +567,7 @@ declare namespace xml {
      * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
      * @return {Attr} new attribute node object with name, attribute value, namespaceURI, prefix and localName set accordingly
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
      */
     createAttributeNS(options: {
       namespaceURI: string,
@@ -582,7 +582,7 @@ declare namespace xml {
      * @param {string} options.data the data for the CDATASection contents
      * @return {Node} the new CDATASection node
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the CDATASection node cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the CDATASection node cannot be created
      */
     createCDATASection(options: {
       data: string,
@@ -614,7 +614,7 @@ declare namespace xml {
      * @param {string} options.tagName the name of the element type to instantiate; for XML, this is case-sensitive
      * @return {Element} a new Element object with the nodeName attribute set to tagName, and localName, prefix, and namespaceURI set to null
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
      */
     createElement(options: {
       tagName: string,
@@ -628,7 +628,7 @@ declare namespace xml {
      * @param {string} options.qualifiedName the qualified name of the element type to instantiate
      * @return {Element} a new Element object with the nodeName, localName, prefix, and namespaceURI set accordingly
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
      */
     createElementNS(options: {
       namespaceURI: string,
@@ -643,7 +643,7 @@ declare namespace xml {
      * @param {string} options.data the data for the node
      * @return {Node} the new ProcessingInstruction object
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the ProcessingInstruction node cannot be created
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the ProcessingInstruction node cannot be created
      */
     createProcessingInstruction(options: {
       target: string,
@@ -706,7 +706,7 @@ declare namespace xml {
      * @param {boolean} options.deep if true, recursively import the subtree under the specified node; if false, import only the node itself, as explained above
      * @return {Node} the imported node that belongs to this Document
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be imported for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be imported for some reason
      */
     importNode<ImportedNode extends Node>(options: {
       importedNode: ImportedNode,
@@ -722,7 +722,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     doctype: Element
 
@@ -735,7 +735,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     documentElement: Element
 
@@ -757,7 +757,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     inputEncoding: string
 
@@ -770,7 +770,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     xmlEncoding: string
 
@@ -782,7 +782,7 @@ declare namespace xml {
      * @name Document#xmlStandalone
      * @type {boolean}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
      */
     xmlStandalone: boolean
 
@@ -793,7 +793,7 @@ declare namespace xml {
      * @name Document#xmlVersion
      * @type {string}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
      */
     xmlVersion: string
   }
@@ -841,7 +841,7 @@ declare namespace xml {
      * @param {string} options.localName the local name of the attribute to retrieve
      * @return {Attr} the Attr node with the specified attribute local name and namespace URI or null if there is no such attribute
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
      */
     getAttributeNodeNS(options: {
       namespaceURI: string,
@@ -856,7 +856,7 @@ declare namespace xml {
      * @param {string} options.localName the local name of the attribute to retrieve
      * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
      */
     getAttributeNS(options: {
       namespaceURI: string,
@@ -882,7 +882,7 @@ declare namespace xml {
      * @param {string} options.localName the local name of the elements to match on; the special value "*" matches all local names
      * @return {Element[]} an array of matching Element nodes
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the elements cannot be retrieved for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the elements cannot be retrieved for some reason
      */
     getElementsByTagNameNS(options: {
       namespaceURI: string,
@@ -908,7 +908,7 @@ declare namespace xml {
      * @param {string} options.localName the local name of the attribute to look for
      * @return {boolean} true if an attribute with the given local name and namespace URI is specified or has a default value on this element, false otherwise
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the command cannot be performed for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the command cannot be performed for some reason
      */
     hasAttributeNS(options: {
       namespaceURI: string,
@@ -921,7 +921,7 @@ declare namespace xml {
      *
      * @param {string} options.name the name of the attribute to remove
      * @return {void}
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
      */
     removeAttribute(options: {
       name: string,
@@ -934,7 +934,7 @@ declare namespace xml {
      * @param {Attr} options.oldAttr the Attr node to remove from the attribute list
      * @return {Attr} the Attr node that was removed
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     removeAttributeNode<OldAttr extends Attr>(options: {
       oldAttr: OldAttr,
@@ -948,7 +948,7 @@ declare namespace xml {
      * @param {string} options.localName the local name of the attribute to remove
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
      */
     removeAttributeNS(options: {
       namespaceURI: string,
@@ -964,7 +964,7 @@ declare namespace xml {
      * @param {string} options.value value to set in string form
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     setAttribute(options: {
       name: string,
@@ -979,7 +979,7 @@ declare namespace xml {
      * @param {Attr} options.newAttr the Attr node to add to the attribute list
      * @return {Attr} if the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     setAttributeNode<NewAttr extends Attr>(options: {
       newAttr: NewAttr,
@@ -993,7 +993,7 @@ declare namespace xml {
      * @param {Attr} options.newAttr the Attr node to add to the attribute list
      * @return {Attr} if the newAttr attribute replaces an existing attribute with the same local name and namespace URI, the replaced Attr node is returned, otherwise null is returned
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     setAttributeNodeNS<NewAttr extends Attr>(options: {
       newAttr: NewAttr,
@@ -1009,7 +1009,7 @@ declare namespace xml {
      * @param {string} options.value value to set in string form
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     setAttributeNS(options: {
       namespaceURI: string,
@@ -1026,7 +1026,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     tagName: string
   }
@@ -1054,7 +1054,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
 
@@ -1067,7 +1067,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     ownerElement: Element
 
@@ -1080,7 +1080,7 @@ declare namespace xml {
      *
      * @readonly
      *
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     specified: boolean
 
@@ -1093,7 +1093,7 @@ declare namespace xml {
      * @name Attr#value
      * @type {string}
      *
-     * @throws {SuiteScriptError} SSS_XML_DOM_EXCEPTION if the value cannot be set for some reason
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the value cannot be set for some reason
      */
     value: string
   }

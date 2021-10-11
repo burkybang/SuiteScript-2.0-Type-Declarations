@@ -11,7 +11,7 @@ interface portlet {
    * Causes a FORM type portlet to immediately refresh.
    *
    * @return {void}
-   * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
+   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
    *
    * @since 2016.1
    */
@@ -21,7 +21,7 @@ interface portlet {
    * Causes a FORM type portlet to be immediately resized.
    *
    * @return {void}
-   * @throws {SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
+   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
    *
    * @since 2016.1
    */

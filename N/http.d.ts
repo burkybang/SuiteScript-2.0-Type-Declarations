@@ -24,8 +24,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {ClientResponse}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -47,8 +47,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {Promise<ClientResponse>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -74,8 +74,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {ClientResponse}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -99,8 +99,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {Promise<ClientResponse>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -127,8 +127,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {ClientResponse}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -152,8 +152,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {Promise<ClientResponse>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -179,8 +179,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {ClientResponse}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -202,8 +202,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {Promise<ClientResponse>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -230,8 +230,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {ClientResponse}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -257,8 +257,8 @@ interface http {
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
      * @return {Promise<ClientResponse>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
-     * @throws {SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
      *
      * @since 2015.2
      */
@@ -329,7 +329,7 @@ declare namespace http {
      * @name ClientResponse#code
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     code: number
 
@@ -338,7 +338,7 @@ declare namespace http {
      * @name ClientResponse#headers
      * @type {Object<string, string>}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
@@ -349,7 +349,7 @@ declare namespace http {
      * @name ClientResponse#body
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     body: string
 

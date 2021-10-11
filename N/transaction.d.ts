@@ -16,9 +16,9 @@ interface transaction {
    * @param {number|string} options.id record id to be voided
    * @return {number} the id is the voided record or new reverse journal entry based on preference
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
-   * @throws {SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
-   * @throws {SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+   * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
+   * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
    *
    * @since 2015.2
    */
@@ -41,9 +41,9 @@ declare namespace transaction {
      * @param {number|string} options.id record id to be voided
      * @return {Promise<number>} the id is the voided record or new reverse journal entry based on preference
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
-     * @throws {SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
-     * @throws {SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
+     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
      *
      * @since 2015.2
      *!/

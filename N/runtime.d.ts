@@ -244,7 +244,7 @@ declare namespace runtime {
      * Percentage complete specified for the current scheduled script execution
      * @name Script#percentComplete
      * @type {number}
-     * @throws {SuiteScriptError} SSS_OPERATION_UNAVAILABLE
+     * @throws {error.SuiteScriptError} SSS_OPERATION_UNAVAILABLE
      * @since 2015.2
      */
     percentComplete: number

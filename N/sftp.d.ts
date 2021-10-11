@@ -20,7 +20,7 @@ interface sftp {
    * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {1}
    * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+   * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2016.2
    */
@@ -33,7 +33,7 @@ interface sftp {
    * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {20}
    * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+   * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2016.2
    */
@@ -46,7 +46,7 @@ interface sftp {
    * @name Connection#MIN_PORT_NUMBER
    * @type {0}
    * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+   * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
@@ -59,7 +59,7 @@ interface sftp {
    * @name Connection#MAX_PORT_NUMBER
    * @type {65535}
    * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+   * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
@@ -72,7 +72,7 @@ interface sftp {
    * @name Connection#DEFAULT_PORT_NUMBER
    * @type {22}
    * @readonly
-   * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+   * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
@@ -94,17 +94,17 @@ interface sftp {
    * @param {string} [options.keyId] - ID of the key to be used for authentication
    * @return {sftp.Connection} connection - an object that represents the connection
    *
-   * @throws {SuiteScriptError} FTP_UNKNOWN_HOST - thrown when host cannot be found
-   * @throws {SuiteScriptError} FTP_CONNECT_TIMEOUT_EXCEEDED - thrown when connection takes longer than options.timeout seconds
-   * @throws {SuiteScriptError} FTP_CANNOT_ESTABLISH_CONNECTION - thrown when connection fails because of invalid username or password or no permission to access to directory
-   * @throws {SuiteScriptError} FTP_INVALID_PORT_NUMBER - thrown when format of port number is invalid (e.g. negative or greater than 65535)
-   * @throws {SuiteScriptError} FTP_INVALID_CONNECTION_TIMEOUT - thrown when timeout parameter is set greater than Connection.MAX_CONNECT_TIMEOUT (currently 20 seconds) or negative
-   * @throws {SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
-   * @throws {SuiteScriptError} FTP_INCORRECT_HOST_KEY - thrown if provided host key does not match remote server's presented host key
-   * @throws {SuiteScriptError} FTP_INCORRECT_HOST_KEY_TYPE - thrown if the host key type does not match the type of the provided host key
-   * @throws {SuiteScriptError} FTP_MALFORMED_HOST_KEY - thrown when host key is not of the correct format (e.g. base 64, 96+ bytes)
-   * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
-   * @throws {SuiteScriptError} FTP_UNSUPPORTED_ENCRYPTION_ALGORITHM - thrown when the remote server does not support one of NetSuite's approved algorithms
+   * @throws {error.SuiteScriptError} FTP_UNKNOWN_HOST - thrown when host cannot be found
+   * @throws {error.SuiteScriptError} FTP_CONNECT_TIMEOUT_EXCEEDED - thrown when connection takes longer than options.timeout seconds
+   * @throws {error.SuiteScriptError} FTP_CANNOT_ESTABLISH_CONNECTION - thrown when connection fails because of invalid username or password or no permission to access to directory
+   * @throws {error.SuiteScriptError} FTP_INVALID_PORT_NUMBER - thrown when format of port number is invalid (e.g. negative or greater than 65535)
+   * @throws {error.SuiteScriptError} FTP_INVALID_CONNECTION_TIMEOUT - thrown when timeout parameter is set greater than Connection.MAX_CONNECT_TIMEOUT (currently 20 seconds) or negative
+   * @throws {error.SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
+   * @throws {error.SuiteScriptError} FTP_INCORRECT_HOST_KEY - thrown if provided host key does not match remote server's presented host key
+   * @throws {error.SuiteScriptError} FTP_INCORRECT_HOST_KEY_TYPE - thrown if the host key type does not match the type of the provided host key
+   * @throws {error.SuiteScriptError} FTP_MALFORMED_HOST_KEY - thrown when host key is not of the correct format (e.g. base 64, 96+ bytes)
+   * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+   * @throws {error.SuiteScriptError} FTP_UNSUPPORTED_ENCRYPTION_ALGORITHM - thrown when the remote server does not support one of NetSuite's approved algorithms
    *
    * @since 2016.2
    */
@@ -156,7 +156,7 @@ declare namespace sftp {
      * @name Connection#MAX_TRANSFER_TIMEOUT
      * @type {300}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      *
      * @since 2019.2
      */
@@ -169,7 +169,7 @@ declare namespace sftp {
      * @name Connection#MAX_FILE_SIZE
      * @type {100000000}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      *
      * @since 2019.2
      */
@@ -187,12 +187,12 @@ declare namespace sftp {
      * @param {number} [options.timeout] - timeout for data transfer, defaults to Connection.MAX_TRANSFER_TIMEOUT (currently 300 seconds)
      * @return {file.File} file
      *
-     * @throws {SuiteScriptError} FTP_MAXIMUM_FILE_SIZE_EXCEEDED - thrown if file size is > max file size allowed by NetSuite
-     * @throws {SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
-     * @throws {SuiteScriptError} FTP_TRANSFER_TIMEOUT_EXCEEDED - thrown if transfer takes longer than options.timeout seconds
-     * @throws {SuiteScriptError} FTP_INVALID_TRANSFER_TIMEOUT - thrown when timeout parameter is set greater than Connection.MAX_TRANSFER_TIMEOUT (currently 300 seconds) or negative
-     * @throws {SuiteScriptError} FTP_FILE_DOES_NOT_EXIST - thrown when options.filename does not exist at options.directory
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_MAXIMUM_FILE_SIZE_EXCEEDED - thrown if file size is > max file size allowed by NetSuite
+     * @throws {error.SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
+     * @throws {error.SuiteScriptError} FTP_TRANSFER_TIMEOUT_EXCEEDED - thrown if transfer takes longer than options.timeout seconds
+     * @throws {error.SuiteScriptError} FTP_INVALID_TRANSFER_TIMEOUT - thrown when timeout parameter is set greater than Connection.MAX_TRANSFER_TIMEOUT (currently 300 seconds) or negative
+     * @throws {error.SuiteScriptError} FTP_FILE_DOES_NOT_EXIST - thrown when options.filename does not exist at options.directory
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
      *
      * @since 2016.2
      */
@@ -216,11 +216,11 @@ declare namespace sftp {
      * @param {boolean} [options.replaceExisting] - if true, will replace file on server if a file with options.filename is found at options.directory, if false, will throw an exception if a file with options.filename is found at options.directory, defaults to false
      * @return {void}
      *
-     * @throws {SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
-     * @throws {SuiteScriptError} FTP_TRANSFER_TIMEOUT_EXCEEDED - thrown if transfer takes longer than options.timeout seconds
-     * @throws {SuiteScriptError} FTP_INVALID_TRANSFER_IMEOUT - thrown when timeout parameter is set greater than Connection.MAX_TRANSFER_TIMEOUT (currently 300 seconds) or negative
-     * @throws {SuiteScriptError} FTP_FILE_ALREADY_EXISTS - thrown when replaceExisting is set to false and a file with the same name exists in remote directory
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_INVALID_DIRECTORY - thrown if directory does not exist on server
+     * @throws {error.SuiteScriptError} FTP_TRANSFER_TIMEOUT_EXCEEDED - thrown if transfer takes longer than options.timeout seconds
+     * @throws {error.SuiteScriptError} FTP_INVALID_TRANSFER_IMEOUT - thrown when timeout parameter is set greater than Connection.MAX_TRANSFER_TIMEOUT (currently 300 seconds) or negative
+     * @throws {error.SuiteScriptError} FTP_FILE_ALREADY_EXISTS - thrown when replaceExisting is set to false and a file with the same name exists in remote directory
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
      *
      * @since 2016.2
      */
@@ -242,8 +242,8 @@ declare namespace sftp {
      * @param {string} options.path - relative path of a directory to be created
      * @return {void}
      *
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
-     * @throws {SuiteScriptError} FTP_DIRECTORY_NOT_FOUND - thrown when path is non-existent directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_DIRECTORY_NOT_FOUND - thrown when path is non-existent directory on the remote server
      *
      * @since 2019.2
      */
@@ -261,9 +261,9 @@ declare namespace sftp {
      * @param {string} options.path - relative path of a directory to be deleted
      * @return {void}
      *
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
-     * @throws {SuiteScriptError} FTP_DIRECTORY_NOT_FOUND - thrown when path leads to a non-existent directory on the remote server
-     * @throws {SuiteScriptError} FTP_DIRECTORY_NOT_EMPTY - thrown when the directory is not empty on the remote server
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_DIRECTORY_NOT_FOUND - thrown when path leads to a non-existent directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_DIRECTORY_NOT_EMPTY - thrown when the directory is not empty on the remote server
      *
      * @since 2019.2
      */
@@ -281,8 +281,8 @@ declare namespace sftp {
      * @param {string} options.path - relative path of a file to be deleted
      * @return {void}
      *
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
-     * @throws {SuiteScriptError} FTP_NO_SUCH_FILE_OR_DIRECTORY - thrown when path leads to a non-existent file on the remote server
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_NO_SUCH_FILE_OR_DIRECTORY - thrown when path leads to a non-existent file on the remote server
      *
      * @since 2019.2
      */
@@ -301,7 +301,7 @@ declare namespace sftp {
      * @param {string} options.to - relative path of a file to be moved to
      * @return {void}
      *
-     * @throws {SuiteScriptError} FTP_INVALID_MOVE - thrown when source is not readable or the target is not writable or source or target does not exist on the remote server
+     * @throws {error.SuiteScriptError} FTP_INVALID_MOVE - thrown when source is not readable or the target is not writable or source or target does not exist on the remote server
      *
      * @since 2019.2
      */
@@ -322,8 +322,8 @@ declare namespace sftp {
      * @param {Sort} [options.sort] - sort option
      * @return {Object[]}
      *
-     * @throws {SuiteScriptError} FTP_INVALID_DIRECTORY - thrown when path leads to a non-existent directory on the remote server
-     * @throws {SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_INVALID_DIRECTORY - thrown when path leads to a non-existent directory on the remote server
+     * @throws {error.SuiteScriptError} FTP_PERMISSION_DENIED - thrown when user does not have access to a file or directory on the remote server
      *
      * @since 2019.2
      */

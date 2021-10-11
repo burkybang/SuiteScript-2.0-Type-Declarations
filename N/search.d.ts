@@ -24,9 +24,9 @@ interface search {
      * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
      * @return {search.Search} the created search
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
      *
      * @since 2015.2
      */
@@ -52,9 +52,9 @@ interface search {
      * @param {string} [options.id]  customer ID of the search (when saved), it's a string starting with 'customsearch'
      * @return {Promise<search.Search>} the created search
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
      *
      * @since 2015.2
      */
@@ -79,8 +79,8 @@ interface search {
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {search.Search} the loaded search
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
      *
      * @since 2015.2
      */
@@ -96,8 +96,8 @@ interface search {
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {Promise<search.Search>} the loaded search
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
      *
      * @since 2015.2
      */
@@ -116,8 +116,8 @@ interface search {
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {void}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
      *
      * @since 2015.2
      */
@@ -132,8 +132,8 @@ interface search {
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {Promise<void>}
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
      *
      * @since 2015.2
      */
@@ -157,7 +157,7 @@ interface search {
      * @param {number} [options.id]  internalId of existing record
      * @return {search.Result[]} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -182,7 +182,7 @@ interface search {
      * @param {number} [options.id]  internalId of existing record
      * @return {Promise<search.Result[]>} array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -205,7 +205,7 @@ interface search {
      * @param {string} options.keywords  global search keywords string or expression
      * @return {search.Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -220,7 +220,7 @@ interface search {
      * @param {string} keywords  global search keywords string or expression
      * @return {search.Result[]} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -233,7 +233,7 @@ interface search {
      * @param {string} options.keywords  global search keywords string or expression
      * @return {Promise<search.Result[]>} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -247,7 +247,7 @@ interface search {
      * @param {string} keywords  global search keywords string or expression
      * @return {Promise<search.Result[]>} array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -283,7 +283,7 @@ interface search {
      *         }]
      *     }
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */<ColumnName extends string>(options: {
@@ -323,7 +323,7 @@ interface search {
      *         }]
      *     }
      *
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      *
      * @since 2015.2
      */
@@ -353,9 +353,9 @@ interface search {
    * @param {search.Sort|string} [options.sort]  sort direction for this column use values from the Sort enum
    * @return {search.Column} the created column object
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-   * @throws {SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
    *
    * @since 2015.2
    */
@@ -400,9 +400,9 @@ interface search {
    * @param {search.Summary|string} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-   * @throws {SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
    *
    * @since 2015.2
    */
@@ -423,9 +423,9 @@ interface search {
    * @param {string} options.value  value of the result settting parameter
    * @return {search.Setting} the created setting object
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-   * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
    *
    * @since 2015.2
    */
@@ -839,7 +839,7 @@ declare namespace search {
      * @name Search#searchType
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     searchType: string
 
@@ -848,7 +848,7 @@ declare namespace search {
      * @name Search#searchId
      * @type {number}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     searchId: number
 
@@ -856,7 +856,7 @@ declare namespace search {
      * Search filters.
      * @name Search#filters
      * @type {search.Filter|search.Filter[]}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
      */
     filters: Filter | Filter[]
 
@@ -864,7 +864,7 @@ declare namespace search {
      * Allows to set or get the search filters in the form of a search filter expression.
      * @name Search#filterExpression
      * @type {(string|number|(string|number|(string|number|[])[])[])[]}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when setting invalid search filter expression
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when setting invalid search filter expression
      */
     filterExpression: (string | number | (string | number | (string | number | [])[])[])[]
 
@@ -872,7 +872,7 @@ declare namespace search {
      * Columns to be returned from the search.
      * @name Search#columns
      * @type {search.Column|string|search.Column[]|string[]}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or string
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or string
      */
     columns: Column | string | Column[] | string[]
 
@@ -880,8 +880,8 @@ declare namespace search {
      * Array of search.Setting objects or a string array of column names.
      * @name Search#settings
      * @type {search.Setting|string|search.Setting[]|string[]}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
      */
     settings: Setting | string | Setting[] | string[]
 
@@ -916,9 +916,9 @@ declare namespace search {
      * 3) by loading a previously saved search (the properties are inherited)
      * @governance 5 units
      * @return {number} the internal search ID of the saved search
-     * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
-     * @throws {SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
-     * @throws {SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
+     * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
+     * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
      * @since 2015.2
      */
     save(): number
@@ -966,9 +966,9 @@ declare namespace search {
        * 2) by explicitly setting the properties (e.g. Search.title = 'foo' Search.id = 'customsearch_bar' )
        * 3) by loading a previously saved search (the properties are inherited)
        * @return {Promise<number>} the internal search ID of the saved search
-       * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
-       * @throws {SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
-       * @throws {SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
+       * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
+       * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
        * @since 2015.2
        */
       promise(): Promise<number>
@@ -994,7 +994,7 @@ declare namespace search {
      * @name Filter#name
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
 
@@ -1003,7 +1003,7 @@ declare namespace search {
      * @name Filter#join
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     join: string
 
@@ -1012,7 +1012,7 @@ declare namespace search {
      * @name Filter#operator
      * @type {search.Operator}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     operator: Operator
 
@@ -1020,7 +1020,7 @@ declare namespace search {
      * Summary type for this search filter.
      * @name Filter#summary
      * @type {search.Summary}
-     * @throws {SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
      */
     summary: Summary
 
@@ -1051,7 +1051,7 @@ declare namespace search {
      * @name Column#name
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
 
@@ -1060,7 +1060,7 @@ declare namespace search {
      * @name Column#join
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     join: string
 
@@ -1069,7 +1069,7 @@ declare namespace search {
      * @name Column#summary
      * @type {search.Summary}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     summary: Summary
 
@@ -1091,7 +1091,7 @@ declare namespace search {
      * The function used in this search column.
      * @name Column#function
      * @type {string}
-     * @throws {SuiteScriptError} INVALID_SRCH_FUNCTN when setting an unknown function is attempted
+     * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN when setting an unknown function is attempted
      */
     function:
       'percentOfTotal' | // % of Total, Output: percent
@@ -1157,7 +1157,7 @@ declare namespace search {
      * @name Option#name
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     name: string
 
@@ -1166,7 +1166,7 @@ declare namespace search {
      * @name Option#value
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     value: string
 
@@ -1190,7 +1190,7 @@ declare namespace search {
      * @name ResultSet#columns
      * @type {search.Column[]}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[]
 
@@ -1242,7 +1242,7 @@ declare namespace search {
      * @name Result#recordType
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     recordType: string
 
@@ -1251,7 +1251,7 @@ declare namespace search {
      * @name Result#id
      * @type {string}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     id: string
 
@@ -1260,7 +1260,7 @@ declare namespace search {
      * @name Result#columns
      * @type {search.Column[]}
      * @readonly
-     * @throws {SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[]
 

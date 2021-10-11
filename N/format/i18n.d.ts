@@ -31,9 +31,9 @@ interface i18n {
    * @param {string} options.currency Code of the currency that is used by formatter
    * @return {i18n.CurrencyFormatter}
    *
-   * @throws {SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Currency parameter is missing
-   * @throws {SuiteScriptError} SSS_INVALID_CURRENCY The currency is not valid
-   * @throws {SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Currency parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY The currency is not valid
+   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
    *
    * @since 2019.1
    */
@@ -537,7 +537,7 @@ declare namespace i18n {
    * @const
    * @type {number}
    */
-  export const PhoneFieldMaxLength: number;
+  export const PhoneFieldMaxLength: number
 
   /**
    * Return a new instance of CurrencyFormatter

@@ -21,7 +21,7 @@ interface config {
    * @param {boolean} [options.isDynamic] load record in dynamic or deferred dynamic mode
    * @return {record.Record}
    *
-   * @throws {SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
+   * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
    *
    * @since 2015.2
    */
