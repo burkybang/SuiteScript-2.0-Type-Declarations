@@ -134,7 +134,7 @@ interface query {
   runSuiteQLPaged(options: {
     query: string,
     params?: (string | number | boolean)[],
-    pageSize?: number
+    pageSize?: number,
   }): query.PagedData
 
   /**
@@ -150,7 +150,28 @@ interface query {
    *
    * @since 2020.1
    */
-  runSuiteQLPaged(suiteQL: query.SuiteQL & { pageSize?: number }): query.PagedData
+  runSuiteQLPaged(suiteQL: query.SuiteQL & {
+    pageSize?: number,
+  }): query.PagedData
+
+  /**
+   * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+   * @governance 0 points
+   *
+   * @param {Object} options
+   * @param {string} options.workbookId
+   * @return {{name:string, scriptId:string}[]}
+   *
+   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+   * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+   * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+   *
+   * @since 2020.1
+   */
+  listTables(options: {
+    workbookId: string,
+  }): { name: string, scriptId: string }[]
 }
 
 
