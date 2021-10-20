@@ -64,6 +64,7 @@ declare namespace format {
     CCNUMBER = 'ccnumber',
     CCVALIDFROM = 'ccvalidfrom',
     CHECKBOX = 'checkbox',
+    CLOBTEXT = 'clobtext',
     COLOR = 'color',
     CURRENCY = 'currency',
     CURRENCY2 = 'currency2',
