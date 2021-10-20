@@ -75,6 +75,23 @@ interface search {
      * in conjunction with Search.save().
      * @governance 5 units
      *
+     * @param {string|number} id  the customer ID or internal ID of the search
+     * @return {search.Search} the loaded search
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    (
+      id: string | number,
+    ): search.Search
+
+    /**
+     * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
+     * in conjunction with Search.save().
+     * @governance 5 units
+     *
      * @param {Object} options  the options object
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {search.Search} the loaded search
@@ -87,6 +104,22 @@ interface search {
     (options: {
       id: string | number,
     }): search.Search
+
+    /**
+     * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
+     * in conjunction with Search.save().
+     *
+     * @param {string|number} id  the customer ID or internal ID of the search
+     * @return {Promise<search.Search>} the loaded search
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    promise(
+      id: string | number,
+    ): Promise<search.Search>
 
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
@@ -112,6 +145,22 @@ interface search {
      * Deletes an existing saved search.
      * @governance 5 units
      *
+     * @param {string|number} id  the customer ID or internal ID of the search
+     * @return {void}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    (
+      id: string | number,
+    ): void
+
+    /**
+     * Deletes an existing saved search.
+     * @governance 5 units
+     *
      * @param {Object} options  the options object
      * @param {string|number} options.id  the customer ID or internal ID of the search
      * @return {void}
@@ -124,6 +173,21 @@ interface search {
     (options: {
       id: string | number,
     }): void
+
+    /**
+     * Deletes an existing saved search.
+     *
+     * @param {string|number} options.id  the customer ID or internal ID of the search
+     * @return {Promise<void>}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
+     *
+     * @since 2015.2
+     */
+    promise(
+      id: string | number,
+    ): Promise<void>
 
     /**
      * Deletes an existing saved search.

@@ -87,6 +87,24 @@ interface query {
    * Runs an arbitrary SuiteQL query
    * @governance 10 points
    *
+   * @param {string} query
+   * @param {(string|number|boolean)[]} [params]
+   * @return {ResultSet}
+   *
+   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+   *
+   * @since 2020.1
+   */
+  runSuiteQL(
+    query: string,
+    params?: (string | number | boolean)[],
+  ): query.ResultSet
+
+  /**
+   * Runs an arbitrary SuiteQL query
+   * @governance 10 points
+   *
    * @param {Object} options
    * @param {string} options.query
    * @param {(string|number|boolean)[]} [options.params]

@@ -1427,6 +1427,15 @@ declare namespace serverWidget {
 
     /**
      * Get a Sublist object from its id
+     * @param {string} id The id for the Sublist to get
+     * @return {Sublist}
+     */
+    getSublist(
+      id: string,
+    ): Sublist
+
+    /**
+     * Get a Sublist object from its id
      * @param {Object} options
      * @param {string} options.id The id for the Sublist to get
      * @return {Sublist}
