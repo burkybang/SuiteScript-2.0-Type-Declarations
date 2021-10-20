@@ -93,6 +93,7 @@ declare namespace transaction {
     ITEM_RECEIPT = 'itemreceipt',
     JOURNAL_ENTRY = 'journalentry',
     OPPORTUNITY = 'opportunity',
+    ORDER_RESERVATION = 'orderreservation',
     PAYCHECK = 'paycheck',
     PAYCHECK_JOURNAL = 'paycheckjournal',
     PERIOD_END_JOURNAL = 'periodendjournal',
