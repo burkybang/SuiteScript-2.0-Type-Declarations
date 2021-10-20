@@ -17,20 +17,20 @@
 type BeforeLoadContext = {
 
   /**
-   * @name BeforeLoadContext#newRecord
-   * @type {record.Record} newRecord - The new record being loaded
-   *
-   * @readonly
-   */
-  newRecord: record.Record
-
-  /**
    * @name BeforeLoadContext#type
    * @type {string} type - The action type that triggered this event
    *
    * @readonly
    */
   type: BeforeLoadContext.UserEventType
+
+  /**
+   * @name BeforeLoadContext#newRecord
+   * @type {record.Record} newRecord - The new record being loaded
+   *
+   * @readonly
+   */
+  newRecord: record.Record
 
   /**
    * @name BeforeLoadContext#form
@@ -91,6 +91,15 @@ declare namespace BeforeLoadContext {
  * @since 2015.2
  */
 type BeforeSubmitContext = {
+
+  /**
+   * @name BeforeSubmitContext#type
+   * @type {string} type - The action type that triggered this event
+   *
+   * @readonly
+   */
+  type: BeforeSubmitContext.UserEventType
+
   /**
    * @name BeforeSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
@@ -106,14 +115,6 @@ type BeforeSubmitContext = {
    * @readonly
    */
   oldRecord: record.Record
-
-  /**
-   * @name BeforeSubmitContext#type
-   * @type {string} type - The action type that triggered this event
-   *
-   * @readonly
-   */
-  type: BeforeSubmitContext.UserEventType
 }
 
 /**
@@ -160,6 +161,14 @@ declare namespace BeforeSubmitContext {
 type AfterSubmitContext = {
 
   /**
+   * @name AfterSubmitContext#type
+   * @type {string} type - The action type that triggered this event
+   *
+   * @readonly
+   */
+  type: AfterSubmitContext.UserEventType
+
+  /**
    * @name AfterSubmitContext#newRecord
    * @type {record.Record} newRecord - The new record being loaded
    *
@@ -174,14 +183,6 @@ type AfterSubmitContext = {
    * @readonly
    */
   oldRecord: record.Record
-
-  /**
-   * @name AfterSubmitContext#type
-   * @type {string} type - The action type that triggered this event
-   *
-   * @readonly
-   */
-  type: AfterSubmitContext.UserEventType
 }
 
 /**

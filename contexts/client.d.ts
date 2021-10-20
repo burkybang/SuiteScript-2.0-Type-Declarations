@@ -7,6 +7,15 @@
  */
 
 type PageInitContext = {
+  
+  /**
+   * The access mode of the current record
+   *
+   * @type {'copy'|'create'|'edit'}
+   *
+   * @readonly
+   */
+  mode: 'copy' | 'create' | 'edit'
 
   /**
    * The current record the user is manipulating in the UI
@@ -16,15 +25,6 @@ type PageInitContext = {
    * @readonly
    */
   currentRecord: currentRecord.CurrentRecord
-
-  /**
-   * The access mode of the current record
-   *
-   * @type {'copy'|'create'|'edit'}
-   *
-   * @readonly
-   */
-  mode: 'copy' | 'create' | 'edit'
 }
 
 type ValidateFieldContext = {

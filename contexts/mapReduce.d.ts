@@ -19,6 +19,13 @@
 interface GetInputContext {
 
   /**
+   * @name GetInputContext#type
+   * @type {'mapreduce.InputContext'} type
+   * @readonly
+   */
+  type: 'mapreduce.InputContext'
+
+  /**
    * @name GetInputContext#isRestarted
    * @type {boolean} isRestarted - Indicates whether the getInputData(inputContext) function was invoked again
    * @readonly
@@ -26,16 +33,14 @@ interface GetInputContext {
   isRestarted: boolean
 
   /**
-   * @name GetInputContext#ObjectRef
-   * @type {{
-   *   id: number,
-   *   value: 'search',
-   * }} ObjectRef
+   * @name GetInputContext#objectRefType
+   * @enum {{FILE:'FILE', SEARCH:'SEARCH', QUERY:'QUERY'}} objectRefType
    * @readonly
    */
-  ObjectRef: {
-    id: number,
-    value: 'search',
+  objectRefType: {
+    FILE: 'FILE',
+    SEARCH: 'SEARCH',
+    QUERY: 'QUERY',
   }
 
   /**
@@ -60,6 +65,13 @@ interface GetInputContext {
  * @since 2015.2
  */
 interface MapContext {
+
+  /**
+   * @name MapContext#type
+   * @type {'mapreduce.MapContext'} type
+   * @readonly
+   */
+  type: 'mapreduce.MapContext'
 
   /**
    * @name MapContext#key
@@ -132,6 +144,13 @@ interface MapContext {
  * @since 2015.2
  */
 interface ReduceContext {
+
+  /**
+   * @name ReduceContext#type
+   * @type {'mapreduce.ReduceContext'} type
+   * @readonly
+   */
+  type: 'mapreduce.ReduceContext'
 
   /**
    * @name ReduceContext#isRestarted
@@ -207,6 +226,13 @@ interface ReduceContext {
  * @since 2015.2
  */
 interface SummarizeContext {
+
+  /**
+   * @name SummarizeContext#type
+   * @type {'mapreduce.Summary'} type
+   * @readonly
+   */
+  type: 'mapreduce.Summary'
 
   /**
    * @name SummarizeContext#dateCreated
