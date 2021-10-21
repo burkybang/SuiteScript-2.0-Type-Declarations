@@ -5,7 +5,7 @@
  *
  * @NApiVersion 2.x
  */
-type OnActionContext = {
+interface OnActionContext {
 
   /**
    * The new record. Saving is not permitted

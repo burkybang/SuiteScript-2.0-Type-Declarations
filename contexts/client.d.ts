@@ -6,8 +6,8 @@
  * @NApiVersion 2.x
  */
 
-type PageInitContext = {
-  
+interface PageInitContext {
+
   /**
    * The access mode of the current record
    *
@@ -27,7 +27,7 @@ type PageInitContext = {
   currentRecord: currentRecord.CurrentRecord
 }
 
-type ValidateFieldContext = {
+interface ValidateFieldContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -75,7 +75,7 @@ type ValidateFieldContext = {
   column: number
 }
 
-type FieldChangedContext = {
+interface FieldChangedContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -123,7 +123,7 @@ type FieldChangedContext = {
   column: number
 }
 
-type PostSourcingContext = {
+interface PostSourcingContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -153,7 +153,7 @@ type PostSourcingContext = {
   fieldId: string
 }
 
-type LineInitContext = {
+interface LineInitContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -174,7 +174,7 @@ type LineInitContext = {
   sublistId: string
 }
 
-type ValidateLineContext = {
+interface ValidateLineContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -195,7 +195,7 @@ type ValidateLineContext = {
   sublistId: string
 }
 
-type ValidateInsertContext = {
+interface ValidateInsertContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -216,7 +216,7 @@ type ValidateInsertContext = {
   sublistId: string
 }
 
-type ValidateDeleteContext = {
+interface ValidateDeleteContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -237,7 +237,7 @@ type ValidateDeleteContext = {
   sublistId: string
 }
 
-type SublistChangedContext = {
+interface SublistChangedContext {
 
   /**
    * The current record the user is manipulating in the UI
@@ -267,7 +267,7 @@ type SublistChangedContext = {
   operation: 'commit' | 'insert' | 'remove'
 }
 
-type SaveRecordContext = {
+interface SaveRecordContext {
 
   /**
    * The current record the user is manipulating in the UI

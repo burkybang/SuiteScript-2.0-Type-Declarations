@@ -9,12 +9,11 @@
  */
 
 /**
- * Return a new instance of userevent.BeforeLoadContext
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html}
  *
  * @since 2015.2
  */
-type BeforeLoadContext = {
+interface BeforeLoadContext {
 
   /**
    * @name BeforeLoadContext#type
@@ -85,12 +84,11 @@ declare namespace BeforeLoadContext {
 }
 
 /**
- * Return a new instance of userevent.BeforeSubmitContext
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html}
  *
  * @since 2015.2
  */
-type BeforeSubmitContext = {
+interface BeforeSubmitContext {
 
   /**
    * @name BeforeSubmitContext#type
@@ -153,12 +151,11 @@ declare namespace BeforeSubmitContext {
 }
 
 /**
- * Return a new instance of userevent.AfterSubmitContext
  * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html}
  *
  * @since 2015.2
  */
-type AfterSubmitContext = {
+interface AfterSubmitContext {
 
   /**
    * @name AfterSubmitContext#type

@@ -3,7 +3,7 @@
  *
  * @NApiVersion 2.x
  */
-type EachParams = {
+interface EachParams {
 
   /**
    * The internal ID of the record being processed

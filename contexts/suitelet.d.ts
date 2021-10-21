@@ -5,7 +5,7 @@
  *
  * @NApiVersion 2.x
  */
-type OnRequestContext = {
+interface OnRequestContext {
 
   /**
    * @name SuiteletContext#request

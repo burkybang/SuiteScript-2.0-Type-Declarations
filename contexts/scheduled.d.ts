@@ -4,7 +4,7 @@
  *
  * @NApiVersion 2.x
  */
-type ExecuteContext = {
+interface ExecuteContext {
 
   /**
    * @name ExecuteContext#type

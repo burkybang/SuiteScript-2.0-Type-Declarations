@@ -6,7 +6,7 @@
  * @NApiVersion 2.x
  */
 
-type PortletParams = {
+interface PortletParams {
   /**
    * The portlet object used for rendering
    * @type {Portlet}
@@ -36,11 +36,11 @@ declare namespace PortletParams {
 
   /**
    * Scriptable Portlet.
-   * @param delegate
+   *
    * @protected
    * @constructor
    */
-  export type Portlet = {
+  export interface Portlet {
 
     /**
      * @name Portlet#title
