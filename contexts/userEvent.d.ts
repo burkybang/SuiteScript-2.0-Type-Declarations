@@ -29,7 +29,7 @@ interface BeforeLoadContext {
    *
    * @readonly
    */
-  newRecord: record.Record
+  newRecord: Omit<record.Record, 'save'>
 
   /**
    * @name BeforeLoadContext#form
@@ -104,7 +104,7 @@ interface BeforeSubmitContext {
    *
    * @readonly
    */
-  newRecord: record.Record
+  newRecord: Omit<record.Record, 'save'>
 
   /**
    * @name BeforeSubmitContext#oldRecord
@@ -112,7 +112,7 @@ interface BeforeSubmitContext {
    *
    * @readonly
    */
-  oldRecord: record.Record
+  oldRecord: Omit<record.Record, 'save'>
 }
 
 /**
@@ -171,7 +171,7 @@ interface AfterSubmitContext {
    *
    * @readonly
    */
-  newRecord: record.Record
+  newRecord: Omit<record.Record, 'save'>
 
   /**
    * @name AfterSubmitContext#oldRecord
@@ -179,7 +179,7 @@ interface AfterSubmitContext {
    *
    * @readonly
    */
-  oldRecord: record.Record
+  oldRecord: Omit<record.Record, 'save'>
 }
 
 /**

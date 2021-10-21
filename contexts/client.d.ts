@@ -24,7 +24,7 @@ interface PageInitContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 }
 
 interface ValidateFieldContext {
@@ -36,7 +36,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -84,7 +84,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -132,7 +132,7 @@ interface PostSourcingContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -162,7 +162,7 @@ interface LineInitContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -183,7 +183,7 @@ interface ValidateLineContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -204,7 +204,7 @@ interface ValidateInsertContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -225,7 +225,7 @@ interface ValidateDeleteContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -246,7 +246,7 @@ interface SublistChangedContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 
   /**
    * The internal ID of the sublist
@@ -276,5 +276,5 @@ interface SaveRecordContext {
    *
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecord
+  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
 }
