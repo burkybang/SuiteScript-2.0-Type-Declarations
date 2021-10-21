@@ -102,11 +102,11 @@ interface MapContext {
 
   /**
    * @name MapContext#errors#iterator
-   * @type {Iterator} iterator - Iterator which provides errors thrown during particular map function execution.
-   *      <pre> context.errors.each(function(key, value){...}); </pre>
+   * @type {ErrorsIterator} errors - Iterator which provides errors thrown during particular map function execution.
+   *      <pre> context.errors.each((key, error, executionNo) => {...}); </pre>
    * @readonly
    */
-  errors
+  errors: ErrorsIterator
 
   /**
    * Writes the key value pairs
@@ -117,8 +117,8 @@ interface MapContext {
    * @return {void}
    */
   write(options: {
-    key: string,
-    value: Object,
+    key: string | number,
+    value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
   }): void
 
   /**
@@ -185,15 +185,11 @@ interface ReduceContext {
 
   /**
    * @name ReduceContext#errors#iterator
-   * @type errors - Iterator which provides errors thrown during particular reduce function execution.
-   *      <pre> context.errors.iterator().each((key, value, executionNo) => {...}); </pre>
+   * @type {ErrorsIterator} errors - Iterator which provides errors thrown during particular reduce function execution.
+   *      <pre> context.errors.iterator().each((key, error, executionNo) => {...}); </pre>
    * @readonly
    */
-  errors: {
-    iterator(): {
-      each(key: string, error: string, executionNo: number): void
-    }
-  }
+  errors: ErrorsIterator
 
   /**
    * Writes the key/values groups
@@ -203,8 +199,8 @@ interface ReduceContext {
    * @param {Object} options.value - The value to write
    */
   write(options: {
-    key: string,
-    value: Object,
+    key: string | number,
+    value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
   }): void
 
   /**
@@ -274,15 +270,11 @@ interface SummarizeContext {
 
   /**
    * @name SummarizeContext#output#iterator
-   * @type output - Iterator which provides keys and values written as output during the REDUCE phase.
+   * @type {OutputIterator} output - Iterator which provides keys and values written as output during the REDUCE phase.
    *      <pre> summary.output.iterator().each((key, value) => {...}) </pre>
    * @readonly
    */
-  output: {
-    iterator(): {
-      each(key: string, value: string): void
-    }
-  }
+  output: OutputIterator
 
   /**
    * @name SummarizeContext#inputSummary
@@ -416,27 +408,19 @@ declare namespace SummarizeContext {
 
     /**
      * @name MapSummary#keys#iterator
-     * @type keys - Iterator which provides input keys processed during the MAP phase.
+     * @type {KeysIterator} keys - Iterator which provides input keys processed during the MAP phase.
      *      <pre> summary.mapSummary.keys.iterator.each((key, executionCount, completionState) => {...}); </pre>
      * @readonly
      */
-    keys: {
-      iterator(): {
-        each(key: string, executionCount: number, completionState: string): void
-      }
-    }
+    keys: KeysIterator
 
     /**
      * @name MapSummary#errors#iterator
-     * @type errors - Iterator which provides errors thrown during the MAP phase.
+     * @type {ErrorsIterator} errors - Iterator which provides errors thrown during the MAP phase.
      *      <pre> summary.mapSummary.errors.each((key, error, executionNo) => {...}); </pre>
      * @readonly
      */
-    errors: {
-      iterator(): {
-        each(key: string, error: string, executionNo: number): void
-      }
-    }
+    errors: ErrorsIterator
 
     /**
      * @return {string}
@@ -498,27 +482,19 @@ declare namespace SummarizeContext {
 
     /**
      * @name ReduceSummary#keys#iterator
-     * @type keys - Iterator which provides input keys processed during the REDUCE phase.
+     * @type {KeysIterator} keys - Iterator which provides input keys processed during the REDUCE phase.
      *      <pre> summary.reduceSummary.iterator.keys.each((key, executionCount, completionState) => {...}); </pre>
      * @readonly
      */
-    keys: {
-      iterator(): {
-        each(key: string, executionCount: number, completionState: string): void
-      }
-    }
+    keys: KeysIterator
 
     /**
      * @name ReduceSummary#errors#iterator
-     * @type errors - Iterator which provides errors thrown during the REDUCE phase.
+     * @type {ErrorsIterator} errors - Iterator which provides errors thrown during the REDUCE phase.
      *      <pre> summary.reduceSummary.errors.iterator().each((key, error, executionNo) => {...}); </pre>
      * @readonly
      */
-    errors: {
-      iterator(): {
-        each(key: string, error: string, executionNo: number): void
-      }
-    }
+    errors: ErrorsIterator
 
     /**
      * @return {string}
@@ -530,5 +506,23 @@ declare namespace SummarizeContext {
      * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>
+  }
+}
+
+interface KeysIterator {
+  iterator(): {
+    each(callback: (key: string, executionCount: number, completionState: 'PENDING' | 'FAILED' | 'COMPLETE') => boolean): void
+  }
+}
+
+interface ErrorsIterator {
+  iterator(): {
+    each(callback: (key: string, error: string, executionNo: number) => boolean): void
+  }
+}
+
+interface OutputIterator {
+  iterator(): {
+    each(callback: (key: string, value: string) => boolean): void
   }
 }
