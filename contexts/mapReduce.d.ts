@@ -1,5 +1,4 @@
 /// <reference path="../typings.d.ts" />
-/// <reference path="../N/error.d.ts" />
 
 /**
  * SuiteScript Map/Reduce Script Context
@@ -186,11 +185,15 @@ interface ReduceContext {
 
   /**
    * @name ReduceContext#errors#iterator
-   * @type {Iterator} iterator - Iterator which provides errors thrown during particular reduce function execution.
-   *      <pre> context.errors.iterator().each(function(key, value){...}); </pre>
+   * @type errors - Iterator which provides errors thrown during particular reduce function execution.
+   *      <pre> context.errors.iterator().each((key, value, executionNo) => {...}); </pre>
    * @readonly
    */
-  errors
+  errors: {
+    iterator(): {
+      each(key: string, error: string, executionNo: number): void
+    }
+  }
 
   /**
    * Writes the key/values groups
@@ -270,12 +273,16 @@ interface SummarizeContext {
   yields: number
 
   /**
-   * @name SummarizeContext#output#iterator()
-   * @type {Iterator} iterator - Iterator which provides keys and values written as output during the REDUCE phase.
-   *      <pre> summary.output.iterator().each(function(key, value){...}) </pre>
+   * @name SummarizeContext#output#iterator
+   * @type output - Iterator which provides keys and values written as output during the REDUCE phase.
+   *      <pre> summary.output.iterator().each((key, value) => {...}) </pre>
    * @readonly
    */
-  output
+  output: {
+    iterator(): {
+      each(key: string, value: string): void
+    }
+  }
 
   /**
    * @name SummarizeContext#inputSummary
@@ -343,11 +350,11 @@ declare namespace SummarizeContext {
 
     /**
      * @name InputSummary#error
-     *  @type {error.SuiteScriptError} error - Serialized error is thrown out of getInputData() - if applicable
-     *      <pre> var inputError = summary.input.error; </pre>
+     *  @type {string} error - Serialized error is thrown out of getInputData() - if applicable
+     *      <pre> var inputError = summary.inputSummary.error; </pre>
      * @readonly
      */
-    error: error.SuiteScriptError
+    error: string
 
     /**
      * @return {string}
@@ -409,19 +416,27 @@ declare namespace SummarizeContext {
 
     /**
      * @name MapSummary#keys#iterator
-     * @type {Iterator} iterator - Iterator which provides input keys processed during the MAP phase.
-     *      <pre> summary.map.keys.iterator.each(function(key){...}); </pre>
+     * @type keys - Iterator which provides input keys processed during the MAP phase.
+     *      <pre> summary.mapSummary.keys.iterator.each((key, executionCount, completionState) => {...}); </pre>
      * @readonly
      */
-    keys
+    keys: {
+      iterator(): {
+        each(key: string, executionCount: number, completionState: string): void
+      }
+    }
 
     /**
      * @name MapSummary#errors#iterator
-     * @type {Iterator} iterator - Iterator which provides errors thrown during the MAP phase.
-     *      <pre> summary.map.errors.each(function(key, value){...}); </pre>
+     * @type errors - Iterator which provides errors thrown during the MAP phase.
+     *      <pre> summary.mapSummary.errors.each((key, error, executionNo) => {...}); </pre>
      * @readonly
      */
-    errors
+    errors: {
+      iterator(): {
+        each(key: string, error: string, executionNo: number): void
+      }
+    }
 
     /**
      * @return {string}
@@ -483,19 +498,27 @@ declare namespace SummarizeContext {
 
     /**
      * @name ReduceSummary#keys#iterator
-     * @type {Iterator} iterator - Iterator which provides input keys processed during the REDUCE phase.
-     *      <pre> summary.reduce.iterator.keys.each(function(key){...}); </pre>
+     * @type keys - Iterator which provides input keys processed during the REDUCE phase.
+     *      <pre> summary.reduceSummary.iterator.keys.each((key, executionCount, completionState) => {...}); </pre>
      * @readonly
      */
-    keys
+    keys: {
+      iterator(): {
+        each(key: string, executionCount: number, completionState: string): void
+      }
+    }
 
     /**
      * @name ReduceSummary#errors#iterator
-     * @type {Iterator} iterator - Iterator which provides errors thrown during the REDUCE phase.
-     *      <pre> summary.reduce.errors.iterator().each(function(key, value){...}); </pre>
+     * @type errors - Iterator which provides errors thrown during the REDUCE phase.
+     *      <pre> summary.reduceSummary.errors.iterator().each((key, error, executionNo) => {...}); </pre>
      * @readonly
      */
-    errors
+    errors: {
+      iterator(): {
+        each(key: string, error: string, executionNo: number): void
+      }
+    }
 
     /**
      * @return {string}

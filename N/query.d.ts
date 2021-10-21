@@ -1714,9 +1714,9 @@ declare namespace query {
      * Standard object for iterating through results
      *
      * @governance 10 points for each page returned
-     * @return {Iterator}
+     * @return {NetSuiteIterator<Result>}
      */
-    iterator()
+    iterator(): NetSuiteIterator<Result>
 
     /**
      * The actual query results
@@ -1782,6 +1782,57 @@ declare namespace query {
   }
 
   /**
+   * One page of the paged query results
+   */
+  export interface Page {
+
+    /**
+     * Whether the page is the first of the paged query results
+     *
+     * @type {boolean}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    isFirst: boolean
+
+    /**
+     * Whether the page is the last of the paged query results
+     *
+     * @type {boolean}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    isLast: boolean
+
+    /**
+     * The query results contained in this page
+     *
+     * @type {ResultSet}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    data: ResultSet
+
+    /**
+     * The range of query results for this page
+     *
+     * @type {PageRange}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    pageRange: PageRange
+
+    /**
+     * The set of paged query results that this page is from
+     *
+     * @type {PagedData}
+     * @readonly
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    pagedData: PagedData
+  }
+
+  /**
    * Encapsulates a set of paged query results. This object also contains information about the set of paged results it encapsulates.
    */
   export interface PagedData {
@@ -1789,9 +1840,9 @@ declare namespace query {
     /**
      * Standard object for iterating through results
      *
-     * @return {Iterator}
+     * @return {NetSuiteIterator<Page>}
      */
-    iterator()
+    iterator(): NetSuiteIterator<Page>
 
     /**
      * Describes the total number of paged query result rows
