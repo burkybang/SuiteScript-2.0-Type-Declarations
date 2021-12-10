@@ -14,7 +14,7 @@ interface OnActionContext {
    *
    * @readonly
    */
-  newRecord: Omit<record.Record, 'save'>
+  newRecord: record.RecordReadonly;
 
   /**
    * The old record. Saving is not permitted
@@ -23,5 +23,5 @@ interface OnActionContext {
    *
    * @readonly
    */
-  oldRecord: Omit<record.Record, 'save'>
+  oldRecord: record.RecordReadonly;
 }

@@ -15,7 +15,7 @@ interface PageInitContext {
    *
    * @readonly
    */
-  mode: 'copy' | 'create' | 'edit'
+  mode: 'copy' | 'create' | 'edit';
 
   /**
    * The current record the user is manipulating in the UI
@@ -24,7 +24,7 @@ interface PageInitContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 }
 
 interface ValidateFieldContext {
@@ -36,7 +36,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -45,7 +45,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 
   /**
    * The internal ID of the field being validated
@@ -54,7 +54,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  fieldId: string
+  fieldId: string;
 
   /**
    * The index of the line if the field is in a sublist or matrix
@@ -63,7 +63,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  line: number
+  line: number;
 
   /**
    * The index of the column if the field is in a matrix
@@ -72,7 +72,7 @@ interface ValidateFieldContext {
    *
    * @readonly
    */
-  column: number
+  column: number;
 }
 
 interface FieldChangedContext {
@@ -84,7 +84,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -93,7 +93,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 
   /**
    * The internal ID of the field that was changed
@@ -102,7 +102,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  fieldId: string
+  fieldId: string;
 
   /**
    * The index of the line if the field is in a sublist or matrix
@@ -111,7 +111,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  line: number
+  line: number;
 
   /**
    * The index of the column if the field is in a matrix
@@ -120,7 +120,7 @@ interface FieldChangedContext {
    *
    * @readonly
    */
-  column: number
+  column: number;
 }
 
 interface PostSourcingContext {
@@ -132,7 +132,7 @@ interface PostSourcingContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -141,7 +141,7 @@ interface PostSourcingContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 
   /**
    * The internal ID of the field that triggered postSourcing
@@ -150,7 +150,7 @@ interface PostSourcingContext {
    *
    * @readonly
    */
-  fieldId: string
+  fieldId: string;
 }
 
 interface LineInitContext {
@@ -162,7 +162,7 @@ interface LineInitContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -171,7 +171,7 @@ interface LineInitContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 }
 
 interface ValidateLineContext {
@@ -183,7 +183,7 @@ interface ValidateLineContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -192,7 +192,7 @@ interface ValidateLineContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 }
 
 interface ValidateInsertContext {
@@ -204,7 +204,7 @@ interface ValidateInsertContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -213,7 +213,7 @@ interface ValidateInsertContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 }
 
 interface ValidateDeleteContext {
@@ -225,7 +225,7 @@ interface ValidateDeleteContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -234,7 +234,7 @@ interface ValidateDeleteContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 }
 
 interface SublistChangedContext {
@@ -246,7 +246,7 @@ interface SublistChangedContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 
   /**
    * The internal ID of the sublist
@@ -255,7 +255,7 @@ interface SublistChangedContext {
    *
    * @readonly
    */
-  sublistId: string
+  sublistId: string;
 
   /**
    * The type of change to the sublist
@@ -264,7 +264,7 @@ interface SublistChangedContext {
    *
    * @readonly
    */
-  operation: 'commit' | 'insert' | 'remove'
+  operation: 'commit' | 'insert' | 'remove';
 }
 
 interface SaveRecordContext {
@@ -276,5 +276,5 @@ interface SaveRecordContext {
    *
    * @readonly
    */
-  currentRecord: Omit<currentRecord.CurrentRecord, 'save'>
+  currentRecord: currentRecord.CurrentRecordReadonly;
 }

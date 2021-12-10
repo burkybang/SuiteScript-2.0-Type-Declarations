@@ -29,22 +29,7 @@ interface currentRecord {
 
 declare namespace currentRecord {
 
-  export interface get {
-
-    /**
-     * Retrieves a promise for a currentRecord object that represents the record active on the current page
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637734729.html}
-     *
-     * @restriction Client Scripts only
-     *
-     * @return {Promise<CurrentRecord>}
-     *
-     * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
-     *
-     * @since 2016.2
-     */
-    promise(): Promise<CurrentRecord>
-  }
+  export type CurrentRecordReadonly = Omit<CurrentRecord, 'save'>;
 
   export interface CurrentRecord {
 

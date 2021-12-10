@@ -1030,6 +1030,8 @@ declare namespace record {
     toJSON(): ExcludeMethods<this>
   }
 
+  export type RecordReadonly = Omit<Record, 'save'>;
+
   /**
    * Encapsulates a NetSuite record
    * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719.html}
