@@ -1038,7 +1038,7 @@ declare namespace record {
    *
    * @since 2015.2
    */
-  export interface Record {
+  export interface RecordReadonly {
 
     /**
      * The internal ID of the record
@@ -2962,6 +2962,80 @@ declare namespace record {
     toJSON(): ExcludeMethods<this> & {
       [p: string]: any,
     }
+  }
+
+  export interface Record extends RecordReadonly {
+
+    save: {
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): number
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): number
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): Promise<number>
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): Promise<number>
+    };
   }
 
   /**

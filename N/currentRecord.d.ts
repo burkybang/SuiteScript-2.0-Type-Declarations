@@ -29,9 +29,7 @@ interface currentRecord {
 
 declare namespace currentRecord {
 
-  export type CurrentRecordReadonly = Omit<CurrentRecord, 'save'>;
-
-  export interface CurrentRecord {
+  export interface CurrentRecordReadonly {
 
     /**
      * The internal ID of the record
@@ -1066,6 +1064,25 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
     }): string | string[] | number | Date | boolean
+  }
+
+  export interface CurrentRecord extends CurrentRecordReadonly {
+
+    /**
+     * Save record updates to the system
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+     *
+     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+     *
+     * @param {Object} [options]
+     * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+     * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return {number} id of submitted record
+     */
+    save(options?: {
+      enableSourcing?: boolean,
+      ignoreMandatoryFields?: boolean,
+    }): number;
   }
 
   /**
