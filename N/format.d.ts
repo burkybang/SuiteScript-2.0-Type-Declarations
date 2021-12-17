@@ -9,11 +9,28 @@ interface format {
 
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   *
+   * @param {string|number|boolean} value the data you wish to parse
+   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  parse(
+    value: string | number | boolean,
+    type: format.Type | string,
+  ): Date | string | number;
+
+  /**
+   * Parse a value from the appropriate preference formatted-value to a raw value.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    *
    * @param {Object} options
-   * @param {string} options.value the data you wish to parse
-   * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param {string|number|boolean} options.value the data you wish to parse
+   * @param {format.Type|string} options.type the field type i.e. DATE, CURRENCY, INTEGER
    * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
    *                                  default is the timezone set in the user's preferences
    * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
@@ -23,17 +40,34 @@ interface format {
    * @since 2015.2
    */
   parse(options: {
-    value: string,
-    type: format.Type,
+    value: string | number | boolean,
+    type: format.Type | string,
     timezone?: format.Timezone | string,
-  }): Date | string | number
+  }): Date | string | number;
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   *
+   * @param {Date|string|number|boolean} value the data you wish to format
+   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  format(
+    value: Date | string | number | boolean,
+    type: format.Type | string,
+  ): string;
+
+  /**
+   * Parse a value from the raw value to its appropriate preference formatted-value.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    *
    * @param {Object} options
-   * @param {Date|string|number} options.value the data you wish to format
+   * @param {Date|string|number|boolean} options.value the data you wish to format
    * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
    * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
    *                                  default is the timezone set in the user's preferences
@@ -44,10 +78,10 @@ interface format {
    * @since 2015.2
    */
   format(options: {
-    value: Date | string | number,
+    value: Date | string | number | boolean,
     type: format.Type,
     timezone?: format.Timezone | string,
-  }): string
+  }): string;
 }
 
 declare namespace format {
