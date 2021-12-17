@@ -1,138 +1,18 @@
 /// <reference path="./record.d.ts" />
+/// <reference path="./task.d.ts" />
 
 /**
  * SuiteScript action module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537}
+ *
+ * @since 2018.2
  *
  * @module N/action
  * @NApiVersion 2.x
  */
 interface action {
 
-  /**
-   * Performs a search for available record actions. If only the recordType parameter is provided, all actions available
-   * for the record type are returned. If recordId is also provided, then only actions that qualify for execution on the
-   * given record instance are returned. If id is provided, then only the action with the given ID is returned. In other
-   * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
-   * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
-   * again when executing an Action object from the result set.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605.html}
-   *
-   * @param {Object} options
-   * @param {record.Record|string} options.recordType record type
-   * @param {number|string} [options.recordId] record instance ID
-   * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} [options.id] action ID
-   * @return {Object<'allocate'|'approve'|'reject'|'submit'|'cancel', action.Action>} a set of actions (@see Action) defined on the record type indexed by action ID
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
-   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
-   *
-   * @since 2018.2
-   */
-  find(options: {
-    recordType: record.Record | string,
-    recordId?: number | string,
-    id?: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel'
-  }): {
-    allocate?: action.Action,
-    approve?: action.Action,
-    reject?: action.Action,
-    submit?: action.Action,
-    cancel?: action.Action,
-  }
-
-  /**
-   * Returns an executable record action for the given record type. If the recordId parameter is provided, then the
-   * action object is only returned if the given record instance qualifies for execution of the given record action.
-   * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
-   * again when executing the Action object.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818.html}
-   *
-   * @param {Object} options
-   * @param {string} options.recordType record type
-   * @param {string} [options.recordId] record instance ID
-   * @param {string} options.id action ID
-   * @return {action.Action} record action executor for action specified by options
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
-   *                                                  the specified record instance does not qualify for executing the action
-   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
-   */
-  get(options: {
-    recordType: record.Record | string,
-    recordId?: number | string,
-    id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel'
-  }): action.Action
-
-  /**
-   * Executes a record action and returns its result.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388.html}
-   *
-   * @param {Object} options
-   * @param {record.Record|string} options.recordType record type
-   * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-   * @param {Object<string, number|string>} options.params action arguments
-   * @param {number|string} options.params.recordId record instance ID
-   * @return {Object} action result; the actual return value returned by the action implementation is stored in the response property
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
-   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
-   *
-   * @since 2018.2
-   */
-  execute(options: {
-    recordType: record.Record | string,
-    id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
-    params?: {
-      recordId: number | string,
-      [p: string]: number | string,
-    },
-  }): Object
-
-  /**
-   * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
-   * The options.params parameter is mutually exclusive to options.condition and options.paramCallback.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927.html}
-   *
-   * @governance 50 units
-   *
-   * @param {Object} options
-   * @param {record.Record|string} options.recordType record type
-   * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-   * @param {Object<string, number|string>} [options.params] action arguments
-   * @param {number|string} options.params.recordId record instance ID
-   * @param {string} [options.condition] used to select record IDs of records for which the action is to be executed
-   * @param {string} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
-   * @return {string}
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
-   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
-   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
-   *
-   * @since 2019.1
-   */
-  executeBulk(options: {
-    recordType: record.Record | string,
-    id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
-    params?: {
-      recordId: number | string,
-      [p: string]: number | string,
-    },
-    condition?: string,
-    paramCallback?: string,
-  }): string
-}
-
-declare namespace action {
-
-  export interface find {
+  find: {
 
     /**
      * Performs a search for available record actions. If only the recordType parameter is provided, all actions available
@@ -141,13 +21,44 @@ declare namespace action {
      * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
      * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
      * again when executing an Action object from the result set.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605}
+     *
+     * @governance none
      *
      * @param {Object} options
-     * @param {record.Record|string} options.recordType record type
+     * @param {record.Type|string} options.recordType record type
      * @param {number|string} [options.recordId] record instance ID
-     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} [options.id] action ID
-     * @return {Promise<Object<'allocate'|'approve'|'reject'|'submit'|'cancel', action.Action>>>} a set of actions (@see Action) defined on the record type indexed by action ID
+     * @param {action.ActionID} [options.id] action ID
+     * @return {Object<action.ActionID, action.Action>} a set of actions (@see Action) defined on the record type indexed by action ID
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if an action is specified and such action doesn't exist on the said record type
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+     *
+     * @since 2018.2
+     */<ID extends action.ActionID>(options: {
+      recordType: record.Type | string,
+      recordId?: number | string,
+      id?: ID
+    }): { [p in ID]: () => action.Action<ID> };
+
+    /**
+     * Performs a search for available record actions. If only the recordType parameter is provided, all actions available
+     * for the record type are returned. If recordId is also provided, then only actions that qualify for execution on the
+     * given record instance are returned. If id is provided, then only the action with the given ID is returned. In other
+     * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
+     * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
+     * again when executing an Action object from the result set.
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246}
+     *
+     * @governance none
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.recordType record type
+     * @param {number|string} [options.recordId] record instance ID
+     * @param {action.ActionID} [options.id] action ID
+     * @return {Promise<Object<action.ActionID, action.Action>>} a set of actions (@see Action) defined on the record type indexed by action ID
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -156,30 +67,52 @@ declare namespace action {
      *
      * @since 2018.2
      */
-    promise(options: {
-      recordType: record.Record | string,
+    promise<ID extends action.ActionID>(options: {
+      recordType: record.Type | string,
       recordId?: number | string,
-      id?: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel'
-    }): Promise<{
-      allocate?: action.Action,
-      approve?: action.Action,
-      reject?: action.Action,
-      submit?: action.Action,
-      cancel?: action.Action,
-    }>
-  }
+      id?: ID
+    }): Promise<{ [p in ID]: action.Action<ID> }>;
+  };
 
-  export interface get {
+  get: {
 
     /**
      * Returns an executable record action for the given record type. If the recordId parameter is provided, then the
      * action object is only returned if the given record instance qualifies for execution of the given record action.
      * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
      * again when executing the Action object.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818}
+     *
+     * @governance none
      *
      * @param {Object} options
-     * @param {string} options.recordType record type
+     * @param {record.Type|string} options.recordType record type
+     * @param {string} [options.recordId] record instance ID
+     * @param {string} options.id action ID
+     * @return {action.Action} record action executor for action specified by options
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn’t exist on the said record type OR
+     *                                                  the specified record instance does not qualify for executing the action
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
+     */<ID extends action.ActionID>(options: {
+      recordType: record.Type | string,
+      recordId?: number | string,
+      id: ID,
+    }): action.Action<ID>;
+
+    /**
+     * Returns an executable record action for the given record type. If the recordId parameter is provided, then the
+     * action object is only returned if the given record instance qualifies for execution of the given record action.
+     * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
+     * again when executing the Action object.
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970}
+     *
+     * @governance none
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.recordType record type
      * @param {string} [options.recordId] record instance ID
      * @param {string} options.id action ID
      * @return {Promise<action.Action>} record action executor for action specified by options
@@ -190,35 +123,64 @@ declare namespace action {
      *                                                  the specified record instance does not qualify for executing the action
      * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */
-    promise(options: {
-      recordType: record.Record | string,
+    promise<ID extends action.ActionID>(options: {
+      recordType: record.Type | string,
       recordId?: number | string,
-      id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel'
-    }): Promise<action.Action>
+      id: ID,
+    }): Promise<action.Action<ID>>;
+  };
 
-    /**
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360.html}
-     *
-     * todo: Finish this
-     *
-     * @param {Object} options
-     * @constructor
-     */
-    Action(options: {}): Object
-  }
-
-  export interface execute {
+  execute: {
 
     /**
      * Executes a record action and returns its result.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388}
+     *
+     * @governance none
      *
      * @param {Object} options
-     * @param {record.Record|string} options.recordType record type
+     * @param {record.Type|string} options.recordType record type
      * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
      * @param {Object<string, number|string>} options.params action arguments
      * @param {number|string} options.params.recordId record instance ID
-     * @return {Promise<Object>} action result; the actual return value returned by the action implementation is stored in the response property
+     * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+     * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+     * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+     *
+     * @since 2018.2
+     */
+    (options: {
+      recordType: record.Type | string,
+      id: action.ActionID,
+      params?: {
+        recordId: number | string,
+        [p: string]: number | string,
+      },
+    }): {
+      notifications: any[],
+      response: {
+        action: string,
+        id: string,
+        recordCount: number,
+        success: boolean,
+      },
+    };
+
+    /**
+     * Executes a record action and returns its result.
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030}
+     *
+     * @governance none
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.recordType record type
+     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
+     * @param {Object<string, number|string>} options.params action arguments
+     * @param {number|string} options.params.recordId record instance ID
+     * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -228,54 +190,311 @@ declare namespace action {
      * @since 2018.2
      */
     promise(options: {
-      recordType: record.Record | string,
-      id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel',
+      recordType: record.Type | string,
+      id: action.ActionID,
       params?: {
         recordId: number | string,
         [p: string]: number | string,
       },
-    }): Promise<Object>
-  }
+    }): Promise<{
+      notifications: any[],
+      response: {
+        action: string,
+        id: string,
+        recordCount: number,
+        success: boolean,
+      },
+    }>;
+  };
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html}
+   * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
+   * The options.params parameter is mutually exclusive to options.condition and options.paramCallback.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
    *
-   * todo: Finish this
+   * @governance 50 units
+   *
+   * @param {Object} options
+   * @param {record.Type|string} options.recordType record type
+   * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
+   * @param {Object<string, number|string>} [options.params] action arguments
+   * @param {number|string} options.params.recordId record instance ID
+   * @param {string} [options.condition] used to select record IDs of records for which the action is to be executed
+   * @param {function} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
+   * @return {string} - taskId
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+   * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+   * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+   * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+   *
+   * @since 2019.1
    */
-  export interface Action {
+  executeBulk(options: {
+    recordType: record.Type | string,
+    id: action.ActionID,
+    params?: {
+      recordId: number | string,
+      [p: string]: number | string,
+    },
+    condition?: string,
+    paramCallback?<RecordID extends number | string>(recordId: RecordID): {
+      recordId: RecordID,
+      [p: string]: number | string,
+    },
+  }): string;
 
-    description: string
+  /**
+   * Returns the current status of action.executeBulk(options) for the specified task ID. The bulk execution status is returned in a status object
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540816132}
+   *
+   * @governance none
+   *
+   * @param {Object} options
+   * @param {string} options.taskId
+   */
+  getBulkStatus(options: {
+    taskId: string,
+  }): task.RecordActionTaskStatus;
+}
 
-    recordType: record.Record | string
+declare namespace action {
 
-    id: 'allocate' | 'approve' | 'reject' | 'submit' | 'cancel'
+  /**
+   * Supported Record Actions
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516982564}
+   */
+  export type ActionID =
+    'allocate' | 'approve' | 'confirm' |
+    'reject' | 'decline' |
+    'launch' | 'submit' |
+    'cancel' | 'retract' |
 
-    label: string
+    'markforgrouping' | 'unmarkforgrouping' |
+    'groupinvoices' |
+    'ungroupinvoice' | 'unlinkinvoices' |
 
+    'selectAllBudgetLines' | 'unselectAllBudgetLines' |
+    'distributeBudgetTotalAmount' |
+    'setBudgetAmountsToCalculated' |
+    'clearBudgetAmounts';
+
+  /**
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249}
+   *
+   * @since 2018.2
+   */
+  export interface Action<ID extends ActionID> {
+
+    /**
+     * The action description
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388207}
+     *
+     * @type {string} description
+     *
+     * @since 2018.2
+     */
+    description: string;
+
+    /**
+     * The type of the record on which the action is to be performed
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387977}
+     *
+     * @type {record.Type|string} recordType
+     *
+     * @since 2018.2
+     */
+    recordType: record.Type | string;
+
+    /**
+     * The ID of the action
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387777}
+     *
+     * @type {action.ActionID} recordType
+     *
+     * @since 2018.2
+     */
+    id: ID;
+
+    /**
+     * The action label
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388068}
+     *
+     * @type {string} label
+     *
+     * @since 2018.2
+     */
+    label: string;
+
+    /**
+     * The action parameters
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389367}
+     *
+     * @type {Object<string, number|string>} parameters
+     *
+     * @since 2018.2
+     */
     parameters: {
       recordId: number | string,
       [p: string]: number | string,
-    }
+    };
 
-    promise(options: {}): Promise<Object>
+    /**
+     * Executes the action and returns the action result in a plain JavaScript object
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360}
+     *
+     * @governance none
+     *
+     * @param {Object} options
+     * @param {Object<string, number|string>} options.params action arguments
+     * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+     *
+     * @since 2018.2
+     */
+    (options: {
+      params: {
+        recordId: number | string,
+        [p: string]: number | string,
+      },
+    }): {
+      notifications: any[],
+      response: {
+        action: string,
+        id: string,
+        recordCount: number,
+        success: boolean,
+      },
+    };
 
-    execute(options: {}): Object
+    /**
+     * Executes the action asynchronously and returns the action result in a plain JavaScript object
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387674}
+     *
+     * @governance none
+     *
+     * @param {Object} options
+     * @param {Object<string, number|string>} options.params action arguments
+     * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
+     *
+     * @since 2018.2
+     */
+    promise(options: {
+      params: {
+        recordId: number | string,
+        [p: string]: number | string,
+      },
+    }): Promise<{
+      notifications: any[],
+      response: {
+        action: string,
+        id: string,
+        recordCount: number,
+        success: boolean,
+      },
+    }>;
 
-    executeBulk(options: {})
+    execute: {
 
-    getBulkStatus(options: {})
-  }
+      /**
+       * Executes a record action and returns its result.
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386224}
+       *
+       * @governance none
+       *
+       * @param {Object} options
+       * @param {record.Type|string} options.recordType record type
+       * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
+       * @param {Object<string, number|string>} options.params action arguments
+       * @param {number|string} options.params.recordId record instance ID
+       * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+       * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+       * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+       *
+       * @since 2018.2
+       */
+      (options: {
+        recordType: record.Type | string,
+        id: action.ActionID,
+        params?: {
+          recordId: number | string,
+          [p: string]: number | string,
+        },
+      }): {
+        notifications: any[],
+        response: {
+          action: string,
+          id: string,
+          recordCount: number,
+          success: boolean,
+        },
+      };
 
-  /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249.html}
-   *
-   * todo: Finish this
-   */
-  export namespace Action {
+      /**
+       * Executes a record action and returns its result.
+       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386721}
+       *
+       * @governance none
+       *
+       * @param {Object} options
+       * @param {record.Type|string} options.recordType record type
+       * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
+       * @param {Object<string, number|string>} options.params action arguments
+       * @param {number|string} options.params.recordId record instance ID
+       * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
+       * @throws {error.SuiteScriptError} SSS_INVALID_ACTION_ID if the specified action doesn't exist on the said record type
+       * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if the specified record instance doesn't exist
+       *
+       * @since 2018.2
+       */
+      promise(options: {
+        recordType: record.Type | string,
+        id: action.ActionID,
+        params?: {
+          recordId: number | string,
+          [p: string]: number | string,
+        },
+      }): Promise<{
+        notifications: any[],
+        response: {
+          action: string,
+          id: string,
+          recordCount: number,
+          success: boolean,
+        },
+      }>;
+    };
 
-    export interface execute {
-
-      promise(options: {}): Promise<Object>
-    }
+    /**
+     * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.recordType record type
+     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
+     * @param {Object<string, number|string>} [options.params] action arguments
+     * @param {number|string} options.params.recordId record instance ID
+     * @param {string} [options.condition] used to select record IDs of records for which the action is to be executed
+     * @param {function} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
+     * @return {string} - taskId
+     */
+    executeBulk(options: {
+      recordType: record.Type | string,
+      id: action.ActionID,
+      params?: {
+        recordId: number | string,
+        [p: string]: number | string,
+      },
+      condition?: string,
+      paramCallback?<RecordID extends number | string>(recordId: RecordID): {
+        recordId: RecordID,
+        [p: string]: number | string,
+      },
+    }): string;
   }
 }
