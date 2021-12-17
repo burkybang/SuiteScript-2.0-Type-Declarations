@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript sftp module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932}
  *
  * @restriction Server-side scripts only
  *
@@ -15,72 +15,72 @@ interface sftp {
 
   /**
    * Constant representing the minimun time allowed for transferring data over connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823}
    *
-   * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {1}
    * @readonly
+   *
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2016.2
    */
-  MIN_CONNECT_TIMEOUT: 1
+  MIN_CONNECT_TIMEOUT: 1;
 
   /**
    * Constant representing the maximum time allowed for transferring data over connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286}
    *
-   * @name Connection#MAX_CONNECT_TIMEOUT
    * @type {20}
    * @readonly
+   *
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2016.2
    */
-  MAX_CONNECT_TIMEOUT: 20
+  MAX_CONNECT_TIMEOUT: 20;
 
   /**
    * Constant representing the minimun port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099}
    *
-   * @name Connection#MIN_PORT_NUMBER
    * @type {0}
    * @readonly
+   *
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
-  MIN_PORT_NUMBER: 0
+  MIN_PORT_NUMBER: 0;
 
   /**
    * Constant representing the maximum port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056}
    *
-   * @name Connection#MAX_PORT_NUMBER
    * @type {65535}
    * @readonly
+   *
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
-  MAX_PORT_NUMBER: 65535
+  MAX_PORT_NUMBER: 65535;
 
   /**
    * Constant representing the default port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135}
    *
-   * @name Connection#DEFAULT_PORT_NUMBER
    * @type {22}
    * @readonly
+   *
    * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
    *
    * @since 2019.2
    */
-  DEFAULT_PORT_NUMBER: 22
+  DEFAULT_PORT_NUMBER: 22;
 
   /**
    * Establishes a connection with a remote server and returns a connection object representing that connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472}
    *
    * @param {Object} options
    * @param {string} options.url - host of remote account
@@ -118,17 +118,16 @@ interface sftp {
     timeout?: number,
     hostKeyType?: string,
     keyId?: string,
-  }): sftp.Connection
+  }): sftp.Connection;
 }
 
 declare namespace sftp {
 
   /**
    * Holds the values to be used to sort listed files and directories
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613}
    *
    * @enum {string}
-   * @readonly
    *
    * @since 2019.2
    */
@@ -143,7 +142,7 @@ declare namespace sftp {
 
   /**
    * Return new instance of SftpConnection used for performing operations over a connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733}
    *
    * @since 2016.2
    */
@@ -151,33 +150,33 @@ declare namespace sftp {
 
     /**
      * Constant representing the max time allowed for transferring data over connection
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937}
      *
-     * @name Connection#MAX_TRANSFER_TIMEOUT
      * @type {300}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      *
      * @since 2019.2
      */
-    MAX_TRANSFER_TIMEOUT: 300
+    MAX_TRANSFER_TIMEOUT: 300;
 
     /**
      * Constant representing the max file size allowed to be transferred
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973}
      *
-     * @name Connection#MAX_FILE_SIZE
      * @type {100000000}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      *
      * @since 2019.2
      */
-    MAX_FILE_SIZE: 100000000
+    MAX_FILE_SIZE: 100000000;
 
     /**
      * Downloads a file from the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030}
      *
      * @governance 100 points
      *
@@ -200,11 +199,11 @@ declare namespace sftp {
       filename: string,
       directory?: string,
       timeout?: number,
-    }): file.File
+    }): file.File;
 
     /**
      * Uploads a file to the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910}
      *
      * @governance 100 points
      *
@@ -230,11 +229,11 @@ declare namespace sftp {
       directory?: string,
       timeout?: number,
       replaceExisting?: boolean,
-    }): void
+    }): void;
 
     /**
      * Creates an empty directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024}
      *
      * @governance 10 points
      *
@@ -249,11 +248,11 @@ declare namespace sftp {
      */
     makeDirectory(options: {
       path: string,
-    }): void
+    }): void;
 
     /**
      * Deletes an empty directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344}
      *
      * @governance 10 points
      *
@@ -269,11 +268,11 @@ declare namespace sftp {
      */
     removeDirectory(options: {
       path: string,
-    }): void
+    }): void;
 
     /**
      * Deletes a file on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670}
      *
      * @governance 10 points
      *
@@ -288,11 +287,11 @@ declare namespace sftp {
      */
     removeFile(options: {
       path: string,
-    }): void
+    }): void;
 
     /**
      * Moves a file or directory from one location to another on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961}
      *
      * @governance 10 points
      *
@@ -308,11 +307,11 @@ declare namespace sftp {
     move(options: {
       from: string,
       to: string,
-    }): void
+    }): void;
 
     /**
      * Lists the files and directories in a directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176}
      * @
      *
      * @governance 10 points
@@ -330,6 +329,6 @@ declare namespace sftp {
     list(options: {
       path: string,
       sort?: Sort,
-    }): Object[]
+    }): Object[];
   }
 }

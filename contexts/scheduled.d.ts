@@ -1,25 +1,37 @@
 /**
  * SuiteScript Suitelet Script Context
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407979858.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1506710621}
+ */
+
+/**
+ * Defines the Scheduled script trigger point
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407979858}
  *
- * @NApiVersion 2.x
+ * @since 2015.2
  */
 interface ExecuteContext {
 
   /**
-   * @name ExecuteContext#type
-   * @type {string} type - The context in which the script is executed
+   * The script execution context
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407979858}
    *
+   * @type {ExecuteContext.InvocationType} type - The context in which the script is executed
    * @readonly
+   *
+   * @since 2015.2
    */
-  type: ExecuteContext.InvocationType
+  type: ExecuteContext.InvocationType;
 }
 
 declare namespace ExecuteContext {
 
   /**
+   * Enumeration that holds the string values for scheduled script execution contexts
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532}
+   *
    * @enum {string}
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407982532.html}
+   *
+   * @since 2015.2
    */
   export enum InvocationType {
     // The normal execution according to the deployment options specified in the UI.

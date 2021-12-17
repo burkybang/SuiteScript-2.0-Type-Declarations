@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript crypto module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358549582.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358549582}
  *
  * @module N/crypto
  * @NApiVersion 2.x
@@ -11,7 +11,7 @@ interface crypto_ {
 
   /**
    * Method used to create a new crypto_.SecretKey object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
    *
    * @param options
    * @param {string} options.guid
@@ -23,11 +23,11 @@ interface crypto_ {
   createSecretKey(options: {
     guid: string,
     encoding?: encode.Encoding,
-  }): crypto_.SecretKey
+  }): crypto_.SecretKey;
 
   /**
    * Method used to create a crypto.Hash object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -37,11 +37,11 @@ interface crypto_ {
    */
   createHash(options: {
     algorithm: crypto_.HashAlg,
-  }): crypto_.Hash
+  }): crypto_.Hash;
 
   /**
    * Method used to create a crypto.Hmac object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -53,11 +53,11 @@ interface crypto_ {
   createHmac(options: {
     algorithm: crypto_.HashAlg,
     key: crypto_.SecretKey,
-  }): crypto_.Hmac
+  }): crypto_.Hmac;
 
   /**
    * Method used to create and return a crypto.EncryptionAlg object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650498.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650498}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -71,11 +71,11 @@ interface crypto_ {
     algorithm: crypto_.HashAlg,
     key: crypto_.SecretKey,
     padding?: crypto_.Padding,
-  }): crypto_.Cipher
+  }): crypto_.Cipher;
 
   /**
    * Method used to create a crypto.Decipher object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650886.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650886}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -91,18 +91,16 @@ interface crypto_ {
     key: crypto_.SecretKey,
     padding?: crypto_.Padding,
     iv: string,
-  }): crypto_.Decipher
+  }): crypto_.Decipher;
 }
 
 declare namespace crypto_ {
 
   /**
    * Enum describing available crypto hashing algorithms
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655346.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655346}
    *
    * @enum {string}
-   *
-   * @readonly
    *
    * @since 2015.2
    */
@@ -115,11 +113,9 @@ declare namespace crypto_ {
 
   /**
    * Enum describing available crypto encryption algorithms
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655796.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655796}
    *
    * @enum {string}
-   *
-   * @readonly
    *
    * @since 2015.2
    */
@@ -129,11 +125,9 @@ declare namespace crypto_ {
 
   /**
    * Enum describing available padding options
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655564.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655564}
    *
    * @enum {string}
-   *
-   * @readonly
    *
    * @since 2015.2
    */
@@ -144,7 +138,7 @@ declare namespace crypto_ {
 
   /**
    * Returns a new instance of SecretKey used for hmac, cipher and decipher
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620976.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620976}
    *
    * @protected
    * @classdesc
@@ -157,28 +151,28 @@ declare namespace crypto_ {
 
     /**
      * The GUID associated with the secret key
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455843444823.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455843444823}
      *
      * @type {string}
      *
      * @since 2015.2
      */
-    guid: string
+    guid: string;
 
     /**
      * The encoding used for the clear text value of the secret key
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458478637694.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458478637694}
      *
      * @type {encode.Encoding}
      *
      * @since 2015.2
      */
-    encoding: encode.Encoding
+    encoding: encode.Encoding;
   }
 
   /**
    * Encapsulates a cipher payload
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358619238.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358619238}
    *
    * @protected
    * @constructor
@@ -189,28 +183,28 @@ declare namespace crypto_ {
 
     /**
      * Initialization vector for the cipher payload
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46186462402.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46186462402}
      *
      * @type {string}
      *
      * @since 2015.2
      */
-    iv: string
+    iv: string;
 
     /**
      * The result of the ciphering process
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455083557128.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455083557128}
      *
      * @type {string}
      *
      * @since 2015.2
      */
-    ciphertext: string
+    ciphertext: string;
   }
 
   /**
    * Encapsulates a hash
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620745.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620745}
    *
    * @protected
    * @constructor
@@ -221,7 +215,7 @@ declare namespace crypto_ {
 
     /**
      * Method used to update clear data with the encoding specified
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453249145507.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453249145507}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -233,11 +227,11 @@ declare namespace crypto_ {
     update(options: {
       input: string,
       inputEncoding?: encode.Encoding,
-    }): void
+    }): void;
 
     /**
      * Calculates the digest of the data to be hashed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456370178222.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456370178222}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -247,12 +241,12 @@ declare namespace crypto_ {
      */
     digest(options: {
       outputEncoding?: encode.Encoding,
-    }): string
+    }): string;
   }
 
   /**
    * Encapsulates an hmac
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620874.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620874}
    *
    * @protected
    * @constructor
@@ -263,7 +257,7 @@ declare namespace crypto_ {
 
     /**
      * Method used to update the clear data with the encoding specified
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457765136718.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457765136718}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -275,11 +269,11 @@ declare namespace crypto_ {
     update(options: {
       input: string,
       inputEncoding?: encode.Encoding,
-    }): void
+    }): void;
 
     /**
      *
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459978271483.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459978271483}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -289,12 +283,12 @@ declare namespace crypto_ {
      */
     digest(options: {
       outputEncoding?: encode.Encoding,
-    }): string
+    }): string;
   }
 
   /**
    * Encapsulates a cipher
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358574527.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358574527}
    *
    * @protected
    * @constructor
@@ -305,7 +299,7 @@ declare namespace crypto_ {
 
     /**
      * Method used to update the clear data with the specified encoding
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454552856444.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454552856444}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -317,11 +311,11 @@ declare namespace crypto_ {
     update(options: {
       input: string,
       inputEncoding?: encode.Encoding,
-    }): void
+    }): void;
 
     /**
      * Method used to return the cipher data
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454422851562.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454422851562}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -331,13 +325,13 @@ declare namespace crypto_ {
      */
     final(options: {
       outputEncoding?: encode.Encoding,
-    }): CipherPayload
+    }): CipherPayload;
   }
 
   /**
    * Encapsulates a decipher
    * This object has methods that decrypt
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620478.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620478}
    *
    * @protected
    * @constructor
@@ -348,7 +342,7 @@ declare namespace crypto_ {
 
     /**
      * Method used to update cipher data with the specified encoding
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453919616698.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453919616698}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -360,11 +354,11 @@ declare namespace crypto_ {
     update(options: {
       input: string,
       inputEncoding?: encode.Encoding,
-    }): void
+    }): void;
 
     /**
      * Method used to return the clear data
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458502441405.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458502441405}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.UTF_8]
@@ -374,6 +368,6 @@ declare namespace crypto_ {
      */
     final(options: {
       outputEncoding?: encode.Encoding,
-    }): string
+    }): string;
   }
 }

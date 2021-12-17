@@ -1,6 +1,6 @@
 /**
  * SuiteScript file module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205693274.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205693274}
  *
  * @module N/file
  * @NApiVersion 2.x
@@ -29,7 +29,7 @@ interface file {
     encoding?: file.Encoding,
     inInactive?: boolean,
     isOnline?: boolean,
-  }): file.File
+  }): file.File;
 
   /**
    * Method used to delete an existing file from the NetSuite File Cabinet
@@ -39,7 +39,7 @@ interface file {
    */
   delete(options: {
     id: number | string,
-  }): number | string
+  }): number | string;
 
   /**
    * Loads an existing file from the NetSuite File Cabinet
@@ -49,7 +49,7 @@ interface file {
    */
   load(options: {
     id: number | string,
-  }): file.File
+  }): file.File;
 }
 
 declare namespace file {
@@ -123,85 +123,85 @@ declare namespace file {
      * @type {string}
      * @readonly
      */
-    description: string
+    description: string;
 
     /**
      * @type {Encoding}
      * @readonly
      */
-    encoding: Encoding
+    encoding: Encoding;
 
     /**
      * @type {Type}
      * @readonly
      */
-    fileType: Type
+    fileType: Type;
 
     /**
      * @type {number|string}
      * @readonly
      */
-    folder: number
+    folder: number;
 
     /**
      * @type {number}
      * @readonly
      */
-    id: number
+    id: number;
 
     /**
      * @type {boolean}
      * @readonly
      */
-    isInactive: boolean
+    isInactive: boolean;
 
     /**
      * @type {boolean}
      * @readonly
      */
-    isOnline: boolean
+    isOnline: boolean;
 
     /**
      * @type {boolean}
      * @readonly
      */
-    isText: boolean
+    isText: boolean;
 
     /**
      * @type {string}
      * @readonly
      */
-    name: string
+    name: string;
 
     /**
      * @type {string}
      * @readonly
      */
-    path: string
+    path: string;
 
     /**
      * @type {number}
      * @readonly
      */
-    size: number
+    size: number;
 
     /**
      * @type {string}
      * @readonly
      */
-    url: string
+    url: string;
 
     /**
      * Method used to return the content of the file
      * @return {string}
      */
-    getContents(): string
+    getContents(): string;
 
     /**
      * Method used to return the reader object for performing special read operations
      * @return {Reader}
      */
-    getReader(): Reader
+    getReader(): Reader;
 
     /**
      * Method used to return the iterator of segments delimited by a separator
@@ -211,7 +211,7 @@ declare namespace file {
      */
     getSegments(options: {
       separator: string,
-    })
+    });
 
     /**
      * Method used to insert a line to the end of a file
@@ -221,19 +221,19 @@ declare namespace file {
      */
     appendLine(options: {
       value: string,
-    }): File
+    }): File;
 
     /**
      * Method used to reset the file contents
      * @return {void}
      */
-    resetStream(): void
+    resetStream(): void;
 
     /**
      * Upload a new file or save an updated file to the NetSuite File Cabinet
      * @return {number} - The internal ID of the file
      */
-    save(): number
+    save(): number;
   }
 
   export namespace File.lines {
@@ -245,7 +245,7 @@ declare namespace file {
        * @param {function(Object)} callback
        * @return {boolean}
        */
-      each(callback: (line: Object) => boolean): void
+      each(callback: (line: Object) => boolean): void;
     }
   }
 
@@ -258,7 +258,7 @@ declare namespace file {
      */
     readUntil(options: {
       tag: string,
-    }): string
+    }): string;
 
 
     /**
@@ -269,6 +269,6 @@ declare namespace file {
      */
     readChars(options: {
       number: number,
-    }): string
+    }): string;
   }
 }

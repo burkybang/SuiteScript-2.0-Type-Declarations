@@ -1,6 +1,6 @@
 /**
  * SuiteScript currency module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358551775.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358551775}
  *
  * @module N/currency
  * @NApiVersion 2.x
@@ -10,7 +10,7 @@ interface currency {
   /**
    * Retrieves the exchange rate between two currencies based on the specified date.
    * The return value comes from the Exchange Rate column of the Currency Exchange Rates record.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358678787.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358678787}
    *
    * @governance 10 units
    *
@@ -30,5 +30,5 @@ interface currency {
     source: number | string,
     target: number | string,
     date?: Date,
-  }): number
+  }): number;
 }

@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript config module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800}
  *
  * @module N/config
  * @NApiVersion 2.x
@@ -11,7 +11,7 @@ interface config {
 
   /**
    * Load a configuration object with a specific type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439}
    *
    * @governance 10 units
    * @restriction Server SuiteScript only
@@ -28,20 +28,20 @@ interface config {
   load(options: {
     type: config.Type,
     isDynamic?: boolean,
-  }): record.Record
+  }): record.Record;
 }
 
 /**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4261803800}
  */
 declare namespace config {
 
   /**
    * Enum configuration type values.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632}
    *
-   * @readonly
    * @enum {string}
+   *
    * @since 2015.2
    */
   export enum Type {

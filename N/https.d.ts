@@ -5,7 +5,7 @@
 
 /**
  * SuiteScript https module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418229131.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418229131}
  *
  * @module N/https
  * @NApiVersion 2.x
@@ -59,7 +59,7 @@ interface https {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   post: {
 
@@ -112,7 +112,7 @@ interface https {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   put: {
 
@@ -165,7 +165,7 @@ interface https {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   delete: {
 
@@ -214,7 +214,7 @@ interface https {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   request: {
 
@@ -271,11 +271,11 @@ interface https {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   /**
    * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
    *
    * @governance 10 units
    * @restriction Server SuiteScript only
@@ -309,7 +309,7 @@ interface https {
     urlParams?: {
       [p: string]: string | number,
     },
-  }): https.ClientResponse
+  }): https.ClientResponse;
 
   /**
    *
@@ -323,7 +323,7 @@ interface https {
   createSecureKey(options: {
     guid: string,
     encoding?: https.Encoding,
-  }): crypto_.SecretKey
+  }): crypto_.SecretKey;
 
   /**
    *
@@ -337,15 +337,15 @@ interface https {
   createSecureString(options: {
     input: string,
     inputEncoding?: https.Encoding,
-  }): https.SecureString
+  }): https.SecureString;
 }
 
 declare namespace https {
 
   /**
-   * Enum describing available HTTPS methods.
+   * Enum describing available HTTPS methods
+   *
    * @enum {string}
-   * @readonly
    */
   export enum Method {
     GET = 'GET',
@@ -356,9 +356,9 @@ declare namespace https {
   }
 
   /**
-   * Enum describing available commerce API cache durations.
+   * Enum describing available commerce API cache durations
+   *
    * @enum {string}
-   * @readonly
    */
   export enum CacheDuration {
     UNIQUE = 'UNIQUE',
@@ -369,8 +369,8 @@ declare namespace https {
 
   /**
    * Enum describing available redirect types
+   *
    * @enum {string}
-   * @readonly
    */
   export enum RedirectType {
     RECORD = 'RECORD',
@@ -382,8 +382,8 @@ declare namespace https {
 
   /**
    * Enum describing available encodings
+   *
    * @enum {string}
-   * @readonly
    */
   export enum Encoding {
     UTF_8 = 'UTF_8',
@@ -396,8 +396,8 @@ declare namespace https {
 
   /**
    * Enum describing available hashing algorithms
+   *
    * @enum {string}
-   * @readonly
    */
   export enum HashAlg {
     SHA1 = 'SHA1',
@@ -419,46 +419,49 @@ declare namespace https {
   export interface ClientResponse {
 
     /**
-     * Response code.
-     * @name ClientResponse#code
+     * Response code
+     *
      * @type {number}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    code: number
+    code: number;
 
     /**
-     * Response headers.
-     * @name ClientResponse#headers
+     * Response headers
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Response body.
-     * @name ClientResponse#body
+     * Response body
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    body: string
+    body: string;
 
     /**
      * Returns the object type name (https.ClientResponse)
      *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -473,73 +476,80 @@ declare namespace https {
   export interface ServerRequest {
 
     /**
-     * Server request headers.
-     * @name ServerRequest#headers
+     * Server request headers
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Server request clientIpAddress.
-     * @name ServerRequest#clientIpAddress
+     * Server request clientIpAddress
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    clientIpAddress: string
+    clientIpAddress: string;
 
     /**
-     * Server request parameters.
-     * @name ServerRequest#parameters
+     * Server request parameters
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     parameters: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Server request files.
-     * @name ServerRequest#files
+     * Server request files
+     *
      * @type {Object<string, *>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     files: {
       [p: string]: any,
-    }
+    };
 
     /**
-     * Server request body.
-     * @name ServerRequest#body
+     * Server request body
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    body: string
+    body: string;
 
     /**
-     * Server request HTTPS method.
-     * @name ServerRequest#method
+     * Server request HTTPS method
+     *
      * @type {Method}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method
+    method: Method;
 
     /**
-     * Server request URL.
-     * @name ServerRequest#url
+     * Server request URL
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    url: string
+    url: string;
 
     /**
      * Returns the number of lines in a sublist.
@@ -550,7 +560,7 @@ declare namespace https {
      */
     getLineCount(options: {
       group: string,
-    }): number
+    }): number;
 
     /**
      * Returns the value of a sublist line item.
@@ -565,20 +575,20 @@ declare namespace https {
       group: string,
       name: string,
       line: number,
-    }): string
+    }): string;
 
     /**
      * Returns the object type name (https.ServerRequest)
      *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -593,16 +603,16 @@ declare namespace https {
   export interface ServerResponse {
 
     /**
-     * Server response headers.
-     * @name ServerResponse#headers
+     * Server response headers. key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
+     *
      * @type {Object<string, string>}
-     * @return {Object} key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
      * Sets the value of a response header.
@@ -616,7 +626,7 @@ declare namespace https {
     setHeader(options: {
       name: string,
       value: string,
-    }): void
+    }): void;
 
     /**
      * Adds a header to the response. If this header has already been set, this will add another line for that header.
@@ -630,7 +640,7 @@ declare namespace https {
     addHeader(options: {
       name: string,
       value: string,
-    }): void
+    }): void;
 
     /**
      * Sets the redirect URL by resolving to a NetSuite resource. Note that all parameters must be prefixed with custparam.
@@ -655,7 +665,7 @@ declare namespace https {
       parameters?: {
         [p: string]: string,
       }
-    }): void
+    }): void;
 
     /**
      * Write information (text/xml/html) to the response.
@@ -667,7 +677,7 @@ declare namespace https {
      */
     write(options: {
       output: string,
-    }): void
+    }): void;
 
     /**
      * Write line information (text/xml/html) to the response.
@@ -679,7 +689,7 @@ declare namespace https {
      */
     writeLine(options: {
       output: string,
-    }): void
+    }): void;
 
     /**
      * Generates a page using a page element object.
@@ -690,7 +700,7 @@ declare namespace https {
      */
     writePage(options: {
       pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
-    }): void
+    }): void;
 
     /**
      * Write a file to the response.
@@ -704,7 +714,7 @@ declare namespace https {
     writeFile(options: {
       file: file.File,
       isInline?: boolean,
-    }): void
+    }): void;
 
     /**
      * Returns the value for a header returned in the response.
@@ -715,7 +725,7 @@ declare namespace https {
      */
     getHeader(options: {
       name: string,
-    }): string | string[]
+    }): string | string[];
 
     /**
      * Generates and renders a PDF directly to the response.
@@ -727,7 +737,7 @@ declare namespace https {
      */
     renderPdf(options: {
       xmlString: string,
-    }): void
+    }): void;
 
     /**
      * Sets CDN caching for a period of time.
@@ -738,19 +748,19 @@ declare namespace https {
      */
     setCdnCacheable(options: {
       type: CacheDuration,
-    }): void
+    }): void;
 
     /**
      * Returns the object type name (https.ServerResponse)
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   export interface SecureString {
@@ -762,7 +772,7 @@ declare namespace https {
      */
     appendSecureString(options: {
       secureString: SecureString,
-    }): SecureString
+    }): SecureString;
 
     /**
      * @param {Object} options
@@ -773,7 +783,7 @@ declare namespace https {
     appendString(options: {
       input: string,
       inputEncoding: Encoding,
-    }): SecureString
+    }): SecureString;
 
     /**
      * @param {Object} options
@@ -782,7 +792,7 @@ declare namespace https {
      */
     convertEncoding(options: {
       toEncoding: Encoding,
-    }): SecureString
+    }): SecureString;
 
     /**
      * @param {Object} options
@@ -791,7 +801,7 @@ declare namespace https {
      */
     hash(options: {
       algorithm: HashAlg,
-    }): SecureString
+    }): SecureString;
 
     /**
      * @param {Object} options
@@ -802,6 +812,6 @@ declare namespace https {
     hmac(options: {
       algorithm: HashAlg,
       key: crypto_.SecretKey,
-    }): SecureString
+    }): SecureString;
   }
 }

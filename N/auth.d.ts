@@ -1,6 +1,6 @@
 /**
  * SuiteScript auth module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296360422.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296360422}
  *
  * @module N/auth
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface auth {
 
   /**
    * Change current user's email
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298156427.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298156427}
    *
    * @param {Object} options
    * @param {string} options.password
@@ -24,11 +24,11 @@ interface auth {
     password: string,
     newEmail: string,
     onlyThisAccount?: boolean,
-  }): void
+  }): void;
 
   /**
    * Change current user's password
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298157647.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298157647}
    *
    * @param {object} options
    * @param {string} options.currentPassword
@@ -41,5 +41,5 @@ interface auth {
   changePassword(options: {
     currentPassword: string,
     newPassword: string,
-  }): void
+  }): void;
 }

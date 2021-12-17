@@ -5,7 +5,7 @@
 
 /**
  * SuiteScript serverWidget module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532}
  *
  * @module N/ui/serverWidget
  * @NApiVersion 2.x
@@ -24,7 +24,7 @@ interface serverWidget {
   createAssistant(
     title: string,
     hideNavBar?: boolean,
-  ): serverWidget.Assistant
+  ): serverWidget.Assistant;
 
   /**
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
@@ -39,7 +39,7 @@ interface serverWidget {
   createAssistant(options: {
     title: string,
     hideNavBar?: boolean,
-  }): serverWidget.Assistant
+  }): serverWidget.Assistant;
 
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
@@ -53,7 +53,7 @@ interface serverWidget {
   createForm(
     title: string,
     hideNavBar?: boolean,
-  ): serverWidget.Form
+  ): serverWidget.Form;
 
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
@@ -68,7 +68,7 @@ interface serverWidget {
   createForm(options: {
     title: string,
     hideNavBar?: boolean,
-  }): serverWidget.Form
+  }): serverWidget.Form;
 
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
@@ -82,7 +82,7 @@ interface serverWidget {
   createList(
     title: string,
     hideNavBar?: boolean,
-  ): serverWidget.List
+  ): serverWidget.List;
 
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
@@ -97,14 +97,13 @@ interface serverWidget {
   createList(options: {
     title: string,
     hideNavBar?: boolean,
-  }): serverWidget.List
+  }): serverWidget.List;
 }
 
 declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum FieldType {
     CHECKBOX = 'CHECKBOX',
@@ -136,7 +135,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum FormPageLinkType {
     BREADCRUMB = 'BREADCRUMB',
@@ -145,7 +143,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum SublistType {
     EDITOR = 'EDITOR',
@@ -156,7 +153,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum FieldBreakType {
     NONE = 'NONE',
@@ -166,7 +162,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum FieldLayoutType {
     NORMAL = 'NORMAL',
@@ -180,7 +175,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum FieldDisplayType {
     NORMAL = 'NORMAL',
@@ -193,7 +187,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum SublistDisplayType {
     NORMAL = 'NORMAL',
@@ -202,7 +195,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum LayoutJustification {
     CENTER = 'CENTER',
@@ -212,7 +204,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum ListStyle {
     GRID = 'grid',
@@ -223,7 +214,6 @@ declare namespace serverWidget {
 
   /**
    * @enum {string}
-   * @readonly
    */
   export enum AssistantSubmitAction {
     NEXT = 'next',
@@ -246,18 +236,16 @@ declare namespace serverWidget {
     /**
      * The label of the Tab
      *
-     * @name Tab#label
      * @type {string}
      */
-    label: string
+    label: string;
 
     /**
      * The Tab's field help
      *
-     * @name Tab#helpText
      * @type {string}
      */
-    helpText: string
+    helpText: string;
   }
 
   /**
@@ -273,19 +261,17 @@ declare namespace serverWidget {
     /**
      * The label of the field group
      *
-     * @name Sublist#label
      * @type {string}
      */
-    label: string
+    label: string;
 
     /**
      * The number of lines in the Sublist
      *
-     * @name Sublist#lineCount
      * @type {number}
      * @readonly
      */
-    lineCount: number
+    lineCount: number;
 
     /**
      * Set an id of a field that is to have unique values accross the rows in the sublist
@@ -296,7 +282,7 @@ declare namespace serverWidget {
      */
     updateUniqueFieldId(options: {
       id: string,
-    }): this
+    }): this;
 
     /**
      * Id of a field designated as a totalling column, which is used to calculate and display a running total for the sublist
@@ -307,22 +293,21 @@ declare namespace serverWidget {
      */
     updateTotallingFieldId(options: {
       id: string,
-    }): this
+    }): this;
 
     /**
      * Display type of the sublist
      *
-     * @name Sublist#displayType
      * @type {SublistDisplayType}
      */
-    displayType: SublistDisplayType
+    displayType: SublistDisplayType;
 
     /**
      * Inline help text to this sublist
-     * @name Sublist#helpText
+     *
      * @type {string}
      */
-    helpText: string
+    helpText: string;
 
     /**
      * Adds a button to the sublist
@@ -337,7 +322,7 @@ declare namespace serverWidget {
       id: string,
       label: string,
       functionName?: string,
-    }): Button
+    }): Button;
 
     /**
      * Returns string value of a sublist field.
@@ -350,7 +335,7 @@ declare namespace serverWidget {
     getSublistValue(options: {
       id: string,
       line: number,
-    }): string
+    }): string;
 
     /**
      * Set the value of a field on the list
@@ -358,28 +343,28 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id   id of the field to set
      * @param {number} options.line line number
-     * @param {string} options.value value to set on the field
+     * @param {string|number|boolean} options.value value to set on the field
      * @return {void}
      */
     setSublistValue(options: {
       id: string,
       line: number,
-      value: string,
-    }): void
+      value: string | number | boolean,
+    }): void;
 
     /**
      * Adds refresh all buttons to the sublist
      *
      * @return {Button}
      */
-    addRefreshButton(): Button
+    addRefreshButton(): Button;
 
     /**
      * Adds a "Mark All" and an "Unmark All" button to a sublist.
      *
      * @return {Button[]}
      */
-    addMarkAllButtons(): Button[]
+    addMarkAllButtons(): Button[];
 
     /**
      * Add a field, column,  to the Sublist
@@ -398,7 +383,7 @@ declare namespace serverWidget {
       type: FieldType | string,
       source?: string,
       container?: string,
-    }): Field
+    }): Field;
 
     /**
      * Gets field from sublist
@@ -408,7 +393,7 @@ declare namespace serverWidget {
      */
     getField(
       id: string,
-    ): Field
+    ): Field;
 
     /**
      * Gets field from sublist
@@ -419,7 +404,7 @@ declare namespace serverWidget {
      */
     getField(options: {
       id: string,
-    }): Field
+    }): Field;
   }
 
   /**
@@ -435,42 +420,37 @@ declare namespace serverWidget {
     /**
      * Is the field group collapsible
      *
-     * @name FieldGroup#isCollapsible
      * @type {boolean}
      */
-    isCollapsible: boolean
+    isCollapsible: boolean;
 
     /**
      * Is the field group collapsed
      *
-     * @name FieldGroup#isCollapsed
      * @type {boolean}
      */
-    isCollapsed: boolean
+    isCollapsed: boolean;
 
     /**
      * Is the field group's border hidden
      *
-     * @name FieldGroup#isBorderHidden
      * @type {boolean}
      */
-    isBorderHidden: boolean
+    isBorderHidden: boolean;
 
     /**
      * Do all the fields in this group display in a single column
      *
-     * @name Field#isBorderHidden
      * @type {boolean}
      */
-    isSingleColumn: boolean
+    isSingleColumn: boolean;
 
     /**
      * The label of the field group
      *
-     * @name FieldGroup#label
      * @type {string}
      */
-    label: string
+    label: string;
   }
 
   /**
@@ -486,93 +466,82 @@ declare namespace serverWidget {
     /**
      * The internal id of the field
      *
-     * @name Field#id
      * @type {string}
      * @readonly
      */
-    id: string
+    id: string;
 
     /**
      * The type of the field
      *
-     * @name Field#FieldType
      * @type {FieldType}
      * @readonly
      */
-    type: FieldType
+    type: FieldType;
 
     /**
      * The text that gets displayed in lieu of the field value for URL fields
      *
-     * @name Field#linkText
      * @type {string}
      */
-    linkText: string
+    linkText: string;
 
     /**
      * The max length of the field
      *
-     * @name Field#maxLength
      * @type {number}
      */
-    maxLength: number
+    maxLength: number;
 
     /**
      * Is the field mandatory
      *
-     * @name Field#isMandatory
      * @type {boolean}
      */
-    isMandatory: boolean
+    isMandatory: boolean;
 
     /**
      * The alias for the field. By default the alias is the field id
      *
-     * @name Field#alias
      * @type {string}
      */
-    alias: string
+    alias: string;
 
     /**
      * The default value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520}
      *
-     * @name Field#defaultValue
      * @type {string|string[]|number|Date|boolean}
      */
-    defaultValue: string | string[] | number | Date | boolean
+    defaultValue: string | string[] | number | Date | boolean;
 
     /**
      * If Rich Text Editing is enabled, you can use this property to set the height of the rich text field only.
      *
-     * @name Field#richTextHeight
      * @type {number}
      */
-    richTextHeight: number
+    richTextHeight: number;
 
     /**
      * If Rich Text Editing is enabled, you can use this property to set the width of the rich text field only.
      *
-     * @name Field#richTextWidth
      * @type {number}
      */
-    richTextWidth: number
+    richTextWidth: number;
 
     /**
      * The label of the field
      *
-     * @name Field#label
      * @type {string}
      */
-    label: string
+    label: string;
 
     /**
      * The number of empty field spaces before/above this field
      *
-     * @name Field#padding
      * @type {number}
      */
-    padding: number
+    padding: number;
 
     /**
      * Update the breakType of the field
@@ -583,7 +552,7 @@ declare namespace serverWidget {
      */
     updateBreakType(options: {
       breakType: FieldBreakType,
-    }): this
+    }): this;
 
     /**
      * Update the layout type of the field
@@ -594,7 +563,7 @@ declare namespace serverWidget {
      */
     updateLayoutType(options: {
       layoutType: FieldLayoutType,
-    }): this
+    }): this;
 
     /**
      * Sets the height and width for the field. Only supported on multi-selects,
@@ -609,7 +578,7 @@ declare namespace serverWidget {
     updateDisplaySize(options: {
       height: number,
       width: number,
-    }): this
+    }): this;
 
     /**
      * Udpdate the field display type
@@ -620,7 +589,7 @@ declare namespace serverWidget {
      */
     updateDisplayType(options: {
       displayType: FieldDisplayType | string,
-    }): this
+    }): this;
 
     /**
      * Set help text for a field
@@ -633,7 +602,7 @@ declare namespace serverWidget {
     setHelpText(options: {
       help: string,
       showInlineForAssistant?: boolean,
-    }): this
+    }): this;
 
     /**
      * Get the select options for a field
@@ -650,7 +619,7 @@ declare namespace serverWidget {
     }): {
       value: string,
       text: string,
-    }[]
+    }[];
 
     /**
      * Add a select option to a select field
@@ -665,7 +634,7 @@ declare namespace serverWidget {
       value: string | number,
       text: string,
       isSelected?: boolean,
-    }): void
+    }): void;
   }
 
   /**
@@ -681,26 +650,23 @@ declare namespace serverWidget {
     /**
      * The label of the button
      *
-     * @name Button#label
      * @type {string}
      */
-    label: string
+    label: string;
 
     /**
      * Is the button disabled
      *
-     * @name Button#isDisabled
      * @type {boolean}
      */
-    isDisabled: boolean
+    isDisabled: boolean;
 
     /**
      * Is the button hidden
      *
-     * @name Button#isHidden
      * @type {boolean}
      */
-    isHidden: boolean
+    isHidden: boolean;
   }
 
   /**
@@ -716,7 +682,6 @@ declare namespace serverWidget {
     /**
      * The internal id of the step
      *
-     * @name AssistantStep#id
      * @type {string}
      * @readonly
      */
@@ -725,7 +690,6 @@ declare namespace serverWidget {
     /**
      * The label of the step
      *
-     * @name AssistantStep#label
      * @type {string}
      */
     label: string;
@@ -733,18 +697,16 @@ declare namespace serverWidget {
     /**
      * The numerical order of the step
      *
-     * @name AssistantStep#stepNumber
      * @type {number}
      */
-    stepNumber: number
+    stepNumber: number;
 
     /**
      * Help text for the step
      *
-     * @name AssistantStep#helpText
      * @type {number}
      */
-    helpText: number
+    helpText: number;
 
     /**
      * Get all sublist fields' internal ids entered by the user during this step
@@ -755,21 +717,21 @@ declare namespace serverWidget {
      */
     getSublistFieldIds(options: {
       group: string,
-    }): string[]
+    }): string[];
 
     /**
      * Use this method to get all sublists entered by the user during this step
      *
      * @return {string[]}
      */
-    getSubmittedSublistIds(): string[]
+    getSubmittedSublistIds(): string[];
 
     /**
      * Get all ids for fields in the assistant step
      *
      * @return {string[]}
      */
-    getFieldIds(): string[]
+    getFieldIds(): string[];
 
     /**
      * Get the value of a field
@@ -780,7 +742,7 @@ declare namespace serverWidget {
      */
     getValue(options: {
       id: string,
-    }): string | string[]
+    }): string | string[];
 
     /**
      * Get the number of lines in a sublist
@@ -791,7 +753,7 @@ declare namespace serverWidget {
      */
     getLineCount(options: {
       group: string,
-    }): number
+    }): number;
 
     /**
      * Get the value of a field in a sublist
@@ -806,7 +768,7 @@ declare namespace serverWidget {
       group: string,
       id: string,
       line: number,
-    }): string
+    }): string;
   }
 
   /**
@@ -823,35 +785,31 @@ declare namespace serverWidget {
     /**
      * The current step of the assistant
      *
-     * @name Assistant#currentStep
      * @type {AssistantStep}
      * @readonly
      */
-    currentStep: AssistantStep
+    currentStep: AssistantStep;
 
     /**
      * An error message for the current step. If you choose, you can use HTML tags to format the message.
      *
-     * @name Assistant#errorHtml
      * @type {string}
      */
-    errorHtml: string
+    errorHtml: string;
 
     /**
      * Mark the last page in an assistant. Set the rich text to display a completion message on the last page.
      *
-     * @name Assistant#finishedHtml
      * @type {string}
      */
-    finishedHtml: string
+    finishedHtml: string;
 
     /**
      * Show or hide the assistant step numbers
      *
-     * @name Assistant#hideStepNumber
      * @type {boolean}
      */
-    hideStepNumber: boolean
+    hideStepNumber: boolean;
 
     /**
      * Use this method to enforce a sequential ordering of assistant steps. If steps are ordered,
@@ -859,26 +817,23 @@ declare namespace serverWidget {
      * the next step. From a display perspective, ordered steps will always appear in the left
      * panel of the assistant. Note that by default, steps in an assistant are ordered.
      *
-     * @name Assistant#isNotOrdered
      * @type {boolean}
      */
-    isNotOrdered: boolean
+    isNotOrdered: boolean;
 
     /**
      * Overall title of the Assistant
      *
-     * @name Assistant#title
      * @type {string}
      */
-    title: string
+    title: string;
 
     /**
      * Show/hide the Add to Shortcuts link that appears in the top-right corner of an assistant page.
      *
-     * @name Assistant#hideAddToShortcutsLink
      * @type {boolean}
      */
-    hideAddToShortcutsLink: boolean
+    hideAddToShortcutsLink: boolean;
 
     /**
      * Set the default values of many fields at once
@@ -888,26 +843,26 @@ declare namespace serverWidget {
      */
     updateDefaultValues(options: {
       values: Object[],
-    }): void
+    }): void;
 
     /**
      * The script file id to be used in the assistant
      *
-     * @name Assistant#clientScriptFileId
      * @type {number}
      */
-    clientScriptFileId: number
+    clientScriptFileId: number;
 
     /**
      * The script file path to be used in the assistant
      *
-     * @name Assistant#clientScriptModulePath
      * @type {string}
      *
      * @example 'SuiteScripts/client_script.js' - Absolute path
+     * @example 'SuiteScripts/client_script' - Absolute path
      * @example './client_script.js' - Relative path
+     * @example './client_script' - Relative path
      */
-    clientScriptModulePath: string
+    clientScriptModulePath: string;
 
     /**
      * Set the splash screen for an assistant page.
@@ -923,7 +878,7 @@ declare namespace serverWidget {
       title: string,
       text1: string,
       text2: string
-    }): void
+    }): void;
 
     /**
      * Get a Field object from its id
@@ -934,7 +889,7 @@ declare namespace serverWidget {
      */
     getField(options: {
       id: string,
-    }): Field
+    }): Field;
 
     /**
      * Get a FieldGroup  object from its id
@@ -945,49 +900,49 @@ declare namespace serverWidget {
      */
     getFieldGroup(options: {
       id: string,
-    }): FieldGroup
+    }): FieldGroup;
 
     /**
      * Get the name of last action taken by the user
      *
      * @return {string}
      */
-    getLastAction(): string
+    getLastAction(): string;
 
     /**
      * Get the step the last submitted action came from
      *
      * @return {AssistantStep}
      */
-    getLastStep(): AssistantStep
+    getLastStep(): AssistantStep;
 
     /**
      * Get next logical step corresponding to the user's last submitted action
      *
      * @return {AssistantStep}
      */
-    getNextStep(): AssistantStep
+    getNextStep(): AssistantStep;
 
     /**
      * Get the number of steps
      *
      * @return {number}
      */
-    getStepCount(): number
+    getStepCount(): number;
 
     /**
      * True if the assistant has an error set
      *
      * @return {boolean}
      */
-    hasErrorHtml(): boolean
+    hasErrorHtml(): boolean;
 
     /**
      * Is the assistant finished
      *
      * @return {boolean}
      */
-    isFinished(): boolean
+    isFinished(): boolean;
 
     /**
      * Get the a step given its id
@@ -998,7 +953,7 @@ declare namespace serverWidget {
      */
     getStep(options: {
       id: string,
-    }): AssistantStep
+    }): AssistantStep;
 
     /**
      * Get a Sublist  object from its id
@@ -1009,7 +964,7 @@ declare namespace serverWidget {
      */
     getSublist(options: {
       id: string,
-    }): Sublist
+    }): Sublist;
 
     /**
      * Add a step to the assistant
@@ -1021,7 +976,7 @@ declare namespace serverWidget {
     addStep(options: {
       id: string,
       label: string,
-    }): void
+    }): void;
 
     /**
      * Add a field to the Assistant
@@ -1041,7 +996,7 @@ declare namespace serverWidget {
       type: FieldType | string,
       source?: string,
       container?: string,
-    }): Field
+    }): Field;
 
     /**
      * Add a field group to the assistant
@@ -1054,7 +1009,7 @@ declare namespace serverWidget {
     addFieldGroup(options: {
       id: string,
       label: string,
-    }): FieldGroup
+    }): FieldGroup;
 
     /**
      * Add a Sublist to the assistant
@@ -1069,14 +1024,14 @@ declare namespace serverWidget {
       id: string,
       label: string,
       type: SublistType,
-    }): Sublist
+    }): Sublist;
 
     /**
      * Get all ids for fields in the assistant
      *
      * @return {string[]}
      */
-    getFieldIds(): string[]
+    getFieldIds(): string[];
 
     /**
      * Get all field ids in the given assistant field group
@@ -1086,28 +1041,28 @@ declare namespace serverWidget {
      */
     getFieldIdsByFieldGroup(options: {
       id: string,
-    }): string[]
+    }): string[];
 
     /**
      * Get all ids for field groups in the assistant
      *
      * @return {string[]}
      */
-    getFieldGroupIds(): string[]
+    getFieldGroupIds(): string[];
 
     /**
      * Get all ids for sublists in the assistant
      *
      * @return {string[]}
      */
-    getSublistIds(): string[]
+    getSublistIds(): string[];
 
     /**
      * Get all steps in the assistant
      *
      * @return {AssistantStep[]}
      */
-    getSteps(): AssistantStep[]
+    getSteps(): AssistantStep[];
 
     /**
      *  Use this method to manage redirects in an assistant. In most cases, an assistant redirects to itself
@@ -1122,7 +1077,7 @@ declare namespace serverWidget {
      */
     sendRedirect(options: {
       response: http.ServerResponse,
-    }): void
+    }): void;
   }
 
   /**
@@ -1138,27 +1093,29 @@ declare namespace serverWidget {
 
     /**
      * The form title
-     * @name Form#title
+     *
      * @type {string}
      */
-    title: string
+    title: string;
 
     /**
      * The script file id to be used in the form
-     * @name Form#clientScriptFileId
+     *
      * @type {number}
      */
-    clientScriptFileId: number
+    clientScriptFileId: number;
 
     /**
      * The script file path to be used in the form
-     * @name Form#clientScriptModulePath
+     *
      * @type {string}
      *
      * @example 'SuiteScripts/client_script.js' - Absolute path
+     * @example 'SuiteScripts/client_script' - Absolute path
      * @example './client_script.js' - Relative path
+     * @example './client_script' - Relative path
      */
-    clientScriptModulePath: string
+    clientScriptModulePath: string;
 
     /**
      * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
@@ -1167,7 +1124,7 @@ declare namespace serverWidget {
      * @param {message.Message} message the message object to be displayed in browser
      * @return {void}
      */
-    addPageInitMessage(message: message.Message): void
+    addPageInitMessage(message: message.Message): void;
 
     /**
      * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
@@ -1185,7 +1142,7 @@ declare namespace serverWidget {
       title?: string,
       message?: string,
       duration?: number | string,
-    }): void
+    }): void;
 
     /**
      * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
@@ -1197,7 +1154,7 @@ declare namespace serverWidget {
      */
     addPageInitMessage(options: {
       message: message.Message,
-    }): void
+    }): void;
 
     /**
      * Adds a button to the ui form
@@ -1212,7 +1169,7 @@ declare namespace serverWidget {
       label: string,
       id?: string,
       functionName?: string,
-    }): Button
+    }): Button;
 
     /**
      * add a credential field to the ui form
@@ -1233,7 +1190,7 @@ declare namespace serverWidget {
       restrictToScriptIds?: string | string[],
       restrictToCurrentUser?: boolean,
       container?: string,
-    }): Field
+    }): Field;
 
     /**
      * add a secret key field to the ui form
@@ -1252,11 +1209,11 @@ declare namespace serverWidget {
       restrictToScriptIds?: string | string[],
       restrictToCurrentUser?: boolean,
       container?: string,
-    }): Field
+    }): Field;
 
     /**
      * Add a field to the form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
      *
      * @param {Object} options
      * @param {string} options.id Internal id for the field
@@ -1272,7 +1229,17 @@ declare namespace serverWidget {
       type: FieldType | string,
       source?: string,
       container?: string,
-    }): Field
+    }): Field;
+
+    /**
+     * Add a field to the form
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     *
+     * @param {field} Field
+     * @return {Field}
+     */
+
+    // addField(field: Field): Field
 
     /**
      * Add a field group to the form
@@ -1287,7 +1254,7 @@ declare namespace serverWidget {
       id: string,
       label: string,
       tab?: string,
-    }): FieldGroup
+    }): FieldGroup;
 
     /**
      * Add a link to the form
@@ -1301,7 +1268,7 @@ declare namespace serverWidget {
       type: FormPageLinkType,
       title: string,
       url: string,
-    }): void
+    }): void;
 
     /**
      * Add a Sublist to the form
@@ -1317,7 +1284,7 @@ declare namespace serverWidget {
       label: string,
       type: SublistType,
       tab?: string,
-    }): Sublist
+    }): Sublist;
 
     /**
      * Add a Subtab to the form
@@ -1331,7 +1298,7 @@ declare namespace serverWidget {
       id: string,
       label: string,
       tab?: string,
-    }): Tab
+    }): Tab;
 
     /**
      * Add a Tab to the form
@@ -1343,14 +1310,14 @@ declare namespace serverWidget {
     addTab(options: {
       id: string,
       label: string,
-    }): Tab
+    }): Tab;
 
     /**
      * Add a Reset button to the form
      * @param {string} [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
      * @return {Button}
      */
-    addResetButton(label?: string): Button
+    addResetButton(label?: string): Button;
 
     /**
      * Add a Reset button to the form
@@ -1360,14 +1327,14 @@ declare namespace serverWidget {
      */
     addResetButton(options?: {
       label?: string,
-    }): Button
+    }): Button;
 
     /**
      * Add a Submit button to the form
      * @param {string} [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
      * @return {Button}
      */
-    addSubmitButton(label?: string): Button
+    addSubmitButton(label?: string): Button;
 
     /**
      * Add a Submit button to the form
@@ -1377,7 +1344,7 @@ declare namespace serverWidget {
      */
     addSubmitButton(options?: {
       label?: string,
-    }): Button
+    }): Button;
 
     /**
      * Get a Button object from its id
@@ -1387,7 +1354,7 @@ declare namespace serverWidget {
      */
     getButton(options: {
       id: string,
-    }): Button
+    }): Button;
 
     /**
      * Get a Field object from its id
@@ -1397,7 +1364,7 @@ declare namespace serverWidget {
      */
     getField(options: {
       id: string,
-    }): Field
+    }): Field;
 
     /**
      * Get a Subtab object from its id
@@ -1407,7 +1374,7 @@ declare namespace serverWidget {
      */
     getSubtab(options: {
       id: string,
-    }): Tab
+    }): Tab;
 
     /**
      * Get a Subtab object from its id
@@ -1417,13 +1384,13 @@ declare namespace serverWidget {
      */
     getTab(options: {
       id: string,
-    }): Tab
+    }): Tab;
 
     /**
      * Get all the Tab objects
      * @return {Tab[]}
      */
-    getTabs(): Tab[]
+    getTabs(): Tab[];
 
     /**
      * Get a Sublist object from its id
@@ -1432,7 +1399,7 @@ declare namespace serverWidget {
      */
     getSublist(
       id: string,
-    ): Sublist
+    ): Sublist;
 
     /**
      * Get a Sublist object from its id
@@ -1442,7 +1409,7 @@ declare namespace serverWidget {
      */
     getSublist(options: {
       id: string,
-    }): Sublist
+    }): Sublist;
 
     /**
      * Insert a field before another field
@@ -1454,7 +1421,7 @@ declare namespace serverWidget {
     insertField(options: {
       field: Field,
       nextfield: string,
-    }): void
+    }): void;
 
     /**
      * Insert a sublist before another sublist
@@ -1466,7 +1433,7 @@ declare namespace serverWidget {
     insertSublist(options: {
       sublist: Sublist,
       nextsublist: string,
-    }): void
+    }): void;
 
     /**
      * Insert a subtab before another sublist
@@ -1478,7 +1445,7 @@ declare namespace serverWidget {
     insertSubtab(options: {
       subtab: Tab,
       nextsubtab: string,
-    }): void
+    }): void;
 
     /**
      * Insert a Tab before another tab
@@ -1490,7 +1457,7 @@ declare namespace serverWidget {
     insertTab(options: {
       tab: Tab,
       nexttab: string,
-    }): void
+    }): void;
 
     /**
      * Remove a button given its id
@@ -1500,7 +1467,7 @@ declare namespace serverWidget {
      */
     removeButton(options: {
       id: string,
-    }): void
+    }): void;
 
     /**
      * Set the default values of many fields at once
@@ -1509,7 +1476,7 @@ declare namespace serverWidget {
      */
     updateDefaultValues(values: {
       [p: string]: string,
-    }): void
+    }): void;
 
     /**
      * Set the default values of many fields at once
@@ -1521,13 +1488,13 @@ declare namespace serverWidget {
       values: {
         [p: string]: string,
       },
-    }): void
+    }): void;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1542,36 +1509,40 @@ declare namespace serverWidget {
 
     /**
      * Sets the display style for this list
-     * @name List#style
+     *
      * @type {string}
+     *
      * @since 2015.2
      */
-    style: string
+    style: string;
 
     /**
      * List title
-     * @name List#title
+     *
      * @type {string}
+     *
      * @since 2015.2
      */
-    title: string
+    title: string;
 
     /**
      * The script file id to be used in the list page
-     * @name List#clientScriptFileId
+     *
      * @type {number}
      */
-    clientScriptFileId: number
+    clientScriptFileId: number;
 
     /**
      * The script file path to be used in the list page
-     * @name List#clientScriptModulePath
+     *
      * @type {string}
      *
      * @example 'SuiteScripts/client_script.js' - Absolute path
+     * @example 'SuiteScripts/client_script' - Absolute path
      * @example './client_script.js' - Relative path
+     * @example './client_script' - Relative path
      */
-    clientScriptModulePath: string
+    clientScriptModulePath: string;
 
     /**
      * Add a Button to the list page
@@ -1585,7 +1556,7 @@ declare namespace serverWidget {
       id: string,
       label: string,
       functionName?: string,
-    }): Button
+    }): Button;
 
     /**
      * Add a Column to the List page
@@ -1601,7 +1572,7 @@ declare namespace serverWidget {
       type: FieldType | string,
       label: string,
       align?: string,
-    }): ListColumn
+    }): ListColumn;
 
     /**
      * Add an Edit or Edit/View column
@@ -1616,7 +1587,7 @@ declare namespace serverWidget {
       column: ListColumn,
       showView?: boolean,
       showHrefCol?: boolean,
-    }): ListColumn
+    }): ListColumn;
 
     /**
      * Adds a navigation cross-link to the list page
@@ -1630,7 +1601,7 @@ declare namespace serverWidget {
       type: FormPageLinkType,
       title: string,
       url: string,
-    }): List
+    }): List;
 
     /**
      * Add a row (Array of name/value pairs or search.Result)
@@ -1640,7 +1611,7 @@ declare namespace serverWidget {
      */
     addRow(options: {
       row: search.Result | { [p: string]: string }
-    }): List
+    }): List;
 
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
@@ -1650,7 +1621,7 @@ declare namespace serverWidget {
      */
     addRows(options: {
       rows: search.Result[] | { [p: string]: string }[]
-    }): List
+    }): List;
   }
 
   /**
@@ -1665,10 +1636,9 @@ declare namespace serverWidget {
   export interface ListColumn {
 
     /**
-     * @name ColumnList#label Label this list column
      * @type {string} string
      */
-    label: string
+    label: string;
 
     /**
      * Adds a URL parameter (optionally defined per row) to the list column's URL
@@ -1682,7 +1652,7 @@ declare namespace serverWidget {
       param: string,
       value: string,
       dynamic?: boolean,
-    }): ListColumn
+    }): ListColumn;
 
     /**
      * Sets the base URL for the list column
@@ -1695,6 +1665,6 @@ declare namespace serverWidget {
     setURL(options: {
       url: string,
       dynamic?: boolean,
-    }): ListColumn
+    }): ListColumn;
   }
 }

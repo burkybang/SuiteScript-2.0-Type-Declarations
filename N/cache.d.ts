@@ -1,6 +1,6 @@
 /**
  * SuiteScript cache module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642573343.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642573343}
  *
  * @module N/cache
  * @NApiVersion 2.x
@@ -18,7 +18,7 @@ interface cache {
   getCache(options: {
     name: string,
     scope?: string,
-  }): cache.Cache
+  }): cache.Cache;
 }
 
 declare namespace cache {
@@ -46,22 +46,24 @@ declare namespace cache {
   interface Cache {
 
     /**
-     The name of the cache.
-     * @name Cache#name
+     * The name of the cache
+     *
      * @type {string}
      * @readonly
+     *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    name: string
+    name: string;
 
     /**
-     The scope of the cache.
-     * @name Cache#scope
+     * The scope of the cache
+     *
      * @type {string}
      * @readonly
+     *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    scope: string
+    scope: string;
 
     /**
      * Get a value from the cache. If the key is not present, the loader will be called to generate the value which will
@@ -84,7 +86,7 @@ declare namespace cache {
       key: string,
       loader?: Function,
       ttl?: number,
-    }): string
+    }): string;
 
     /**
      * Remove a value from the cache. If values in the cache were retrieved from a record, the associated cache keys
@@ -99,7 +101,7 @@ declare namespace cache {
      */
     remove(options: {
       key: string,
-    }): void
+    }): void;
 
     /**
      * Put a value into the cache. Note that "get" can be called with a loader as simpler alternative. If the value
@@ -118,6 +120,6 @@ declare namespace cache {
       key: string,
       value: string,
       ttl?: number,
-    }): void
+    }): void;
   }
 }

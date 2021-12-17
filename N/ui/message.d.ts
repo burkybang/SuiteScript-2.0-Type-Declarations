@@ -25,15 +25,15 @@ interface message {
     title?: string,
     message?: string,
     duration?: number | string,
-  }): message.Message
+  }): message.Message;
 }
 
 declare namespace message {
 
   /**
    * Enum for message types
+   *
    * @enum {number}
-   * @readonly
    */
   export enum Type {
     CONFIRMATION,
@@ -65,7 +65,7 @@ declare namespace message {
      *
      * @since 2016.1
      */
-    show(duration?: number): void
+    show(duration?: number): void;
 
     /**
      * Shows the message.
@@ -82,7 +82,7 @@ declare namespace message {
      */
     show(options?: {
       duration?: number | string,
-    }): void
+    }): void;
 
     /**
      * Hides the message
@@ -93,14 +93,14 @@ declare namespace message {
      *
      * @since 2016.1
      */
-    hide(): void
+    hide(): void;
 
     /**
      * Returns the object type name (message.Message)
      *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * JSON.stringify() implementation.
@@ -112,6 +112,6 @@ declare namespace message {
       title: string,
       message: string,
       duration: number,
-    }
+    };
   }
 }

@@ -1,6 +1,6 @@
 /**
  * SuiteScript format module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388721627.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388721627}
  *
  * @module N/format
  * @NApiVersion 2.x
@@ -88,7 +88,7 @@ declare namespace format {
 
   /**
    * Enum for field types
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232}
    *
    * @enum {string}
    */
@@ -141,7 +141,7 @@ declare namespace format {
 
   /**
    * Enum for Time Zones
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795}
    *
    * @enum {string}
    */

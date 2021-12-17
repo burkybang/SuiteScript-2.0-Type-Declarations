@@ -1,6 +1,6 @@
 /**
  * SuiteScript encode module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369847722.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369847722}
  *
  * @module N/encode
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface encode {
 
   /**
    * Converts a string to another type of encoding
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165}
    *
    * @param {Object} options
    * @param {string} options.string String to encode
@@ -23,14 +23,14 @@ interface encode {
     string: string,
     inputEncoding: encode.Encoding,
     outputEncoding: encode.Encoding,
-  }): string
+  }): string;
 }
 
 declare namespace encode {
 
   /**
    * Holds the string values for the supported character set encoding
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177}
    *
    * @enum {string}
    */

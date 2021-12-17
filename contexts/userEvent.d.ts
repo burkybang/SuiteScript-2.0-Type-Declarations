@@ -1,60 +1,76 @@
+/**
+ * SuiteScript User Event Script Context
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4490073437}
+ */
+
 /// <reference path="../N/record.d.ts" />
 /// <reference path="../N/http.d.ts" />
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
- * SuiteScript User Event Script Context
- *
- * @NApiVersion 2.x
- */
-
-/**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html}
+ * Defines the function that is executed before a record is loaded; that is, whenever a read operation occurs on a record, and prior to returning the record or page.
+ * These operations include navigating to a record in the UI, reading a record in SOAP web services, and loading a record.
+ * The beforeLoad event cannot be used to source standard records. Use the pageInit client script for this purpose.
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
  *
  * @since 2015.2
  */
 interface BeforeLoadContext {
 
   /**
-   * @name BeforeLoadContext#type
-   * @type {string} type - The action type that triggered this event
+   * The action type that triggered this event
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
    *
+   * @type {string} type
    * @readonly
+   *
+   * @since 2015.2
    */
-  type: BeforeLoadContext.UserEventType
+  type: BeforeLoadContext.UserEventType;
 
   /**
-   * @name BeforeLoadContext#newRecord
-   * @type {record.Record} newRecord - The new record being loaded
+   * The new record being loaded
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
    *
+   * @type {record.RecordReadonly} newRecord
    * @readonly
+   *
+   * @since 2015.2
    */
   newRecord: record.RecordReadonly;
 
   /**
-   * @name BeforeLoadContext#form
-   * @type {serverWidget.Form} form - The current UI form
+   * The current UI form
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
    *
+   * @type {serverWidget.Form} form
    * @readonly
+   *
+   * @since 2015.2
    */
-  form: serverWidget.Form
+  form: serverWidget.Form;
 
   /**
-   * @name BeforeLoadContext#request
-   * @type {http.ServerRequest} request
+   * The HTTP request information sent by the browser. If the event was triggered by a server action, this value is not present
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
    *
+   * @type {http.ServerRequest} request
    * @readonly
+   *
+   * @since 2015.2
    */
-  request?: http.ServerRequest
+  request?: http.ServerRequest;
 }
 
-/**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781.html}
- */
 declare namespace BeforeLoadContext {
 
   /**
+   * Holds the string values for user event execution contexts
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992596}
+   *
    * @enum {string}
+   *
+   * @since 2015.2
    */
   export enum UserEventType {
     COPY = 'copy',
@@ -84,44 +100,58 @@ declare namespace BeforeLoadContext {
 }
 
 /**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html}
+ * Defines the function that is executed before a record is submitted; that is, prior to any write operation on the record.
+ * Changes made to the current record in this script persist after the write operation.
+ * The beforeSubmit event can be used to validate the submitted record, perform any restriction and permission checks, and perform any last-minute changes to the current record.
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
  *
  * @since 2015.2
  */
 interface BeforeSubmitContext {
 
   /**
-   * @name BeforeSubmitContext#type
-   * @type {string} type - The action type that triggered this event
+   * The action type that triggered this event
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
    *
+   * @type {string} type
    * @readonly
+   *
+   * @since 2015.2
    */
-  type: BeforeSubmitContext.UserEventType
+  type: BeforeSubmitContext.UserEventType;
 
   /**
-   * @name BeforeSubmitContext#newRecord
-   * @type {record.Record} newRecord - The new record being loaded
+   * The new record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
    *
+   * @type {record.RecordReadonly} newRecord
    * @readonly
+   *
+   * @since 2015.2
    */
   newRecord: record.RecordReadonly;
 
   /**
-   * @name BeforeSubmitContext#oldRecord
-   * @type {record.Record} oldRecord - The old record before it was modified
+   * The old record before it was modified
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
    *
+   * @type {record.RecordReadonly} oldRecord
    * @readonly
+   *
+   * @since 2015.2
    */
   oldRecord: record.RecordReadonly;
 }
 
-/**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070.html}
- */
 declare namespace BeforeSubmitContext {
 
   /**
+   * Holds the string values for user event execution contexts
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992596}
+   *
    * @enum {string}
+   *
+   * @since 2015.2
    */
   export enum UserEventType {
     COPY = 'copy',
@@ -151,44 +181,57 @@ declare namespace BeforeSubmitContext {
 }
 
 /**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html}
+ * Defines the function that is executed after a record is submitted.
+ * The afterSubmit operation is useful for performing any actions that need to occur following a write operation on a record. Examples of these actions include email notification, browser redirect, creation of dependent records, and synchronization with an external system.
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
  *
  * @since 2015.2
  */
 interface AfterSubmitContext {
 
   /**
-   * @name AfterSubmitContext#type
-   * @type {string} type - The action type that triggered this event
+   * The action type that triggered this event
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
    *
+   * @type {string} type
    * @readonly
+   *
+   * @since 2015.2
    */
-  type: AfterSubmitContext.UserEventType
+  type: AfterSubmitContext.UserEventType;
 
   /**
-   * @name AfterSubmitContext#newRecord
-   * @type {record.Record} newRecord - The new record being loaded
+   * The new record
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
    *
+   * @type {record.RecordReadonly} newRecord
    * @readonly
+   *
+   * @since 2015.2
    */
   newRecord: record.RecordReadonly;
 
   /**
-   * @name AfterSubmitContext#oldRecord
-   * @type {record.Record} oldRecord - The old record before it was modified
+   * The old record before it was modified
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
    *
+   * @type {record.RecordReadonly} oldRecord
    * @readonly
+   *
+   * @since 2015.2
    */
   oldRecord: record.RecordReadonly;
 }
 
-/**
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281.html}
- */
 declare namespace AfterSubmitContext {
 
   /**
+   * Holds the string values for user event execution contexts
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992596}
+   *
    * @enum {string}
+   *
+   * @since 2015.2
    */
   export enum UserEventType {
     COPY = 'copy',

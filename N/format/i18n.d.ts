@@ -1,6 +1,6 @@
 /**
  * SuiteScript i18n module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1543861741.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1543861741}
  *
  * @module N/format/i18n
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface i18n {
 
   /**
    * Spells out positive and negative number as a string in a specific language
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    *
    * @param {Object} options
    * @param {string} options.number The number to be spelled out in a string
@@ -21,11 +21,11 @@ interface i18n {
   spellOut(options: {
     number: string,
     locale: string,
-  }): string
+  }): string;
 
   /**
    * Create i18n.CurrencyFormatter object to format numbers into currency strings
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
    *
    * @param {Object} options
    * @param {string} options.currency Code of the currency that is used by formatter
@@ -39,11 +39,11 @@ interface i18n {
    */
   getCurrencyFormatter(options: {
     currency: string,
-  }): i18n.CurrencyFormatter
+  }): i18n.CurrencyFormatter;
 
   /**
    * Create i18n.NumberFormatter object to format numbers into strings
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023913.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023913}
    *
    * @param {Object} options
    * @param {string} options.groupSeparator Indicates the group separator
@@ -59,14 +59,14 @@ interface i18n {
     decimalSeparator: string,
     precision: number,
     negativeNumberFormat: i18n.NegativeNumberFormat,
-  }): i18n.NumberFormatter
+  }): i18n.NumberFormatter;
 }
 
 declare namespace i18n {
 
   /**
    * Enum for Negative Number Format
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558031974.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558031974}
    *
    * @enum {string}
    *
@@ -79,7 +79,7 @@ declare namespace i18n {
 
   /**
    * Enum for Currency
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558027087.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558027087}
    *
    * @enum {string}
    *
@@ -537,11 +537,11 @@ declare namespace i18n {
    * @const
    * @type {number}
    */
-  export const PhoneFieldMaxLength: number
+  export const PhoneFieldMaxLength: number;
 
   /**
    * Return a new instance of CurrencyFormatter
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558024548.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558024548}
    *
    * @protected
    * @classDescription The object that formats the number to currency string
@@ -551,12 +551,18 @@ declare namespace i18n {
    * @since 2019.2
    */
   export interface CurrencyFormatter {
+
+    /**
+     * @type {string}
+     */
+    currency: i18n.Currency | string;
+
     // todo: Add methods
   }
 
   /**
    * Return a new instance of NumberFormatter
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558026406.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558026406}
    *
    * @protected
    * @classDescription The object that formats number to string
@@ -571,7 +577,7 @@ declare namespace i18n {
 
   /**
    * Return a new instance of PhoneNumberFormatter
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158626649783.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158626649783}
    *
    * @protected
    * @classDescription The object that formats the phone number to string

@@ -1,25 +1,31 @@
+/**
+ * SuiteScript Suitelet Script Context
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1515615411)
+ */
+
 /// <reference path="../N/http.d.ts" />
 
 /**
- * SuiteScript Suitelet Script Context
- *
- * @NApiVersion 2.x
+ * Defines the Suitelet script trigger point
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407987288)
  */
 interface OnRequestContext {
 
   /**
-   * @name SuiteletContext#request
-   * @type {http.ServerRequest} request - The incoming request object
+   * The incoming request
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407987288)
    *
+   * @type {http.ServerRequest} request - The incoming request object
    * @readonly
    */
-  request: http.ServerRequest
+  request: http.ServerRequest;
 
   /**
-   * @name SuiteletContext#response
-   * @type {http.ServerResponse} response - The outgoing response object
+   * The Suitelet response
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407987288)
    *
+   * @type {http.ServerResponse} response - The outgoing response object
    * @readonly
    */
-  response: http.ServerResponse
+  response: http.ServerResponse;
 }

@@ -1,6 +1,6 @@
 /**
  * SuiteScript transaction module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413162576.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413162576}
  *
  * @module N/transaction
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface transaction {
 
   /**
    * Method used to void a transaction record object and return an id that indicates the type of void performed
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
    *
    * @param {Object} options
    * @param {transaction.Type|string} options.type record type to be voided
@@ -25,7 +25,7 @@ interface transaction {
   void(options: {
     type: transaction.Type | string,
     id: number | string,
-  }): number
+  }): number;
 }
 
 declare namespace transaction {
@@ -34,7 +34,7 @@ declare namespace transaction {
   
     /!**
      * Method used to void a transaction record object asynchronously and return an ID that indicates the type of void performed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
      *
      * @param {Object} options
      * @param {string} options.type record type to be voided
@@ -53,10 +53,9 @@ declare namespace transaction {
 
   /**
    * Enumeration that holds the string values for supported transaction record types
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897}
    *
    * @enum {string}
-   * @readonly
    *
    * @since 2015.2
    */

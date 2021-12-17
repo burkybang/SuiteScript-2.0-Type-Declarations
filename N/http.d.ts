@@ -4,7 +4,7 @@
 
 /**
  * SuiteScript http module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296361104.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296361104}
  *
  * @module N/http
  * @NApiVersion 2.x
@@ -58,7 +58,7 @@ interface http {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   post: {
 
@@ -111,7 +111,7 @@ interface http {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   put: {
 
@@ -164,7 +164,7 @@ interface http {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   delete: {
 
@@ -213,7 +213,7 @@ interface http {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 
   request: {
 
@@ -270,14 +270,14 @@ interface http {
         [p: string]: string | number,
       },
     }): Promise<http.ClientResponse>
-  }
+  };
 }
 
 declare namespace http {
   /**
    * Enum describing available HTTP methods
+   *
    * @enum {string}
-   * @readonly
    */
   export enum Method {
     GET = 'GET',
@@ -288,9 +288,9 @@ declare namespace http {
   }
 
   /**
-   * Enum describing available commerce API cache durations.
+   * Enum describing available commerce API cache durations
+   *
    * @enum {string}
-   * @readonly
    */
   export enum CacheDuration {
     UNIQUE = 'UNIQUE',
@@ -301,8 +301,8 @@ declare namespace http {
 
   /**
    * Enum describing available redirect types
+   *
    * @enum {string}
-   * @readonly
    */
   export enum RedirectType {
     RECORD = 'RECORD',
@@ -325,46 +325,49 @@ declare namespace http {
   export interface ClientResponse {
 
     /**
-     * Response code.
-     * @name ClientResponse#code
+     * Response code
+     *
      * @type {number}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    code: number
+    code: number;
 
     /**
-     * Response headers.
-     * @name ClientResponse#headers
+     * Response headers
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Response body.
-     * @name ClientResponse#body
+     * Response body
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    body: string
+    body: string;
 
     /**
      * Returns the object type name (http.ClientResponse)
      *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -379,73 +382,80 @@ declare namespace http {
   export interface ServerRequest {
 
     /**
-     * Server request headers.
-     * @name ServerRequest#headers
+     * Server request headers
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Server request clientIpAddress.
-     * @name ServerRequest#clientIpAddress
+     * Server request clientIpAddress
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    clientIpAddress: string
+    clientIpAddress: string;
 
     /**
-     * Server request parameters.
-     * @name ServerRequest#parameters
+     * Server request parameters
+     *
      * @type {Object<string, string>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     parameters: {
       [p: string]: string,
-    }
+    };
 
     /**
-     * Server request files.
-     * @name ServerRequest#files
+     * Server request files
+     *
      * @type {Object<string, *>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     files: {
       [p: string]: any,
-    }
+    };
 
     /**
-     * Server request body.
-     * @name ServerRequest#body
+     * Server request body
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    body: string
+    body: string;
 
     /**
-     * Server request HTTP method.
-     * @name ServerRequest#method
+     * Server request HTTP method
+     *
      * @type {Method}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method
+    method: Method;
 
     /**
-     * Server request URL.
-     * @name ServerRequest#url
+     * Server request URL
+     *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    url: string
+    url: string;
 
     /**
      * Returns the number of lines in a sublist.
@@ -456,7 +466,7 @@ declare namespace http {
      */
     getLineCount(options: {
       group: string,
-    }): number
+    }): number;
 
     /**
      * Returns the value of a sublist line item.
@@ -471,20 +481,20 @@ declare namespace http {
       group: string,
       name: string,
       line: number,
-    }): string
+    }): string;
 
     /**
      * Returns the object type name (http.ServerRequest)
      *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -499,16 +509,16 @@ declare namespace http {
   export interface ServerResponse {
 
     /**
-     * Server response headers.
-     * @name ServerResponse#headers
+     * Server response headers. key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
+     *
      * @type {Object<string, string>}
-     * @return {Object} key/value pairs with all the headers; if multiple values are assigned to one header name, they are returned as an array
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     headers: {
       [p: string]: string,
-    }
+    };
 
     /**
      * Sets the value of a response header.
@@ -522,7 +532,7 @@ declare namespace http {
     setHeader(options: {
       name: string,
       value: string,
-    }): void
+    }): void;
 
     /**
      * Adds a header to the response. If this header has already been set, this will add another line for that header.
@@ -536,7 +546,7 @@ declare namespace http {
     addHeader(options: {
       name: string,
       value: string,
-    }): void
+    }): void;
 
     /**
      * Sets the redirect URL by resolving to a NetSuite resource. Note that all parameters must be prefixed with custparam.
@@ -561,7 +571,7 @@ declare namespace http {
       parameters?: {
         [p: string]: string,
       },
-    }): void
+    }): void;
 
     /**
      * Write information (text/xml/html) to the response.
@@ -570,7 +580,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
      */
-    write(output: string): void
+    write(output: string): void;
 
     /**
      * Write information (text/xml/html) to the response.
@@ -582,7 +592,7 @@ declare namespace http {
      */
     write(options: {
       output: string,
-    }): void
+    }): void;
 
     /**
      * Write line information (text/xml/html) to the response.
@@ -594,7 +604,7 @@ declare namespace http {
      */
     writeLine(options: {
       output: string,
-    }): void
+    }): void;
 
     /**
      * Generates a page using a page element object.
@@ -602,7 +612,7 @@ declare namespace http {
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    writePage(assistant: serverWidget.Assistant): void
+    writePage(assistant: serverWidget.Assistant): void;
 
     /**
      * Generates a page using a page element object.
@@ -610,7 +620,7 @@ declare namespace http {
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    writePage(form: serverWidget.Form): void
+    writePage(form: serverWidget.Form): void;
 
     /**
      * Generates a page using a page element object.
@@ -618,7 +628,7 @@ declare namespace http {
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    writePage(list: serverWidget.List): void
+    writePage(list: serverWidget.List): void;
 
     /**
      * Generates a page using a page element object.
@@ -629,7 +639,7 @@ declare namespace http {
      */
     writePage(options: {
       pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
-    }): void
+    }): void;
 
     /**
      * Write a file to the response.
@@ -643,7 +653,7 @@ declare namespace http {
     writeFile(options: {
       file: file.File,
       isInline?: boolean,
-    }): void
+    }): void;
 
     /**
      * Returns the value for a header returned in the response.
@@ -654,7 +664,7 @@ declare namespace http {
      */
     getHeader(options: {
       name: string,
-    }): string | string[]
+    }): string | string[];
 
     /**
      * Generates and renders a PDF directly to the response.
@@ -666,7 +676,7 @@ declare namespace http {
      */
     renderPdf(options: {
       xmlString: string,
-    }): void
+    }): void;
 
     /**
      * Sets CDN caching for a period of time.
@@ -677,18 +687,18 @@ declare namespace http {
      */
     setCdnCacheable(options: {
       type: CacheDuration,
-    }): void
+    }): void;
 
     /**
      * Returns the object type name (http.ServerResponse)
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 }

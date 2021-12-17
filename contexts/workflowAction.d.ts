@@ -1,27 +1,68 @@
-/// <reference path="../N/record.d.ts" />
-
 /**
  * SuiteScript Workflow Action Script Context
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516394504}
+ */
+
+/// <reference path="../N/record.d.ts" />
+/// <reference path="../N/ui/serverWidget.d.ts" />
+
+/**
+ * Defines a Workflow Action script trigger point
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
  *
- * @NApiVersion 2.x
+ * @since 2016.1
  */
 interface OnActionContext {
 
   /**
    * The new record. Saving is not permitted
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
    *
-   * @type {record.Record}
-   *
+   * @type {record.RecordReadonly}
    * @readonly
+   *
+   * @since 2016.1
    */
   newRecord: record.RecordReadonly;
 
   /**
    * The old record. Saving is not permitted
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
    *
-   * @type {record.Record}
-   *
+   * @type {record.RecordReadonly}
    * @readonly
+   *
+   * @since 2016.1
    */
   oldRecord: record.RecordReadonly;
+
+  /**
+   * The current form that the script uses to interact with the record. This parameter is available only in the beforeLoad context.
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   *
+   * @type {serverWidget.Form}
+   *
+   * @since 2016.2
+   */
+  form?: serverWidget.Form;
+
+  /**
+   * An event type, such as create, edit, view, or delete
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   *
+   * @type {string}
+   *
+   * @since 2016.2
+   */
+  type?: string;
+
+  /**
+   * The internal ID of the workflow that calls the script
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   *
+   * @type {number}
+   *
+   * @since 2016.2
+   */
+  workflowId?: number;
 }

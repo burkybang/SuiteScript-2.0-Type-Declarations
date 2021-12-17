@@ -1,6 +1,6 @@
 /**
  * SuiteScript portlet module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4473510730.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4473510730}
  *
  * @module N/portlet
  * @NApiVersion 2.x
@@ -15,7 +15,7 @@ interface portlet {
    *
    * @since 2016.1
    */
-  refresh(): void
+  refresh(): void;
 
   /**
    * Causes a FORM type portlet to be immediately resized.
@@ -25,5 +25,5 @@ interface portlet {
    *
    * @since 2016.1
    */
-  resize(): void
+  resize(): void;
 }

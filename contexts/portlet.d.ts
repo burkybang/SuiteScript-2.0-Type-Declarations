@@ -1,80 +1,110 @@
+/**
+ * SuiteScript Portlet Script Context
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1515620357)
+ */
+
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
- * SuiteScript Portlet Script Context
+ * Defines the portlet script trigger point
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
  *
- * @NApiVersion 2.x
+ * @since 2015.2
  */
-
 interface PortletParams {
+
   /**
    * The portlet object used for rendering
-   * @type {Portlet}
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
    *
+   * @type {Portlet}
    * @readonly
+   *
+   * @since 2015.2
    */
-  portlet: PortletParams.Portlet
+  portlet: PortletParams.Portlet;
 
   /**
    * The column index for the portlet on the dashboard (1=left, 2=center, 3=right)
-   * @type {1|2|3}
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
    *
+   * @type {1|2|3}
    * @readonly
+   *
+   * @since 2015.2
    */
-  column: 1 | 2 | 3
+  column: 1 | 2 | 3;
 
   /**
    * The customer ID for the selected customer
-   * @type {string}
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
    *
+   * @type {string}
    * @readonly
+   *
+   * @since 2015.2
    */
-  entity: string
+  entity: string;
 }
 
 declare namespace PortletParams {
 
   /**
-   * Scriptable Portlet.
+   * Scriptable Portlet
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671201924)
    *
-   * @protected
-   * @constructor
+   * @since 2016.2
    */
   export interface Portlet {
 
     /**
-     * @name Portlet#title
-     * @type {string}
-     */
-    title: string
-
-    /**
-     * @name Portlet#html
-     * @type {string}
-     */
-    html: string
-
-    /**
-     * file Id for Portlet form script
+     * The title of the portlet
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671239839)
      *
-     * @name Portlet#clientScriptFileId
+     * @type {string}
+     *
+     * @since 2016.2
+     */
+    title: string;
+
+    /**
+     * The complete HTML contents of the portlet
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671250782)
+     *
+     * @type {string}
+     *
+     * @since 2016.2
+     */
+    html: string;
+
+    /**
+     * File Id for Portlet form script
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671255061)
+     *
      * @type {number}
+     *
+     * @since 2016.2
      */
-    clientScriptFileId: number
+    clientScriptFileId: number;
 
     /**
-     * file Path for Portlet form script
+     * File Path for Portlet form script
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671252102)
      *
-     * @name Portlet#clientScriptModulePath
      * @type {string}
+     *
+     * @since 2016.2
      *
      * @example 'SuiteScripts/client_script.js' - Absolute path
+     * @example 'SuiteScripts/client_script' - Absolute path
      * @example './client_script.js' - Relative path
+     * @example './client_script' - Relative path
      */
-    clientScriptModulePath: string
+    clientScriptModulePath: string;
 
     /**
      * Add a Column to the Portlete
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671258932)
      *
      * @param {Object} options
      * @param {string} options.id
@@ -82,16 +112,19 @@ declare namespace PortletParams {
      * @param {string} options.label
      * @param {string} [options.align]
      * @return {ListColumn}
+     *
+     * @since 2016.2
      */
     addColumn(options: {
       id: string,
       type: string,
       label: string,
       align?: string,
-    }): serverWidget.ListColumn
+    }): serverWidget.ListColumn;
 
     /**
      * Add an Edit or Edit/View column
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671382437)
      *
      * @param {Object} options
      * @param {string} options.column
@@ -101,6 +134,8 @@ declare namespace PortletParams {
      * @param {string} [options.linkParam]
      * @param {string} [options.linkParamName]
      * @return {serverWidget.ListColumn}
+     *
+     * @since 2016.2
      */
     addEditColumn(options: {
       column: string,
@@ -109,10 +144,11 @@ declare namespace PortletParams {
       link?: string,
       linkParam?: string,
       linkParamName?: string,
-    }): serverWidget.ListColumn
+    }): serverWidget.ListColumn;
 
     /**
      * Add a field to the form
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671374019)
      *
      * @param {Object} options
      * @param {string} options.id
@@ -120,68 +156,82 @@ declare namespace PortletParams {
      * @param {string} options.label
      * @param {string} [options.source]
      * @return {Field}
+     *
+     * @since 2016.2
      */
     addField(options: {
       id: string,
       type: string,
       label: string,
       source?: string,
-    }): serverWidget.Field
+    }): serverWidget.Field;
 
     /**
      * Add a field to the form
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671361504)
      *
      * @param {Object} options
      * @param {string} options.text
      * @param {string} [options.url]
      * @param {number} [options.align]
      * @return {Portlet}
+     *
+     * @since 2016.2
      */
     addLine(options: {
       text: string,
       url?: string,
       align?: string,
-    }): Portlet
+    }): Portlet;
 
     /**
      * Add a row (Array of name/value pairs or search.Result)
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671356858)
      *
      * @param {Object} options
      * @param {search.Result|Object<string, string>} options.row
      * @return {Portlet}
+     *
+     * @since 2016.2
      */
     addRow(options: {
       row: search.Result | {
         [p: string]: string,
       },
-    }): Portlet
+    }): Portlet;
+
+    /**
+     * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671342323)
+     *
+     * @param {Object} options
+     * @param {search.Result[]|Object<string, string>[]} options.rows
+     * @return {Portlet}
+     *
+     * @since 2016.2
+     */
+    addRows(options: {
+      rows: search.Result[] | {
+        [p: string]: string,
+      }[],
+    }): Portlet;
 
     /**
      * Add a field to the form
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671280175)
      *
      * @param {Object} options
      * @param {string} options.url
      * @param {string} [options.label]
      * @param {string} [options.target]
      * @return {serverWidget.Button}
+     *
+     * @since 2016.2
      */
     setSubmitButton(options: {
       url: string,
       label?: string,
       target?: string,
-    }): serverWidget.Button
-
-    /**
-     * Adds multiple rows (Array of search.Result or name/value pair Arrays)
-     *
-     * @param {Object} options
-     * @param {search.Result[]|Object<string, string>[]} options.rows
-     * @return {Portlet}
-     */
-    addRows(options: {
-      rows: search.Result[] | {
-        [p: string]: string,
-      }[],
-    }): Portlet
+    }): serverWidget.Button;
   }
 }

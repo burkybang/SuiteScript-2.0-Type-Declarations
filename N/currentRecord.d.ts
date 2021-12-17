@@ -3,7 +3,7 @@
 
 /**
  * SuiteScript currentRecord module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4625600928.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4625600928}
  *
  * @restriction Client Scripts only
  *
@@ -12,19 +12,36 @@
  */
 interface currentRecord {
 
-  /**
-   * Retrieves a currentRecord object that represents the record active on the current page
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637729624.html}
-   *
-   * @restriction Client Scripts only
-   *
-   * @return {currentRecord.CurrentRecord}
-   *
-   * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
-   *
-   * @since 2016.2
-   */
-  get(): currentRecord.CurrentRecord
+  get: {
+
+    /**
+     * Retrieves a currentRecord object that represents the record active on the current page
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637729624}
+     *
+     * @restriction Client Scripts only
+     *
+     * @return {currentRecord.CurrentRecord}
+     *
+     * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
+     *
+     * @since 2016.2
+     */
+    (): currentRecord.CurrentRecord;
+
+    /**
+     * Retrieves a promise for a currentRecord object that represents the record active on the current page
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637734729}
+     *
+     * @restriction Client Scripts only
+     *
+     * @return {Promise<currentRecord.CurrentRecord>}
+     *
+     * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
+     *
+     * @since 2016.2
+     */
+    promise(): Promise<currentRecord.CurrentRecord>;
+  };
 }
 
 declare namespace currentRecord {
@@ -33,36 +50,36 @@ declare namespace currentRecord {
 
     /**
      * The internal ID of the record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576907.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576907}
      *
      * @type {number}
      * @readonly
      */
-    id: number
+    id: number;
 
     /**
      * The type of the record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576636.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576636}
      *
      * @restriction This property is not available for subrecords
      *
      * @type {record.Type|string}
      * @readonly
      */
-    type: record.Type | string
+    type: record.Type | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576809.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576809}
      *
      * @type {boolean}
      * @readonly
      */
-    isDynamic: boolean
+    isDynamic: boolean;
 
     /**
      * Return value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256}
      *
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
@@ -72,11 +89,11 @@ declare namespace currentRecord {
      */
     getValue(
       fieldId: string,
-    ): string | string[] | number | Date | boolean
+    ): string | string[] | number | Date | boolean;
 
     /**
      * Return value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -87,11 +104,11 @@ declare namespace currentRecord {
      */
     getValue(options: {
       fieldId: string,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
 
     /**
      * Set value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
      *
      * @param {string} fieldId
      * @param {string|number|(string|number)[]|Date|boolean} value
@@ -106,11 +123,11 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    ): this
+    ): this;
 
     /**
      * Set value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -126,11 +143,11 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): this
+    }): this;
 
     /**
      * Get value of the field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
      *
      * @param {string} fieldId
      * @return {string|string[]}
@@ -139,11 +156,11 @@ declare namespace currentRecord {
      */
     getText(
       fieldId: string,
-    ): string | string[]
+    ): string | string[];
 
     /**
      * Get value of the field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -153,11 +170,11 @@ declare namespace currentRecord {
      */
     getText(options: {
       fieldId: string,
-    }): string | string[]
+    }): string | string[];
 
     /**
      * Set value of the field by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
      *
      * @param {string} fieldId
      * @param {string|string[]} text ----- The text or texts to change the field value to.
@@ -171,11 +188,11 @@ declare namespace currentRecord {
     setText(
       fieldId: string,
       text: string | string[],
-    ): this
+    ): this;
 
     /**
      * Set value of the field by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -194,11 +211,11 @@ declare namespace currentRecord {
       text: string | string[],
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): this
+    }): this;
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586103.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586103}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -212,11 +229,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       value: string | string[] | number | Date | boolean,
-    }): number
+    }): number;
 
     /**
      * Return value of a sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -231,11 +248,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       line: number,
-    ): string | string[] | number | Date | boolean
+    ): string | string[] | number | Date | boolean;
 
     /**
      * Return value of a sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -251,11 +268,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
 
     /**
      * Return value of a sublist field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -271,22 +288,22 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string
+    }): string;
 
     /**
      * Return line count of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890}
      *
      * @param {string} sublistId
      * @return {number}
      */
     getLineCount(
       sublistId: string,
-    ): number
+    ): number;
 
     /**
      * Return line count of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -294,11 +311,11 @@ declare namespace currentRecord {
      */
     getLineCount(options: {
       sublistId: string,
-    }): number
+    }): number;
 
     /**
      * Insert a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -316,11 +333,11 @@ declare namespace currentRecord {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): this
+    }): this;
 
     /**
      * Remove a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -338,11 +355,11 @@ declare namespace currentRecord {
       sublistId: string,
       line: number,
       ignoreRecalc?: boolean,
-    }): this
+    }): this;
 
     /**
      * Select a new line at the end of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
      *
      * @restriction only available in dynamic record
      *
@@ -354,11 +371,11 @@ declare namespace currentRecord {
      */
     selectNewLine(
       sublistId: string,
-    ): this
+    ): this;
 
     /**
      * Select a new line at the end of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
      *
      * @restriction only available in dynamic record
      *
@@ -371,11 +388,11 @@ declare namespace currentRecord {
      */
     selectNewLine(options: {
       sublistId: string,
-    }): this
+    }): this;
 
     /**
      * Cancel the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
      *
      * @restriction only available in dynamic record
      *
@@ -387,11 +404,11 @@ declare namespace currentRecord {
      */
     cancelLine(
       sublistId: string,
-    ): this
+    ): this;
 
     /**
      * Cancel the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
      *
      * @restriction only available in dynamic record
      *
@@ -404,11 +421,11 @@ declare namespace currentRecord {
      */
     cancelLine(options: {
       sublistId: string,
-    }): this
+    }): this;
 
     /**
      * Commit the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
      *
      * @restriction only available in dynamic record
      *
@@ -420,11 +437,11 @@ declare namespace currentRecord {
      */
     commitLine(
       sublistId: string,
-    ): this
+    ): this;
 
     /**
      * Commit the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
      *
      * @restriction only available in dynamic record
      *
@@ -437,11 +454,11 @@ declare namespace currentRecord {
      */
     commitLine(options: {
       sublistId: string,
-    }): this
+    }): this;
 
     /**
      * Return the line number of the currently selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731}
      *
      * @restriction only available in dynamic record
      *
@@ -452,11 +469,11 @@ declare namespace currentRecord {
      */
     getCurrentSublistIndex(
       sublistId: string,
-    ): number
+    ): number;
 
     /**
      * Return value of a sublist field on the current selected sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      *
      * @restriction only available in dynamic record
      *
@@ -470,11 +487,11 @@ declare namespace currentRecord {
     getCurrentSublistValue(
       sublistId: string,
       fieldId: string,
-    ): string | string[] | number | Date | boolean
+    ): string | string[] | number | Date | boolean;
 
     /**
      * Return value of a sublist field on the current selected sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      *
      * @restriction only available in dynamic record
      *
@@ -489,11 +506,11 @@ declare namespace currentRecord {
     getCurrentSublistValue(options: {
       sublistId: string,
       fieldId: string,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
 
     /**
      * Set the value for field in the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -508,11 +525,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       value: string | number | (string | number)[] | Date | boolean,
-    ): this
+    ): this;
 
     /**
      * Set the value for field in the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -532,11 +549,11 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): this
+    }): this;
 
     /**
      * Return the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
      *
      * @restriction only available in dynamic record
      *
@@ -550,11 +567,11 @@ declare namespace currentRecord {
     getCurrentSublistText(
       sublistId: string,
       fieldId: string,
-    ): string
+    ): string;
 
     /**
      * Return the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
      *
      * @restriction only available in dynamic record
      *
@@ -569,11 +586,11 @@ declare namespace currentRecord {
     getCurrentSublistText(options: {
       sublistId: string,
       fieldId: string,
-    }): string
+    }): string;
 
     /**
      * Set the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
      *
      * @restriction only available in dynamic record
      *
@@ -594,11 +611,11 @@ declare namespace currentRecord {
       text: string,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    ): this
+    ): this;
 
     /**
      * Set the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
      *
      * @restriction only available in dynamic record
      *
@@ -620,11 +637,11 @@ declare namespace currentRecord {
       text: string,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): this
+    }): this;
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
      *
      * @restriction only available in dynamic record
      *
@@ -638,11 +655,11 @@ declare namespace currentRecord {
     selectLine(
       sublistId: string,
       line: number,
-    ): this
+    ): this;
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
      *
      * @restriction only available in dynamic record
      *
@@ -657,27 +674,11 @@ declare namespace currentRecord {
     selectLine(options: {
       sublistId: string,
       line: number,
-    }): this
-
-    /**
-     * Save record updates to the system
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323.html}
-     *
-     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
-     *
-     * @param {Object} [options]
-     * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-     * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {number} id of submitted record
-     */
-    save(options?: {
-      enableSourcing?: boolean,
-      ignoreMandatoryFields?: boolean,
-    }): number
+    }): this;
 
     /**
      * Return a value indicating if the field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -685,11 +686,11 @@ declare namespace currentRecord {
      */
     hasSubrecord(options: {
       fieldId: string,
-    }): boolean
+    }): boolean;
 
     /**
      * Get the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -702,11 +703,11 @@ declare namespace currentRecord {
      */
     getSubrecord(options: {
       fieldId: string,
-    }): CurrentRecord
+    }): CurrentRecord;
 
     /**
      * Remove the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -714,11 +715,11 @@ declare namespace currentRecord {
      */
     removeSubrecord(options: {
       fieldId: string,
-    }): this
+    }): this;
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581548.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581548}
      *
      * @restriction only available in deferred dynamic record
      *
@@ -732,11 +733,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): boolean
+    }): boolean;
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582063.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582063}
      *
      * @restriction only available in dynamic record
      *
@@ -748,11 +749,11 @@ declare namespace currentRecord {
     hasCurrentSublistSubrecord(options: {
       sublistId: string,
       fieldId: string,
-    }): boolean
+    }): boolean;
 
     /**
      * Get the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
      *
      * @restriction only available in dynamic record
      *
@@ -764,11 +765,11 @@ declare namespace currentRecord {
     getCurrentSublistSubrecord(options: {
       sublistId: string,
       fieldId: string,
-    }): CurrentRecord
+    }): CurrentRecord;
 
     /**
      * Remove the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
      *
      * @restriction only available in dynamic record
      *
@@ -780,29 +781,29 @@ declare namespace currentRecord {
     removeCurrentSublistSubrecord(options: {
       sublistId: string,
       fieldId: string,
-    }): this
+    }): this;
 
     /**
      * Return array of names of all body fields, including machine header field and matrix header fields
      *
      * @return {string[]}
      */
-    getFields(): string[]
+    getFields(): string[];
 
     /**
      * Returns the specified sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811}
      *
      * @param {string} sublistId
      * @return {Sublist}
      */
     getSublist(
       sublistId: string,
-    ): Sublist
+    ): Sublist;
 
     /**
      * Returns the specified sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -810,11 +811,11 @@ declare namespace currentRecord {
      */
     getSublist(options: {
       sublistId: string,
-    }): Sublist
+    }): Sublist;
 
     /**
      * Return field object from record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044}
      *
      * @param {string} fieldId
      * @return {Field}
@@ -823,11 +824,11 @@ declare namespace currentRecord {
      */
     getField(
       fieldId: string,
-    ): Field
+    ): Field;
 
     /**
      * Return field object from record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -837,11 +838,11 @@ declare namespace currentRecord {
      */
     getField(options: {
       fieldId: string,
-    }): Field
+    }): Field;
 
     /**
      * Return field object from record's sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583684.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583684}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -856,11 +857,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): Field
+    }): Field;
 
     /**
      * Set the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -879,11 +880,11 @@ declare namespace currentRecord {
       column: number,
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
-    }): this
+    }): this;
 
     /**
      * Get the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584433.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584433}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -897,11 +898,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
 
     /**
      * Set the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
      *
      * @restriction only available in deferred dynamic record
      *
@@ -922,11 +923,11 @@ declare namespace currentRecord {
       column: number,
       line: number,
       value: string | number | (string | number)[] | Date | boolean
-    }): this
+    }): this;
 
     /**
      * Get the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584028.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584028}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -942,11 +943,11 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
 
     /**
      * Get the field for the specified header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584607.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584607}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -960,11 +961,11 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): Field
+    }): Field;
 
     /**
      * Get the field for the specified sublist in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584261.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584261}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -980,11 +981,11 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-    }): Field
+    }): Field;
 
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586269.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586269}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -1001,11 +1002,11 @@ declare namespace currentRecord {
       fieldId: string,
       value: string | string[] | number | Date | boolean,
       column: number,
-    }): number
+    }): number;
 
     /**
      * Returns the number of columns for the specified matrix.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584779.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584779}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -1017,11 +1018,11 @@ declare namespace currentRecord {
     getMatrixHeaderCount(options: {
       sublistId: string,
       fieldId: string,
-    }): number
+    }): number;
 
     /**
      * Set the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
      *
      * @restriction only available in dynamic record
      *
@@ -1043,11 +1044,11 @@ declare namespace currentRecord {
       value: string | number | (string | number)[] | Date | boolean,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
-    }): this
+    }): this;
 
     /**
      * Get the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585905.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585905}
      *
      * @restriction only available in dynamic record
      *
@@ -1063,7 +1064,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): string | string[] | number | Date | boolean
+    }): string | string[] | number | Date | boolean;
   }
 
   export interface CurrentRecord extends CurrentRecordReadonly {
@@ -1087,7 +1088,7 @@ declare namespace currentRecord {
 
   /**
    * Encapsulates a body or sublist field on the current record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846}
    *
    * @since 2016.2
    */
@@ -1095,120 +1096,110 @@ declare namespace currentRecord {
 
     /**
      * The label of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794248033.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794248033}
      *
-     * @name Field#label
      * @type {string}
      *
      * @since 2016.2
      */
-    label: string
+    label: string;
 
     /**
      * The internal id of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794247756.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794247756}
      *
-     * @name Field#id
      * @type {string}
      * @readonly
      *
      * @since 2016.2
      */
-    id: string
+    id: string;
 
     /**
      * The type of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794225547.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794225547}
      *
-     * @name Field#FieldType
      * @type {serverWidget.FieldType}
      * @readonly
      *
      * @since 2016.2
      */
-    type: Lowercase<serverWidget.FieldType>
+    type: Lowercase<serverWidget.FieldType>;
 
     /**
      * The sublist ID of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1490026603.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1490026603}
      *
-     * @name Field#sublistId
      * @type {string}
      * @readonly
      *
      * @since 2016.2
      */
-    sublistId?: string
+    sublistId?: string;
 
     /**
      * Is the field mandatory?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794223029.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794223029}
      *
-     * @name Field#isMandatory
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isMandatory: boolean
+    isMandatory: boolean;
 
     /**
      * Is the field disabled?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794215939.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794215939}
      *
-     * @name Field#isDisabled
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isDisabled: boolean
+    isDisabled: boolean;
 
     /**
      * Is the field a popup list field?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794222162.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794222162}
      *
-     * @name Field#isPopup
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isPopup: boolean
+    isPopup: boolean;
 
     /**
      * Is the field set to display on the record form?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214205.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214205}
      *
-     * @name Field#isDisplay
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isDisplay: boolean
+    isDisplay: boolean;
 
     /**
      * Is the field visible on the record form?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214500.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794214500}
      *
-     * @name Field#isVisible
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isVisible: boolean
+    isVisible: boolean;
 
     /**
      * Can the field be edited on the record form?
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794213415.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794213415}
      *
-     * @name Field#isReadOnly
      * @type {boolean}
      *
      * @since 2016.2
      */
-    isReadOnly: boolean
+    isReadOnly: boolean;
 
     /**
      * Returns an array of available options on a standard or custom select, multiselect, or radio field as key-value pairs
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834781098.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834781098}
      *
      * @restriction Only the first 1,000 available options are returned in an array. If there are more than 1,000 available options, an empty array [] is returned.
      *
@@ -1227,11 +1218,11 @@ declare namespace currentRecord {
     }): {
       value: string,
       text: string,
-    }[]
+    }[];
 
     /**
      * Inserts an option into certain types of select and multiselect fields
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098}
      *
      * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
      *
@@ -1243,11 +1234,11 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    insertSelectOption(value: string | number, text: string): void
+    insertSelectOption(value: string | number, text: string): void;
 
     /**
      * Inserts an option into certain types of select and multiselect fields
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098}
      *
      * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
      *
@@ -1265,11 +1256,11 @@ declare namespace currentRecord {
       value: string | number,
       text: string,
       isSelected?: boolean,
-    }): void
+    }): void;
 
     /**
      * Removes a select option from certain types of select and multiselect fields
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4780315055.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4780315055}
      *
      * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
      *
@@ -1283,12 +1274,12 @@ declare namespace currentRecord {
      */
     removeSelectOption(options: {
       value: string | number,
-    }): void
+    }): void;
   }
 
   /**
    * Encapsulates a sublist on the current record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846}
    *
    * @since 2016.2
    */
@@ -1296,7 +1287,7 @@ declare namespace currentRecord {
 
     /**
      * Returns a column in the sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036}
      *
      * @param {string} fieldId
      * @return {Column}
@@ -1305,11 +1296,11 @@ declare namespace currentRecord {
      */
     getColumn(
       fieldId: string,
-    ): Column
+    ): Column;
 
     /**
      * Returns a column in the sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1319,56 +1310,56 @@ declare namespace currentRecord {
      */
     getColumn(options: {
       fieldId: string,
-    }): Column
+    }): Column;
 
     /**
      * Returns the internal ID of the sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619218.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619218}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    id: string
+    id: string;
 
     /**
      * Indicates whether the sublist has changed on the current record form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619246.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619246}
      *
      * @type {boolean}
      *
      * @readonly
      * @since 2016.2
      */
-    isChanged: boolean
+    isChanged: boolean;
 
     /**
      * Indicates whether the sublist is displayed on the current record form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619367.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619367}
      *
      * @type {boolean}
      *
      * @readonly
      * @since 2016.2
      */
-    isDisplay: boolean
+    isDisplay: boolean;
 
     /**
      * Returns the sublist type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619432.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619432}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    type: string
+    type: string;
   }
 
   /**
    * Encapsulates a column of a sublist on the current record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619693.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619693}
    *
    * @since 2016.2
    */
@@ -1376,66 +1367,66 @@ declare namespace currentRecord {
 
     /**
      * Returns the internal ID of the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619846.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619846}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    id: string
+    id: string;
 
     /**
      * Indicates whether the column is disabled
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158618597707.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158618597707}
      *
      * @type {boolean}
      *
      * @since 2020.2
      */
-    isDisabled: boolean
+    isDisabled: boolean;
 
     /**
      * Indicates whether the column is mandatory
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158618632629.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158618632629}
      *
      * @type {boolean}
      *
      * @since 2020.2
      */
-    isMandatory: boolean
+    isMandatory: boolean;
 
     /**
      * Returns the internal ID of the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619880.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619880}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    label: string
+    label: string;
 
     /**
      * Returns the internal ID of the standard or custom sublist that contains the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619931.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619931}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    sublistId: string
+    sublistId: string;
 
     /**
      * Returns the column type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501620041.html}
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501620041}
      *
      * @type {string}
      *
      * @readonly
      * @since 2016.2
      */
-    type: string
+    type: string;
   }
 }

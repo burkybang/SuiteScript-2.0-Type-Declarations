@@ -1,115 +1,154 @@
-/// <reference path="../typings.d.ts" />
-
 /**
  * SuiteScript Map/Reduce Script Context
- *
- * @NApiVersion 2.x
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336)
  */
 
+/// <reference path="../typings.d.ts" />
+/// <reference path="../N/search.d.ts" />
+/// <reference path="../N/query.d.ts" />
+/// <reference path="../N/file.d.ts" />
+
 /**
- * Return a new instance of GetInputContext
- * @class
- * @classdesc References the object that contains the input data.
- * @return {GetInputContext}
- * @constructor
+ * References the object that contains the input data
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336)
  *
  * @since 2015.2
  */
 interface GetInputContext {
 
   /**
-   * @name GetInputContext#type
    * @type {'mapreduce.InputContext'} type
    * @readonly
    */
-  type: 'mapreduce.InputContext'
+  type: 'mapreduce.InputContext';
 
   /**
-   * @name GetInputContext#isRestarted
-   * @type {boolean} isRestarted - Indicates whether the getInputData(inputContext) function was invoked again
+   * Indicates whether the getInputData(inputContext) function was invoked again
+   *
+   * @type {boolean} isRestarted
    * @readonly
    */
-  isRestarted: boolean
+  isRestarted: boolean;
 
   /**
-   * @name GetInputContext#objectRefType
-   * @enum {{FILE:'FILE', SEARCH:'SEARCH', QUERY:'QUERY'}} objectRefType
-   * @readonly
+   * @type {{FILE:'FILE', SEARCH:'SEARCH', QUERY:'QUERY'}} objectRefType
    */
   objectRefType: {
     FILE: 'FILE',
     SEARCH: 'SEARCH',
     QUERY: 'QUERY',
-  }
+  };
 
   /**
    * @return {string}
    */
-  toString(): string
+  toString(): string;
 
   /**
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<this>
+  toJSON(): ExcludeMethods<this>;
 }
 
 /**
- * Return a new instance of MapContext
- * @class
- * @classdesc Contains the key/value pairs to process through the map stage.
- * @return {MapContext}
- * @constructor
+ * References the object that contains the input data
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ *
+ * @since 2015.2
+ */
+type GetInputReturn = any[] | { [p: string]: any } |
+  search.Search | GetInputReturnSearchReference |
+  query.Query | GetInputReturnQueryReference |
+  file.File | GetInputContext;
+
+/**
+ * search.Search Object Reference
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ *
+ * @since 2015.2
+ */
+interface GetInputReturnSearchReference {
+  type: 'search';
+  id: number | string;
+}
+
+/**
+ * query.Query Object Reference
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ *
+ * @since 2015.2
+ */
+interface GetInputReturnQueryReference {
+  type: 'query';
+  id: number | string;
+}
+
+/**
+ * Contains the key/value pairs to process through the map stage
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193)
  *
  * @since 2015.2
  */
 interface MapContext {
 
   /**
-   * @name MapContext#type
    * @type {'mapreduce.MapContext'} type
    * @readonly
    */
-  type: 'mapreduce.MapContext'
+  type: 'mapreduce.MapContext';
 
   /**
-   * @name MapContext#key
-   * @type {string} key - The key to be processed through the map stage
+   * The key to be processed through the map stage
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483840988)
+   *
+   * @type {string} key
    * @readonly
    */
-  key: string
+  key: string;
 
   /**
-   * @name MapContext#value
-   * @type {string} value - The value to be processed through the map stage.
+   * The value to be processed through the map stage
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483841695)
+   *
+   * @type {string} value
    * @readonly
    */
-  value: string
+  value: string;
 
   /**
-   * @name MapContext#isRestarted
-   * @type {boolean} isRestarted - Indicates whether the map(mapContext) function was invoked again
+   * Indicates whether the map(mapContext) function was invoked again
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540852756)
+   *
+   * @type {boolean} isRestarted
    * @readonly
    */
-  isRestarted: boolean
+  isRestarted: boolean;
 
   /**
-   * @name MapContext#executionNo
-   * @type {number} executionNo - execution no for current map record, i.e. for which time is the map function for the current record executed
+   * Indicates whether the current invocation of the map(mapContext) function is the first or a subsequent invocation for the current key/value pair
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516217757)
+   *
+   * @type {number} executionNo
    * @readonly
    */
-  executionNo: number
+  executionNo: number;
 
   /**
-   * @name MapContext#errors#iterator
-   * @type {ErrorsIterator} errors - Iterator which provides errors thrown during particular map function execution.
-   *      <pre> context.errors.each((key, error, executionNo) => {...}); </pre>
+   * Iterator which provides errors thrown during particular map function execution
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516209193)
+   *
+   * @type {ErrorsIterator} errors
    * @readonly
+   *
+   * @example
+   *  context.errors.each((key, error, executionNo) => {...});
    */
-  errors: ErrorsIterator
+  errors: ErrorsIterator;
 
   /**
    * Writes the key value pairs
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712995)
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
@@ -119,410 +158,476 @@ interface MapContext {
   write(options: {
     key: string | number,
     value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
-  }): void
+  }): void;
 
   /**
    * @return {string}
    */
-  toString(): string
+  toString(): string;
 
   /**
    * Convert to JSON object
+   *
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<this>
+  toJSON(): ExcludeMethods<this>;
 }
 
 /**
- * Return a new instance of ReduceContext
- * @class
- * @classdesc Contains the key/values groups to process through the reduce stage.
- * @return {ReduceContext}
- * @constructor
+ * Contains the key/values groups to process through the reduce stage
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828)
  *
  * @since 2015.2
  */
 interface ReduceContext {
 
   /**
-   * @name ReduceContext#type
    * @type {'mapreduce.ReduceContext'} type
    * @readonly
    */
-  type: 'mapreduce.ReduceContext'
+  type: 'mapreduce.ReduceContext';
 
   /**
-   * @name ReduceContext#isRestarted
-   * @type {boolean} isRestarted - Indicates whether the Rap(reduceContext) function was invoked again
+   * Indicates whether the Rap(reduceContext) function was invoked again
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540820922)
+   *
+   * @type {boolean} isRestarted
    * @readonly
    */
-  isRestarted: boolean
+  isRestarted: boolean;
 
   /**
-   * @name ReduceContext#executionNo
-   * @type {number} executionNo - execution no for current reduce record list, i.e. for which time is the reduce function for the current reduce record list executed
+   * Indicates whether the current invocation of the reduce(reduceContext) function is the first, second, third, or fourth for the current key and its values
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393633)
+   *
+   * @type {number} executionNo
    * @readonly
    */
-  executionNo: number
+  executionNo: number;
 
   /**
-   * @name ReduceContext#key
-   * @type {string} key - When the map/reduce process includes a map stage, the key is derived from the key written
-   *     by MapContext.write(key,value).
-   When the map stage is skipped, the key depends on the input type:
+   * When the map/reduce process includes a map stage, the key is derived from the key written by MapContext.write(key, value).
+   * When the map stage is skipped, the key depends on the input type
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721827)
+   *
+   * @type {string} key
    * @readonly
    */
-  key: string
+  key: string;
 
   /**
-   * @name MapContext#value
-   * @type {string} values - When the map/reduce process includes a map stage, the values are derived from the values
-   *     written by MapContext.write(key,value).
-   When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type:
+   * When the map/reduce process includes a map stage, the values are derived from the values written by MapContext.write(key,value). When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type.
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721828)
+   *
+   * @type {string} values
    * @readonly
    */
-  values: string[]
+  values: string[];
 
   /**
-   * @name ReduceContext#errors#iterator
-   * @type {ErrorsIterator} errors - Iterator which provides errors thrown during particular reduce function execution.
-   *      <pre> context.errors.iterator().each((key, error, executionNo) => {...}); </pre>
+   * Iterator which provides errors thrown during particular reduce function execution
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393583)
+   *
+   * @type {ErrorsIterator} errors
    * @readonly
+   *
+   * @example
+   *  context.errors.iterator().each((key, error, executionNo) => {...});
    */
-  errors: ErrorsIterator
+  errors: ErrorsIterator;
 
   /**
    * Writes the key/values groups
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721829)
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
    * @param {Object} options.value - The value to write
+   * @return {void}
    */
   write(options: {
     key: string | number,
     value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
-  }): void
+  }): void;
 
   /**
    * @return {string}
    */
-  toString(): string
+  toString(): string;
 
   /**
    * Convert to JSON object
+   *
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<this>
+  toJSON(): ExcludeMethods<this>;
 }
 
 /**
- * Return a new instance of SummarizeContext
- * @class
- * @classdesc Used for accessing Map/Reduce job output and metadata.
- * @return {SummarizeContext}
- * @constructor
+ * Used for accessing Map/Reduce job output and metadata
+ * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629)
  *
  * @since 2015.2
  */
 interface SummarizeContext {
 
   /**
-   * @name SummarizeContext#type
    * @type {'mapreduce.Summary'} type
    * @readonly
    */
-  type: 'mapreduce.Summary'
+  type: 'mapreduce.Summary';
 
   /**
-   * @name SummarizeContext#dateCreated
-   * @type {Date} dateCreated - Time M/R job began running.
+   * Time M/R job began running
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725620)
+   *
+   * @type {Date} dateCreated
    * @readonly
    */
-  dateCreated: Date
+  dateCreated: Date;
 
   /**
-   * @name SummarizeContext#seconds
-   * @type {number} seconds - Total seconds elapsed while running.
+   * Total seconds elapsed while running
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726014)
+   *
+   * @type {number} seconds
    * @readonly
    */
-  seconds: number
+  seconds: number;
 
   /**
-   * @name SummarizeContext#usage
-   * @type {number} usage - Total usage points consumed while running.
+   * Total usage points consumed while running
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726050)
+   *
+   * @type {number} usage
    * @readonly
    */
-  usage: number
+  usage: number;
 
   /**
-   * @name SummarizeContext#concurrency
-   * @type {number} concurrency - Maximum number of queues utilized at the same time while running.
+   * Maximum number of queues utilized at the same time while running
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726080)
+   *
+   * @type {number} concurrency
    * @readonly
    */
-  concurrency: number
+  concurrency: number;
 
   /**
-   * @name SummarizeContext#yields
-   * @type {number} yields - Total number of times yielding the queue while running.
+   * Total number of times yielding the queue while running
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472727250)
+   *
+   * @type {number} yields
    * @readonly
    */
-  yields: number
+  yields: number;
 
   /**
-   * @name SummarizeContext#output#iterator
-   * @type {OutputIterator} output - Iterator which provides keys and values written as output during the REDUCE phase.
-   *      <pre> summary.output.iterator().each((key, value) => {...}) </pre>
+   * Iterator which provides keys and values written as output during the REDUCE phase
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472729410)
+   *
+   * @type {OutputIterator} output
    * @readonly
+   *
+   * @example
+   *  summary.output.iterator().each((key, value) => {...})
    */
-  output: OutputIterator
+  output: OutputIterator;
 
   /**
-   * @name SummarizeContext#inputSummary
-   * @type {InputSummary} inputSummary - Stats about the INPUT stage.
+   * Stats about the INPUT stage
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724)
+   *
+   * @type {InputSummary} inputSummary
    */
-  inputSummary: SummarizeContext.InputSummary
+  inputSummary: SummarizeContext.InputSummary;
 
   /**
-   * @name SummarizeContext#mapSummary
-   * @type {MapSummary} mapSummary - Stats about the MAP stage.
+   * Stats about the MAP stage
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888)
+   *
+   * @type {MapSummary} mapSummary
    */
-  mapSummary: SummarizeContext.MapSummary
+  mapSummary: SummarizeContext.MapSummary;
 
   /**
-   * @name SummarizeContext#reduceSummary
-   * @type {ReduceSummary} reduceSummary - Stats about the REDUCE stage.
+   * Stats about the REDUCE stage
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839)
+   *
+   * @type {ReduceSummary} reduceSummary
    */
-  reduceSummary: SummarizeContext.ReduceSummary
+  reduceSummary: SummarizeContext.ReduceSummary;
 
   /**
    * @return {string}
    */
-  toString(): string
+  toString(): string;
 
   /**
    * Convert to JSON object
+   *
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<this>
+  toJSON(): ExcludeMethods<this>;
 }
 
 declare namespace SummarizeContext {
 
   /**
-   * Return a new instance of SummarizeContext.InputSummary
-   * @class
-   * @classdesc Used for accessing Map/Reduce INPUT stage metadata.
-   * @return {InputSummary}
-   * @constructor
+   * Used for accessing Map/Reduce INPUT stage metadata
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724)
    *
    * @since 2015.2
    */
   export interface InputSummary {
 
     /**
-     * @name InputSummary#dateCreated
-     * @type {Date} dateCreated - Time M/R INPUT stage began running.
+     * Time M/R INPUT stage began running
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730723)
+     *
+     * @type {Date} dateCreated
      * @readonly
      */
-    dateCreated: Date
+    dateCreated: Date;
 
     /**
-     * @name InputSummary#seconds
-     * @type {number} seconds - Total seconds elapsed while during the INPUT stage.
+     * Total seconds elapsed while during the INPUT stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844442)
+     *
+     * @type {number} seconds
      * @readonly
      */
-    seconds: number
+    seconds: number;
 
     /**
-     * @name InputSummary#usage
-     * @type {number} usage - Total usage points consumed during the INPUT stage.
+     * Total usage points consumed during the INPUT stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730725)
+     *
+     * @type {number} usage
      * @readonly
      */
-    usage: number
+    usage: number;
 
     /**
-     * @name InputSummary#error
-     *  @type {string} error - Serialized error is thrown out of getInputData() - if applicable
-     *      <pre> var inputError = summary.inputSummary.error; </pre>
+     * Serialized error is thrown out of getInputData() - if applicable
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730726)
+     *
+     * @type {string} error
      * @readonly
+     *
+     * @example
+     *  var inputError = summary.inputSummary.error;
      */
-    error: string
+    error: string;
 
     /**
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
+     *
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
-   * Return a new instance of SummarizeContext.MapSummary
-   * @class
-   * @classdesc Used for accessing Map/Reduce MAP stage metadata.
-   * @return {MapSummary}
-   * @constructor
+   * Used for accessing Map/Reduce MAP stage metadata
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888)
    *
    * @since 2015.2
    */
   export interface MapSummary {
 
     /**
-     * @name MapSummary#dateCreated
-     * @type {Date} dateCreated - Time MAP stage began running.
+     * Time MAP stage began running
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737470)
+     *
+     * @type {Date} dateCreated
      * @readonly
      */
-    dateCreated: Date
+    dateCreated: Date;
 
     /**
-     * @name MapSummary#seconds
-     * @type {number} seconds - Total seconds elapsed while running MAP stage.
+     * Total seconds elapsed while running MAP stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737479)
+     *
+     * @type {number} seconds
      * @readonly
      */
-    seconds: number
+    seconds: number;
 
     /**
-     * @name MapSummary#usage
-     * @type {number} usage - Total usage points consumed while running MAP stage.
+     * Total usage points consumed while running MAP stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737471)
+     *
+     * @type {number} usage
      * @readonly
      */
-    usage: number
+    usage: number;
 
     /**
-     * @name MapSummary#concurrency
-     * @type {number} concurrency - Maximum number of queues utilized at the same time while running MAP stage.
+     * Maximum number of queues utilized at the same time while running MAP stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483895829)
+     *
+     * @type {number} concurrency
      * @readonly
      */
-    concurrency: number
+    concurrency: number;
 
     /**
-     * @name MapSummary#yields
-     * @type {number} yields - Total number of times yielding the queue while running MAP stage.
+     * Total number of times yielding the queue while running MAP stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472740448)
+     *
+     * @type {number} yields
      * @readonly
      */
-    yields: number
+    yields: number;
 
     /**
-     * @name MapSummary#keys#iterator
-     * @type {KeysIterator} keys - Iterator which provides input keys processed during the MAP phase.
-     *      <pre> summary.mapSummary.keys.iterator.each((key, executionCount, completionState) => {...}); </pre>
+     * Iterator which provides input keys processed during the MAP phase
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745365)
+     *
+     * @type {KeysIterator} keys
      * @readonly
+     *
+     * @example
+     *  summary.mapSummary.keys.iterator.each((key, executionCount, completionState) => {...});
      */
-    keys: KeysIterator
+    keys: KeysIterator;
 
     /**
-     * @name MapSummary#errors#iterator
-     * @type {ErrorsIterator} errors - Iterator which provides errors thrown during the MAP phase.
-     *      <pre> summary.mapSummary.errors.each((key, error, executionNo) => {...}); </pre>
+     * Iterator which provides errors thrown during the MAP phase
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745988)
+     *
+     * @type {ErrorsIterator} errors
      * @readonly
+     *
+     * @example
+     *  summary.mapSummary.errors.each((key, error, executionNo) => {...});
      */
-    errors: ErrorsIterator
+    errors: ErrorsIterator;
 
     /**
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
+     *
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
-   * Return a new instance of SummarizeContext.ReduceSummary
-   * @class
-   * @classdesc Used for accessing Map/Reduce REDUCE stage metadata.
-   * @return {ReduceSummary}
-   * @constructor
+   * Used for accessing Map/Reduce REDUCE stage metadata
+   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839)
    *
    * @since 2015.2
    */
   export interface ReduceSummary {
 
     /**
-     * @name ReduceSummary#dateCreated
-     * @type {Date} dateCreated - Time REDUCE stage began running.
+     * Time REDUCE stage began running
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483896562)
+     *
+     * @type {Date} dateCreated
      * @readonly
      */
-    dateCreated: Date
+    dateCreated: Date;
 
     /**
-     * @name ReduceSummary#seconds
-     * @type {number} seconds - Total seconds elapsed while running REDUCE stage.
+     * Total seconds elapsed while running REDUCE stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747831)
+     *
+     * @type {number} seconds
      * @readonly
      */
-    seconds: number
+    seconds: number;
 
     /**
-     * @name ReduceSummary#usage
-     * @type {number} usage - Total usage points consumed while running REDUCE stage.
+     * Total usage points consumed while running REDUCE stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483898658)
+     *
+     * @type {number} usage
      * @readonly
      */
-    usage: number
+    usage: number;
 
     /**
-     * @name ReduceSummary#concurrency
-     * @type {number} concurrency - Maximum number of queues utilized at the same time while running REDUCE stage.
+     * Maximum number of queues utilized at the same time while running REDUCE stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747830)
+     *
+     * @type {number} concurrency
      * @readonly
      */
-    concurrency: number
+    concurrency: number;
 
     /**
-     * @name ReduceSummary#yields
-     * @type {number} yields - Total number of times yielding the queue while running REDUCE stage.
+     * Total number of times yielding the queue while running REDUCE stage
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483899918)
+     *
+     * @type {number} yields
      * @readonly
      */
-    yields: number
+    yields: number;
 
     /**
-     * @name ReduceSummary#keys#iterator
-     * @type {KeysIterator} keys - Iterator which provides input keys processed during the REDUCE phase.
-     *      <pre> summary.reduceSummary.iterator.keys.each((key, executionCount, completionState) => {...}); </pre>
+     * Iterator which provides input keys processed during the REDUCE phase
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747832)
+     *
+     * @type {KeysIterator} keys
      * @readonly
+     *
+     * @example
+     *  summary.reduceSummary.iterator.keys.each((key, executionCount, completionState) => {...});
      */
-    keys: KeysIterator
+    keys: KeysIterator;
 
     /**
-     * @name ReduceSummary#errors#iterator
-     * @type {ErrorsIterator} errors - Iterator which provides errors thrown during the REDUCE phase.
-     *      <pre> summary.reduceSummary.errors.iterator().each((key, error, executionNo) => {...}); </pre>
+     * Iterator which provides errors thrown during the REDUCE phase
+     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483900159)
+     *
+     * @type {ErrorsIterator} errors
      * @readonly
+     *
+     * @example
+     *  summary.reduceSummary.errors.iterator().each((key, error, executionNo) => {...});
      */
-    errors: ErrorsIterator
+    errors: ErrorsIterator;
 
     /**
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
+     *
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 }
 
 interface KeysIterator {
   iterator(): {
     each(callback: (key: string, executionCount: number, completionState: 'PENDING' | 'FAILED' | 'COMPLETE') => boolean): void
-  }
+  };
 }
 
 interface ErrorsIterator {
   iterator(): {
     each(callback: (key: string, error: string, executionNo: number) => boolean): void
-  }
+  };
 }
 
 interface OutputIterator {
   iterator(): {
     each(callback: (key: string, value: string) => boolean): void
-  }
+  };
 }

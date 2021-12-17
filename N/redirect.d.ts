@@ -3,7 +3,7 @@
 
 /**
  * SuiteScript redirect module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424286105.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424286105}
  *
  * @module N/redirect
  * @NApiVersion 2.x
@@ -12,7 +12,7 @@ interface redirect {
 
   /**
    * Redirect to a URL
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988767.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988767}
    *
    * @governance 0 units
    * @restriction Can only direct to external URL by suitelet without login
@@ -27,11 +27,11 @@ interface redirect {
     parameters?: {
       [p: string]: any,
     },
-  }): void
+  }): void;
 
   /**
    * Redirect to a suitelet
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988773.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988773}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -50,11 +50,11 @@ interface redirect {
     parameters?: {
       [p: string]: any,
     },
-  }): void
+  }): void;
 
   /**
    * Redirect to a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424995667.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424995667}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -73,11 +73,11 @@ interface redirect {
     parameters?: {
       [p: string]: any,
     },
-  }): void
+  }): void;
 
   /**
    * Redirect to a task link
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988740.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988740}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -92,11 +92,11 @@ interface redirect {
     parameters?: {
       [p: string]: any,
     },
-  }): void
+  }): void;
 
   /**
    * Redirect to saved search
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988669.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988669}
    *
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -107,11 +107,11 @@ interface redirect {
    */
   toSavedSearch(options: {
     id: number | string,
-  }): void
+  }): void;
 
   /**
    * Redirect to saved search results
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988694.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988694}
    *
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -122,11 +122,11 @@ interface redirect {
    */
   toSavedSearchResult(options: {
     id: number | string,
-  }): void
+  }): void;
 
   /**
    * Redirect to search
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988719.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988719}
    *
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -137,11 +137,11 @@ interface redirect {
    */
   toSearch(options: {
     search: search.Search,
-  }): void
+  }): void;
 
   /**
    * Redirect to search results
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988724.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988724}
    *
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -152,5 +152,5 @@ interface redirect {
    */
   toSearchResult(options: {
     search: search.Search,
-  }): void
+  }): void;
 }

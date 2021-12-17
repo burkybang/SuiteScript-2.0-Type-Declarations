@@ -1,6 +1,6 @@
 /**
  * SuiteScript log module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4574548135.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4574548135}
  *
  * @module N/log
  * @NApiVersion 2.x
@@ -16,7 +16,7 @@ export interface log {
   debug(options: {
     title: any,
     details?: any,
-  }): void
+  }): void;
 
   /**
    * Log a debug level message
@@ -24,7 +24,7 @@ export interface log {
    * @param {*} title     The title of the message
    * @param {*} [details] The details of the message
    */
-  debug(title: any, details?: any): void
+  debug(title: any, details?: any): void;
 
   /**
    * Log a debug level message
@@ -35,7 +35,7 @@ export interface log {
   audit(options: {
     title: any,
     details?: any,
-  }): void
+  }): void;
 
   /**
    * Log a debug level message
@@ -43,7 +43,7 @@ export interface log {
    * @param {*} title     The title of the message
    * @param {*} [details] The details of the message
    */
-  audit(title: any, details?: any): void
+  audit(title: any, details?: any): void;
 
   /**
    * Log a debug level message
@@ -54,7 +54,7 @@ export interface log {
   error(options: {
     title: any,
     details?: any,
-  }): void
+  }): void;
 
   /**
    * Log a debug level message
@@ -62,7 +62,7 @@ export interface log {
    * @param {*} title     The title of the message
    * @param {*} [details] The details of the message
    */
-  error(title: any, details?: any): void
+  error(title: any, details?: any): void;
 
   /**
    * Log a debug level message
@@ -73,7 +73,7 @@ export interface log {
   emergency(options: {
     title: any,
     details?: any,
-  }): void
+  }): void;
 
   /**
    * Log a debug level message
@@ -81,5 +81,5 @@ export interface log {
    * @param {*} title     The title of the message
    * @param {*} [details] The details of the message
    */
-  emergency(title: any, details?: any): void
+  emergency(title: any, details?: any): void;
 }

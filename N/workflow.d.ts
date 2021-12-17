@@ -1,6 +1,6 @@
 /**
  * SuiteScript workflow module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558}
  *
  * @module N/workflow
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface workflow {
 
   /**
    * Triggers a workflow on a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916}
    *
    * @governance 20 units
    *
@@ -29,11 +29,11 @@ interface workflow {
     defaultValues?: {
       [p: string]: any,
     },
-  }): number
+  }): number;
 
   /**
    * Triggers a workflow on a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270}
    *
    * @governance 20 units
    *
@@ -54,5 +54,5 @@ interface workflow {
     workflowInstanceId?: number | string,
     actionId?: number | string,
     stateId?: number | string,
-  }): number
+  }): number;
 }

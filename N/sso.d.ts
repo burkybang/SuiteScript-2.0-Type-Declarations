@@ -1,6 +1,6 @@
 /**
  * SuiteScript sso module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424287223.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424287223}
  *
  * @module N/sso
  * @NApiVersion 2.x
@@ -9,7 +9,7 @@ interface sso {
 
   /**
    * Generate a new SuiteSignOn token for a user
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4425177089.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4425177089}
    *
    * @governance 20 units
    *
@@ -22,5 +22,5 @@ interface sso {
    */
   generateSuiteSignOnToken(options: {
     suiteSignOnId: string,
-  }): string
+  }): string;
 }

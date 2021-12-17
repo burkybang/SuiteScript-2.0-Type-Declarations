@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296359529.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296359529}
  *
  * @module N/runtime
  * @NApiVersion 2.x
@@ -13,19 +13,19 @@ interface runtime {
    * Get the current log in user object
    * @return {runtime.User}
    */
-  getCurrentUser(): runtime.User
+  getCurrentUser(): runtime.User;
 
   /**
    * Get the current executing Script object
    * @return {runtime.Script}
    */
-  getCurrentScript(): runtime.Script
+  getCurrentScript(): runtime.Script;
 
   /**
    * Get the current session object
    * @return {runtime.Session}
    */
-  getCurrentSession(): runtime.Session
+  getCurrentSession(): runtime.Session;
 
   /**
    * Check if a feature is turned on and in effect
@@ -35,79 +35,79 @@ interface runtime {
    */
   isFeatureInEffect(options: {
     feature: string,
-  }): boolean
+  }): boolean;
 
   /**
-   * @name runtime#queueCount
    * @type {number}
    * @readonly
+   *
    * @since 2015.2
    */
-  queueCount: number
+  queueCount: number;
 
   /**
-   * @name runtime#processorCount
    * @type {number}
    * @readonly
+   *
    * @since 2018.1
    */
-  processorCount: number
+  processorCount: number;
 
   /**
    * The version of NetSuite the current account is runnning.
    *
-   * @name runtime#version
    * @type {string}
    * @readonly
-   * @since 2015.2
-   */
-  version: string
-
-  /**
-   * @name runtime#accountId
-   * @type {string}
-   * @readonly
-   * @since 2015.2
-   */
-  accountId: string
-
-  /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531123.html}
    *
-   * @name runtime#envType
+   * @since 2015.2
+   */
+  version: string;
+
+  /**
+   * @type {string}
+   * @readonly
+   *
+   * @since 2015.2
+   */
+  accountId: string;
+
+  /**
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531123}
+   *
    * @type {runtime.EnvType}
    * @readonly
+   *
    * @since 2015.2
    */
-  envType: runtime.EnvType
+  envType: runtime.EnvType;
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531348.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531348}
    *
-   * @name runtime#executionContext
    * @type {runtime.ContextType}
    * @readonly
+   *
    * @since 2015.2
    */
-  executionContext: runtime.ContextType
+  executionContext: runtime.ContextType;
 
   /**
    * @return {string}
    */
-  toString(): string
+  toString(): string;
 
   /**
    * Convert to JSON object
    * @return {Object<string, *>}
    */
-  toJSON(): ExcludeMethods<runtime>
+  toJSON(): ExcludeMethods<runtime>;
 }
 
 
 declare namespace runtime {
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647065.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647065}
    * @enum {string}
    */
   export enum EnvType {
@@ -118,7 +118,7 @@ declare namespace runtime {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647244.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647244}
    * @enum {string}
    */
   export enum Permission {
@@ -130,7 +130,7 @@ declare namespace runtime {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296646855.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296646855}
    * @enum {string}
    */
   export enum ContextType {
@@ -178,88 +178,100 @@ declare namespace runtime {
 
     /**
      * Current script log level
-     * @name Script#logLevel
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    logLevel: string
+    logLevel: string;
 
     /**
      * Current script id
-     * @name Script#id
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    id: string
+    id: string;
 
     /**
      * Current script runtime version
-     * @name Script#apiVersion
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    apiVersion: string
+    apiVersion: string;
 
     /**
      * The deploymentId for the current script deployment
-     * @name Script#deploymentId
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    deploymentId: string
+    deploymentId: string;
 
     /**
      * The bundle IDs the current script belongs to
-     * @name Script#bundleIds
+     *
      * @type {string[]}
      * @readonly
+     *
      * @since 2015.2
      */
-    bundleIds: string[]
+    bundleIds: string[];
 
     /**
      * Returns the remaining amount of unit usage for the current script
      * @return {number}
-     *
      */
-    getRemainingUsage(): number
+    getRemainingUsage(): number;
 
     /**
      * Returns script parameter value which is defined per script
-     *
+     * @param {string} name The name of the parameter
+     * @return {number|Date|string|string[]}
+     */
+    getParameter(
+      name: string,
+    ): number | Date | string | string[] | boolean;
+
+    /**
+     * Returns script parameter value which is defined per script
      * @param {Object} options
      * @param {string} options.name The name of the parameter
-     * @return {number|Date|string|Array}
-     *
+     * @return {number|Date|string|string[]}
      */
     getParameter(options: {
       name: string,
-    }): number | Date | string | string[] | boolean
+    }): number | Date | string | string[] | boolean;
 
     /**
      * Percentage complete specified for the current scheduled script execution
-     * @name Script#percentComplete
+     *
      * @type {number}
+     *
      * @throws {error.SuiteScriptError} SSS_OPERATION_UNAVAILABLE
+     *
      * @since 2015.2
      */
-    percentComplete: number
+    percentComplete: number;
 
     /**
      * @return {string}
-     *
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -270,17 +282,18 @@ declare namespace runtime {
 
     /**
      * Get the value of a user-defined session object for the current user.
+     *
      * @param {Object} options
      * @param {string} options.name The key used to store the session object
      * @return {string}
-     *
      */
     get(options: {
       name: string,
-    }): string
+    }): string;
 
     /**
      * Add or set the value of a user-defined session object for the current user.
+     *
      * @param {Object} options
      * @param {string} options.name The key used to store the session object
      * @param {string} options.value The value to associate with this key in the user's session
@@ -290,19 +303,19 @@ declare namespace runtime {
     set(options: {
       name: string,
       value: string,
-    }): void
+    }): void;
 
     /**
      * @return {string}
-     *
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
+     *
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -313,84 +326,94 @@ declare namespace runtime {
 
     /**
      * Returns the currently logged in user's e-mail address
-     * @name User#email
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    email: string
+    email: string;
 
     /**
      * Returns the currently logged in user's name
-     * @name User#name
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    name: string
+    name: string;
 
     /**
      * Returns the internal ID of the currently logged in user's location
-     * @name User#location
+     *
      * @type {number}
      * @readonly
+     *
      * @since 2015.2
      */
-    location: number
+    location: number;
 
     /**
      * Returns the internal ID of the currently logged in user's department
-     * @name User#department
+     *
      * @type {number}
      * @readonly
+     *
      * @since 2015.2
      */
-    department: number
+    department: number;
 
     /**
      * Returns the internal ID of the currently logged in user's role
-     * @name User#role
+     *
      * @type {number}
      * @readonly
+     *
      * @since 2015.2
      */
-    role: number
+    role: number;
 
     /**
      * Returns the internal ID of the currently logged in user's center type (role center)
-     * @name User#roleCenter  The string value of the logged in user's center - for example, SALES, ACCOUNTING, CLASSIC.
+     * The string value of the logged in user's center - for example, SALES, ACCOUNTING, CLASSIC.
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    roleCenter: string
+    roleCenter: string;
 
     /**
-     * Returns the custom scriptId of the role (as opposed to the internal numerical ID).
-     * @name User#roleId
+     * Returns the custom scriptId of the role (as opposed to the internal numerical ID)
+     *
      * @type {string}
      * @readonly
+     *
      * @since 2015.2
      */
-    roleId: string
+    roleId: string;
 
     /**
      * Returns the currently logged in user's internal ID
-     * @name User#id
+     *
      * @type {number}
      * @readonly
+     *
      * @since 2015.2
      */
-    id: number
+    id: number;
 
     /**
      * Returns the internal ID of the currently logged in user's subsidiary
-     * @name User#subsidiary
+     *
      * @type {number}
      * @readonly
+     *
      * @since 2015.2
      */
-    subsidiary: number
+    subsidiary: number;
 
     /**
      * Get a user's permission level for a given permission
@@ -401,7 +424,7 @@ declare namespace runtime {
      */
     getPermission(options: {
       name: string,
-    }): number
+    }): number;
 
     /**
      * Get the value of a NetSuite preference
@@ -412,18 +435,18 @@ declare namespace runtime {
      */
     getPreference(options: {
       name: string,
-    }): string
+    }): string;
 
     /**
      * @return {string}
      *
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 }

@@ -1,6 +1,6 @@
 /**
  * SuiteScript Dialog Module (Client Side)
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142}
  *
  * @module N/ui/dialog
  * @suiteScriptVersion 2.x
@@ -9,7 +9,7 @@ interface dialog {
 
   /**
    * Creates an Alert Dialog with an OK Button
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851}
    *
    * @restriction Client SuiteScript only
    *
@@ -25,11 +25,11 @@ interface dialog {
   alert(options?: {
     title?: string,
     message?: string,
-  }): Promise<true>
+  }): Promise<true>;
 
   /**
    * Creates an Confirm Dialog with an OK and Cancel Button
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943}
    *
    * @restriction Client SuiteScript only
    *
@@ -45,11 +45,11 @@ interface dialog {
   confirm(options?: {
     title?: string,
     message?: string,
-  }): Promise<boolean>
+  }): Promise<boolean>;
 
   /**
    * Creates an Dialog with the specified buttons
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497804898.html}
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497804898}
    *
    * @restriction Client SuiteScript only
    *
@@ -74,5 +74,5 @@ interface dialog {
       label: string,
       value: T,
     }[],
-  }): Promise<T>
+  }): Promise<T>;
 }

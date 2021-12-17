@@ -1,6 +1,6 @@
 /**
  * SuiteScript plugin module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4558176297.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4558176297}
  *
  * @module N/plugin
  * @NApiVersion 2.x
@@ -19,7 +19,7 @@ interface plugin {
   findImplementations(options: {
     type: string,
     scriptIDs?: boolean,
-  }): string[]
+  }): string[];
 
   /**
    * Instantiates an implementation of the given custom plugin type. If no implementation ID is explicitly given then
@@ -33,5 +33,5 @@ interface plugin {
   loadImplementation(options: {
     type: string,
     implementation?: string,
-  }): Object
+  }): Object;
 }

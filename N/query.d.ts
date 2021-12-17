@@ -2,7 +2,7 @@
 
 /**
  * SuiteScript query module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060.html}
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060}
  *
  * @module N/query
  * @NApiVersion 2.x
@@ -21,14 +21,15 @@ interface query {
    */
   create(options: {
     type: query.Type | string,
-  }): query.Query
+  }): query.Query;
 
   load: {
     /**
      * Loads query by id
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
      *
      * @param {Object} options
-     * @param {number} options.id - Id of query to be loaded
+     * @param {number|string} options.id - Id of query to be loaded
      * @return {Query}
      *
      * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
@@ -36,14 +37,14 @@ interface query {
      * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
      */
     (options: {
-      id: number,
+      id: number | string,
     }): query.Query
 
     /**
      * Loads query by id
      *
      * @param {Object} options
-     * @param {number} options.id - Id of query to be loaded
+     * @param {number|string} options.id - Id of query to be loaded
      * @return {Promise<Query>}
      *
      * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
@@ -51,15 +52,15 @@ interface query {
      * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
      */
     promise(options: {
-      id: number,
+      id: number | string,
     }): Promise<query.Query>
-  }
+  };
 
   /**
    * Deletes query by id
    *
    * @param {Object} options
-   * @param {number} options.id Id of query to be delete
+   * @param {number|string} options.id Id of query to be delete
    * @return {void}
    *
    * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
@@ -67,8 +68,8 @@ interface query {
    * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
    */
   delete(options: {
-    id: number,
-  }): void
+    id: number | string,
+  }): void;
 
   /**
    * Creates a query.RelativeDate object that represents a date relative to the current date
@@ -81,7 +82,7 @@ interface query {
   createRelativeDate(options: {
     dateId: query.DateId,
     value: number,
-  }): query.RelativeDate
+  }): query.RelativeDate;
 
   /**
    * Runs an arbitrary SuiteQL query
@@ -99,7 +100,7 @@ interface query {
   runSuiteQL(
     query: string,
     params?: (string | number | boolean)[],
-  ): query.ResultSet
+  ): query.ResultSet;
 
   /**
    * Runs an arbitrary SuiteQL query
@@ -118,7 +119,7 @@ interface query {
   runSuiteQL(options: {
     query: string,
     params?: (string | number | boolean)[],
-  }): query.ResultSet
+  }): query.ResultSet;
 
   /**
    * Runs an arbitrary SuiteQL query
@@ -132,7 +133,7 @@ interface query {
    *
    * @since 2020.1
    */
-  runSuiteQL(suiteQL: query.SuiteQL): query.ResultSet
+  runSuiteQL(suiteQL: query.SuiteQL): query.ResultSet;
 
   /**
    * Runs an arbitrary SuiteQL query as a paged query
@@ -153,7 +154,7 @@ interface query {
     query: string,
     params?: (string | number | boolean)[],
     pageSize?: number,
-  }): query.PagedData
+  }): query.PagedData;
 
   /**
    * Runs an arbitrary SuiteQL query as a paged query
@@ -170,7 +171,7 @@ interface query {
    */
   runSuiteQLPaged(suiteQL: query.SuiteQL & {
     pageSize?: number,
-  }): query.PagedData
+  }): query.PagedData;
 
   /**
    * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
@@ -189,7 +190,7 @@ interface query {
    */
   listTables(options: {
     workbookId: string,
-  }): { name: string, scriptId: string }[]
+  }): { name: string, scriptId: string }[];
 }
 
 
@@ -955,33 +956,37 @@ declare namespace query {
      *
      * @type {Type|string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string
+    type: Type | string;
 
     /**
      * Query condition
      *
      * @type {Condition}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Condition
      */
-    condition: Condition
+    condition: Condition;
 
     /**
      * Columns to be returned from the query
      *
      * @type {Column[]}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Column array
      */
-    columns: Column[]
+    columns: Column[];
 
     /**
      * Specifies how the results will be sorted
      *
      * @type {Sort[]}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Sort array
      */
-    sort: Sort[]
+    sort: Sort[];
 
     /**
      * Children of the root component of the query. It is an object with key/value pairs where key is the name of the
@@ -989,27 +994,30 @@ declare namespace query {
      *
      * @type {Object}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    child: Object
+    child: Object;
 
     /**
      * Id of this query, null if query is not saved
      *
      * @type {number}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    id: number
+    id: number;
 
     /**
      * Name of this query, null if query is not saved
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    name: string
+    name: string;
 
     /**
      * Access the root component of the query. It is the component that corresponds to the query type given upon the
@@ -1017,23 +1025,28 @@ declare namespace query {
      *
      * @type {Component}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    root: Component
+    root: Component;
 
     /**
      * Execute the query and return results.
+     *
      * @governance 10 points
+     *
      * @return {ResultSet} the result set object
      */
     // function runThis() {}
     // runThis.prototype.promise = function() {}
     // run = new runThis()
-    run(): ResultSet
+    run(): ResultSet;
 
     /**
      * Execute the query and return paged results.
+     *
      * @governance 10 points
+     *
      * @param {Object} [options]
      * @param {number} [options.pageSize]
      * @return {PagedData} the paged query object
@@ -1043,7 +1056,7 @@ declare namespace query {
     // runPaged = new runPagedThis()
     runPaged(options?: {
       pageSize?: number,
-    }): PagedData
+    }): PagedData;
 
     /**
      * Join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
@@ -1054,7 +1067,7 @@ declare namespace query {
      */
     autoJoin(options: {
       fieldId: string,
-    }): Component
+    }): Component;
 
     /**
      * join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
@@ -1065,7 +1078,7 @@ declare namespace query {
      */
     join(options: {
       fieldId: string,
-    }): Component
+    }): Component;
 
     /**
      * Join the root component of the Query with another (target) query type. This is a shortcut for Query.root.joinTo.
@@ -1078,7 +1091,7 @@ declare namespace query {
     joinTo(options: {
       fieldId: string,
       target: string,
-    }): Component
+    }): Component;
 
     /**
      * Join the root component of the Query with another (source) query type. This is a shortcut for Query.root.joinFrom.
@@ -1091,7 +1104,7 @@ declare namespace query {
     joinFrom(options: {
       fieldId: string,
       source: string,
-    }): Component
+    }): Component;
 
     /**
      * Create a Condition object based on the root component of the Query. This is a shortcut for Query.root.createCondition.
@@ -1121,7 +1134,7 @@ declare namespace query {
       formula?: string,
       type?: string,
       aggregate?: Aggregate,
-    }): Condition
+    }): Condition;
 
     /**
      * Create a Column object based on the root component of the Query. This is a shortcut for Query.root.createColumn.
@@ -1162,7 +1175,7 @@ declare namespace query {
           date?: RelativeDate | Date,
         },
       },
-    }): Column
+    }): Column;
 
     /**
      * Create a Sort object based on the root component of the Query. This is a shortcut for Query.root.createSort.
@@ -1184,43 +1197,48 @@ declare namespace query {
       caseSensitive?: boolean,
       locale?: SortLocale,
       nullsLast?: boolean,
-    }): Sort
+    }): Sort;
 
     /**
      * Create a new Condition object that corresponds to a logical conjunction (AND) of the Condition objects given to
      * the method as arguments. The arguments must be one or more Condition objects.
+     *
      * @param {...Condition} conditions
      * @return {Condition}
      */
-    and(...conditions: Condition[]): Condition
+    and(...conditions: Condition[]): Condition;
 
     /**
      * Create a new Condition object that corresponds to a logical disjunction (OR) of the Condition objects given to
      * the method as arguments. The arguments must be one or more Condition objects.
+     *
      * @param {...Condition} conditions
      * @return {Condition}
      */
-    or(...conditions: Condition[]): Condition
+    or(...conditions: Condition[]): Condition;
 
     /**
      * Create a new Condition object that corresponds to a logical negation (NOT) of the Condition object given to the method
      * as argument.
+     *
      * @param {Condition} condition
      * @return {Condition}
      */
-    not(condition): Condition
+    not(condition): Condition;
 
     /**
      * Returns the object type name.
+     *
      * @return {string}
      */
-    toString(): string
+    toString(): string;
 
     /**
      * Convert to JSON object
+     *
      * @return {Object<string, *>}
      */
-    toJSON(): ExcludeMethods<this>
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1234,36 +1252,40 @@ declare namespace query {
      *
      * @type {Type|string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string
+    type: Type | string;
 
     /**
      * Inverse target. Returns the source query type from which is this component joined
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    source: string
+    source: string;
 
     /**
      * Polymorphic target. Returns the target target of this component
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    target: string
+    target: string;
 
     /**
      * Returns the Component that corresponds to the ancestor of this component in the query object model
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    parent: string
+    parent: string;
 
     /**
      * Children of this component. It is an object with key/value pairs where key is the name of the child component
@@ -1271,14 +1293,15 @@ declare namespace query {
      *
      * @type {Object<string, Component>}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     child: {
       [p: string]: Component,
-    }
+    };
 
     /**
-     * join this component with another query type. A new component corresponding to the given relationship is created
+     * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
      *
      * @param {Object} options
@@ -1292,10 +1315,10 @@ declare namespace query {
      */
     autoJoin(options: {
       fieldId: string,
-    }): Component
+    }): Component;
 
     /**
-     * join this component with another query type. A new component corresponding to the given relationship is created
+     * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
      *
      * @param {Object} options
@@ -1309,10 +1332,10 @@ declare namespace query {
      */
     join(options: {
       fieldId: string,
-    }): Component
+    }): Component;
 
     /**
-     * join this component with another query type. A new component corresponding to the given relationship is created
+     * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
      *
      * @param {Object} options
@@ -1329,10 +1352,10 @@ declare namespace query {
     joinTo(options: {
       fieldId: string,
       target: string,
-    }): Component
+    }): Component;
 
     /**
-     * join this component with another query type. A new component corresponding to the given relationship is created
+     * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
      *
      * @param {Object} options
@@ -1348,7 +1371,7 @@ declare namespace query {
     joinFrom(options: {
       fieldId: string,
       source: string,
-    }): Component
+    }): Component;
 
     /**
      * Create a Condition object based on this query component. Use either fieldId + operator + values or formula + (optional)
@@ -1379,7 +1402,7 @@ declare namespace query {
       formula?: string,
       type?: string,
       aggregate?: Aggregate,
-    }): Condition
+    }): Condition;
 
     /**
      * Create a Column object based on this query component. Use either name or formula + (optional) type.
@@ -1420,7 +1443,7 @@ declare namespace query {
           date?: RelativeDate | Date,
         },
       },
-    }): Column
+    }): Column;
 
     /**
      * Create a Sort object based on this query component
@@ -1442,7 +1465,7 @@ declare namespace query {
       caseSensitive?: boolean,
       locale?: SortLocale,
       nullsLast?: boolean,
-    }): Sort
+    }): Sort;
   }
 
   /**
@@ -1455,54 +1478,60 @@ declare namespace query {
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    fieldId: string
+    fieldId: string;
 
     /**
      * Returns the Component to which this column belongs
      *
      * @type {Component}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    component: Component
+    component: Component;
 
     /**
      * Formula
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    formula: string
+    formula: string;
 
     /**
      * Desired value type of the formula (if it was explicitly stated upon Column creation)
      *
      * @type {ReturnType}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: ReturnType
+    type: ReturnType;
 
     /**
      * Aggregate function
      *
      * @type {Aggregate}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    aggregate: Aggregate
+    aggregate: Aggregate;
 
     /**
      * The group-by flag
      *
      * @type {boolean}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    groupBy: boolean
+    groupBy: boolean;
   }
 
   /**
@@ -1515,41 +1544,46 @@ declare namespace query {
      *
      * @type {Column}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    column: Column
+    column: Column;
 
     /**
      * Flag indicating if sort is ascending
      *
      * @type {boolean}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting wrong sort order is attempted
      */
-    ascending: boolean
+    ascending: boolean;
 
     /**
      * Sort case sensitivity
      *
      * @type {boolean}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
-    caseSensitive: boolean
+    caseSensitive: boolean;
 
     /**
      * Flag indicating where results with null value should be sorted
      *
      * @type {boolean}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
-    nullsLast: boolean
+    nullsLast: boolean;
 
     /**
      * Sort locale
      *
      * @type {SortLocale}
+     *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
-    locale: SortLocale
+    locale: SortLocale;
   }
 
   /**
@@ -1563,45 +1597,50 @@ declare namespace query {
      *
      * @type {Condition[]}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    children: Condition[]
+    children: Condition[];
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    fieldId: string
+    fieldId: string;
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
      *
      * @type {Operator}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    operator: Operator
+    operator: Operator;
 
     /**
      * Values. This is only applicable to "leaf" conditions (equivalent to the former Filter)
      *
      * @type {string[]|Date[]}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    values: string[] | Date[]
+    values: string[] | Date[];
 
     /**
      * Formula. This is only applicable to "leaf" conditions (equivalent to the former Filter)
      *
      * @type {string}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    formula: string
+    formula: string;
 
     /**
      * Return type of the formula, if explicitly specified. This is only applicable to "leaf" conditions (equivalent to the
@@ -1609,18 +1648,20 @@ declare namespace query {
      *
      * @type {ReturnType}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: ReturnType
+    type: ReturnType;
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
      *
      * @type {Aggregate}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    aggregate: Aggregate
+    aggregate: Aggregate;
 
     /**
      * Query component to which this condition belongs. This is only applicable to "leaf" conditions (equivalent to the
@@ -1628,9 +1669,10 @@ declare namespace query {
      *
      * @type {Component}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    component: Component
+    component: Component;
   }
 
   /**
@@ -1643,48 +1685,52 @@ declare namespace query {
      *
      * @type {DateId}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    dateId: DateId
+    dateId: DateId;
 
     /**
      * References the start of the relative date
      *
      * @type {{type: 'start', value: undefined, dateId: DateId}}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     start: {
       type: 'start',
       value: undefined,
       dateId: DateId,
-    }
+    };
 
     /**
      * References the end of the relative date
      *
      * @type {{type: 'end', value: undefined, dateId: DateId}}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     end: {
       type: 'end',
       value: undefined,
       dateId: DateId,
-    }
+    };
 
     /**
      * Describes the interval that the relative date represents
      *
      * @type {{type: 'interval', value: undefined, dateId: DateId}}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     interval: {
       type: 'interval',
       value: undefined,
       dateId: DateId,
-    }
+    };
 
     /**
      * Holds the value of the relative date range
@@ -1693,7 +1739,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    value: number | undefined
+    value: number | undefined;
 
     /**
      * Indicates whether the relative date represents a range of dates or a specific moment in time
@@ -1702,7 +1748,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    isRange: boolean
+    isRange: boolean;
   }
 
   /**
@@ -1716,7 +1762,7 @@ declare namespace query {
      * @governance 10 points for each page returned
      * @return {NetSuiteIterator<Result>}
      */
-    iterator(): NetSuiteIterator<Result>
+    iterator(): NetSuiteIterator<Result>;
 
     /**
      * The actual query results
@@ -1725,7 +1771,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    results: Result[]
+    results: Result[];
 
     /**
      * The types of the return values. Array of values from the ReturnType enum. Number and order of values in the array
@@ -1735,7 +1781,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    types: ReturnType[]
+    types: ReturnType[];
 
     /**
      * The return columns
@@ -1744,7 +1790,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    columns: Column[]
+    columns: Column[];
 
     /**
      * Returns the query result set as an array of mapped results. A mapped result is a JavaScript object with key-value pairs. In this object, the key is either the field ID or the alias that was used for the corresponding query.Column object. When you call this method, Result.asMap() is called on each query.Result object in the result set.
@@ -1753,7 +1799,7 @@ declare namespace query {
      */
     asMappedResults(): {
       [p: string]: string | number | (string | number)[] | Date | boolean,
-    }[]
+    }[];
   }
 
   /**
@@ -1769,7 +1815,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    values: (string | number | boolean | null)[]
+    values: (string | number | boolean | null)[];
 
     /**
      * The return columns. This is equivalent to ResultSet#columns
@@ -1778,7 +1824,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    columns: Column[]
+    columns: Column[];
   }
 
   /**
@@ -1793,7 +1839,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    isFirst: boolean
+    isFirst: boolean;
 
     /**
      * Whether the page is the last of the paged query results
@@ -1802,7 +1848,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    isLast: boolean
+    isLast: boolean;
 
     /**
      * The query results contained in this page
@@ -1811,7 +1857,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    data: ResultSet
+    data: ResultSet;
 
     /**
      * The range of query results for this page
@@ -1820,7 +1866,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    pageRange: PageRange
+    pageRange: PageRange;
 
     /**
      * The set of paged query results that this page is from
@@ -1829,7 +1875,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    pagedData: PagedData
+    pagedData: PagedData;
   }
 
   /**
@@ -1842,7 +1888,7 @@ declare namespace query {
      *
      * @return {NetSuiteIterator<Page>}
      */
-    iterator(): NetSuiteIterator<Page>
+    iterator(): NetSuiteIterator<Page>;
 
     /**
      * Describes the total number of paged query result rows
@@ -1851,7 +1897,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    count: number
+    count: number;
 
     /**
      * Describes the number of query result rows per page
@@ -1860,7 +1906,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    pageSize: number
+    pageSize: number;
 
     /**
      * Holds an array of page ranges for the paged query results
@@ -1869,7 +1915,28 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    pageRanges: PageRange[]
+    pageRanges: PageRange[];
+
+    /**
+     * @param {Object} options
+     * @param {number} options.index
+     * @return {query.Page}
+     */
+    fetch(options: {
+      index: number,
+    }): query.Page;
+
+    /**
+     * Returns the object type name (search.PagedData)
+     * @return {string}
+     */
+    toString(): string;
+
+    /**
+     * Convert to JSON object
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1878,22 +1945,24 @@ declare namespace query {
   export interface PageRange {
 
     /**
-     * Describes the array index for this page range.
-     * @name PageRange#index
+     * Describes the array index for this page range
+     *
      * @type {number}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    index: number
+    index: number;
 
     /**
-     * Describes the number of query result rows in this page range.
-     * @name PageRange#size
+     * Describes the number of query result rows in this page range
+     *
      * @type {number}
      * @readonly
+     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    size: number
+    size: number;
   }
 
   /**
@@ -1908,7 +1977,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    adjustment: query.PeriodAdjustment
+    adjustment: query.PeriodAdjustment;
 
     /**
      * The code of the period
@@ -1917,7 +1986,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    code: query.PeriodCode
+    code: query.PeriodCode;
 
     /**
      * The type of the period
@@ -1926,7 +1995,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: PeriodType
+    type: PeriodType;
   }
 
   export interface SuiteQL {
@@ -1938,7 +2007,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string
+    type: Type | string;
 
     /**
      * The string representation of the SuiteQL query
@@ -1947,7 +2016,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    query: string
+    query: string;
 
     /**
      * The parameters for the query
@@ -1956,7 +2025,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    params: (string | number | boolean)[]
+    params: (string | number | boolean)[];
 
     /**
      * The result columns to be returned from the query
@@ -1965,7 +2034,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    columns: Column[]
+    columns: Column[];
 
     /**
      * Runs the SuiteQL query and returns the query results
@@ -1975,7 +2044,7 @@ declare namespace query {
      *
      * @since 2020.1
      */
-    run(): ResultSet
+    run(): ResultSet;
 
     /**
      * Runs the SuiteQL query as a paged query and returns the paged query results
@@ -1989,7 +2058,7 @@ declare namespace query {
      */
     runPaged(options?: {
       pageSize?: number
-    }): PagedData
+    }): PagedData;
   }
 
 }
