@@ -1,6 +1,6 @@
 /**
  * SuiteScript Map/Reduce Script Context
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
  */
 
 /// <reference path="../typings.d.ts" />
@@ -10,7 +10,7 @@
 
 /**
  * References the object that contains the input data
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
  *
  * @since 2015.2
  */
@@ -53,7 +53,7 @@ interface GetInputContext {
 
 /**
  * References the object that contains the input data
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
  *
  * @since 2015.2
  */
@@ -64,7 +64,7 @@ type GetInputReturn = any[] | { [p: string]: any } |
 
 /**
  * search.Search Object Reference
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
  *
  * @since 2015.2
  */
@@ -75,7 +75,7 @@ interface GetInputReturnSearchReference {
 
 /**
  * query.Query Object Reference
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
  *
  * @since 2015.2
  */
@@ -86,7 +86,7 @@ interface GetInputReturnQueryReference {
 
 /**
  * Contains the key/value pairs to process through the map stage
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193}
  *
  * @since 2015.2
  */
@@ -100,7 +100,7 @@ interface MapContext {
 
   /**
    * The key to be processed through the map stage
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483840988)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483840988}
    *
    * @type {string} key
    * @readonly
@@ -109,7 +109,7 @@ interface MapContext {
 
   /**
    * The value to be processed through the map stage
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483841695)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483841695}
    *
    * @type {string} value
    * @readonly
@@ -118,7 +118,7 @@ interface MapContext {
 
   /**
    * Indicates whether the map(mapContext) function was invoked again
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540852756)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540852756}
    *
    * @type {boolean} isRestarted
    * @readonly
@@ -127,7 +127,7 @@ interface MapContext {
 
   /**
    * Indicates whether the current invocation of the map(mapContext) function is the first or a subsequent invocation for the current key/value pair
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516217757)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516217757}
    *
    * @type {number} executionNo
    * @readonly
@@ -136,7 +136,7 @@ interface MapContext {
 
   /**
    * Iterator which provides errors thrown during particular map function execution
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516209193)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516209193}
    *
    * @type {ErrorsIterator} errors
    * @readonly
@@ -148,7 +148,7 @@ interface MapContext {
 
   /**
    * Writes the key value pairs
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712995)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712995}
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
@@ -175,7 +175,7 @@ interface MapContext {
 
 /**
  * Contains the key/values groups to process through the reduce stage
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828}
  *
  * @since 2015.2
  */
@@ -189,7 +189,7 @@ interface ReduceContext {
 
   /**
    * Indicates whether the Rap(reduceContext) function was invoked again
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540820922)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540820922}
    *
    * @type {boolean} isRestarted
    * @readonly
@@ -198,7 +198,7 @@ interface ReduceContext {
 
   /**
    * Indicates whether the current invocation of the reduce(reduceContext) function is the first, second, third, or fourth for the current key and its values
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393633)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393633}
    *
    * @type {number} executionNo
    * @readonly
@@ -208,7 +208,7 @@ interface ReduceContext {
   /**
    * When the map/reduce process includes a map stage, the key is derived from the key written by MapContext.write(key, value).
    * When the map stage is skipped, the key depends on the input type
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721827)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721827}
    *
    * @type {string} key
    * @readonly
@@ -217,7 +217,7 @@ interface ReduceContext {
 
   /**
    * When the map/reduce process includes a map stage, the values are derived from the values written by MapContext.write(key,value). When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type.
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721828)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721828}
    *
    * @type {string} values
    * @readonly
@@ -226,7 +226,7 @@ interface ReduceContext {
 
   /**
    * Iterator which provides errors thrown during particular reduce function execution
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393583)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393583}
    *
    * @type {ErrorsIterator} errors
    * @readonly
@@ -238,7 +238,7 @@ interface ReduceContext {
 
   /**
    * Writes the key/values groups
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721829)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721829}
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
@@ -265,7 +265,7 @@ interface ReduceContext {
 
 /**
  * Used for accessing Map/Reduce job output and metadata
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629}
  *
  * @since 2015.2
  */
@@ -279,7 +279,7 @@ interface SummarizeContext {
 
   /**
    * Time M/R job began running
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725620)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725620}
    *
    * @type {Date} dateCreated
    * @readonly
@@ -288,7 +288,7 @@ interface SummarizeContext {
 
   /**
    * Total seconds elapsed while running
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726014)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726014}
    *
    * @type {number} seconds
    * @readonly
@@ -297,7 +297,7 @@ interface SummarizeContext {
 
   /**
    * Total usage points consumed while running
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726050)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726050}
    *
    * @type {number} usage
    * @readonly
@@ -306,7 +306,7 @@ interface SummarizeContext {
 
   /**
    * Maximum number of queues utilized at the same time while running
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726080)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726080}
    *
    * @type {number} concurrency
    * @readonly
@@ -315,7 +315,7 @@ interface SummarizeContext {
 
   /**
    * Total number of times yielding the queue while running
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472727250)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472727250}
    *
    * @type {number} yields
    * @readonly
@@ -324,7 +324,7 @@ interface SummarizeContext {
 
   /**
    * Iterator which provides keys and values written as output during the REDUCE phase
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472729410)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472729410}
    *
    * @type {OutputIterator} output
    * @readonly
@@ -336,7 +336,7 @@ interface SummarizeContext {
 
   /**
    * Stats about the INPUT stage
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
    *
    * @type {InputSummary} inputSummary
    */
@@ -344,7 +344,7 @@ interface SummarizeContext {
 
   /**
    * Stats about the MAP stage
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
    *
    * @type {MapSummary} mapSummary
    */
@@ -352,7 +352,7 @@ interface SummarizeContext {
 
   /**
    * Stats about the REDUCE stage
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
    *
    * @type {ReduceSummary} reduceSummary
    */
@@ -375,7 +375,7 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce INPUT stage metadata
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
    *
    * @since 2015.2
    */
@@ -383,7 +383,7 @@ declare namespace SummarizeContext {
 
     /**
      * Time M/R INPUT stage began running
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730723)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730723}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -392,7 +392,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while during the INPUT stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844442)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844442}
      *
      * @type {number} seconds
      * @readonly
@@ -401,7 +401,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed during the INPUT stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730725)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730725}
      *
      * @type {number} usage
      * @readonly
@@ -410,7 +410,7 @@ declare namespace SummarizeContext {
 
     /**
      * Serialized error is thrown out of getInputData() - if applicable
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730726)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730726}
      *
      * @type {string} error
      * @readonly
@@ -435,7 +435,7 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce MAP stage metadata
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
    *
    * @since 2015.2
    */
@@ -443,7 +443,7 @@ declare namespace SummarizeContext {
 
     /**
      * Time MAP stage began running
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737470)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737470}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -452,7 +452,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while running MAP stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737479)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737479}
      *
      * @type {number} seconds
      * @readonly
@@ -461,7 +461,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed while running MAP stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737471)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737471}
      *
      * @type {number} usage
      * @readonly
@@ -470,7 +470,7 @@ declare namespace SummarizeContext {
 
     /**
      * Maximum number of queues utilized at the same time while running MAP stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483895829)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483895829}
      *
      * @type {number} concurrency
      * @readonly
@@ -479,7 +479,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total number of times yielding the queue while running MAP stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472740448)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472740448}
      *
      * @type {number} yields
      * @readonly
@@ -488,7 +488,7 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides input keys processed during the MAP phase
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745365)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745365}
      *
      * @type {KeysIterator} keys
      * @readonly
@@ -500,7 +500,7 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides errors thrown during the MAP phase
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745988)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745988}
      *
      * @type {ErrorsIterator} errors
      * @readonly
@@ -525,7 +525,7 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce REDUCE stage metadata
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
    *
    * @since 2015.2
    */
@@ -533,7 +533,7 @@ declare namespace SummarizeContext {
 
     /**
      * Time REDUCE stage began running
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483896562)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483896562}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -542,7 +542,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while running REDUCE stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747831)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747831}
      *
      * @type {number} seconds
      * @readonly
@@ -551,7 +551,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed while running REDUCE stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483898658)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483898658}
      *
      * @type {number} usage
      * @readonly
@@ -560,7 +560,7 @@ declare namespace SummarizeContext {
 
     /**
      * Maximum number of queues utilized at the same time while running REDUCE stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747830)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747830}
      *
      * @type {number} concurrency
      * @readonly
@@ -569,7 +569,7 @@ declare namespace SummarizeContext {
 
     /**
      * Total number of times yielding the queue while running REDUCE stage
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483899918)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483899918}
      *
      * @type {number} yields
      * @readonly
@@ -578,7 +578,7 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides input keys processed during the REDUCE phase
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747832)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747832}
      *
      * @type {KeysIterator} keys
      * @readonly
@@ -590,7 +590,7 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides errors thrown during the REDUCE phase
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483900159)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483900159}
      *
      * @type {ErrorsIterator} errors
      * @readonly

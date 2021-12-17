@@ -1,12 +1,12 @@
 /**
  * SuiteScript Client Script Context
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4489981198)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4489981198}
  */
 
 /// <reference path="../N/currentRecord.d.ts" />
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671}
  *
  * @since 2015.2
  */
@@ -14,7 +14,7 @@ interface PageInitContext {
 
   /**
    * The access mode of the current record
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671}
    *
    * @type {'copy'|'create'|'edit'}
    * @readonly
@@ -25,7 +25,7 @@ interface PageInitContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -36,7 +36,7 @@ interface PageInitContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
  *
  * @since 2015.2
  */
@@ -44,7 +44,7 @@ interface ValidateFieldContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -53,7 +53,7 @@ interface ValidateFieldContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    *
    * @type {string}
    * @readonly
@@ -62,7 +62,7 @@ interface ValidateFieldContext {
 
   /**
    * The internal ID of the field being validated
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    *
    * @type {string}
    * @readonly
@@ -71,7 +71,7 @@ interface ValidateFieldContext {
 
   /**
    * The index of the line if the field is in a sublist or matrix
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    *
    * @type {number}
    * @readonly
@@ -80,7 +80,7 @@ interface ValidateFieldContext {
 
   /**
    * The index of the column if the field is in a matrix
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    *
    * @type {number}
    * @readonly
@@ -89,7 +89,7 @@ interface ValidateFieldContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
  *
  * @since 2015.2
  */
@@ -97,7 +97,7 @@ interface FieldChangedContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -106,7 +106,7 @@ interface FieldChangedContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    *
    * @type {string}
    * @readonly
@@ -115,7 +115,7 @@ interface FieldChangedContext {
 
   /**
    * The internal ID of the field that was changed
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    *
    * @type {string}
    * @readonly
@@ -124,7 +124,7 @@ interface FieldChangedContext {
 
   /**
    * The index of the line if the field is in a sublist or matrix
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    *
    * @type {number}
    * @readonly
@@ -133,7 +133,7 @@ interface FieldChangedContext {
 
   /**
    * The index of the column if the field is in a matrix
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    *
    * @type {number}
    * @readonly
@@ -142,7 +142,7 @@ interface FieldChangedContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646}
  *
  * @since 2015.2
  */
@@ -150,7 +150,7 @@ interface PostSourcingContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -159,7 +159,7 @@ interface PostSourcingContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646}
    *
    * @type {string}
    * @readonly
@@ -177,7 +177,7 @@ interface PostSourcingContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004}
  *
  * @since 2015.2
  */
@@ -185,7 +185,7 @@ interface LineInitContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -194,7 +194,7 @@ interface LineInitContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004}
    *
    * @type {string}
    * @readonly
@@ -203,7 +203,7 @@ interface LineInitContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302}
  *
  * @since 2015.2
  */
@@ -211,7 +211,7 @@ interface ValidateLineContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -220,7 +220,7 @@ interface ValidateLineContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302}
    *
    * @type {string}
    * @readonly
@@ -229,7 +229,7 @@ interface ValidateLineContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455}
  *
  * @since 2015.2
  */
@@ -237,7 +237,7 @@ interface ValidateInsertContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -246,7 +246,7 @@ interface ValidateInsertContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455}
    *
    * @type {string}
    * @readonly
@@ -255,7 +255,7 @@ interface ValidateInsertContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608}
  *
  * @since 2015.2
  */
@@ -263,7 +263,7 @@ interface ValidateDeleteContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -272,7 +272,7 @@ interface ValidateDeleteContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608}
    *
    * @type {string}
    * @readonly
@@ -281,7 +281,7 @@ interface ValidateDeleteContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812}
  *
  * @since 2015.2
  */
@@ -289,7 +289,7 @@ interface SublistChangedContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly
@@ -298,7 +298,7 @@ interface SublistChangedContext {
 
   /**
    * The internal ID of the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812}
    *
    * @type {string}
    * @readonly
@@ -307,7 +307,7 @@ interface SublistChangedContext {
 
   /**
    * The type of change to the sublist
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812}
    *
    * @type {string}
    * @readonly
@@ -316,7 +316,7 @@ interface SublistChangedContext {
 }
 
 /**
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693749)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693749}
  *
  * @since 2015.2
  */
@@ -324,7 +324,7 @@ interface SaveRecordContext {
 
   /**
    * The current record the user is manipulating in the UI
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693749)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693749}
    *
    * @type {currentRecord.CurrentRecord}
    * @readonly

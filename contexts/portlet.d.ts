@@ -1,13 +1,13 @@
 /**
  * SuiteScript Portlet Script Context
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1515620357)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1515620357}
  */
 
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
  * Defines the portlet script trigger point
- * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
+ * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965}
  *
  * @since 2015.2
  */
@@ -15,7 +15,7 @@ interface PortletParams {
 
   /**
    * The portlet object used for rendering
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965}
    *
    * @type {Portlet}
    * @readonly
@@ -26,7 +26,7 @@ interface PortletParams {
 
   /**
    * The column index for the portlet on the dashboard (1=left, 2=center, 3=right)
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965}
    *
    * @type {1|2|3}
    * @readonly
@@ -37,7 +37,7 @@ interface PortletParams {
 
   /**
    * The customer ID for the selected customer
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407951965}
    *
    * @type {string}
    * @readonly
@@ -51,7 +51,7 @@ declare namespace PortletParams {
 
   /**
    * Scriptable Portlet
-   * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671201924)
+   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671201924}
    *
    * @since 2016.2
    */
@@ -59,7 +59,7 @@ declare namespace PortletParams {
 
     /**
      * The title of the portlet
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671239839)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671239839}
      *
      * @type {string}
      *
@@ -69,7 +69,7 @@ declare namespace PortletParams {
 
     /**
      * The complete HTML contents of the portlet
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671250782)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671250782}
      *
      * @type {string}
      *
@@ -79,7 +79,7 @@ declare namespace PortletParams {
 
     /**
      * File Id for Portlet form script
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671255061)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671255061}
      *
      * @type {number}
      *
@@ -89,7 +89,7 @@ declare namespace PortletParams {
 
     /**
      * File Path for Portlet form script
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671252102)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671252102}
      *
      * @type {string}
      *
@@ -104,7 +104,7 @@ declare namespace PortletParams {
 
     /**
      * Add a Column to the Portlete
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671258932)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671258932}
      *
      * @param {Object} options
      * @param {string} options.id
@@ -124,7 +124,7 @@ declare namespace PortletParams {
 
     /**
      * Add an Edit or Edit/View column
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671382437)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671382437}
      *
      * @param {Object} options
      * @param {string} options.column
@@ -148,7 +148,7 @@ declare namespace PortletParams {
 
     /**
      * Add a field to the form
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671374019)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671374019}
      *
      * @param {Object} options
      * @param {string} options.id
@@ -168,7 +168,7 @@ declare namespace PortletParams {
 
     /**
      * Add a field to the form
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671361504)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671361504}
      *
      * @param {Object} options
      * @param {string} options.text
@@ -186,7 +186,7 @@ declare namespace PortletParams {
 
     /**
      * Add a row (Array of name/value pairs or search.Result)
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671356858)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671356858}
      *
      * @param {Object} options
      * @param {search.Result|Object<string, string>} options.row
@@ -202,7 +202,7 @@ declare namespace PortletParams {
 
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671342323)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671342323}
      *
      * @param {Object} options
      * @param {search.Result[]|Object<string, string>[]} options.rows
@@ -218,7 +218,7 @@ declare namespace PortletParams {
 
     /**
      * Add a field to the form
-     * @see [Help Center](@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671280175)
+     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4671280175}
      *
      * @param {Object} options
      * @param {string} options.url
