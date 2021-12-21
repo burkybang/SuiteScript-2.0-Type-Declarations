@@ -1,6 +1,7 @@
 /**
  * SuiteScript cache module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642573343}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642573343}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642573343.html}
  *
  * @module N/cache
  * @NApiVersion 2.x

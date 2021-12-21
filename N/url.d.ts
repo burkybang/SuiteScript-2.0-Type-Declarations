@@ -1,6 +1,7 @@
 /**
  * SuiteScript url module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552918}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552918}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358552918.html}
  *
  * @module N/url
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface url {
 
   /**
    * Returns the URL string to a NetSuite record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358667680}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358667680}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358667680.html}
    *
    * @param {Object} options
    * @param {string} options.recordType
@@ -32,7 +34,8 @@ interface url {
 
   /**
    * Returns the internal URL to a NetSuite Tasklink
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672296}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672296}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358672296.html}
    *
    * @param {Object} options
    * @param {string} options.id
@@ -51,7 +54,8 @@ interface url {
 
   /**
    * Returns an external or internal URL string to a script
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672433}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672433}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358672433.html}
    *
    * @param {Object} options
    * @param {string} options.scriptId
@@ -74,7 +78,8 @@ interface url {
 
   /**
    * Returns a domain name for a NetSuite account
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4861456597}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4861456597}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4861456597.html}
    *
    * @param {Object} options
    * @param {url.HostType} options.hostType
@@ -91,7 +96,8 @@ interface url {
 
   /**
    * Creates a serialized representation of an object containing query parameters
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672703}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358672703}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358672703.html}
    *
    * @param {Object} options
    * @param {string} options.domain
@@ -113,7 +119,8 @@ declare namespace url {
 
   /**
    * Enumeration whose string values each describe a category of domain name
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834765371}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834765371}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4834765371.html}
    *
    * @enum {string}
    */

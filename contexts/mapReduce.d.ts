@@ -1,6 +1,7 @@
 /**
  * SuiteScript Map/Reduce Script Context
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4685231336.html}
  */
 
 /// <reference path="../typings.d.ts" />
@@ -10,7 +11,8 @@
 
 /**
  * References the object that contains the input data
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4685231336.html}
  *
  * @since 2015.2
  */
@@ -53,7 +55,8 @@ interface GetInputContext {
 
 /**
  * References the object that contains the input data
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
  *
  * @since 2015.2
  */
@@ -64,7 +67,8 @@ type GetInputReturn = any[] | { [p: string]: any } |
 
 /**
  * search.Search Object Reference
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
  *
  * @since 2015.2
  */
@@ -75,7 +79,8 @@ interface GetInputReturnSearchReference {
 
 /**
  * query.Query Object Reference
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
  *
  * @since 2015.2
  */
@@ -86,7 +91,8 @@ interface GetInputReturnQueryReference {
 
 /**
  * Contains the key/value pairs to process through the map stage
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472712193.html}
  *
  * @since 2015.2
  */
@@ -100,7 +106,8 @@ interface MapContext {
 
   /**
    * The key to be processed through the map stage
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483840988}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483840988}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483840988.html}
    *
    * @type {string} key
    * @readonly
@@ -109,7 +116,8 @@ interface MapContext {
 
   /**
    * The value to be processed through the map stage
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483841695}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483841695}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483841695.html}
    *
    * @type {string} value
    * @readonly
@@ -118,7 +126,8 @@ interface MapContext {
 
   /**
    * Indicates whether the map(mapContext) function was invoked again
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540852756}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540852756}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4540852756.html}
    *
    * @type {boolean} isRestarted
    * @readonly
@@ -127,7 +136,8 @@ interface MapContext {
 
   /**
    * Indicates whether the current invocation of the map(mapContext) function is the first or a subsequent invocation for the current key/value pair
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516217757}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516217757}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516217757.html}
    *
    * @type {number} executionNo
    * @readonly
@@ -136,7 +146,8 @@ interface MapContext {
 
   /**
    * Iterator which provides errors thrown during particular map function execution
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516209193}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516209193}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516209193.html}
    *
    * @type {ErrorsIterator} errors
    * @readonly
@@ -148,7 +159,8 @@ interface MapContext {
 
   /**
    * Writes the key value pairs
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712995}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712995}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472712995.html}
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
@@ -175,7 +187,8 @@ interface MapContext {
 
 /**
  * Contains the key/values groups to process through the reduce stage
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483843828.html}
  *
  * @since 2015.2
  */
@@ -189,7 +202,8 @@ interface ReduceContext {
 
   /**
    * Indicates whether the Rap(reduceContext) function was invoked again
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540820922}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4540820922}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4540820922.html}
    *
    * @type {boolean} isRestarted
    * @readonly
@@ -198,7 +212,8 @@ interface ReduceContext {
 
   /**
    * Indicates whether the current invocation of the reduce(reduceContext) function is the first, second, third, or fourth for the current key and its values
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393633}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393633}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516393633.html}
    *
    * @type {number} executionNo
    * @readonly
@@ -208,7 +223,8 @@ interface ReduceContext {
   /**
    * When the map/reduce process includes a map stage, the key is derived from the key written by MapContext.write(key, value).
    * When the map stage is skipped, the key depends on the input type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721827}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721827}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472721827.html}
    *
    * @type {string} key
    * @readonly
@@ -217,7 +233,8 @@ interface ReduceContext {
 
   /**
    * When the map/reduce process includes a map stage, the values are derived from the values written by MapContext.write(key,value). When the map stage is skipped, the values are already grouped by key into a list, and the value depends on the input type.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721828}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721828}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472721828.html}
    *
    * @type {string} values
    * @readonly
@@ -226,7 +243,8 @@ interface ReduceContext {
 
   /**
    * Iterator which provides errors thrown during particular reduce function execution
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393583}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516393583}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516393583.html}
    *
    * @type {ErrorsIterator} errors
    * @readonly
@@ -238,7 +256,8 @@ interface ReduceContext {
 
   /**
    * Writes the key/values groups
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721829}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472721829}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472721829.html}
    *
    * @param {Object} options
    * @param {string} options.key - The key to write
@@ -265,7 +284,8 @@ interface ReduceContext {
 
 /**
  * Used for accessing Map/Reduce job output and metadata
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472725629.html}
  *
  * @since 2015.2
  */
@@ -279,7 +299,8 @@ interface SummarizeContext {
 
   /**
    * Time M/R job began running
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725620}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725620}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472725620.html}
    *
    * @type {Date} dateCreated
    * @readonly
@@ -288,7 +309,8 @@ interface SummarizeContext {
 
   /**
    * Total seconds elapsed while running
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726014}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726014}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472726014.html}
    *
    * @type {number} seconds
    * @readonly
@@ -297,7 +319,8 @@ interface SummarizeContext {
 
   /**
    * Total usage points consumed while running
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726050}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726050}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472726050.html}
    *
    * @type {number} usage
    * @readonly
@@ -306,7 +329,8 @@ interface SummarizeContext {
 
   /**
    * Maximum number of queues utilized at the same time while running
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726080}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472726080}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472726080.html}
    *
    * @type {number} concurrency
    * @readonly
@@ -315,7 +339,8 @@ interface SummarizeContext {
 
   /**
    * Total number of times yielding the queue while running
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472727250}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472727250}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472727250.html}
    *
    * @type {number} yields
    * @readonly
@@ -324,7 +349,8 @@ interface SummarizeContext {
 
   /**
    * Iterator which provides keys and values written as output during the REDUCE phase
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472729410}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472729410}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472729410.html}
    *
    * @type {OutputIterator} output
    * @readonly
@@ -336,7 +362,8 @@ interface SummarizeContext {
 
   /**
    * Stats about the INPUT stage
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472730724.html}
    *
    * @type {InputSummary} inputSummary
    */
@@ -344,7 +371,8 @@ interface SummarizeContext {
 
   /**
    * Stats about the MAP stage
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483844888.html}
    *
    * @type {MapSummary} mapSummary
    */
@@ -352,7 +380,8 @@ interface SummarizeContext {
 
   /**
    * Stats about the REDUCE stage
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472747839.html}
    *
    * @type {ReduceSummary} reduceSummary
    */
@@ -375,7 +404,8 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce INPUT stage metadata
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730724}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472730724.html}
    *
    * @since 2015.2
    */
@@ -383,7 +413,8 @@ declare namespace SummarizeContext {
 
     /**
      * Time M/R INPUT stage began running
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730723}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730723}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472730723.html}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -392,7 +423,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while during the INPUT stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844442}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844442}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483844442.html}
      *
      * @type {number} seconds
      * @readonly
@@ -401,7 +433,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed during the INPUT stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730725}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730725}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472730725.html}
      *
      * @type {number} usage
      * @readonly
@@ -410,7 +443,8 @@ declare namespace SummarizeContext {
 
     /**
      * Serialized error is thrown out of getInputData() - if applicable
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730726}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472730726}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472730726.html}
      *
      * @type {string} error
      * @readonly
@@ -435,7 +469,8 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce MAP stage metadata
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483844888}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483844888.html}
    *
    * @since 2015.2
    */
@@ -443,7 +478,8 @@ declare namespace SummarizeContext {
 
     /**
      * Time MAP stage began running
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737470}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737470}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472737470.html}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -452,7 +488,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while running MAP stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737479}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737479}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472737479.html}
      *
      * @type {number} seconds
      * @readonly
@@ -461,7 +498,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed while running MAP stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737471}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472737471}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472737471.html}
      *
      * @type {number} usage
      * @readonly
@@ -470,7 +508,8 @@ declare namespace SummarizeContext {
 
     /**
      * Maximum number of queues utilized at the same time while running MAP stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483895829}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483895829}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483895829.html}
      *
      * @type {number} concurrency
      * @readonly
@@ -479,7 +518,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total number of times yielding the queue while running MAP stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472740448}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472740448}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472740448.html}
      *
      * @type {number} yields
      * @readonly
@@ -488,7 +528,8 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides input keys processed during the MAP phase
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745365}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745365}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472745365.html}
      *
      * @type {KeysIterator} keys
      * @readonly
@@ -500,7 +541,8 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides errors thrown during the MAP phase
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745988}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472745988}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472745988.html}
      *
      * @type {ErrorsIterator} errors
      * @readonly
@@ -525,7 +567,8 @@ declare namespace SummarizeContext {
 
   /**
    * Used for accessing Map/Reduce REDUCE stage metadata
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747839}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472747839.html}
    *
    * @since 2015.2
    */
@@ -533,7 +576,8 @@ declare namespace SummarizeContext {
 
     /**
      * Time REDUCE stage began running
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483896562}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483896562}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483896562.html}
      *
      * @type {Date} dateCreated
      * @readonly
@@ -542,7 +586,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total seconds elapsed while running REDUCE stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747831}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747831}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472747831.html}
      *
      * @type {number} seconds
      * @readonly
@@ -551,7 +596,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total usage points consumed while running REDUCE stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483898658}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483898658}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483898658.html}
      *
      * @type {number} usage
      * @readonly
@@ -560,7 +606,8 @@ declare namespace SummarizeContext {
 
     /**
      * Maximum number of queues utilized at the same time while running REDUCE stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747830}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747830}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472747830.html}
      *
      * @type {number} concurrency
      * @readonly
@@ -569,7 +616,8 @@ declare namespace SummarizeContext {
 
     /**
      * Total number of times yielding the queue while running REDUCE stage
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483899918}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483899918}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483899918.html}
      *
      * @type {number} yields
      * @readonly
@@ -578,7 +626,8 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides input keys processed during the REDUCE phase
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747832}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472747832}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472747832.html}
      *
      * @type {KeysIterator} keys
      * @readonly
@@ -590,7 +639,8 @@ declare namespace SummarizeContext {
 
     /**
      * Iterator which provides errors thrown during the REDUCE phase
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483900159}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483900159}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483900159.html}
      *
      * @type {ErrorsIterator} errors
      * @readonly

@@ -2,7 +2,8 @@
 
 /**
  * SuiteScript query module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275060.html}
  *
  * @module N/query
  * @NApiVersion 2.x
@@ -26,7 +27,8 @@ interface query {
   load: {
     /**
      * Loads query by id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
      *
      * @param {Object} options
      * @param {number|string} options.id - Id of query to be loaded

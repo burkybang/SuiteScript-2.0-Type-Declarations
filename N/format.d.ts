@@ -1,6 +1,7 @@
 /**
  * SuiteScript format module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388721627}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388721627}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388721627.html}
  *
  * @module N/format
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface format {
 
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
    * @param {string|number|boolean} value the data you wish to parse
    * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
@@ -26,7 +28,8 @@ interface format {
 
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
    * @param {Object} options
    * @param {string|number|boolean} options.value the data you wish to parse
@@ -47,7 +50,8 @@ interface format {
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
    * @param {Date|string|number|boolean} value the data you wish to format
    * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
@@ -64,7 +68,8 @@ interface format {
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
    * @param {Object} options
    * @param {Date|string|number|boolean} options.value the data you wish to format
@@ -88,7 +93,8 @@ declare namespace format {
 
   /**
    * Enum for field types
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388844232.html}
    *
    * @enum {string}
    */
@@ -141,7 +147,8 @@ declare namespace format {
 
   /**
    * Enum for Time Zones
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407050795.html}
    *
    * @enum {string}
    */

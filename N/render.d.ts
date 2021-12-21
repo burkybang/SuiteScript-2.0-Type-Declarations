@@ -7,7 +7,8 @@
 
 /**
  * SuiteScript render module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412042824}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412042824}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412042824.html}
  *
  * @module N/render
  * @NApiVersion 2.x
@@ -16,7 +17,8 @@ interface render {
 
   /**
    * Use this method to create a PDF or HTML object of a transaction
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452452331542}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452452331542}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452452331542.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -38,7 +40,8 @@ interface render {
 
   /**
    * Use this method to create a PDF or HTML object of a statement
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455095458983}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455095458983}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455095458983.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -68,7 +71,8 @@ interface render {
 
   /**
    * Use this method to create a PDF or HTML object of a packing slip
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458625732421}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458625732421}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458625732421.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -92,7 +96,8 @@ interface render {
 
   /**
    * Use this method to create a PDF or HTML object of a picking ticket
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456921936034}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456921936034}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456921936034.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -118,7 +123,8 @@ interface render {
 
   /**
    * Use this method to create a PDF or HTML object of a bill of material
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457552429198}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457552429198}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457552429198.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -136,7 +142,8 @@ interface render {
 
   /**
    * Use this method to produce HTML and PDF printed forms with advanced PDF/HTML templates
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455028930663}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455028930663}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455028930663.html}
    *
    * @governance 0 units
    * @restriction Supported by all server side scirpts
@@ -147,7 +154,8 @@ interface render {
 
   /**
    * Method used to pass XML to the Big Faceless Organization (BFO) tag library (which is stored by NetSuite), and return a PDF file.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459185424803}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459185424803}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459185424803.html}
    *
    * @governance 10 units
    * @restriction Supported by all server side scirpts
@@ -163,7 +171,8 @@ interface render {
 
   /**
    * Creates a render.EmailMergeResult object for a mail merge with an existing scriptable email template
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454332824706}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454332824706}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454332824706.html}
    *
    * @governance 0 units
    *
@@ -203,7 +212,8 @@ declare namespace render {
 
   /**
    * Enum print mode type values.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412215015}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412215015}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412215015.html}
    *
    * @enum {string}
    */
@@ -215,7 +225,8 @@ declare namespace render {
 
   /**
    * Enum data source type values.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619588793}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619588793}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619588793.html}
    *
    * @enum {string}
    */
@@ -227,7 +238,8 @@ declare namespace render {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4417244174}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4417244174}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4417244174.html}
    *
    * @protected
    * @constructor
@@ -236,7 +248,8 @@ declare namespace render {
 
     /**
      * The subject of the email distribution in string format
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212830}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212830}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412212830.html}
      *
      * @type {string}
      * @readonly
@@ -247,7 +260,8 @@ declare namespace render {
 
     /**
      * The body of the email distribution in string format
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212816}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212816}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412212816.html}
      *
      *
      * @type {string}
@@ -270,7 +284,8 @@ declare namespace render {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412065265}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412065265}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412065265.html}
    *
    * @protected
    * @constructor
@@ -279,7 +294,8 @@ declare namespace render {
 
     /**
      * Template content
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453133789062}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453133789062}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453133789062.html}
      *
      * @type {string}
      *
@@ -289,7 +305,8 @@ declare namespace render {
 
     /**
      * Sets template content by scriptId
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528574899}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528574899}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528574899.html}
      *
      * @param {Object} options
      * @param {string} options.scriptId
@@ -303,7 +320,8 @@ declare namespace render {
 
     /**
      * Sets template content by internal Id (nKey)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528552999}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528552999}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528552999.html}
      *
      * @param {Object} options
      * @param {number} options.id
@@ -317,7 +335,8 @@ declare namespace render {
 
     /**
      * Binds a record to a template variable
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
      *
      * @param {Object} options
      * @param {string} options.templateName
@@ -333,7 +352,8 @@ declare namespace render {
 
     /**
      * Binds a search result to a template variable
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456249023436}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456249023436}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456249023436.html}
      *
      * @param {Object} options
      * @param {string} options.templateName
@@ -349,7 +369,8 @@ declare namespace render {
 
     /**
      * Adds XML or JSON as custom data source to an advanced PDF/HTML template
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528541027}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528541027}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528541027.html}
      *
      * @param {Object} options
      * @param {string} options.alias namespace name of the record used in the template
@@ -367,7 +388,8 @@ declare namespace render {
 
     /**
      * Return template content in string form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455231872558}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455231872558}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455231872558.html}
      *
      * @return {string}
      *
@@ -377,7 +399,8 @@ declare namespace render {
 
     /**
      * Writes template content to a server response
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459426513671}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459426513671}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459426513671.html}
      *
      * @param {Object} options
      * @param {http.ServerResponse} options.response
@@ -391,7 +414,8 @@ declare namespace render {
 
     /**
      * Uses the advanced template to produce a PDF printed form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452241760253}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452241760253}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452241760253.html}
      *
      * @return {file.File}
      *
@@ -401,7 +425,8 @@ declare namespace render {
 
     /**
      * Renders a server response into a PDF file
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
      *
      * @param {http.ServerResponse} response
      * @return {void}

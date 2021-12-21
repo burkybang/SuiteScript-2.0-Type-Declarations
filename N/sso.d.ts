@@ -1,6 +1,7 @@
 /**
  * SuiteScript sso module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424287223}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424287223}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424287223.html}
  *
  * @module N/sso
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface sso {
 
   /**
    * Generate a new SuiteSignOn token for a user
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4425177089}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4425177089}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4425177089.html}
    *
    * @governance 20 units
    *

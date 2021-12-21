@@ -3,7 +3,8 @@
 
 /**
  * SuiteScript action module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510761537}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510761537.html}
  *
  * @since 2018.2
  *
@@ -21,7 +22,8 @@ interface action {
      * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
      * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
      * again when executing an Action object from the result set.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389605}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509389605.html}
      *
      * @governance none
      *
@@ -50,7 +52,8 @@ interface action {
      * words, the recordId and id parameters act as additional filters and may result in an empty result set being returned.
      * If the recordId is provided than the returned actions are "qualified" and you don't have to provide the recordId
      * again when executing an Action object from the result set.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391246}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509391246.html}
      *
      * @governance none
      *
@@ -81,7 +84,8 @@ interface action {
      * action object is only returned if the given record instance qualifies for execution of the given record action.
      * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
      * again when executing the Action object.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509384818}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509384818.html}
      *
      * @governance none
      *
@@ -107,7 +111,8 @@ interface action {
      * action object is only returned if the given record instance qualifies for execution of the given record action.
      * Also, if recordId is provided than the returned action is "qualified" and you don't have to provide the recordId
      * again when executing the Action object.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509385970}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509385970.html}
      *
      * @governance none
      *
@@ -134,7 +139,8 @@ interface action {
 
     /**
      * Executes a record action and returns its result.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509391388}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509391388.html}
      *
      * @governance none
      *
@@ -171,7 +177,8 @@ interface action {
 
     /**
      * Executes a record action and returns its result.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509392030}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509392030.html}
      *
      * @governance none
      *
@@ -210,7 +217,8 @@ interface action {
   /**
    * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
    * The options.params parameter is mutually exclusive to options.condition and options.paramCallback.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1540815927.html}
    *
    * @governance 50 units
    *
@@ -246,7 +254,8 @@ interface action {
 
   /**
    * Returns the current status of action.executeBulk(options) for the specified task ID. The bulk execution status is returned in a status object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540816132}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540816132}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1540816132.html}
    *
    * @governance none
    *
@@ -262,7 +271,8 @@ declare namespace action {
 
   /**
    * Supported Record Actions
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516982564}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516982564}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516982564.html}
    */
   export type ActionID =
     'allocate' | 'approve' | 'confirm' |
@@ -280,7 +290,8 @@ declare namespace action {
     'clearBudgetAmounts';
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509380249}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509380249.html}
    *
    * @since 2018.2
    */
@@ -288,7 +299,8 @@ declare namespace action {
 
     /**
      * The action description
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388207}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388207}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509388207.html}
      *
      * @type {string} description
      *
@@ -298,7 +310,8 @@ declare namespace action {
 
     /**
      * The type of the record on which the action is to be performed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387977}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387977}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387977.html}
      *
      * @type {record.Type|string} recordType
      *
@@ -308,7 +321,8 @@ declare namespace action {
 
     /**
      * The ID of the action
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387777}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387777}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387777.html}
      *
      * @type {action.ActionID} recordType
      *
@@ -318,7 +332,8 @@ declare namespace action {
 
     /**
      * The action label
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388068}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388068}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509388068.html}
      *
      * @type {string} label
      *
@@ -328,7 +343,8 @@ declare namespace action {
 
     /**
      * The action parameters
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389367}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389367}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509389367.html}
      *
      * @type {Object<string, number|string>} parameters
      *
@@ -341,7 +357,8 @@ declare namespace action {
 
     /**
      * Executes the action and returns the action result in a plain JavaScript object
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387360.html}
      *
      * @governance none
      *
@@ -368,7 +385,8 @@ declare namespace action {
 
     /**
      * Executes the action asynchronously and returns the action result in a plain JavaScript object
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387674}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387674}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387674.html}
      *
      * @governance none
      *
@@ -397,7 +415,8 @@ declare namespace action {
 
       /**
        * Executes a record action and returns its result.
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386224}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386224}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509386224.html}
        *
        * @governance none
        *
@@ -434,7 +453,8 @@ declare namespace action {
 
       /**
        * Executes a record action and returns its result.
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386721}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509386721}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509386721.html}
        *
        * @governance none
        *
@@ -472,7 +492,8 @@ declare namespace action {
 
     /**
      * Executes an asynchronous bulk record action and returns its task ID for status queries with action.getBulkStatus(options)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1540815927.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.recordType record type

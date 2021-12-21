@@ -3,7 +3,8 @@
 
 /**
  * SuiteScript redirect module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424286105}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424286105}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424286105.html}
  *
  * @module N/redirect
  * @NApiVersion 2.x
@@ -12,7 +13,8 @@ interface redirect {
 
   /**
    * Redirect to a URL
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988767}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988767}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988767.html}
    *
    * @governance 0 units
    * @restriction Can only direct to external URL by suitelet without login
@@ -31,7 +33,8 @@ interface redirect {
 
   /**
    * Redirect to a suitelet
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988773}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988773}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988773.html}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -54,7 +57,8 @@ interface redirect {
 
   /**
    * Redirect to a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424995667}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424995667}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424995667.html}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -77,7 +81,8 @@ interface redirect {
 
   /**
    * Redirect to a task link
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988740}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988740}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988740.html}
    *
    * @governance 0 units
    * @restriction Suitelet and UE only
@@ -96,7 +101,8 @@ interface redirect {
 
   /**
    * Redirect to saved search
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988669}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988669}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988669.html}
    *
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -111,7 +117,8 @@ interface redirect {
 
   /**
    * Redirect to saved search results
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988694}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988694}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988694.html}
    *
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -126,7 +133,8 @@ interface redirect {
 
   /**
    * Redirect to search
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988719}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988719}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988719.html}
    *
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
@@ -141,7 +149,8 @@ interface redirect {
 
   /**
    * Redirect to search results
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988724}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988724}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988724.html}
    *
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts

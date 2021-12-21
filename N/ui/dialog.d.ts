@@ -1,6 +1,7 @@
 /**
  * SuiteScript Dialog Module (Client Side)
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497725142.html}
  *
  * @module N/ui/dialog
  * @suiteScriptVersion 2.x
@@ -9,7 +10,8 @@ interface dialog {
 
   /**
    * Creates an Alert Dialog with an OK Button
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497744851.html}
    *
    * @restriction Client SuiteScript only
    *
@@ -29,7 +31,8 @@ interface dialog {
 
   /**
    * Creates an Confirm Dialog with an OK and Cancel Button
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497799943.html}
    *
    * @restriction Client SuiteScript only
    *
@@ -49,7 +52,8 @@ interface dialog {
 
   /**
    * Creates an Dialog with the specified buttons
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497804898}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497804898}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497804898.html}
    *
    * @restriction Client SuiteScript only
    *

@@ -2,7 +2,8 @@
 
 /**
  * SuiteScript module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296359529}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296359529}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296359529.html}
  *
  * @module N/runtime
  * @NApiVersion 2.x
@@ -72,7 +73,8 @@ interface runtime {
   accountId: string;
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531123}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531123}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296531123.html}
    *
    * @type {runtime.EnvType}
    * @readonly
@@ -82,7 +84,8 @@ interface runtime {
   envType: runtime.EnvType;
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531348}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531348}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296531348.html}
    *
    * @type {runtime.ContextType}
    * @readonly
@@ -107,7 +110,8 @@ interface runtime {
 declare namespace runtime {
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647065}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647065}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296647065.html}
    * @enum {string}
    */
   export enum EnvType {
@@ -118,7 +122,8 @@ declare namespace runtime {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647244}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296647244}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296647244.html}
    * @enum {string}
    */
   export enum Permission {
@@ -130,7 +135,8 @@ declare namespace runtime {
   }
 
   /**
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296646855}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296646855}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296646855.html}
    * @enum {string}
    */
   export enum ContextType {

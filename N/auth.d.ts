@@ -1,6 +1,7 @@
 /**
  * SuiteScript auth module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296360422}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296360422}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296360422.html}
  *
  * @module N/auth
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface auth {
 
   /**
    * Change current user's email
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298156427}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298156427}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4298156427.html}
    *
    * @param {Object} options
    * @param {string} options.password
@@ -28,7 +30,8 @@ interface auth {
 
   /**
    * Change current user's password
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298157647}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298157647}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4298157647.html}
    *
    * @param {object} options
    * @param {string} options.currentPassword

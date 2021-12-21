@@ -2,7 +2,8 @@
 
 /**
  * SuiteScript crypto module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358549582}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358549582}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358549582.html}
  *
  * @module N/crypto
  * @NApiVersion 2.x
@@ -11,7 +12,8 @@ interface crypto_ {
 
   /**
    * Method used to create a new crypto_.SecretKey object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
    *
    * @param options
    * @param {string} options.guid
@@ -27,7 +29,8 @@ interface crypto_ {
 
   /**
    * Method used to create a crypto.Hash object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -41,7 +44,8 @@ interface crypto_ {
 
   /**
    * Method used to create a crypto.Hmac object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647613.html}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -57,7 +61,8 @@ interface crypto_ {
 
   /**
    * Method used to create and return a crypto.EncryptionAlg object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650498}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650498}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358650498.html}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -75,7 +80,8 @@ interface crypto_ {
 
   /**
    * Method used to create a crypto.Decipher object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650886}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358650886}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358650886.html}
    *
    * @param {Object} options
    * @param {crypto_.HashAlg} options.algorithm
@@ -98,7 +104,8 @@ declare namespace crypto_ {
 
   /**
    * Enum describing available crypto hashing algorithms
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655346}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655346}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358655346.html}
    *
    * @enum {string}
    *
@@ -113,7 +120,8 @@ declare namespace crypto_ {
 
   /**
    * Enum describing available crypto encryption algorithms
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655796}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655796}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358655796.html}
    *
    * @enum {string}
    *
@@ -125,7 +133,8 @@ declare namespace crypto_ {
 
   /**
    * Enum describing available padding options
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655564}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358655564}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358655564.html}
    *
    * @enum {string}
    *
@@ -138,7 +147,8 @@ declare namespace crypto_ {
 
   /**
    * Returns a new instance of SecretKey used for hmac, cipher and decipher
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620976}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620976}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358620976.html}
    *
    * @protected
    * @classdesc
@@ -151,7 +161,8 @@ declare namespace crypto_ {
 
     /**
      * The GUID associated with the secret key
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455843444823}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455843444823}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455843444823.html}
      *
      * @type {string}
      *
@@ -161,7 +172,8 @@ declare namespace crypto_ {
 
     /**
      * The encoding used for the clear text value of the secret key
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458478637694}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458478637694}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458478637694.html}
      *
      * @type {encode.Encoding}
      *
@@ -172,7 +184,8 @@ declare namespace crypto_ {
 
   /**
    * Encapsulates a cipher payload
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358619238}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358619238}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358619238.html}
    *
    * @protected
    * @constructor
@@ -183,7 +196,8 @@ declare namespace crypto_ {
 
     /**
      * Initialization vector for the cipher payload
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46186462402}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46186462402}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46186462402.html}
      *
      * @type {string}
      *
@@ -193,7 +207,8 @@ declare namespace crypto_ {
 
     /**
      * The result of the ciphering process
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455083557128}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455083557128}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455083557128.html}
      *
      * @type {string}
      *
@@ -204,7 +219,8 @@ declare namespace crypto_ {
 
   /**
    * Encapsulates a hash
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620745}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620745}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358620745.html}
    *
    * @protected
    * @constructor
@@ -215,7 +231,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to update clear data with the encoding specified
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453249145507}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453249145507}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453249145507.html}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -231,7 +248,8 @@ declare namespace crypto_ {
 
     /**
      * Calculates the digest of the data to be hashed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456370178222}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456370178222}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456370178222.html}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -246,7 +264,8 @@ declare namespace crypto_ {
 
   /**
    * Encapsulates an hmac
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620874}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620874}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358620874.html}
    *
    * @protected
    * @constructor
@@ -257,7 +276,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to update the clear data with the encoding specified
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457765136718}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457765136718}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457765136718.html}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -273,7 +293,8 @@ declare namespace crypto_ {
 
     /**
      *
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459978271483}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459978271483}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459978271483.html}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -288,7 +309,8 @@ declare namespace crypto_ {
 
   /**
    * Encapsulates a cipher
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358574527}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358574527}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358574527.html}
    *
    * @protected
    * @constructor
@@ -299,7 +321,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to update the clear data with the specified encoding
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454552856444}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454552856444}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454552856444.html}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -315,7 +338,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to return the cipher data
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454422851562}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454422851562}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454422851562.html}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.HEX]
@@ -331,7 +355,8 @@ declare namespace crypto_ {
   /**
    * Encapsulates a decipher
    * This object has methods that decrypt
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620478}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358620478}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358620478.html}
    *
    * @protected
    * @constructor
@@ -342,7 +367,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to update cipher data with the specified encoding
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453919616698}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453919616698}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453919616698.html}
      *
      * @param {Object} options
      * @param {string} options.input
@@ -358,7 +384,8 @@ declare namespace crypto_ {
 
     /**
      * Method used to return the clear data
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458502441405}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458502441405}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458502441405.html}
      *
      * @param {Object} options
      * @param {encode.Encoding} [options.outputEncoding=encode.Encoding.UTF_8]

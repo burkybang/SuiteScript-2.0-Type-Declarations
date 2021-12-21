@@ -1,6 +1,7 @@
 /**
  * SuiteScript Workflow Action Script Context
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516394504}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1516394504}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1516394504.html}
  */
 
 /// <reference path="../N/record.d.ts" />
@@ -8,7 +9,8 @@
 
 /**
  * Defines a Workflow Action script trigger point
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
  *
  * @since 2016.1
  */
@@ -16,7 +18,8 @@ interface OnActionContext {
 
   /**
    * The new record. Saving is not permitted
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
    * @type {record.RecordReadonly}
    * @readonly
@@ -27,7 +30,8 @@ interface OnActionContext {
 
   /**
    * The old record. Saving is not permitted
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
    * @type {record.RecordReadonly}
    * @readonly
@@ -38,7 +42,8 @@ interface OnActionContext {
 
   /**
    * The current form that the script uses to interact with the record. This parameter is available only in the beforeLoad context.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
    * @type {serverWidget.Form}
    *
@@ -48,7 +53,8 @@ interface OnActionContext {
 
   /**
    * An event type, such as create, edit, view, or delete
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
    * @type {string}
    *
@@ -58,7 +64,8 @@ interface OnActionContext {
 
   /**
    * The internal ID of the workflow that calls the script
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
    * @type {number}
    *

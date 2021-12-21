@@ -2,7 +2,8 @@
 
 /**
  * SuiteScript search module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345764122}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345764122}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345764122.html}
  *
  * @module N/search
  * @NApiVersion 2.x
@@ -405,7 +406,8 @@ interface search {
 
   /**
    * Creates a search.Column object.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
    *
    * @param {Object} options  the options object
    * @param {string} options.name  the search return column name
@@ -1302,18 +1304,19 @@ declare namespace search {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[];
-/*
-    /!**
-     * Returns the value of a specified search return column.
-     * The column may be specified in three ways:
-     * 1) by providing a column name string
-     * 2) by providing a search.Column object
-     * 3) by providing name, join and summary parameters
-     * @param {string} columnName  search return column name or object whose value you want to return
-     * @return {string|boolean} value of the search result column
-     * @since 2015.2
-     *!/
-    getValue(columnName: string): string | boolean;*/
+
+    /*
+        /!**
+         * Returns the value of a specified search return column.
+         * The column may be specified in three ways:
+         * 1) by providing a column name string
+         * 2) by providing a search.Column object
+         * 3) by providing name, join and summary parameters
+         * @param {string} columnName  search return column name or object whose value you want to return
+         * @return {string|boolean} value of the search result column
+         * @since 2015.2
+         *!/
+        getValue(columnName: string): string | boolean;*/
 
     /**
      * Returns the value of a specified search return column.
@@ -1345,19 +1348,20 @@ declare namespace search {
       join?: string,
       summary?: Summary,
     }): string | boolean;
-/*
-    /!**
-     * Returns the UI display name (i.e. the text value) of a specified search return column.
-     * Note that this method is supported on select, image and document fields only.
-     * The column may be specified in three ways:
-     * 1) by providing a column name string
-     * 2) by providing a search.Column object
-     * 3) by providing name, join and summary parameters
-     * @param {string} columnName  search return column name or object whose value you want to return
-     * @return {string} UI display name (text value) of the search result column
-     * @since 2015.2
-     *!/
-    getText(columnName: string): string;*/
+
+    /*
+        /!**
+         * Returns the UI display name (i.e. the text value) of a specified search return column.
+         * Note that this method is supported on select, image and document fields only.
+         * The column may be specified in three ways:
+         * 1) by providing a column name string
+         * 2) by providing a search.Column object
+         * 3) by providing name, join and summary parameters
+         * @param {string} columnName  search return column name or object whose value you want to return
+         * @return {string} UI display name (text value) of the search result column
+         * @since 2015.2
+         *!/
+        getText(columnName: string): string;*/
 
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.

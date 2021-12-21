@@ -1,6 +1,7 @@
 /**
  * SuiteScript util module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4569538303}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4569538303}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4569538303.html}
  *
  * @module N/util
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface util {
 
   /**
    * Iterates over each member in an Array
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
    *
    * @param {*[]} iterable
    * @param {Function} callback
@@ -19,7 +21,8 @@ interface util {
 
   /**
    * Iterates over each member in an Object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
    *
    * @param {Object<string, anu>} iterable
    * @param {Function} callback
@@ -29,7 +32,8 @@ interface util {
 
   /**
    * Copies the properties in a source object to a destination object
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541702994}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541702994}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541702994.html}
    *
    * @param {Object} receiver
    * @param {Object} contributor
@@ -49,7 +53,8 @@ interface util {
   /**
    * Returns true if the obj parameter is a plain JavaScript object (new Object() or {} for example), and false otherwise
    * Use this method, for example, to verify that a variable is a JavaScript object and not a JavaScript Function.
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434780923}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434780923}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434780923.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -58,7 +63,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Function or AsyncFunction and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434697652}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434697652}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434697652.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -67,7 +73,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript AsyncFunction and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159485198809}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159485198809}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159485198809.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -76,7 +83,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Array object and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434638201}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434638201}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434638201.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -85,7 +93,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Boolean and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434638340}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434638340}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434638340.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -94,7 +103,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript String object or primitive, and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434798099}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434798099}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434798099.html}
    *
    * @param {*} obj
    * @return {boolean}
@@ -103,7 +113,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Number object or primitive, and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434771374}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434771374}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434771374.html}
    *
    * @param obj
    * @return {boolean}
@@ -121,7 +132,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript Date object and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434642842}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434642842}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434642842.html}
    *
    * @param obj
    * @return {boolean}
@@ -130,7 +142,8 @@ interface util {
 
   /**
    * Returns true if the obj parameter is a JavaScript RegExp object, and false otherwise
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434785140}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4434785140}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4434785140.html}
    *
    * @param obj
    * @return {boolean}

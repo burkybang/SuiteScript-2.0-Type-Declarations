@@ -2,7 +2,8 @@
 
 /**
  * SuiteScript sftp module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617004932}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4617004932.html}
  *
  * @restriction Server-side scripts only
  *
@@ -15,7 +16,8 @@ interface sftp {
 
   /**
    * Constant representing the minimun time allowed for transferring data over connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238823}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557238823.html}
    *
    * @type {1}
    * @readonly
@@ -28,7 +30,8 @@ interface sftp {
 
   /**
    * Constant representing the maximum time allowed for transferring data over connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557321286}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557321286.html}
    *
    * @type {20}
    * @readonly
@@ -41,7 +44,8 @@ interface sftp {
 
   /**
    * Constant representing the minimun port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327099}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557327099.html}
    *
    * @type {0}
    * @readonly
@@ -54,7 +58,8 @@ interface sftp {
 
   /**
    * Constant representing the maximum port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327056}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557327056.html}
    *
    * @type {65535}
    * @readonly
@@ -67,7 +72,8 @@ interface sftp {
 
   /**
    * Constant representing the default port number
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557327135}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557327135.html}
    *
    * @type {22}
    * @readonly
@@ -80,7 +86,8 @@ interface sftp {
 
   /**
    * Establishes a connection with a remote server and returns a connection object representing that connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4617005472}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4617005472.html}
    *
    * @param {Object} options
    * @param {string} options.url - host of remote account
@@ -125,7 +132,8 @@ declare namespace sftp {
 
   /**
    * Holds the values to be used to sort listed files and directories
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557239613}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557239613.html}
    *
    * @enum {string}
    *
@@ -142,7 +150,8 @@ declare namespace sftp {
 
   /**
    * Return new instance of SftpConnection used for performing operations over a connection
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618502733}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4618502733.html}
    *
    * @since 2016.2
    */
@@ -150,7 +159,8 @@ declare namespace sftp {
 
     /**
      * Constant representing the max time allowed for transferring data over connection
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238937}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557238937.html}
      *
      * @type {300}
      * @readonly
@@ -163,7 +173,8 @@ declare namespace sftp {
 
     /**
      * Constant representing the max file size allowed to be transferred
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557238973}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557238973.html}
      *
      * @type {100000000}
      * @readonly
@@ -176,7 +187,8 @@ declare namespace sftp {
 
     /**
      * Downloads a file from the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618664030}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4618664030.html}
      *
      * @governance 100 points
      *
@@ -203,7 +215,8 @@ declare namespace sftp {
 
     /**
      * Uploads a file to the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4618512910}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4618512910.html}
      *
      * @governance 100 points
      *
@@ -233,7 +246,8 @@ declare namespace sftp {
 
     /**
      * Creates an empty directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234024}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557234024.html}
      *
      * @governance 10 points
      *
@@ -252,7 +266,8 @@ declare namespace sftp {
 
     /**
      * Deletes an empty directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234344}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557234344.html}
      *
      * @governance 10 points
      *
@@ -272,7 +287,8 @@ declare namespace sftp {
 
     /**
      * Deletes a file on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234670}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557234670.html}
      *
      * @governance 10 points
      *
@@ -291,7 +307,8 @@ declare namespace sftp {
 
     /**
      * Moves a file or directory from one location to another on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557234961}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557234961.html}
      *
      * @governance 10 points
      *
@@ -311,7 +328,8 @@ declare namespace sftp {
 
     /**
      * Lists the files and directories in a directory on the remote server
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1557235176}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1557235176.html}
      * @
      *
      * @governance 10 points

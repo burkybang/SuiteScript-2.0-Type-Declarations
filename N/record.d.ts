@@ -5,7 +5,8 @@
 
 /**
  * SuiteScript record module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267255811}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267255811}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267255811.html}
  *
  * @module N/record
  * @NApiVersion 2.x
@@ -16,7 +17,8 @@ interface record {
 
     /**
      * Create a new record object based on provided type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258059.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
@@ -40,7 +42,8 @@ interface record {
 
     /**
      * Create a new record object based on provided type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -65,7 +68,8 @@ interface record {
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258486.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
@@ -91,7 +95,8 @@ interface record {
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258486}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258486.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
@@ -117,7 +122,8 @@ interface record {
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -141,7 +147,8 @@ interface record {
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -168,7 +175,8 @@ interface record {
 
     /**
      * Copy a record object based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258260.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
@@ -194,7 +202,8 @@ interface record {
 
     /**
      * Copy a record object based on provided type, id
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -221,7 +230,8 @@ interface record {
 
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258715.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
@@ -249,7 +259,8 @@ interface record {
 
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440843375.html}
      *
      * @param {Object} options
      * @param {string} options.fromType record type to be transformed from
@@ -278,7 +289,8 @@ interface record {
 
     /**
      * Delete a record object based on provided type, id and return the id of deleted record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283372}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267283372.html}
      *
      * @governance 20 units for transactions, 4 for custom records, 10 for all other records
      *
@@ -298,7 +310,8 @@ interface record {
 
     /**
      * Delete a record object based on provided type, id and return the id of deleted record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440823302.html}
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -319,7 +332,8 @@ interface record {
 
     /**
      * Commit record field updates to the system
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267283788}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267283788.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
@@ -351,7 +365,8 @@ interface record {
 
     /**
      * Commit record field updates to the system
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830813.html}
      *
      * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
      *
@@ -385,7 +400,8 @@ interface record {
 
     /**
      * Attach record to another record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284169}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267284169.html}
      *
      * @governance 10 units
      *
@@ -415,7 +431,8 @@ interface record {
 
     /**
      * Attach record to another record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821175.html}
      *
      * @param {Object} options
      * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
@@ -446,7 +463,8 @@ interface record {
 
     /**
      * Detach record from another record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267284360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267284360.html}
      *
      * @governance 10 units
      *
@@ -477,7 +495,8 @@ interface record {
 
   /**
    * Detach record from another record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440824016.html}
    *
    * @param {Object} options
    * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
@@ -508,7 +527,8 @@ declare namespace record {
 
   /**
    * Enum for record Type
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273205732}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273205732}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273205732.html}
    *
    * @enum {string}
    */
@@ -796,13 +816,15 @@ declare namespace record {
 
   /**
    * Encapsulates a column of a sublist on a standard or custom record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600354269}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600354269}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600354269.html}
    */
   export interface Column {
 
     /**
      * Returns the internal ID of the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600364069}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600364069}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600364069.html}
      *
      * @type {string}
      *
@@ -815,7 +837,8 @@ declare namespace record {
 
     /**
      * Returns the label of the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600366751}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600366751}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600366751.html}
      *
      * @type {string}
      *
@@ -828,7 +851,8 @@ declare namespace record {
 
     /**
      * Returns the internal ID of the standard or custom sublist that contains the column
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600369846}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600369846}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600369846.html}
      *
      * @type {string}
      *
@@ -841,7 +865,8 @@ declare namespace record {
 
     /**
      * Returns the column type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600370892}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600370892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600370892.html}
      *
      * @type {format.Type}
      *
@@ -854,7 +879,8 @@ declare namespace record {
 
     /**
      * Indicates whether the column is disabled
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158592991246}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158592991246}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158592991246.html}
      *
      * @type {boolean}
      *
@@ -864,7 +890,8 @@ declare namespace record {
 
     /**
      * Indicates whether the column is displayed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593019143}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593019143}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593019143.html}
      *
      * @type {boolean}
      *
@@ -874,7 +901,8 @@ declare namespace record {
 
     /**
      * Indicates whether the column is mandatory
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593030499}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593030499}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593030499.html}
      *
      * @type {boolean}
      *
@@ -884,7 +912,8 @@ declare namespace record {
 
     /**
      * Indicates whether the column is sortable
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593039336}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593039336}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593039336.html}
      *
      * @type {boolean}
      *
@@ -915,7 +944,8 @@ declare namespace record {
 
   /**
    * Encapsulates a record macro
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1529089092}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1529089092}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1529089092.html}
    *
    * @since 2018.2
    */
@@ -923,7 +953,8 @@ declare namespace record {
 
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730768}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730768}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730768.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
@@ -944,7 +975,8 @@ declare namespace record {
 
     /**
      * Performs a macro operation and returns its result in a plain JavaScript object
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730798}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730798}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730798.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
@@ -965,7 +997,8 @@ declare namespace record {
 
     /**
      * The ID of the macro
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731173}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731173}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731173.html}
      *
      * @type {string}
      *
@@ -978,7 +1011,8 @@ declare namespace record {
 
     /**
      * The label of the macro
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731186}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731186}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731186.html}
      *
      * @type {string}
      *
@@ -991,7 +1025,8 @@ declare namespace record {
 
     /**
      * The description of the macro
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731199}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731199}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731199.html}
      *
      * @type {string}
      *
@@ -1004,7 +1039,8 @@ declare namespace record {
 
     /**
      * The defined attributes of the macro
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731214}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731214}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731214.html}
      *
      * @type {Object}
      *
@@ -1018,7 +1054,8 @@ declare namespace record {
     execute: {
       /**
        * Performs a macro operation and returns its result in a plain JavaScript object
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730726.html}
        *
        * @param {Object} options
        * @param {string} options.id macro id
@@ -1039,7 +1076,8 @@ declare namespace record {
 
       /**
        * Performs a macro operation and returns its result in a plain JavaScript object
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730748.html}
        *
        * @param {Object} options
        * @param {string} options.id macro id
@@ -1082,7 +1120,8 @@ declare namespace record {
 
   /**
    * Encapsulates a NetSuite record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4205869719}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4205869719.html}
    *
    * @since 2015.2
    */
@@ -1090,7 +1129,8 @@ declare namespace record {
 
     /**
      * The internal ID of the record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296706656.html}
      *
      * @type {number}
      *
@@ -1102,7 +1142,8 @@ declare namespace record {
 
     /**
      * The type of the record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706984}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706984}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296706984.html}
      *
      * @restriction This property is not available for subrecords
      *
@@ -1116,7 +1157,8 @@ declare namespace record {
 
     /**
      * Indicates whether the record is in dynamic or standard mode
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296707316.html}
      *
      * @type {boolean}
      *
@@ -1128,7 +1170,8 @@ declare namespace record {
 
     /**
      * Provides a macro to be executed
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992196}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992196}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992196.html}
      *
      * @param {Object} options
      * @param {string} options.id macro id
@@ -1142,7 +1185,8 @@ declare namespace record {
 
     /**
      * Provides a plain JavaScript object of available macro objects defined for a record type, indexed by the Macro ID
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992211}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992211}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992211.html}
      *
      * @return {Object<string, record.Macro>} a set of macros (@see Macro) defined on the record indexed by macroId
      *
@@ -1156,7 +1200,8 @@ declare namespace record {
 
       /**
        * Performs macro operation and returns result
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992174.html}
        *
        * @param {Object} options
        * @param {string} options.id macro id
@@ -1179,7 +1224,8 @@ declare namespace record {
 
       /**
        * Performs macro operation and returns result
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510066072.html}
        *
        * @param {Object} options
        * @param {string} options.id macro id
@@ -1203,7 +1249,8 @@ declare namespace record {
 
     /**
      * Return value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273154686.html}
      *
      * @param {string} fieldId
      * @return {string|string[]|number|Date|boolean}
@@ -1219,7 +1266,8 @@ declare namespace record {
 
     /**
      * Return value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273154686.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1236,7 +1284,8 @@ declare namespace record {
 
     /**
      * Set value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273155868.html}
      *
      * @param {string} fieldId
      * @param {string|number|(string|number)[]|Date|boolean} value
@@ -1255,7 +1304,8 @@ declare namespace record {
 
     /**
      * Set value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273155868.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1275,7 +1325,8 @@ declare namespace record {
 
     /**
      * Get value of the field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273156769.html}
      *
      * @param {string} fieldId
      * @return {string}
@@ -1290,7 +1341,8 @@ declare namespace record {
 
     /**
      * Get value of the field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273156769.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1306,7 +1358,8 @@ declare namespace record {
 
     /**
      * Set value of the field by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157034.html}
      *
      * @param {string} fieldId
      * @param {string|string[]} text ----- The text or texts to change the field value to.
@@ -1328,7 +1381,8 @@ declare namespace record {
 
     /**
      * Set value of the field by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157034.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -1351,7 +1405,8 @@ declare namespace record {
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157398.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1370,7 +1425,8 @@ declare namespace record {
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157398.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1390,7 +1446,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166148.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1411,7 +1468,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166148.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1433,7 +1491,8 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166777.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1455,7 +1514,8 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166777.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1478,7 +1538,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167233.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1499,7 +1560,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field in text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167233.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1521,7 +1583,8 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field in text representation (available for deferred dynamic only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167591.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1543,7 +1606,8 @@ declare namespace record {
 
     /**
      * Set the value of a sublist field in text representation (available for deferred dynamic only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167591.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1566,7 +1630,8 @@ declare namespace record {
 
     /**
      * Return line count of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157892.html}
      *
      * @param {string} sublistId
      * @return {number}
@@ -1579,7 +1644,8 @@ declare namespace record {
 
     /**
      * Return line count of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157892.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1593,7 +1659,8 @@ declare namespace record {
 
     /**
      * Insert a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273158210.html}
      *
      * @param {string} sublistId
      * @param {number} line
@@ -1616,7 +1683,8 @@ declare namespace record {
 
     /**
      * Insert a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273158210.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1640,7 +1708,8 @@ declare namespace record {
 
     /**
      * Remove a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273165479.html}
      *
      * @param {string} sublistId
      * @param {number} line
@@ -1663,7 +1732,8 @@ declare namespace record {
 
     /**
      * Remove a sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273165479.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1687,7 +1757,8 @@ declare namespace record {
 
     /**
      * Select a new line at the end of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273170152.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1704,7 +1775,8 @@ declare namespace record {
 
     /**
      * Select a new line at the end of sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170152}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273170152.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1722,7 +1794,8 @@ declare namespace record {
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273169163.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1741,7 +1814,8 @@ declare namespace record {
 
     /**
      * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273169163}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273169163.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1761,7 +1835,8 @@ declare namespace record {
 
     /**
      * Cancel the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273168483.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1778,7 +1853,8 @@ declare namespace record {
 
     /**
      * Cancel the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168483}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273168483.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1796,7 +1872,8 @@ declare namespace record {
 
     /**
      * Commit the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273168899.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1813,7 +1890,8 @@ declare namespace record {
 
     /**
      * Commit the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273168899}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273168899.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1831,7 +1909,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field on the current selected sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273170578.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1850,7 +1929,8 @@ declare namespace record {
 
     /**
      * Return value of a sublist field on the current selected sublist line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273170578}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273170578.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1870,7 +1950,8 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273171484.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -1893,7 +1974,8 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273171484}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273171484.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1917,7 +1999,8 @@ declare namespace record {
 
     /**
      * Return the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273172039.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1936,7 +2019,8 @@ declare namespace record {
 
     /**
      * Return the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273172039}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273172039.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -1956,7 +2040,8 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709001.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -1980,7 +2065,8 @@ declare namespace record {
 
     /**
      * Set the value for field in the current selected line by text representation
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709001}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709001.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2005,7 +2091,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600438392.html}
      *
      * @param {string} fieldId
      * @return {boolean}
@@ -2018,7 +2105,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600438392.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -2032,7 +2120,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709996.html}
      *
      * @param {string} fieldId
      * @return {Record} client-side subrecord implementation
@@ -2049,7 +2138,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709996.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -2067,7 +2157,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710374.html}
      *
      * @param {string} fieldId
      * @return {Record} same object for chaining
@@ -2080,7 +2171,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710374.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -2094,7 +2186,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600435332.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {string} sublistId
@@ -2112,7 +2205,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600435332}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600435332.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
@@ -2131,7 +2225,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296711506.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {string} sublistId
@@ -2149,7 +2244,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296711506}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296711506.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
@@ -2168,7 +2264,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712585.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {string} sublistId
@@ -2186,7 +2283,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712585}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712585.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
@@ -2205,7 +2303,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600423347.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -2221,7 +2320,8 @@ declare namespace record {
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600423347}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600423347.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2238,7 +2338,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710967.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -2254,7 +2355,8 @@ declare namespace record {
 
     /**
      * Get the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710967}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710967.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2271,7 +2373,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712054.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -2287,7 +2390,8 @@ declare namespace record {
 
     /**
      * Remove the subrecord for the associated sublist field on the current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296712054}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712054.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2304,7 +2408,8 @@ declare namespace record {
 
     /**
      * Returns the specified sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599715398.html}
      *
      * @param {string} sublistId
      * @return {Sublist}
@@ -2317,7 +2422,8 @@ declare namespace record {
 
     /**
      * Returns the specified sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599715398.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -2331,7 +2437,8 @@ declare namespace record {
 
     /**
      * Return array of names of all sublists
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599718205}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599718205}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599718205.html}
      *
      * @return {string[]}
      *
@@ -2341,7 +2448,8 @@ declare namespace record {
 
     /**
      * Return field object from record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153320.html}
      *
      * @param {string} fieldId
      * @return {Field}
@@ -2356,7 +2464,8 @@ declare namespace record {
 
     /**
      * Return field object from record
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153320.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -2372,7 +2481,8 @@ declare namespace record {
 
     /**
      * Return array of field IDs of all body fields including machine header fields and matrix header fields
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152646}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152646}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152646.html}
      *
      * @return {string[]}
      *
@@ -2382,7 +2492,8 @@ declare namespace record {
 
     /**
      * Return field object from record's sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153882.html}
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -2402,7 +2513,8 @@ declare namespace record {
 
     /**
      * Return field object from record's sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153882.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -2423,7 +2535,8 @@ declare namespace record {
 
     /**
      * Return array of names of all fields in a sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
      * @param {string} sublistId
      * @return {string[]}
@@ -2438,7 +2551,8 @@ declare namespace record {
 
     /**
      * Return array of names of all fields in a sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -2454,7 +2568,8 @@ declare namespace record {
 
     /**
      * Return field object from record's sublist current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4659853446.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId
@@ -2472,7 +2587,8 @@ declare namespace record {
 
     /**
      * Return field object from record's sublist current line
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4659853446.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2491,7 +2607,8 @@ declare namespace record {
 
     /**
      * Get the field for the specified header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599679237.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2510,7 +2627,8 @@ declare namespace record {
 
     /**
      * Get the field for the specified header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599679237.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2530,7 +2648,8 @@ declare namespace record {
 
     /**
      * Get the field for the specified sublist in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599708431.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2551,7 +2670,8 @@ declare namespace record {
 
     /**
      * Get the field for the specified sublist in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599708431.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2573,7 +2693,8 @@ declare namespace record {
 
     /**
      * Get the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599703938.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2592,7 +2713,8 @@ declare namespace record {
 
     /**
      * Get the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599703938.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2612,7 +2734,8 @@ declare namespace record {
 
     /**
      * Set the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600547643.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2635,7 +2758,8 @@ declare namespace record {
 
     /**
      * Set the value for the associated header in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600547643.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2659,7 +2783,8 @@ declare namespace record {
 
     /**
      * Get the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599712373.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2680,7 +2805,8 @@ declare namespace record {
 
     /**
      * Get the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599712373.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2702,7 +2828,8 @@ declare namespace record {
 
     /**
      * Set the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600551458.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
@@ -2726,7 +2853,8 @@ declare namespace record {
 
     /**
      * Set the value for the associated field in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600551458}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600551458.html}
      * @restriction only available in deferred dynamic record
      *
      * @param {Object} options
@@ -2751,7 +2879,8 @@ declare namespace record {
 
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4597993860.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2772,7 +2901,8 @@ declare namespace record {
 
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4597993860.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2794,7 +2924,8 @@ declare namespace record {
 
     /**
      * Returns the number of columns for the specified matrix.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599668537.html}
      *
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
@@ -2811,7 +2942,8 @@ declare namespace record {
 
     /**
      * Returns the number of columns for the specified matrix.
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599668537.html}
      *
      * @param {Object} options
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
@@ -2829,7 +2961,8 @@ declare namespace record {
 
     /**
      * Get the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599582937.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId - the id of sublist in which the matrix is in.
@@ -2849,7 +2982,8 @@ declare namespace record {
 
     /**
      * Get the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599582937}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599582937.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2870,7 +3004,8 @@ declare namespace record {
 
     /**
      * Set the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600520541.html}
      * @restriction only available in dynamic record
      *
      * @param {string} sublistId - the id of sublist in which the matrix is in.
@@ -2894,7 +3029,8 @@ declare namespace record {
 
     /**
      * Set the value for the line currently selected in the matrix
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600520541}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600520541.html}
      * @restriction only available in dynamic record
      *
      * @param {Object} options
@@ -2946,7 +3082,8 @@ declare namespace record {
 
       /**
        * Save record updates to the system
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        *
@@ -2964,7 +3101,8 @@ declare namespace record {
 
       /**
        * Save record updates to the system
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        *
@@ -2981,7 +3119,8 @@ declare namespace record {
 
       /**
        * Save record updates to the system
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
        * @param {Object} [options]
        * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
@@ -2998,7 +3137,8 @@ declare namespace record {
 
       /**
        * Save record updates to the system
-       * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
        * @param {boolean} [enableSourcing=false] enable sourcing during record update
        * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
@@ -3016,7 +3156,8 @@ declare namespace record {
 
   /**
    * Encapsulates a sublist on a standard or custom record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574625}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574625}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600574625.html}
    *
    * @since 2015.2
    */
@@ -3024,7 +3165,8 @@ declare namespace record {
 
     /**
      *
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600577122}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600577122}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600577122.html}
      *
      * @type {string}
      *
@@ -3036,7 +3178,8 @@ declare namespace record {
 
     /**
      * Returns the sublist type
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600594177}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600594177}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600594177.html}
      *
      * @type {serverWidget.SublistType}
      *
@@ -3060,7 +3203,8 @@ declare namespace record {
 
     /**
      * Indicates whether the sublist has changed on the record form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574626}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574626}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600574626.html}
      *
      * @type {boolean}
      *
@@ -3072,7 +3216,8 @@ declare namespace record {
 
     /**
      * Indicates whether the sublist is displayed on the record form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600593345}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600593345}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600593345.html}
      *
      * @type {boolean}
      *
@@ -3084,7 +3229,8 @@ declare namespace record {
 
     /**
      * Returns a column in the sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600579417.html}
      *
      * @param {string} fieldId
      * @return {record.Column}
@@ -3097,7 +3243,8 @@ declare namespace record {
 
     /**
      * Returns a column in the sublist
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600579417.html}
      *
      * @param {Object} options
      * @param {string} options.fieldId
@@ -3132,7 +3279,8 @@ declare namespace record {
 
   /**
    * Encapsulates a body or sublist field on a standard or custom record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738444}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738444}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435738444.html}
    *
    * @since 2015.2
    */
@@ -3140,7 +3288,8 @@ declare namespace record {
 
     /**
      * Returns the UI label for a standard or custom field body or sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738555}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738555}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435738555.html}
      *
      * @type {string}
      *
@@ -3152,7 +3301,8 @@ declare namespace record {
 
     /**
      * Returns the internal ID of a standard or custom body or sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754429}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754429}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435754429.html}
      *
      * @type {string}
      *
@@ -3164,7 +3314,8 @@ declare namespace record {
 
     /**
      * Return type of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754577}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754577}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435754577.html}
      *
      * @type {format.Type}
      *
@@ -3176,7 +3327,8 @@ declare namespace record {
 
     /**
      * Returns the sublist ID if this field is a sublist field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834774974}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834774974}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4834774974.html}
      *
      * @type {string}
      *
@@ -3188,7 +3340,8 @@ declare namespace record {
 
     /**
      * Returns true if the standard or custom field is mandatory on the record form or false otherwise
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435755588}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435755588}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435755588.html}
      *
      * @type {boolean}
      *

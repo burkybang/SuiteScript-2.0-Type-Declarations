@@ -5,7 +5,8 @@
 
 /**
  * SuiteScript serverWidget module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4321345532.html}
  *
  * @module N/ui/serverWidget
  * @NApiVersion 2.x
@@ -509,7 +510,8 @@ declare namespace serverWidget {
 
     /**
      * The default value of the field
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4335275520.html}
      *
      * @type {string|string[]|number|Date|boolean}
      */
@@ -1213,7 +1215,8 @@ declare namespace serverWidget {
 
     /**
      * Add a field to the form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
      *
      * @param {Object} options
      * @param {string} options.id Internal id for the field
@@ -1233,7 +1236,8 @@ declare namespace serverWidget {
 
     /**
      * Add a field to the form
-     * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
      *
      * @param {field} Field
      * @return {Field}

@@ -3,7 +3,8 @@
 
 /**
  * SuiteScript email module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552361}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552361}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358552361.html}
  *
  * @module N/email
  * @NApiVersion 2.x

@@ -5,7 +5,8 @@
 
 /**
  * SuiteScript https module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418229131}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418229131}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418229131.html}
  *
  * @module N/https
  * @NApiVersion 2.x
@@ -275,7 +276,8 @@ interface https {
 
   /**
    * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159139340774.html}
    *
    * @governance 10 units
    * @restriction Server SuiteScript only

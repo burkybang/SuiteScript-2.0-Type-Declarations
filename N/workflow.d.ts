@@ -1,6 +1,7 @@
 /**
  * SuiteScript workflow module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4341725558}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4341725558.html}
  *
  * @module N/workflow
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface workflow {
 
   /**
    * Triggers a workflow on a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344303916}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344303916.html}
    *
    * @governance 20 units
    *
@@ -33,7 +35,8 @@ interface workflow {
 
   /**
    * Triggers a workflow on a record
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344892270}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344892270.html}
    *
    * @governance 20 units
    *

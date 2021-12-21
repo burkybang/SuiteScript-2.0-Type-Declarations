@@ -1,6 +1,7 @@
 /**
  * SuiteScript encode module
- * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369847722}
+ * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369847722}
+ * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4369847722.html}
  *
  * @module N/encode
  * @NApiVersion 2.x
@@ -9,7 +10,8 @@ interface encode {
 
   /**
    * Converts a string to another type of encoding
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4369851165.html}
    *
    * @param {Object} options
    * @param {string} options.string String to encode
@@ -30,7 +32,8 @@ declare namespace encode {
 
   /**
    * Holds the string values for the supported character set encoding
-   * @see [Help Center]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4369865177.html}
    *
    * @enum {string}
    */
