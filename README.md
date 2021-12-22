@@ -9,6 +9,12 @@
 ![Reddit](https://github.com/burkybang/burkybang/raw/master/Images/reddit16.png "Reddit") [u/burkybang](https://reddit.com/u/burkybang)  
 ![Twitter](https://github.com/burkybang/burkybang/raw/master/Images/twitter16.png "Twitter") [@burkybang](https://twitter.com/burkybang)
 
+## Related
+
+- [SuiteScript File Templates for WebStorm](https://github.com/burkybang/SuiteScript-WebStorm-File-Templates)
+- [NetSuite UI Type Declarations](https://github.com/burkybang/NetSuite-UI-Type-Declarations)
+- [SuiteScript 1.0 Type Declarations](https://github.com/burkybang/SuiteScript-1.0-Type-Declarations)
+
 ## How to Install Type Declarations
 
 - [Guide for WebStorm](https://www.jetbrains.com/help/webstorm/configuring-javascript-libraries.html#ws_js_custom_third_party_library)
@@ -49,8 +55,8 @@ Open a project in WebStorm that is using the SuiteCloud IDE Plug-in
    > library \ SuiteScript_2_0
 
    If you're also using my
-[SuiteScript 1.0 Type Declarations](https://github.com/burkybang/SuiteScript-1.0-Type-Declarations), you should delete
-the contents of the following directory as well.
+   [SuiteScript 1.0 Type Declarations](https://github.com/burkybang/SuiteScript-1.0-Type-Declarations), you should
+   delete the contents of the following directory as well.
 
    > library \ SuiteScript_1_0
 
