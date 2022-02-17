@@ -30,6 +30,7 @@ interface file {
     encoding?: file.Encoding,
     inInactive?: boolean,
     isOnline?: boolean,
+    conflictResolution?: file.NameConflictResolution,
   }): file.File;
 
   /**
@@ -69,6 +70,17 @@ declare namespace file {
     MAC_ROMAN = 'Western',
     GB2312 = 'Chinese Simplified',
     BIG5 = 'Chinese Tradition',
+  }
+
+  /**
+   * Holds the string values for supported conflict resolution types
+   *
+   * @enum {string}
+   */
+  export enum NameConflictResolution {
+    FAIL = 'FAIL',
+    OVERWRITE = 'OVERWRITE',
+    RENAME_TO_UNIQUE = 'RENAME_TO_UNIQUE',
   }
 
   /**
