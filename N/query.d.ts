@@ -124,20 +124,6 @@ interface query {
   }): query.ResultSet;
 
   /**
-   * Runs an arbitrary SuiteQL query
-   * @governance 10 points
-   *
-   * @param {query.SuiteQL} suiteQL
-   * @return {ResultSet}
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-   *
-   * @since 2020.1
-   */
-  runSuiteQL(suiteQL: query.SuiteQL): query.ResultSet;
-
-  /**
    * Runs an arbitrary SuiteQL query as a paged query
    * @governance 10 points
    *
