@@ -1392,9 +1392,9 @@ declare namespace serverWidget {
 
     /**
      * Get all the Tab objects
-     * @return {Tab[]}
+     * @return {string[]}
      */
-    getTabs(): Tab[];
+    getTabs(): string[];
 
     /**
      * Get a Sublist object from its id
@@ -1442,7 +1442,7 @@ declare namespace serverWidget {
     /**
      * Insert a subtab before another sublist
      * @param {Object} options
-     * @param {Subtab} options.subtab   Subtab to insert
+     * @param {Tab} options.subtab   Subtab to insert
      * @param {string} options.nextsubtab The id of the sublist/subtab you are inserting in front of
      * @return {void}
      */
