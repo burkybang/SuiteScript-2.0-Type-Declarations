@@ -413,10 +413,9 @@ interface search {
    * @param {string} options.name  the search return column name
    * @param {string} [options.join]  the join ID for this search return column
    * @param {search.Summary|string} [options.summary]  the summary type for this column
-   * @param {string} [options.formula]  formula used for this column
    * @param {search.ColumnFunction} [options.function]  function used for this column
    * @param {string} [options.label]  label used for this column
-   * @param {search.Sort|string} [options.sort]  sort direction for this column use values from the Sort enum
+   * @param {search.Sort|string} [options.sort]  sort direction for this column uses values from the Sort enum
    * @return {search.Column} the created column object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -429,7 +428,36 @@ interface search {
     name: string,
     join?: string,
     summary?: search.Summary | string,
-    formula?: string,
+    function?: search.ColumnFunction
+    label?: string,
+    sort?: search.Sort | string,
+  }): search.Column;
+
+  /**
+   * Creates a search.Column object.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
+   *
+   * @param {Object} options  the options object
+   * @param {search.FormulaName} options.name  the search return column name
+   * @param {string} [options.join]  the join ID for this search return column
+   * @param {search.Summary|string} [options.summary]  the summary type for this column
+   * @param {string} options.formula  formula used for this column
+   * @param {search.ColumnFunction} [options.function]  function used for this column
+   * @param {string} [options.label]  label used for this column
+   * @param {search.Sort|string} [options.sort]  sort direction for this column uses values from the Sort enum
+   * @return {search.Column} the created column object
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
+   *
+   * @since 2015.2
+   */
+  createColumn(options: {
+    name: search.FormulaName,
+    summary?: search.Summary | string,
+    formula: string,
     function?: search.ColumnFunction
     label?: string,
     sort?: search.Sort | string,
@@ -443,7 +471,6 @@ interface search {
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
    * @param {search.Operator|string} options.operator  search operator
    * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
-   * @param {string} [options.formula]  formula used for this filter
    * @param {search.Summary|string} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
@@ -458,7 +485,32 @@ interface search {
     join?: string,
     operator: search.Operator | string,
     values?: string | Date | number | string[] | Date[],
-    formula?: string,
+    summary?: search.Summary | string,
+  }): search.Filter;
+
+  /**
+   * Creates a search.Filter object.
+   *
+   * @param {Object} options  the options object
+   * @param {search.FormulaName} options.name  internal ID of the search field
+   * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
+   * @param {search.Operator|string} options.operator  search operator
+   * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
+   * @param {string} options.formula formula used for this filter
+   * @param {search.Summary|string} [options.summary]  summary type used for this filter
+   * @return {search.Filter} the created filter object
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
+   *
+   * @since 2015.2
+   */
+  createFilter(options: {
+    name: search.FormulaName,
+    operator: search.Operator | string,
+    values?: string | Date | number | string[] | Date[],
+    formula: string,
     summary?: search.Summary | string,
   }): search.Filter;
 
@@ -484,9 +536,14 @@ interface search {
 
 declare namespace search {
 
-  /**
-   * @type {string}
-   */
+  export type FormulaName =
+    'formulacurrency' |
+    'formuladate' |
+    'formuladatetime' |
+    'formulanumeric' |
+    'formulapercent' |
+    'formulatext'
+
   export type ColumnFunction =
     'percentOfTotal' | // % of Total, Output: percent
     'absoluteValue' | // Absolute Value, Output: integer
