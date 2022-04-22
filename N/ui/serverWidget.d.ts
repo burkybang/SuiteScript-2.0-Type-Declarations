@@ -1221,16 +1221,35 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id Internal id for the field
      * @param {string} options.label UI label for the field
-     * @param {FieldType|string} options.type  Type of the field
-     * @param {string} [options.source]  The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
-     * @param {string} [options.container]   Tab or Field Group to add the field to
+     * @param {FieldType|string} options.type Type of the field
+     * @param {string} [options.container] Tab or Field Group to add the field to
      * @return {Field}
      */
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | string,
-      source?: string,
+      type: FieldType,
+      container?: string,
+    }): Field;
+
+    /**
+     * Add a field to the form
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
+     *
+     * @param {Object} options
+     * @param {string} options.id Internal id for the field
+     * @param {string} options.label UI label for the field
+     * @param {FieldType|string} options.type  Type of the field
+     * @param {string|number} [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
+     * @param {string} [options.container] Tab or Field Group to add the field to
+     * @return {Field}
+     */
+    addField(options: {
+      id: string,
+      label: string,
+      type: FieldType.SELECT | FieldType.MULTISELECT,
+      source?: string | number,
       container?: string,
     }): Field;
 
