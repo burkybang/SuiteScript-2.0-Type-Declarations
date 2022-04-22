@@ -24,9 +24,9 @@ interface record {
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
-     * @return {record.Record|currentRecord.CurrentRecord}
+     * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -34,11 +34,36 @@ interface record {
      */
     (options: {
       type: record.Type | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): record.Record | currentRecord.CurrentRecord
+    }): record.Record
+
+    /**
+     * Create a new record object based on provided type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258059}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258059.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @return {currentRecord.CurrentRecord}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): currentRecord.CurrentRecord
 
     /**
      * Create a new record object based on provided type
@@ -47,9 +72,9 @@ interface record {
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
-     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
+     * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -57,11 +82,34 @@ interface record {
      */
     promise(options: {
       type: record.Type | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): Promise<record.Record | currentRecord.CurrentRecord>
+    }): Promise<record.Record>
+
+    /**
+     * Create a new record object based on provided type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object} [options.defaultValues={}] record default values
+     * @return {Promise<currentRecord.CurrentRecord>}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      type: record.Type | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): Promise<currentRecord.CurrentRecord>
   };
 
   load: {
@@ -76,7 +124,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {record.Record}
      *
@@ -103,7 +151,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} options.isDynamic=true record is dynamic
+     * @param {true} options.isDynamic record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {currentRecord.CurrentRecord}
      *
@@ -128,7 +176,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<record.Record>}
      *
@@ -153,7 +201,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} options.isDynamic=true record is dynamic
+     * @param {true} options.isDynamic record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<currentRecord.CurrentRecord>}
      *
@@ -183,9 +231,9 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
-     * @return {Record}
+     * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -194,11 +242,38 @@ interface record {
     (options: {
       type: record.Type | string,
       id: number | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): record.Record | currentRecord.CurrentRecord
+    }): record.Record
+
+    /**
+     * Copy a record object based on provided type, id
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258260}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258260.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @return {currentRecord.CurrentRecord}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): currentRecord.CurrentRecord
 
     /**
      * Copy a record object based on provided type, id
@@ -208,9 +283,9 @@ interface record {
      * @param {Object} options
      * @param {record.Type|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
-     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
+     * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -219,11 +294,36 @@ interface record {
     promise(options: {
       type: record.Type | string,
       id: number | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): Promise<record.Record | currentRecord.CurrentRecord>
+    }): Promise<record.Record>
+
+    /**
+     * Copy a record object based on provided type, id
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.type record type
+     * @param {number|string} options.id record id
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object} [options.defaultValues={}] record default values
+     * @return {Promise<currentRecord.CurrentRecord>}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      type: record.Type | string,
+      id: number | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): Promise<currentRecord.CurrentRecord>
   };
 
   transform: {
@@ -239,9 +339,9 @@ interface record {
      * @param {record.Type|string} options.fromType record type to be transformed from
      * @param {number|string} options.fromId record id to be transformed from
      * @param {record.Type|string} options.toType record type to be transformed to
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
-     * @return {Record}
+     * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
      *
@@ -251,11 +351,40 @@ interface record {
       fromType: record.Type | string,
       fromId: number | string,
       toType: record.Type | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): record.Record | currentRecord.CurrentRecord
+    }): record.Record
+
+    /**
+     * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267258715}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267258715.html}
+     *
+     * @governance 10 units for transactions, 2 for custom records, 5 for all other records
+     *
+     * @param {Object} options
+     * @param {record.Type|string} options.fromType record type to be transformed from
+     * @param {number|string} options.fromId record id to be transformed from
+     * @param {record.Type|string} options.toType record type to be transformed to
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
+     * @return {currentRecord.CurrentRecord}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
+     *
+     * @since 2015.2
+     */
+    (options: {
+      fromType: record.Type | string,
+      fromId: number | string,
+      toType: record.Type | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): currentRecord.CurrentRecord
 
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
@@ -266,9 +395,9 @@ interface record {
      * @param {string} options.fromType record type to be transformed from
      * @param {number|string} options.fromId record id to be transformed from
      * @param {string} options.toType record type to be transformed to
-     * @param {boolean} [options.isDynamic=false] record is dynamic
+     * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] transformed record's default values
-     * @return {Promise<record.Record|currentRecord.CurrentRecord>}
+     * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -278,11 +407,38 @@ interface record {
       fromType: record.Type | string,
       fromId: number | string,
       toType: record.Type | string,
-      isDynamic?: boolean,
+      isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
       },
-    }): Promise<record.Record | currentRecord.CurrentRecord>
+    }): Promise<record.Record>
+
+    /**
+     * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440843375.html}
+     *
+     * @param {Object} options
+     * @param {string} options.fromType record type to be transformed from
+     * @param {number|string} options.fromId record id to be transformed from
+     * @param {string} options.toType record type to be transformed to
+     * @param {true} options.isDynamic record is dynamic
+     * @param {Object} [options.defaultValues={}] transformed record's default values
+     * @return {Promise<currentRecord.CurrentRecord>}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      fromType: record.Type | string,
+      fromId: number | string,
+      toType: record.Type | string,
+      isDynamic: true,
+      defaultValues?: {
+        [p: string]: any,
+      },
+    }): Promise<currentRecord.CurrentRecord>
   };
 
   delete: {
