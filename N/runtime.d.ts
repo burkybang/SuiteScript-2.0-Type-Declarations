@@ -423,6 +423,14 @@ declare namespace runtime {
 
     /**
      * Get a user's permission level for a given permission
+     * @param {string} name The internal ID of a permission
+     * @return {number} one value of the Permission
+     *
+     */
+    getPermission(name: string): number;
+
+    /**
+     * Get a user's permission level for a given permission
      * @param {Object} options
      * @param {string} options.name The internal ID of a permission
      * @return {number} one value of the Permission
@@ -431,6 +439,14 @@ declare namespace runtime {
     getPermission(options: {
       name: string,
     }): number;
+
+    /**
+     * Get the value of a NetSuite preference
+     * @param {string} name The internal ID of the preference
+     * @return {string} The value of a system or script preference for the current user
+     *
+     */
+    getPreference(name: string): string;
 
     /**
      * Get the value of a NetSuite preference
