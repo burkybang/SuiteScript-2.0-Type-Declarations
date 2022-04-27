@@ -168,3 +168,5 @@ interface util {
    */
   trim(str: string): string;
 }
+
+declare const util: util;

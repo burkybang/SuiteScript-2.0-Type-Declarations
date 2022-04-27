@@ -6,7 +6,7 @@
  * @module N/log
  * @NApiVersion 2.x
  */
-export interface log {
+interface log {
 
   /**
    * Log a debug level message
@@ -84,3 +84,5 @@ export interface log {
    */
   emergency(title: any, details?: any): void;
 }
+
+declare const log: log;
