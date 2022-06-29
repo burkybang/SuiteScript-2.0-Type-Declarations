@@ -1783,11 +1783,9 @@ declare namespace query {
     /**
      * Returns the query result set as an array of mapped results. A mapped result is a JavaScript object with key-value pairs. In this object, the key is either the field ID or the alias that was used for the corresponding query.Column object. When you call this method, Result.asMap() is called on each query.Result object in the result set.
      *
-     * @return {Object<string, string|number|(string|number)[]|Date|boolean>}
+     * @return {Object<string, string|number>}
      */
-    asMappedResults(): {
-      [p: string]: string | number | (string | number)[] | Date | boolean,
-    }[];
+    asMappedResults(): Record<string, string | number>[];
   }
 
   /**
@@ -1799,11 +1797,11 @@ declare namespace query {
      * The result values. Value types correspond to the ResultSet#types property. Number and order of values in the array
      * exactly matches the ResultSet#types, ResultSet#columns or Result#columns property
      *
-     * @type {(string|number|boolean|null)[]}
+     * @type {(string|number|boolean)[]}
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    values: (string | number | boolean | null)[];
+    values: (string | number | boolean)[];
 
     /**
      * The return columns. This is equivalent to ResultSet#columns

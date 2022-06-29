@@ -1299,6 +1299,17 @@ declare namespace search {
      * Retrieve a slice of the search result set. Only 1000 results can be returned at a time. If there are fewer results
      * available than requested, then the array will be truncated.
      * @governance 10 units
+     * @param {number} start  the index number of the first result to return, inclusive
+     * @param {number} end  the index number of the last result to return, exclusive
+     * @return {search.Result[]} the requested slice of the search result set
+     * @since 2015.2
+     */
+    getRange(start: number, end: number): Result[];
+
+    /**
+     * Retrieve a slice of the search result set. Only 1000 results can be returned at a time. If there are fewer results
+     * available than requested, then the array will be truncated.
+     * @governance 10 units
      * @param {Object} options  the options object
      * @param {number} options.start  the index number of the first result to return, inclusive
      * @param {number} options.end  the index number of the last result to return, exclusive
@@ -1493,11 +1504,11 @@ declare namespace search {
 
     /**
      * @param {Object} options
-     * @param {number} options.index
+     * @param {number|string} options.index
      * @return {search.Page}
      */
     fetch(options: {
-      index: number,
+      index: number | string,
     }): search.Page;
 
     /**

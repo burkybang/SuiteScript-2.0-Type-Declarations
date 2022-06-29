@@ -597,6 +597,15 @@ declare namespace http {
 
     /**
      * Write line information (text/xml/html) to the response.
+     * @param {string} output string being written
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
+     */
+    writeLine(output: string): void;
+
+    /**
+     * Write line information (text/xml/html) to the response.
      * @param {Object} options
      * @param {string} options.output string being written
      * @return {void}

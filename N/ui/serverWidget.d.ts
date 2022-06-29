@@ -382,6 +382,7 @@ declare namespace serverWidget {
       id: string,
       label: string,
       type: FieldType | string,
+      align?: LayoutJustification,
       source?: string,
       container?: string,
     }): Field;
