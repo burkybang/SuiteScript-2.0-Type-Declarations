@@ -193,6 +193,16 @@ interface PostSourcingContext {
    * @readonly
    */
   fieldId: string;
+
+  /**
+   * The index of the line if the field is in a sublist or matrix
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410692646.html}
+   *
+   * @type {number}
+   * @readonly
+   */
+  line: number;
 }
 
 /**
