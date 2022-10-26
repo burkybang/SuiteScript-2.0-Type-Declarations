@@ -68,8 +68,8 @@ interface url {
    * @since 2015.1
    */
   resolveScript(options: {
-    scriptId: string,
-    deploymentId: string,
+    scriptId: `customscript${string}`,
+    deploymentId: `customdeploy${string}`,
     returnExternalUrl?: boolean,
     params?: {
       [p: string]: string | number | boolean,
