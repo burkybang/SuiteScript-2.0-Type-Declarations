@@ -459,7 +459,7 @@ declare namespace http {
     url: string;
 
     /**
-     * Returns the number of lines in a sublist.
+     * Returns the number of lines in a sublist
      * @param {Object} options
      * @param {string} options.group sublist internal ID
      * @return {number} the integer value of the number of line items in the sublist
@@ -470,7 +470,7 @@ declare namespace http {
     }): number;
 
     /**
-     * Returns the value of a sublist line item.
+     * Returns the value of a sublist line item
      * @param {Object} options
      * @param {string} options.group sublist internal ID
      * @param {string} options.name the name of the field whose value is returned
@@ -486,7 +486,6 @@ declare namespace http {
 
     /**
      * Returns the object type name (http.ServerRequest)
-     *
      * @return {string}
      */
     toString(): string;
@@ -499,7 +498,7 @@ declare namespace http {
   }
 
   /**
-   * Return a new instance of ServerResponse object that carries the response to an incoming HTTP request.
+   * Return a new instance of ServerResponse object that carries the response to an incoming HTTP request
    *
    * @classDescription Encapsulation of the HTTP response that will be returned to the browser.
    * @return {http.ServerResponse}

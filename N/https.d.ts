@@ -554,7 +554,7 @@ declare namespace https {
     url: string;
 
     /**
-     * Returns the number of lines in a sublist.
+     * Returns the number of lines in a sublist
      * @param {Object} options
      * @param {string} options.group sublist internal ID
      * @return {number} the integer value of the number of line items in the sublist
@@ -565,7 +565,7 @@ declare namespace https {
     }): number;
 
     /**
-     * Returns the value of a sublist line item.
+     * Returns the value of a sublist line item
      * @param {Object} options
      * @param {string} options.group sublist internal ID
      * @param {string} options.name the name of the field whose value is returned
@@ -581,7 +581,6 @@ declare namespace https {
 
     /**
      * Returns the object type name (https.ServerRequest)
-     *
      * @return {string}
      */
     toString(): string;
@@ -594,7 +593,7 @@ declare namespace https {
   }
 
   /**
-   * Return a new instance of ServerResponse object that carries the response to an incoming HTTPS request.
+   * Return a new instance of ServerResponse object that carries the response to an incoming HTTPS request
    *
    * @classDescription Encapsulation of the HTTPS response that will be returned to the browser.
    * @return {https.ServerResponse}
