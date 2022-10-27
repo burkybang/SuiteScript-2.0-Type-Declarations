@@ -13,18 +13,22 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
-   * @param {string|number|boolean} value the data you wish to parse
-   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
-   * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @param {Object} options
+   * @param {string} options.value the data you wish to parse
+   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} options.type the field type i.e. DATE, DATETIME
+   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
+   *                                  default is the timezone set in the user's preferences
+   * @return {Date} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
    * @since 2015.2
    */
-  parse(
-    value: string | number | boolean,
-    type: format.Type | string,
-  ): Date | string | number;
+  parse(options: {
+    value: string,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+    timezone?: format.Timezone | string,
+  }): Date;
 
   /**
    * Parse a value from the appropriate preference formatted-value to a raw value.
@@ -36,7 +40,7 @@ interface format {
    * @param {format.Type|string} options.type the field type i.e. DATE, CURRENCY, INTEGER
    * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
    *                                  default is the timezone set in the user's preferences
-   * @return {Date|string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @return {string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -44,27 +48,66 @@ interface format {
    */
   parse(options: {
     value: string | number | boolean,
-    type: format.Type | string,
-    timezone?: format.Timezone | string,
-  }): Date | string | number;
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+  }): string | number;
+
+  /**
+   * Parse a value from the appropriate preference formatted-value to a raw value.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+   *
+   * @param {string|number|boolean} value the data you wish to parse
+   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {Date} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  parse(
+    value: string,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+  ): Date;
+
+  /**
+   * Parse a value from the appropriate preference formatted-value to a raw value.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+   *
+   * @param {string|number|boolean} value the data you wish to parse
+   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  parse(
+    value: string | number | boolean,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+  ): string | number;
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
-   * @param {Date|string|number|boolean} value the data you wish to format
-   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param {Object} options
+   * @param {Date} options.value the data you wish to format
+   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
+   *                                  default is the timezone set in the user's preferences
    * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
    * @since 2015.2
    */
-  format(
-    value: Date | string | number | boolean,
-    type: format.Type | string,
-  ): string;
+  format(options: {
+    value: Date,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+    timezone?: format.Timezone | string,
+  }): string;
 
   /**
    * Parse a value from the raw value to its appropriate preference formatted-value.
@@ -83,10 +126,45 @@ interface format {
    * @since 2015.2
    */
   format(options: {
-    value: Date | string | number | boolean,
-    type: format.Type,
-    timezone?: format.Timezone | string,
+    value: string | number | boolean,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
   }): string;
+
+  /**
+   * Parse a value from the raw value to its appropriate preference formatted-value.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+   *
+   * @param {Date} value the data you wish to format
+   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  format(
+    value: Date,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+  ): string;
+
+  /**
+   * Parse a value from the raw value to its appropriate preference formatted-value.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+   *
+   * @param {Date|string|number|boolean} value the data you wish to format
+   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
+   *
+   * @since 2015.2
+   */
+  format(
+    value: string | number | boolean,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+  ): string;
 }
 
 declare namespace format {
