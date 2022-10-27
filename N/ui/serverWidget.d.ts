@@ -608,6 +608,16 @@ declare namespace serverWidget {
     }): this;
 
     /**
+     * Set help text for a field
+     *
+     * @param {string} help The help text for the field
+     * @return {Field} same object for chaining
+     */
+    setHelpText(
+      help: string,
+    ): this;
+
+    /**
      * Get the select options for a field
      * @restriction Dynamic mode only
      *
