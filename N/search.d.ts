@@ -104,6 +104,7 @@ interface search {
      */
     (options: {
       id: string | number,
+      type?: search.Type | string,
     }): search.Search
 
     /**
@@ -137,6 +138,7 @@ interface search {
      */
     promise(options: {
       id: string | number,
+      type?: search.Type | string,
     }): Promise<search.Search>
   };
 
