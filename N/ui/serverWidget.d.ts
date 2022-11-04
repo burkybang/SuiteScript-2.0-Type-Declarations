@@ -597,6 +597,16 @@ declare namespace serverWidget {
     /**
      * Set help text for a field
      *
+     * @param {string} help The help text for the field
+     * @return {Field} same object for chaining
+     */
+    setHelpText(
+      help: string,
+    ): this;
+
+    /**
+     * Set help text for a field
+     *
      * @param {Object} options
      * @param {string} options.help The help text for the field
      * @param {boolean} [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
@@ -606,16 +616,6 @@ declare namespace serverWidget {
       help: string,
       showInlineForAssistant?: boolean,
     }): this;
-
-    /**
-     * Set help text for a field
-     *
-     * @param {string} help The help text for the field
-     * @return {Field} same object for chaining
-     */
-    setHelpText(
-      help: string,
-    ): this;
 
     /**
      * Get the select options for a field
