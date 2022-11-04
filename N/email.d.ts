@@ -17,7 +17,7 @@ interface email {
      * Send email with bounce back
      *
      * @governance 20 units
-     * @restriction Supported by all client and server side scirpts; The maximum number of total recipients (recipient + cc + bcc) allowed is 10
+     * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
      * @param {Object} options Email options
      * @param {number} options.author Sender of the email.
@@ -49,7 +49,7 @@ interface email {
      * Send email with bounce back
      *
      * @governance 20 units
-     * @restriction Supported by all client and server side scirpts; The maximum number of total recipients (recipient + cc + bcc) allowed is 10
+     * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
      * @param {Object} options Email options
      * @param {number} options.author Sender of the email.
@@ -84,7 +84,7 @@ interface email {
      * Send email without bounce back
      *
      * @governance 10 units
-     * @restriction Supported by all client and server side scirpts; The maximum number of total recipients (recipient + cc + bcc) allowed is 10
+     * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
      * @param {Object} options Email options
      * @param {number|string} options.author Sender of the email.
@@ -116,7 +116,7 @@ interface email {
      * Send email without bounce back
      *
      * @governance 10 units
-     * @restriction Supported by all client and server side scirpts; The maximum number of total recipients (recipient + cc + bcc) allowed is 10
+     * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
      * @param {Object} options Email options
      * @param {number|string} options.author Sender of the email.
@@ -151,7 +151,6 @@ interface email {
     /**
      * Send a single "on-demand" campaign email to a specified recipient and return a campaign response ID to track the email
      * @governance 10 units
-     * @restriction Supported by all client and server side scirpts
      *
      * @param {Object} options Email options
      * @param {number|string} options.campaignEventId  The internal ID of the campaign event.
@@ -167,7 +166,6 @@ interface email {
     /**
      * Send a single "on-demand" campaign email to a specified recipient and return a campaign response ID to track the email
      * @governance 10 units
-     * @restriction Supported by all client and server side scirpts
      *
      * @param {Object} options Email options
      * @param {number|string} options.campaignEventId  The internal ID of the campaign event.

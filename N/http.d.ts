@@ -18,7 +18,7 @@ interface http {
      * Send a HTTP GET request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -41,7 +41,7 @@ interface http {
      * Send a HTTP GET request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -67,7 +67,7 @@ interface http {
      * Send a HTTP POST request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -92,7 +92,7 @@ interface http {
      * Send a HTTP POST request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -120,7 +120,7 @@ interface http {
      * Send a HTTP PUT request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -145,7 +145,7 @@ interface http {
      * Send a HTTP PUT request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -173,7 +173,7 @@ interface http {
      * Send a HTTP DELETE request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -196,7 +196,7 @@ interface http {
      * Send a HTTP DELETE request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTP URL being requested
@@ -222,7 +222,7 @@ interface http {
      * Send a HTTP request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {http.Method} options.method HTTP method of the request
@@ -249,7 +249,7 @@ interface http {
      * Send a HTTP request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {http.Method} options.method HTTP method of the request

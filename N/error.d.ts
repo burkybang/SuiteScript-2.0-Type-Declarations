@@ -5,6 +5,7 @@
  *
  * @module N/error
  * @NApiVersion 2.x
+ * @restriction Server-side scripts only
  */
 interface error {
 
@@ -33,7 +34,7 @@ declare namespace error {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4253432660}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4253432660.html}
    *
-   * @restriction Server scripts that are not user event scripts and client scripts
+   * @restriction Server-side scripts only, Not supported in User Event scripts
    *
    * @protected
    * @constructor
@@ -128,7 +129,7 @@ declare namespace error {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4253440386}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4253440386.html}
    *
-   * @restriction User event scripts
+   * @restriction Server-side User Event scripts only
    *
    * @protected
    * @constructor

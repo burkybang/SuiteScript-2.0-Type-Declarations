@@ -7,6 +7,7 @@
  *
  * @module N/config
  * @NApiVersion 2.x
+ * @restriction Server-side scripts only
  */
 interface config {
 
@@ -16,7 +17,7 @@ interface config {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4256772439.html}
    *
    * @governance 10 units
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    *
    * @param {Object} options
    * @param {string} options.type one of the Type values

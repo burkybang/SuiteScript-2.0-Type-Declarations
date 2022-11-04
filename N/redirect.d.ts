@@ -37,7 +37,7 @@ interface redirect {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988773.html}
    *
    * @governance 0 units
-   * @restriction Suitelet and UE only
+   * @restriction Suitelet and User Event scripts only
    *
    * @param {Object} options
    * @param {string} options.scriptId  script Id
@@ -61,7 +61,7 @@ interface redirect {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424995667.html}
    *
    * @governance 0 units
-   * @restriction Suitelet and UE only
+   * @restriction Suitelet and User Event scripts only
    *
    * @param {Object} options
    * @param {record.Type|string} options.type record type
@@ -85,7 +85,7 @@ interface redirect {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988740.html}
    *
    * @governance 0 units
-   * @restriction Suitelet and UE only
+   * @restriction Suitelet and User Event scripts only
    *
    * @param {Object} options
    * @param {number|string} options.id task Id

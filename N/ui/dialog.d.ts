@@ -13,7 +13,7 @@ interface dialog {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497744851}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497744851.html}
    *
-   * @restriction Client SuiteScript only
+   * @restriction Client-side scripts only
    *
    * @param {Object} [options]
    * @param {string} [options.title] The title of the alert. Defaults to empty string.
@@ -34,7 +34,7 @@ interface dialog {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497799943}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497799943.html}
    *
-   * @restriction Client SuiteScript only
+   * @restriction Client-side scripts only
    *
    * @param {Object} [options]
    * @param {string} [options.title] The title of the confirmation box. Defaults to empty string.

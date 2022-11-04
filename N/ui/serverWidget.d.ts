@@ -16,7 +16,7 @@ interface serverWidget {
   /**
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
    *
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    * @param {string} title form title
    * @param {boolean} [hideNavBar=false] (optional)
    * @return {Assistant}
@@ -30,7 +30,7 @@ interface serverWidget {
   /**
    * Instantiate a assistant object (specifying the title, and whether to hide the menu)
    *
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    * @param {Object} options
    * @param {string} options.title form title
    * @param {boolean} [options.hideNavBar=false] (optional)
@@ -45,7 +45,7 @@ interface serverWidget {
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
    *
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    * @param {string} title form title
    * @param {boolean} [hideNavBar=false] (optional)
    * @return {Form}
@@ -59,7 +59,7 @@ interface serverWidget {
   /**
    * Instantiate a form object (specifying the title, and whether to hide the menu)
    *
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    * @param {Object} options
    * @param {string} options.title form title
    * @param {boolean} [options.hideNavBar=false] (optional)
@@ -74,7 +74,7 @@ interface serverWidget {
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
    *
-   * @restriction This API is available to Suitelets only.
+   * @restriction Suitelet scripts only
    * @param {string} title list title
    * @param {boolean} [hideNavBar=false]
    * @return {List}
@@ -88,7 +88,7 @@ interface serverWidget {
   /**
    * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
    *
-   * @restriction This API is available to Suitelets only.
+   * @restriction Suitelet scripts only
    * @param {Object} options
    * @param {string} options.title list title
    * @param {boolean} [options.hideNavBar=false]
@@ -619,11 +619,10 @@ declare namespace serverWidget {
 
     /**
      * Get the select options for a field
-     * @restriction Dynamic mode only
      *
      * @param {Object} [options]
      * @param {string} [options.filter] A search string to filter the select options that are returned.
-     * @param {'contains'|'is'|'startswith'} [options.filteroperator]  Supported operators are contains | is | startswith. If not specified, defaults to the contains operator
+     * @param {'contains'|'is'|'startswith'} [options.filteroperator='contains']  Supported operators are contains, is, and startswith. If not specified, defaults to the contains operator
      * @return {{value:string, text:string}[]}
      */
     getSelectOptions(options?: {

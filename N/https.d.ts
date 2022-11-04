@@ -19,7 +19,7 @@ interface https {
      * Send a HTTPS GET request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -42,7 +42,7 @@ interface https {
      * Send a HTTPS GET request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -68,7 +68,7 @@ interface https {
      * Send a HTTPS POST request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -93,7 +93,7 @@ interface https {
      * Send a HTTPS POST request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -121,7 +121,7 @@ interface https {
      * Send a HTTPS PUT request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -146,7 +146,7 @@ interface https {
      * Send a HTTPS PUT request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -174,7 +174,7 @@ interface https {
      * Send a HTTPS DELETE request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -197,7 +197,7 @@ interface https {
      * Send a HTTPS DELETE request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {string} options.url the HTTPS URL being requested
@@ -223,7 +223,7 @@ interface https {
      * Send a HTTPS request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {https.Method} options.method HTTPS method of the request
@@ -250,7 +250,7 @@ interface https {
      * Send a HTTPS request and return server response.
      *
      * @governance 10 units
-     * @restriction Server SuiteScript only
+     * @restriction Server-side scripts only
      *
      * @param {Object} options
      * @param {https.Method} options.method HTTPS method of the request
@@ -280,7 +280,7 @@ interface https {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159139340774.html}
    *
    * @governance 10 units
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    *
    * @param {Object} options
    * @param {string|number} options.scriptId The internal ID or script ID of the script record

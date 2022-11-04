@@ -492,7 +492,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267283788.html}
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
-     * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
+     * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type
@@ -524,7 +524,7 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830813}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830813.html}
      *
-     * @restriction only supported for records and fields where DLE (Direct List Editing) is supported
+     * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
      * @param {Object} options
      * @param {record.Type|string} options.type record type

@@ -5,6 +5,7 @@
  *
  * @module N/portlet
  * @NApiVersion 2.x
+ * @restriction Server-side scripts only
  */
 interface portlet {
 

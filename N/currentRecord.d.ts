@@ -6,8 +6,6 @@
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4625600928}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4625600928.html}
  *
- * @restriction Client Scripts only
- *
  * @module N/currentRecord
  * @NApiVersion 2.x
  */
@@ -20,7 +18,7 @@ interface currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637729624}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637729624.html}
      *
-     * @restriction Client Scripts only
+     * @restriction Client-side scripts only
      *
      * @return {currentRecord.CurrentRecord}
      *
@@ -35,7 +33,7 @@ interface currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637734729}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637734729.html}
      *
-     * @restriction Client Scripts only
+     * @restriction Client-side scripts only
      *
      * @return {Promise<currentRecord.CurrentRecord>}
      *
@@ -384,7 +382,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
@@ -401,7 +399,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -419,7 +417,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
@@ -436,7 +434,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -454,7 +452,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @return {CurrentRecord} same object for chaining
@@ -471,7 +469,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -489,7 +487,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585731.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @return {number}
@@ -505,7 +503,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585213.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -524,7 +522,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585213.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -589,7 +587,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -608,7 +606,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -628,7 +626,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {string} sublistId
      * @param {string} fieldId
@@ -654,7 +652,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId
@@ -1084,7 +1082,7 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
      *
-     * @restriction only available in dynamic record
+     * @restriction Only available in dynamic mode
      *
      * @param {Object} options
      * @param {string} options.sublistId - the id of sublist in which the matrix is in.

@@ -12,6 +12,7 @@
  *
  * @module N/render
  * @NApiVersion 2.x
+ * @restriction Server SuiteScript only
  */
 interface render {
 

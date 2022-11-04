@@ -5,6 +5,7 @@
  *
  * @module N/file
  * @NApiVersion 2.x
+ * @restriction Server-side scripts only
  */
 interface file {
 
@@ -20,6 +21,8 @@ interface file {
    * @param {boolean} [options.isInactive] - The inactive status of a file
    * @param {boolean} [options.isOnline] - The Available without Login status of a file
    * @return {file.File}
+   *
+   * @restriction Server-side scripts only
    */
   create(options: {
     name: string,
@@ -38,6 +41,8 @@ interface file {
    * @param {Object} options
    * @param {number|string} options.id - Internal ID of the file
    * @return {number|string} - The internal ID of the deleted file
+   *
+   * @restriction Server-side scripts only
    */
   delete(options: {
     id: number | string,
@@ -48,6 +53,8 @@ interface file {
    * @param {Object} options
    * @param {number|string} options.id - The internal ID of the file as a number or string, the absolute or relative path
    * @return {file.File} - The internal ID of the loaded file
+   *
+   * @restriction Server-side scripts only
    */
   load(options: {
     id: number | string,
@@ -58,8 +65,9 @@ declare namespace file {
 
   /**
    * Holds the string values for the supported character set encoding
-   *
    * @enum {string}
+   *
+   * @restriction Server-side scripts only
    */
   export enum Encoding {
     UTF_8 = 'Unicode',
@@ -74,8 +82,9 @@ declare namespace file {
 
   /**
    * Holds the string values for supported conflict resolution types
-   *
    * @enum {string}
+   *
+   * @restriction Server-side scripts only
    */
   export enum NameConflictResolution {
     FAIL = 'FAIL',
@@ -84,7 +93,10 @@ declare namespace file {
   }
 
   /**
+   * Holds the string values for file types
    * @enum {string}
+   *
+   * @restriction Server-side scripts only
    */
   export enum Type {
     APPCACHE = 'APPCACHE',
@@ -130,6 +142,9 @@ declare namespace file {
     ZIP = 'ZIP',
   }
 
+  /**
+   * @restriction Server-side scripts only
+   */
   export interface File {
 
     /**

@@ -9,7 +9,7 @@ interface message {
   /**
    * Creates a message which can be shown/hidden near the top of the page.
    *
-   * @restriction Client SuiteScript only
+   * @restriction Client-side scripts only
    * @param {Object} options
    * @param {message.Type} options.type The type of message, see message.Type
    * @param {string} [options.title] The title of the message. Defaults to empty string.
@@ -56,7 +56,7 @@ declare namespace message {
     /**
      * Shows the message.
      *
-     * @restriction Client SuiteScript only
+     * @restriction Client-side scripts only
      * @param {number} [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
      *
      * @return {void}
@@ -70,7 +70,7 @@ declare namespace message {
     /**
      * Shows the message.
      *
-     * @restriction Client SuiteScript only
+     * @restriction Client-side scripts only
      * @param {Object} [options]
      * @param {number|string} [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
      *
@@ -87,7 +87,7 @@ declare namespace message {
     /**
      * Hides the message
      *
-     * @restriction Client SuiteScript only
+     * @restriction Client-side scripts only
      *
      * @return {void}
      *

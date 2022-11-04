@@ -19,7 +19,7 @@ interface ui {
    *
    * @type {dialog}
    *
-   * @restriction Client SuiteScript only
+   * @restriction Client-side scripts only
    */
   dialog: dialog;
 
@@ -30,7 +30,7 @@ interface ui {
    *
    * @type {message}
    *
-   * @restriction Client SuiteScript only
+   * @restriction Client-side scripts only
    */
   message: message;
 
@@ -41,7 +41,7 @@ interface ui {
    *
    * @type {serverWidget}
    *
-   * @restriction Server SuiteScript only
+   * @restriction Server-side scripts only
    */
   serverWidget: serverWidget;
 }
