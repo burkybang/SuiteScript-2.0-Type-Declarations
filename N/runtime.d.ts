@@ -30,6 +30,15 @@ interface runtime {
 
   /**
    * Check if a feature is turned on and in effect
+   * @param {string} feature id of the feature
+   * @return {boolean}
+   */
+  isFeatureInEffect(
+    feature: string,
+  ): boolean;
+
+  /**
+   * Check if a feature is turned on and in effect
    * @param {Object} options
    * @param {string} options.feature id of the feature
    * @return {boolean}
