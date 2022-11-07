@@ -83,6 +83,13 @@ interface log {
    * @param {*} [details] The details of the message
    */
   emergency(title: any, details?: any): void;
+
+  LOG_LEVELS: [
+    'DEBUG',
+    'AUDIT',
+    'ERROR',
+    'EMERGENCY',
+  ];
 }
 
 declare const log: log;
