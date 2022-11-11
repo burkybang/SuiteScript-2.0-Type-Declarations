@@ -1381,6 +1381,15 @@ declare namespace serverWidget {
 
     /**
      * Get a Button object from its id
+     * @param {string} id The id of the button to get
+     * @return {Button}
+     */
+    getButton(
+      id: string,
+    ): Button;
+
+    /**
+     * Get a Button object from its id
      * @param {Object} options
      * @param {string} options.id The id of the button to get
      * @return {Button}

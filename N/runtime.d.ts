@@ -30,6 +30,7 @@ interface runtime {
 
   /**
    * Check if a feature is turned on and in effect
+   * @see [SuiteAnswers: Feature Names and IDs](https://suiteanswers.custhelp.com/app/answers/detail/a_id/10417)
    * @param {string} feature id of the feature
    * @return {boolean}
    */
@@ -39,6 +40,7 @@ interface runtime {
 
   /**
    * Check if a feature is turned on and in effect
+   * @see [SuiteAnswers: Feature Names and IDs](https://suiteanswers.custhelp.com/app/answers/detail/a_id/10417)
    * @param {Object} options
    * @param {string} options.feature id of the feature
    * @return {boolean}
