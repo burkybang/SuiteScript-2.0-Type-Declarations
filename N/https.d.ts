@@ -670,6 +670,15 @@ declare namespace https {
 
     /**
      * Write information (text/xml/html) to the response.
+     * @param {string} output string or file being written
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
+     */
+    write(output: string): void;
+
+    /**
+     * Write information (text/xml/html) to the response.
      * @param {Object} options
      * @param {string} options.output string or file being written
      * @return {void}
@@ -682,6 +691,15 @@ declare namespace https {
 
     /**
      * Write line information (text/xml/html) to the response.
+     * @param {string} output string being written
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if the file parameter is not a string
+     */
+    writeLine(output: string): void;
+
+    /**
+     * Write line information (text/xml/html) to the response.
      * @param {Object} options
      * @param {string} options.output string being written
      * @return {void}
@@ -691,6 +709,30 @@ declare namespace https {
     writeLine(options: {
       output: string,
     }): void;
+
+    /**
+     * Generates a page using a page element object.
+     * @param {serverWidget.Assistant} assistant standalone page object: assistant, form or list
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     */
+    writePage(assistant: serverWidget.Assistant): void;
+
+    /**
+     * Generates a page using a page element object.
+     * @param {serverWidget.Form} form standalone page object: assistant, form or list
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     */
+    writePage(form: serverWidget.Form): void;
+
+    /**
+     * Generates a page using a page element object.
+     * @param {serverWidget.List} list standalone page object: assistant, form or list
+     * @return {void}
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     */
+    writePage(list: serverWidget.List): void;
 
     /**
      * Generates a page using a page element object.
