@@ -1481,12 +1481,12 @@ declare namespace serverWidget {
      * Insert a subtab before another sublist
      * @param {Object} options
      * @param {Tab} options.subtab   Subtab to insert
-     * @param {string} options.nextsubtab The id of the sublist/subtab you are inserting in front of
+     * @param {string} options.nextsub The id of the sublist/subtab you are inserting in front of
      * @return {void}
      */
     insertSubtab(options: {
       subtab: Tab,
-      nextsubtab: string,
+      nextsub: string,
     }): void;
 
     /**
