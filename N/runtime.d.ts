@@ -92,7 +92,7 @@ interface runtime {
    *
    * @since 2015.2
    */
-  envType: runtime.EnvType;
+  envType: runtime.EnvType | `${runtime.EnvType}`;
 
   /**
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296531348}
@@ -103,7 +103,7 @@ interface runtime {
    *
    * @since 2015.2
    */
-  executionContext: runtime.ContextType;
+  executionContext: runtime.ContextType | `${runtime.ContextType}`;
 
   /**
    * @return {string}
@@ -138,11 +138,11 @@ declare namespace runtime {
    * @enum {string}
    */
   export enum Permission {
-    EDIT = 3.0,
-    FULL = 4.0,
-    CREATE = 2.0,
-    VIEW = 1.0,
-    NONE = 0.0,
+    FULL = 4,
+    EDIT = 3,
+    CREATE = 2,
+    VIEW = 1,
+    NONE = 0,
   }
 
   /**
@@ -435,21 +435,21 @@ declare namespace runtime {
     /**
      * Get a user's permission level for a given permission
      * @param {string} name The internal ID of a permission
-     * @return {number} one value of the Permission
+     * @return {Permission} one value of the Permission
      *
      */
-    getPermission(name: string): number;
+    getPermission(name: string): Permission | 0 | 1 | 2 | 3 | 4;
 
     /**
      * Get a user's permission level for a given permission
      * @param {Object} options
      * @param {string} options.name The internal ID of a permission
-     * @return {number} one value of the Permission
+     * @return {Permission} one value of the Permission
      *
      */
     getPermission(options: {
       name: string,
-    }): number;
+    }): Permission | 0 | 1 | 2 | 3 | 4;
 
     /**
      * Get the value of a NetSuite preference

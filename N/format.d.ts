@@ -26,8 +26,9 @@ interface format {
    */
   parse(options: {
     value: string,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
-    timezone?: format.Timezone | string,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+    timezone?: format.Timezone | `${format.Timezone}`,
   }): Date;
 
   /**
@@ -48,7 +49,8 @@ interface format {
    */
   parse(options: {
     value: string | number | boolean,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
   }): string | number;
 
   /**
@@ -66,7 +68,8 @@ interface format {
    */
   parse(
     value: string,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
   ): Date;
 
   /**
@@ -84,7 +87,8 @@ interface format {
    */
   parse(
     value: string | number | boolean,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ> |
+      `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
   ): string | number;
 
   /**
@@ -105,8 +109,9 @@ interface format {
    */
   format(options: {
     value: Date,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
-    timezone?: format.Timezone | string,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+    timezone?: format.Timezone | `${format.Timezone}`,
   }): string;
 
   /**
@@ -127,7 +132,8 @@ interface format {
    */
   format(options: {
     value: string | number | boolean,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
   }): string;
 
   /**
@@ -145,7 +151,8 @@ interface format {
    */
   format(
     value: Date,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ,
+    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
   ): string;
 
   /**
@@ -163,7 +170,8 @@ interface format {
    */
   format(
     value: string | number | boolean,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>,
+    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
   ): string;
 }
 

@@ -26,14 +26,14 @@ interface file {
    */
   create(options: {
     name: string,
-    fileType: file.Type,
+    fileType: file.Type | `${file.Type}`,
     contents?: string,
     description?: string,
     folder?: number | string,
-    encoding?: file.Encoding,
+    encoding?: file.Encoding | `${file.Encoding}`,
     inInactive?: boolean,
     isOnline?: boolean,
-    conflictResolution?: file.NameConflictResolution,
+    conflictResolution?: file.NameConflictResolution | `${file.NameConflictResolution}`,
   }): file.File;
 
   /**
@@ -157,13 +157,13 @@ declare namespace file {
      * @type {Encoding}
      * @readonly
      */
-    encoding: Encoding;
+    encoding: Encoding | `${Encoding}`;
 
     /**
      * @type {Type}
      * @readonly
      */
-    fileType: Type;
+    fileType: Type | `${Type}`;
 
     /**
      * @type {number|string}

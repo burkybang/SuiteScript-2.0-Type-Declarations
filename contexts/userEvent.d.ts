@@ -29,7 +29,7 @@ interface BeforeLoadContext {
    *
    * @since 2015.2
    */
-  type: BeforeLoadContext.UserEventType;
+  type: BeforeLoadContext.UserEventType | `${BeforeLoadContext.UserEventType}`;
 
   /**
    * The new record being loaded
@@ -127,7 +127,7 @@ interface BeforeSubmitContext {
    *
    * @since 2015.2
    */
-  type: BeforeSubmitContext.UserEventType;
+  type: BeforeSubmitContext.UserEventType | `${BeforeSubmitContext.UserEventType}`;
 
   /**
    * The new record
@@ -212,7 +212,7 @@ interface AfterSubmitContext {
    *
    * @since 2015.2
    */
-  type: AfterSubmitContext.UserEventType;
+  type: AfterSubmitContext.UserEventType | `${AfterSubmitContext.UserEventType}`;
 
   /**
    * The new record

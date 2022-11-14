@@ -145,7 +145,7 @@ declare namespace compress {
      */
     archive(options: {
       name: string,
-      type: compress.Type,
+      type: Type | `${Type}`,
     }): file.File;
   }
 }

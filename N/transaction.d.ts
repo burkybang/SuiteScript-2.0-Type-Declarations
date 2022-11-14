@@ -25,7 +25,7 @@ interface transaction {
    * @since 2015.2
    */
   void(options: {
-    type: transaction.Type | string,
+    type: transaction.Type | `${transaction.Type}` | string,
     id: number | string,
   }): number;
 }

@@ -90,7 +90,7 @@ interface url {
    * @since 2017.1
    */
   resolveDomain(options: {
-    hostType: url.HostType,
+    hostType: url.HostType | `${url.HostType}`,
     accountId?: string,
   }): string;
 

@@ -23,8 +23,8 @@ interface encode {
    */
   convert(options: {
     string: string,
-    inputEncoding: encode.Encoding,
-    outputEncoding: encode.Encoding,
+    inputEncoding: encode.Encoding | `${encode.Encoding}`,
+    outputEncoding: encode.Encoding | `${encode.Encoding}`,
   }): string;
 }
 

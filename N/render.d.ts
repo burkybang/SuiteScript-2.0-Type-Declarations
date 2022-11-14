@@ -194,15 +194,15 @@ interface render {
     templateId: number,
     entity: {
       id: number,
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
     },
     recipient: {
       id: number,
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
     },
     customRecord: {
       id: number,
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
     },
     supportCaseId?: number,
     transactionId?: number,
@@ -383,7 +383,7 @@ declare namespace render {
      */
     addCustomDataSource(options: {
       alias: string,
-      format: render.DataSource,
+      format: render.DataSource | `${render.DataSource}`,
       data: Object | Document | string,
     }): void;
 

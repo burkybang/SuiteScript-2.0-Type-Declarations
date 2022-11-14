@@ -24,7 +24,7 @@ interface crypto_ {
    */
   createSecretKey(options: {
     guid: string,
-    encoding?: encode.Encoding,
+    encoding?: encode.Encoding | `${encode.Encoding}`,
   }): crypto_.SecretKey;
 
   /**
@@ -39,7 +39,7 @@ interface crypto_ {
    * @since 2015.2
    */
   createHash(options: {
-    algorithm: crypto_.HashAlg,
+    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
   }): crypto_.Hash;
 
   /**
@@ -55,7 +55,7 @@ interface crypto_ {
    * @since 2015.2
    */
   createHmac(options: {
-    algorithm: crypto_.HashAlg,
+    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
     key: crypto_.SecretKey,
   }): crypto_.Hmac;
 
@@ -73,9 +73,9 @@ interface crypto_ {
    * @since 2015.2
    */
   createCipher(options: {
-    algorithm: crypto_.HashAlg,
+    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
     key: crypto_.SecretKey,
-    padding?: crypto_.Padding,
+    padding?: crypto_.Padding | `${crypto_.Padding}`,
   }): crypto_.Cipher;
 
   /**
@@ -93,9 +93,9 @@ interface crypto_ {
    * @since 2015.2
    */
   createDecipher(options: {
-    algorithm: crypto_.HashAlg,
+    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
     key: crypto_.SecretKey,
-    padding?: crypto_.Padding,
+    padding?: crypto_.Padding | `${crypto_.Padding}`,
     iv: string,
   }): crypto_.Decipher;
 }
@@ -179,7 +179,7 @@ declare namespace crypto_ {
      *
      * @since 2015.2
      */
-    encoding: encode.Encoding;
+    encoding: encode.Encoding | `${encode.Encoding}`;
   }
 
   /**
@@ -243,7 +243,7 @@ declare namespace crypto_ {
      */
     update(options: {
       input: string,
-      inputEncoding?: encode.Encoding,
+      inputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): void;
 
     /**
@@ -258,7 +258,7 @@ declare namespace crypto_ {
      * @since 2015.2
      */
     digest(options: {
-      outputEncoding?: encode.Encoding,
+      outputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): string;
   }
 
@@ -288,7 +288,7 @@ declare namespace crypto_ {
      */
     update(options: {
       input: string,
-      inputEncoding?: encode.Encoding,
+      inputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): void;
 
     /**
@@ -303,7 +303,7 @@ declare namespace crypto_ {
      * @since 2015.2
      */
     digest(options: {
-      outputEncoding?: encode.Encoding,
+      outputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): string;
   }
 
@@ -333,7 +333,7 @@ declare namespace crypto_ {
      */
     update(options: {
       input: string,
-      inputEncoding?: encode.Encoding,
+      inputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): void;
 
     /**
@@ -348,7 +348,7 @@ declare namespace crypto_ {
      * @since 2015.2
      */
     final(options: {
-      outputEncoding?: encode.Encoding,
+      outputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): CipherPayload;
   }
 
@@ -379,7 +379,7 @@ declare namespace crypto_ {
      */
     update(options: {
       input: string,
-      inputEncoding?: encode.Encoding,
+      inputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): void;
 
     /**
@@ -394,7 +394,7 @@ declare namespace crypto_ {
      * @since 2015.2
      */
     final(options: {
-      outputEncoding?: encode.Encoding,
+      outputEncoding?: encode.Encoding | `${encode.Encoding}`,
     }): string;
   }
 }

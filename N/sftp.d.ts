@@ -346,7 +346,7 @@ declare namespace sftp {
      */
     list(options: {
       path: string,
-      sort?: Sort,
+      sort?: Sort | `${Sort}`,
     }): Object[];
   }
 }

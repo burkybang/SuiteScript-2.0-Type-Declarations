@@ -40,7 +40,7 @@ interface action {
      *
      * @since 2018.2
      */<ID extends action.ActionID>(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       recordId?: number | string,
       id?: ID
     }): { [p in ID]: () => action.Action<ID> };
@@ -71,7 +71,7 @@ interface action {
      * @since 2018.2
      */
     promise<ID extends action.ActionID>(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       recordId?: number | string,
       id?: ID
     }): Promise<{ [p in ID]: action.Action<ID> }>;
@@ -101,7 +101,7 @@ interface action {
      *                                                  the specified record instance does not qualify for executing the action
      * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */<ID extends action.ActionID>(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       recordId?: number | string,
       id: ID,
     }): action.Action<ID>;
@@ -129,7 +129,7 @@ interface action {
      * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */
     promise<ID extends action.ActionID>(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       recordId?: number | string,
       id: ID,
     }): Promise<action.Action<ID>>;
@@ -159,7 +159,7 @@ interface action {
      * @since 2018.2
      */
     (options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       id: action.ActionID,
       params?: {
         recordId: number | string,
@@ -197,7 +197,7 @@ interface action {
      * @since 2018.2
      */
     promise(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       id: action.ActionID,
       params?: {
         recordId: number | string,
@@ -239,7 +239,7 @@ interface action {
    * @since 2019.1
    */
   executeBulk(options: {
-    recordType: record.Type | string,
+    recordType: record.Type | `${record.Type}` | string,
     id: action.ActionID,
     params?: {
       recordId: number | string,
@@ -317,7 +317,7 @@ declare namespace action {
      *
      * @since 2018.2
      */
-    recordType: record.Type | string;
+    recordType: record.Type | `${record.Type}` | string;
 
     /**
      * The ID of the action
@@ -435,7 +435,7 @@ declare namespace action {
        * @since 2018.2
        */
       (options: {
-        recordType: record.Type | string,
+        recordType: record.Type | `${record.Type}` | string,
         id: action.ActionID,
         params?: {
           recordId: number | string,
@@ -473,7 +473,7 @@ declare namespace action {
        * @since 2018.2
        */
       promise(options: {
-        recordType: record.Type | string,
+        recordType: record.Type | `${record.Type}` | string,
         id: action.ActionID,
         params?: {
           recordId: number | string,
@@ -505,7 +505,7 @@ declare namespace action {
      * @return {string} - taskId
      */
     executeBulk(options: {
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
       id: action.ActionID,
       params?: {
         recordId: number | string,

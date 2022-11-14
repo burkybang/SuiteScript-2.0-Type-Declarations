@@ -21,7 +21,7 @@ interface message {
    * @since 2016.1
    */
   create(options: {
-    type: message.Type,
+    type: message.Type | `${message.Type}`,
     title?: string,
     message?: string,
     duration?: number | string,
@@ -108,7 +108,7 @@ declare namespace message {
      * @return {{type: string, title: string, message: string}}
      */
     toJSON(): {
-      type: Type,
+      type: Type | `${message.Type}`,
       title: string,
       message: string,
       duration: number,

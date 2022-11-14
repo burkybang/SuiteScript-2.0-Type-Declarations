@@ -53,7 +53,7 @@ interface i18n {
    * @param {string} options.groupSeparator Indicates the group separator
    * @param {string} options.decimalSeparator Indicates the decimal separator
    * @param {number} options.precision Indicates the precision
-   * @param {number} options.negativeNumberFormat Indicates the negative number format
+   * @param {NegativeNumberFormat} options.negativeNumberFormat Indicates the negative number format
    * @return {i18n.NumberFormatter}
    *
    * @since 2019.2
@@ -62,7 +62,7 @@ interface i18n {
     groupSeparator: string,
     decimalSeparator: string,
     precision: number,
-    negativeNumberFormat: i18n.NegativeNumberFormat,
+    negativeNumberFormat: i18n.NegativeNumberFormat | `${i18n.NegativeNumberFormat}`,
   }): i18n.NumberFormatter;
 }
 
@@ -562,7 +562,7 @@ declare namespace i18n {
     /**
      * @type {string}
      */
-    currency: i18n.Currency | string;
+    currency: Currency | `${Currency}`;
 
     // todo: Add methods
   }

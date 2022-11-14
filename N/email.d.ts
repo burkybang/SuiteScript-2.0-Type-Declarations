@@ -220,7 +220,7 @@ declare namespace email {
        * Custom record instance ID to attach Message record to
        * @type {record.Type|string}
        */
-      recordType: record.Type | string,
+      recordType: record.Type | `${record.Type}` | string,
     },
   }
 

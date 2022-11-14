@@ -275,6 +275,20 @@ declare namespace serverWidget {
     lineCount: number;
 
     /**
+     * Display type of the sublist
+     *
+     * @type {SublistDisplayType}
+     */
+    displayType: SublistDisplayType | `${SublistDisplayType}`;
+
+    /**
+     * Inline help text to this sublist
+     *
+     * @type {string}
+     */
+    helpText: string;
+
+    /**
      * Set an id of a field that is to have unique values accross the rows in the sublist
      *
      * @param {Object} options
@@ -295,20 +309,6 @@ declare namespace serverWidget {
     updateTotallingFieldId(options: {
       id: string,
     }): this;
-
-    /**
-     * Display type of the sublist
-     *
-     * @type {SublistDisplayType}
-     */
-    displayType: SublistDisplayType;
-
-    /**
-     * Inline help text to this sublist
-     *
-     * @type {string}
-     */
-    helpText: string;
 
     /**
      * Adds a button to the sublist
@@ -373,7 +373,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id    id of the filed to add
      * @param {string} options.label the UI label for the field
-     * @param {FieldType|string} options.type  the type for this field
+     * @param {FieldType} options.type  the type for this field
      * @param {string} [options.source] The internal id of the source list for this field if the field is a select
      * @param {string} [options.container] Used to specify either a tab or a field group
      * @return {Field}
@@ -381,8 +381,8 @@ declare namespace serverWidget {
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | string,
-      align?: LayoutJustification,
+      type: FieldType | `${FieldType}`,
+      align?: LayoutJustification | `${LayoutJustification}`,
       source?: string,
       container?: string,
     }): Field;
@@ -479,7 +479,7 @@ declare namespace serverWidget {
      * @type {FieldType}
      * @readonly
      */
-    type: FieldType;
+    type: FieldType | `${FieldType}`;
 
     /**
      * The text that gets displayed in lieu of the field value for URL fields
@@ -554,7 +554,7 @@ declare namespace serverWidget {
      * @return {Field} same object for chaining
      */
     updateBreakType(options: {
-      breakType: FieldBreakType,
+      breakType: FieldBreakType | `${FieldBreakType}`,
     }): this;
 
     /**
@@ -565,7 +565,7 @@ declare namespace serverWidget {
      * @return {Field} same object for chaining
      */
     updateLayoutType(options: {
-      layoutType: FieldLayoutType,
+      layoutType: FieldLayoutType | `${FieldLayoutType}`,
     }): this;
 
     /**
@@ -591,7 +591,7 @@ declare namespace serverWidget {
      * @return {Field} same object for chaining
      */
     updateDisplayType(options: {
-      displayType: FieldDisplayType | string,
+      displayType: FieldDisplayType | `${FieldDisplayType}`,
     }): this;
 
     /**
@@ -996,7 +996,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id  Id for the field
      * @param {string} options.label Label for the field
-     * @param {FieldType|string} options.type  Type for the field
+     * @param {FieldType} options.type  Type for the field
      * @param {string} [options.source] The internalId or scriptId of the source list for this field if
      * it is a select (List/Record) field.
      * @param {string} [options.container]  Id for the field group of tab to place the field in
@@ -1005,7 +1005,7 @@ declare namespace serverWidget {
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | string,
+      type: FieldType | `${FieldType}`,
       source?: string,
       container?: string,
     }): Field;
@@ -1035,7 +1035,7 @@ declare namespace serverWidget {
     addSublist(options: {
       id: string,
       label: string,
-      type: SublistType,
+      type: SublistType | `${SublistType}`,
     }): Sublist;
 
     /**
@@ -1150,7 +1150,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     addPageInitMessage(options: {
-      type: message.Type,
+      type: message.Type | `${message.Type}`,
       title?: string,
       message?: string,
       duration?: number | string,
@@ -1231,14 +1231,14 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id Internal id for the field
      * @param {string} options.label UI label for the field
-     * @param {FieldType|string} options.type Type of the field
+     * @param {FieldType} options.type Type of the field
      * @param {string} [options.container] Tab or Field Group to add the field to
      * @return {Field}
      */
     addField(options: {
       id: string,
       label: string,
-      type: FieldType,
+      type: FieldType | `${FieldType}`,
       container?: string,
     }): Field;
 
@@ -1250,7 +1250,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id Internal id for the field
      * @param {string} options.label UI label for the field
-     * @param {FieldType|string} options.type  Type of the field
+     * @param {FieldType.SELECT|FieldType.MULTISELECT} options.type  Type of the field
      * @param {string|number} [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
      * @param {string} [options.container] Tab or Field Group to add the field to
      * @return {Field}
@@ -1258,7 +1258,8 @@ declare namespace serverWidget {
     addField(options: {
       id: string,
       label: string,
-      type: FieldType.SELECT | FieldType.MULTISELECT,
+      type: FieldType.SELECT | FieldType.MULTISELECT
+        | `${FieldType.SELECT | FieldType.MULTISELECT}`,
       source?: string | number,
       container?: string,
     }): Field;
@@ -1298,7 +1299,7 @@ declare namespace serverWidget {
      * @return {void}
      */
     addPageLink(options: {
-      type: FormPageLinkType,
+      type: FormPageLinkType | `${FormPageLinkType}`,
       title: string,
       url: string,
     }): void;
@@ -1315,7 +1316,7 @@ declare namespace serverWidget {
     addSublist(options: {
       id: string,
       label: string,
-      type: SublistType,
+      type: SublistType | `${SublistType}`,
       tab?: string,
     }): Sublist;
 
@@ -1604,14 +1605,14 @@ declare namespace serverWidget {
      * Add a Column to the List page
      * @param {Object} options
      * @param {string} options.id   The internal id for the column
-     * @param {FieldType|string} options.type  The type for the column
+     * @param {FieldType} options.type  The type for the column
      * @param {string} options.label  The ui label for the column
      * @param {string} [options.align] The layout justification for this column.
      * @return {ListColumn}
      */
     addColumn(options: {
       id: string,
-      type: FieldType | string,
+      type: FieldType | `${FieldType}`,
       label: string,
       align?: string,
     }): ListColumn;
@@ -1640,7 +1641,7 @@ declare namespace serverWidget {
      * @return {List}
      */
     addPageLink(options: {
-      type: FormPageLinkType,
+      type: FormPageLinkType | `${FormPageLinkType}`,
       title: string,
       url: string,
     }): List;

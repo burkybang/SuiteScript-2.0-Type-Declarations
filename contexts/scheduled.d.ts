@@ -23,7 +23,7 @@ interface ExecuteContext {
    *
    * @since 2015.2
    */
-  type: ExecuteContext.InvocationType;
+  type: ExecuteContext.InvocationType | `${ExecuteContext.InvocationType}`;
 }
 
 declare namespace ExecuteContext {

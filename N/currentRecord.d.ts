@@ -69,7 +69,7 @@ declare namespace currentRecord {
      * @type {record.Type|string}
      * @readonly
      */
-    type: record.Type | string;
+    type: record.Type | `${record.Type}` | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode

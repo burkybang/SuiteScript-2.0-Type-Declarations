@@ -238,7 +238,7 @@ interface https {
      * @since 2015.2
      */
     (options: {
-      method: https.Method,
+      method: https.Method | `${https.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -265,7 +265,7 @@ interface https {
      * @since 2015.2
      */
     promise(options: {
-      method: https.Method,
+      method: https.Method | `${https.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -303,7 +303,7 @@ interface https {
   requestRestlet(options: {
     scriptId: string | number,
     deploymentId: string,
-    method?: https.Method,
+    method?: https.Method | `${https.Method}`,
     headers?: {
       [p: string]: string | number,
     },
@@ -324,7 +324,7 @@ interface https {
    */
   createSecureKey(options: {
     guid: string,
-    encoding?: https.Encoding,
+    encoding?: https.Encoding | `${https.Encoding}`,
   }): crypto_.SecretKey;
 
   /**
@@ -338,7 +338,7 @@ interface https {
    */
   createSecureString(options: {
     input: string,
-    inputEncoding?: https.Encoding,
+    inputEncoding?: https.Encoding | `${https.Encoding}`,
   }): https.SecureString;
 }
 
@@ -541,7 +541,7 @@ declare namespace https {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method;
+    method: Method | `${Method}`;
 
     /**
      * Server request URL
@@ -748,7 +748,7 @@ declare namespace https {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
     setCdnCacheable(options: {
-      type: CacheDuration,
+      type: CacheDuration | `${CacheDuration}`,
     }): void;
 
     /**
@@ -783,7 +783,7 @@ declare namespace https {
      */
     appendString(options: {
       input: string,
-      inputEncoding: Encoding,
+      inputEncoding: Encoding | `${Encoding}`,
     }): SecureString;
 
     /**
@@ -792,7 +792,7 @@ declare namespace https {
      * @return {https.SecureString}
      */
     convertEncoding(options: {
-      toEncoding: Encoding,
+      toEncoding: Encoding | `${Encoding}`,
     }): SecureString;
 
     /**
@@ -801,7 +801,7 @@ declare namespace https {
      * @return {https.SecureString}
      */
     hash(options: {
-      algorithm: HashAlg,
+      algorithm: HashAlg | `${HashAlg}`,
     }): SecureString;
 
     /**
@@ -811,7 +811,7 @@ declare namespace https {
      * @return {https.SecureString}
      */
     hmac(options: {
-      algorithm: HashAlg,
+      algorithm: HashAlg | `${HashAlg}`,
       key: crypto_.SecretKey,
     }): SecureString;
   }

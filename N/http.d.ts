@@ -237,7 +237,7 @@ interface http {
      * @since 2015.2
      */
     (options: {
-      method: http.Method,
+      method: http.Method | `${http.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -264,7 +264,7 @@ interface http {
      * @since 2015.2
      */
     promise(options: {
-      method: http.Method,
+      method: http.Method | `${http.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -446,7 +446,7 @@ declare namespace http {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method;
+    method: Method | `${Method}`;
 
     /**
      * Server request URL
@@ -695,7 +695,7 @@ declare namespace http {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
     setCdnCacheable(options: {
-      type: CacheDuration,
+      type: CacheDuration | `${CacheDuration}`,
     }): void;
 
     /**

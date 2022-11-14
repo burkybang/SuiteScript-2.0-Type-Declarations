@@ -39,7 +39,7 @@ interface task {
    * @return {task.ScheduledScriptTask|task.MapReduceScriptTask|task.CsvImportTask|task.EntityDeduplicationTask|task.WorkflowTriggerTask|task.SearchTask}
    */
   create(options: {
-    taskType: task.TaskType,
+    taskType: task.TaskType | `${task.TaskType}`,
     scriptId?: number | string,
     deploymentId?: string,
     params?: { [p: string]: string | string[] | number | Date | boolean },
@@ -53,7 +53,7 @@ interface task {
     masterSelectionMode?: string,
     dedupeMode?: string,
     recordIds?: (number | string)[],
-    recordType?: record.Type | string,
+    recordType?: record.Type | `${record.Type}` | string,
     recordId?: number | string,
     workflowId?: number | string,
     savedSearchId?: number | string,
@@ -76,7 +76,7 @@ interface task {
    * @param {string} options.taskId
    * @return {task.TaskStatus}
    */
-  checkStatus(options: { taskId: string }): task.TaskStatus;
+  checkStatus(options: { taskId: string }): task.TaskStatus | `${task.TaskStatus}`;
 }
 
 declare namespace task {
@@ -261,7 +261,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus;
+    status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.ScheduledScriptTaskStatus).
@@ -387,7 +387,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus;
+    status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the current stage of the Map/Reduce script. Returns one of the task.MapReduceStage enum values.
@@ -636,7 +636,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus;
+    status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the fileId of exported file
@@ -771,7 +771,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus;
+    status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.CsvImportTaskStatus).
@@ -805,7 +805,7 @@ declare namespace task {
      *
      * @type {string}
      */
-    entityType: task.DedupeEntityType;
+    entityType: task.DedupeEntityType | `${task.DedupeEntityType}`;
 
     /**
      * Master record ID
@@ -819,14 +819,14 @@ declare namespace task {
      *
      * @type {string}
      */
-    masterSelectionMode: task.MasterSelectionMode;
+    masterSelectionMode: task.MasterSelectionMode | `${task.MasterSelectionMode}`;
 
     /**
      * Deduplication mode. Use values from the task.DedupeMode enum
      *
      * @type {string}
      */
-    dedupeMode: task.DedupeMode;
+    dedupeMode: task.DedupeMode | `${task.DedupeMode}`;
 
     /**
      * Records to deduplicate

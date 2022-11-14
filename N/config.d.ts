@@ -29,7 +29,7 @@ interface config {
    * @since 2015.2
    */
   load(options: {
-    type: config.Type,
+    type: config.Type | `${config.Type}`,
     isDynamic?: boolean,
   }): record.Record;
 }

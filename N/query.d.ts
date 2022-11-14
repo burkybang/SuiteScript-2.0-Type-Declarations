@@ -21,7 +21,7 @@ interface query {
    * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
    */
   create(options: {
-    type: query.Type | string,
+    type: query.Type | `${query.Type}` | string,
   }): query.Query;
 
   load: {
@@ -82,7 +82,7 @@ interface query {
    * @return {RelativeDate}
    */
   createRelativeDate(options: {
-    dateId: query.DateId,
+    dateId: query.DateId | `${query.DateId}`,
     value: number,
   }): query.RelativeDate;
 
@@ -947,7 +947,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string;
+    type: Type | `${Type}` | string;
 
     /**
      * Query condition
@@ -1117,11 +1117,11 @@ declare namespace query {
      */
     createCondition(options: {
       fieldId?: string,
-      operator: Operator,
+      operator: Operator | `${Operator}`,
       values?: string | number | boolean | Date | RelativeDate | Period | string[] | number[] | boolean[] | Date[] | RelativeDate[] | Period[],
       formula?: string,
       type?: string,
-      aggregate?: Aggregate,
+      aggregate?: Aggregate | `${Aggregate}`,
     }): Condition;
 
     /**
@@ -1153,7 +1153,7 @@ declare namespace query {
       fieldId?: string,
       formula?: string,
       type?: string,
-      aggregate?: Aggregate,
+      aggregate?: Aggregate | `${Aggregate}`,
       alias?: string,
       groupBy?: boolean,
       context?: {
@@ -1183,7 +1183,7 @@ declare namespace query {
       column: Column | Object,
       ascending?: boolean,
       caseSensitive?: boolean,
-      locale?: SortLocale,
+      locale?: SortLocale | `${SortLocale}`,
       nullsLast?: boolean,
     }): Sort;
 
@@ -1243,7 +1243,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string;
+    type: Type | `${Type}` | string;
 
     /**
      * Inverse target. Returns the source query type from which is this component joined
@@ -1385,11 +1385,11 @@ declare namespace query {
      */
     createCondition(options: {
       fieldId?: string,
-      operator: Operator,
+      operator: Operator | `${Operator}`,
       values?: string[] | Date[],
       formula?: string,
       type?: string,
-      aggregate?: Aggregate,
+      aggregate?: Aggregate | `${Aggregate}`,
     }): Condition;
 
     /**
@@ -1421,7 +1421,7 @@ declare namespace query {
       fieldId?: string,
       formula?: string,
       type?: string,
-      aggregate?: Aggregate,
+      aggregate?: Aggregate | `${Aggregate}`,
       alias?: string,
       groupBy?: boolean,
       context?: {
@@ -1451,7 +1451,7 @@ declare namespace query {
       column: Column,
       ascending?: boolean,
       caseSensitive?: boolean,
-      locale?: SortLocale,
+      locale?: SortLocale | `${SortLocale}`,
       nullsLast?: boolean,
     }): Sort;
   }
@@ -1499,7 +1499,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: ReturnType;
+    type: ReturnType | `${ReturnType}`;
 
     /**
      * Aggregate function
@@ -1509,7 +1509,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    aggregate: Aggregate;
+    aggregate: Aggregate | `${Aggregate}`;
 
     /**
      * The group-by flag
@@ -1571,7 +1571,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
-    locale: SortLocale;
+    locale: SortLocale | `${SortLocale}`;
   }
 
   /**
@@ -1608,7 +1608,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    operator: Operator;
+    operator: Operator | `${Operator}`;
 
     /**
      * Values. This is only applicable to "leaf" conditions (equivalent to the former Filter)
@@ -1639,7 +1639,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: ReturnType;
+    type: ReturnType | `${ReturnType}`;
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
@@ -1649,7 +1649,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    aggregate: Aggregate;
+    aggregate: Aggregate | `${Aggregate}`;
 
     /**
      * Query component to which this condition belongs. This is only applicable to "leaf" conditions (equivalent to the
@@ -1676,7 +1676,7 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    dateId: DateId;
+    dateId: DateId | `${DateId}`;
 
     /**
      * References the start of the relative date
@@ -1689,7 +1689,7 @@ declare namespace query {
     start: {
       type: 'start',
       value: undefined,
-      dateId: DateId,
+      dateId: DateId | `${DateId}`,
     };
 
     /**
@@ -1703,7 +1703,7 @@ declare namespace query {
     end: {
       type: 'end',
       value: undefined,
-      dateId: DateId,
+      dateId: DateId | `${DateId}`,
     };
 
     /**
@@ -1717,7 +1717,7 @@ declare namespace query {
     interval: {
       type: 'interval',
       value: undefined,
-      dateId: DateId,
+      dateId: DateId | `${DateId}`,
     };
 
     /**
@@ -1769,7 +1769,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    types: ReturnType[];
+    types: (ReturnType | `${ReturnType}`)[];
 
     /**
      * The return columns
@@ -1963,7 +1963,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    adjustment: query.PeriodAdjustment;
+    adjustment: PeriodAdjustment | `${PeriodAdjustment}`;
 
     /**
      * The code of the period
@@ -1972,7 +1972,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    code: query.PeriodCode;
+    code: PeriodCode | `${PeriodCode}`;
 
     /**
      * The type of the period
@@ -1981,7 +1981,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: PeriodType;
+    type: PeriodType | `${PeriodType}`;
   }
 
   export interface SuiteQL {
@@ -1993,7 +1993,7 @@ declare namespace query {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    type: Type | string;
+    type: Type | `${Type}` | string;
 
     /**
      * The string representation of the SuiteQL query

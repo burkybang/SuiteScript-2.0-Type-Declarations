@@ -71,7 +71,7 @@ interface redirect {
    * @return {void}
    */
   toRecord(options: {
-    type: record.Type | string,
+    type: record.Type | `${record.Type}` | string,
     id?: number | string,
     isEditMode?: boolean,
     parameters?: {

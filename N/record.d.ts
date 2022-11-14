@@ -33,7 +33,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -58,7 +58,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -81,7 +81,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -133,7 +133,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -160,7 +160,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -185,7 +185,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -210,7 +210,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -240,7 +240,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -267,7 +267,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -292,7 +292,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -317,7 +317,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -348,9 +348,9 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      fromType: record.Type | string,
+      fromType: record.Type | `${record.Type}` | string,
       fromId: number | string,
-      toType: record.Type | string,
+      toType: record.Type | `${record.Type}` | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -377,9 +377,9 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      fromType: record.Type | string,
+      fromType: record.Type | `${record.Type}` | string,
       fromId: number | string,
-      toType: record.Type | string,
+      toType: record.Type | `${record.Type}` | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -404,9 +404,9 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      fromType: record.Type | string,
+      fromType: record.Type | `${record.Type}` | string,
       fromId: number | string,
-      toType: record.Type | string,
+      toType: record.Type | `${record.Type}` | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -431,9 +431,9 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      fromType: record.Type | string,
+      fromType: record.Type | `${record.Type}` | string,
       fromId: number | string,
-      toType: record.Type | string,
+      toType: record.Type | `${record.Type}` | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -460,7 +460,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
     }): number
 
@@ -479,7 +479,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
     }): Promise<number>
   };
@@ -508,7 +508,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       values: {
         [p: string]: string | number | (string | number)[] | Date | boolean,
@@ -540,7 +540,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
       values: {
         [p: string]: any,
@@ -573,11 +573,11 @@ interface record {
      */
     (options: {
       record: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       to: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       attributes?: {
@@ -602,11 +602,11 @@ interface record {
      */
     promise(options: {
       record: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       to: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       attributes?: {
@@ -636,11 +636,11 @@ interface record {
      */
     (options: {
       record: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       from: record.Record | {
-        type: record.Type | string,
+        type: record.Type | `${record.Type}` | string,
         id: number | string,
       },
       attributes?: {
@@ -666,11 +666,11 @@ interface record {
    */
   promise(options: {
     record: record.Record | {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
     },
     from: record.Record | {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | string,
       id: number | string,
     },
     attributes?: {
@@ -1031,7 +1031,7 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    type: format.Type;
+    type: format.Type | `${format.Type}`;
 
     /**
      * Indicates whether the column is disabled
@@ -1309,7 +1309,7 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    type: record.Type | string;
+    type: record.Type | `${record.Type}` | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode
@@ -2763,7 +2763,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600594177}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600594177.html}
      *
-     * @type {serverWidget.SublistType}
+     * @type {string}
      *
      * @readonly
      *
@@ -2899,7 +2899,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754577}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435754577.html}
      *
-     * @type {format.Type}
+     * @type {string}
      *
      * @readonly
      *

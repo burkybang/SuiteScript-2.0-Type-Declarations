@@ -32,7 +32,7 @@ interface search {
      * @since 2015.2
      */
     (options: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
       columns?: search.Column | search.Column[] | string | string[],
       settings?: search.Setting | search.Setting[] | string,
@@ -60,7 +60,7 @@ interface search {
      * @since 2015.2
      */
     promise(options: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       filters?: search.Filter | search.Filter[] | (string | number | (string | number | (string | number | [])[])[])[],
       columns?: search.Column | search.Column[] | string | string[],
       settings?: search.Setting | search.Setting[] | string,
@@ -104,7 +104,7 @@ interface search {
      */
     (options: {
       id: string | number,
-      type?: search.Type | string,
+      type?: search.Type | `${search.Type}` | string,
     }): search.Search
 
     /**
@@ -138,7 +138,7 @@ interface search {
      */
     promise(options: {
       id: string | number,
-      type?: search.Type | string,
+      type?: search.Type | `${search.Type}` | string,
     }): Promise<search.Search>
   };
 
@@ -229,7 +229,7 @@ interface search {
      * @since 2015.2
      */
     (option: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       fields?: {
         [p: string]: string | number,
       },
@@ -254,7 +254,7 @@ interface search {
      * @since 2015.2
      */
     promise(option: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       fields?: {
         [p: string]: string | number,
       },
@@ -354,7 +354,7 @@ interface search {
      *
      * @since 2015.2
      */<ColumnName extends string>(options: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       id: string | number,
       columns: ColumnName | ColumnName[],
     }): {
@@ -395,7 +395,7 @@ interface search {
      * @since 2015.2
      */
     promise<ColumnName extends string>(options: {
-      type: search.Type | string,
+      type: search.Type | `${search.Type}` | string,
       id: string | number,
       columns: ColumnName | ColumnName[],
     }): Promise<{
@@ -414,10 +414,10 @@ interface search {
    * @param {Object} options  the options object
    * @param {string} options.name  the search return column name
    * @param {string} [options.join]  the join ID for this search return column
-   * @param {search.Summary|string} [options.summary]  the summary type for this column
+   * @param {search.Summary} [options.summary]  the summary type for this column
    * @param {search.ColumnFunction} [options.function]  function used for this column
    * @param {string} [options.label]  label used for this column
-   * @param {search.Sort|string} [options.sort]  sort direction for this column uses values from the Sort enum
+   * @param {search.Sort} [options.sort]  sort direction for this column uses values from the Sort enum
    * @return {search.Column} the created column object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -429,10 +429,10 @@ interface search {
   createColumn(options: {
     name: string,
     join?: string,
-    summary?: search.Summary | string,
+    summary?: search.Summary | `${search.Summary}`,
     function?: search.ColumnFunction
     label?: string,
-    sort?: search.Sort | string,
+    sort?: search.Sort | `${search.Sort}`,
   }): search.Column;
 
   /**
@@ -443,11 +443,11 @@ interface search {
    * @param {Object} options  the options object
    * @param {search.FormulaName} options.name  the search return column name
    * @param {string} [options.join]  the join ID for this search return column
-   * @param {search.Summary|string} [options.summary]  the summary type for this column
+   * @param {search.Summary} [options.summary]  the summary type for this column
    * @param {string} options.formula  formula used for this column
    * @param {search.ColumnFunction} [options.function]  function used for this column
    * @param {string} [options.label]  label used for this column
-   * @param {search.Sort|string} [options.sort]  sort direction for this column uses values from the Sort enum
+   * @param {search.Sort} [options.sort]  sort direction for this column uses values from the Sort enum
    * @return {search.Column} the created column object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -458,11 +458,11 @@ interface search {
    */
   createColumn(options: {
     name: search.FormulaName,
-    summary?: search.Summary | string,
+    summary?: search.Summary | `${search.Summary}`,
     formula: string,
     function?: search.ColumnFunction
     label?: string,
-    sort?: search.Sort | string,
+    sort?: search.Sort | `${search.Sort}`,
   }): search.Column;
 
   /**
@@ -473,7 +473,7 @@ interface search {
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
    * @param {search.Operator|string} options.operator  search operator
    * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
-   * @param {search.Summary|string} [options.summary]  summary type used for this filter
+   * @param {search.Summary} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -485,9 +485,9 @@ interface search {
   createFilter(options: {
     name: string,
     join?: string,
-    operator: search.Operator | string,
+    operator: search.Operator | `${search.Operator}`,
     values?: string | Date | number | string[] | Date[],
-    summary?: search.Summary | string,
+    summary?: search.Summary | `${search.Summary}`,
   }): search.Filter;
 
   /**
@@ -499,7 +499,7 @@ interface search {
    * @param {search.Operator|string} options.operator  search operator
    * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
    * @param {string} options.formula formula used for this filter
-   * @param {search.Summary|string} [options.summary]  summary type used for this filter
+   * @param {search.Summary} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -510,10 +510,10 @@ interface search {
    */
   createFilter(options: {
     name: search.FormulaName,
-    operator: search.Operator | string,
+    operator: search.Operator | `${search.Operator}`,
     values?: string | Date | number | string[] | Date[],
     formula: string,
-    summary?: search.Summary | string,
+    summary?: search.Summary | `${search.Summary}`,
   }): search.Filter;
 
   /**
@@ -986,7 +986,7 @@ declare namespace search {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    searchType: search.Type | string;
+    searchType: search.Type | `${search.Type}` | string;
 
     /**
      * Internal ID of the search
@@ -1148,14 +1148,14 @@ declare namespace search {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    operator: Operator;
+    operator: Operator | `${Operator}`;
 
     /**
      * Summary type for this search filter
      * @type {search.Summary}
      * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
      */
-    summary: Summary;
+    summary: Summary | `${Summary}`;
 
     /**
      * Formula used for this search filter
@@ -1200,7 +1200,7 @@ declare namespace search {
      * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    summary: Summary;
+    summary: Summary | `${Summary}`;
 
     /**
      * The formula used for this search column
@@ -1225,7 +1225,7 @@ declare namespace search {
      * The sort direction for this search column. Use values from the Sort enum.
      * @type {search.Sort}
      */
-    sort: Sort;
+    sort: Sort | `${Sort}`;
 
     /**
      * Returns the search column for which the minimal or maximal value should be found when returning the search.Column
@@ -1409,14 +1409,14 @@ declare namespace search {
      * @param {Object} options  the options object
      * @param {string} options.name  the name of the search column whose value you want to return
      * @param {string} [options.join]  the join ID for this search column
-     * @param {search.Summary|string} [options.summary]  the summary type used for this search column
+     * @param {search.Summary} [options.summary]  the summary type used for this search column
      * @return {string|boolean} value of the search result column
      * @since 2015.2
      */
     getValue(options: {
       name: string,
       join?: string,
-      summary?: Summary,
+      summary?: Summary | `${Summary}`,
     }): string | boolean;
 
     /*
@@ -1456,14 +1456,14 @@ declare namespace search {
      * @param {Object} options  the options object
      * @param {string} options.name  the name of the search column whose value you want to return
      * @param {string} [options.join]  the join ID for this search column
-     * @param {search.Summary|string} [options.summary]  the summary type used for this search column
+     * @param {search.Summary} [options.summary]  the summary type used for this search column
      * @return {string} UI display name (text value) of the search result column
      * @since 2015.2
      */
     getText(options: {
       name: string,
       join?: string,
-      summary?: Summary,
+      summary?: Summary | `${Summary}`,
     }): string;
 
     /**

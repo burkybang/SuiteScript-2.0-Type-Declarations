@@ -428,7 +428,7 @@ declare namespace xml {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    nextSibling: NodeType;
+    nextSibling: NodeType | `${NodeType}`;
 
     /**
      * The name of this node, depending on its type
@@ -452,7 +452,7 @@ declare namespace xml {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    nodeType: NodeType;
+    nodeType: NodeType | `${NodeType}`;
 
     /**
      * The value of this node, depending on its type
