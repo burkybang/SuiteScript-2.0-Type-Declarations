@@ -373,7 +373,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id    id of the filed to add
      * @param {string} options.label the UI label for the field
-     * @param {FieldType} options.type  the type for this field
+     * @param {FieldType|string} options.type  the type for this field
      * @param {string} [options.source] The internal id of the source list for this field if the field is a select
      * @param {string} [options.container] Used to specify either a tab or a field group
      * @return {Field}
@@ -381,7 +381,7 @@ declare namespace serverWidget {
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | `${FieldType}`,
+      type: FieldType | `${FieldType}` | string,
       align?: LayoutJustification | `${LayoutJustification}`,
       source?: string,
       container?: string,
@@ -476,10 +476,10 @@ declare namespace serverWidget {
     /**
      * The type of the field
      *
-     * @type {FieldType}
+     * @type {FieldType|string}
      * @readonly
      */
-    type: FieldType | `${FieldType}`;
+    type: FieldType | `${FieldType}` | string;
 
     /**
      * The text that gets displayed in lieu of the field value for URL fields
@@ -996,7 +996,7 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id  Id for the field
      * @param {string} options.label Label for the field
-     * @param {FieldType} options.type  Type for the field
+     * @param {FieldType|string} options.type  Type for the field
      * @param {string} [options.source] The internalId or scriptId of the source list for this field if
      * it is a select (List/Record) field.
      * @param {string} [options.container]  Id for the field group of tab to place the field in
@@ -1005,7 +1005,7 @@ declare namespace serverWidget {
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | `${FieldType}`,
+      type: FieldType | `${FieldType}` | string,
       source?: string,
       container?: string,
     }): Field;
@@ -1231,14 +1231,14 @@ declare namespace serverWidget {
      * @param {Object} options
      * @param {string} options.id Internal id for the field
      * @param {string} options.label UI label for the field
-     * @param {FieldType} options.type Type of the field
+     * @param {FieldType|string} options.type Type of the field
      * @param {string} [options.container] Tab or Field Group to add the field to
      * @return {Field}
      */
     addField(options: {
       id: string,
       label: string,
-      type: FieldType | `${FieldType}`,
+      type: FieldType | `${FieldType}` | string,
       container?: string,
     }): Field;
 
@@ -1605,14 +1605,14 @@ declare namespace serverWidget {
      * Add a Column to the List page
      * @param {Object} options
      * @param {string} options.id   The internal id for the column
-     * @param {FieldType} options.type  The type for the column
+     * @param {FieldType|string} options.type  The type for the column
      * @param {string} options.label  The ui label for the column
      * @param {string} [options.align] The layout justification for this column.
      * @return {ListColumn}
      */
     addColumn(options: {
       id: string,
-      type: FieldType | `${FieldType}`,
+      type: FieldType | `${FieldType}` | string,
       label: string,
       align?: string,
     }): ListColumn;

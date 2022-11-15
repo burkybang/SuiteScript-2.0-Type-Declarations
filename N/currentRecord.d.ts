@@ -66,10 +66,10 @@ declare namespace currentRecord {
      *
      * @restriction This property is not available for subrecords
      *
-     * @type {record.Type|record.CustomType}
+     * @type {record.Type|record.CustomType|string}
      * @readonly
      */
-    type: record.Type | `${record.Type}` | record.CustomType;
+    type: record.Type | `${record.Type}` | record.CustomType | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode

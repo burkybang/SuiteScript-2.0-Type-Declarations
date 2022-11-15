@@ -218,9 +218,9 @@ declare namespace email {
 
       /**
        * Custom record instance ID to attach Message record to
-       * @type {record.Type|record.CustomType}
+       * @type {record.Type|record.CustomType|string}
        */
-      recordType: record.Type | `${record.Type}` | record.CustomType,
+      recordType: record.Type | `${record.Type}` | record.CustomType | string,
     },
   }
 

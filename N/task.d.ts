@@ -28,8 +28,8 @@ interface task {
    */
   create(options: {
     taskType: task.TaskType.SCHEDULED_SCRIPT | `${task.TaskType.SCHEDULED_SCRIPT}`,
-    scriptId: number | `custscript${string}`,
-    deploymentId?: `custdeploy${string}`,
+    scriptId: number | `custscript${string}` | string,
+    deploymentId?: `custdeploy${string}` | string,
     params?: { [p: string]: string | string[] | number | Date | boolean },
   }): task.ScheduledScriptTask;
 
@@ -47,8 +47,8 @@ interface task {
    */
   create(options: {
     taskType: task.TaskType.MAP_REDUCE | `${task.TaskType.MAP_REDUCE}`,
-    scriptId: number | `custscript${string}`,
-    deploymentId?: `custdeploy${string}`,
+    scriptId: number | `custscript${string}` | string,
+    deploymentId?: `custdeploy${string}` | string,
     params?: { [p: string]: string | string[] | number | Date | boolean },
   }): task.MapReduceScriptTask;
 
@@ -107,7 +107,7 @@ interface task {
    * @param {task.TaskType.WORKFLOW_TRIGGER} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
    * @param {Object<string, string|string[]|number|Date|boolean>} [options.params]
    * @param {number|string} options.recordId
-   * @param {record.Type|record.CustomType} options.recordType
+   * @param {record.Type|record.CustomType|string} options.recordType
    * @param {number|string} options.workflowId
    * @return {task.WorkflowTriggerTask}
    */
@@ -115,7 +115,7 @@ interface task {
     taskType: task.TaskType.WORKFLOW_TRIGGER | `${task.TaskType.WORKFLOW_TRIGGER}`,
     params?: { [p: string]: string | string[] | number | Date | boolean },
     recordId: number | string,
-    recordType: record.Type | `${record.Type}` | record.CustomType,
+    recordType: record.Type | `${record.Type}` | record.CustomType | string,
     workflowId: number | string,
   }): task.WorkflowTriggerTask;
 
@@ -232,7 +232,7 @@ interface task {
    *
    * @param {Object} options
    * @param {task.TaskType.RECORD_ACTION} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {record.Type|record.CustomType} options.recordType
+   * @param {record.Type|record.CustomType|string} options.recordType
    * @param {action.ActionID} options.action
    * @param {string} [options.condition]
    * @param {Object<string, string|string[]|number|Date|boolean>[]} options.params
@@ -240,7 +240,7 @@ interface task {
    */
   create(options: {
     taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
-    recordType: record.Type | `${record.Type}` | record.CustomType,
+    recordType: record.Type | `${record.Type}` | record.CustomType | string,
     action: action.ActionID | `${action.ActionID}`,
     condition: task.ActionCondition | `${task.ActionCondition}`,
     params: {
@@ -256,7 +256,7 @@ interface task {
    *
    * @param {Object} options
    * @param {task.TaskType.RECORD_ACTION} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {record.Type|record.CustomType} options.recordType
+   * @param {record.Type|record.CustomType|string} options.recordType
    * @param {action.ActionID} options.action
    * @param {string} [options.condition]
    * @param {(recordId:number|string) => Object<string, string|string[]|number|Date|boolean>} options.paramCallback
@@ -264,7 +264,7 @@ interface task {
    */
   create(options: {
     taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
-    recordType: record.Type | `${record.Type}` | record.CustomType,
+    recordType: record.Type | `${record.Type}` | record.CustomType | string,
     action: action.ActionID | `${action.ActionID}`,
     condition: task.ActionCondition | `${task.ActionCondition}`,
     paramCallback: <RecordID extends number | string>(recordId: RecordID) => {
@@ -428,7 +428,7 @@ declare namespace task {
      *
      * @type {number | string}
      */
-    scriptId: number | `custscript${string}`;
+    scriptId: number | `custscript${string}` | string;
 
     /**
      * The Internal ID or Script ID of the Script Deployment record
@@ -437,7 +437,7 @@ declare namespace task {
      *
      * @type {string}
      */
-    deploymentId: `custdeploy${string}`;
+    deploymentId: `custdeploy${string}` | string;
 
     /**
      * Key/value pairs which override static script parameter field values on the deployment
@@ -518,7 +518,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    deploymentId: `custdeploy${string}`;
+    deploymentId: `custdeploy${string}` | string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
@@ -571,7 +571,7 @@ declare namespace task {
      *
      * @type {number|string}
      */
-    scriptId: number | `custscript${string}`;
+    scriptId: number | `custscript${string}` | string;
 
     /**
      * The Internal ID or Script ID of the Script Deployment record
@@ -580,7 +580,7 @@ declare namespace task {
      *
      * @type {string}
      */
-    deploymentId: `custdeploy${string}`;
+    deploymentId: `custdeploy${string}` | string;
 
     /**
      * Key/value pairs which override static script parameter field values on the deployment
@@ -659,7 +659,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    deploymentId: `custdeploy${string}`;
+    deploymentId: `custdeploy${string}` | string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
@@ -1106,9 +1106,9 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452073913574}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452073913574.html}
      *
-     * @type {record.Type|record.CustomType}
+     * @type {record.Type|record.CustomType|string}
      */
-    recordType: record.Type | `${record.Type}` | record.CustomType;
+    recordType: record.Type | `${record.Type}` | record.CustomType | string;
 
     /**
      * The internal ID of the base record
@@ -1853,9 +1853,9 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544122891}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544122891.html}
      *
-     * @type {record.Type|record.CustomType}
+     * @type {record.Type|record.CustomType|string}
      */
-    recordType: record.Type | `${record.Type}` | record.CustomType;
+    recordType: record.Type | `${record.Type}` | record.CustomType | string;
 
     /**
      * The ID of the action to be invoked

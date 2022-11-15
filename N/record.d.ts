@@ -23,7 +23,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {record.Record}
@@ -33,7 +33,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -48,7 +48,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {true} options.isDynamic record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
      * @return {currentRecord.CurrentRecord}
@@ -58,7 +58,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -71,7 +71,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<record.Record>}
@@ -81,7 +81,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -94,7 +94,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {true} options.isDynamic record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
      * @return {Promise<currentRecord.CurrentRecord>}
@@ -122,7 +122,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
@@ -133,7 +133,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -149,7 +149,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
@@ -160,7 +160,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -174,7 +174,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
@@ -185,7 +185,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -199,7 +199,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
@@ -210,7 +210,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -229,7 +229,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
@@ -240,7 +240,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -256,7 +256,7 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] record default values
@@ -267,7 +267,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -281,7 +281,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
@@ -292,7 +292,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
       defaultValues?: {
@@ -306,7 +306,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
      * @param {Object} [options.defaultValues={}] record default values
@@ -317,7 +317,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
       defaultValues?: {
@@ -336,9 +336,9 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.fromType record type to be transformed from
+     * @param {record.Type|record.CustomType|string} options.fromType record type to be transformed from
      * @param {number|string} options.fromId record id to be transformed from
-     * @param {record.Type|record.CustomType} options.toType record type to be transformed to
+     * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
      * @param {false} [options.isDynamic=false] record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
      * @return {record.Record}
@@ -348,9 +348,9 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      fromType: record.Type | `${record.Type}` | record.CustomType,
+      fromType: record.Type | `${record.Type}` | record.CustomType | string,
       fromId: number | string,
-      toType: record.Type | `${record.Type}` | record.CustomType,
+      toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -365,9 +365,9 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.fromType record type to be transformed from
+     * @param {record.Type|record.CustomType|string} options.fromType record type to be transformed from
      * @param {number|string} options.fromId record id to be transformed from
-     * @param {record.Type|record.CustomType} options.toType record type to be transformed to
+     * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
      * @param {true} options.isDynamic record is dynamic
      * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
      * @return {currentRecord.CurrentRecord}
@@ -377,9 +377,9 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      fromType: record.Type | `${record.Type}` | record.CustomType,
+      fromType: record.Type | `${record.Type}` | record.CustomType | string,
       fromId: number | string,
-      toType: record.Type | `${record.Type}` | record.CustomType,
+      toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -404,9 +404,9 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      fromType: record.Type | `${record.Type}` | record.CustomType,
+      fromType: record.Type | `${record.Type}` | record.CustomType | string,
       fromId: number | string,
-      toType: record.Type | `${record.Type}` | record.CustomType,
+      toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: {
         [p: string]: any,
@@ -431,9 +431,9 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      fromType: record.Type | `${record.Type}` | record.CustomType,
+      fromType: record.Type | `${record.Type}` | record.CustomType | string,
       fromId: number | string,
-      toType: record.Type | `${record.Type}` | record.CustomType,
+      toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
       defaultValues?: {
         [p: string]: any,
@@ -451,7 +451,7 @@ interface record {
      * @governance 20 units for transactions, 4 for custom records, 10 for all other records
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @return {number} recordId
      *
@@ -460,7 +460,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     }): number
 
@@ -470,7 +470,7 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440823302.html}
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @return {Promise<number>} recordId
      *
@@ -479,7 +479,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     }): Promise<number>
   };
@@ -495,7 +495,7 @@ interface record {
      * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {Object<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
      * @param {Object} [options.options] additonal flags for submission
@@ -508,7 +508,7 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       values: {
         [p: string]: string | number | (string | number)[] | Date | boolean,
@@ -527,7 +527,7 @@ interface record {
      * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
      * @param {Object} options
-     * @param {record.Type|record.CustomType} options.type record type
+     * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {Object<string, *>} options.values field and value mapping to be submitted
      * @param {Object} [options.options] additonal flags for submission
@@ -540,7 +540,7 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       values: {
         [p: string]: any,
@@ -573,11 +573,11 @@ interface record {
      */
     (options: {
       record: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       to: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       attributes?: {
@@ -602,11 +602,11 @@ interface record {
      */
     promise(options: {
       record: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       to: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       attributes?: {
@@ -636,11 +636,11 @@ interface record {
      */
     (options: {
       record: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       from: record.Record | {
-        type: record.Type | `${record.Type}` | record.CustomType,
+        type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
       attributes?: {
@@ -666,11 +666,11 @@ interface record {
    */
   promise(options: {
     record: record.Record | {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     },
     from: record.Record | {
-      type: record.Type | `${record.Type}` | record.CustomType,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     },
     attributes?: {
@@ -1305,13 +1305,13 @@ declare namespace record {
      *
      * @restriction This property is not available for subrecords
      *
-     * @type {record.Type|record.CustomType}
+     * @type {record.Type|record.CustomType|string}
      *
      * @readonly
      *
      * @since 2015.2
      */
-    type: record.Type | `${record.Type}` | record.CustomType;
+    type: record.Type | `${record.Type}` | record.CustomType | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode
