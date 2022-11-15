@@ -180,11 +180,11 @@ interface render {
    * @param {Object} options
    * @param {number} options.templateId
    * @param {number} options.entity.id
-   * @param {record.Type|string} options.entity.type
+   * @param {record.Type|record.CustomType} options.entity.type
    * @param {number} options.recipient.id
-   * @param {record.Type|string} options.recipient.type
+   * @param {record.Type|record.CustomType} options.recipient.type
    * @param {number} options.customRecord.id
-   * @param {record.Type|string} options.customRecord.type
+   * @param {record.CustomType} options.customRecord.type
    * @param {number} options.supportCaseId
    * @param {number} options.transactionId
    *
@@ -194,15 +194,15 @@ interface render {
     templateId: number,
     entity: {
       id: number,
-      type: record.Type | `${record.Type}` | string,
+      type: record.Type | `${record.Type}` | record.CustomType,
     },
     recipient: {
       id: number,
-      type: record.Type | `${record.Type}` | string,
+      type: record.Type | `${record.Type}` | record.CustomType,
     },
     customRecord: {
       id: number,
-      type: record.Type | `${record.Type}` | string,
+      type: record.CustomType,
     },
     supportCaseId?: number,
     transactionId?: number,

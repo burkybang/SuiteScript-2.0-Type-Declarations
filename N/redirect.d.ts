@@ -64,14 +64,14 @@ interface redirect {
    * @restriction Suitelet and User Event scripts only
    *
    * @param {Object} options
-   * @param {record.Type|string} options.type record type
+   * @param {record.Type|record.CustomType} options.type record type
    * @param {number|string} options.id  record Id
    * @param {boolean} [options.isEditMode] default to false
    * @param {Object<string, *>} [options.parameters]
    * @return {void}
    */
   toRecord(options: {
-    type: record.Type | `${record.Type}` | string,
+    type: record.Type | `${record.Type}` | record.CustomType,
     id?: number | string,
     isEditMode?: boolean,
     parameters?: {

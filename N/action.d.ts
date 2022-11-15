@@ -28,7 +28,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {number|string} [options.recordId] record instance ID
      * @param {action.ActionID} [options.id] action ID
      * @return {Object<action.ActionID, action.Action>} a set of actions (@see Action) defined on the record type indexed by action ID
@@ -40,7 +40,7 @@ interface action {
      *
      * @since 2018.2
      */<ID extends action.ActionID>(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       recordId?: number | string,
       id?: ID
     }): { [p in ID]: () => action.Action<ID> };
@@ -58,7 +58,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {number|string} [options.recordId] record instance ID
      * @param {action.ActionID} [options.id] action ID
      * @return {Promise<Object<action.ActionID, action.Action>>} a set of actions (@see Action) defined on the record type indexed by action ID
@@ -71,7 +71,7 @@ interface action {
      * @since 2018.2
      */
     promise<ID extends action.ActionID>(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       recordId?: number | string,
       id?: ID
     }): Promise<{ [p in ID]: action.Action<ID> }>;
@@ -90,7 +90,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {string} [options.recordId] record instance ID
      * @param {string} options.id action ID
      * @return {action.Action} record action executor for action specified by options
@@ -101,7 +101,7 @@ interface action {
      *                                                  the specified record instance does not qualify for executing the action
      * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */<ID extends action.ActionID>(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       recordId?: number | string,
       id: ID,
     }): action.Action<ID>;
@@ -117,7 +117,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {string} [options.recordId] record instance ID
      * @param {string} options.id action ID
      * @return {Promise<action.Action>} record action executor for action specified by options
@@ -129,7 +129,7 @@ interface action {
      * @throws {error.SuiteScriptError} RECORD_DOES_NOT_EXIST if a record ID is specified and that record instance doesn't exist
      */
     promise<ID extends action.ActionID>(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       recordId?: number | string,
       id: ID,
     }): Promise<action.Action<ID>>;
@@ -145,7 +145,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
      * @param {Object<string, number|string>} options.params action arguments
      * @param {number|string} options.params.recordId record instance ID
@@ -159,7 +159,7 @@ interface action {
      * @since 2018.2
      */
     (options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       id: action.ActionID,
       params?: {
         recordId: number | string,
@@ -183,7 +183,7 @@ interface action {
      * @governance none
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
      * @param {Object<string, number|string>} options.params action arguments
      * @param {number|string} options.params.recordId record instance ID
@@ -197,7 +197,7 @@ interface action {
      * @since 2018.2
      */
     promise(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       id: action.ActionID,
       params?: {
         recordId: number | string,
@@ -223,7 +223,7 @@ interface action {
    * @governance 50 units
    *
    * @param {Object} options
-   * @param {record.Type|string} options.recordType record type
+   * @param {record.Type|record.CustomType} options.recordType record type
    * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
    * @param {Object<string, number|string>} [options.params] action arguments
    * @param {number|string} options.params.recordId record instance ID
@@ -239,7 +239,7 @@ interface action {
    * @since 2019.1
    */
   executeBulk(options: {
-    recordType: record.Type | `${record.Type}` | string,
+    recordType: record.Type | `${record.Type}` | record.CustomType,
     id: action.ActionID,
     params?: {
       recordId: number | string,
@@ -313,11 +313,11 @@ declare namespace action {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387977}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387977.html}
      *
-     * @type {record.Type|string} recordType
+     * @type {record.Type|record.CustomType} recordType
      *
      * @since 2018.2
      */
-    recordType: record.Type | `${record.Type}` | string;
+    recordType: record.Type | `${record.Type}` | record.CustomType;
 
     /**
      * The ID of the action
@@ -421,7 +421,7 @@ declare namespace action {
        * @governance none
        *
        * @param {Object} options
-       * @param {record.Type|string} options.recordType record type
+       * @param {record.Type|record.CustomType} options.recordType record type
        * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
        * @param {Object<string, number|string>} options.params action arguments
        * @param {number|string} options.params.recordId record instance ID
@@ -435,7 +435,7 @@ declare namespace action {
        * @since 2018.2
        */
       (options: {
-        recordType: record.Type | `${record.Type}` | string,
+        recordType: record.Type | `${record.Type}` | record.CustomType,
         id: action.ActionID,
         params?: {
           recordId: number | string,
@@ -459,7 +459,7 @@ declare namespace action {
        * @governance none
        *
        * @param {Object} options
-       * @param {record.Type|string} options.recordType record type
+       * @param {record.Type|record.CustomType} options.recordType record type
        * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
        * @param {Object<string, number|string>} options.params action arguments
        * @param {number|string} options.params.recordId record instance ID
@@ -473,7 +473,7 @@ declare namespace action {
        * @since 2018.2
        */
       promise(options: {
-        recordType: record.Type | `${record.Type}` | string,
+        recordType: record.Type | `${record.Type}` | record.CustomType,
         id: action.ActionID,
         params?: {
           recordId: number | string,
@@ -496,7 +496,7 @@ declare namespace action {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1540815927.html}
      *
      * @param {Object} options
-     * @param {record.Type|string} options.recordType record type
+     * @param {record.Type|record.CustomType} options.recordType record type
      * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
      * @param {Object<string, number|string>} [options.params] action arguments
      * @param {number|string} options.params.recordId record instance ID
@@ -505,7 +505,7 @@ declare namespace action {
      * @return {string} - taskId
      */
     executeBulk(options: {
-      recordType: record.Type | `${record.Type}` | string,
+      recordType: record.Type | `${record.Type}` | record.CustomType,
       id: action.ActionID,
       params?: {
         recordId: number | string,
