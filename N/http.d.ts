@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./https.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
 
@@ -225,7 +226,7 @@ interface http {
      * @restriction Server-side scripts only
      *
      * @param {Object} options
-     * @param {http.Method} options.method HTTP method of the request
+     * @param {http.Method|https.Method} options.method HTTP method of the request
      * @param {string} options.url the HTTP URL being requested
      * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
@@ -237,7 +238,7 @@ interface http {
      * @since 2015.2
      */
     (options: {
-      method: http.Method | `${http.Method}`,
+      method: http.Method | https.Method | `${http.Method | https.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -252,7 +253,7 @@ interface http {
      * @restriction Server-side scripts only
      *
      * @param {Object} options
-     * @param {http.Method} options.method HTTP method of the request
+     * @param {http.Method|https.Method} options.method HTTP method of the request
      * @param {string} options.url the HTTP URL being requested
      * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
      * @param {Object<string, string|number>} [options.headers] request HTTP headers
@@ -264,7 +265,7 @@ interface http {
      * @since 2015.2
      */
     promise(options: {
-      method: http.Method | `${http.Method}`,
+      method: http.Method | https.Method | `${http.Method | https.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -275,6 +276,7 @@ interface http {
 }
 
 declare namespace http {
+  
   /**
    * Enum describing available HTTP methods
    *
@@ -441,12 +443,12 @@ declare namespace http {
     /**
      * Server request HTTP method
      *
-     * @type {Method}
+     * @type {Method|https.Method}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method | `${Method}`;
+    method: http.Method | https.Method | `${http.Method | https.Method}`;
 
     /**
      * Server request URL

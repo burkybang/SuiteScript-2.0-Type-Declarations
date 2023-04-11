@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./http.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
 /// <reference path="./crypto.d.ts" />
@@ -226,7 +227,7 @@ interface https {
      * @restriction Server-side scripts only
      *
      * @param {Object} options
-     * @param {https.Method} options.method HTTPS method of the request
+     * @param {https.Method|http.Method} options.method HTTPS method of the request
      * @param {string} options.url the HTTPS URL being requested
      * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
      * @param {Object<string, string|number>} [options.headers] request HTTPS headers
@@ -238,7 +239,7 @@ interface https {
      * @since 2015.2
      */
     (options: {
-      method: https.Method | `${https.Method}`,
+      method: https.Method | http.Method | `${https.Method | http.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -253,7 +254,7 @@ interface https {
      * @restriction Server-side scripts only
      *
      * @param {Object} options
-     * @param {https.Method} options.method HTTPS method of the request
+     * @param {https.Method|http.Method} options.method HTTPS method of the request
      * @param {string} options.url the HTTPS URL being requested
      * @param {string|Object} [options.body] POST data; must be present if and only if method is POST
      * @param {Object<string, string|number>} [options.headers] request HTTPS headers
@@ -265,7 +266,7 @@ interface https {
      * @since 2015.2
      */
     promise(options: {
-      method: https.Method | `${https.Method}`,
+      method: https.Method | http.Method | `${https.Method | http.Method}`,
       url: string,
       body?: string | Object,
       headers?: {
@@ -285,7 +286,7 @@ interface https {
    * @param {Object} options
    * @param {string|number} options.scriptId The internal ID or script ID of the script record
    * @param {string} options.deploymentId The script ID of the script deployment record
-   * @param {https.Method} [options.method=https.Method.GET] HTTPS method of the request
+   * @param {https.Method|http.Method} [options.method=https.Method.GET] HTTPS method of the request
    * @param {Object<string, string|number>} [options.headers] Request HTTPS headers
    * @param {string|Object} [options.body] The PUT/POST data. This is ignored if the options.method is not POST or PUT
    * @param {Object<string, string|number>} [options.urlParams] The parameters to be appended to the target URL as a query string
@@ -303,7 +304,7 @@ interface https {
   requestRestlet(options: {
     scriptId: string | number,
     deploymentId: string,
-    method?: https.Method | `${https.Method}`,
+    method?: https.Method | http.Method | `${https.Method | http.Method}`,
     headers?: {
       [p: string]: string | number,
     },
@@ -536,12 +537,12 @@ declare namespace https {
     /**
      * Server request HTTPS method
      *
-     * @type {Method}
+     * @type {Method|http.Method}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    method: Method | `${Method}`;
+    method: Method | http.Method | `${Method | http.Method}`;
 
     /**
      * Server request URL
