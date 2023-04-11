@@ -1124,6 +1124,65 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
+  export interface SerializedFilterInput {
+
+    /**
+     * Summary type for this search filter
+     * @type {search.Summary}
+     */
+    summarytype: Summary | `${Summary}` | null;
+
+    /**
+     * Formula used for this search filter
+     * @type {string}
+     */
+    formula: string | null;
+
+    isnot: boolean;
+    isor: boolean;
+    leftparens: number;
+    rightparens: number;
+  }
+
+  export interface SerializedFilterOutput {
+
+    /**
+     * Field name for this search filter
+     * @type {string}
+     */
+    name: string;
+
+    /**
+     * Join ID for this search filter
+     * @type {string}
+     */
+    join: string;
+
+    /**
+     * Filter operator
+     * @type {search.Operator}
+     */
+    operator: Operator | `${Operator}`;
+
+    /**
+     * Summary type for this search filter
+     * @type {search.Summary}
+     */
+    summarytype: Summary | `${Summary}` | null;
+
+    /**
+     * Formula used for this search filter
+     * @type {string}
+     */
+    formula: string | null;
+
+    isnot: boolean;
+    isor: boolean;
+    leftparens: number;
+    rightparens: number;
+    values: string[] | null;
+  }
+
   export interface Filter {
 
     /**
@@ -1162,6 +1221,24 @@ declare namespace search {
      * @type {string}
      */
     formula: string;
+
+    /**
+     * Clones a search.Filter object
+     * @param {Filter} filter
+     */
+    _clone(): Filter;
+
+    /**
+     * Converts a serialized object into a search.Filter object
+     * @param {SerializedFilter} filter
+     */
+    _unmarshal(filter: SerializedFilterInput): void;
+
+    /**
+     * Converts a search.Filter into a serialized object
+     * @return {SerializedFilter}
+     */
+    _marshal(): SerializedFilterOutput;
 
     /**
      * Returns the object type name (search.Filter)
