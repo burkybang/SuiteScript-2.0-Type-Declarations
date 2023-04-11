@@ -25,7 +25,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
@@ -35,9 +35,7 @@ interface record {
     (options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): record.Record
 
     /**
@@ -50,7 +48,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {currentRecord.CurrentRecord}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
@@ -60,9 +58,7 @@ interface record {
     (options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): currentRecord.CurrentRecord
 
     /**
@@ -73,7 +69,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
@@ -83,9 +79,7 @@ interface record {
     promise(options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<record.Record>
 
     /**
@@ -96,7 +90,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<currentRecord.CurrentRecord>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
@@ -104,11 +98,9 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      type: record.Type | string,
+      type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<currentRecord.CurrentRecord>
   };
 
@@ -125,7 +117,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -136,9 +128,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): record.Record
 
     /**
@@ -152,7 +142,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {currentRecord.CurrentRecord}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -163,9 +153,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): currentRecord.CurrentRecord
 
     /**
@@ -177,7 +165,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -188,9 +176,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<record.Record>
 
     /**
@@ -202,7 +188,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<currentRecord.CurrentRecord>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -213,9 +199,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<currentRecord.CurrentRecord>
   };
 
@@ -232,7 +216,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -243,9 +227,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): record.Record
 
     /**
@@ -259,7 +241,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {currentRecord.CurrentRecord}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -270,9 +252,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): currentRecord.CurrentRecord
 
     /**
@@ -284,7 +264,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -295,9 +275,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<record.Record>
 
     /**
@@ -309,7 +287,7 @@ interface record {
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object} [options.defaultValues={}] record default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
      * @return {Promise<currentRecord.CurrentRecord>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -320,9 +298,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<currentRecord.CurrentRecord>
   };
 
@@ -340,7 +316,7 @@ interface record {
      * @param {number|string} options.fromId record id to be transformed from
      * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
      * @return {record.Record}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
@@ -352,9 +328,7 @@ interface record {
       fromId: number | string,
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): record.Record
 
     /**
@@ -369,7 +343,7 @@ interface record {
      * @param {number|string} options.fromId record id to be transformed from
      * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, *>} [options.defaultValues={}] transformed record's default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
      * @return {currentRecord.CurrentRecord}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
@@ -381,9 +355,7 @@ interface record {
       fromId: number | string,
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): currentRecord.CurrentRecord
 
     /**
@@ -396,7 +368,7 @@ interface record {
      * @param {number|string} options.fromId record id to be transformed from
      * @param {string} options.toType record type to be transformed to
      * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object} [options.defaultValues={}] transformed record's default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
      * @return {Promise<record.Record>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -408,9 +380,7 @@ interface record {
       fromId: number | string,
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<record.Record>
 
     /**
@@ -423,7 +393,7 @@ interface record {
      * @param {number|string} options.fromId record id to be transformed from
      * @param {string} options.toType record type to be transformed to
      * @param {true} options.isDynamic record is dynamic
-     * @param {Object} [options.defaultValues={}] transformed record's default values
+     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
      * @return {Promise<currentRecord.CurrentRecord>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
@@ -435,9 +405,7 @@ interface record {
       fromId: number | string,
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
-      defaultValues?: {
-        [p: string]: any,
-      },
+      defaultValues?: Record<string, record.FieldValue>,
     }): Promise<currentRecord.CurrentRecord>
   };
 
@@ -497,7 +465,7 @@ interface record {
      * @param {Object} options
      * @param {record.Type|record.CustomType|string} options.type record type
      * @param {number|string} options.id record id
-     * @param {Object<string, string|number|(string|number)[]|Date|boolean>} options.values field and value mapping to be submitted
+     * @param {Object<string, record.FieldValue>} options.values field and value mapping to be submitted
      * @param {Object} [options.options] additonal flags for submission
      * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
      * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
@@ -510,9 +478,7 @@ interface record {
     (options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
-      values: {
-        [p: string]: string | number | (string | number)[] | Date | boolean,
-      },
+      values: Record<string, record.FieldValue>,
       options?: {
         enablesourcing?: boolean,
         ignoreMandatoryFields?: boolean,
@@ -542,9 +508,7 @@ interface record {
     promise(options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
-      values: {
-        [p: string]: any,
-      },
+      values: Record<string, record.FieldValue>,
       options?: {
         enablesourcing?: boolean,
         ignoreMandatoryFields?: boolean,
@@ -562,9 +526,9 @@ interface record {
      * @governance 10 units
      *
      * @param {Object} options
-     * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
+     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
      * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
      * @return {void}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
@@ -572,17 +536,15 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      record: record.Record | {
+      record: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      to: record.Record | {
+      to: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      attributes?: {
-        [p: string]: string | number,
-      },
+      attributes?: Record<string, string | number>,
     }): void
 
     /**
@@ -591,9 +553,9 @@ interface record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821175.html}
      *
      * @param {Object} options
-     * @param {Record|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
-     * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
+     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
+     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
      * @return {Promise<void>}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
@@ -601,17 +563,15 @@ interface record {
      * @since 2015.2
      */
     promise(options: {
-      record: record.Record | {
+      record: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      to: record.Record | {
+      to: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      attributes?: {
-        [p: string]: string | number,
-      },
+      attributes?: Record<string, string | number>,
     }): Promise<void>
   };
 
@@ -625,9 +585,9 @@ interface record {
      * @governance 10 units
      *
      * @param {Object} options
-     * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
-     * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
+     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
      * @return {void}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
@@ -635,17 +595,15 @@ interface record {
      * @since 2015.2
      */
     (options: {
-      record: record.Record | {
+      record: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      from: record.Record | {
+      from: record.Record | currentRecord.CurrentRecord | {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         id: number | string,
       },
-      attributes?: {
-        [p: string]: string | number,
-      },
+      attributes?: Record<string, string | number>,
     }): void
   };
 
@@ -655,9 +613,9 @@ interface record {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440824016.html}
    *
    * @param {Object} options
-   * @param {Record|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
-   * @param {Record|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-   * @param {Object<string, string|number>} [options.attributes=null] name/value pairs containing attributes
+   * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
+   * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+   * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
    * @return {Promise<void>}
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
@@ -665,21 +623,21 @@ interface record {
    * @since 2015.2
    */
   promise(options: {
-    record: record.Record | {
+    record: record.Record | currentRecord.CurrentRecord | {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     },
-    from: record.Record | {
+    from: record.Record | currentRecord.CurrentRecord | {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
     },
-    attributes?: {
-      [p: string]: string | number,
-    }
+    attributes?: Record<string, string | number>,
   }): Promise<void>;
 }
 
 declare namespace record {
+
+  type FieldValue = string | number | (string | number)[] | Date | boolean;
 
   export type CustomType = `${'customrecord' | 'customtransaction' | 'customsale' | 'custompurchase'}${string}`;
 
@@ -1123,9 +1081,7 @@ declare namespace record {
      */
     constructor(options: {
       id: string,
-      params?: {
-        [p: string]: any,
-      },
+      params?: alias.Record<string, any>,
     }): {
       notifications: any[],
       response: Object,
@@ -1145,9 +1101,7 @@ declare namespace record {
      */
     promise(options: {
       id: string,
-      params?: {
-        [p: string]: any,
-      },
+      params?: alias.Record<string, any>,
     }): Promise<{
       notifications: any[],
       response: Object,
@@ -1224,9 +1178,7 @@ declare namespace record {
        */
       (options: {
         id: string,
-        params?: {
-          [p: string]: any,
-        },
+        params?: alias.Record<string, any>,
       }): {
         notifications: any[],
         response: Object,
@@ -1246,9 +1198,7 @@ declare namespace record {
        */
       promise(options: {
         id: string,
-        params?: {
-          [p: string]: any,
-        },
+        params?: alias.Record<string, any>,
       }): Promise<{
         notifications: any[],
         response: Object,
@@ -1350,9 +1300,7 @@ declare namespace record {
      *
      * @since 2018.2
      */
-    getMacros(): {
-      [p: string]: Macro,
-    };
+    getMacros(): alias.Record<string, Macro>;
 
     executeMacro: {
 
@@ -1372,9 +1320,7 @@ declare namespace record {
        */
       (options: {
         id: string,
-        params?: {
-          [p: string]: any,
-        },
+        params?: alias.Record<string, any>,
       }): {
         notifications: any[],
         response: Object,
@@ -1396,9 +1342,7 @@ declare namespace record {
        */
       promise(options: {
         id: string,
-        params?: {
-          [p: string]: any,
-        },
+        params?: alias.Record<string, any>,
       }): Promise<{
         notifications: [],
         response: {},
@@ -1446,7 +1390,7 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273155868.html}
      *
      * @param {string} fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {FieldValue} value
      * @param {boolean} [ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same object for chaining
      *
@@ -1456,7 +1400,7 @@ declare namespace record {
      */
     setValue(
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
     ): this;
 
@@ -1467,7 +1411,7 @@ declare namespace record {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} options.value
+     * @param {FieldValue} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @return {Record} same object for chaining
      *
@@ -1477,7 +1421,7 @@ declare namespace record {
      */
     setValue(options: {
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
     }): this;
 
@@ -1655,7 +1599,7 @@ declare namespace record {
      * @param {string} sublistId
      * @param {string} fieldId
      * @param {number} line
-     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {FieldValue} value
      * @return {Record} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
@@ -1667,7 +1611,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -1679,7 +1623,7 @@ declare namespace record {
      * @param {string} options.sublistId
      * @param {string} options.fieldId
      * @param {number} options.line
-     * @param {string|number|(string|number)[]|Date|boolean} options.value
+     * @param {FieldValue} options.value
      * @return {Record} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
@@ -1691,7 +1635,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     }): this;
 
     /**
@@ -2420,7 +2364,7 @@ declare namespace record {
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
      * @param {number} column the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @param {FieldValue} value the value to set it to
      * @return {Record} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -2431,7 +2375,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -2443,7 +2387,7 @@ declare namespace record {
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @param {FieldValue} options.value the value to set it to
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
      * @return {Record} same object for chaining
      *
@@ -2455,7 +2399,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
     }): this;
 
@@ -2514,7 +2458,7 @@ declare namespace record {
      * @param {string} fieldId the id of the matrix field
      * @param {number} column the column number for the field
      * @param {number} line the line number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @param {FieldValue} value the value to set it to
      * @return {Record} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -2526,7 +2470,7 @@ declare namespace record {
       fieldId: string,
       column: number,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -2540,7 +2484,7 @@ declare namespace record {
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
      * @param {number} options.line the line number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @param {FieldValue} options.value the value to set it to
      * @return {Record} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -2552,7 +2496,7 @@ declare namespace record {
       fieldId: string,
       column: number,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     }): this;
 
     /**
@@ -2655,9 +2599,7 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    toJSON(): ExcludeMethods<this> & {
-      [p: string]: any,
-    };
+    toJSON(): ExcludeMethods<this> & alias.Record<string, any>;
   }
 
   export interface Record extends RecordReadonly {

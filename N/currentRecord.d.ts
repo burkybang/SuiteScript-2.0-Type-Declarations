@@ -47,6 +47,8 @@ interface currentRecord {
 
 declare namespace currentRecord {
 
+  type FieldValue = string | number | (string | number)[] | Date | boolean;
+
   export interface CurrentRecordReadonly {
 
     /**
@@ -118,7 +120,7 @@ declare namespace currentRecord {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
      *
      * @param {string} fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {FieldValue} value
      * @param {boolean} [ignoreFieldChange=false] Ignore the field change script
      * @param {boolean} [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
@@ -127,7 +129,7 @@ declare namespace currentRecord {
      */
     setValue(
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     ): this;
@@ -139,7 +141,7 @@ declare namespace currentRecord {
      *
      * @param {Object} options
      * @param {string} options.fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} options.value
+     * @param {FieldValue} options.value
      * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
@@ -148,7 +150,7 @@ declare namespace currentRecord {
      */
     setValue(options: {
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
@@ -600,7 +602,7 @@ declare namespace currentRecord {
      *
      * @param {string} sublistId
      * @param {string} fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} value
+     * @param {FieldValue} value
      * @return {CurrentRecord} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
@@ -610,7 +612,7 @@ declare namespace currentRecord {
     setCurrentSublistValue(
       sublistId: string,
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -621,7 +623,7 @@ declare namespace currentRecord {
      * @param {Object} options
      * @param {string} options.sublistId
      * @param {string} options.fieldId
-     * @param {string|number|(string|number)[]|Date|boolean} options.value
+     * @param {FieldValue} options.value
      * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
      * @param {boolean} [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
@@ -633,7 +635,7 @@ declare namespace currentRecord {
     setCurrentSublistValue(options: {
       sublistId: string,
       fieldId: string,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
@@ -1269,7 +1271,7 @@ declare namespace currentRecord {
      * @param {string} sublistId the id of sublist in which the matrix is in.
      * @param {string} fieldId the id of the matrix field
      * @param {number} column the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @param {FieldValue} value the value to set it to
      *
      * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -1278,7 +1280,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -1290,7 +1292,7 @@ declare namespace currentRecord {
      * @param {string} options.sublistId the id of sublist in which the matrix is in.
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @param {FieldValue} options.value the value to set it to
      * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
      * @return {CurrentRecord} same object for chaining
      *
@@ -1301,7 +1303,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
     }): this;
 
@@ -1357,7 +1359,7 @@ declare namespace currentRecord {
      * @param {string} fieldId the id of the matrix field
      * @param {number} column the column number for the field
      * @param {number} line the line number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} value the value to set it to
+     * @param {FieldValue} value the value to set it to
      * @return {CurrentRecord} same object for chaining
      *
      * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
@@ -1368,7 +1370,7 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -1383,7 +1385,7 @@ declare namespace currentRecord {
      * @param {string} options.fieldId the id of the matrix field
      * @param {number} options.column the column number for the field
      * @param {number} options.line the line number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value the value to set it to
+     * @param {FieldValue} options.value the value to set it to
      * @return {CurrentRecord} same object for chaining
      *
      * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
@@ -1394,7 +1396,7 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-      value: string | number | (string | number)[] | Date | boolean
+      value: FieldValue
     }): this;
 
     /**
@@ -1524,7 +1526,7 @@ declare namespace currentRecord {
      * @param {string} sublistId - the id of sublist in which the matrix is in.
      * @param {string} fieldId - the id of the matrix field
      * @param {number} column - the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} value - the value to set it to
+     * @param {FieldValue} value - the value to set it to
      * @return {CurrentRecord} same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
@@ -1533,7 +1535,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
     ): this;
 
     /**
@@ -1547,7 +1549,7 @@ declare namespace currentRecord {
      * @param {string} options.sublistId - the id of sublist in which the matrix is in.
      * @param {string} options.fieldId - the id of the matrix field
      * @param {number} options.column - the column number for the field
-     * @param {string|number|(string|number)[]|Date|boolean} options.value - the value to set it to
+     * @param {FieldValue} options.value - the value to set it to
      * @param {boolean} [options.ignoreFieldChange=false] - Ignore the field change script (default false)
      * @param {boolean} [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
      * @return {CurrentRecord} same object for chaining
@@ -1558,7 +1560,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: string | number | (string | number)[] | Date | boolean,
+      value: FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
