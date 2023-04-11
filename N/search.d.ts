@@ -1113,9 +1113,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.Search)
-     * @return {string}
+     * @return {'search.Search'}
      */
-    toString(): string;
+    toString(): 'search.Search';
 
     /**
      * Convert to JSON object
@@ -1242,9 +1242,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.Filter)
-     * @return {string}
+     * @return {'search.Filter'}
      */
-    toString(): string;
+    toString(): 'search.Filter';
 
     /**
      * Convert to JSON object
@@ -1322,9 +1322,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.Column)
-     * @return {string}
+     * @return {'search.Column'}
      */
-    toString(): string;
+    toString(): 'search.Column';
 
     /**
      * Convert to JSON object
@@ -1353,9 +1353,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.Setting)
-     * @return {string}
+     * @return {'search.Setting'}
      */
-    toString(): string;
+    toString(): 'search.Setting';
 
     /**
      * Convert to JSON object
@@ -1415,9 +1415,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.ResultSet)
-     * @return {string}
+     * @return {'search.ResultSet'}
      */
-    toString(): string;
+    toString(): 'search.ResultSet';
 
     /**
      * Convert to JSON object
@@ -1451,7 +1451,7 @@ declare namespace search {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[];
-  
+
     /**
      * @return {Object<string, string | { value: string, text: string }[]>}
      */
@@ -1488,20 +1488,6 @@ declare namespace search {
       summary?: Summary | `${Summary}`,
     }): string | boolean;
 
-    /*
-        /!**
-         * Returns the UI display name (i.e. the text value) of a specified search return column.
-         * Note that this method is supported on select, image and document fields only.
-         * The column may be specified in three ways:
-         * 1) by providing a column name string
-         * 2) by providing a search.Column object
-         * 3) by providing name, join and summary parameters
-         * @param {string} columnName  search return column name or object whose value you want to return
-         * @return {string} UI display name (text value) of the search result column
-         * @since 2015.2
-         *!/
-        getText(columnName: string): string;*/
-
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.
      * Note that this method is supported on select, image and document fields only.
@@ -1537,9 +1523,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.Result)
-     * @return {string}
+     * @return {'search.Result'}
      */
-    toString(): string;
+    toString(): 'search.Result';
 
     /**
      * Convert to JSON object
@@ -1584,9 +1570,9 @@ declare namespace search {
 
     /**
      * Returns the object type name (search.PagedData)
-     * @return {string}
+     * @return {'search.PagedData'}
      */
-    toString(): string;
+    toString(): 'search.PagedData';
 
     /**
      * Convert to JSON object
