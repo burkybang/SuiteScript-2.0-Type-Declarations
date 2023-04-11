@@ -9,6 +9,7 @@
 /// <reference path="./N/auth.d.ts" />
 /// <reference path="./N/cache.d.ts" />
 /// <reference path="./N/config.d.ts" />
+/// <reference path="./N/compress.d.ts" />
 /// <reference path="./N/crypto.d.ts" />
 /// <reference path="./N/currency.d.ts" />
 /// <reference path="./N/currentRecord.d.ts" />
