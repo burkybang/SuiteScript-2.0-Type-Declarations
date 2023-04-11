@@ -1,3 +1,5 @@
+/// <reference path="../typings.d.ts" />
+
 /**
  * SuiteScript error module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243798608}
@@ -122,6 +124,13 @@ declare namespace error {
      * @since 2016.2
      */
     userFacing: boolean;
+
+    /**
+     * Convert to JSON object
+     *
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -209,5 +218,12 @@ declare namespace error {
      * @since 2015.2
      */
     eventType: 'beforeLoad' | 'beforeSubmit' | 'afterSubmit';
+
+    /**
+     * Convert to JSON object
+     *
+     * @return {Object<string, *>}
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 }
