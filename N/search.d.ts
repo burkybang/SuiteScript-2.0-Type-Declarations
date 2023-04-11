@@ -1374,19 +1374,11 @@ declare namespace search {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     columns: Column[];
-
-    /*
-        /!**
-         * Returns the value of a specified search return column.
-         * The column may be specified in three ways:
-         * 1) by providing a column name string
-         * 2) by providing a search.Column object
-         * 3) by providing name, join and summary parameters
-         * @param {string} columnName  search return column name or object whose value you want to return
-         * @return {string|boolean} value of the search result column
-         * @since 2015.2
-         *!/
-        getValue(columnName: string): string | boolean;*/
+  
+    /**
+     * @return {Object<string, string | { value: string, text: string }[]>}
+     */
+    getAllValues(): Record<string, string | { value: string, text: string }[]>;
 
     /**
      * Returns the value of a specified search return column.
