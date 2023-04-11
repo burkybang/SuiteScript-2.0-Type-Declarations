@@ -1785,7 +1785,7 @@ declare namespace query {
      *
      * @return {Object<string, string|number>}
      */
-    asMappedResults(): Record<string, string | number>[];
+    asMappedResults<MappedResult extends Record<string, string | number>>(): MappedResult[];
   }
 
   /**
