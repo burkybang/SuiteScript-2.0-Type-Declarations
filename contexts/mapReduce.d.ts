@@ -14,6 +14,10 @@
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4685231336}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4685231336.html}
  *
+ * @governance 10,000
+ * @time 60 minutes
+ * @instructions 1B
+ *
  * @since 2015.2
  */
 interface GetInputContext {
@@ -94,6 +98,10 @@ interface GetInputReturnQueryReference {
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472712193}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472712193.html}
  *
+ * @governance 1000
+ * @time 5 minutes
+ * @instructions 100M
+ *
  * @since 2015.2
  */
 interface MapContext {
@@ -153,7 +161,7 @@ interface MapContext {
    * @readonly
    *
    * @example
-   *  context.errors.each((key, error, executionNo) => {...});
+   *  context.errors.iterator().each((key, error, executionNo) => {...});
    */
   errors: ErrorsIterator;
 
@@ -189,6 +197,10 @@ interface MapContext {
  * Contains the key/values groups to process through the reduce stage
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483843828}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483843828.html}
+ *
+ * @governance 5000
+ * @time 15 minutes
+ * @instructions 100M
  *
  * @since 2015.2
  */
@@ -286,6 +298,10 @@ interface ReduceContext {
  * Used for accessing Map/Reduce job output and metadata
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4472725629}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472725629.html}
+ *
+ * @governance 10,000
+ * @time 60 minutes
+ * @instructions 1B
  *
  * @since 2015.2
  */
@@ -448,9 +464,6 @@ declare namespace SummarizeContext {
      *
      * @type {string} error
      * @readonly
-     *
-     * @example
-     *  var inputError = summary.inputSummary.error;
      */
     error: string;
 
@@ -535,7 +548,7 @@ declare namespace SummarizeContext {
      * @readonly
      *
      * @example
-     *  summary.mapSummary.keys.iterator.each((key, executionCount, completionState) => {...});
+     *  summary.mapSummary.keys.iterator().each((key, executionCount, completionState) => {...});
      */
     keys: KeysIterator;
 
@@ -548,7 +561,7 @@ declare namespace SummarizeContext {
      * @readonly
      *
      * @example
-     *  summary.mapSummary.errors.each((key, error, executionNo) => {...});
+     *  summary.mapSummary.errors.iterator().each((key, error, executionNo) => {...});
      */
     errors: ErrorsIterator;
 
@@ -633,7 +646,7 @@ declare namespace SummarizeContext {
      * @readonly
      *
      * @example
-     *  summary.reduceSummary.iterator.keys.each((key, executionCount, completionState) => {...});
+     *  summary.reduceSummary.keys.iterator().each((key, executionCount, completionState) => {...});
      */
     keys: KeysIterator;
 
