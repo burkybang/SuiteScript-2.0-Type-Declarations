@@ -1560,6 +1560,14 @@ declare namespace search {
     searchDefinition: Search;
 
     /**
+     * @param {number|string} index
+     * @return {search.Page}
+     */
+    fetch(
+      index: number | string,
+    ): search.Page;
+
+    /**
      * @param {Object} options
      * @param {number|string} options.index
      * @return {search.Page}
