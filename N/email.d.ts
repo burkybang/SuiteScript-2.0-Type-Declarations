@@ -21,7 +21,7 @@ interface email {
      *
      * @param {Object} options Email options
      * @param {number} options.author Sender of the email.
-     * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param {number|string|(number|string)[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
      * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
      * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
      * @param {string} options.subject Email subject.
@@ -34,7 +34,7 @@ interface email {
      */
     (options: {
       author: number | string,
-      recipients: number | string | string[],
+      recipients: number | string | (number | string)[],
       cc?: string[],
       bcc?: string[],
       subject: string,
@@ -53,7 +53,7 @@ interface email {
      *
      * @param {Object} options Email options
      * @param {number} options.author Sender of the email.
-     * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param {number|string|(number|string)[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
      * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
      * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
      * @param {string} options.subject Email subject.
@@ -66,7 +66,7 @@ interface email {
      */
     promise(options: {
       author: number | string,
-      recipients: number | string | string[],
+      recipients: number | string | (number | string)[],
       cc?: string[],
       bcc?: string[],
       subject: string,
