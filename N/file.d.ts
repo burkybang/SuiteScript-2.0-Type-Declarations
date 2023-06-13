@@ -219,6 +219,10 @@ declare namespace file {
      */
     url: string;
 
+    lines: {
+      iterator(): File.lines.iterator;
+    };
+
     /**
      * Method used to return the content of the file
      * @return {string}
@@ -273,7 +277,7 @@ declare namespace file {
        * @param {function(Object)} callback
        * @return {boolean}
        */
-      each(callback: (line: Object) => boolean): void;
+      each(callback: (line: { value: string }) => boolean): void;
     }
   }
 
