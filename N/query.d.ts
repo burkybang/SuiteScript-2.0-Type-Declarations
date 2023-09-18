@@ -1212,7 +1212,14 @@ declare namespace query {
      * @param {Condition} condition
      * @return {Condition}
      */
-    not(condition): Condition;
+    not(condition: Condition): Condition;
+
+    /**
+     * Converts this query.Query object to its corresponding SuiteQL representation
+     *
+     * @return {Condition}
+     */
+    toSuiteQL(): SuiteQL;
 
     /**
      * Returns the object type name.
