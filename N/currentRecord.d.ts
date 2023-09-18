@@ -84,6 +84,22 @@ declare namespace currentRecord {
     isDynamic: boolean;
 
     /**
+     * Indicates whether the record is read-only or editable
+     *
+     * @type {boolean}
+     * @readonly
+     */
+    isReadOnly: boolean;
+
+    /**
+     * Indicates whether the record is new or not
+     *
+     * @type {boolean}
+     * @readonly
+     */
+    isNew: boolean;
+
+    /**
      * Return value of the field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582256.html}
