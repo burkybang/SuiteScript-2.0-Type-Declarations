@@ -184,7 +184,7 @@ interface render {
    * @param {number} options.recipient.id
    * @param {record.Type|record.CustomType|string} options.recipient.type
    * @param {number} options.customRecord.id
-   * @param {record.CustomType} options.customRecord.type
+   * @param {record.CustomType|string} options.customRecord.type
    * @param {number} options.supportCaseId
    * @param {number} options.transactionId
    *
@@ -192,17 +192,17 @@ interface render {
    */
   mergeEmail(options: {
     templateId: number,
-    entity: {
+    entity?: {
       id: number,
-      type: record.Type | `${record.Type}` | record.CustomType | string,
+      type: record.Type | `${record.Type}` | string,
     },
-    recipient: {
+    recipient?: {
       id: number,
-      type: record.Type | `${record.Type}` | record.CustomType | string,
+      type: record.Type | `${record.Type}` | string,
     },
-    customRecord: {
+    customRecord?: {
       id: number,
-      type: record.CustomType,
+      type: record.CustomType  | string,
     },
     supportCaseId?: number,
     transactionId?: number,
@@ -333,6 +333,22 @@ declare namespace render {
     setTemplateById(options: {
       id: number,
     }): void;
+
+    /**
+     * Binds a record to a template variable
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
+     *
+     * @param {string} templateName
+     * @param {record.Record} record
+     * @return {void}
+     *
+     * @since 2015.2
+     */
+    addRecord(
+      templateName: string,
+      record: record.Record,
+    ): void;
 
     /**
      * Binds a record to a template variable
