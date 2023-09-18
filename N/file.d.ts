@@ -50,6 +50,17 @@ interface file {
 
   /**
    * Loads an existing file from the NetSuite File Cabinet
+   * @param {number|string} id - The internal ID of the file as a number or string, the absolute or relative path
+   * @return {file.File} - The internal ID of the loaded file
+   *
+   * @restriction Server-side scripts only
+   */
+  load(
+    id: number | string,
+  ): file.File;
+
+  /**
+   * Loads an existing file from the NetSuite File Cabinet
    * @param {Object} options
    * @param {number|string} options.id - The internal ID of the file as a number or string, the absolute or relative path
    * @return {file.File} - The internal ID of the loaded file
