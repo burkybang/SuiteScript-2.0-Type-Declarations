@@ -1590,22 +1590,80 @@ declare namespace currentRecord {
 
   export interface CurrentRecord extends CurrentRecordReadonly {
 
-    /**
-     * Save record updates to the system
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
-     *
-     * @governance 20 units for transactions, 4 for custom records, 10 for all other records
-     *
-     * @param {Object} [options]
-     * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-     * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {number} id of submitted record
-     */
-    save(options?: {
-      enableSourcing?: boolean,
-      ignoreMandatoryFields?: boolean,
-    }): number;
+    save: {
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): number
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4267286323}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
+       *
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return {number} id of submitted record
+       *
+       * @since 2015.2
+       */
+      (
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): number
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
+       *
+       * @param {Object} [options]
+       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(options?: {
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      }): Promise<number>
+
+      /**
+       * Save record updates to the system
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
+       *
+       * @param {boolean} [enableSourcing=false] enable sourcing during record update
+       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       *
+       * @return {Promise<number>} id of submitted record
+       *
+       * @since 2015.2
+       */
+      promise(
+        enableSourcing?: boolean,
+        ignoreMandatoryFields?: boolean,
+      ): Promise<number>
+    };
   }
 
   /**
@@ -1978,6 +2036,6 @@ declare namespace currentRecord {
      * @readonly
      * @since 2016.2
      */
-    type: string;
+    type: Lowercase<serverWidget.FieldType>;
   }
 }
