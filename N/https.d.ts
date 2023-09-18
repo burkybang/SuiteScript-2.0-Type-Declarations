@@ -275,6 +275,75 @@ interface https {
     }): Promise<http.ClientResponse>
   };
 
+  requestSuitelet: {
+
+    /**
+     * Send a HTTPS request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     *
+     * @param {Object} options
+     * @param {string} options.scriptId The script ID of the script record
+     * @param {string} options.deploymentId The script ID of the script deployment record
+     * @param {boolean} [options.external] Specifies whether to perform the request as an unauthenticated user; this case uses the Online Form User role
+     * @param {https.Method|http.Method} [options.method] HTTPS method of the request. The default value is GET if options.body is not specified, and POST if options.body is specified
+     * @param {Object<string, string|number>} [options.headers] HTTPS headers
+     * @param {Object<string, string|number>} [options.urlParams] Parameters to be appended to the target URL as a query string
+     * @param {string|Object} [options.body] POST data; must be present if and only if method is POST or PUT
+     * @return {ClientResponse}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
+     *
+     * @since 2015.2
+     */
+    (options: {
+      scriptId: string,
+      deploymentId: string,
+      external?: boolean,
+      method?: https.Method | http.Method | `${https.Method | http.Method}`,
+      headers?: {
+        [p: string]: string | number,
+      },
+      urlParams?: {
+        [p: string]: string | number,
+      },
+      body?: string | Object,
+    }): https.ClientResponse
+
+    /**
+     * Send a HTTPS request and return server response.
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     *
+     * @param {Object} options
+     * @param {string} options.scriptId The script ID of the script record
+     * @param {string} options.deploymentId The script ID of the script deployment record
+     * @param {boolean} [options.external] Specifies whether to perform the request as an unauthenticated user; this case uses the Online Form User role
+     * @param {https.Method|http.Method} [options.method] HTTPS method of the request. The default value is GET if options.body is not specified, and POST if options.body is specified
+     * @param {string|Object} [options.body] POST data; must be present if and only if method is POST or PUT
+     * @param {Object<string, string|number>} [options.headers] HTTPS headers
+     * @return {Promise<ClientResponse>}
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      scriptId: string,
+      deploymentId: string,
+      external?: boolean,
+      method?: https.Method | http.Method | `${https.Method | http.Method}`,
+      body?: string | Object,
+      headers?: {
+        [p: string]: string | number,
+      },
+    }): Promise<http.ClientResponse>
+  };
+
   /**
    * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
