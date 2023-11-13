@@ -1,4 +1,5 @@
 /// <reference path="./record.d.ts" />
+/// <reference path="./currentRecord.d.ts" />
 
 /**
  * SuiteScript config module
@@ -10,6 +11,28 @@
  * @restriction Server-side scripts only
  */
 interface config {
+  
+  /**
+   * Load a configuration object with a specific type
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4256772439.html}
+   *
+   * @governance 10 units
+   * @restriction Server-side scripts only
+   *
+   * @param {Object} options
+   * @param {string} options.type one of the Type values
+   * @param {false} [options.isDynamic] load record in dynamic or deferred dynamic mode
+   * @return {record.Record}
+   *
+   * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
+   *
+   * @since 2015.2
+   */
+  load(options: {
+    type: config.Type | `${config.Type}`,
+    isDynamic?: false,
+  }): record.Record;
 
   /**
    * Load a configuration object with a specific type
@@ -21,8 +44,8 @@ interface config {
    *
    * @param {Object} options
    * @param {string} options.type one of the Type values
-   * @param {boolean} [options.isDynamic] load record in dynamic or deferred dynamic mode
-   * @return {record.Record}
+   * @param {true} options.isDynamic load record in dynamic or deferred dynamic mode
+   * @return {currentRecord.CurrentRecordReadonly}
    *
    * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
    *
@@ -30,8 +53,8 @@ interface config {
    */
   load(options: {
     type: config.Type | `${config.Type}`,
-    isDynamic?: boolean,
-  }): record.Record;
+    isDynamic: true,
+  }): currentRecord.CurrentRecordReadonly;
 }
 
 /**
