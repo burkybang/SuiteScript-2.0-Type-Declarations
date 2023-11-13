@@ -331,8 +331,8 @@ interface search {
      * @param {Object} options  the options object
      * @param {Type|string} options.type  the record internal ID of the record type you are searching
      * @param {string|number} options.id  the internalId of the record
-     * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
-     * @return {Object<string, string|{value:string, text:string}[]>} search results in the form of key/value pairs example:
+     * @param {string} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Object<string, string|boolean|{value:string, text:string}[]>} search results in the form of key/value pairs example:
      *     {
      *         foo: 'bar',
      *         'name.join': 'othervalue',
@@ -356,9 +356,50 @@ interface search {
      */<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
       id: string | number,
-      columns: ColumnName | ColumnName[],
+      columns: ColumnName,
     }): {
-      [key in ColumnName]: (string | {
+      [key in ColumnName]: (string | boolean | {
+        value: string,
+        text: string,
+      }[])
+    }
+
+    /**
+     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
+     * Note that the notation for joined fields is: join_id.field_name
+     * @governance 1 unit
+     *
+     * @param {Object} options  the options object
+     * @param {Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {string|number} options.id  the internalId of the record
+     * @param {string[]} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Object<string, string|boolean|{value:string, text:string}[]>} search results in the form of key/value pairs example:
+     *     {
+     *         foo: 'bar',
+     *         'name.join': 'othervalue',
+     *         select: [{
+     *             value: '123',
+     *             text: 'Some UI text'
+     *         }],
+     *         multiselect1: [],
+     *         multiselect2: [{
+     *             value: '3',
+     *             text: 'Green'
+     *         },{
+     *             value: '5',
+     *             text: 'Pinkish yellow'
+     *         }]
+     *     }
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */<ColumnName extends string>(options: {
+      type: search.Type | `${search.Type}` | string,
+      id: string | number,
+      columns: ColumnName[],
+    }): {
+      [key in ColumnName]: (string | boolean | {
         value: string,
         text: string,
       }[])
@@ -371,8 +412,8 @@ interface search {
      * @param {Object} options  the options object
      * @param {Type|string} options.type  the record internal ID of the record type you are searching
      * @param {string|number} options.id  the internalId of the record
-     * @param {string|string[]} options.columns  array of column/field names to look up, or a single column/field name
-     * @return {Promise<Object<string, string|{value:string, text:string}[]>>} search results in the form of key/value pairs example:
+     * @param {string} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Promise<Object<string, string|boolean|{value:string, text:string}[]>>} search results in the form of key/value pairs example:
      *     {
      *         foo: 'bar',
      *         'name.join': 'othervalue',
@@ -397,9 +438,50 @@ interface search {
     promise<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
       id: string | number,
-      columns: ColumnName | ColumnName[],
+      columns: ColumnName,
     }): Promise<{
-      [key in ColumnName]: (string | {
+      [key in ColumnName]: (string | boolean | {
+        value: string,
+        text: string,
+      }[])
+    }>
+
+    /**
+     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
+     * Note that the notation for joined fields is: join_id.field_name
+     *
+     * @param {Object} options  the options object
+     * @param {Type|string} options.type  the record internal ID of the record type you are searching
+     * @param {string|number} options.id  the internalId of the record
+     * @param {string[]} options.columns  array of column/field names to look up, or a single column/field name
+     * @return {Promise<Object<string, string|boolean|{value:string, text:string}[]>>} search results in the form of key/value pairs example:
+     *     {
+     *         foo: 'bar',
+     *         'name.join': 'othervalue',
+     *         select: [{
+     *             value: '123',
+     *             text: 'Some UI text'
+     *         }],
+     *         multiselect1: [],
+     *         multiselect2: [{
+     *             value: '3',
+     *             text: 'Green'
+     *         },{
+     *             value: '5',
+     *             text: 'Pinkish yellow'
+     *         }]
+     *     }
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+     *
+     * @since 2015.2
+     */
+    promise<ColumnName extends string>(options: {
+      type: search.Type | `${search.Type}` | string,
+      id: string | number,
+      columns: ColumnName[],
+    }): Promise<{
+      [key in ColumnName]: (string | boolean | {
         value: string,
         text: string,
       }[])
