@@ -554,7 +554,7 @@ interface search {
    * @param {string} options.name  internal ID of the search field
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
    * @param {search.Operator|string} options.operator  search operator
-   * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
+   * @param {string|number|Date|(string|number)[]|Date[]} [options.values]  values to be used as filter parameters
    * @param {search.Summary} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
@@ -568,7 +568,7 @@ interface search {
     name: string,
     join?: string,
     operator: search.Operator | `${search.Operator}`,
-    values?: string | Date | number | string[] | Date[],
+    values?: string | number | Date | (string | number)[] | Date[],
     summary?: search.Summary | `${search.Summary}`,
   }): search.Filter;
 
@@ -577,10 +577,10 @@ interface search {
    *
    * @param {Object} options  the options object
    * @param {search.FormulaName} options.name  internal ID of the search field
+   * @param {string} options.formula formula used for this filter
    * @param {string} [options.join]  if executing a joined search, this is the join ID used for the search field specified in the name parameter
    * @param {search.Operator|string} options.operator  search operator
-   * @param {string|Date|number|string[]|Date[]} [options.values]  values to be used as filter parameters
-   * @param {string} options.formula formula used for this filter
+   * @param {string|number|Date|(string|number)[]|Date[]} [options.values]  values to be used as filter parameters
    * @param {search.Summary} [options.summary]  summary type used for this filter
    * @return {search.Filter} the created filter object
    *
@@ -592,9 +592,9 @@ interface search {
    */
   createFilter(options: {
     name: search.FormulaName,
-    operator: search.Operator | `${search.Operator}`,
-    values?: string | Date | number | string[] | Date[],
     formula: string,
+    operator: search.Operator | `${search.Operator}`,
+    values?: string | number | Date | (string | number)[] | Date[],
     summary?: search.Summary | `${search.Summary}`,
   }): search.Filter;
 
