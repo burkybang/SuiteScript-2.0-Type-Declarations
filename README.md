@@ -10,11 +10,10 @@
 ![LinkedIn](https://github.com/burkybang/burkybang/raw/master/Images/linkedin16.png "LinkedIn") [burkybang](https://linkedin.com/in/burkybang "LinkedIn")  
 ![YouTube](https://github.com/burkybang/burkybang/raw/master/Images/youtube16.png "YouTube") [burkybang](https://youtube.com/burkybang "YouTube")  
 ![Mastodon](https://github.com/burkybang/burkybang/raw/master/Images/mastodon16.png "Mastodon") [burkybang](https://mastodon.social/@burkybang "Mastodon")  
-![Squabbles](https://github.com/burkybang/burkybang/raw/master/Images/squabbles16.png "Squabbles") [burkybang](https://squabbles.io/u/burkybang "Squabbles")  
 ![Twitter](https://github.com/burkybang/burkybang/raw/master/Images/twitter16.png "Twitter") [burkybang](https://twitter.com/burkybang "Twitter")  
 ![Reddit](https://github.com/burkybang/burkybang/raw/master/Images/reddit16.png "Reddit") [burkybang](https://reddit.com/u/burkybang "Reddit")
 
-## Related
+## Related Projects
 
 - [SuiteScript File Templates for WebStorm](https://github.com/burkybang/SuiteScript-WebStorm-File-Templates)
 - [NetSuite UI Type Declarations](https://github.com/burkybang/NetSuite-UI-Type-Declarations)
