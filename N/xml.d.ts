@@ -7,12 +7,15 @@
  * @NApiVersion 2.x
  */
 interface xml {
+  
+  Parser: xml.Parser;
 
   /**
    * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
    *
+   * @param {Object} options
    * @param {string} options.xmlText the XML text to be escaped
    * @return {string} the escaped XML
    *
@@ -27,6 +30,7 @@ interface xml {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345173468}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345173468.html}
    *
+   * @param {Object} options
    * @param {Document} options.xml the XML document object
    * @param {number|string} options.xsdFilePathOrId ID or path to the XSD file to validate the XML object against
    * @param {number|string} [options.importFolderPathOrId] ID or path to a folder in the file cabinet containing additional XSD schemas which are imported by the parent XSD provided via "xsdFilePathOrId"
@@ -83,6 +87,21 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
      *
+     * @param {string} text XML text
+     * @return {Document}
+     *
+     * @since 2015.2
+     */
+    fromString(
+      text: string,
+    ): Document;
+
+    /**
+     * Generate XML Document object from a string
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
+     *
+     * @param {Object} options
      * @param {string} options.text XML text
      * @return {Document}
      *
@@ -149,6 +168,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459708190917}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459708190917.html}
      *
+     * @param {Object} options
      * @param {Node} options.newChild the node to add
      * @return {Node} the node added
      *
@@ -163,6 +183,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46211181640}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46211181640.html}
      *
+     * @param {Object} options
      * @param {boolean} options.deep if true, recursively clone the subtree under the specified node; if false, clone only the node itself (and its attributes, if it is an Element)
      * @return {Node} the duplicate node
      */
@@ -176,6 +197,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460349365233}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460349365233.html}
      *
+     * @param {Object} options
      * @param {Node} options.other the node to compare against the reference node
      * @return {number} how the node is positioned relatively to the reference node
      *
@@ -209,6 +231,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452156005859}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452156005859.html}
      *
+     * @param {Object} options
      * @param {Node} options.newChild the node to insert
      * @param {Node} options.refChild the reference node, i.e., the node before which the new node will be inserted
      * @return {Node} the node being inserted
@@ -225,6 +248,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46175476074}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46175476074.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI to look for
      * @return {boolean} true if the specified namespaceURI is the default namespace, false otherwise
      */
@@ -244,6 +268,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453230529784}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453230529784.html}
      *
+     * @param {Object} options
      * @param {Node} options.other the node to compare equality with
      * @return {boolean} true if the nodes are equal, false otherwise
      */
@@ -259,6 +284,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454356628417}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454356628417.html}
      *
+     * @param {Object} options
      * @param {Node} options.other the node to test against
      * @return {boolean} true if the nodes are the same, false otherwise
      */
@@ -271,6 +297,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46200805664}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46200805664.html}
      *
+     * @param {Object} options
      * @param {string} options.prefix the prefix to look for; if this parameter is null, the method will return the default namespace URI if any
      * @return {string} the associated namespace URI or null if none is found
      */
@@ -284,6 +311,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456616149901}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456616149901.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI to look for
      * @return {string} an associated namespace prefix if found or null if none is found; if more than one prefix are associated to the namespace prefix, the returned namespace prefix is implementation dependent
      */
@@ -307,6 +335,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454751220702}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454751220702.html}
      *
+     * @param {Object} options
      * @param {Node} options.oldChild the node being removed
      * @return {Node} the node removed
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
@@ -321,6 +350,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456990295409}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456990295409.html}
      *
+     * @param {Object} options
      * @param {Node} options.newChild the new node to put in the child list
      * @param {Node} options.oldChild the node being replaced in the list
      * @return {Node} the node replaced
@@ -548,6 +578,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453612609863}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453612609863.html}
      *
+     * @param {Object} options
      * @param {Node} options.source the node to move into this document
      * @return {Node} the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
      *
@@ -562,6 +593,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456575866698}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456575866698.html}
      *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute
      * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
      * @return {Attr} new attribute node object with name and attribute value set as expected and localName, prefix, and namespaceURI set to null
@@ -578,6 +610,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452244812011}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452244812011.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to create; can be null
      * @param {string} options.qualifiedName the qualified name of the attribute to instantiate
      * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
@@ -596,6 +629,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46463562011}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46463562011.html}
      *
+     * @param {Object} options
      * @param {string} options.data the data for the CDATASection contents
      * @return {Node} the new CDATASection node
      *
@@ -610,6 +644,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460454650877}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460454650877.html}
      *
+     * @param {Object} options
      * @param {string} options.data the data for the node
      * @return {Node} the new Comment node
      */
@@ -631,6 +666,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452954040527}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452954040527.html}
      *
+     * @param {Object} options
      * @param {string} options.tagName the name of the element type to instantiate; for XML, this is case-sensitive
      * @return {Element} a new Element object with the nodeName attribute set to tagName, and localName, prefix, and namespaceURI set to null
      *
@@ -645,6 +681,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458257690428}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458257690428.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the element to create; can be null
      * @param {string} options.qualifiedName the qualified name of the element type to instantiate
      * @return {Element} a new Element object with the nodeName, localName, prefix, and namespaceURI set accordingly
@@ -661,6 +698,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453675170898}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453675170898.html}
      *
+     * @param {Object} options
      * @param {string} options.target the target part of the processing instruction
      * @param {string} options.data the data for the node
      * @return {Node} the new ProcessingInstruction object
@@ -677,6 +715,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458155761718}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458155761718.html}
      *
+     * @param {Object} options
      * @param {string} options.data the data for the node
      * @return {Node} the new Text node
      */
@@ -690,6 +729,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458778015135}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458778015135.html}
      *
+     * @param {Object} options
      * @param {string} options.elementId the unique id value for an element
      * @return {Element} the matching Element or null if there is none
      */
@@ -702,6 +742,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457710510253}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457710510253.html}
      *
+     * @param {Object} options
      * @param {string} options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
      * @return {Element[]} an array containing all the matched Elements
      */
@@ -714,6 +755,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460907836913}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460907836913.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
      * @param {string} options.localName the local name of the elements to match on; the special value "*" matches all local names
      * @return {Element[]} an array containing all the matched Elements
@@ -729,6 +771,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457609802245}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457609802245.html}
      *
+     * @param {Object} options
      * @param {Node} options.importedNode the node to import
      * @param {boolean} options.deep if true, recursively import the subtree under the specified node; if false, import only the node itself, as explained above
      * @return {Node} the imported node that belongs to this Document
@@ -834,12 +877,27 @@ declare namespace xml {
    * @since 2015.2
    */
   export interface Element {
+    
+    childNodes: Element[];
 
     /**
      * Retrieves an attribute value by name
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
      *
+     * @param {string} name the name of the attribute to retrieve
+     * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+     */
+    getAttribute(
+      name: string,
+    ): string;
+
+    /**
+     * Retrieves an attribute value by name
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
+     *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute to retrieve
      * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
      */
@@ -852,6 +910,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4588427395}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4588427395.html}
      *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute to retrieve
      * @return {Attr} the Attr node with the specified name or null if there is no such attribute
      */
@@ -864,6 +923,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452000061035}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452000061035.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to retrieve; can be null
      * @param {string} options.localName the local name of the attribute to retrieve
      * @return {Attr} the Attr node with the specified attribute local name and namespace URI or null if there is no such attribute
@@ -880,6 +940,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453436523437}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453436523437.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to retrieve; can be null
      * @param {string} options.localName the local name of the attribute to retrieve
      * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
@@ -896,6 +957,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452163024902}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452163024902.html}
      *
+     * @param {Object} options
      * @param {string} options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
      * @return {Element[]} an array of matching Element nodes
      */
@@ -908,6 +970,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454667602538}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454667602538.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
      * @param {string} options.localName the local name of the elements to match on; the special value "*" matches all local names
      * @return {Element[]} an array of matching Element nodes
@@ -924,6 +987,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453276306152}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453276306152.html}
      *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute to look for
      * @return {boolean} true if an attribute with the given name is specified on this element or has a default value, false otherwise
      */
@@ -936,6 +1000,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458537536620}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458537536620.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to look for; can be null
      * @param {string} options.localName the local name of the attribute to look for
      * @return {boolean} true if an attribute with the given local name and namespace URI is specified or has a default value on this element, false otherwise
@@ -952,6 +1017,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457329345702}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457329345702.html}
      *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute to remove
      * @return {void}
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
@@ -965,6 +1031,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454500366210}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454500366210.html}
      *
+     * @param {Object} options
      * @param {Attr} options.oldAttr the Attr node to remove from the attribute list
      * @return {Attr} the Attr node that was removed
      *
@@ -979,6 +1046,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460859619139}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460859619139.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to remove; can be null
      * @param {string} options.localName the local name of the attribute to remove
      * @return {void}
@@ -996,6 +1064,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455326171874}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455326171874.html}
      *
+     * @param {Object} options
      * @param {string} options.name the name of the attribute to create or alter
      * @param {string} options.value value to set in string form
      * @return {void}
@@ -1013,6 +1082,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454052368163}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454052368163.html}
      *
+     * @param {Object} options
      * @param {Attr} options.newAttr the Attr node to add to the attribute list
      * @return {Attr} if the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
      *
@@ -1028,6 +1098,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454328857421}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454328857421.html}
      *
+     * @param {Object} options
      * @param {Attr} options.newAttr the Attr node to add to the attribute list
      * @return {Attr} if the newAttr attribute replaces an existing attribute with the same local name and namespace URI, the replaced Attr node is returned, otherwise null is returned
      *
@@ -1043,6 +1114,7 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456093383788}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456093383788.html}
      *
+     * @param {Object} options
      * @param {string} options.namespaceURI the namespace URI of the attribute to create or alter; can be null
      * @param {string} options.qualifiedName the qualified name of the attribute to create or alter
      * @param {string} options.value value to set in string form
