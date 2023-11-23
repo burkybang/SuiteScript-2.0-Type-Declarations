@@ -7,8 +7,28 @@
  * @NApiVersion 2.x
  */
 interface xml {
-  
+
+  /**
+   * Encapsulates the functionality used by NetSuite to parse an XML document
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344922681}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344922681.html}
+   *
+   * @type {xml.Parser}
+   *
+   * @since 2015.2
+   */
   Parser: xml.Parser;
+
+  /**
+   * Encapsulates the functionality to run XPath expressions
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344925104}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344925104.html}
+   *
+   * @type {xml.XPath}
+   *
+   * @since 2015.2
+   */
+  XPath: xml.XPath;
 
   /**
    * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
@@ -139,15 +159,15 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344925105.html}
      *
      * @param {string} options.xpath an XPath expression
-     * @param {Node} options.node XML node being queried
-     * @return {Node[]} nodes associated with the current result
+     * @param {Node | Element | Document} options.node XML node being queried
+     * @return {(Node | Element)[]} nodes associated with the current result
      *
      * @since 2015.2
      */
     select(options: {
       xpath: string,
-      node: Node,
-    }): Node[];
+      node: Node | Element | Document,
+    }): (Node | Element)[];
   }
 
   /**
@@ -156,7 +176,6 @@ declare namespace xml {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4346057759.html}
    *
    * @classDescription Encapsulation of W3C DOM Node
-   * @return {Node}
    * @constructor
    *
    * @since 2015.2
@@ -169,12 +188,12 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459708190917.html}
      *
      * @param {Object} options
-     * @param {Node} options.newChild the node to add
-     * @return {Node} the node added
+     * @param {Node | Element} options.newChild the node to add
+     * @return {Node | Element} the node added
      *
      * @throws {error.SuiteScriptError} SSS_DOM_EXCEPTION if node cannot be appended for some reason
      */
-    appendChild<NewChildNode extends Node>(options: {
+    appendChild<NewChildNode extends (Node | Element)>(options: {
       newChild: NewChildNode,
     }): NewChildNode;
 
@@ -185,11 +204,11 @@ declare namespace xml {
      *
      * @param {Object} options
      * @param {boolean} options.deep if true, recursively clone the subtree under the specified node; if false, clone only the node itself (and its attributes, if it is an Element)
-     * @return {Node} the duplicate node
+     * @return {Node | Element} the duplicate node
      */
     cloneNode(options: {
       deep: boolean
-    }): Node;
+    }): Node | Element;
 
     /**
      * Compares the reference node, i.e. the node on which this method is being called, with a node, i.e. the one passed as a parameter,
@@ -198,13 +217,13 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460349365233.html}
      *
      * @param {Object} options
-     * @param {Node} options.other the node to compare against the reference node
+     * @param {Node | Element} options.other the node to compare against the reference node
      * @return {number} how the node is positioned relatively to the reference node
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION when the nodes cannot be compared
      */
     compareDocumentPosition(options: {
-      other: Node,
+      other: Node | Element,
     }): number;
 
     /**
@@ -232,15 +251,15 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452156005859.html}
      *
      * @param {Object} options
-     * @param {Node} options.newChild the node to insert
-     * @param {Node} options.refChild the reference node, i.e., the node before which the new node will be inserted
-     * @return {Node} the node being inserted
+     * @param {Node | Element} options.newChild the node to insert
+     * @param {Node | Element} options.refChild the reference node, i.e., the node before which the new node will be inserted
+     * @return {Node | Element} the node being inserted
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be inserted for some reason
      */
-    insertBefore<NewChildNode extends Node>(options: {
+    insertBefore<NewChildNode extends (Node | Element)>(options: {
       newChild: NewChildNode,
-      refChild: Node,
+      refChild: Node | Element,
     }): NewChildNode;
 
     /**
@@ -269,11 +288,11 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453230529784.html}
      *
      * @param {Object} options
-     * @param {Node} options.other the node to compare equality with
+     * @param {Node | Element | Document} options.other the node to compare equality with
      * @return {boolean} true if the nodes are equal, false otherwise
      */
     isEqualNode(options: {
-      other: Node,
+      other: Node | Element | Document,
     }): boolean;
 
     /**
@@ -285,11 +304,11 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454356628417.html}
      *
      * @param {Object} options
-     * @param {Node} options.other the node to test against
+     * @param {Node | Element | Document} options.other the node to test against
      * @return {boolean} true if the nodes are the same, false otherwise
      */
     isSameNode(options: {
-      other: Node,
+      other: Node | Element | Document,
     }): boolean;
 
     /**
@@ -336,11 +355,11 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454751220702.html}
      *
      * @param {Object} options
-     * @param {Node} options.oldChild the node being removed
-     * @return {Node} the node removed
+     * @param {Node | Element} options.oldChild the node being removed
+     * @return {Node | Element} the node removed
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
      */
-    removeChild<OldChildNode extends Node>(options: {
+    removeChild<OldChildNode extends (Node | Element)>(options: {
       oldChild: OldChildNode,
     }): OldChildNode;
 
@@ -351,15 +370,15 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456990295409.html}
      *
      * @param {Object} options
-     * @param {Node} options.newChild the new node to put in the child list
-     * @param {Node} options.oldChild the node being replaced in the list
-     * @return {Node} the node replaced
+     * @param {Node | Element} options.newChild the new node to put in the child list
+     * @param {Node | Element} options.oldChild the node being replaced in the list
+     * @return {Node | Element} the node replaced
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be replaced for some reason
      */
-    replaceChild<NewChildNode extends Node>(options: {
+    replaceChild<NewChildNode extends (Node | Element)>(options: {
       newChild: NewChildNode,
-      oldChild: Node,
+      oldChild: Node | Element,
     }): NewChildNode;
 
     /**
@@ -393,36 +412,36 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459823547362}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459823547362.html}
      *
-     * @type {Node[]}
+     * @type {(Node | Element)[]}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    childNodes: Node[];
+    childNodes: (Node | Element)[];
 
     /**
      * The first child of this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460666442870}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460666442870.html}
      *
-     * @type {Node}
+     * @type {Node | Element}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    firstChild: Node;
+    firstChild: Node | Element;
 
     /**
      * The last child of this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457311035155}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457311035155.html}
      *
-     * @type {Node}
+     * @type {Node | Element}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    lastChild: Node;
+    lastChild: Node | Element;
 
     /**
      * The local part of the qualified name of this node
@@ -453,12 +472,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455924011229}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455924011229.html}
      *
-     * @type {Node}
+     * @type {Node | Element}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    nextSibling: Node;
+    nextSibling: Node | Element;
 
     /**
      * The name of this node, depending on its type
@@ -515,12 +534,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46910644531}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46910644531.html}
      *
-     * @type {Node}
+     * @type {Node | Element | Document}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    parentNode: Node;
+    parentNode: Node | Element | Document;
 
     /**
      * The namespace prefix of this node, or null if it is unspecified
@@ -539,12 +558,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46856323242}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46856323242.html}
      *
-     * @type {Node}
+     * @type {Node | Element}
      * @readonly
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    previousSibling: Node;
+    previousSibling: Node | Element;
 
     /**
      * This attribute returns the text content of this node and its descendants. When it is defined to be null, setting it has no effect.
@@ -564,12 +583,11 @@ declare namespace xml {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392323653.html}
    *
    * @classDescription Encapsulation of W3C DOM Document
-   * @return {Document}
    * @constructor
    *
    * @since 2015.2
    */
-  export interface Document {
+  export interface Document extends Element {
 
     /**
      * Attempts to adopt a node from another document to this document. If supported, it changes the ownerDocument
@@ -579,12 +597,12 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453612609863.html}
      *
      * @param {Object} options
-     * @param {Node} options.source the node to move into this document
-     * @return {Node} the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
+     * @param {Node | Element} options.source the node to move into this document
+     * @return {Node | Element} the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be adopted for some reason
      */
-    adoptNode<SourceNode extends Node>(options: {
+    adoptNode<SourceNode extends (Node | Element)>(options: {
       source: SourceNode,
     }): SourceNode;
 
@@ -772,13 +790,13 @@ declare namespace xml {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457609802245.html}
      *
      * @param {Object} options
-     * @param {Node} options.importedNode the node to import
+     * @param {Node | Element} options.importedNode the node to import
      * @param {boolean} options.deep if true, recursively import the subtree under the specified node; if false, import only the node itself, as explained above
-     * @return {Node} the imported node that belongs to this Document
+     * @return {Node | Element} the imported node that belongs to this Document
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be imported for some reason
      */
-    importNode<ImportedNode extends Node>(options: {
+    importNode<ImportedNode extends (Node | Element)>(options: {
       importedNode: ImportedNode,
       deep: boolean,
     }): ImportedNode;
@@ -870,15 +888,11 @@ declare namespace xml {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345167426.html}
    *
    * @classDescription Encapsulation of W3C DOM Element
-   * @return {Element}
-   * @protected
    * @constructor
    *
    * @since 2015.2
    */
-  export interface Element {
-    
-    childNodes: Element[];
+  export interface Element extends Node {
 
     /**
      * Retrieves an attribute value by name
