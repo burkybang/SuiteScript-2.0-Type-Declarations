@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./error.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./record.d.ts" />
 /// <reference path="./query.d.ts" />

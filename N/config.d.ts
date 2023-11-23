@@ -1,3 +1,4 @@
+/// <reference path="./error.d.ts" />
 /// <reference path="./record.d.ts" />
 /// <reference path="./currentRecord.d.ts" />
 
@@ -11,7 +12,7 @@
  * @restriction Server-side scripts only
  */
 interface config {
-  
+
   /**
    * Load a configuration object with a specific type
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772439}

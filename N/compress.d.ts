@@ -1,4 +1,5 @@
-/// <reference path="../N/file.d.ts" />
+/// <reference path="./error.d.ts" />
+/// <reference path="./file.d.ts" />
 
 /**
  * SuiteScript compress module

@@ -1,3 +1,5 @@
+/// <reference path="./error.d.ts" />
+
 /**
  * SuiteScript portlet module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4473510730}

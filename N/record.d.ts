@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./error.d.ts" />
 /// <reference path="./format.d.ts" />
 /// <reference path="./currentRecord.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />

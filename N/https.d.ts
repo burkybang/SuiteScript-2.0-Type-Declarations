@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./error.d.ts" />
 /// <reference path="./http.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />

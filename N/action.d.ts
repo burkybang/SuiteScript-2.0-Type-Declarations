@@ -1,3 +1,4 @@
+/// <reference path="./error.d.ts" />
 /// <reference path="./record.d.ts" />
 /// <reference path="./task.d.ts" />
 

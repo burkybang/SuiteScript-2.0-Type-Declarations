@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./error.d.ts" />
 
 /**
  * SuiteScript module

@@ -1,3 +1,5 @@
+/// <reference path="../error.d.ts" />
+
 /**
  * SuiteScript message module (Client Side)
  *

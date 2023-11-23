@@ -1,4 +1,5 @@
 /// <reference path="../typings.d.ts" />
+/// <reference path="./error.d.ts" />
 /// <reference path="./https.d.ts" />
 /// <reference path="./file.d.ts" />
 /// <reference path="./ui/serverWidget.d.ts" />
@@ -276,7 +277,7 @@ interface http {
 }
 
 declare namespace http {
-  
+
   /**
    * Enum describing available HTTP methods
    *
