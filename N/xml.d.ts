@@ -185,6 +185,201 @@ declare namespace xml {
   export interface Node {
 
     /**
+     * A map of key/value (string->Attr) pairs containing the attributes of this node (if it is an Element) or null otherwise
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46127868652}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46127868652.html}
+     *
+     * @type {Object<string, Attr>}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    attributes: {
+      [p: string]: Attr,
+    };
+
+    /**
+     * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459509521483}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459509521483.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    baseURI: string;
+
+    /**
+     * An array of all children of this node. If there are no children, this is an empty array.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459823547362}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459823547362.html}
+     *
+     * @type {(Node | Element)[]}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    childNodes: (Node | Element)[];
+
+    /**
+     * The first child of this node or null if there is no such node
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460666442870}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460666442870.html}
+     *
+     * @type {Node | Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    firstChild: Node | Element;
+
+    /**
+     * The last child of this node or null if there is no such node
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457311035155}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457311035155.html}
+     *
+     * @type {Node | Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    lastChild: Node | Element;
+
+    /**
+     * The local part of the qualified name of this node
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460875793456}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460875793456.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    localName: string;
+
+    /**
+     * The namespace URI of this node, or null if it is unspecified
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456845336913}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456845336913.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    namespaceURI: string;
+
+    /**
+     * The node immediately following this node or null if there is no such node
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455924011229}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455924011229.html}
+     *
+     * @type {Node | Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    nextSibling: Node | Element;
+
+    /**
+     * The name of this node, depending on its type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458950439452}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458950439452.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    nodeName: string;
+
+    /**
+     * The type of the underlying object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456552673339}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456552673339.html}
+     *
+     * @type {NodeType}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    nodeType: NodeType | `${NodeType}`;
+
+    /**
+     * The value of this node, depending on its type
+     * When it is defined to be null, setting it has no effect, including if the node is read-only.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454531188964}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454531188964.html}
+     *
+     * @type {string}
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
+     */
+    nodeValue: string;
+
+    /**
+     * The Document object associated with this node
+     * This is also the Document object used to create new nodes.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458963562010}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458963562010.html}
+     *
+     * @type {Document}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    ownerDocument: Document;
+
+    /**
+     * The parent of this node
+     * All nodes, except Attr, Document, DocumentFragment, Entity, and Notation may have a parent.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46910644531}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46910644531.html}
+     *
+     * @type {Node | Element | Document}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    parentNode: Node | Element | Document;
+
+    /**
+     * The namespace prefix of this node, or null if it is unspecified
+     * When it is defined to be null, setting it has no effect, including if the node is read-only.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460653930663}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460653930663.html}
+     *
+     * @type {string}
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to set the property value
+     */
+    prefix: string;
+
+    /**
+     * The node immediately preceding this node or null if there is no such node
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46856323242}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46856323242.html}
+     *
+     * @type {Node | Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    previousSibling: Node | Element;
+
+    /**
+     * This attribute returns the text content of this node and its descendants. When it is defined to be null, setting it has no effect.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458147827147}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458147827147.html}
+     *
+     * @type {string}
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
+     */
+    textContent: string;
+
+    /**
      * Adds the node newChild to the end of the list of children of this node. If the newChild is already in the tree, it is first removed.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459708190917}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459708190917.html}
@@ -382,201 +577,6 @@ declare namespace xml {
       newChild: NewChildNode,
       oldChild: Node | Element,
     }): NewChildNode;
-
-    /**
-     * A map of key/value (string->Attr) pairs containing the attributes of this node (if it is an Element) or null otherwise
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46127868652}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46127868652.html}
-     *
-     * @type {Object<string, Attr>}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    attributes: {
-      [p: string]: Attr,
-    };
-
-    /**
-     * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459509521483}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459509521483.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    baseURI: string;
-
-    /**
-     * An array of all children of this node. If there are no children, this is an empty array.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459823547362}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459823547362.html}
-     *
-     * @type {(Node | Element)[]}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    childNodes: (Node | Element)[];
-
-    /**
-     * The first child of this node or null if there is no such node
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460666442870}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460666442870.html}
-     *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    firstChild: Node | Element;
-
-    /**
-     * The last child of this node or null if there is no such node
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457311035155}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457311035155.html}
-     *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    lastChild: Node | Element;
-
-    /**
-     * The local part of the qualified name of this node
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460875793456}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460875793456.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    localName: string;
-
-    /**
-     * The namespace URI of this node, or null if it is unspecified
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456845336913}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456845336913.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    namespaceURI: string;
-
-    /**
-     * The node immediately following this node or null if there is no such node
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455924011229}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455924011229.html}
-     *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    nextSibling: Node | Element;
-
-    /**
-     * The name of this node, depending on its type
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458950439452}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458950439452.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    nodeName: string;
-
-    /**
-     * The type of the underlying object
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456552673339}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456552673339.html}
-     *
-     * @type {NodeType}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    nodeType: NodeType | `${NodeType}`;
-
-    /**
-     * The value of this node, depending on its type
-     * When it is defined to be null, setting it has no effect, including if the node is read-only.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454531188964}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454531188964.html}
-     *
-     * @type {string}
-     *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
-     */
-    nodeValue: string;
-
-    /**
-     * The Document object associated with this node
-     * This is also the Document object used to create new nodes.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458963562010}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458963562010.html}
-     *
-     * @type {Document}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    ownerDocument: Document;
-
-    /**
-     * The parent of this node
-     * All nodes, except Attr, Document, DocumentFragment, Entity, and Notation may have a parent.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46910644531}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46910644531.html}
-     *
-     * @type {Node | Element | Document}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    parentNode: Node | Element | Document;
-
-    /**
-     * The namespace prefix of this node, or null if it is unspecified
-     * When it is defined to be null, setting it has no effect, including if the node is read-only.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460653930663}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460653930663.html}
-     *
-     * @type {string}
-     *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to set the property value
-     */
-    prefix: string;
-
-    /**
-     * The node immediately preceding this node or null if there is no such node
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46856323242}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46856323242.html}
-     *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    previousSibling: Node | Element;
-
-    /**
-     * This attribute returns the text content of this node and its descendants. When it is defined to be null, setting it has no effect.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458147827147}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458147827147.html}
-     *
-     * @type {string}
-     *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
-     */
-    textContent: string;
   }
 
   /**
@@ -590,6 +590,86 @@ declare namespace xml {
    * @since 2015.2
    */
   export interface Document extends Element {
+
+    /**
+     * The Document Type Declaration associated with this document
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454703308105}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454703308105.html}
+     *
+     * @type {Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    doctype: Element;
+
+    /**
+     * This is a convenience attribute that allows direct access to the child node that is the document element of the document.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452410827636}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452410827636.html}
+     *
+     * @type {Element}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    documentElement: Element;
+
+    /**
+     * The location of the document or null if undefined
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455008483886}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455008483886.html}
+     *
+     * @type {string}
+     */
+    documentURI: string;
+
+    /**
+     * An attribute specifying the encoding used for this document at the time of the parsing
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452187744140}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452187744140.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    inputEncoding: string;
+
+    /**
+     * An attribute specifying, as part of the XML declaration, the encoding of this document
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453554931640}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453554931640.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    xmlEncoding: string;
+
+    /**
+     * An attribute specifying, as part of the XML declaration, whether this document is standalone
+     * This is false when unspecified.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459471374510}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459471374510.html}
+     *
+     * @type {boolean}
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
+     */
+    xmlStandalone: boolean;
+
+    /**
+     * An attribute specifying, as part of the XML declaration, the version number of this document
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460908752440}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460908752440.html}
+     *
+     * @type {string}
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
+     */
+    xmlVersion: string;
 
     /**
      * Attempts to adopt a node from another document to this document. If supported, it changes the ownerDocument
@@ -802,86 +882,6 @@ declare namespace xml {
       importedNode: ImportedNode,
       deep: boolean,
     }): ImportedNode;
-
-    /**
-     * The Document Type Declaration associated with this document
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454703308105}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454703308105.html}
-     *
-     * @type {Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    doctype: Element;
-
-    /**
-     * This is a convenience attribute that allows direct access to the child node that is the document element of the document.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452410827636}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452410827636.html}
-     *
-     * @type {Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    documentElement: Element;
-
-    /**
-     * The location of the document or null if undefined
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455008483886}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455008483886.html}
-     *
-     * @type {string}
-     */
-    documentURI: string;
-
-    /**
-     * An attribute specifying the encoding used for this document at the time of the parsing
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452187744140}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452187744140.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    inputEncoding: string;
-
-    /**
-     * An attribute specifying, as part of the XML declaration, the encoding of this document
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453554931640}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453554931640.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    xmlEncoding: string;
-
-    /**
-     * An attribute specifying, as part of the XML declaration, whether this document is standalone
-     * This is false when unspecified.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459471374510}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459471374510.html}
-     *
-     * @type {boolean}
-     *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
-     */
-    xmlStandalone: boolean;
-
-    /**
-     * An attribute specifying, as part of the XML declaration, the version number of this document
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460908752440}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460908752440.html}
-     *
-     * @type {string}
-     *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
-     */
-    xmlVersion: string;
   }
 
   /**
@@ -895,6 +895,18 @@ declare namespace xml {
    * @since 2015.2
    */
   export interface Element extends Node {
+
+    /**
+     * The name of the element
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458841796874}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458841796874.html}
+     *
+     * @type {string}
+     * @readonly
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    tagName: string;
 
     /**
      * Retrieves an attribute value by name
@@ -1143,18 +1155,6 @@ declare namespace xml {
       qualifiedName: string,
       value: string,
     }): void;
-
-    /**
-     * The name of the element
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458841796874}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458841796874.html}
-     *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
-     */
-    tagName: string;
   }
 
   /**
