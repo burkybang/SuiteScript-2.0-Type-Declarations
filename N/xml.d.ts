@@ -458,7 +458,7 @@ declare namespace xml {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    nextSibling: NodeType | `${NodeType}`;
+    nextSibling: Node;
 
     /**
      * The name of this node, depending on its type
