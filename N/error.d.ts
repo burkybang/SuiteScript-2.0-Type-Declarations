@@ -44,6 +44,14 @@ declare namespace error {
   export interface SuiteScriptError {
 
     /**
+     * @type {'error.SuiteScriptError'}
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    type: 'error.SuiteScriptError';
+
+    /**
      * Error ID that is automatically generated when a new error is created
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803497}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803497.html}
@@ -144,6 +152,14 @@ declare namespace error {
    * @constructor
    */
   export interface UserEventError {
+
+    /**
+     * @type {'error.UserEventError'}
+     * @readonly
+     *
+     * @since 2015.2
+     */
+    type: 'error.UserEventError';
 
     /**
      * Error ID that is automatically generated when a new error is created
