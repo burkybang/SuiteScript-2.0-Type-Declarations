@@ -15,11 +15,10 @@ interface auth {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298156427}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4298156427.html}
    *
-   * @param {Object} options
-   * @param {string} options.password
-   * @param {string} options.newEmail
-   * @param {boolean} [options.onlyThisAccount=true]
-   * @return {void}
+   * @param options
+   * @param options.password
+   * @param options.newEmail
+   * @param [options.onlyThisAccount=true]
    *
    * @throws {error.SuiteScriptError} INVALID_PSWD When password does not conform to rules.
    * @throws {error.SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
@@ -35,10 +34,9 @@ interface auth {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4298157647}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4298157647.html}
    *
-   * @param {object} options
-   * @param {string} options.currentPassword
-   * @param {string} options.newPassword
-   * @return {void}
+   * @param options
+   * @param options.currentPassword
+   * @param options.newPassword
    *
    * @throws {error.SuiteScriptError} INVALID_PSWD When password does not conform to rules.
    * @throws {error.SuiteScriptError} INVALID_EMAIL When email does not conform to rules.
