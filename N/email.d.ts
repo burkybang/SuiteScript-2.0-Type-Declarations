@@ -19,18 +19,17 @@ interface email {
      * @governance 20 units
      * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
-     * @param {Object} options Email options
-     * @param {number} options.author Sender of the email.
-     * @param {number|string|(number|string)[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
-     * @param {string} options.subject Email subject.
-     * @param {string} options.body Email Body/contents.
-     * @param {string} [options.replyTo]
-     * @param {file.File[]} [options.attachments] Email file attachments. Not supported in client side.
-     * @param {email.RelatedRecords} [options.relatedRecords]
-     * @param {boolean} [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
-     * @return {void}
+     * @param options Email options
+     * @param options.author Sender of the email.
+     * @param options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
+     * @param options.subject Email subject.
+     * @param options.body Email Body/contents.
+     * @param [options.replyTo]
+     * @param [options.attachments] Email file attachments. Not supported in client side.
+     * @param [options.relatedRecords]
+     * @param [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
      */
     (options: {
       author: number | string,
@@ -51,18 +50,17 @@ interface email {
      * @governance 20 units
      * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
-     * @param {Object} options Email options
-     * @param {number} options.author Sender of the email.
-     * @param {number|string|(number|string)[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
-     * @param {string} options.subject Email subject.
-     * @param {string} options.body Email Body/contents.
-     * @param {string} [options.replyTo]
-     * @param {file.File[]} [options.attachments] Email file attachments. Not supported in client side.
-     * @param {email.RelatedRecords} [options.relatedRecords]
-     * @param {boolean} [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
-     * @return {Promise<void>}
+     * @param options Email options
+     * @param options.author Sender of the email.
+     * @param options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
+     * @param options.subject Email subject.
+     * @param options.body Email Body/contents.
+     * @param [options.replyTo]
+     * @param [options.attachments] Email file attachments. Not supported in client side.
+     * @param [options.relatedRecords]
+     * @param [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
      */
     promise(options: {
       author: number | string,
@@ -86,18 +84,17 @@ interface email {
      * @governance 10 units
      * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
-     * @param {Object} options Email options
-     * @param {number|string} options.author Sender of the email.
-     * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
-     * @param {string} options.subject Email subject.
-     * @param {string} options.body Email Body/contents.
-     * @param {string} [options.replyTo]
-     * @param {file.File[]} [options.attachments] Email file attachments.  Not supported in client side.
-     * @param {email.RelatedRecords} [options.relatedRecords]
-     * @param {boolean} [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
-     * @return {void}
+     * @param options Email options
+     * @param options.author Sender of the email.
+     * @param options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
+     * @param options.subject Email subject.
+     * @param options.body Email Body/contents.
+     * @param [options.replyTo]
+     * @param [options.attachments] Email file attachments.  Not supported in client side.
+     * @param [options.relatedRecords]
+     * @param [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
      */
     (options: {
       author: number | string,
@@ -118,18 +115,17 @@ interface email {
      * @governance 10 units
      * @restriction The maximum number of total recipients (recipient + cc + bcc) allowed is 10
      *
-     * @param {Object} options Email options
-     * @param {number|string} options.author Sender of the email.
-     * @param {number|string[]} options.recipients Recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
-     * @param {string[]} [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
-     * @param {string} options.subject Email subject.
-     * @param {string} options.body Email Body/contents.
-     * @param {string} [options.replyTo]
-     * @param {file.File[]} [options.attachments] Email file attachments.  Not supported in client side.
-     * @param {email.RelatedRecords} [options.relatedRecords]
-     * @param {boolean} [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
-     * @return {Promise<void>}
+     * @param options Email options
+     * @param options.author Sender of the email.
+     * @param options.recipients Recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.cc] CC recipients of the email, Interal ID or array of Email Addresses.
+     * @param [options.bcc] BCC recipients of the email as an EmailEntity, Interal ID or Email Address.
+     * @param options.subject Email subject.
+     * @param options.body Email Body/contents.
+     * @param [options.replyTo]
+     * @param [options.attachments] Email file attachments.  Not supported in client side.
+     * @param [options.relatedRecords]
+     * @param [options.isInternalOnly] Do not show Message record when viewed from external Entity. Default to false
      */
     promise(options: {
       author: number | string,
@@ -152,11 +148,10 @@ interface email {
      * Send a single "on-demand" campaign email to a specified recipient and return a campaign response ID to track the email
      * @governance 10 units
      *
-     * @param {Object} options Email options
-     * @param {number|string} options.campaignEventId  The internal ID of the campaign event.
-     * @param {number|string} options.recipientId The internal ID of the recipient. Note that the recipient must have an email.
-     * @return {number} A campaign response ID (tracking code) as an integer, or -1 if the send fails
-     *
+     * @param options Email options
+     * @param options.campaignEventId  The internal ID of the campaign event.
+     * @param options.recipientId The internal ID of the recipient. Note that the recipient must have an email.
+     * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails
      */
     (options: {
       campaignEventId: number | string,
@@ -167,10 +162,10 @@ interface email {
      * Send a single "on-demand" campaign email to a specified recipient and return a campaign response ID to track the email
      * @governance 10 units
      *
-     * @param {Object} options Email options
-     * @param {number|string} options.campaignEventId  The internal ID of the campaign event.
-     * @param {number|string} options.recipientId The internal ID of the recipient. Note that the recipient must have an email.
-     * @return {Promise<number>} A campaign response ID (tracking code) as an integer, or -1 if the send fails
+     * @param options Email options
+     * @param options.campaignEventId  The internal ID of the campaign event.
+     * @param options.recipientId The internal ID of the recipient. Note that the recipient must have an email.
+     * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails
      */
     promise(options: {
       campaignEventId: number | string,
@@ -189,19 +184,16 @@ declare namespace email {
 
     /**
      * Transaction record to attach Message record to
-     * @type {number|string}
      */
     transactionId?: number | string,
 
     /**
      * Activity record to attach Message record to
-     * @type {number|string}
      */
     activityId?: number | string,
 
     /**
      * Entity record to attach Message record to
-     * @type {number|string}
      */
     entityId?: number | string,
 
@@ -212,13 +204,11 @@ declare namespace email {
 
       /**
        * Custom record instance ID to attach Message record to
-       * @type {number|string}
        */
       id: number | string,
 
       /**
        * Custom record instance ID to attach Message record to
-       * @type {record.CustomType|string}
        */
       recordType: record.CustomType | string,
     },
