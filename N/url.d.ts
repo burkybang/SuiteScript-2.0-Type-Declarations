@@ -25,7 +25,7 @@ interface url {
    */
   resolveRecord(options: {
     recordType: string,
-    recordId: number | string,
+    recordId?: number | string,
     isEditMode?: boolean,
     params?: {
       [p: string]: string | number | boolean,
