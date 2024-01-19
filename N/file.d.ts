@@ -11,16 +11,15 @@ interface file {
 
   /**
    * Method used to create a new file in the NetSuite File Cabinet
-   * @param {Object} options
-   * @param {string} options.name - The file name and extension
-   * @param {Type} options.fileType - The file type
-   * @param {string} [options.contents] - The file content
-   * @param {string} [options.description] - The file description
-   * @param {number} [options.folder] - The internal ID of the folder within the NetSuite File Cabinet
-   * @param {Encoding} [options.encoding] - The character encoding on a file
-   * @param {boolean} [options.isInactive] - The inactive status of a file
-   * @param {boolean} [options.isOnline] - The Available without Login status of a file
-   * @return {file.File}
+   * @param options
+   * @param options.name The file name and extension
+   * @param options.fileType The file type
+   * @param [options.contents] The file content
+   * @param [options.description] The file description
+   * @param [options.folder] The internal ID of the folder within the NetSuite File Cabinet
+   * @param [options.encoding] The character encoding on a file
+   * @param [options.isInactive] The inactive status of a file
+   * @param [options.isOnline] The Available without Login status of a file
    *
    * @restriction Server-side scripts only
    */
@@ -38,9 +37,9 @@ interface file {
 
   /**
    * Method used to delete an existing file from the NetSuite File Cabinet
-   * @param {Object} options
-   * @param {number|string} options.id - Internal ID of the file
-   * @return {number|string} - The internal ID of the deleted file
+   * @param options
+   * @param options.id Internal ID of the file
+   * @return The internal ID of the deleted file
    *
    * @restriction Server-side scripts only
    */
@@ -50,8 +49,8 @@ interface file {
 
   /**
    * Loads an existing file from the NetSuite File Cabinet
-   * @param {number|string} id - The internal ID of the file as a number or string, the absolute or relative path
-   * @return {file.File} - The internal ID of the loaded file
+   * @param id The internal ID of the file as a number or string, the absolute or relative path
+   * @return The internal ID of the loaded file
    *
    * @restriction Server-side scripts only
    */
@@ -61,9 +60,9 @@ interface file {
 
   /**
    * Loads an existing file from the NetSuite File Cabinet
-   * @param {Object} options
-   * @param {number|string} options.id - The internal ID of the file as a number or string, the absolute or relative path
-   * @return {file.File} - The internal ID of the loaded file
+   * @param options
+   * @param options.id The internal ID of the file as a number or string, the absolute or relative path
+   * @return The internal ID of the loaded file
    *
    * @restriction Server-side scripts only
    */
@@ -76,7 +75,6 @@ declare namespace file {
 
   /**
    * Holds the string values for the supported character set encoding
-   * @enum {string}
    *
    * @restriction Server-side scripts only
    */
@@ -93,7 +91,6 @@ declare namespace file {
 
   /**
    * Holds the string values for supported conflict resolution types
-   * @enum {string}
    *
    * @restriction Server-side scripts only
    */
@@ -105,7 +102,6 @@ declare namespace file {
 
   /**
    * Holds the string values for file types
-   * @enum {string}
    *
    * @restriction Server-side scripts only
    */
@@ -159,108 +155,95 @@ declare namespace file {
   export interface File {
 
     /**
-     * @type {string}
-     * @readonly
+     *
      */
-    description: string;
+    readonly description: string;
 
     /**
-     * @type {Encoding}
-     * @readonly
+     *
      */
-    encoding: Encoding | `${Encoding}`;
+    readonly encoding: Encoding | `${Encoding}`;
 
     /**
-     * @type {Type}
-     * @readonly
+     *
      */
-    fileType: Type | `${Type}`;
+    readonly fileType: Type | `${Type}`;
 
     /**
-     * @type {number|string}
-     * @readonly
+     *
      */
-    folder: number;
+    readonly folder: number;
 
     /**
-     * @type {number}
-     * @readonly
+     *
      */
-    id: number;
+    readonly id: number;
 
     /**
-     * @type {boolean}
-     * @readonly
+     *
      */
-    isInactive: boolean;
+    readonly isInactive: boolean;
 
     /**
-     * @type {boolean}
-     * @readonly
+     *
      */
-    isOnline: boolean;
+    readonly isOnline: boolean;
 
     /**
-     * @type {boolean}
-     * @readonly
+     *
      */
-    isText: boolean;
+    readonly isText: boolean;
 
     /**
-     * @type {string}
-     * @readonly
+     *
      */
-    name: string;
+    readonly name: string;
 
     /**
-     * @type {string}
-     * @readonly
+     *
      */
-    path: string;
+    readonly path: string;
 
     /**
-     * @type {number}
-     * @readonly
+     *
      */
-    size: number;
+    readonly size: number;
 
     /**
-     * @type {string}
-     * @readonly
+     *
      */
-    url: string;
+    readonly url: string;
 
     lines: {
-      iterator(): File.lines.iterator;
+      /**
+       * Method used to pass the next line as an argument to a developer-defined function
+       */
+      iterator(): NetSuiteIterator<string>;
     };
 
     /**
      * Method used to return the content of the file
-     * @return {string}
      */
     getContents(): string;
 
     /**
      * Method used to return the reader object for performing special read operations
-     * @return {Reader}
      */
     getReader(): Reader;
 
     /**
      * Method used to return the iterator of segments delimited by a separator
-     * @param {Object} options
-     * @param {string} options.separator - The separator to use to divide the segments
-     * @return {Iterator}
+     * @param options
+     * @param options.separator The separator to use to divide the segments
      */
     getSegments(options: {
       separator: string,
-    });
+    }): NetSuiteIterator<string>;
 
     /**
      * Method used to insert a line to the end of a file
-     * @param {Object} options
-     * @param {string} options.value - String to insert at the end of the file
-     * @return {File}
+     * @param options
+     * @param options.value String to insert at the end of the file
      */
     appendLine(options: {
       value: string,
@@ -268,36 +251,21 @@ declare namespace file {
 
     /**
      * Method used to reset the file contents
-     * @return {void}
      */
     resetStream(): void;
 
     /**
      * Upload a new file or save an updated file to the NetSuite File Cabinet
-     * @return {number} - The internal ID of the file
+     * @return The internal ID of the file
      */
     save(): number;
-  }
-
-  export namespace File.lines {
-
-    export interface iterator {
-
-      /**
-       * Method used to pass the next line as an argument to a developer-defined function
-       * @param {function(Object)} callback
-       * @return {boolean}
-       */
-      each(callback: (line: { value: string }) => boolean): void;
-    }
   }
 
   export interface Reader {
     /**
      * Returns string from current position to the next occurrence of options.tag
-     * @param {Object} options
-     * @param {string} options.tag - String containing a tag
-     * @return {string}
+     * @param options
+     * @param options.tag String containing a tag
      */
     readUntil(options: {
       tag: string,
@@ -306,9 +274,8 @@ declare namespace file {
 
     /**
      * Returns the next options.number characters from the current position
-     * @param {Object} options
-     * @param {number} options.number - The number of characters to read
-     * @return {string}
+     * @param options
+     * @param options.number The number of characters to read
      */
     readChars(options: {
       number: number,
