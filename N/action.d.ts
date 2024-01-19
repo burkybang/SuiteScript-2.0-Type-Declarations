@@ -28,11 +28,11 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {number|string} [options.recordId] record instance ID
-     * @param {action.ActionID} [options.id] action ID
-     * @return {Object<action.ActionID, action.Action>} a set of actions (@see Action) defined on the record type indexed by action ID
+     * @param options
+     * @param options.recordType record type
+     * @param [options.recordId] record instance ID
+     * @param [options.id] action ID
+     * @return a set of actions (@see Action) defined on the record type indexed by action ID
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -58,11 +58,11 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {number|string} [options.recordId] record instance ID
-     * @param {action.ActionID} [options.id] action ID
-     * @return {Promise<Object<action.ActionID, action.Action>>} a set of actions (@see Action) defined on the record type indexed by action ID
+     * @param options
+     * @param options.recordType record type
+     * @param [options.recordId] record instance ID
+     * @param [options.id] action ID
+     * @return a set of actions (@see Action) defined on the record type indexed by action ID
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -90,11 +90,11 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {string} [options.recordId] record instance ID
-     * @param {string} options.id action ID
-     * @return {action.Action} record action executor for action specified by options
+     * @param options
+     * @param options.recordType record type
+     * @param [options.recordId] record instance ID
+     * @param options.id action ID
+     * @return record action executor for action specified by options
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -117,11 +117,11 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {string} [options.recordId] record instance ID
-     * @param {string} options.id action ID
-     * @return {Promise<action.Action>} record action executor for action specified by options
+     * @param options
+     * @param options.recordType record type
+     * @param [options.recordId] record instance ID
+     * @param options.id action ID
+     * @return record action executor for action specified by options
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -145,12 +145,12 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-     * @param {Object<string, number|string>} options.params action arguments
-     * @param {number|string} options.params.recordId record instance ID
-     * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+     * @param options
+     * @param options.recordType record type
+     * @param options.id action ID
+     * @param options.params action arguments
+     * @param options.params.recordId record instance ID
+     * @return action result; the actual return value returned by the action implementation is stored in the response property
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -183,12 +183,12 @@ interface action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-     * @param {Object<string, number|string>} options.params action arguments
-     * @param {number|string} options.params.recordId record instance ID
-     * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
+     * @param options
+     * @param options.recordType record type
+     * @param options.id action ID
+     * @param options.params action arguments
+     * @param options.params.recordId record instance ID
+     * @return action result; the actual return value returned by the action implementation is stored in the response property
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -223,14 +223,14 @@ interface action {
    *
    * @governance 50 units
    *
-   * @param {Object} options
-   * @param {record.Type|record.CustomType|string} options.recordType record type
-   * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-   * @param {Object<string, number|string>} [options.params] action arguments
-   * @param {number|string} options.params.recordId record instance ID
-   * @param {string} [options.condition] used to select record IDs of records for which the action is to be executed
-   * @param {function} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
-   * @return {string} - taskId
+   * @param options
+   * @param options.recordType record type
+   * @param options.id action ID
+   * @param [options.params] action arguments
+   * @param options.params.recordId record instance ID
+   * @param [options.condition] used to select record IDs of records for which the action is to be executed
+   * @param [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
+   * @return taskId
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
    * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -260,8 +260,8 @@ interface action {
    *
    * @governance none
    *
-   * @param {Object} options
-   * @param {string} options.taskId
+   * @param options
+   * @param options.taskId
    */
   getBulkStatus(options: {
     taskId: string,
@@ -303,8 +303,6 @@ declare namespace action {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388207}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509388207.html}
      *
-     * @type {string} description
-     *
      * @since 2018.2
      */
     description: string;
@@ -313,8 +311,6 @@ declare namespace action {
      * The type of the record on which the action is to be performed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387977}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387977.html}
-     *
-     * @type {record.Type|record.CustomType|string} recordType
      *
      * @since 2018.2
      */
@@ -325,8 +321,6 @@ declare namespace action {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509387777}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509387777.html}
      *
-     * @type {action.ActionID} recordType
-     *
      * @since 2018.2
      */
     id: ID;
@@ -336,8 +330,6 @@ declare namespace action {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509388068}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509388068.html}
      *
-     * @type {string} label
-     *
      * @since 2018.2
      */
     label: string;
@@ -346,8 +338,6 @@ declare namespace action {
      * The action parameters
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509389367}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509389367.html}
-     *
-     * @type {Object<string, number|string>} parameters
      *
      * @since 2018.2
      */
@@ -363,9 +353,9 @@ declare namespace action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {Object<string, number|string>} options.params action arguments
-     * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+     * @param options
+     * @param options.params action arguments
+     * @return action result; the actual return value returned by the action implementation is stored in the response property
      *
      * @since 2018.2
      */
@@ -391,9 +381,9 @@ declare namespace action {
      *
      * @governance none
      *
-     * @param {Object} options
-     * @param {Object<string, number|string>} options.params action arguments
-     * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
+     * @param options
+     * @param options.params action arguments
+     * @return action result; the actual return value returned by the action implementation is stored in the response property
      *
      * @since 2018.2
      */
@@ -421,12 +411,12 @@ declare namespace action {
        *
        * @governance none
        *
-       * @param {Object} options
-       * @param {record.Type|record.CustomType|string} options.recordType record type
-       * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-       * @param {Object<string, number|string>} options.params action arguments
-       * @param {number|string} options.params.recordId record instance ID
-       * @return {{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}} action result; the actual return value returned by the action implementation is stored in the response property
+       * @param options
+       * @param options.recordType record type
+       * @param options.id action ID
+       * @param options.params action arguments
+       * @param options.params.recordId record instance ID
+       * @return action result; the actual return value returned by the action implementation is stored in the response property
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
        * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -459,12 +449,12 @@ declare namespace action {
        *
        * @governance none
        *
-       * @param {Object} options
-       * @param {record.Type|record.CustomType|string} options.recordType record type
-       * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-       * @param {Object<string, number|string>} options.params action arguments
-       * @param {number|string} options.params.recordId record instance ID
-       * @return {Promise<{notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>} action result; the actual return value returned by the action implementation is stored in the response property
+       * @param options
+       * @param options.recordType record type
+       * @param options.id action ID
+       * @param options.params action arguments
+       * @param options.params.recordId record instance ID
+       * @return action result; the actual return value returned by the action implementation is stored in the response property
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.recordType or options.id or options.params.recordId is missing or undefined
        * @throws {error.SuiteScriptError} SSS_INVALID_RECORD_TYPE if the specified record type doesn't exist
@@ -496,14 +486,14 @@ declare namespace action {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1540815927}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1540815927.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.recordType record type
-     * @param {'allocate'|'approve'|'reject'|'submit'|'cancel'} options.id action ID
-     * @param {Object<string, number|string>} [options.params] action arguments
-     * @param {number|string} options.params.recordId record instance ID
-     * @param {string} [options.condition] used to select record IDs of records for which the action is to be executed
-     * @param {function} [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
-     * @return {string} - taskId
+     * @param options
+     * @param options.recordType record type
+     * @param options.id action ID
+     * @param [options.params] action arguments
+     * @param options.params.recordId record instance ID
+     * @param [options.condition] used to select record IDs of records for which the action is to be executed
+     * @param [options.paramCallback] function that takes record ID and returns the parameter object for the specified record ID
+     * @return taskId
      */
     executeBulk(options: {
       recordType: record.Type | `${record.Type}` | record.CustomType | string,
