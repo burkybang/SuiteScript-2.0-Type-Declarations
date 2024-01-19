@@ -21,10 +21,9 @@ interface config {
    * @governance 10 units
    * @restriction Server-side scripts only
    *
-   * @param {Object} options
-   * @param {string} options.type one of the Type values
-   * @param {false} [options.isDynamic] load record in dynamic or deferred dynamic mode
-   * @return {record.Record}
+   * @param options
+   * @param options.type one of the Type values
+   * @param [options.isDynamic] load record in dynamic or deferred dynamic mode
    *
    * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
    *
@@ -43,10 +42,9 @@ interface config {
    * @governance 10 units
    * @restriction Server-side scripts only
    *
-   * @param {Object} options
-   * @param {string} options.type one of the Type values
-   * @param {true} options.isDynamic load record in dynamic or deferred dynamic mode
-   * @return {currentRecord.CurrentRecordReadonly}
+   * @param options
+   * @param options.type one of the Type values
+   * @param options.isDynamic load record in dynamic or deferred dynamic mode
    *
    * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE Thrown if an invalid record type was provided.
    *
@@ -68,8 +66,6 @@ declare namespace config {
    * Enum configuration type values.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4256772632}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4256772632.html}
-   *
-   * @enum {string}
    *
    * @since 2015.2
    */
