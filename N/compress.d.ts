@@ -20,10 +20,9 @@ interface compress {
    * @governance none
    * @restriction Server-side scripts only
    *
-   * @param {Object} options
-   * @param {file.File} options.file - The file to be compressed
-   * @param {number} [options.level] - The compression level
-   * @return {file.File}
+   * @param options
+   * @param options.file - The file to be compressed
+   * @param [options.level] - The compression level
    *
    * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS The contents of the file to be compressed cannot be retrieved.
    * @throws {error.SuiteScriptError} COMPRESS_API_COMPRESSION_LEVEL_OUT_OF_RANGE The specified compression level is outside of the valid range (0 - 9).
@@ -41,9 +40,8 @@ interface compress {
    * @governance none
    * @restriction Server-side scripts only
    *
-   * @param {Object} options
-   * @param {file.File} options.file - The file to be decompressed
-   * @return {file.File}
+   * @param options
+   * @param options.file - The file to be decompressed
    *
    * @throws {error.SuiteScriptError} COMPRESS_API_DECOMPRESS_ERROR The file cannot be decompressed.
    * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS The contents of the file to be decompressed cannot be retrieved.
@@ -59,8 +57,6 @@ interface compress {
    *
    * @governance none
    * @restriction Server-side scripts only
-   *
-   * @return {compress.Archiver}
    */
   createArchiver(): compress.Archiver;
 }
@@ -95,10 +91,9 @@ declare namespace compress {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584723528}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584723528.html}
      *
-     * @param {Object} options
-     * @param {file.File} options.file - The name of the archive file
-     * @param {string} [options.directory]
-     * @return {void}
+     * @param options
+     * @param options.file - The name of the archive file
+     * @param [options.directory]
      *
      * @throws {error.SuiteScriptError} COMPRESS_API_DUPLICATE_PATH A file has already been added using the same target path.
      */
@@ -115,9 +110,8 @@ declare namespace compress {
      * @governance none
      * @restriction Server-side scripts only
      *
-     * @param {Object} options
-     * @param {string} options.name - The name of the archive file
-     * @return {file.File}
+     * @param options
+     * @param options.name - The name of the archive file
      *
      * @throws {error.SuiteScriptError} COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE The `options.type` parameter is an invalid archive type.
      * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION The `options.type` parameter is not specified and the archive type cannot be determined.
@@ -135,10 +129,9 @@ declare namespace compress {
      * @governance none
      * @restriction Server-side scripts only
      *
-     * @param {Object} options
-     * @param {string} options.name - The name of the archive file
-     * @param {compress.Type} [options.type] - The archive type, This parameter does not need to be specified if `options.name` has one of the supported extensions: .cpio, .tar, .tar.gz, .tar.bz2, .tgz, .tbz2, .zip
-     * @return {file.File}
+     * @param options
+     * @param options.name - The name of the archive file
+     * @param [options.type] - The archive type, This parameter does not need to be specified if `options.name` has one of the supported extensions: .cpio, .tar, .tar.gz, .tar.bz2, .tgz, .tbz2, .zip
      *
      * @throws {error.SuiteScriptError} COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE The `options.type` parameter is an invalid archive type.
      * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION The `options.type` parameter is not specified and the archive type cannot be determined.
