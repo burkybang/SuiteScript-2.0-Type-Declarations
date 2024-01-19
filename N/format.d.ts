@@ -13,12 +13,11 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
-   * @param {Object} options
-   * @param {string} options.value the data you wish to parse
-   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} options.type the field type i.e. DATE, DATETIME
-   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
-   *                                  default is the timezone set in the user's preferences
-   * @return {Date} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @param options
+   * @param options.value the data you wish to parse
+   * @param options.type the field type i.e. DATE, DATETIME
+   * @param [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from. Default is the timezone set in the user's preferences
+   * @return If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -36,12 +35,11 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
-   * @param {Object} options
-   * @param {string|number|boolean} options.value the data you wish to parse
-   * @param {format.Type|string} options.type the field type i.e. DATE, CURRENCY, INTEGER
-   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from.
-   *                                  default is the timezone set in the user's preferences
-   * @return {string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @param options
+   * @param options.value the data you wish to parse
+   * @param options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param [options.timezone] (applicable to type DATETIME only) specifies which timezone the value is from. Default is the timezone set in the user's preferences
+   * @return If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -58,9 +56,9 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
-   * @param {string|number|boolean} value the data you wish to parse
-   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} type the field type i.e. DATE, CURRENCY, INTEGER
-   * @return {Date} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @param value the data you wish to parse
+   * @param type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -77,9 +75,9 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
    *
-   * @param {string|number|boolean} value the data you wish to parse
-   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
-   * @return {string|number} If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
+   * @param value the data you wish to parse
+   * @param type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return If parseable, the parsed value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -96,12 +94,11 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
-   * @param {Object} options
-   * @param {Date} options.value the data you wish to format
-   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} options.type the field type i.e. DATE, CURRENCY, INTEGER
-   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
-   *                                  default is the timezone set in the user's preferences
-   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   * @param options
+   * @param options.value the data you wish to format
+   * @param options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to. Default is the timezone set in the user's preferences
+   * @return If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -119,12 +116,11 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
-   * @param {Object} options
-   * @param {Date|string|number|boolean} options.value the data you wish to format
-   * @param {format.Type} options.type the field type i.e. DATE, CURRENCY, INTEGER
-   * @param {format.Timezone} [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to.
-   *                                  default is the timezone set in the user's preferences
-   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   * @param options
+   * @param options.value the data you wish to format
+   * @param options.type the field type i.e. DATE, CURRENCY, INTEGER
+   * @param [options.timezone] (applicable to type DATETIME only) specifies which timezone to format to. Default is the timezone set in the user's preferences
+   * @return If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -141,9 +137,9 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
-   * @param {Date} value the data you wish to format
-   * @param {format.Type.DATE|format.Type.DATETIME|format.Type.DATETIMETZ} type the field type i.e. DATE, CURRENCY, INTEGER
-   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   * @param value the data you wish to format
+   * @param type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -160,9 +156,9 @@ interface format {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
    *
-   * @param {Date|string|number|boolean} value the data you wish to format
-   * @param {format.Type|string} type the field type i.e. DATE, CURRENCY, INTEGER
-   * @return {string} If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
+   * @param value the data you wish to format
+   * @param type the field type i.e. DATE, CURRENCY, INTEGER
+   * @return If format-able, the formatted value. If not or given an invalid Type, the value passed in options.value
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if either value or type is missing
    *
@@ -181,8 +177,6 @@ declare namespace format {
    * Enum for field types
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388844232.html}
-   *
-   * @enum {string}
    */
   export enum Type {
     ADDRESS = 'address',
@@ -235,8 +229,6 @@ declare namespace format {
    * Enum for Time Zones
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407050795}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407050795.html}
-   *
-   * @enum {string}
    */
   export enum Timezone {
     AFRICA_CAIRO = 'Africa/Cairo',
