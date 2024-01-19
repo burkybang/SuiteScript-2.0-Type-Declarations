@@ -16,11 +16,10 @@ interface error {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803203}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803203.html}
    *
-   * @param {Object} options
-   * @param {string} options.name
-   * @param {string} options.message
-   * @param {string} [options.notifyOff]
-   * @return {error.SuiteScriptError|error.UserEventError}
+   * @param options
+   * @param options.name
+   * @param options.message
+   * @param [options.notifyOff]
    */
   create(options: {
     name: string,
@@ -44,48 +43,36 @@ declare namespace error {
   export interface SuiteScriptError {
 
     /**
-     * @type {'error.SuiteScriptError'}
-     * @readonly
-     *
      * @since 2015.2
      */
-    type: 'error.SuiteScriptError';
+    readonly type: 'error.SuiteScriptError';
 
     /**
      * Error ID that is automatically generated when a new error is created
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803497}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803497.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * User-defined error code
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803552}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803552.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    name: string;
+    readonly name: string;
 
     /**
      * Error message text displayed in the Details column of the Execution Log
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803629}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803629.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    message: string;
+    readonly message: string;
 
     /**
      * List of method calls that the script is executing when the error is thrown
@@ -93,50 +80,30 @@ declare namespace error {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803715}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803715.html}
      *
-     * @type {string[]}
-     * @readonly
-     *
      * @since 2015.2
      */
-    stack: string[];
+    readonly stack: string[];
 
     /**
-     * @see unknown
-     *
-     * @type {{name:string, message:string}}
-     * @readonly
-     *
      * @since 2016.1
      */
-    cause: {
+    readonly cause: {
       name: string,
       message: string,
     };
 
     /**
-     * @see unknown
-     *
-     * @type {boolean}
-     * @readonly
-     *
      * @since 2016.2
      */
-    notifyOff: boolean;
+    readonly notifyOff: boolean;
 
     /**
-     * @see unknown
-     *
-     * @type {boolean}
-     * @readonly
-     *
      * @since 2016.2
      */
-    userFacing: boolean;
+    readonly userFacing: boolean;
 
     /**
      * Convert to JSON object
-     *
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -154,48 +121,36 @@ declare namespace error {
   export interface UserEventError {
 
     /**
-     * @type {'error.UserEventError'}
-     * @readonly
-     *
      * @since 2015.2
      */
-    type: 'error.UserEventError';
+    readonly type: 'error.UserEventError';
 
     /**
      * Error ID that is automatically generated when a new error is created
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4254922120}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4254922120.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * User-defined error code
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4254922635}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4254922635.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    name: string;
+    readonly name: string;
 
     /**
      * Error message text displayed in the Details column of the Execution Log
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4254962538}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4254962538.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    message: string;
+    readonly message: string;
 
     /**
      * List of method calls that the script is executing when the error is thrown
@@ -203,12 +158,9 @@ declare namespace error {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4254923191}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4254923191.html}
      *
-     * @type {string[]}
-     * @readonly
-     *
      * @since 2015.2
      */
-    stack: string[];
+    readonly stack: string[];
 
     /**
      * Internal ID of the submitted record that triggered the script
@@ -216,29 +168,21 @@ declare namespace error {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803775}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803775.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    recordId: string;
+    readonly recordId: string;
 
     /**
      * User event type (beforeLoad, beforeSubmit, or afterSubmit)
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4243803835}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4243803835.html}
      *
-     * @type {'beforeLoad'|'beforeSubmit'|'afterSubmit'}
-     * @readonly
-     *
      * @since 2015.2
      */
-    eventType: 'beforeLoad' | 'beforeSubmit' | 'afterSubmit';
+    readonly eventType: 'beforeLoad' | 'beforeSubmit' | 'afterSubmit';
 
     /**
      * Convert to JSON object
-     *
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
