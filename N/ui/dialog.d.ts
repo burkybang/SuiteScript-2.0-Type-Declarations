@@ -15,13 +15,13 @@ interface dialog {
    *
    * @restriction Client-side scripts only
    *
-   * @param {Object} [options]
-   * @param {string} [options.title] The title of the alert. Defaults to empty string.
-   * @param {string} [options.message] The content of the alert. Defaults to empty string.
+   * @param [options]
+   * @param [options.title] The title of the alert. Defaults to empty string.
+   * @param [options.message] The content of the alert. Defaults to empty string.
    *
-   * @return {Promise<true>} A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
-   *                   The callback will be passed in a response object which contains the value of the button where:
-   *                   OK returns true.
+   * @return A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
+   * The callback will be passed in a response object which contains the value of the button where:
+   * OK returns true.
    * @since 2016.1
    */
   alert(options?: {
@@ -36,13 +36,13 @@ interface dialog {
    *
    * @restriction Client-side scripts only
    *
-   * @param {Object} [options]
-   * @param {string} [options.title] The title of the confirmation box. Defaults to empty string.
-   * @param {string} [options.message] The content of the confirmation box. Defaults to empty string.
+   * @param [options]
+   * @param [options.title] The title of the confirmation box. Defaults to empty string.
+   * @param [options.message] The content of the confirmation box. Defaults to empty string.
    *
-   * @return {Promise<boolean>} A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
-   *           The callback will be passed in a response object which contains the value of the button where:
-   *           OK returns true and Cancel returns false.
+   * @return A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
+   * The callback will be passed in a response object which contains the value of the button where:
+   *  OK returns true and Cancel returns false.
    * @since 2016.1
    */
   confirm(options?: {
@@ -57,15 +57,15 @@ interface dialog {
    *
    * @restriction Client SuiteScript only
    *
-   * @param {Object} [options]
-   * @param {string} [options.title]   The title of the dialog box. Defaults to empty string.
-   * @param {string} [options.message] The content of the dialog box. Defaults to empty string.
-   * @param {{label:string, value:*}[]} [options.buttons] The list of buttons to add. Each item in the list requires a label and value.
+   * @param [options]
+   * @param [options.title]   The title of the dialog box. Defaults to empty string.
+   * @param [options.message] The content of the dialog box. Defaults to empty string.
+   * @param [options.buttons] The list of buttons to add. Each item in the list requires a label and value.
    *                                            If empty, defaults to a button with label "OK" and value true.
    *
-   * @return {Promise<*>} A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
-   *           The callback will be passed in a response object which contains the value of the button where:
-   *           The value parameter of the button clicked is returned.
+   * @return A Promise object. Pass a function into the then portion to fire a callback when the button is pressed.
+   * The callback will be passed in a response object which contains the value of the button where:
+   * The value parameter of the button clicked is returned.
    * @since 2016.1
    *
    * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.buttons is specified and is not an array.
