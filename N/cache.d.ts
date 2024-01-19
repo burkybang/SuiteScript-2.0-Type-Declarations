@@ -11,10 +11,9 @@ interface cache {
   /**
    * Get a named, scoped cache
    *
-   * @param {Object} options
-   * @param {string} options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
-   * @param {string} [options.scope] The cache scope (optional). The default cache scope is SCRIPT.
-   * @return {Cache}
+   * @param options
+   * @param options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
+   * @param [options.scope] The cache scope (optional). The default cache scope is SCRIPT.
    */
   getCache(options: {
     name: string,
@@ -29,8 +28,6 @@ declare namespace cache {
    * PRIVATE (default) - Cache entries are only accessible to the current script.
    * PROTECTED - Cache entries are only accessible to scripts in the same bundle or not in bundle.
    * PUBLIC - Cache entries are accessible to any script running in your account.
-   *
-   * @enum {string}
    */
   export enum Scope {
     PRIVATE = 'PRIVATE',
@@ -49,22 +46,16 @@ declare namespace cache {
     /**
      * The name of the cache
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    name: string;
+    readonly name: string;
 
     /**
      * The scope of the cache
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    scope: string;
+    readonly scope: string;
 
     /**
      * Get a value from the cache. If the key is not present, the loader will be called to generate the value which will
@@ -74,14 +65,12 @@ declare namespace cache {
      *
      * @governance 1 unit for cache hit and 2 units for cache miss
      *
-     * @param {Object} options
-     * @param {string} options.key The cache key used to identify the value.
-     * @param {Function} [options.loader] A function which will return the value if it is not present in the cache.
+     * @param options
+     * @param options.key The cache key used to identify the value.
+     * @param [options.loader] A function which will return the value if it is not present in the cache.
      * The callback signature for the loader is loader({ key : key }), which allows the loader to be pre-defined in a key-agnostic way (used to get different values for the same cache type, for example).
-     * @param {number} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be
+     * @param [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be
      * automatically purged when the TTL expires, if it is still in the cache.
-     *
-     * @return {string}
      */
     get(options: {
       key: string,
@@ -96,9 +85,8 @@ declare namespace cache {
      *
      * @governance 1 unit
      *
-     * @param {Object} options
-     * @param {string} options.key The cache key used to identify the value.
-     * @return {void}
+     * @param options
+     * @param options.key The cache key used to identify the value.
      */
     remove(options: {
       key: string,
@@ -110,12 +98,11 @@ declare namespace cache {
      *
      * @governance 1 unit
      *
-     * @param {Object} options
-     * @param {string} options.key The cache key used to identify the value.
-     * @param {string} options.value The value to cache.
-     * @param {number} [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
+     * @param options
+     * @param options.key The cache key used to identify the value.
+     * @param options.value The value to cache.
+     * @param [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
      * The default TTL is no limit; the minimal value is 5 minutes.
-     * @return {void}
      */
     put(options: {
       key: string,
