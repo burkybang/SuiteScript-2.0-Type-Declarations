@@ -13,11 +13,11 @@ interface encode {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369851165}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4369851165.html}
    *
-   * @param {Object} options
-   * @param {string} options.string String to encode
-   * @param {string} options.inputEncoding Encoding of the input string.
-   * @param {string} options.outputEncoding Encoding to apply to the output string.
-   * @return {string} Reencoded string
+   * @param options
+   * @param options.string String to encode
+   * @param options.inputEncoding Encoding of the input string.
+   * @param options.outputEncoding Encoding to apply to the output string.
+   * @return Reencoded string
    *
    * @since 2015.1
    */
@@ -34,8 +34,6 @@ declare namespace encode {
    * Holds the string values for the supported character set encoding
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4369865177}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4369865177.html}
-   *
-   * @enum {string}
    */
   export enum Encoding {
     UTF_8 = 'UTF_8',
