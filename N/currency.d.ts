@@ -18,10 +18,10 @@ interface currency {
    *
    * @governance 10 units
    *
-   * @param {Object} options
-   * @param {number|string} options.source The source currency ID or String
-   * @param {number|string} options.target The target currency ID or String
-   * @param {Date} options.date [optional] The date of the desired effective currency rate. Defaults to today.
+   * @param options
+   * @param options.source The source currency ID or String
+   * @param options.target The target currency ID or String
+   * @param [options.date] The date of the desired effective currency rate. Defaults to today.
    *
    * @return {number}
    *
