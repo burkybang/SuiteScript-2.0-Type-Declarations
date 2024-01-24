@@ -347,16 +347,28 @@ interface https {
   }): https.ClientResponse;
 
   /**
+   * Creates and returns a crypto.SecretKey Object. This method can take a GUID OR a secret.
+   * You cannot use both the `guid` parameter and `secret` parameter in combination.
    *
-   * @param {Object} options
-   * @param {string} options.guid
-   * @param {https.Encoding} [options.encoding]
-   * @return {crypto_.SecretKey}
-   *
-   * .promise
+   * @param options
+   * @param options.guid Required if `secret` is not specified. A GUID used to generate a secret key. Use Form.addCredentialField(options) to generate a GUID.
+   * @param [options.encoding] Specifies the encoding for the Secret Key
    */
-  createSecureKey(options: {
+  createSecretKey(options: {
     guid: string,
+    encoding?: https.Encoding | `${https.Encoding}`,
+  }): crypto_.SecretKey;
+
+  /**
+   * Creates and returns a crypto.SecretKey Object. This method can take a GUID OR a secret.
+   * You cannot use both the `guid` parameter and `secret` parameter in combination.
+   *
+   * @param options
+   * @param options.secret Required if `guid` is not specified. The script ID of the secret used for authentication. You can store secrets at Setup > Company > API Secrets.
+   * @param [options.encoding] Specifies the encoding for the Secret Key
+   */
+  createSecretKey(options: {
+    secret: string,
     encoding?: https.Encoding | `${https.Encoding}`,
   }): crypto_.SecretKey;
 
