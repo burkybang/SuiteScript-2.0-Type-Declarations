@@ -18,7 +18,9 @@ interface https {
   get: {
 
     /**
-     * Send a HTTPS GET request and return server response.
+     * Send a HTTPS GET request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567631366}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567631366.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -35,10 +37,12 @@ interface https {
     (options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): https.ClientResponse
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS GET request and return server response.
+     * Send a HTTPS GET request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619547935}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619547935.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -55,21 +59,23 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 
   post: {
 
     /**
-     * Send a HTTPS POST request and return server response.
+     * Send a HTTPS POST request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567628658}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567628658.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTPS URL being requested
-     * @param options.body POST data
      * @param [options.headers] request HTTPS headers
+     * @param options.body POST data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -78,20 +84,22 @@ interface https {
      */
     (options: {
       url: string,
-      body: string | Object,
       headers?: Record<string, string | number>,
-    }): https.ClientResponse
+      body: string | Object,
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS POST request and return server response.
+     * Send a HTTPS POST request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619553255}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619553255.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTPS URL being requested
-     * @param options.body POST data
      * @param [options.headers] request HTTPS headers
+     * @param options.body POST data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -100,23 +108,25 @@ interface https {
      */
     promise(options: {
       url: string,
-      body: string | Object,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>
+      body: string | Object,
+    }): Promise<http.ClientResponse>;
   };
 
   put: {
 
     /**
-     * Send a HTTPS PUT request and return server response.
+     * Send a HTTPS PUT request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567627984}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567627984.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTPS URL being requested
-     * @param options.body PUT data
      * @param [options.headers] request HTTPS headers
+     * @param options.body PUT data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -125,20 +135,22 @@ interface https {
      */
     (options: {
       url: string,
-      body: string | Object,
       headers?: Record<string, string | number>,
-    }): https.ClientResponse
+      body: string | Object,
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS PUT request and return server response.
+     * Send a HTTPS PUT request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619558092}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619558092.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTPS URL being requested
-     * @param options.body PUT data
      * @param [options.headers] request HTTPS headers
+     * @param options.body PUT data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -147,15 +159,17 @@ interface https {
      */
     promise(options: {
       url: string,
-      body: string | Object,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>
+      body: string | Object,
+    }): Promise<http.ClientResponse>;
   };
 
   delete: {
 
     /**
-     * Send a HTTPS DELETE request and return server response.
+     * Send a HTTPS DELETE request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567631039}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567631039.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -172,10 +186,12 @@ interface https {
     (options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): https.ClientResponse
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS DELETE request and return server response.
+     * Send a HTTPS DELETE request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619548807}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619548807.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -192,13 +208,15 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 
   request: {
 
     /**
-     * Send a HTTPS request and return server response.
+     * Send a HTTPS request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567630582}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567630582.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -206,8 +224,8 @@ interface https {
      * @param options
      * @param options.method HTTPS method of the request
      * @param options.url the HTTPS URL being requested
-     * @param [options.body] POST data; must be present if and only if method is POST
      * @param [options.headers] request HTTPS headers
+     * @param [options.body] POST data; must be present if and only if method is POST
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -217,12 +235,14 @@ interface https {
     (options: {
       method: https.Method | http.Method | `${https.Method | http.Method}`,
       url: string,
-      body?: string | Object,
       headers?: Record<string, string | number>,
-    }): https.ClientResponse
+      body?: string | Object,
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS request and return server response.
+     * Send a HTTPS request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619550220}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619550220.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -230,8 +250,8 @@ interface https {
      * @param options
      * @param options.method HTTPS method of the request
      * @param options.url the HTTPS URL being requested
-     * @param [options.body] POST data; must be present if and only if method is POST
      * @param [options.headers] request HTTPS headers
+     * @param [options.body] POST data; must be present if and only if method is POST
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: https in the HTTP module)
@@ -241,15 +261,17 @@ interface https {
     promise(options: {
       method: https.Method | http.Method | `${https.Method | http.Method}`,
       url: string,
-      body?: string | Object,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>
+      body?: string | Object,
+    }): Promise<http.ClientResponse>;
   };
 
   requestSuitelet: {
 
     /**
-     * Send a HTTPS request and return server response.
+     * Send a HTTPS request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_44162330742}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_44162330742.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -276,10 +298,12 @@ interface https {
       headers?: Record<string, string | number>,
       urlParams?: Record<string, string | number>,
       body?: string | Object,
-    }): https.ClientResponse
+    }): https.ClientResponse;
 
     /**
-     * Send a HTTPS request and return server response.
+     * Send a HTTPS request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_95100734176}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_95100734176.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -304,51 +328,86 @@ interface https {
       headers?: Record<string, string | number>,
       urlParams?: Record<string, string | number>,
       body?: string | Object,
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 
-  /**
-   * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159139340774.html}
-   *
-   * @governance 10 units
-   * @restriction Server-side scripts only
-   *
-   * @param {Object} options
-   * @param {string|number} options.scriptId The internal ID or script ID of the script record
-   * @param {string} options.deploymentId The script ID of the script deployment record
-   * @param {https.Method|http.Method} [options.method=https.Method.GET] HTTPS method of the request
-   * @param {Object<string, string|number>} [options.headers] Request HTTPS headers
-   * @param {string|Object} [options.body] The PUT/POST data. This is ignored if the options.method is not POST or PUT
-   * @param {Object<string, string|number>} [options.urlParams] The parameters to be appended to the target URL as a query string
-   * @return {https.ClientResponse}
-   *
-   * @throws {error.SuiteScriptError} INVALID_SCRIPT_DEPLOYMENT_ID_1 If the options.deploymentId parameter does not reference a valid deployment for the script.
-   * @throws {error.SuiteScriptError} SSS_AUTHORIZATION_HEADER_NOT_ALLOWED The authorization header is set.
-   * @throws {error.SuiteScriptError} SSS_INVALID_HEADER The options.headers parameter is in an invalid format or contains an invalid header.
-   * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 The options.scriptId parameter does not reference a RESTlet script.
-   * @throws {error.SuiteScriptError} SSS_INVALID_URL_PARAMS The options.urlParams parameter is in an invalid format.
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The options.body, options.deploymentID, or options.scriptID parameter is not specified.
-   *
-   * @since 2020.2
-   */
-  requestRestlet(options: {
-    scriptId: string | number,
-    deploymentId: string,
-    method?: https.Method | http.Method | `${https.Method | http.Method}`,
-    headers?: {
-      [p: string]: string | number,
-    },
-    body?: string | Object,
-    urlParams?: {
-      [p: string]: string | number,
-    },
-  }): https.ClientResponse;
+  requestRestlet: {
+
+    /**
+     * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159139340774}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159139340774.html}
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     *
+     * @param options
+     * @param options.scriptId The internal ID or script ID of the script record
+     * @param options.deploymentId The script ID of the script deployment record
+     * @param [options.method=https.Method.GET] HTTPS method of the request
+     * @param [options.headers] Request HTTPS headers
+     * @param [options.urlParams] The parameters to be appended to the target URL as a query string
+     * @param [options.body] The PUT/POST data. This is ignored if the options.method is not POST or PUT
+     *
+     * @throws {error.SuiteScriptError} INVALID_SCRIPT_DEPLOYMENT_ID_1 If the options.deploymentId parameter does not reference a valid deployment for the script.
+     * @throws {error.SuiteScriptError} SSS_AUTHORIZATION_HEADER_NOT_ALLOWED The authorization header is set.
+     * @throws {error.SuiteScriptError} SSS_INVALID_HEADER The options.headers parameter is in an invalid format or contains an invalid header.
+     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 The options.scriptId parameter does not reference a RESTlet script.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL_PARAMS The options.urlParams parameter is in an invalid format.
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The options.body, options.deploymentID, or options.scriptID parameter is not specified.
+     *
+     * @since 2020.2
+     */
+    (options: {
+      scriptId: string,
+      deploymentId: string,
+      method?: https.Method | http.Method | `${https.Method | http.Method}`,
+      headers?: Record<string, string | number>,
+      urlParams?: Record<string, string | number>,
+      body?: string | Object,
+    }): https.ClientResponse;
+
+    /**
+     * Sends an HTTPS request to a RESTlet and returns the response. Authentication headers are automatically added
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_95165853712}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_95165853712.html}
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     *
+     * @param options
+     * @param options.scriptId The internal ID or script ID of the script record
+     * @param options.deploymentId The script ID of the script deployment record
+     * @param [options.method=https.Method.GET] HTTPS method of the request
+     * @param [options.headers] Request HTTPS headers
+     * @param [options.body] The PUT/POST data. This is ignored if the options.method is not POST or PUT
+     * @param [options.urlParams] The parameters to be appended to the target URL as a query string
+     *
+     * @throws {error.SuiteScriptError} INVALID_SCRIPT_DEPLOYMENT_ID_1 If the options.deploymentId parameter does not reference a valid deployment for the script.
+     * @throws {error.SuiteScriptError} SSS_AUTHORIZATION_HEADER_NOT_ALLOWED The authorization header is set.
+     * @throws {error.SuiteScriptError} SSS_INVALID_HEADER The options.headers parameter is in an invalid format or contains an invalid header.
+     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 The options.scriptId parameter does not reference a RESTlet script.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL_PARAMS The options.urlParams parameter is in an invalid format.
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The options.body, options.deploymentID, or options.scriptID parameter is not specified.
+     *
+     * @since 2020.2
+     */
+    promise(options: {
+      scriptId: string,
+      deploymentId: string,
+      external?: boolean,
+      method?: https.Method | http.Method | `${https.Method | http.Method}`,
+      headers?: Record<string, string | number>,
+      urlParams?: Record<string, string | number>,
+      body?: string | Object,
+    }): Promise<http.ClientResponse>;
+  };
 
   /**
    * Creates and returns a crypto.SecretKey Object. This method can take a GUID OR a secret.
    * You cannot use both the `guid` parameter and `secret` parameter in combination.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
    *
    * @param options
    * @param options.guid Required if `secret` is not specified. A GUID used to generate a secret key. Use Form.addCredentialField(options) to generate a GUID.
@@ -362,6 +421,8 @@ interface https {
   /**
    * Creates and returns a crypto.SecretKey Object. This method can take a GUID OR a secret.
    * You cannot use both the `guid` parameter and `secret` parameter in combination.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
    *
    * @param options
    * @param options.secret Required if `guid` is not specified. The script ID of the secret used for authentication. You can store secrets at Setup > Company > API Secrets.
@@ -373,6 +434,9 @@ interface https {
   }): crypto_.SecretKey;
 
   /**
+   * Creates and returns an https.SecureString. The input for the secure string can be a GUID or a secret
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
    *
    * @param options
    * @param options.input The string to convert to a https.SecureString

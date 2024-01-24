@@ -17,7 +17,9 @@ interface http {
   get: {
 
     /**
-     * Send a HTTP GET request and return server response.
+     * Send a HTTP GET request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024767}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024767.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -33,13 +35,13 @@ interface http {
      */
     (options: {
       url: string,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): http.ClientResponse
+      headers?: Record<string, string | number>,
+    }): http.ClientResponse;
 
     /**
-     * Send a HTTP GET request and return server response.
+     * Send a HTTP GET request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440810374}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440810374.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -55,24 +57,24 @@ interface http {
      */
     promise(options: {
       url: string,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): Promise<http.ClientResponse>
+      headers?: Record<string, string | number>,
+    }): Promise<http.ClientResponse>;
   };
 
   post: {
 
     /**
-     * Send a HTTP POST request and return server response.
+     * Send a HTTP POST request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024574}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024574.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTP URL being requested
-     * @param config.body POST data
      * @param [options.headers] request HTTP headers
+     * @param options.body POST data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
@@ -81,14 +83,14 @@ interface http {
      */
     (options: {
       url: string,
+      headers?: Record<string, string | number>,
       body: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): http.ClientResponse
+    }): http.ClientResponse;
 
     /**
-     * Send a HTTP POST request and return server response.
+     * Send a HTTP POST request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440816463}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440816463.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -105,25 +107,25 @@ interface http {
      */
     promise(options: {
       url: string,
+      headers?: Record<string, string | number>,
       body: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 
   put: {
 
     /**
-     * Send a HTTP PUT request and return server response.
+     * Send a HTTP PUT request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024367}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024367.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTP URL being requested
-     * @param options.body PUT data
      * @param [options.headers] request HTTP headers
+     * @param options.body PUT data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
@@ -132,22 +134,22 @@ interface http {
      */
     (options: {
       url: string,
+      headers?: Record<string, string | number>,
       body: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): http.ClientResponse
+    }): http.ClientResponse;
 
     /**
-     * Send a HTTP PUT request and return server response.
+     * Send a HTTP PUT request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440817389}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440817389.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
      *
      * @param options
      * @param options.url the HTTP URL being requested
-     * @param options.body PUT data
      * @param [options.headers] request HTTP headers
+     * @param options.body PUT data
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
@@ -156,17 +158,17 @@ interface http {
      */
     promise(options: {
       url: string,
+      headers?: Record<string, string | number>,
       body: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 
   delete: {
 
     /**
-     * Send a HTTP DELETE request and return server response.
+     * Send a HTTP DELETE request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024970}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024970.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -182,13 +184,13 @@ interface http {
      */
     (options: {
       url: string,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): http.ClientResponse
+      headers?: Record<string, string | number>,
+    }): http.ClientResponse;
 
     /**
-     * Send a HTTP DELETE request and return server response.
+     * Send a HTTP DELETE request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440810687}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440810687.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -204,16 +206,16 @@ interface http {
      */
     promise(options: {
       url: string,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): Promise<http.ClientResponse>
+      headers?: Record<string, string | number>,
+    }): Promise<http.ClientResponse>;
   };
 
   request: {
 
     /**
-     * Send a HTTP request and return server response.
+     * Send a HTTP request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024227}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024227.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -221,8 +223,8 @@ interface http {
      * @param options
      * @param options.method HTTP method of the request
      * @param options.url the HTTP URL being requested
-     * @param [options.body] POST data; must be present if and only if method is POST
      * @param [options.headers] request HTTP headers
+     * @param [options.body] POST data; must be present if and only if method is POST
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
@@ -232,14 +234,14 @@ interface http {
     (options: {
       method: http.Method | https.Method | `${http.Method | https.Method}`,
       url: string,
+      headers?: Record<string, string | number>,
       body?: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): http.ClientResponse
+    }): http.ClientResponse;
 
     /**
-     * Send a HTTP request and return server response.
+     * Send a HTTP request and return server response
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440816259}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440816259.html}
      *
      * @governance 10 units
      * @restriction Server-side scripts only
@@ -247,8 +249,8 @@ interface http {
      * @param options
      * @param options.method HTTP method of the request
      * @param options.url the HTTP URL being requested
-     * @param [options.body] POST data; must be present if and only if method is POST
      * @param [options.headers] request HTTP headers
+     * @param [options.body] POST data; must be present if and only if method is POST
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required argument is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_URL if an incorrect protocol is used (ex: http in the HTTPS module)
@@ -258,11 +260,9 @@ interface http {
     promise(options: {
       method: http.Method | https.Method | `${http.Method | https.Method}`,
       url: string,
+      headers?: Record<string, string | number>,
       body?: string | Object,
-      headers?: {
-        [p: string]: string | number,
-      },
-    }): Promise<http.ClientResponse>
+    }): Promise<http.ClientResponse>;
   };
 }
 
