@@ -37,15 +37,6 @@ interface GetInputContext {
   isRestarted: boolean;
 
   /**
-   * @type {{FILE:'FILE', SEARCH:'SEARCH', QUERY:'QUERY'}} objectRefType
-   */
-  objectRefType: {
-    FILE: 'FILE',
-    SEARCH: 'SEARCH',
-    QUERY: 'QUERY',
-  };
-
-  /**
    * @return {string}
    */
   toString(): string;
@@ -57,6 +48,18 @@ interface GetInputContext {
   toJSON(): ExcludeMethods<this>;
 }
 
+declare namespace GetInputContext {
+
+  /**
+   * Undocumented
+   */
+  export enum ObjectRefType {
+    FILE = 'FILE',
+    SEARCH = 'SEARCH',
+    QUERY = 'QUERY',
+  }
+}
+
 /**
  * References the object that contains the input data
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
@@ -65,32 +68,47 @@ interface GetInputContext {
  * @since 2015.2
  */
 type GetInputReturn = any[] | { [p: string]: any } |
-  search.Search | GetInputReturnSearchReference |
-  query.Query | GetInputReturnQueryReference |
-  file.File | GetInputContext;
+  search.Search | GetInputReturn.SearchReference |
+  query.Query | GetInputReturn.QueryReference |
+  file.File | GetInputReturn.FileReference;
 
-/**
- * search.Search Object Reference
- * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
- * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
- *
- * @since 2015.2
- */
-interface GetInputReturnSearchReference {
-  type: 'search';
-  id: number | string;
-}
+declare namespace GetInputReturn {
 
-/**
- * query.Query Object Reference
- * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
- * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
- *
- * @since 2015.2
- */
-interface GetInputReturnQueryReference {
-  type: 'query';
-  id: number | string;
+  /**
+   * search.Search Object Reference
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
+   *
+   * @since 2015.2
+   */
+  export interface SearchReference {
+    type: 'search';
+    id: number | string;
+  }
+
+  /**
+   * query.Query Object Reference
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
+   *
+   * @since 2015.2
+   */
+  export interface QueryReference {
+    type: 'query';
+    id: number | string;
+  }
+
+  /**
+   * query.Query Object Reference
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
+   *
+   * @since 2015.2
+   */
+  export interface FileReference {
+    type: 'file';
+    path: string;
+  }
 }
 
 /**
