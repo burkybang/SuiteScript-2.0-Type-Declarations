@@ -83,80 +83,151 @@ interface query {
     value: number,
   }): query.RelativeDate;
 
-  /**
-   * Runs an arbitrary SuiteQL query
-   *
-   * @governance 10 points
-   *
-   * @param query
-   * @param [params]
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-   *
-   * @since 2020.1
-   */
-  runSuiteQL(
-    query: string,
-    params?: (string | number | boolean)[],
-  ): query.ResultSet;
+  runSuiteQL: {
+    /**
+     * Runs an arbitrary SuiteQL query
+     *
+     * @governance 10 points
+     *
+     * @param query
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    (query: string): query.ResultSet;
 
-  /**
-   * Runs an arbitrary SuiteQL query
-   *
-   * @governance 10 points
-   *
-   * @param options
-   * @param options.query
-   * @param [options.params]
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-   *
-   * @since 2020.1
-   */
-  runSuiteQL(options: {
-    query: string,
-    params?: (string | number | boolean)[],
-  }): query.ResultSet;
+    /**
+     * Runs an arbitrary SuiteQL query
+     *
+     * @governance 10 points
+     *
+     * @param query
+     * @param [params]
+     * @param [customScriptId]
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    (options: {
+      query: string,
+      params?: (string | number | boolean)[],
+      customScriptId?: string,
+    }): query.ResultSet;
 
-  /**
-   * Runs an arbitrary SuiteQL query as a paged query
-   *
-   * @governance 10 points
-   *
-   * @param options
-   * @param options.query
-   * @param [options.params]
-   * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-   *
-   * @since 2020.1
-   */
-  runSuiteQLPaged(options: {
-    query: string,
-    params?: (string | number | boolean)[],
-    pageSize?: PageSize,
-  }): query.PagedData;
+    /**
+     * Runs an arbitrary SuiteQL query asynchronously
+     *
+     * @governance 10 points
+     *
+     * @param query
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    promise(query: string): Promise<query.ResultSet>;
 
-  /**
-   * Runs an arbitrary SuiteQL query as a paged query
-   *
-   * @governance 10 points
-   *
-   * @param suiteQL
-   * @param [suiteQL.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-   *
-   * @since 2020.1
-   */
-  runSuiteQLPaged(suiteQL: query.SuiteQL & {
-    pageSize?: PageSize,
-  }): query.PagedData;
+    /**
+     * Runs an arbitrary SuiteQL query asynchronously
+     *
+     * @governance 10 points
+     *
+     * @param query
+     * @param [params]
+     * @param [customScriptId]
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    promise(options: {
+      query: string,
+      params?: (string | number | boolean)[],
+      customScriptId?: string,
+    }): Promise<query.ResultSet>;
+  };
+
+  runSuiteQLPaged: {
+    /**
+     * Runs an arbitrary SuiteQL query as a paged query
+     *
+     * @governance 10 points
+     *
+     * @param query
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    (query: string): query.PagedData;
+
+    /**
+     * Runs an arbitrary SuiteQL query as a paged query
+     *
+     * @governance 10 points
+     *
+     * @param options
+     * @param options.query
+     * @param [options.params]
+     * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
+     * @param [customScriptId]
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    (options: {
+      query: string,
+      params?: (string | number | boolean)[],
+      pageSize?: PageSize,
+      customScriptId?: string,
+    }): query.PagedData;
+
+    /**
+     * Runs an arbitrary SuiteQL query as a paged query asynchronously
+     *
+     * @governance 10 points
+     *
+     * @param query
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    promise(query: string): Promise<query.PagedData>;
+
+    /**
+     * Runs an arbitrary SuiteQL query as a paged query asynchronously
+     *
+     * @governance 10 points
+     *
+     * @param options
+     * @param options.query
+     * @param [options.params]
+     * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
+     * @param [customScriptId]
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+     *
+     * @since 2020.1
+     */
+    promise(options: {
+      query: string,
+      params?: (string | number | boolean)[],
+      pageSize?: PageSize,
+      customScriptId?: string,
+    }): Promise<query.PagedData>;
+  };
 
   /**
    * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
@@ -1747,13 +1818,41 @@ declare namespace query {
      */
     readonly pageRanges: PageRange[];
 
-    /**
-     * @param options
-     * @param options.index
-     */
-    fetch(options: {
-      index: number,
-    }): query.Page;
+    fetch: {
+      /**
+       * Fetch a specific page of the paged query results
+       *
+       * @param index
+       */
+      (index: number): query.Page;
+
+      /**
+       * Fetch a specific page of the paged query results
+       *
+       * @param options
+       * @param options.index
+       */
+      (options: {
+        index: number,
+      }): query.Page;
+
+      /**
+       * Fetch a specific page of the paged query results asynchronously
+       *
+       * @param index
+       */
+      promise(index: number): Promise<query.Page>;
+
+      /**
+       * Fetch a specific page of the paged query results asynchronously
+       *
+       * @param options
+       * @param options.index
+       */
+      promise(options: {
+        index: number,
+      }): Promise<query.Page>;
+    };
 
     /**
      * Returns the object type name (search.PagedData)
