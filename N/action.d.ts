@@ -43,7 +43,7 @@ interface action {
      */<ID extends action.ActionID>(options: {
       recordType: record.Type | `${record.Type}` | record.CustomType | string,
       recordId?: number | string,
-      id?: ID
+      id?: ID,
     }): { [p in ID]: () => action.Action<ID> };
 
     /**
@@ -74,7 +74,7 @@ interface action {
     promise<ID extends action.ActionID>(options: {
       recordType: record.Type | `${record.Type}` | record.CustomType | string,
       recordId?: number | string,
-      id?: ID
+      id?: ID,
     }): Promise<{ [p in ID]: action.Action<ID> }>;
   };
 
