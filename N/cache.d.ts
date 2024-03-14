@@ -24,14 +24,13 @@ interface cache {
 declare namespace cache {
   /**
    * Defines all possible cache scopes
-   *
-   * PRIVATE (default) - Cache entries are only accessible to the current script.
-   * PROTECTED - Cache entries are only accessible to scripts in the same bundle or not in bundle.
-   * PUBLIC - Cache entries are accessible to any script running in your account.
    */
   export enum Scope {
+    // (default) - Cache entries are only accessible to the current script
     PRIVATE = 'PRIVATE',
+    // Cache entries are only accessible to scripts in the same bundle or not in bundle
     PROTECTED = 'PROTECTED',
+    // Cache entries are accessible to any script running in your account
     PUBLIC = 'PUBLIC',
   }
 
