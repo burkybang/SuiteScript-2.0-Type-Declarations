@@ -351,7 +351,6 @@ declare namespace serverWidget {
      * @param options.label The UI label for the field
      * @param options.type The type for this field
      * @param [options.source] The internal id of the source list for this field if the field is a select
-     * @param [options.container] Used to specify either a tab or a field group
      */
     addField(options: {
       id: string,
@@ -359,7 +358,6 @@ declare namespace serverWidget {
       type: FieldType | `${FieldType}` | string,
       align?: LayoutJustification | `${LayoutJustification}`,
       source?: string,
-      container?: string,
     }): Field;
 
     /**
@@ -1096,6 +1094,26 @@ declare namespace serverWidget {
       type: FieldType.SELECT | FieldType.MULTISELECT
         | `${FieldType.SELECT | FieldType.MULTISELECT}`,
       source?: string | number,
+      container?: string,
+    }): Field;
+
+    /**
+     * Add a field to the form
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
+     *
+     * @param options
+     * @param options.id Internal id for the field
+     * @param options.label UI label for the field
+     * @param options.type  Type of the field
+     * @param [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
+     * @param [options.container] Tab or Field Group to add the field to
+     */
+    addField(options: {
+      id: string,
+      label: string,
+      type: FieldType.RADIO | `${FieldType.RADIO}`,
+      source: string,
       container?: string,
     }): Field;
 
