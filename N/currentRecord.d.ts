@@ -24,7 +24,7 @@ interface currentRecord {
      *
      * @since 2016.2
      */
-    (): currentRecord.CurrentRecord;
+    (): currentRecord.CurrentRecordReadonly;
 
     /**
      * Retrieves a promise for a currentRecord object that represents the record active on the current page
@@ -37,7 +37,7 @@ interface currentRecord {
      *
      * @since 2016.2
      */
-    promise(): Promise<currentRecord.CurrentRecord>;
+    promise(): Promise<currentRecord.CurrentRecordReadonly>;
   };
 }
 
