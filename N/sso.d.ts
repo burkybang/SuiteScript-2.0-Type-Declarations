@@ -17,9 +17,8 @@ interface sso {
    *
    * @governance 20 units
    *
-   * @param {Object} options
-   * @param {string} options.suiteSignOnId
-   * @return {string}
+   * @param options
+   * @param options.suiteSignOnId
    *
    * @throws {error.SuiteScriptError} SSS_SSO_CONFIG_REQD Thrown when the SuiteSignOn record is not configured for use with this script
    * @throws {error.SuiteScriptError} INVALID_SSO Thrown when the provided SuiteSignOn record ID is not valid.
