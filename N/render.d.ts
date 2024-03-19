@@ -24,13 +24,11 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {number} options.entityId The internal ID of the transaction being printed
-   * @param {string} [options.printMode] The output type: PDF|HTML|DEFAULT. DEFAULT uses the user/company preference for print output
-   * @param {number} [options.formId] The transaction form number
-   * @param {boolean} [options.inCustLocale] Applies when advanced templates are used. Prints the document in the customer's locale. If basic printing is used, this parameter is ignored and the transaction form is printed in the customer's locale.
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.entityId The internal ID of the transaction being printed
+   * @param [options.printMode] The output type: PDF|HTML|DEFAULT. DEFAULT uses the user/company preference for print output
+   * @param [options.formId] The transaction form number
+   * @param [options.inCustLocale] Applies when advanced templates are used. Prints the document in the customer's locale. If basic printing is used, this parameter is ignored and the transaction form is printed in the customer's locale.
    */
   transaction(options: {
     entityId: number,
@@ -47,17 +45,15 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {number} options.entityId
-   * @param {string} [options.printMode]
-   * @param {number} [options.formId]
-   * @param {boolean} [options.inCustLocale]
-   * @param {date} [options.startDate]
-   * @param {date} [options.statementDate]
-   * @param {boolean} [options.openTransactionsOnly]
-   * @param {boolean} [options.consolidateStatements]
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.entityId
+   * @param [options.printMode]
+   * @param [options.formId]
+   * @param [options.inCustLocale]
+   * @param [options.startDate]
+   * @param [options.statementDate]
+   * @param [options.openTransactionsOnly]
+   * @param [options.consolidateStatements]
    */
   statement(options: {
     entityId: number,
@@ -78,14 +74,12 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {number} options.entityId
-   * @param {string} [options.printMode]
-   * @param {number} [options.formId]
-   * @param {boolean} [options.inCustLocale]
-   * @param {number} [options.fulfillmentId]
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.entityId
+   * @param [options.printMode]
+   * @param [options.formId]
+   * @param [options.inCustLocale]
+   * @param [options.fulfillmentId]
    */
   packingSlip(options: {
     entityId: number,
@@ -103,15 +97,13 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {number} options.entityId
-   * @param {string} [options.printMode]
-   * @param {number} [options.formId]
-   * @param {boolean} [options.inCustLocale]
-   * @param {number} [options.shipgroup]
-   * @param {number} [options.location]
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.entityId
+   * @param [options.printMode]
+   * @param [options.formId]
+   * @param [options.inCustLocale]
+   * @param [options.shipgroup]
+   * @param [options.location]
    */
   pickingTicket(options: {
     entityId: number,
@@ -130,11 +122,9 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {number} options.entityId
-   * @param {string} [options.printMode]
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.entityId
+   * @param [options.printMode]
    */
   bom(options: {
     entityId: number,
@@ -148,8 +138,6 @@ interface render {
    *
    * @governance 0 units
    * @restriction Supported by all server side scirpts
-
-   * @return {render.TemplateRenderer}
    */
   create(): render.TemplateRenderer;
 
@@ -161,10 +149,8 @@ interface render {
    * @governance 10 units
    * @restriction Supported by all server side scirpts
    *
-   * @param {Object} options
-   * @param {xml.Document|string} options.xmlString
-   *
-   * @return {file.File}
+   * @param options
+   * @param options.xmlString
    */
   xmlToPdf(options: {
     xmlString: xml.Document | string,
@@ -177,18 +163,16 @@ interface render {
    *
    * @governance 0 units
    *
-   * @param {Object} options
-   * @param {number} options.templateId
-   * @param {number} options.entity.id
-   * @param {record.Type|record.CustomType|string} options.entity.type
-   * @param {number} options.recipient.id
-   * @param {record.Type|record.CustomType|string} options.recipient.type
-   * @param {number} options.customRecord.id
-   * @param {record.CustomType|string} options.customRecord.type
-   * @param {number} options.supportCaseId
-   * @param {number} options.transactionId
-   *
-   * @return {render.EmailMergeResult}
+   * @param options
+   * @param options.templateId
+   * @param options.entity.id
+   * @param options.entity.type
+   * @param options.recipient.id
+   * @param options.recipient.type
+   * @param options.customRecord.id
+   * @param options.customRecord.type
+   * @param options.supportCaseId
+   * @param options.transactionId
    */
   mergeEmail(options: {
     templateId: number,
@@ -202,7 +186,7 @@ interface render {
     },
     customRecord?: {
       id: number,
-      type: record.CustomType  | string,
+      type: record.CustomType | string,
     },
     supportCaseId?: number,
     transactionId?: number,
@@ -215,8 +199,6 @@ declare namespace render {
    * Enum print mode type values.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412215015}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412215015.html}
-   *
-   * @enum {string}
    */
   export enum PrintMode {
     PDF = 'PDF',
@@ -228,8 +210,6 @@ declare namespace render {
    * Enum data source type values.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4619588793}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4619588793.html}
-   *
-   * @enum {string}
    */
   export enum DataSource {
     XML_DOC = 'XML_DOC',
@@ -252,34 +232,26 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212830}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412212830.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    subject: string;
+    readonly subject: string;
 
     /**
      * The body of the email distribution in string format
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412212816}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412212816.html}
      *
-     *
-     * @type {string}
-     * @readonly
-     *
      * @since 2015.2
      */
-    body: string;
+    readonly body: string;
 
     /**
-     * @return {string}
+     *
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -298,8 +270,6 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453133789062}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453133789062.html}
      *
-     * @type {string}
-     *
      * @since 2015.2
      */
     templateContent: string;
@@ -309,9 +279,8 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528574899}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528574899.html}
      *
-     * @param {Object} options
-     * @param {string} options.scriptId
-     * @return {void}
+     * @param options
+     * @param options.scriptId
      *
      * @since 2016.1
      */
@@ -324,9 +293,8 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528552999}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528552999.html}
      *
-     * @param {Object} options
-     * @param {number} options.id
-     * @return {void}
+     * @param options
+     * @param options.id
      *
      * @since 2016.1
      */
@@ -339,9 +307,8 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
      *
-     * @param {string} templateName
-     * @param {record.Record} record
-     * @return {void}
+     * @param templateName
+     * @param record
      *
      * @since 2015.2
      */
@@ -355,10 +322,9 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
      *
-     * @param {Object} options
-     * @param {string} options.templateName
-     * @param {record.Record} options.record
-     * @return {void}
+     * @param options
+     * @param options.templateName
+     * @param options.record
      *
      * @since 2015.2
      */
@@ -372,10 +338,9 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456249023436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456249023436.html}
      *
-     * @param {Object} options
-     * @param {string} options.templateName
-     * @param {search.Result} options.searchResult
-     * @return {void}
+     * @param options
+     * @param options.templateName
+     * @param options.searchResult
      *
      * @since 2015.2
      */
@@ -389,11 +354,10 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4528541027}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4528541027.html}
      *
-     * @param {Object} options
-     * @param {string} options.alias namespace name of the record used in the template
-     * @param {render.DataSource} options.format data format
-     * @param {Object|Document|string} options.data
-     * @return {void}
+     * @param options
+     * @param options.alias namespace name of the record used in the template
+     * @param options.format data format
+     * @param options.data
      *
      * @since 2016.1
      */
@@ -408,8 +372,6 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455231872558}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455231872558.html}
      *
-     * @return {string}
-     *
      * @since 2015.2
      */
     renderAsString(): string;
@@ -419,9 +381,8 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459426513671}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459426513671.html}
      *
-     * @param {Object} options
-     * @param {http.ServerResponse} options.response
-     * @return {void}
+     * @param options
+     * @param options.response
      *
      * @since 2015.2
      */
@@ -434,8 +395,6 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452241760253}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452241760253.html}
      *
-     * @return {file.File}
-     *
      * @since 2015.2
      */
     renderAsPdf(): file.File;
@@ -445,19 +404,17 @@ declare namespace render {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
      *
-     * @param {http.ServerResponse} response
-     * @return {void}
+     * @param response
      */
     renderPdfToResponse(response: http.ServerResponse): void;
 
     /**
-     * @return {string}
+     *
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
