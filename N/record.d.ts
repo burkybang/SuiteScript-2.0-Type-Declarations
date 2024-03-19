@@ -23,11 +23,10 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {record.Record}
+     * @param options
+     * @param options.type record type
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -46,11 +45,10 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {currentRecord.CurrentRecord}
+     * @param options
+     * @param options.type record type
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -67,11 +65,10 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<record.Record>}
+     * @param options
+     * @param options.type record type
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -88,11 +85,10 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440822690}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440822690.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<currentRecord.CurrentRecord>}
+     * @param options
+     * @param options.type record type
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing
      *
@@ -114,12 +110,11 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {record.Record}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -139,12 +134,11 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {currentRecord.CurrentRecord}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -162,12 +156,11 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<record.Record>}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -185,12 +178,11 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440830173}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440830173.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<currentRecord.CurrentRecord>}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -213,12 +205,11 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {record.Record}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -238,12 +229,11 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {currentRecord.CurrentRecord}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -261,12 +251,11 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<record.Record>}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -284,12 +273,11 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821922}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821922.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] record default values
-     * @return {Promise<currentRecord.CurrentRecord>}
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] record default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -312,13 +300,12 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.fromType record type to be transformed from
-     * @param {number|string} options.fromId record id to be transformed from
-     * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
-     * @return {record.Record}
+     * @param options
+     * @param options.fromType record type to be transformed from
+     * @param options.fromId record id to be transformed from
+     * @param options.toType record type to be transformed to
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] transformed record's default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
      *
@@ -339,13 +326,12 @@ interface record {
      *
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.fromType record type to be transformed from
-     * @param {number|string} options.fromId record id to be transformed from
-     * @param {record.Type|record.CustomType|string} options.toType record type to be transformed to
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
-     * @return {currentRecord.CurrentRecord}
+     * @param options
+     * @param options.fromType record type to be transformed from
+     * @param options.fromId record id to be transformed from
+     * @param options.toType record type to be transformed to
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] transformed record's default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fromType, options.fromId, or options.toType is missing
      *
@@ -364,13 +350,12 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440843375.html}
      *
-     * @param {Object} options
-     * @param {string} options.fromType record type to be transformed from
-     * @param {number|string} options.fromId record id to be transformed from
-     * @param {string} options.toType record type to be transformed to
-     * @param {false} [options.isDynamic=false] record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
-     * @return {Promise<record.Record>}
+     * @param options
+     * @param options.fromType record type to be transformed from
+     * @param options.fromId record id to be transformed from
+     * @param options.toType record type to be transformed to
+     * @param [options.isDynamic=false] record is dynamic
+     * @param [options.defaultValues] transformed record's default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -389,13 +374,12 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440843375}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440843375.html}
      *
-     * @param {Object} options
-     * @param {string} options.fromType record type to be transformed from
-     * @param {number|string} options.fromId record id to be transformed from
-     * @param {string} options.toType record type to be transformed to
-     * @param {true} options.isDynamic record is dynamic
-     * @param {Object<string, record.FieldValue>} [options.defaultValues] transformed record's default values
-     * @return {Promise<currentRecord.CurrentRecord>}
+     * @param options
+     * @param options.fromType record type to be transformed from
+     * @param options.fromId record id to be transformed from
+     * @param options.toType record type to be transformed to
+     * @param options.isDynamic record is dynamic
+     * @param [options.defaultValues] transformed record's default values
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type or options.id is missing
      *
@@ -419,10 +403,10 @@ interface record {
      *
      * @governance 20 units for transactions, 4 for custom records, 10 for all other records
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @return {number} recordId
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @return recordId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
@@ -438,10 +422,10 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440823302}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440823302.html}
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @return {Promise<number>} recordId
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @return recordId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
@@ -463,14 +447,14 @@ interface record {
      * @governance 10 units for transactions, 2 for custom records, 5 for all other records
      * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {Object<string, record.FieldValue>} options.values field and value mapping to be submitted
-     * @param {Object} [options.options] additonal flags for submission
-     * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
-     * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {number} id of submitted record
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.values field and value mapping to be submitted
+     * @param [options.options] additonal flags for submission
+     * @param [options.options.enablesourcing=true] enable sourcing during record update
+     * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return id of submitted record
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
@@ -493,14 +477,14 @@ interface record {
      *
      * @restriction Only supported for records and fields where DLE (Direct List Editing) is supported
      *
-     * @param {Object} options
-     * @param {record.Type|record.CustomType|string} options.type record type
-     * @param {number|string} options.id record id
-     * @param {Object<string, *>} options.values field and value mapping to be submitted
-     * @param {Object} [options.options] additonal flags for submission
-     * @param {boolean} [options.options.enablesourcing=true] enable sourcing during record update
-     * @param {boolean} [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-     * @return {Promise<number>} id of submitted record
+     * @param options
+     * @param options.type record type
+     * @param options.id record id
+     * @param options.values field and value mapping to be submitted
+     * @param [options.options] additonal flags for submission
+     * @param [options.options.enablesourcing=true] enable sourcing during record update
+     * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @return id of submitted record
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      *
@@ -526,11 +510,10 @@ interface record {
      *
      * @governance 10 units
      *
-     * @param {Object} options
-     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
-     * @param {Record|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
-     * @return {void}
+     * @param options
+     * @param options.record record to be attached or object with the type and id of the record to be attached
+     * @param options.to the destination record where options.record will be attached to or object with the type and id of the destination record
+     * @param [options.attributes] name/value pairs containing attributes
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
      *
@@ -553,11 +536,10 @@ interface record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440821175}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440821175.html}
      *
-     * @param {Object} options
-     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be attached or object with the type and id of the record to be attached
-     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.to the destination record where options.record will be attached to or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
-     * @return {Promise<void>}
+     * @param options
+     * @param options.record record to be attached or object with the type and id of the record to be attached
+     * @param options.to the destination record where options.record will be attached to or object with the type and id of the destination record
+     * @param [options.attributes] name/value pairs containing attributes
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or to (and their type and id) are missing
      *
@@ -585,11 +567,10 @@ interface record {
      *
      * @governance 10 units
      *
-     * @param {Object} options
-     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
-     * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-     * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
-     * @return {void}
+     * @param options
+     * @param options.record record to be detached or object with type and id of the record to be detached
+     * @param options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+     * @param [options.attributes] name/value pairs containing attributes
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
      *
@@ -613,11 +594,10 @@ interface record {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440824016.html}
    *
-   * @param {Object} options
-   * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.record record to be detached or object with type and id of the record to be detached
-   * @param {Record|CurrentRecord|{type:Type|string, id:number|string}} options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-   * @param {Object<string, string|number>} [options.attributes] name/value pairs containing attributes
-   * @return {Promise<void>}
+   * @param options
+   * @param options.record record to be detached or object with type and id of the record to be detached
+   * @param options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+   * @param [options.attributes] name/value pairs containing attributes
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
    *
@@ -646,8 +626,6 @@ declare namespace record {
    * Enum for record Type
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273205732}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273205732.html}
-   *
-   * @enum {string}
    */
   export enum Type {
     ACCOUNT = 'account',
@@ -945,63 +923,49 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600364069}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600364069.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * Returns the label of the column
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600366751}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600366751.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
-    label: string;
+    readonly label: string;
 
     /**
      * Returns the internal ID of the standard or custom sublist that contains the column
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600369846}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600369846.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
-    sublistId: string;
+    readonly sublistId: string;
 
     /**
      * Returns the column type
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600370892}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600370892.html}
      *
-     * @type {format.Type}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2015.2
      */
-    type: format.Type | `${format.Type}`;
+    readonly type: format.Type | `${format.Type}`;
 
     /**
      * Indicates whether the column is disabled
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158592991246}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158592991246.html}
-     *
-     * @type {boolean}
      *
      * @since 2020.2
      */
@@ -1012,8 +976,6 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593019143}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593019143.html}
      *
-     * @type {boolean}
-     *
      * @since 2020.2
      */
     isDisplay: boolean;
@@ -1022,8 +984,6 @@ declare namespace record {
      * Indicates whether the column is mandatory
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593030499}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593030499.html}
-     *
-     * @type {boolean}
      *
      * @since 2020.2
      */
@@ -1034,8 +994,6 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593039336}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593039336.html}
      *
-     * @type {boolean}
-     *
      * @since 2020.2
      */
     isSortable: boolean;
@@ -1044,8 +1002,6 @@ declare namespace record {
      * Returns the object type name
      * @see Not Documented in NetSuite Help Center
      *
-     * @return {'sublist.Column'}
-     *
      * @since 2015.2
      */
     toString(): 'sublist.Column';
@@ -1053,8 +1009,6 @@ declare namespace record {
     /**
      * Convert to JSON object
      * @see Not Documented in NetSuite Help Center
-     *
-     * @return {Object<string, *>}
      *
      * @since 2015.2
      */
@@ -1075,10 +1029,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730768}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730768.html}
      *
-     * @param {Object} options
-     * @param {string} options.id macro id
-     * @param {Object<string, *>} [options.params] The macro arguments
-     * @return {{notifications: [], response: {}}}
+     * @param options
+     * @param options.id macro id
+     * @param [options.params] The macro arguments
      *
      * @since 2018.2
      */
@@ -1095,10 +1048,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730798}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730798.html}
      *
-     * @param {Object} options
-     * @param {string} options.id macro id
-     * @param {Object<string, *>} [options.params] The macro arguments
-     * @return {Promise<{notifications: [], response: {}}>}
+     * @param options
+     * @param options.id macro id
+     * @param [options.params] The macro arguments
      *
      * @since 2018.2
      */
@@ -1115,56 +1067,44 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731173}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731173.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * The label of the macro
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731186}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731186.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
-    label: string;
+    readonly label: string;
 
     /**
      * The description of the macro
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731199}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731199.html}
      *
-     * @type {string}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
-    description: string;
+    readonly description: string;
 
     /**
      * The defined attributes of the macro
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509731214}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509731214.html}
      *
-     * @type {Object}
-     *
-     * @readonly
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      *
      * @since 2018.2
      */
-    attributes: Object;
+    readonly attributes: Object;
 
     execute: {
       /**
@@ -1172,10 +1112,9 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730726}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730726.html}
        *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] The macro arguments
-       * @return {{notifications: [], response: {}}}
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] The macro arguments
        *
        * @since 2018.2
        */
@@ -1192,10 +1131,9 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509730748}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509730748.html}
        *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] The macro arguments
-       * @return {Promise<{notifications: [], response: {}}>}
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] The macro arguments
        *
        * @since 2018.2
        */
@@ -1212,8 +1150,6 @@ declare namespace record {
      * Returns the object type name
      * @see Not Documented in NetSuite Help Center
      *
-     * @return {'Macro'}
-     *
      * @since 2015.2
      */
     toString(): 'Macro';
@@ -1221,8 +1157,6 @@ declare namespace record {
     /**
      * Convert to JSON object
      * @see Not Documented in NetSuite Help Center
-     *
-     * @return {Object<string, *>}
      *
      * @since 2015.2
      */
@@ -1243,13 +1177,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296706656}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296706656.html}
      *
-     * @type {number}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    id: number;
+    readonly id: number;
 
     /**
      * The type of the record
@@ -1258,35 +1188,27 @@ declare namespace record {
      *
      * @restriction This property is not available for subrecords
      *
-     * @type {record.Type|record.CustomType|string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    type: record.Type | `${record.Type}` | record.CustomType | string;
+    readonly type: record.Type | `${record.Type}` | record.CustomType | string;
 
     /**
      * Indicates whether the record is in dynamic or standard mode
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296707316}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296707316.html}
      *
-     * @type {boolean}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    isDynamic: boolean;
+    readonly isDynamic: boolean;
 
     /**
      * Provides a macro to be executed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992196}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992196.html}
      *
-     * @param {Object} options
-     * @param {string} options.id macro id
-     * @return {Function} executor function for macro specified by options, or null if not found
+     * @param options
+     * @param options.id macro id
+     * @return executor function for macro specified by options, or null if not found
      *
      * @since 2018.2
      */
@@ -1299,7 +1221,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992211}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992211.html}
      *
-     * @return {Object<string, record.Macro>} a set of macros (@see Macro) defined on the record indexed by macroId
+     * @return a set of macros (@see Macro) defined on the record indexed by macroId
      *
      * @since 2018.2
      */
@@ -1312,10 +1234,9 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992174.html}
        *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] macro arguments
-       * @return {{notifications: [], response: {}}}
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] macro arguments
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
        *
@@ -1334,10 +1255,9 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510066072.html}
        *
-       * @param {Object} options
-       * @param {string} options.id macro id
-       * @param {Object<string, *>} [options.params] macro arguments
-       * @return {Promise<{notifications: [], response: {}}>}
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] macro arguments
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.id is missing or undefined
        *
@@ -1357,8 +1277,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273154686.html}
      *
-     * @param {string} fieldId
-     * @return {string|string[]|number|Date|boolean}
+     * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
@@ -1374,9 +1293,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273154686}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273154686.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {string|string[]|number|Date|boolean}
+     * @param options
+     * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
@@ -1392,10 +1310,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273155868.html}
      *
-     * @param {string} fieldId
-     * @param {FieldValue} value
-     * @param {boolean} [ignoreFieldChange=false] Ignore the field change script
-     * @return {Record} same object for chaining
+     * @param fieldId
+     * @param value
+     * @param [ignoreFieldChange=false] Ignore the field change script
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1412,11 +1330,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273155868}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273155868.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @param {FieldValue} options.value
-     * @param {boolean} [options.ignoreFieldChange=false] Ignore the field change script
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.fieldId
+     * @param options.value
+     * @param [options.ignoreFieldChange=false] Ignore the field change script
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1433,8 +1351,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273156769.html}
      *
-     * @param {string} fieldId
-     * @return {string}
+     * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1449,9 +1366,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273156769}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273156769.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {string}
+     * @param options
+     * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1466,13 +1382,13 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157034.html}
      *
-     * @param {string} fieldId
-     * @param {string|string[]} text ----- The text or texts to change the field value to.
+     * @param fieldId
+     * @param text ----- The text or texts to change the field value to.
      *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
      *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
      *     parameter accepts only a single string value.
-     * @param {boolean} [ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @return {Record} same object for chaining
+     * @param [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1489,14 +1405,14 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157034}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157034.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @param {string|string[]} options.text ----- The text or texts to change the field value to.
+     * @param options
+     * @param options.fieldId
+     * @param options.text ----- The text or texts to change the field value to.
      *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
      *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
      *     parameter accepts only a single string value.
-     * @param {boolean} [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @return {Record} same object for chaining
+     * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      *
@@ -1513,10 +1429,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157398.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {string|string[]|number|Date|boolean} value
-     * @return {number}
+     * @param sublistId
+     * @param fieldId
+     * @param value
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      *
@@ -1533,11 +1448,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157398}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157398.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {string|string[]|number|Date|boolean} options.value
-     * @return {number}
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.value
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
      *
@@ -1554,10 +1468,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166148.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {string|string[]|number|Date|boolean}
+     * @param sublistId
+     * @param fieldId
+     * @param line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1576,11 +1489,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166148}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166148.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {string|string[]|number|Date|boolean}
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1599,11 +1511,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166777.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @param {FieldValue} value
-     * @return {Record} same object for chaining
+     * @param sublistId
+     * @param fieldId
+     * @param line
+     * @param value
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1622,12 +1534,12 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273166777}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273166777.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @param {FieldValue} options.value
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
+     * @param options.value
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1646,10 +1558,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167233.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {string}
+     * @param sublistId
+     * @param fieldId
+     * @param line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1668,11 +1579,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167233}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167233.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {string}
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1691,11 +1601,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167591.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @param {string} text
-     * @return {Record} same object for chaining
+     * @param sublistId
+     * @param fieldId
+     * @param line
+     * @param text
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1714,12 +1624,12 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273167591}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273167591.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @param {string} options.text
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
+     * @param options.text
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
@@ -1738,8 +1648,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157892.html}
      *
-     * @param {string} sublistId
-     * @return {number}
+     * @param sublistId
      *
      * @since 2015.2
      */
@@ -1752,9 +1661,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273157892}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273157892.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @return {number}
+     * @param options
+     * @param options.sublistId
      *
      * @since 2015.2
      */
@@ -1767,10 +1675,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273158210.html}
      *
-     * @param {string} sublistId
-     * @param {number} line
-     * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
-     * @return {Record} same object for chaining
+     * @param sublistId
+     * @param line
+     * @param [ignoreRecalc=false] ignore recalc scripting
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
@@ -1791,11 +1699,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273158210}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273158210.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {number} options.line
-     * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId
+     * @param options.line
+     * @param [options.ignoreRecalc=false] ignore recalc scripting
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
@@ -1816,10 +1724,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273165479.html}
      *
-     * @param {string} sublistId
-     * @param {number} line
-     * @param {boolean} [ignoreRecalc=false] ignore recalc scripting
-     * @return {Record} same object for chaining
+     * @param sublistId
+     * @param line
+     * @param [ignoreRecalc=false] ignore recalc scripting
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
@@ -1840,11 +1748,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273165479}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273165479.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {number} options.line
-     * @param {boolean} [options.ignoreRecalc=false] ignore recalc scripting
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId
+     * @param options.line
+     * @param [options.ignoreRecalc=false] ignore recalc scripting
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
@@ -1865,8 +1773,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600438392.html}
      *
-     * @param {string} fieldId
-     * @return {boolean}
+     * @param fieldId
      *
      * @since 2015.2
      */
@@ -1879,9 +1786,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600438392}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600438392.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {boolean}
+     * @param options
+     * @param options.fieldId
      *
      * @since 2015.2
      */
@@ -1894,8 +1800,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709996.html}
      *
-     * @param {string} fieldId
-     * @return {Record} client-side subrecord implementation
+     * @param fieldId
+     * @return client-side subrecord implementation
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
@@ -1912,9 +1818,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296709996}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296709996.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {Record} client-side subrecord implementation
+     * @param options
+     * @param options.fieldId
+     * @return client-side subrecord implementation
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
@@ -1931,8 +1837,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710374.html}
      *
-     * @param {string} fieldId
-     * @return {Record} same object for chaining
+     * @param fieldId
+     * @return same object for chaining
      *
      * @since 2015.2
      */
@@ -1945,9 +1851,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296710374}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296710374.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.fieldId
+     * @return same object for chaining
      *
      * @since 2015.2
      */
@@ -1961,10 +1867,9 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600435332.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {boolean}
+     * @param sublistId
+     * @param fieldId
+     * @param line
      *
      * @since 2015.2
      */
@@ -1980,11 +1885,10 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600435332.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {boolean}
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
      *
      * @since 2015.2
      */
@@ -2000,10 +1904,10 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296711506.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {Record} client-side subrecord implementation
+     * @param sublistId
+     * @param fieldId
+     * @param line
+     * @return client-side subrecord implementation
      *
      * @since 2015.2
      */
@@ -2019,11 +1923,11 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296711506.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {Record} client-side subrecord implementation
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
+     * @return client-side subrecord implementation
      *
      * @since 2015.2
      */
@@ -2039,10 +1943,10 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712585.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {Record} same object for chaining
+     * @param sublistId
+     * @param fieldId
+     * @param line
+     * @return same object for chaining
      *
      * @since 2015.2
      */
@@ -2058,11 +1962,11 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296712585.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
+     * @return same object for chaining
      *
      * @since 2015.2
      */
@@ -2077,8 +1981,6 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599718205}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599718205.html}
      *
-     * @return {string[]}
-     *
      * @since 2015.2
      */
     getSublists(): string[];
@@ -2088,8 +1990,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599715398.html}
      *
-     * @param {string} sublistId
-     * @return {Sublist}
+     * @param sublistId
      *
      * @since 2015.2
      */
@@ -2102,9 +2003,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599715398}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599715398.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @return {Sublist}
+     * @param options
+     * @param options.sublistId
      *
      * @since 2015.2
      */
@@ -2117,8 +2017,6 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152646}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152646.html}
      *
-     * @return {string[]}
-     *
      * @since 2015.2
      */
     getFields(): string[];
@@ -2128,8 +2026,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153320.html}
      *
-     * @param {string} fieldId
-     * @return {Field}
+     * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      *
@@ -2144,9 +2041,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153320}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153320.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {Field}
+     * @param options
+     * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      *
@@ -2161,8 +2057,7 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
-     * @param {string} sublistId
-     * @return {string[]}
+     * @param sublistId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
      *
@@ -2177,9 +2072,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @return {string[]}
+     * @param options
+     * @param options.sublistId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
      *
@@ -2194,10 +2088,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153882.html}
      *
-     * @param {string} sublistId
-     * @param {string} fieldId
-     * @param {number} line
-     * @return {Field}
+     * @param sublistId
+     * @param fieldId
+     * @param line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
@@ -2215,11 +2108,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273153882}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273153882.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId
-     * @param {string} options.fieldId
-     * @param {number} options.line
-     * @return {Field}
+     * @param options
+     * @param options.sublistId
+     * @param options.fieldId
+     * @param options.line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
@@ -2237,10 +2129,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599679237.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @return {Field}
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2257,11 +2148,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599679237}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599679237.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @return {Field}
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2278,11 +2168,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599708431.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @param {number} line the line number for the field
-     * @return {Field}
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
+     * @param line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2300,12 +2189,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599708431}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599708431.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {number} options.line the line number for the field
-     * @return {Field}
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
+     * @param options.line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2323,10 +2211,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599703938.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @return {string|string[]|number|Date|boolean}
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2343,11 +2230,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599703938}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599703938.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @return {string|string[]|number|Date|boolean}
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2364,11 +2250,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600547643.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @param {FieldValue} value the value to set it to
-     * @return {Record} same object for chaining
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
+     * @param value the value to set it to
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2386,13 +2272,13 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600547643}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600547643.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {FieldValue} options.value the value to set it to
-     * @param {boolean} [options.ignoreFieldChange] Ignore the field change script (default false)
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
+     * @param options.value the value to set it to
+     * @param [options.ignoreFieldChange] Ignore the field change script (default false)
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2411,11 +2297,10 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599712373.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @param {number} line the line number for the field
-     * @return {string|string[]|number|Date|boolean}
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
+     * @param line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2433,12 +2318,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599712373}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599712373.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {number} options.line the line number for the field
-     * @return {string|string[]|number|Date|boolean}
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
+     * @param options.line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2457,12 +2341,12 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600551458.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {number} column the column number for the field
-     * @param {number} line the line number for the field
-     * @param {FieldValue} value the value to set it to
-     * @return {Record} same object for chaining
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param column the column number for the field
+     * @param line the line number for the field
+     * @param value the value to set it to
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2482,13 +2366,13 @@ declare namespace record {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600551458.html}
      * @restriction only available in deferred dynamic record
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {number} options.column the column number for the field
-     * @param {number} options.line the line number for the field
-     * @param {FieldValue} options.value the value to set it to
-     * @return {Record} same object for chaining
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.column the column number for the field
+     * @param options.line the line number for the field
+     * @param options.value the value to set it to
+     * @return same object for chaining
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2507,11 +2391,11 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4597993860.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @param {string|string[]|number|Date|boolean} value the value to search for
-     * @param {number} column the column number for the field
-     * @return {number} line number
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
+     * @param value the value to search for
+     * @param column the column number for the field
+     * @return line number
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2529,12 +2413,12 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4597993860}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4597993860.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @param {string|string[]|number|Date|boolean} options.value the value to search for
-     * @param {number} options.column the column number for the field
-     * @return {number} line number
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
+     * @param options.value the value to search for
+     * @param options.column the column number for the field
+     * @return line number
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2552,9 +2436,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599668537.html}
      *
-     * @param {string} sublistId the id of sublist in which the matrix is in.
-     * @param {string} fieldId the id of the matrix field
-     * @return {number}
+     * @param sublistId the id of sublist in which the matrix is in.
+     * @param fieldId the id of the matrix field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2570,10 +2453,9 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599668537}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599668537.html}
      *
-     * @param {Object} options
-     * @param {string} options.sublistId the id of sublist in which the matrix is in.
-     * @param {string} options.fieldId the id of the matrix field
-     * @return {number}
+     * @param options
+     * @param options.sublistId the id of sublist in which the matrix is in.
+     * @param options.fieldId the id of the matrix field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      *
@@ -2588,8 +2470,6 @@ declare namespace record {
      * Returns the object type name
      * @see Not Documented in NetSuite Help Center
      *
-     * @return {'standard record'}
-     *
      * @since 2015.2
      */
     toString(): 'standard record';
@@ -2597,8 +2477,6 @@ declare namespace record {
     /**
      * Convert to JSON object
      * @see Not Documented in NetSuite Help Center
-     *
-     * @return {Object<string, *>}
      *
      * @since 2015.2
      */
@@ -2616,10 +2494,10 @@ declare namespace record {
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        *
-       * @param {Object} [options]
-       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-       * @return {number} id of submitted record
+       * @param [options]
+       * @param [options.enableSourcing=false] enable sourcing during record update
+       * @param [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return id of submitted record
        *
        * @since 2015.2
        */
@@ -2635,9 +2513,9 @@ declare namespace record {
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        *
-       * @param {boolean} [enableSourcing=false] enable sourcing during record update
-       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
-       * @return {number} id of submitted record
+       * @param [enableSourcing=false] enable sourcing during record update
+       * @param [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @return id of submitted record
        *
        * @since 2015.2
        */
@@ -2651,11 +2529,11 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
-       * @param {Object} [options]
-       * @param {boolean} [options.enableSourcing=false] enable sourcing during record update
-       * @param {boolean} [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @param [options]
+       * @param [options.enableSourcing=false] enable sourcing during record update
+       * @param [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
        *
-       * @return {Promise<number>} id of submitted record
+       * @return id of submitted record
        *
        * @since 2015.2
        */
@@ -2669,10 +2547,10 @@ declare namespace record {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
-       * @param {boolean} [enableSourcing=false] enable sourcing during record update
-       * @param {boolean} [ignoreMandatoryFields=false] ignore mandatory field during record submission
+       * @param [enableSourcing=false] enable sourcing during record update
+       * @param [ignoreMandatoryFields=false] ignore mandatory field during record submission
        *
-       * @return {Promise<number>} id of submitted record
+       * @return id of submitted record
        *
        * @since 2015.2
        */
@@ -2693,76 +2571,54 @@ declare namespace record {
   export interface Sublist {
 
     /**
-     *
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600577122}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600577122.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * Returns the sublist type
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600594177}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600594177.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    type: Lowercase<serverWidget.SublistType>;
+    readonly type: Lowercase<serverWidget.SublistType>;
 
     /**
      * A flag to indicate whether or not the sublist supports multi-line buffer feature
      * @see Not Documented in NetSuite Help Center
      *
-     * @type {boolean}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    isMultilineEditable: boolean;
+    readonly isMultilineEditable: boolean;
 
     /**
      * Indicates whether the sublist has changed on the record form
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600574626}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600574626.html}
      *
-     * @type {boolean}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    isChanged: boolean;
+    readonly isChanged: boolean;
 
     /**
      * Indicates whether the sublist is displayed on the record form
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600593345}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600593345.html}
      *
-     * @type {boolean}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    isDisplay: boolean;
+    readonly isDisplay: boolean;
 
     /**
      * Returns a column in the sublist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600579417.html}
      *
-     * @param {string} fieldId
-     * @return {record.Column}
+     * @param fieldId
      *
      * @since 2015.2
      */
@@ -2775,9 +2631,8 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4600579417}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4600579417.html}
      *
-     * @param {Object} options
-     * @param {string} options.fieldId
-     * @return {record.Column}
+     * @param options
+     * @param options.fieldId
      *
      * @since 2015.2
      */
@@ -2789,8 +2644,6 @@ declare namespace record {
      * Returns the object type name
      * @see Not Documented in NetSuite Help Center
      *
-     * @return {'sublist.Sublist'}
-     *
      * @since 2015.2
      */
     toString(): 'sublist.Sublist';
@@ -2798,8 +2651,6 @@ declare namespace record {
     /**
      * Convert to JSON object
      * @see Not Documented in NetSuite Help Center
-     *
-     * @return {Object<string, *>}
      *
      * @since 2015.2
      */
@@ -2820,59 +2671,41 @@ declare namespace record {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435738555}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435738555.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    label: string;
+    readonly label: string;
 
     /**
      * Returns the internal ID of a standard or custom body or sublist field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754429}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435754429.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    id: string;
+    readonly id: string;
 
     /**
      * Return type of the field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435754577}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435754577.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    type: Lowercase<serverWidget.FieldType>;
+    readonly type: Lowercase<serverWidget.FieldType>;
 
     /**
      * Returns the sublist ID if this field is a sublist field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834774974}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4834774974.html}
      *
-     * @type {string}
-     *
-     * @readonly
-     *
      * @since 2015.2
      */
-    sublistId?: string;
+    readonly sublistId?: string;
 
     /**
      * Returns true if the standard or custom field is mandatory on the record form or false otherwise
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4435755588}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4435755588.html}
-     *
-     * @type {boolean}
      *
      * @since 2015.2
      */
@@ -2882,8 +2715,6 @@ declare namespace record {
      * Returns the object type name
      * @see Not Documented in NetSuite Help Center
      *
-     * @return {'Field'}
-     *
      * @since 2015.2
      */
     toString(): 'Field';
@@ -2891,8 +2722,6 @@ declare namespace record {
     /**
      * Convert to JSON object
      * @see Not Documented in NetSuite Help Center
-     *
-     * @return {Object<string, *>}
      *
      * @since 2015.2
      */
