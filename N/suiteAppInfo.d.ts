@@ -15,9 +15,8 @@ interface suiteAppInfo {
    *
    * @governance 5 units
    *
-   * @param {Object} options
-   * @param {number|string} options.bundleId
-   * @return {boolean}
+   * @param options
+   * @param options.bundleId
    */
   isBundleInstalled(options: {
     bundleId: number | string,
@@ -30,9 +29,8 @@ interface suiteAppInfo {
    *
    * @governance 5 units
    *
-   * @param {Object} options
-   * @param {number|string} options.suiteAppId
-   * @return {boolean}
+   * @param options
+   * @param options.suiteAppId
    */
   isSuiteAppInstalled(options: {
     suiteAppId: number | string,
@@ -45,9 +43,8 @@ interface suiteAppInfo {
    *
    * @governance 10 units
    *
-   * @param {Object} options
-   * @param {string[]} options.scriptsIds - The list of script ids
-   * @return {Object<string, number[]>}
+   * @param options
+   * @param options.scriptsIds - The list of script ids
    */
   listBundlesContainingScripts<ID extends string>(options: {
     scriptsIds: ID[],
@@ -61,9 +58,8 @@ interface suiteAppInfo {
    *
    * @governance 10 units
    *
-   * @param {Object} options
-   * @param {string[]} options.scriptsIds - The list of script ids
-   * @return {Object<string, string|null>}
+   * @param options
+   * @param options.scriptsIds - The list of script ids
    */
   listSuiteAppsContainingScripts<ID extends string>(options: {
     scriptsIds: ID[],
@@ -75,8 +71,6 @@ interface suiteAppInfo {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_160236062593.html}
    *
    * @governance 10 units
-   *
-   * @return {suiteAppInfo.Bundle[]}
    */
   listInstalledBundles(): suiteAppInfo.Bundle[];
 
@@ -86,25 +80,23 @@ interface suiteAppInfo {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_160236082257.html}
    *
    * @governance 10 units
-   *
-   * @return {suiteAppInfo.SuiteApp[]}
    */
   listInstalledSuiteApps(): suiteAppInfo.SuiteApp[];
 }
 
 declare namespace suiteAppInfo {
 
-  interface Publisher {
+  export interface Publisher {
     id: string;
     name: string;
   }
 
-  interface InstalledBy {
+  export interface InstalledBy {
     id: number;
     name: string;
   }
 
-  interface Bundle {
+  export interface Bundle {
     id: number;
     name: string;
     version: string;
@@ -117,7 +109,7 @@ declare namespace suiteAppInfo {
     installedBy: InstalledBy;
   }
 
-  interface SuiteApp {
+  export interface SuiteApp {
     appId: string;
     publisherId: string;
     name: string;
