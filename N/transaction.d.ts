@@ -9,52 +9,54 @@
  * @NApiVersion 2.x
  */
 interface transaction {
-
-  /**
-   * Method used to void a transaction record object and return an id that indicates the type of void performed
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4413165692.html}
-   *
-   * @param {Object} options
-   * @param {transaction.Type|string} options.type record type to be voided
-   * @param {number|string} options.id record id to be voided
-   * @return {number} the id is the voided record or new reverse journal entry based on preference
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
-   * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
-   * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
-   *
-   * @since 2015.2
-   */
-  void(options: {
-    type: transaction.Type | `${transaction.Type}` | string,
-    id: number | string,
-  }): number;
-}
-
-declare namespace transaction {
-
-  /*export interface void {
   
-    /!**
-     * Method used to void a transaction record object asynchronously and return an ID that indicates the type of void performed
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440850256.html}
+  void: {
+
+    /**
+     * Method used to void a transaction record object and return an id that indicates the type of void performed
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4413165692.html}
      *
      * @param {Object} options
-     * @param {string} options.type record type to be voided
+     * @param {transaction.Type|string} options.type record type to be voided
      * @param {number|string} options.id record id to be voided
-     * @return {Promise<number>} the id is the voided record or new reverse journal entry based on preference
+     * @return {number} the id is the voided record or new reverse journal entry based on preference
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
      * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
      *
      * @since 2015.2
-     *!/
-    promise(): Promise<number>
-  }*/
+     */
+    (options: {
+      type: transaction.Type | `${transaction.Type}` | string,
+      id: number | string,
+    }): number;
 
+    /**
+     * Method used to void a transaction record object and return an id that indicates the type of void performed
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440850256.html}
+     *
+     * @param {Object} options
+     * @param {transaction.Type|string} options.type record type to be voided
+     * @param {number|string} options.id record id to be voided
+     * @return {number} the id is the voided record or new reverse journal entry based on preference
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
+     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
+     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if record does not exist
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      type: transaction.Type | `${transaction.Type}` | string,
+      id: number | string,
+    }): Promise<number>;
+  };
+}
+
+declare namespace transaction {
 
   /**
    * Enumeration that holds the string values for supported transaction record types
