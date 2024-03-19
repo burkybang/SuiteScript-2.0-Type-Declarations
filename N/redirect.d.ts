@@ -19,16 +19,13 @@ interface redirect {
    * @governance 0 units
    * @restriction Can only direct to external URL by suitelet without login
    *
-   * @param {Object} options
-   * @param {string} options.url
-   * @param {Object<string, *>} [options.parameters]
-   * @return {void}
+   * @param options
+   * @param options.url
+   * @param [options.parameters]
    */
   redirect(options: {
     url: string,
-    parameters?: {
-      [p: string]: any,
-    },
+    parameters?: Record<string, string | number>,
   }): void;
 
   /**
@@ -39,20 +36,17 @@ interface redirect {
    * @governance 0 units
    * @restriction Suitelet and User Event scripts only
    *
-   * @param {Object} options
-   * @param {string} options.scriptId  script Id
-   * @param {string} options.deploymentId deployment Id
-   * @param {boolean} [options.isExternal] default to false indicate it is external Suitelet URL
-   * @param {Object<string, *>} [options.parameters]
-   * @return {void}
+   * @param options
+   * @param options.scriptId  script Id
+   * @param options.deploymentId deployment Id
+   * @param [options.isExternal] default to false indicate it is external Suitelet URL
+   * @param [options.parameters]
    */
   toSuitelet(options: {
     scriptId: string,
     deploymentId: string,
     isExternal?: boolean,
-    parameters?: {
-      [p: string]: any,
-    },
+    parameters?: Record<string, string | number>,
   }): void;
 
   /**
@@ -63,20 +57,17 @@ interface redirect {
    * @governance 0 units
    * @restriction Suitelet and User Event scripts only
    *
-   * @param {Object} options
-   * @param {record.Type|record.CustomType|string} options.type record type
-   * @param {number|string} options.id  record Id
-   * @param {boolean} [options.isEditMode] default to false
-   * @param {Object<string, *>} [options.parameters]
-   * @return {void}
+   * @param options
+   * @param options.type record type
+   * @param options.id  record Id
+   * @param [options.isEditMode] default to false
+   * @param [options.parameters]
    */
   toRecord(options: {
     type: record.Type | `${record.Type}` | record.CustomType | string,
     id?: number | string,
     isEditMode?: boolean,
-    parameters?: {
-      [p: string]: any,
-    },
+    parameters?: Record<string, string | number>,
   }): void;
 
   /**
@@ -87,16 +78,13 @@ interface redirect {
    * @governance 0 units
    * @restriction Suitelet and User Event scripts only
    *
-   * @param {Object} options
-   * @param {number|string} options.id task Id
-   * @param {Object<string, *>} [options.parameters]
-   * @return {void}
+   * @param options
+   * @param options.id task Id
+   * @param [options.parameters]
    */
   toTaskLink(options: {
     id: number | string,
-    parameters?: {
-      [p: string]: any,
-    },
+    parameters?: Record<string, string | number>,
   }): void;
 
   /**
@@ -107,9 +95,8 @@ interface redirect {
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
    *
-   * @param {Object} options
-   * @param {number|string} options.id search id
-   * @return {void}
+   * @param options
+   * @param options.id search id
    */
   toSavedSearch(options: {
     id: number | string,
@@ -123,9 +110,8 @@ interface redirect {
    * @governance 5 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
    *
-   * @param {Object} options
-   * @param {number|string} options.id search id
-   * @return {void}
+   * @param options
+   * @param options.id search id
    */
   toSavedSearchResult(options: {
     id: number | string,
@@ -139,9 +125,8 @@ interface redirect {
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
    *
-   * @param {Object} options
-   * @param {search.Search} options.search
-   * @return {void}
+   * @param options
+   * @param options.search
    */
   toSearch(options: {
     search: search.Search,
@@ -155,9 +140,8 @@ interface redirect {
    * @governance 0 units
    * @restriction Supppprted only by afterSubmit user event scripts and client scripts
    *
-   * @param {Object} options
-   * @param {search.Search} options.search
-   * @return {void}
+   * @param options
+   * @param options.search
    */
   toSearchResult(options: {
     search: search.Search,
