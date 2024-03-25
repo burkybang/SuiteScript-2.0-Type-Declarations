@@ -20,18 +20,17 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.SCHEDULED_SCRIPT} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {number|string} options.scriptId
-   * @param {string} [options.deploymentId]
-   * @param {Object<string, string|string[]|number|Date|boolean>} [options.params]
-   * @return {task.ScheduledScriptTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.scriptId
+   * @param [options.deploymentId]
+   * @param [options.params]
    */
   create(options: {
     taskType: task.TaskType.SCHEDULED_SCRIPT | `${task.TaskType.SCHEDULED_SCRIPT}`,
     scriptId: number | `custscript${string}` | string,
     deploymentId?: `custdeploy${string}` | string,
-    params?: { [p: string]: string | string[] | number | Date | boolean },
+    params?: Record<string, string | string[] | number | Date | boolean>,
   }): task.ScheduledScriptTask;
 
   /**
@@ -39,18 +38,17 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.MAP_REDUCE} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {number|string} options.scriptId
-   * @param {string} [options.deploymentId]
-   * @param {Object<string, string|string[]|number|Date|boolean>} [options.params]
-   * @return {task.ScheduledScriptTask|task.MapReduceScriptTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.scriptId
+   * @param [options.deploymentId]
+   * @param [options.params]
    */
   create(options: {
     taskType: task.TaskType.MAP_REDUCE | `${task.TaskType.MAP_REDUCE}`,
     scriptId: number | `custscript${string}` | string,
     deploymentId?: `custdeploy${string}` | string,
-    params?: { [p: string]: string | string[] | number | Date | boolean },
+    params?: Record<string, string | string[] | number | Date | boolean>,
   }): task.MapReduceScriptTask;
 
   /**
@@ -58,19 +56,18 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.CSV_IMPORT} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {file.File|string} [options.importFile]
-   * @param {Object<string, file.File|string>} [options.linkedFiles]
-   * @param {number|string} options.mappingId
-   * @param {string} [options.name]
-   * @param {number|string} [options.queueId]
-   * @return {task.CsvImportTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param [options.importFile]
+   * @param [options.linkedFiles]
+   * @param options.mappingId
+   * @param [options.name]
+   * @param [options.queueId]
    */
   create(options: {
     taskType: task.TaskType.CSV_IMPORT | `${task.TaskType.CSV_IMPORT}`,
     importFile?: file.File | string,
-    linkedFiles?: { [p: string]: file.File | string },
+    linkedFiles?: Record<string, file.File | string>,
     mappingId: number | string,
     name?: string,
     queueId?: number | string,
@@ -81,14 +78,13 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.ENTITY_DEDUPLICATION} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {task.DedupeMode} options.dedupeMode
-   * @param {task.DedupeEntityType} options.entityType
-   * @param {number|string} [options.masterRecordId]
-   * @param {task.MasterSelectionMode} [options.masterSelectionMode]
-   * @param {(number|string)[]} options.recordIds
-   * @return {task.EntityDeduplicationTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.dedupeMode
+   * @param options.entityType
+   * @param [options.masterRecordId]
+   * @param [options.masterSelectionMode]
+   * @param options.recordIds
    */
   create(options: {
     taskType: task.TaskType.ENTITY_DEDUPLICATION | `${task.TaskType.ENTITY_DEDUPLICATION}`,
@@ -104,17 +100,16 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.WORKFLOW_TRIGGER} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {Object<string, string|string[]|number|Date|boolean>} [options.params]
-   * @param {number|string} options.recordId
-   * @param {record.Type|record.CustomType|string} options.recordType
-   * @param {number|string} options.workflowId
-   * @return {task.WorkflowTriggerTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param [options.params]
+   * @param options.recordId
+   * @param options.recordType
+   * @param options.workflowId
    */
   create(options: {
     taskType: task.TaskType.WORKFLOW_TRIGGER | `${task.TaskType.WORKFLOW_TRIGGER}`,
-    params?: { [p: string]: string | string[] | number | Date | boolean },
+    params?: Record<string, string | string[] | number | Date | boolean>,
     recordId: number | string,
     recordType: record.Type | `${record.Type}` | record.CustomType | string,
     workflowId: number | string,
@@ -125,11 +120,10 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.SEARCH} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {number|string} options.savedSearchId
-   * @param {number|string} options.fileId
-   * @return {task.SearchTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.savedSearchId
+   * @param options.fileId
    */
   create(options: {
     taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
@@ -142,11 +136,10 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.SEARCH} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {number|string} options.savedSearchId
-   * @param {number|string} options.filePath
-   * @return {task.SearchTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.savedSearchId
+   * @param options.filePath
    */
   create(options: {
     taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
@@ -159,11 +152,10 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.QUERY} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {query.Query} options.query
-   * @param {number|string} options.fileId
-   * @return {task.SuiteQLTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.query
+   * @param options.fileId
    */
   create(options: {
     taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
@@ -176,11 +168,10 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.QUERY} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {query.Query} options.query
-   * @param {number|string} options.filePath
-   * @return {task.SuiteQLTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.query
+   * @param options.filePath
    */
   create(options: {
     taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
@@ -193,12 +184,11 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.SuiteQLTask} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {string} options.query
-   * @param {(string|number|boolean)[]} [options.params]
-   * @param {number|string} options.fileId
-   * @return {task.SuiteQLTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.query
+   * @param [options.params]
+   * @param options.fileId
    */
   create(options: {
     taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
@@ -212,12 +202,11 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.SuiteQLTask} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {string} options.query
-   * @param {(string|number|boolean)[]} [options.params]
-   * @param {number|string} options.filePath
-   * @return {task.SuiteQLTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.query
+   * @param [options.params]
+   * @param options.filePath
    */
   create(options: {
     taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
@@ -231,13 +220,12 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.RECORD_ACTION} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {record.Type|record.CustomType|string} options.recordType
-   * @param {action.ActionID} options.action
-   * @param {string} [options.condition]
-   * @param {Object<string, string|string[]|number|Date|boolean>[]} options.params
-   * @return {task.WorkflowTriggerTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.recordType
+   * @param options.action
+   * @param [options.condition]
+   * @param options.params
    */
   create(options: {
     taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
@@ -255,13 +243,12 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
    *
-   * @param {Object} options
-   * @param {task.TaskType.RECORD_ACTION} options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param {record.Type|record.CustomType|string} options.recordType
-   * @param {action.ActionID} options.action
-   * @param {string} [options.condition]
-   * @param {(recordId:number|string) => Object<string, string|string[]|number|Date|boolean>} options.paramCallback
-   * @return {task.WorkflowTriggerTask}
+   * @param options
+   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+   * @param options.recordType
+   * @param options.action
+   * @param [options.condition]
+   * @param options.paramCallback
    */
   create(options: {
     taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
@@ -279,12 +266,8 @@ interface task {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345805891}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345805891.html}
    *
-   * @typedef task.TaskStatus
-   * @property {string} status
-   *
-   * @param {Object} options
-   * @param {string} options.taskId
-   * @return {task.ScheduledScriptTaskStatus|task.MapReduceScriptTaskStatus|task.CsvImportTaskStatus|task.EntityDeduplicationTaskStatus|task.WorkflowTriggerTaskStatus|task.SearchTaskStatus|task.QueryTaskStatus|task.SuiteQLTaskStatus|task.RecordActionTaskStatus}
+   * @param options
+   * @param options.taskId
    */
   checkStatus(options: {
     taskId: string,
@@ -305,8 +288,6 @@ declare namespace task {
    * Holds the string values for the types of task objects you can create using `task.create(options)`
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345806937}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345806937.html}
-   *
-   * @enum {string}
    */
   export enum TaskType {
     SCHEDULED_SCRIPT = 'SCHEDULED_SCRIPT',
@@ -324,8 +305,6 @@ declare namespace task {
    * Holds the string values for possible task statuses
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345807357}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345807357.html}
-   *
-   * @enum {string}
    */
   export enum TaskStatus {
     PENDING = 'PENDING',
@@ -338,8 +317,6 @@ declare namespace task {
    * Holds the string values for supported master selection modes when merging duplicate records with `task.EntityDeduplicationTask`
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345807507}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345807507.html}
-   *
-   * @enum {string}
    */
   export enum MasterSelectionMode {
     CREATED_EARLIEST = 'CREATED_EARLIEST',
@@ -352,8 +329,6 @@ declare namespace task {
    * Holds the string values for the available deduplication modes when merging duplicate records with `task.EntityDeduplicationTask`
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345807658}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345807658.html}
-   *
-   * @enum {string}
    */
   export enum DedupeMode {
     MERGE = 'MERGE',
@@ -366,8 +341,6 @@ declare namespace task {
    * Holds the string values for entity types for which you can merge duplicate records with `task.EntityDeduplicationTask`
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345807845}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345807845.html}
-   *
-   * @enum {string}
    */
   export enum DedupeEntityType {
     CUSTOMER = 'CUSTOMER',
@@ -382,8 +355,6 @@ declare namespace task {
    * Holds the string values for possible stages in `task.MapReduceScriptTask` for a map/reduce script
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345808152}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345808152.html}
-   *
-   * @enum {string}
    */
   export enum MapReduceStage {
     GET_INPUT = 'GET_INPUT',
@@ -397,8 +368,6 @@ declare namespace task {
    * Holds the string values for the possible record action conditions used in `RecordActionTask.condition`
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128916}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128916.html}
-   *
-   * @enum {string}
    */
   export enum ActionCondition {
     ALL_QUALIFIED_INSTANCES = 'ALL_QUALIFIED_INSTANCES',
@@ -417,8 +386,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158220774438}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158220774438.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -426,8 +393,6 @@ declare namespace task {
      * The Internal ID or Script ID of the Script record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459331604003}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459331604003.html}
-     *
-     * @type {number | string}
      */
     scriptId: number | `custscript${string}` | string;
 
@@ -435,8 +400,6 @@ declare namespace task {
      * The Internal ID or Script ID of the Script Deployment record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46258483886}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46258483886.html}
-     *
-     * @type {string}
      */
     deploymentId: `custdeploy${string}` | string;
 
@@ -445,10 +408,8 @@ declare namespace task {
      * Used to dynamically pass context to the script
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459205261229}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459205261229.html}
-     *
-     * @type {Object<string, string>}
      */
-    params: { [p: string]: string };
+    params: Record<string, string>;
 
     /**
      * Submits the task and returns an unique ID
@@ -456,7 +417,7 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460871520995.html}
      *
      * @governance 20 units
-     * @return {string} taskId
+     * @return taskId
      *
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
@@ -464,14 +425,11 @@ declare namespace task {
 
     /**
      * Returns the object type name (task.ScheduledScriptTask)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -490,59 +448,44 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158220908669}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158220908669.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Script ID
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460720153807}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460720153807.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    scriptId: number;
+    readonly scriptId: number;
 
     /**
      * Script deployment ID
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454809204101}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454809204101.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    deploymentId: `custdeploy${string}` | string;
+    readonly deploymentId: `custdeploy${string}` | string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458090454100}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458090454100.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.ScheduledScriptTaskStatus).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -560,8 +503,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158227558782}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158227558782.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -569,8 +510,6 @@ declare namespace task {
      * The Internal ID or Script ID of the Script record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456008239745}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456008239745.html}
-     *
-     * @type {number|string}
      */
     scriptId: number | `custscript${string}` | string;
 
@@ -578,8 +517,6 @@ declare namespace task {
      * The Internal ID or Script ID of the Script Deployment record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456020446776}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456020446776.html}
-     *
-     * @type {string}
      */
     deploymentId: `custdeploy${string}` | string;
 
@@ -588,10 +525,8 @@ declare namespace task {
      * Used to dynamically pass context to the script
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457650390624}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457650390624.html}
-     *
-     * @type {Object<string, string>}
      */
-    params: { [p: string]: string };
+    params: Record<string, string>;
 
     /**
      * Submits the task and returns an unique ID
@@ -599,20 +534,17 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453639770507.html}
      *
      * @governance 20 units
-     * @return {string} taskId
+     * @return taskId
      */
     submit(): string;
 
     /**
      * Returns the object type name (task.MapReduceScriptTask).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -631,60 +563,45 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158227552252}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158227552252.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Script ID
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453886657714}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453886657714.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    scriptId: number;
+    readonly scriptId: number;
 
     /**
      * Script deployment ID
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453416076659}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453416076659.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    deploymentId: `custdeploy${string}` | string;
+    readonly deploymentId: `custdeploy${string}` | string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457534118651}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457534118651.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the current stage of the Map/Reduce script. Returns one of the task.MapReduceStage enum values.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460753112791}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460753112791.html}
      *
-     * @type {task.MapReduceStage}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    stage: task.MapReduceStage | `${task.MapReduceStage}`;
+    readonly stage: task.MapReduceStage | `${task.MapReduceStage}`;
 
     /**
      * Get percentage of completion for the current stage. Note that INPUT and SUMMARIZE are either 0% or 100% complete at any given time.
@@ -692,7 +609,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456839538573.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getPercentageCompleted(): number;
 
@@ -702,7 +618,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454059082030.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getPendingMapCount(): number;
 
@@ -712,7 +627,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459523559569.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getTotalMapCount(): number;
 
@@ -722,7 +636,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456033874511.html}
      *
      * @governance 25 units
-     * @return {number}
      */
     getPendingMapSize(): number;
 
@@ -732,7 +645,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453019348144.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getPendingReduceCount(): number;
 
@@ -742,7 +654,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458279663085.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getTotalReduceCount(): number;
 
@@ -752,7 +663,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454281860351.html}
      *
      * @governance 25 units
-     * @return {number}
      */
     getPendingReduceSize(): number;
 
@@ -762,7 +672,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453068786620.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getPendingOutputCount(): number;
 
@@ -772,7 +681,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458842102049.html}
      *
      * @governance 25 units
-     * @return {number}
      */
     getPendingOutputSize(): number;
 
@@ -782,7 +690,6 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452285705566.html}
      *
      * @governance 10 units
-     * @return {number}
      */
     getTotalOutputCount(): number;
 
@@ -792,20 +699,16 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455688720702.html}
      *
      * @governance 25 units
-     * @return {number}
      */
     getCurrentTotalSize(): number;
 
     /**
      * Returns the object type name (task.MapReduceScriptTaskStatus)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -823,8 +726,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228669163}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228669163.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -832,8 +733,6 @@ declare namespace task {
      * A file.File object containing data to be imported OR a string containing raw CSV text to be imported
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459367004393}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459367004393.html}
-     *
-     * @type {file.File | string}
      */
     importFile: file.File | string;
 
@@ -841,8 +740,6 @@ declare namespace task {
      * Internal ID or script ID of a saved import map to be used for the import
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457792297362}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457792297362.html}
-     *
-     * @type {number | string}
      */
     mappingId: number | string;
 
@@ -850,8 +747,6 @@ declare namespace task {
      * Overrides the CSV import queue preference
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454650817870}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454650817870.html}
-     *
-     * @type {number}
      */
     queueId: number;
 
@@ -859,8 +754,6 @@ declare namespace task {
      * The name of the import job to be shown on the status page for CSV imports
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454580627441}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454580627441.html}
-     *
-     * @type {string}
      */
     name: string;
 
@@ -870,10 +763,8 @@ declare namespace task {
      * The value is a file.File object containing data to be imported OR a string containing raw CSV text to be imported
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458306823729}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458306823729.html}
-     *
-     * @type {Object<string, file.File|string>}
      */
-    linkedFiles: { [p: string]: file.File | string };
+    linkedFiles: Record<string, file.File | string>;
 
     /**
      * Submits the task and returns an unique ID
@@ -882,21 +773,18 @@ declare namespace task {
      *
      * @governance 100 units
      *
-     * @return {string} taskId
+     * @return taskId
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string;
 
     /**
      * Returns the object type name (task.CsvImportTask).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -915,35 +803,26 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228614995}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228614995.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453959899902}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453959899902.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.CsvImportTaskStatus).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -961,8 +840,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228488492}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228488492.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -970,8 +847,6 @@ declare namespace task {
      * Represents the entity type. Use values from the task.DedupeEntityType enum
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458601928710}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458601928710.html}
-     *
-     * @type {task.DedupeEntityType}
      */
     entityType: task.DedupeEntityType | `${task.DedupeEntityType}`;
 
@@ -979,8 +854,6 @@ declare namespace task {
      * Master record ID
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456971679686}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456971679686.html}
-     *
-     * @type {number}
      */
     masterRecordId: number;
 
@@ -988,8 +861,6 @@ declare namespace task {
      * Master selection mode. Use values from the task.MasterSelectionMode enum
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46682983398}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46682983398.html}
-     *
-     * @type {task.MasterSelectionMode}
      */
     masterSelectionMode: task.MasterSelectionMode | `${task.MasterSelectionMode}`;
 
@@ -997,8 +868,6 @@ declare namespace task {
      * Deduplication mode. Use values from the task.DedupeMode enum
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456247802733}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456247802733.html}
-     *
-     * @type {task.DedupeMode}
      */
     dedupeMode: task.DedupeMode | `${task.DedupeMode}`;
 
@@ -1006,8 +875,6 @@ declare namespace task {
      * Records to deduplicate
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456050964354}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456050964354.html}
-     *
-     * @type {number[]}
      */
     recordIds: number[];
 
@@ -1018,21 +885,18 @@ declare namespace task {
      *
      * @governance 100 units
      *
-     * @return {string} taskId
+     * @return taskId
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string;
 
     /**
      * Returns the object type name (task.EntityDeduplicationTask).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1051,35 +915,26 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228461568}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228461568.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452162109374}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452162109374.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.EntityDeduplicationTaskStatus).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1097,8 +952,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228405355}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228405355.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -1106,8 +959,6 @@ declare namespace task {
      * The record type of the workflow base record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452073913574}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452073913574.html}
-     *
-     * @type {record.Type|record.CustomType|string}
      */
     recordType: record.Type | `${record.Type}` | record.CustomType | string;
 
@@ -1115,8 +966,6 @@ declare namespace task {
      * The internal ID of the base record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456538635253}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456538635253.html}
-     *
-     * @type {number}
      */
     recordId: number;
 
@@ -1124,8 +973,6 @@ declare namespace task {
      * The internal ID (number) or script ID (string) for the workflow definition. This is the ID that appears in the ID field on the Workflow Definition Page.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46870056152}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46870056152.html}
-     *
-     * @type {number | string}
      */
     workflowId: number | string;
 
@@ -1134,10 +981,8 @@ declare namespace task {
      * Used to dynamically pass context to the script
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457660766600}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457660766600.html}
-     *
-     * @type {Object<string, string>}
      */
-    params: { [p: string]: string };
+    params: Record<string, string>;
 
     /**
      * Submits the task and returns an unique ID
@@ -1146,21 +991,18 @@ declare namespace task {
      *
      * @governance 20 units
      *
-     * @return {string} taskId
+     * @return taskId
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      */
     submit(): string;
 
     /**
      * Returns the object type name (task.WorkflowTriggerTask)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1179,36 +1021,26 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158221094722}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158221094722.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46640258788}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46640258788.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.WorkflowTriggerTaskStatus)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     *
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1226,8 +1058,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158229269880}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158229269880.html}
-     *
-     * @type {number}
      */
     id: number;
 
@@ -1235,8 +1065,6 @@ declare namespace task {
      * An ID of saved search to be executed during the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804561931}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804561931.html}
-     *
-     * @type {number}
      */
     savedSearchId: number;
 
@@ -1246,8 +1074,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804562077}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804562077.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1259,8 +1085,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804562119}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804562119.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1282,16 +1106,13 @@ declare namespace task {
      * {"0":{"type":"task.ScheduledScriptTask","id":"SCHEDSCRIPT_0168697b126d1705061d0d690a787755500b046a1912686b10_349d94266564827c739a2ba0a5b9d476f4097217","scriptId":"customscript_as_ftr_ss","deploymentId":"customdeploy_ss_dpl","params":{"custscript_ss_as_srch_res":"SuiteScripts/ExportFile.csv"}},
      * "1":{"type":"task.MapReduceScriptTask","id":"MAPREDUCETASK_0268697b126d1705061d0d69027f7b39560f01001c_7a02acb4bdebf0103120b09302170720aa57bca4","scriptId":"customscript_as_ftr_mr","deploymentId":"customdeploy_mr_dpl","params":{"custscript_mr_as_srch_res":"SuiteScripts/ExportFile.csv"}}}
      *
-     * @type {Object[]}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    inboundDependencies: {
+    readonly inboundDependencies: {
       type: task.ScheduledScriptTask | task.MapReduceScriptTask,
       scriptId: `customscript${string}`,
       deploymentId: `customdeploy${string}`,
-      params: { [p: string]: string | number | boolean },
+      params?: Record<string, string | number | boolean>,
     }[];
 
     /**
@@ -1299,15 +1120,15 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
      *
-     * @param {Object} options
-     * @param {ScheduledScriptTask|MapReduceScriptTask} options.dependentScript
+     * @param options
+     * @param options.dependentScript
      */
     addInboundDependency(options: {
       dependentScript: ScheduledScriptTask | MapReduceScriptTask | {
         taskType: task.TaskType.SCHEDULED_SCRIPT | task.TaskType.MAP_REDUCE,
         scriptId: `customscript${string}`,
         deploymentId?: `customdeploy${string}`,
-        params?: { [p: string]: string | number | boolean },
+        params?: Record<string, string | number | boolean>,
       },
     }): void;
 
@@ -1317,7 +1138,7 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804558173.html}
      *
      * @governance 100 units
-     * @return {string} taskId
+     * @return taskId
      *
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
@@ -1338,14 +1159,11 @@ declare namespace task {
 
     /**
      * Returns the object type name (task.SearchTask).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1364,59 +1182,44 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804572729}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804572729.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804572441}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804572441.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the fileId of exported file
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804572988}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804572988.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    fileId: number;
+    readonly fileId: number;
 
     /**
      * Represents id of saved search being used for export
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4804572868}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4804572868.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    savedSearchId: number;
+    readonly savedSearchId: number;
 
     /**
      * Returns the object type name (task.SearchTaskStatus).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1434,8 +1237,6 @@ declare namespace task {
      * Query definition for the query task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223782030}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223782030.html}
-     *
-     * @type {query.Query}
      */
     query: query.Query;
 
@@ -1445,8 +1246,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223756577}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223756577.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1458,8 +1257,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223771684}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223771684.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1481,16 +1278,13 @@ declare namespace task {
      * {"0":{"type":"task.ScheduledScriptTask","id":"SCHEDSCRIPT_0168697b126d1705061d0d690a787755500b046a1912686b10_349d94266564827c739a2ba0a5b9d476f4097217","scriptId":"customscript_as_ftr_ss","deploymentId":"customdeploy_ss_dpl","params":{"custscript_ss_as_srch_res":"SuiteScripts/ExportFile.csv"}},
      * "1":{"type":"task.MapReduceScriptTask","id":"MAPREDUCETASK_0268697b126d1705061d0d69027f7b39560f01001c_7a02acb4bdebf0103120b09302170720aa57bca4","scriptId":"customscript_as_ftr_mr","deploymentId":"customdeploy_mr_dpl","params":{"custscript_mr_as_srch_res":"SuiteScripts/ExportFile.csv"}}}
      *
-     * @type {Object[]}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    inboundDependencies: {
+    readonly inboundDependencies: {
       type: task.ScheduledScriptTask | task.MapReduceScriptTask,
       scriptId: `customscript${string}`,
       deploymentId: `customdeploy${string}`,
-      params: { [p: string]: string | number | boolean },
+      params?: Record<string, string | number | boolean>,
     }[];
 
     /**
@@ -1498,15 +1292,15 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
      *
-     * @param {Object} options
-     * @param {ScheduledScriptTask|MapReduceScriptTask} options.dependentScript
+     * @param options
+     * @param options.dependentScript
      */
     addInboundDependency(options: {
       dependentScript: ScheduledScriptTask | MapReduceScriptTask | {
         taskType: task.TaskType.SCHEDULED_SCRIPT | task.TaskType.MAP_REDUCE,
         scriptId: `customscript${string}`,
         deploymentId?: `customdeploy${string}`,
-        params?: { [p: string]: string | number | boolean },
+        params?: Record<string, string | number | boolean>,
       },
     }): void;
 
@@ -1516,7 +1310,7 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223745979.html}
      *
      * @governance 100 units
-     * @return {string} taskId
+     * @return taskId
      *
      * @throws {error.SuiteScriptError} ASYNC_QUERY_DEPENDENCY_MR_ALREADY_SUBMITTED A dependent map/reduce script task is already submitted and is not complete.
      * @throws {error.SuiteScriptError} ASYNC_QUERY_DEPENDENCY_MR_INCORRECT_STATUS The status of the script deployment record for the specified dependent map/reduce script task has a value other than "Not Scheduled".
@@ -1537,14 +1331,11 @@ declare namespace task {
 
     /**
      * Returns the object type name (task.QueryTask)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1563,56 +1354,42 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223815752}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223815752.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223812701}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223812701.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the fileId of exported file
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223806776}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223806776.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    fileId: number;
+    readonly fileId: number;
 
     /**
      * Query definition for the submitted query task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223809924}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223809924.html}
-     *
-     * @type {query.Query}
      */
     query: query.Query;
 
     /**
      * Returns the object type name (task.QueryTaskStatus).
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1630,8 +1407,6 @@ declare namespace task {
      * SuiteQL query definition for the SuiteQL task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223864743}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223864743.html}
-     *
-     * @type {string}
      */
     query: string;
 
@@ -1639,8 +1414,6 @@ declare namespace task {
      * Parameters for the SuiteQL query
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223862155}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223862155.html}
-     *
-     * @type {(string|number|boolean)[]}
      */
     params: (string | number | boolean)[];
 
@@ -1650,8 +1423,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223852102}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223852102.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1663,8 +1434,6 @@ declare namespace task {
      * There's no synchronization between fileId and filePath attributes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223855624}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223855624.html}
-     *
-     * @type {number}
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
@@ -1686,16 +1455,13 @@ declare namespace task {
      * {"0":{"type":"task.ScheduledScriptTask","id":"SCHEDSCRIPT_0168697b126d1705061d0d690a787755500b046a1912686b10_349d94266564827c739a2ba0a5b9d476f4097217","scriptId":"customscript_as_ftr_ss","deploymentId":"customdeploy_ss_dpl","params":{"custscript_ss_as_srch_res":"SuiteScripts/ExportFile.csv"}},
      * "1":{"type":"task.MapReduceScriptTask","id":"MAPREDUCETASK_0268697b126d1705061d0d69027f7b39560f01001c_7a02acb4bdebf0103120b09302170720aa57bca4","scriptId":"customscript_as_ftr_mr","deploymentId":"customdeploy_mr_dpl","params":{"custscript_mr_as_srch_res":"SuiteScripts/ExportFile.csv"}}}
      *
-     * @type {Object[]}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    inboundDependencies: {
+    readonly inboundDependencies: {
       type: task.ScheduledScriptTask | task.MapReduceScriptTask,
       scriptId: `customscript${string}`,
       deploymentId: `customdeploy${string}`,
-      params: { [p: string]: string | number | boolean },
+      params?: Record<string, string | number | boolean>,
     }[];
 
     /**
@@ -1703,15 +1469,15 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
      *
-     * @param {Object} options
-     * @param {ScheduledScriptTask|MapReduceScriptTask} options.dependentScript
+     * @param options
+     * @param options.dependentScript
      */
     addInboundDependency(options: {
       dependentScript: ScheduledScriptTask | MapReduceScriptTask | {
         taskType: task.TaskType.SCHEDULED_SCRIPT | task.TaskType.MAP_REDUCE,
         scriptId: `customscript${string}`,
         deploymentId?: `customdeploy${string}`,
-        params?: { [p: string]: string | number | boolean },
+        params?: Record<string, string | number | boolean>,
       },
     }): void;
 
@@ -1721,7 +1487,7 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223847318.html}
      *
      * @governance 100 units
-     * @return {string} taskId
+     * @return taskId
      *
      * @throws {error.SuiteScriptError} ASYNC_QUERY_DEPENDENCY_MR_ALREADY_SUBMITTED A dependent map/reduce script task is already submitted and is not complete.
      * @throws {error.SuiteScriptError} ASYNC_QUERY_DEPENDENCY_MR_INCORRECT_STATUS The status of the script deployment record for the specified dependent map/reduce script task has a value other than "Not Scheduled".
@@ -1742,14 +1508,11 @@ declare namespace task {
 
     /**
      * Returns the object type name (task.QueryTask)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1768,43 +1531,32 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223898107}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223898107.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223896074}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223896074.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Represents the fileId of exported file
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223887802}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223887802.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    fileId: number;
+    readonly fileId: number;
 
     /**
      * SuiteQL query definition for the SuiteQL task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223889689}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223889689.html}
-     *
-     * @type {string}
      */
     query: string;
 
@@ -1812,21 +1564,16 @@ declare namespace task {
      * Parameters for the SuiteQL query
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223893036}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223893036.html}
-     *
-     * @type {(string|number|boolean)[]}
      */
     params: (string | number | boolean)[];
 
     /**
      * Returns the object type name (task.QueryTaskStatus)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -1844,8 +1591,6 @@ declare namespace task {
      * The ID of the task
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158221148568}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158221148568.html}
-     *
-     * @type {string}
      */
     id: string;
 
@@ -1853,8 +1598,6 @@ declare namespace task {
      * The record type on which the action is to be performed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544122891}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544122891.html}
-     *
-     * @type {record.Type|record.CustomType|string}
      */
     recordType: record.Type | `${record.Type}` | record.CustomType | string;
 
@@ -1862,8 +1605,6 @@ declare namespace task {
      * The ID of the action to be invoked
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544123083}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544123083.html}
-     *
-     * @type {action.ActionID}
      */
     action: action.ActionID | `${action.ActionID}`;
 
@@ -1871,8 +1612,6 @@ declare namespace task {
      * The condition used to select record IDs of records for which the action is to be executed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544123142}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544123142.html}
-     *
-     * @type {task.ActionCondition}
      */
     condition: task.ActionCondition | `${task.ActionCondition}`;
 
@@ -1880,8 +1619,6 @@ declare namespace task {
      * An array of parameter objects. Each object corresponds to one record ID of the record for which the action is to be executed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544132018}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544132018.html}
-     *
-     * @type {Object<string, string|string[]|number|Date|boolean>[]}
      */
     params: {
       recordId: number | string,
@@ -1893,8 +1630,6 @@ declare namespace task {
      * This parameter cannot be specified when `RecordActionTask.params` is specified.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544131790}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544131790.html}
-     *
-     * @type {(recordId:number|string) => Object<string, string|string[]|number|Date|boolean>}
      */
     paramCallback: <RecordID extends number | string>(recordId: RecordID) => {
       recordId: RecordID,
@@ -1907,7 +1642,7 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544121926.html}
      *
      * @governance 50 units
-     * @return {string} taskId
+     * @return taskId
      *
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 Failed to submit job request: {reason}
      */
@@ -1915,14 +1650,11 @@ declare namespace task {
 
     /**
      * Returns the object type name (task.RecordActionTask)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
 
@@ -1942,122 +1674,91 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158221207526}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158221207526.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    taskId: string;
+    readonly taskId: string;
 
     /**
      * Represents the task status. Returns one of the task.TaskStatus enum values
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544127664}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544127664.html}
      *
-     * @type {string}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    status: task.TaskStatus | `${task.TaskStatus}`;
+    readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * The number of record actions with a pending status
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128774}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128774.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    pending: number;
+    readonly pending: number;
 
     /**
      * The number of record actions with a successful status
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128436.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    succeeded: number;
+    readonly succeeded: number;
 
     /**
      * The number of record actions with a failed status
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128556}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128556.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    failed: number;
+    readonly failed: number;
 
     /**
      * The number of record actions that are already executed, either failed or successful
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128319}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128319.html}
      *
-     * @type {number}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    complete: number;
+    readonly complete: number;
 
     /**
      * The results of successfully executed record action tasks. The value of the property is the task instance ID and the corresponding action result.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128024}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128024.html}
      *
-     * @type {Object<string, {notifications: [], response: {action:string, id:string, recordCount:number, success:boolean}}>}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    results: {
-      [p: `${number}`]: {
-        notifications: any[],
-        response: {
-          action: string,
-          id: string,
-          recordCount: number,
-          success: boolean,
-        },
-      }
-    };
+    readonly results: Record<`${number}`, {
+      notifications: any[],
+      response: {
+        action: string,
+        id: string,
+        recordCount: number,
+        success: boolean,
+      },
+    }>;
 
     /**
      * The error details of failed action executions. The value of the property is the record instance ID and the corresponding error details.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128200}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128200.html}
      *
-     * @type {Object<string, {name:string, message:string}>}
-     * @readonly
-     *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    errors: {
-      [p: `${number}`]: {
-        name: string,
-        message: string,
-      }
-    };
+    readonly errors: Record<`${number}`, {
+      name: string,
+      message: string,
+    }>;
 
     /**
      * Returns the object type name (task.RecordActionTaskStatus)
-     *
-     * @return {string}
      */
     toString(): string;
 
     /**
      * Convert to JSON object
-     * @return {Object<string, *>}
      */
     toJSON(): ExcludeMethods<this>;
 
