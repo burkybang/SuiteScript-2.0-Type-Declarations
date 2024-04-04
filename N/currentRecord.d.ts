@@ -876,7 +876,7 @@ declare namespace currentRecord {
     getCurrentSublistSubrecord(
       sublistId: string,
       fieldId: string,
-    ): CurrentRecord;
+    ): CurrentRecordReadonly;
 
     /**
      * Get the subrecord for the associated sublist field on the current line
@@ -893,7 +893,7 @@ declare namespace currentRecord {
     getCurrentSublistSubrecord(options: {
       sublistId: string,
       fieldId: string,
-    }): CurrentRecord;
+    }): CurrentRecordReadonly;
 
     /**
      * Remove the subrecord for the associated sublist field on the current line
