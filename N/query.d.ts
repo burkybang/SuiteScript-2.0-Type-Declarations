@@ -1274,7 +1274,7 @@ declare namespace query {
     /**
      * Returns the object type name
      */
-    toString(): string;
+    toString(): 'query.Query';
 
     /**
      * Convert to JSON object
@@ -1691,13 +1691,6 @@ declare namespace query {
   export interface ResultSet {
 
     /**
-     * Standard object for iterating through results
-     *
-     * @governance 10 points for each page returned
-     */
-    iterator(): NetSuiteIterator<Result>;
-
-    /**
      * The actual query results
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
@@ -1705,8 +1698,7 @@ declare namespace query {
     readonly results: Result[];
 
     /**
-     * The types of the return values. Array of values from the ReturnType enum. Number and order of values in the array
-     * exactly matches the ResultSet#columns property
+     * The types of the return values. Array of values from the ReturnType enum. Number and order of values in the array exactly matches the columns property
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1717,12 +1709,57 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    readonly columns: Column[];
+    readonly columns: Column[] | null;
+
+    /**
+     * Undocumented property
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    readonly metadataProvider: string | undefined;
 
     /**
      * Returns the query result set as an array of mapped results. A mapped result is a JavaScript object with key-value pairs. In this object, the key is either the field ID or the alias that was used for the corresponding query.Column object. When you call this method, Result.asMap() is called on each query.Result object in the result set.
      */
     asMappedResults<MappedResult extends Record<string, string | number>>(): MappedResult[];
+
+    /**
+     * Undocumented property
+     *
+     * @param alias
+     *
+     * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
+     */
+    getTypeForAlias(alias: string): string;
+
+    /**
+     * Undocumented property
+     *
+     * @param options
+     * @param options.alias
+     *
+     * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
+     */
+    getTypeForAlias(options: {
+      alias: string,
+    }): string;
+
+    /**
+     * Standard object for iterating through results
+     *
+     * @governance 10 points for each page returned
+     */
+    iterator(): NetSuiteIterator<Result>;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.ResultSet';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1736,14 +1773,45 @@ declare namespace query {
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    readonly values: (string | number | boolean)[];
+    readonly values: (string | number)[];
 
     /**
-     * The return columns. This is equivalent to ResultSet.columns
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * Returns the query result as a mapped result. A mapped result is a JavaScript object with key-value pairs.
+     * In this object, the key is either the field ID or the alias that was used.
      */
-    readonly columns: Column[];
+    asMap<MappedResult extends Record<string, string | number>>(): MappedResult;
+
+    /**
+     * Undocumented method
+     *
+     * @param columnIndex
+     */
+    getValue(columnIndex: number): string | number;
+
+    /**
+     * Undocumented method
+     *
+     * @param alias
+     */
+    getValueForAlias(alias: string): string | number;
+
+    /**
+     * Undocumented method
+     *
+     * @param options
+     * @param options.alias
+     */
+    getValueForAlias(options: { alias: string }): string | number;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Result';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1785,6 +1853,16 @@ declare namespace query {
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
     readonly pagedData: PagedData;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Page';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1793,9 +1871,21 @@ declare namespace query {
   export interface PagedData {
 
     /**
-     * Standard object for iterating through results
+     * Undocumented property
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
-    iterator(): NetSuiteIterator<Page>;
+    readonly metadataProvider: string | undefined;
+
+    /**
+     * Undocumented property
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     */
+    readonly queryDefinition: {
+      query: string,
+      params: (string | number | boolean)[],
+    };
 
     /**
      * Describes the total number of paged query result rows
@@ -1855,9 +1945,14 @@ declare namespace query {
     };
 
     /**
-     * Returns the object type name (search.PagedData)
+     * Standard object for iterating through results
      */
-    toString(): string;
+    iterator(): NetSuiteIterator<Page>;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.PagedData';
 
     /**
      * Convert to JSON object
