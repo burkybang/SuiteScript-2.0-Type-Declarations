@@ -1284,9 +1284,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getValue(
+    getValue<FieldType extends string | string[] | number | Date | boolean>(
       fieldId: string,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Return value of the field
@@ -1301,9 +1301,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getValue(options: {
+    getValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       fieldId: string,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set value of the field
@@ -1478,11 +1478,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistValue(
+    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Return value of a sublist field
@@ -1500,11 +1500,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistValue(options: {
+    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
@@ -2219,11 +2219,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getMatrixHeaderValue(
+    getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       column: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Get the value for the associated header in the matrix
@@ -2239,11 +2239,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getMatrixHeaderValue(options: {
+    getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for the associated header in the matrix
@@ -2306,12 +2306,12 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getMatrixSublistValue(
+    getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       column: number,
       line: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Get the value for the associated field in the matrix
@@ -2328,12 +2328,12 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getMatrixSublistValue(options: {
+    getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       column: number,
       line: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for the associated field in the matrix

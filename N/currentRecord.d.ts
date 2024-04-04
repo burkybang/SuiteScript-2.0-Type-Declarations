@@ -90,9 +90,9 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
-    getValue(
+    getValue<FieldType extends string | string[] | number | Date | boolean>(
       fieldId: string,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Return value of the field
@@ -105,9 +105,9 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
-    getValue(options: {
+    getValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       fieldId: string,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set value of the field
@@ -251,11 +251,11 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
-    getSublistValue(
+    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Return value of a sublist field
@@ -271,11 +271,11 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
-    getSublistValue(options: {
+    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Return value of a sublist field in text representation
@@ -554,10 +554,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistValue(
+    getCurrentSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Return value of a sublist field on the current selected sublist line
@@ -573,10 +573,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistValue(options: {
+    getCurrentSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for field in the current selected line
@@ -1194,11 +1194,11 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixHeaderValue(
+    getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       column: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Get the value for the associated header in the matrix
@@ -1212,11 +1212,11 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixHeaderValue(options: {
+    getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for the associated header in the matrix
@@ -1274,12 +1274,12 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixSublistValue(
+    getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       column: number,
       line: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Get the value for the associated field in the matrix
@@ -1294,12 +1294,12 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getMatrixSublistValue(options: {
+    getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       column: number,
       line: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for the associated field in the matrix
@@ -1439,11 +1439,11 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getCurrentMatrixSublistValue(
+    getCurrentMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
       fieldId: string,
       column: number,
-    ): string | string[] | number | Date | boolean;
+    ): FieldType;
 
     /**
      * Get the value for the line currently selected in the matrix
@@ -1459,11 +1459,11 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
      */
-    getCurrentMatrixSublistValue(options: {
+    getCurrentMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
       fieldId: string,
       column: number,
-    }): string | string[] | number | Date | boolean;
+    }): FieldType;
 
     /**
      * Set the value for the line currently selected in the matrix
