@@ -751,7 +751,7 @@ declare namespace currentRecord {
      */
     getSubrecord(
       fieldId: string,
-    ): CurrentRecord;
+    ): CurrentRecordReadonly;
 
     /**
      * Get the subrecord for the associated field
@@ -769,7 +769,7 @@ declare namespace currentRecord {
      */
     getSubrecord(options: {
       fieldId: string,
-    }): CurrentRecord;
+    }): CurrentRecordReadonly;
 
     /**
      * Remove the subrecord for the associated field
