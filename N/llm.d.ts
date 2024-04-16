@@ -27,6 +27,7 @@ interface llm {
      *
      * @since 2024.1
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} ONLY_API_SECRET_IS_ACCEPTED if ociConfig.fingerprint or ociConfig.privateKey does not start with 'custsecret'
      * @throws {error.SuiteScriptError} INVALID_MAX_TOKENS_VALUE if modelParameters.maxTokens is not between 0 and 4096
      * @throws {error.SuiteScriptError} INVALID_TEMPERATURE_VALUE if modelParameters.temperature is not between 0 and 1
@@ -60,6 +61,7 @@ interface llm {
      *
      * @since 2024.1
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} ONLY_API_SECRET_IS_ACCEPTED if ociConfig.fingerprint or ociConfig.privateKey does not start with 'custsecret'
      * @throws {error.SuiteScriptError} INVALID_MAX_TOKENS_VALUE if modelParameters.maxTokens is not between 0 and 4096
      * @throws {error.SuiteScriptError} INVALID_TEMPERATURE_VALUE if modelParameters.temperature is not between 0 and 1
