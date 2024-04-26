@@ -586,34 +586,34 @@ interface record {
         id: number | string,
       },
       attributes?: Record<string, string | number>,
-    }): void
+    }): void;
+    
+    /**
+     * Detach record from another record
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440824016.html}
+     *
+     * @param options
+     * @param options.record record to be detached or object with type and id of the record to be detached
+     * @param options.from the destination record where options.record will be detached from or object with the type and id of the destination record
+     * @param [options.attributes] name/value pairs containing attributes
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
+     *
+     * @since 2015.2
+     */
+    promise(options: {
+      record: record.Record | currentRecord.CurrentRecord | {
+        type: record.Type | `${record.Type}` | record.CustomType | string,
+        id: number | string,
+      },
+      from: record.Record | currentRecord.CurrentRecord | {
+        type: record.Type | `${record.Type}` | record.CustomType | string,
+        id: number | string,
+      },
+      attributes?: Record<string, string | number>,
+    }): Promise<void>;
   };
-
-  /**
-   * Detach record from another record
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440824016}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440824016.html}
-   *
-   * @param options
-   * @param options.record record to be detached or object with type and id of the record to be detached
-   * @param options.from the destination record where options.record will be detached from or object with the type and id of the destination record
-   * @param [options.attributes] name/value pairs containing attributes
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any of record or from (and their type and id) are missing
-   *
-   * @since 2015.2
-   */
-  promise(options: {
-    record: record.Record | currentRecord.CurrentRecord | {
-      type: record.Type | `${record.Type}` | record.CustomType | string,
-      id: number | string,
-    },
-    from: record.Record | currentRecord.CurrentRecord | {
-      type: record.Type | `${record.Type}` | record.CustomType | string,
-      id: number | string,
-    },
-    attributes?: Record<string, string | number>,
-  }): Promise<void>;
 }
 
 declare namespace record {
