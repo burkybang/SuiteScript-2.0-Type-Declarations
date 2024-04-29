@@ -11,19 +11,99 @@
  */
 interface query {
 
+  create: {
+
+    /**
+     * Create a Query object with a single query component based on the given query type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
+     *
+     * @param type
+     *
+     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
+     */
+    (type: query.Type | `${query.Type}` | string): query.Query;
+
+    /**
+     * Create a Query object with a single query component based on the given query type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
+     *
+     * @param options
+     * @param options.type
+     * @param [options.columns] An array of objects to be used as query columns
+     * @param [options.condition] A condition for the query
+     * @param [options.sort] An array of objects representing sort options
+     *
+     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
+     */
+    (options: {
+      type: query.Type | `${query.Type}` | string,
+      columns?: Parameters<query.Query['createColumn']>[0][],
+      condition?: Parameters<query.Query['createCondition']>[0],
+      sort?: Parameters<query.Query['createSort']>[0][],
+    }): query.Query;
+  };
+
   /**
-   * Create a Query object with a single query component based on the given query type
+   * Creates a query.RelativeDate object that represents a date relative to the current date
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544108154}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544108154.html}
    *
    * @param options
-   * @param options.type
-   *
-   * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
+   * @param options.dateId ID of the relative date to create
+   * @param options.value Value to use to create the relative date
    */
-  create(options: {
-    type: query.Type | `${query.Type}` | string,
-  }): query.Query;
+  createRelativeDate(options: {
+    dateId: query.DateId | `${query.DateId}`,
+    value: number,
+  }): query.RelativeDate;
+
+  createPeriod: {
+
+    /**
+     * Creates a query.Period object
+     * `adjustment` defaults to PeriodAdjustment.NOT_LAST
+     * `type` defaults to PeriodType.START
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
+     *
+     * @param code The code of the period to create
+     */
+    (code: query.PeriodCode | `${query.PeriodCode}`): query.Period;
+
+    /**
+     * Creates a query.Period object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
+     *
+     * @param options
+     * @param options.code The code of the period to create
+     * @param [options.adjustment = PeriodAdjustment.NOT_LAST] The adjustment of the period to create
+     * @param [options.type = PeriodType.START] The type of the period to create
+     */
+    (options: {
+      code: query.PeriodCode | `${query.PeriodCode}`,
+      adjustment?: query.PeriodAdjustment | `${query.PeriodAdjustment}`,
+      type?: query.PeriodType | `${query.PeriodType}`,
+    }): query.Period;
+  };
 
   load: {
+
+    /**
+     * Loads query by id
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
+     *
+     * @param id Id of query to be loaded
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+     */
+    (id: number | string): query.Query;
+
     /**
      * Loads query by id
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
@@ -38,52 +118,100 @@ interface query {
      */
     (options: {
       id: number | string,
-    }): query.Query
+    }): query.Query;
+
+    promise: {
+
+      /**
+       * Loads query by id
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
+       *
+       * @param options
+       * @param options.id Id of query to be loaded
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+       */
+      (id: number | string): Promise<query.Query>;
+
+      /**
+       * Loads query by id
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
+       *
+       * @param options
+       * @param options.id Id of query to be loaded
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+       */
+      (options: {
+        id: number | string,
+      }): Promise<query.Query>;
+    };
+  };
+
+  delete: {
 
     /**
-     * Loads query by id
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
+     * Deletes query by id
      *
      * @param options
-     * @param options.id Id of query to be loaded
+     * @param options.id Id of query to be delete
      *
      * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
      */
-    promise(options: {
+    (options: {
       id: number | string,
-    }): Promise<query.Query>
+    }): void;
+
+    /**
+     * Deletes query by id
+     *
+     * @param id Id of query to be delete
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+     */
+    (id: number | string): void;
+
+    promise: {
+
+      /**
+       * Deletes query by id asynchronously
+       *
+       * @param id Id of query to be delete
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+       */
+      (id: number | string): Promise<void>;
+
+      /**
+       * Deletes query by id asynchronously
+       *
+       * @param options
+       * @param options.id Id of query to be delete
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
+       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+       */
+      (options: {
+        id: number | string,
+      }): Promise<void>;
+    };
   };
 
-  /**
-   * Deletes query by id
-   *
-   * @param options
-   * @param options.id Id of query to be delete
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-   * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
-   */
-  delete(options: {
-    id: number | string,
-  }): void;
-
-  /**
-   * Creates a query.RelativeDate object that represents a date relative to the current date
-   *
-   * @param options
-   * @param options.dateId Id of the relative date to create
-   * @param options.value Value to use to create the relative date
-   */
-  createRelativeDate(options: {
-    dateId: query.DateId | `${query.DateId}`,
-    value: number,
-  }): query.RelativeDate;
-
   runSuiteQL: {
+
     /**
      * Runs an arbitrary SuiteQL query
      *
@@ -118,42 +246,46 @@ interface query {
       customScriptId?: string,
     }): query.ResultSet;
 
-    /**
-     * Runs an arbitrary SuiteQL query asynchronously
-     *
-     * @governance 10 points
-     *
-     * @param query
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
-     * @since 2020.1
-     */
-    promise(query: string): Promise<query.ResultSet>;
+    promise: {
 
-    /**
-     * Runs an arbitrary SuiteQL query asynchronously
-     *
-     * @governance 10 points
-     *
-     * @param query
-     * @param [params]
-     * @param [customScriptId]
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
-     * @since 2020.1
-     */
-    promise(options: {
-      query: string,
-      params?: (string | number | boolean)[],
-      customScriptId?: string,
-    }): Promise<query.ResultSet>;
+      /**
+       * Runs an arbitrary SuiteQL query asynchronously
+       *
+       * @governance 10 points
+       *
+       * @param query
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+       *
+       * @since 2020.1
+       */
+      (query: string): Promise<query.ResultSet>;
+
+      /**
+       * Runs an arbitrary SuiteQL query asynchronously
+       *
+       * @governance 10 points
+       *
+       * @param query
+       * @param [params]
+       * @param [customScriptId]
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+       *
+       * @since 2020.1
+       */
+      (options: {
+        query: string,
+        params?: (string | number | boolean)[],
+        customScriptId?: string,
+      }): Promise<query.ResultSet>;
+    };
   };
 
   runSuiteQLPaged: {
+
     /**
      * Runs an arbitrary SuiteQL query as a paged query
      *
@@ -191,62 +323,122 @@ interface query {
       customScriptId?: string,
     }): query.PagedData;
 
-    /**
-     * Runs an arbitrary SuiteQL query as a paged query asynchronously
-     *
-     * @governance 10 points
-     *
-     * @param query
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
-     * @since 2020.1
-     */
-    promise(query: string): Promise<query.PagedData>;
+    promise: {
 
-    /**
-     * Runs an arbitrary SuiteQL query as a paged query asynchronously
-     *
-     * @governance 10 points
-     *
-     * @param options
-     * @param options.query
-     * @param [options.params]
-     * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-     * @param [customScriptId]
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
-     * @since 2020.1
-     */
-    promise(options: {
-      query: string,
-      params?: (string | number | boolean)[],
-      pageSize?: PageSize,
-      customScriptId?: string,
-    }): Promise<query.PagedData>;
+      /**
+       * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       *
+       * @governance 10 points
+       *
+       * @param query
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+       *
+       * @since 2020.1
+       */
+      (query: string): Promise<query.PagedData>;
+
+      /**
+       * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       *
+       * @governance 10 points
+       *
+       * @param options
+       * @param options.query
+       * @param [options.params]
+       * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
+       * @param [customScriptId]
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
+       *
+       * @since 2020.1
+       */
+      (options: {
+        query: string,
+        params?: (string | number | boolean)[],
+        pageSize?: PageSize,
+        customScriptId?: string,
+      }): Promise<query.PagedData>;
+    };
   };
 
-  /**
-   * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
-   *
-   * @governance 0 points
-   *
-   * @param options
-   * @param options.workbookId
-   *
-   * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
-   * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
-   * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
-   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-   *
-   * @since 2020.1
-   */
-  listTables(options: {
-    workbookId: string,
-  }): { name: string, scriptId: string }[];
+  listTables: {
+
+    /**
+     * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+     *
+     * @governance 0 points
+     *
+     * @param workbookId
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+     * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+     *
+     * @since 2020.1
+     */
+    (workbookId: string): { name: string, scriptId: string }[];
+
+    /**
+     * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+     *
+     * @governance 0 points
+     *
+     * @param options
+     * @param options.workbookId
+     *
+     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+     * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+     *
+     * @since 2020.1
+     */
+    (options: {
+      workbookId: string,
+    }): { name: string, scriptId: string }[];
+
+    promise: {
+
+      /**
+       * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
+       *
+       * @governance 0 points
+       *
+       * @param workbookId
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+       * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+       * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+       *
+       * @since 2020.1
+       */
+      (workbookId: string): Promise<{ name: string, scriptId: string }[]>;
+
+      /**
+       * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
+       *
+       * @governance 0 points
+       *
+       * @param options
+       * @param options.workbookId
+       *
+       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+       * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+       * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+       *
+       * @since 2020.1
+       */
+      (options: {
+        workbookId: string,
+      }): Promise<{ name: string, scriptId: string }[]>;
+    };
+  };
 }
 
 declare namespace query {
@@ -1065,6 +1257,7 @@ declare namespace query {
     readonly root: Component;
 
     run: {
+
       /**
        * Execute the query and return results.
        *
@@ -1074,17 +1267,31 @@ declare namespace query {
        */
       (): ResultSet;
 
-      /**
-       * Execute the query and return results.
-       *
-       * @governance 10 points
-       *
-       * @return the result set object
-       */
-      promise(): ResultSet;
+      promise: {
+
+        /**
+         * Execute the query and return results.
+         *
+         * @governance 10 points
+         *
+         * @return the result set object
+         */
+        (): Promise<ResultSet>;
+      };
     };
 
     runPaged: {
+
+      /**
+       * Execute the query and return paged results.
+       *
+       * @governance 10 points
+       *
+       * @param [pageSize]
+       * @return The paged query object
+       */
+      (pageSize?: number): PagedData;
+
       /**
        * Execute the query and return paged results.
        *
@@ -1095,21 +1302,34 @@ declare namespace query {
        * @return The paged query object
        */
       (options?: {
-        PageSize?: number,
+        pageSize?: number,
       }): PagedData;
 
-      /**
-       * Execute the query and return paged results.
-       *
-       * @governance 10 points
-       *
-       * @param [options]
-       * @param [options.pageSize]
-       * @return The paged query object
-       */
-      promise(options?: {
-        PageSize?: number,
-      }): PagedData;
+      promise: {
+
+        /**
+         * Execute the query and return paged results asynchrounously
+         *
+         * @governance 10 points
+         *
+         * @param [pageSize]
+         * @return The paged query object
+         */
+        (pageSize?: number): Promise<PagedData>;
+
+        /**
+         * Execute the query and return paged results asynchrounously
+         *
+         * @governance 10 points
+         *
+         * @param [options]
+         * @param [options.pageSize]
+         * @return The paged query object
+         */
+        (options?: {
+          pageSize?: number,
+        }): Promise<PagedData>;
+      };
     };
 
     /**
@@ -1909,6 +2129,7 @@ declare namespace query {
     readonly pageRanges: PageRange[];
 
     fetch: {
+
       /**
        * Fetch a specific page of the paged query results
        *
@@ -1926,22 +2147,25 @@ declare namespace query {
         index: number,
       }): query.Page;
 
-      /**
-       * Fetch a specific page of the paged query results asynchronously
-       *
-       * @param index
-       */
-      promise(index: number): Promise<query.Page>;
+      promise: {
 
-      /**
-       * Fetch a specific page of the paged query results asynchronously
-       *
-       * @param options
-       * @param options.index
-       */
-      promise(options: {
-        index: number,
-      }): Promise<query.Page>;
+        /**
+         * Fetch a specific page of the paged query results asynchronously
+         *
+         * @param index
+         */
+        (index: number): Promise<query.Page>;
+
+        /**
+         * Fetch a specific page of the paged query results asynchronously
+         *
+         * @param options
+         * @param options.index
+         */
+        (options: {
+          index: number,
+        }): Promise<query.Page>;
+      };
     };
 
     /**
