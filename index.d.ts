@@ -27,6 +27,7 @@
 /// <reference path="./N/portlet.d.ts" />
 /// <reference path="./N/query.d.ts" />
 /// <reference path="./N/record.d.ts" />
+/// <reference path="./N/recordContext.d.ts" />
 /// <reference path="./N/redirect.d.ts" />
 /// <reference path="./N/render.d.ts" />
 /// <reference path="./N/runtime.d.ts" />
