@@ -1,5 +1,5 @@
 interface Require {
-  (modules: string[], ready?: (...modules: any[]) => void): void
+  (modules: string[], ready?: (...modules: any[]) => void): void;
 }
 
 declare var require: Require;
