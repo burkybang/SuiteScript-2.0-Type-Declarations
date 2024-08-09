@@ -13,7 +13,7 @@ interface llm {
    *
    * @param options
    * @param options.text - text of the chat
-   * @param [options.role] - role (author) of the message
+   * @param options.role - role (author) of the message
    *
    * @throws {SuiteScriptError} INVALID_CHAT_ROLE when the role for the message is outside of the ChatRole enum
    *
@@ -21,7 +21,7 @@ interface llm {
    */
   createChatMessage(options: {
     text: string,
-    role?: llm.ChatRole | `${llm.ChatRole}`,
+    role: llm.ChatRole | `${llm.ChatRole}`,
   }): llm.ChatMessage;
 
   generateText: {
@@ -31,6 +31,7 @@ interface llm {
      *
      * @param prompt - prompt for the LLM
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      *
      * @since 2024.2
@@ -67,6 +68,7 @@ interface llm {
      * @param [options.modelParameters.frequencyPenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `presencePenalty`. The higher the value, the stronger a penalty is applied to previously present tokens, proportional to how many times they have already appeared in the prompt or prior generation.
      * @param [options.modelParameters.presencePenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `frequencyPenalty`. Similar to `frequencyPenalty` except that this penalty is applied equally to all tokens that have already appeared regardless of their exact frequencies.
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS both presencePenalty and frequencyPenalty are used in model parameters
      * @throws {error.SuiteScriptError} UNRECOGNIZED_MODEL_PARAMETERS if uknown model parameter has been used
@@ -96,6 +98,7 @@ interface llm {
      *
      * @param prompt
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      *
      * @since 2024.2
@@ -126,6 +129,7 @@ interface llm {
      * @param [options.modelParameters.frequencyPenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `presencePenalty`. The higher the value, the stronger a penalty is applied to previously present tokens, proportional to how many times they have already appeared in the prompt or prior generation.
      * @param [options.modelParameters.presencePenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `frequencyPenalty`. Similar to `frequencyPenalty` except that this penalty is applied equally to all tokens that have already appeared regardless of their exact frequencies.
      *
+     * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS both presencePenalty and frequencyPenalty are used in model parameters
      * @throws {error.SuiteScriptError} UNRECOGNIZED_MODEL_PARAMETERS if uknown model parameter has been used
