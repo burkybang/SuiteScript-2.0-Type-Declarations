@@ -175,7 +175,7 @@ interface render {
    * @param options.transactionId
    */
   mergeEmail(options: {
-    templateId: number,
+    templateId: number | string,
     entity?: {
       id: number,
       type: record.Type | `${record.Type}` | string,
@@ -314,7 +314,7 @@ declare namespace render {
      */
     addRecord(
       templateName: string,
-      record: record.Record,
+      record: record.Record | record.RecordReadonly,
     ): void;
 
     /**
@@ -330,7 +330,7 @@ declare namespace render {
      */
     addRecord(options: {
       templateName: string,
-      record: record.Record,
+      record: record.Record | record.RecordReadonly,
     }): void;
 
     /**
