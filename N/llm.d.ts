@@ -8,12 +8,28 @@
  */
 interface llm {
 
+  /**
+   * Creates a chat massage
+   *
+   * @param options
+   * @param options.text - text of the chat
+   * @param [options.role] - role (author) of the message
+   *
+   * @throws {SuiteScriptError} INVALID_CHAT_ROLE when the role for the message is outside of the ChatRole enum
+   *
+   * @since 2024.2
+   */
+  createChatMessage(options: {
+    text: string,
+    role?: llm.ChatRole | `${llm.ChatRole}`,
+  }): llm.ChatMessage;
+
   generateText: {
 
     /**
-     * Returns response from the LLM for given prompt
+     * Returns a response from the LLM for the given prompt
      *
-     * @param prompt
+     * @param prompt - prompt for the LLM
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      *
@@ -22,14 +38,20 @@ interface llm {
     (prompt: string): llm.Response;
 
     /**
-     * Returns response from the LLM for given prompt
+     * Returns a response from the LLM for the given prompt
      *
      * @param options
-     * @param options.prompt
-     * @param [options.timeout = 30000]
-     * @param [options.chatHistory = []]
-     * @param [options.preamble]
-     * @param [options.ociConfig]
+     * @param options.prompt - Prompt for the LLM
+     * @param [options.timeout = 30000] - Timeout in milliseconds, defaults to 30000
+     * @param [options.chatHistory = []] - Chat history to be taken in consideration
+     * @param [options.preamble] - Preamble for the text generation
+     * @param [options.ociConfig] - Config needed for unlimited usage
+     * @param [options.ociConfig.tenancyId] - Tenancy OCID
+     * @param [options.ociConfig.compartmentId] - Compartment OCID
+     * @param [options.ociConfig.userId] - User OCID
+     * @param [options.ociConfig.endpointId] - Endpoint ID (needed when custom OCI cluster is to be used)
+     * @param [options.ociConfig.fingerprint] - Fingerprint of the public key (Must be an API secret)
+     * @param [options.ociConfig.privateKey] - Private key of the OCI user (Must be an API secret)
      * @param [options.modelParameters = {
      *   maxTokens: 2000,
      *   temperature: 0.2,
@@ -37,7 +59,13 @@ interface llm {
      *   topP: 0.7,
      *   frequencyPenalty: 0,
      *   presencePenalty: 0,
-     * }]
+     * }] - Parameters of the model
+     * @param [options.modelParameters.maxTokens = 2000] - Must be between 0 and 4000 inclusively. Maximum number of tokens the LLM is allowed to generate. The average number of tokens per word is 3.
+     * @param [options.modelParameters.temperature = 0.2] - Must be between 0 and 1 inclusively. A lower value works best for responses that need to be more factual or accurate. A higher value works best for getting more creative responses.
+     * @param [options.modelParameters.topK = 500] - Must be between 0 and 500 inclusively. How many tokens are considered for generation at each step.
+     * @param [options.modelParameters.topP = 0.7] - Must be between 0 and 1 inclusively. The probability which ensures that only the most likely tokens with total probability mass of p are considered for generation at each step. If both `topK` and `topP` are set, `topP` acts after `topK`.
+     * @param [options.modelParameters.frequencyPenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `presencePenalty`. The higher the value, the stronger a penalty is applied to previously present tokens, proportional to how many times they have already appeared in the prompt or prior generation.
+     * @param [options.modelParameters.presencePenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `frequencyPenalty`. Similar to `frequencyPenalty` except that this penalty is applied equally to all tokens that have already appeared regardless of their exact frequencies.
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS both presencePenalty and frequencyPenalty are used in model parameters
@@ -64,7 +92,7 @@ interface llm {
     }): llm.Response;
 
     /**
-     * Returns response from the LLM for given prompt
+     * Returns a response from the LLM for the given prompt asynchronously
      *
      * @param prompt
      *
@@ -75,14 +103,14 @@ interface llm {
     promise(prompt: string): Promise<llm.Response>;
 
     /**
-     * Returns response from the LLM for given prompt asynchronously
+     * Returns a response from the LLM for the given prompt asynchronously
      *
      * @param options
-     * @param options.prompt
-     * @param [options.timeout = 30000]
-     * @param [options.chatHistory = []]
-     * @param [options.preamble]
-     * @param [options.ociConfig]
+     * @param options.prompt - Prompt for the LLM
+     * @param [options.timeout = 30000] - Timeout in milliseconds, defaults to 30000
+     * @param [options.chatHistory = []] - Chat history to be taken in consideration
+     * @param [options.preamble] - Preamble for the text generation
+     * @param [options.ociConfig] - Config needed for unlimited usage
      * @param [options.modelParameters = {
      *   maxTokens: 2000,
      *   temperature: 0.2,
@@ -90,7 +118,13 @@ interface llm {
      *   topP: 0.7,
      *   frequencyPenalty: 0,
      *   presencePenalty: 0,
-     * }]
+     * }] - Parameters of the model
+     * @param [options.modelParameters.maxTokens = 2000] - Must be between 0 and 4000 inclusively. Maximum number of tokens the LLM is allowed to generate. The average number of tokens per word is 3.
+     * @param [options.modelParameters.temperature = 0.2] - Must be between 0 and 1 inclusively. A lower value works best for responses that need to be more factual or accurate. A higher value works best for getting more creative responses.
+     * @param [options.modelParameters.topK = 500] - Must be between 0 and 500 inclusively. How many tokens are considered for generation at each step.
+     * @param [options.modelParameters.topP = 0.7] - Must be between 0 and 1 inclusively. The probability which ensures that only the most likely tokens with total probability mass of p are considered for generation at each step. If both `topK` and `topP` are set, `topP` acts after `topK`.
+     * @param [options.modelParameters.frequencyPenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `presencePenalty`. The higher the value, the stronger a penalty is applied to previously present tokens, proportional to how many times they have already appeared in the prompt or prior generation.
+     * @param [options.modelParameters.presencePenalty = 0] - Must be between 0 and 1 inclusively. Must not be used with `frequencyPenalty`. Similar to `frequencyPenalty` except that this penalty is applied equally to all tokens that have already appeared regardless of their exact frequencies.
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS both presencePenalty and frequencyPenalty are used in model parameters
@@ -116,16 +150,6 @@ interface llm {
       modelParameters?: llm.ModelParameters,
     }): Promise<llm.Response>;
   };
-
-  /**
-   * Creates a chat massage
-   *
-   * @since 2024.2
-   */
-  createChatMessage(options: {
-    text: string,
-    role: llm.ChatRole | `${llm.ChatRole}`,
-  }): llm.ChatMessage;
 
   getRemainingFreeUsage: {
 
@@ -249,39 +273,46 @@ declare namespace llm {
   export interface OciConfig {
 
     /**
+     * Tenancy OCID
+     *
      * @since 2024.2
      */
-
     tenancyId: string;
 
     /**
+     * Compartment OCID
+     *
      * @since 2024.2
      */
     compartmentId: string;
 
     /**
+     * User OCID
+     *
      * @since 2024.2
      */
     userId: string;
 
     /**
-     * Must be an API secret
+     * Endpoint ID (needed when custom OCI cluster is to be used)
      *
-     * @since 2024.2
-     */
-    fingerprint: string | `custsecret${string}`;
-
-    /**
-     * Must be an API secret
-     *
-     * @since 2024.2
-     */
-    privateKey: string | `custsecret${string}`;
-
-    /**
      * @since 2024.2
      */
     endpointId: string;
+
+    /**
+     * Fingerprint of the public key (Must be an API secret)
+     *
+     * @since 2024.2
+     */
+    fingerprint: `custsecret${string}` | string;
+
+    /**
+     * Private key of the OCI user (Must be an API secret)
+     *
+     * @since 2024.2
+     */
+    privateKey: `custsecret${string}` | string;
   }
 
   /**
@@ -290,44 +321,55 @@ declare namespace llm {
   export interface ModelParameters {
 
     /**
-     * Must be between 0 and 4000 inclusively
+     * Must be between 0 and 4000 inclusively.
+     * Maximum number of tokens the LLM is allowed to generate.
+     * The average number of tokens per word is 3.
      *
      * @since 2024.2
      */
-    maxTokens: number;
+    maxTokens?: number;
 
     /**
-     * Must be between 0 and 1 inclusively
+     * Must be between 0 and 1 inclusively.
+     * A lower value works best for responses that need to be more factual or accurate.
+     * A higher value works best for getting more creative responses.
      *
      * @since 2024.2
      */
-    temperature: number;
+    temperature?: number;
 
     /**
-     * Must be between 0 and 500 inclusively
+     * Must be between 0 and 500 inclusively.
+     * How many tokens are considered for generation at each step.
      *
      * @since 2024.2
      */
-    topK: number;
+    topK?: number;
 
     /**
-     * Must be between 0 and 1 inclusively
+     * Must be between 0 and 1 inclusively.
+     * The probability which ensures that only the most likely tokens with total probability mass of p are considered for generation at each step.
+     * If both `topK` and `topP` are set, `topP` acts after `topK`.
      *
      * @since 2024.2
      */
-    topP: number;
+    topP?: number;
 
     /**
-     * Must be between 0 and 1 inclusively
-     * Must not be used with presencePenalty
+     * Must be between 0 and 1 inclusively.
+     * Must not be used with `presencePenalty`.
+     * The higher the value, the stronger a penalty is applied to previously present tokens,
+     * proportional to how many times they have already appeared in the prompt or prior generation.
      *
      * @since 2024.2
      */
     frequencyPenalty?: number;
 
     /**
-     * Must be between 0 and 1 inclusively
-     * Must not be used with frequencyPenalty
+     * Must be between 0 and 1 inclusively.
+     * Must not be used with `frequencyPenalty`.
+     * Similar to `frequencyPenalty` except that this penalty is applied equally to
+     * all tokens that have already appeared regardless of their exact frequencies.
      *
      * @since 2024.2
      */
