@@ -12,12 +12,12 @@
 interface runtime {
 
   /**
-   * Get the current log in user object
+   * Get details about the currently logged in user
    */
   getCurrentUser(): runtime.User;
 
   /**
-   * Get the current executing Script object
+   * Get details about the currently executing script
    */
   getCurrentScript(): runtime.Script;
 
