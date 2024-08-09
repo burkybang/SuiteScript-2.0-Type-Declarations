@@ -24,13 +24,13 @@ interface cache {
 declare namespace cache {
   /**
    * Defines all possible cache scopes
+   * - PRIVATE - (Default) Cache entries are only accessible to the current script
+   * - PROTECTED - Cache entries are only accessible to scripts in the same bundle or not in bundle
+   * - PUBLIC - Cache entries are accessible to any script running in your account
    */
   export enum Scope {
-    // (default) - Cache entries are only accessible to the current script
     PRIVATE = 'PRIVATE',
-    // Cache entries are only accessible to scripts in the same bundle or not in bundle
     PROTECTED = 'PROTECTED',
-    // Cache entries are accessible to any script running in your account
     PUBLIC = 'PUBLIC',
   }
 
@@ -100,12 +100,11 @@ declare namespace cache {
      * @param options
      * @param options.key The cache key used to identify the value.
      * @param options.value The value to cache.
-     * @param [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache.
-     * The default TTL is no limit; the minimal value is 5 minutes.
+     * @param [options.ttl] The Time To Live (aka TTL) duration in seconds. The cache entry will be automatically purged when the TTL expires, if it is still in the cache. The default TTL is no limit. The minimum value is 300 seconds (5 minutes).
      */
     put(options: {
       key: string,
-      value: string,
+      value: any,
       ttl?: number,
     }): void;
   }
