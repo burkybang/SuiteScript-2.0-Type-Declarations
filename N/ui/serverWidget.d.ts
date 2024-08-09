@@ -1450,12 +1450,24 @@ declare namespace serverWidget {
 
     /**
      * Add a row (Array of name/value pairs or search.Result)
+     * @param row  An Array of rows containing name/value pairs containing the values for corresponding
+     */
+    addRow(row: search.Result | Record<string, string>): List;
+
+    /**
+     * Add a row (Array of name/value pairs or search.Result)
      * @param options
      * @param options.row  An Array of rows containing name/value pairs containing the values for corresponding
      */
     addRow(options: {
-      row: search.Result | { [p: string]: string }
+      row: search.Result | Record<string, string>,
     }): List;
+
+    /**
+     * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+     * @param rows Array of search.Result or name/value pair Arrays
+     */
+    addRows(rows: search.Result[] | Record<string, string>[]): List;
 
     /**
      * Adds multiple rows (Array of search.Result or name/value pair Arrays)
@@ -1463,7 +1475,7 @@ declare namespace serverWidget {
      * @param options.rows Array of search.Result or name/value pair Arrays
      */
     addRows(options: {
-      rows: search.Result[] | { [p: string]: string }[]
+      rows: search.Result[] | Record<string, string>[],
     }): List;
   }
 
