@@ -59,7 +59,7 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   post: {
@@ -110,7 +110,7 @@ interface https {
       url: string,
       headers?: Record<string, string | number>,
       body: string | Object,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   put: {
@@ -161,7 +161,7 @@ interface https {
       url: string,
       headers?: Record<string, string | number>,
       body: string | Object,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   delete: {
@@ -208,7 +208,7 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   request: {
@@ -263,7 +263,7 @@ interface https {
       url: string,
       headers?: Record<string, string | number>,
       body?: string | Object,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   requestSuitelet: {
@@ -328,7 +328,7 @@ interface https {
       headers?: Record<string, string | number>,
       urlParams?: Record<string, string | number>,
       body?: string | Object,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   requestRestlet: {
@@ -400,7 +400,7 @@ interface https {
       headers?: Record<string, string | number>,
       urlParams?: Record<string, string | number>,
       body?: string | Object,
-    }): Promise<http.ClientResponse>;
+    }): Promise<https.ClientResponse>;
   };
 
   /**
