@@ -96,7 +96,7 @@ interface llm {
     /**
      * Returns a response from the LLM for the given prompt asynchronously
      *
-     * @param prompt
+     * @param prompt - Prompt for the LLM
      *
      * @throws {error.SuiteScriptError} FEATURE_UNAVAILABLE if the learning language model feature is not enabled
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
