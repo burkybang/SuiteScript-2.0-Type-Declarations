@@ -9,18 +9,18 @@
  * @NApiVersion 2.x
  */
 interface transaction {
-  
+
   void: {
 
     /**
-     * Method used to void a transaction record object and return an id that indicates the type of void performed
+     * Void a transaction record object and return an ID that indicates the type of void performed
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4413165692.html}
      *
-     * @param {Object} options
-     * @param {transaction.Type|string} options.type record type to be voided
-     * @param {number|string} options.id record id to be voided
-     * @return {number} the id is the voided record or new reverse journal entry based on preference
+     * @param options
+     * @param options.type Record type to be voided
+     * @param options.id Record id to be voided
+     * @return The ID of the the voided record or new reverse journal entry based on preference
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
@@ -34,14 +34,14 @@ interface transaction {
     }): number;
 
     /**
-     * Method used to void a transaction record object and return an id that indicates the type of void performed
+     * Void a transaction record object and return an ID that indicates the type of void performed asynchronously
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440850256.html}
      *
-     * @param {Object} options
-     * @param {transaction.Type|string} options.type record type to be voided
-     * @param {number|string} options.id record id to be voided
-     * @return {number} the id is the voided record or new reverse journal entry based on preference
+     * @param options
+     * @param options.type Record type to be voided
+     * @param options.id Record id to be voided
+     * @return The ID of the the voided record or new reverse journal entry based on preference
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
      * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE if type is not voidable
@@ -62,8 +62,6 @@ declare namespace transaction {
    * Enumeration that holds the string values for supported transaction record types
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483109897}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483109897.html}
-   *
-   * @enum {string}
    *
    * @since 2015.2
    */
