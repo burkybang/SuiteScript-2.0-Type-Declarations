@@ -1287,7 +1287,7 @@ declare namespace search {
     /**
      * Convert to JSON object
      */
-    toJSON(): ExcludeMethods<this>;
+    toJSON(): SerializedFilterOutput;
   }
 
   export interface Column {
