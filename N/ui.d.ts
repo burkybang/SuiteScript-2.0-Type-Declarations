@@ -17,8 +17,6 @@ interface ui {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497725142.html}
    *
-   * @type {dialog}
-   *
    * @restriction Client-side scripts only
    */
   dialog: dialog;
@@ -28,8 +26,6 @@ interface ui {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497735093}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497735093.html}
    *
-   * @type {message}
-   *
    * @restriction Client-side scripts only
    */
   message: message;
@@ -38,8 +34,6 @@ interface ui {
    * Load the serverWidget module when you want to work with the user interface within NetSuite
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4321345532.html}
-   *
-   * @type {serverWidget}
    *
    * @restriction Server-side scripts only
    */

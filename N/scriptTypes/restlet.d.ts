@@ -1,7 +1,7 @@
 /// <reference path="../error.d.ts" />
 
 /**
- * SuiteScript restlet module
+ * SuiteScript scriptTypes/restlet module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_4130555042}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4130555042.html}
  *

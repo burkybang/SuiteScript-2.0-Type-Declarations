@@ -1,10 +1,13 @@
 /**
- * SuiteScript Dialog Module (Client Side)
+ * SuiteScript ui/dialog module
+ *
+ * @restriction Client-side scripts only
+ *
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497725142}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497725142.html}
  *
  * @module N/ui/dialog
- * @suiteScriptVersion 2.x
+ * @NApiVersion 2.x
  */
 interface dialog {
 

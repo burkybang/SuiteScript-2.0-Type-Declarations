@@ -4,7 +4,7 @@
 /// <reference path="../http.d.ts" />
 
 /**
- * SuiteScript serverWidget module
+ * SuiteScript ui/serverWidget module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321345532}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4321345532.html}
  *

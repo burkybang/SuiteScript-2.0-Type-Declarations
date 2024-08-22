@@ -1,7 +1,7 @@
 /// <reference path="../error.d.ts" />
 
 /**
- * SuiteScript message module (Client Side)
+ * SuiteScript ui/message module
  *
  * @module N/ui/message
  * @NApiVersion 2.x
@@ -95,7 +95,7 @@ declare namespace message {
      * JSON.stringify() implementation
      */
     toJSON(): {
-      type: Type | `${Type}`,
+      type: Type,
       title: string,
       message: string,
       duration: number,
