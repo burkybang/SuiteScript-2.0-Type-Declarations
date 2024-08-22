@@ -25,6 +25,7 @@
 /// <reference path="./N/https.d.ts" />
 /// <reference path="./N/llm.d.ts" />
 /// <reference path="./N/log.d.ts" />
+/// <reference path="./N/pgp.d.ts" />
 /// <reference path="./N/plugin.d.ts" />
 /// <reference path="./N/portlet.d.ts" />
 /// <reference path="./N/query.d.ts" />
