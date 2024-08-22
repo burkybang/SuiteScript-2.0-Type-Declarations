@@ -3,7 +3,7 @@
 /// <reference path="../xml.d.ts" />
 
 /**
- * SuiteScript certificate module
+ * SuiteScript crypto/certificate module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1543432423}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1543432423.html}
  *
