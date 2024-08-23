@@ -280,6 +280,7 @@ declare namespace action {
     'reject' | 'decline' |
     'launch' | 'submit' |
     'cancel' | 'retract' |
+    'startcount' | 'completecount' |
 
     'markforgrouping' | 'unmarkforgrouping' |
     'groupinvoices' |
