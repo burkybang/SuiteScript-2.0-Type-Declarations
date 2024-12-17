@@ -9,275 +9,206 @@
 interface i18n {
 
   /**
-   * Spells out positive and negative number as a string in a specific language
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
-   *
-   * @param {Object} options
-   * @param {string} options.number The number to be spelled out in a string
-   * @param {string} options.locale The language code that specifies the string’s language
-   * @return {string}
-   *
-   * @since 2019.1
+   * The maximum length for phone numbers
    */
-  spellOut(options: {
-    number: string,
-    locale: string,
-  }): string;
+  readonly PhoneFieldMaxLength: number;
 
   /**
-   * Create i18n.CurrencyFormatter object to format numbers into currency strings
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
-   *
-   * @param {Object} options
-   * @param {string} options.currency Code of the currency that is used by formatter
-   * @return {i18n.CurrencyFormatter}
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Currency parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY The currency is not valid
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
-   *
-   * @since 2019.1
+   * The country code of the current subsidiary
    */
-  getCurrencyFormatter(options: {
-    currency: string,
-  }): i18n.CurrencyFormatter;
+  readonly SubsidiaryCountry: string;
+
+  spellOut: {
+
+    /**
+     * Spells out positive and negative number as a string in a specific language
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @param options
+     * @param options.number The number to be spelled out in a string
+     * @param options.locale The language code that specifies the string’s language
+     *
+     * @since 2019.1
+     */
+    (options: {
+      number: string,
+      locale?: string,
+    }): string;
+
+    /**
+     * Spells out positive and negative number as a string in a specific language
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @param options
+     * @param options.number The number to be spelled out in a string
+     * @param options.locale The language code that specifies the string’s language
+     *
+     * @since 2019.1
+     */
+    promise(options: {
+      number: string,
+      locale?: string,
+    }): Promise<string>;
+  };
+
+  getCurrencyFormatter: {
+
+    /**
+     * Create i18n.CurrencyFormatter object to format numbers into currency strings
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @param options
+     * @param options.currency Code of the currency that is used by formatter
+     *
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED Both currency and locale parameters are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Currency parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY_ID The currency is not valid
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
+     *
+     * @since 2019.1
+     */
+    (options: {
+      currency: i18n.Currency | `${i18n.Currency}`,
+    }): i18n.CurrencyFormatter;
+
+    /**
+     * Create i18n.CurrencyFormatter object to format numbers into currency strings
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @param options
+     * @param options.locale Code of the locale that is used by formatter
+     *
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED Both currency and locale parameters are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Locale parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_LOCALE The locale is not valid
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
+     *
+     * @since 2019.1
+     */
+    (options: {
+      locale: string,
+    }): i18n.CurrencyFormatter;
+
+    /**
+     * Create i18n.CurrencyFormatter object to format numbers into currency strings asynchronously
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @param options
+     * @param options.currency Code of the currency that is used by formatter
+     *
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED Both currency and locale parameters are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Currency parameter is missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY_ID The currency is not valid
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
+     *
+     * @since 2019.1
+     */
+    promise(options: {
+      currency: i18n.Currency | `${i18n.Currency}`,
+    }): Promise<i18n.CurrencyFormatter>;
+
+    /**
+     * Create i18n.CurrencyFormatter object to format numbers into currency strings asynchronously
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @param options
+     * @param options.locale Code of the locale that is used by formatter
+     *
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED Both currency and locale parameters are missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Locale parameter is missing
+     * @throws {error.SuiteScriptError} INVALID_LOCALE The locale is not valid
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG The parameter type is wrong
+     *
+     * @since 2019.1
+     */
+    promise(options: {
+      locale: string,
+    }): Promise<i18n.CurrencyFormatter>;
+  };
+
+  getNumberFormatter: {
+
+    /**
+     * Create i18n.NumberFormatter object to format numbers into strings
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023913}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023913.html}
+     *
+     * @param options
+     * @param options.groupSeparator Indicates the group separator
+     * @param options.decimalSeparator Indicates the decimal separator
+     * @param options.precision Indicates the precision
+     * @param options.negativeNumberFormat Indicates the negative number format
+     *
+     * @since 2019.2
+     */
+    (options?: {
+      groupSeparator?: string,
+      decimalSeparator?: string,
+      precision?: number,
+      negativeNumberFormat?: i18n.NegativeNumberFormat | `${i18n.NegativeNumberFormat}`,
+    }): i18n.NumberFormatter;
+
+    /**
+     * Create i18n.NumberFormatter object to format numbers into strings asynchronously
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023913}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023913.html}
+     *
+     * @param options
+     * @param options.groupSeparator Indicates the group separator
+     * @param options.decimalSeparator Indicates the decimal separator
+     * @param options.precision Indicates the precision
+     * @param options.negativeNumberFormat Indicates the negative number format
+     *
+     * @since 2019.2
+     */
+    promise(options?: {
+      groupSeparator?: string,
+      decimalSeparator?: string,
+      precision?: number,
+      negativeNumberFormat?: i18n.NegativeNumberFormat | `${i18n.NegativeNumberFormat}`,
+    }): Promise<i18n.NumberFormatter>;
+  };
 
   /**
-   * Create i18n.NumberFormatter object to format numbers into strings
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023913}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023913.html}
+   * Create i18n.PhoneNumberFormatter object to format phone numbers into strings
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_20131717237}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_20131717237.html}
    *
-   * @param {Object} options
-   * @param {string} options.groupSeparator Indicates the group separator
-   * @param {string} options.decimalSeparator Indicates the decimal separator
-   * @param {number} options.precision Indicates the precision
-   * @param {NegativeNumberFormat} options.negativeNumberFormat Indicates the negative number format
-   * @return {i18n.NumberFormatter}
+   * @param options
+   * @param options.formatType Phone number format type
    *
    * @since 2019.2
    */
-  getCurrencyFormatter(options: {
-    groupSeparator: string,
-    decimalSeparator: string,
-    precision: number,
-    negativeNumberFormat: i18n.NegativeNumberFormat | `${i18n.NegativeNumberFormat}`,
-  }): i18n.NumberFormatter;
+  getPhoneNumberFormatter<FormatType extends i18n.PhoneNumberFormatType>(options: {
+    formatType: FormatType | `${FormatType}`,
+  }): i18n.PhoneNumberFormatter<FormatType>;
+
+  /**
+   * Parses a phone number from a string
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_77132343780}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_77132343780.html}
+   *
+   * @param options Required - Use an empty object if not specifying any options
+   * @param options.defaultCountry Parser point of reference. Specify this value if the phone number is not in international formatl. If specified, value must be a format.Country value. If a value is not specified, the company country is used.
+   *
+   * @since 2019.2
+   */
+  getPhoneNumberParser<DefaultCountry extends i18n.Country>(options: {
+    defaultCountry?: DefaultCountry | `${DefaultCountry}`,
+  }): i18n.PhoneNumberParser<DefaultCountry>;
 }
 
 declare namespace i18n {
 
   /**
-   * Enum for Negative Number Format
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558031974}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558031974.html}
-   *
-   * @enum {string}
-   *
-   * @since 2019.2
-   */
-  export enum NegativeNumberFormat {
-    BRACKETS = 'BRACKETS',
-    MINUS = 'MINUS',
-  }
-
-  /**
-   * Enum for Currency
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558027087}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558027087.html}
-   *
-   * @enum {string}
-   *
-   * @since 2019.1
-   */
-  export enum Currency {
-    AED = 'AED',
-    AFN = 'AFN',
-    ALL = 'ALL',
-    AMD = 'AMD',
-    ANG = 'ANG',
-    AOA = 'AOA',
-    ARS = 'ARS',
-    AUD = 'AUD',
-    AWG = 'AWG',
-    AZN = 'AZN',
-    BAM = 'BAM',
-    BBD = 'BBD',
-    BDT = 'BDT',
-    BGN = 'BGN',
-    BHD = 'BHD',
-    BIF = 'BIF',
-    BMD = 'BMD',
-    BND = 'BND',
-    BOB = 'BOB',
-    BOV = 'BOV',
-    BRL = 'BRL',
-    BSD = 'BSD',
-    BTN = 'BTN',
-    BWP = 'BWP',
-    BYN = 'BYN',
-    BZD = 'BZD',
-    CAD = 'CAD',
-    CDF = 'CDF',
-    CHE = 'CHE',
-    CHF = 'CHF',
-    CHW = 'CHW',
-    CLF = 'CLF',
-    CLP = 'CLP',
-    CNY = 'CNY',
-    COP = 'COP',
-    COU = 'COU',
-    CRC = 'CRC',
-    CUC = 'CUC',
-    CUP = 'CUP',
-    CVE = 'CVE',
-    CZK = 'CZK',
-    DJF = 'DJF',
-    DKK = 'DKK',
-    DOP = 'DOP',
-    DZD = 'DZD',
-    EGP = 'EGP',
-    ERN = 'ERN',
-    ETB = 'ETB',
-    EUR = 'EUR',
-    FJD = 'FJD',
-    FKP = 'FKP',
-    GBP = 'GBP',
-    GEL = 'GEL',
-    GHS = 'GHS',
-    GIP = 'GIP',
-    GMD = 'GMD',
-    GNF = 'GNF',
-    GTQ = 'GTQ',
-    GYD = 'GYD',
-    HKD = 'HKD',
-    HNL = 'HNL',
-    HRK = 'HRK',
-    HTG = 'HTG',
-    HUF = 'HUF',
-    IDR = 'IDR',
-    ILS = 'ILS',
-    INR = 'INR',
-    IQD = 'IQD',
-    IRR = 'IRR',
-    ISK = 'ISK',
-    JMD = 'JMD',
-    JOD = 'JOD',
-    JPY = 'JPY',
-    KES = 'KES',
-    KGS = 'KGS',
-    KHR = 'KHR',
-    KMF = 'KMF',
-    KPW = 'KPW',
-    KRW = 'KRW',
-    KWD = 'KWD',
-    KYD = 'KYD',
-    KZT = 'KZT',
-    LAK = 'LAK',
-    LBP = 'LBP',
-    LKR = 'LKR',
-    LRD = 'LRD',
-    LSL = 'LSL',
-    LYD = 'LYD',
-    MAD = 'MAD',
-    MDL = 'MDL',
-    MGA = 'MGA',
-    MKD = 'MKD',
-    MMK = 'MMK',
-    MNT = 'MNT',
-    MOP = 'MOP',
-    MRU = 'MRU',
-    MUR = 'MUR',
-    MVR = 'MVR',
-    MWK = 'MWK',
-    MXN = 'MXN',
-    MXV = 'MXV',
-    MYR = 'MYR',
-    MZN = 'MZN',
-    NAD = 'NAD',
-    NGN = 'NGN',
-    NIO = 'NIO',
-    NOK = 'NOK',
-    NPR = 'NPR',
-    NZD = 'NZD',
-    OMR = 'OMR',
-    PAB = 'PAB',
-    PEN = 'PEN',
-    PGK = 'PGK',
-    PHP = 'PHP',
-    PKR = 'PKR',
-    PLN = 'PLN',
-    PYG = 'PYG',
-    QAR = 'QAR',
-    RON = 'RON',
-    RSD = 'RSD',
-    RUB = 'RUB',
-    RWF = 'RWF',
-    SAR = 'SAR',
-    SBD = 'SBD',
-    SCR = 'SCR',
-    SDG = 'SDG',
-    SEK = 'SEK',
-    SGD = 'SGD',
-    SHP = 'SHP',
-    SLL = 'SLL',
-    SOS = 'SOS',
-    SRD = 'SRD',
-    SSP = 'SSP',
-    STN = 'STN',
-    SVC = 'SVC',
-    SYP = 'SYP',
-    SZL = 'SZL',
-    THB = 'THB',
-    TJS = 'TJS',
-    TMT = 'TMT',
-    TND = 'TND',
-    TOP = 'TOP',
-    TRY = 'TRY',
-    TTD = 'TTD',
-    TWD = 'TWD',
-    TZS = 'TZS',
-    UAH = 'UAH',
-    UGX = 'UGX',
-    USD = 'USD',
-    USN = 'USN',
-    UYI = 'UYI',
-    UYU = 'UYU',
-    UYW = 'UYW',
-    UZS = 'UZS',
-    VES = 'VES',
-    VND = 'VND',
-    VUV = 'VUV',
-    WST = 'WST',
-    XAF = 'XAF',
-    XAG = 'XAG',
-    XAU = 'XAU',
-    XBA = 'XBA',
-    XBB = 'XBB',
-    XBC = 'XBC',
-    XBD = 'XBD',
-    XCD = 'XCD',
-    XDR = 'XDR',
-    XOF = 'XOF',
-    XPD = 'XPD',
-    XPF = 'XPF',
-    XPT = 'XPT',
-    XSU = 'XSU',
-    XTS = 'XTS',
-    XUA = 'XUA',
-    XXX = 'XXX',
-    YER = 'YER',
-    ZAR = 'ZAR',
-    ZMW = 'ZMW',
-    ZWL = 'ZWL',
-  }
-
-  /**
    * Enum for Country
    * @see Not Documented in NetSuite Help Center
-   *
-   * @enum {string}
    */
   export enum Country {
     defaultCountry = '',
@@ -539,11 +470,217 @@ declare namespace i18n {
   }
 
   /**
-   * The menimum length for phone numbers
-   * @const
-   * @type {number}
+   * Enum for Currency
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558027087}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558027087.html}
+   *
+   * @since 2019.1
    */
-  export const PhoneFieldMaxLength: number;
+  export enum Currency {
+    AED = 'AED',
+    AFN = 'AFN',
+    ALL = 'ALL',
+    AMD = 'AMD',
+    ANG = 'ANG',
+    AOA = 'AOA',
+    ARS = 'ARS',
+    AUD = 'AUD',
+    AWG = 'AWG',
+    AZN = 'AZN',
+    BAM = 'BAM',
+    BBD = 'BBD',
+    BDT = 'BDT',
+    BGN = 'BGN',
+    BHD = 'BHD',
+    BIF = 'BIF',
+    BMD = 'BMD',
+    BND = 'BND',
+    BOB = 'BOB',
+    BOV = 'BOV',
+    BRL = 'BRL',
+    BSD = 'BSD',
+    BTN = 'BTN',
+    BWP = 'BWP',
+    BYN = 'BYN',
+    BZD = 'BZD',
+    CAD = 'CAD',
+    CDF = 'CDF',
+    CHE = 'CHE',
+    CHF = 'CHF',
+    CHW = 'CHW',
+    CLF = 'CLF',
+    CLP = 'CLP',
+    CNY = 'CNY',
+    COP = 'COP',
+    COU = 'COU',
+    CRC = 'CRC',
+    CUC = 'CUC',
+    CUP = 'CUP',
+    CVE = 'CVE',
+    CZK = 'CZK',
+    DJF = 'DJF',
+    DKK = 'DKK',
+    DOP = 'DOP',
+    DZD = 'DZD',
+    EGP = 'EGP',
+    ERN = 'ERN',
+    ETB = 'ETB',
+    EUR = 'EUR',
+    FJD = 'FJD',
+    FKP = 'FKP',
+    GBP = 'GBP',
+    GEL = 'GEL',
+    GHS = 'GHS',
+    GIP = 'GIP',
+    GMD = 'GMD',
+    GNF = 'GNF',
+    GTQ = 'GTQ',
+    GYD = 'GYD',
+    HKD = 'HKD',
+    HNL = 'HNL',
+    HRK = 'HRK',
+    HTG = 'HTG',
+    HUF = 'HUF',
+    IDR = 'IDR',
+    ILS = 'ILS',
+    INR = 'INR',
+    IQD = 'IQD',
+    IRR = 'IRR',
+    ISK = 'ISK',
+    JMD = 'JMD',
+    JOD = 'JOD',
+    JPY = 'JPY',
+    KES = 'KES',
+    KGS = 'KGS',
+    KHR = 'KHR',
+    KMF = 'KMF',
+    KPW = 'KPW',
+    KRW = 'KRW',
+    KWD = 'KWD',
+    KYD = 'KYD',
+    KZT = 'KZT',
+    LAK = 'LAK',
+    LBP = 'LBP',
+    LKR = 'LKR',
+    LRD = 'LRD',
+    LSL = 'LSL',
+    LYD = 'LYD',
+    MAD = 'MAD',
+    MDL = 'MDL',
+    MGA = 'MGA',
+    MKD = 'MKD',
+    MMK = 'MMK',
+    MNT = 'MNT',
+    MOP = 'MOP',
+    MRU = 'MRU',
+    MUR = 'MUR',
+    MVR = 'MVR',
+    MWK = 'MWK',
+    MXN = 'MXN',
+    MXV = 'MXV',
+    MYR = 'MYR',
+    MZN = 'MZN',
+    NAD = 'NAD',
+    NGN = 'NGN',
+    NIO = 'NIO',
+    NOK = 'NOK',
+    NPR = 'NPR',
+    NZD = 'NZD',
+    OMR = 'OMR',
+    PAB = 'PAB',
+    PEN = 'PEN',
+    PGK = 'PGK',
+    PHP = 'PHP',
+    PKR = 'PKR',
+    PLN = 'PLN',
+    PYG = 'PYG',
+    QAR = 'QAR',
+    RON = 'RON',
+    RSD = 'RSD',
+    RUB = 'RUB',
+    RWF = 'RWF',
+    SAR = 'SAR',
+    SBD = 'SBD',
+    SCR = 'SCR',
+    SDG = 'SDG',
+    SEK = 'SEK',
+    SGD = 'SGD',
+    SHP = 'SHP',
+    SLL = 'SLL',
+    SOS = 'SOS',
+    SRD = 'SRD',
+    SSP = 'SSP',
+    STN = 'STN',
+    SVC = 'SVC',
+    SYP = 'SYP',
+    SZL = 'SZL',
+    THB = 'THB',
+    TJS = 'TJS',
+    TMT = 'TMT',
+    TND = 'TND',
+    TOP = 'TOP',
+    TRY = 'TRY',
+    TTD = 'TTD',
+    TWD = 'TWD',
+    TZS = 'TZS',
+    UAH = 'UAH',
+    UGX = 'UGX',
+    USD = 'USD',
+    USN = 'USN',
+    UYI = 'UYI',
+    UYU = 'UYU',
+    UYW = 'UYW',
+    UZS = 'UZS',
+    VES = 'VES',
+    VND = 'VND',
+    VUV = 'VUV',
+    WST = 'WST',
+    XAF = 'XAF',
+    XAG = 'XAG',
+    XAU = 'XAU',
+    XBA = 'XBA',
+    XBB = 'XBB',
+    XBC = 'XBC',
+    XBD = 'XBD',
+    XCD = 'XCD',
+    XDR = 'XDR',
+    XOF = 'XOF',
+    XPD = 'XPD',
+    XPF = 'XPF',
+    XPT = 'XPT',
+    XSU = 'XSU',
+    XTS = 'XTS',
+    XUA = 'XUA',
+    XXX = 'XXX',
+    YER = 'YER',
+    ZAR = 'ZAR',
+    ZMW = 'ZMW',
+    ZWL = 'ZWL',
+  }
+
+  /**
+   * Enum for Negative Number Format
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558031974}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558031974.html}
+   *
+   * @since 2019.2
+   */
+  export enum NegativeNumberFormat {
+    BRACKETS = 'BRACKETS',
+    MINUS = 'MINUS',
+  }
+
+  /**
+   * Enum for PhoneNumberFormatType
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158626858431}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158626858431.html}
+   */
+  export enum PhoneNumberFormatType {
+    E164 = 'E164',
+    INTERNATIONAL = 'INTERNATIONAL',
+    NATIONAL = 'NATIONAL',
+    RFC3966 = 'RFC3966',
+  }
 
   /**
    * Return a new instance of CurrencyFormatter
@@ -552,19 +689,31 @@ declare namespace i18n {
    *
    * @protected
    * @classDescription The object that formats the number to currency string
-   * @return {i18n.CurrencyFormatter}
    * @constructor
    *
    * @since 2019.2
    */
   export interface CurrencyFormatter {
+    readonly currency: Currency | `${Currency}`;
+    readonly locale: string;
+    readonly symbol: string;
+    readonly numberFormatter: NumberFormatter;
+
+    format(options: {
+      number: number,
+    }): string;
 
     /**
-     * @type {string}
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
      */
-    currency: Currency | `${Currency}`;
+    toJSON(): ExcludeMethods<this> & { isPrefixSymbol: boolean };
 
-    // todo: Add methods
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     */
+    toString(): 'format.i18n.CurrencyFormatter';
   }
 
   /**
@@ -574,13 +723,34 @@ declare namespace i18n {
    *
    * @protected
    * @classDescription The object that formats number to string
-   * @return {i18n.NumberFormatter}
    * @constructor
    *
    * @since 2019.2
    */
   export interface NumberFormatter {
-    // todo: Add methods
+    readonly groupSeparator: string;
+    readonly decimalSeparator: string;
+    readonly precision: string | `${number}`;
+    readonly minPrecision: string;
+    readonly maxPrecision: string;
+    readonly negativeNumberFormat: NegativeNumberFormat | `${NegativeNumberFormat}`,
+    readonly locale: string;
+
+    format(options: {
+      number: number,
+    }): string;
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     */
+    toJSON(): ExcludeMethods<this>;
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     */
+    toString(): 'format.i18n.NumberFormatter';
   }
 
   /**
@@ -590,13 +760,86 @@ declare namespace i18n {
    *
    * @protected
    * @classDescription The object that formats the phone number to string
-   * @return {i18n.PhoneNumberFormatter}
    * @constructor
    *
    * @since 2020.2
    */
-  export interface PhoneNumberFormatter {
-    // todo: Add methods
+  export interface PhoneNumberFormatter<FormatType extends PhoneNumberFormatType> {
+    readonly formatType: FormatType;
+
+    format(options: {
+      number: PhoneNumber,
+    }): string;
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     */
+    toJSON(): ExcludeMethods<this>;
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     */
+    toString(): 'format.i18n.PhoneNumberFormatter';
   }
 
+  /**
+   * Return a new instance of PhoneNumberParser
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158627095342}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158627095342.html}
+   *
+   * @protected
+   * @classDescription The object that parses the string with the phone number to an object
+   * @constructor
+   *
+   * @since 2020.2
+   */
+  export interface PhoneNumberParser<DefaultCountry extends Country> {
+    readonly defaultCountry: DefaultCountry;
+    readonly defaultCountryCode: string;
+
+    parse: {
+      (options: {
+        phone: string,
+      }): PhoneNumber;
+
+      promise(options: {
+        phone: string,
+      }): Promise<PhoneNumber>;
+    };
+
+    /**
+     * Convert to JSON object
+     * @see Not Documented in NetSuite Help Center
+     */
+    toJSON(): ExcludeMethods<this>;
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     */
+    toString(): 'format.i18n.PhoneNumberParser';
+  }
+
+  export interface PhoneNumber {
+    readonly carrierCode: string;
+    readonly countryCode: string;
+    readonly extension: string;
+    readonly nationalNumber: string;
+    readonly numberOfLeadingZeros: number;
+    readonly rawInput: string;
+    readonly valid: boolean;
+
+    format(
+      formatType: Exclude<PhoneNumberFormatType, PhoneNumberFormatType.E164> |
+        `${Exclude<PhoneNumberFormatType, PhoneNumberFormatType.E164>}` | 'E.164',
+    ): string;
+
+    /**
+     * Returns the object type name
+     * @see Not Documented in NetSuite Help Center
+     */
+    toString(): 'format.i18n.PhoneNumber';
+  }
 }
