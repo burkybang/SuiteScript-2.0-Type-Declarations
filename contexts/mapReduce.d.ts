@@ -189,12 +189,12 @@ interface MapContext {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472712995.html}
    *
    * @param {Object} options
-   * @param {string} options.key - The key to write
+   * @param {string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[]} options.key - The key to write
    * @param {Object} options.value - The value to write
    * @return {void}
    */
   write(options: {
-    key: string | number,
+    key: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
     value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
   }): void;
 
@@ -290,12 +290,12 @@ interface ReduceContext {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4472721829.html}
    *
    * @param {Object} options
-   * @param {string} options.key - The key to write
+   * @param {string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[]} options.key - The key to write
    * @param {Object} options.value - The value to write
    * @return {void}
    */
   write(options: {
-    key: string | number,
+    key: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
     value?: string | number | boolean | Date | Object | (string | number | boolean | Date | Object)[],
   }): void;
 
