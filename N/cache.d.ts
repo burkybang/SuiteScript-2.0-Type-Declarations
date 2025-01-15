@@ -10,6 +10,8 @@ interface cache {
 
   /**
    * Get a named, scoped cache
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642627983}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642627983.html}
    *
    * @param options
    * @param options.name The cache name. If a cache does not exist with the given name it will be created and returned. The maximum size for the cache name is 1K.
@@ -22,8 +24,12 @@ interface cache {
 }
 
 declare namespace cache {
+
   /**
    * Defines all possible cache scopes
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4655722738}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4655722738.html}
+   *
    * - PRIVATE - (Default) Cache entries are only accessible to the current script
    * - PROTECTED - Cache entries are only accessible to scripts in the same bundle or not in bundle
    * - PUBLIC - Cache entries are accessible to any script running in your account
@@ -36,6 +42,8 @@ declare namespace cache {
 
   /**
    * Named Cache for caching the result of expensive (in terms of time or governance) computations
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642656915}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642656915.html}
    *
    * @protected
    * @constructor
@@ -44,6 +52,8 @@ declare namespace cache {
 
     /**
      * The name of the cache
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642698188}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642698188.html}
      *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
@@ -51,6 +61,8 @@ declare namespace cache {
 
     /**
      * The scope of the cache
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642698254}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642698254.html}
      *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
@@ -61,6 +73,8 @@ declare namespace cache {
      * then be cached and returned. If the value returned by the loader is not a string, JSON.stringify() will be called
      * on the value before it is placed in the cache.
      * The maximum size for the cache key is 4kb and 500kb for the value returned by the loader.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642661440}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642661440.html}
      *
      * @governance 1 unit for cache hit and 2 units for cache miss
      *
@@ -81,6 +95,8 @@ declare namespace cache {
      * Remove a value from the cache. If values in the cache were retrieved from a record, the associated cache keys
      * should be invalidated by a beforeSubmit UserEvent Script when the record is updated in order to prevent stale
      * values.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642660820}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642660820.html}
      *
      * @governance 1 unit
      *
@@ -94,6 +110,8 @@ declare namespace cache {
     /**
      * Put a value into the cache. Note that "get" can be called with a loader as simpler alternative. If the value
      * is not a string, JSON.stringify() will be called on the value before it is placed in the cache.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4642661313}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4642661313.html}
      *
      * @governance 1 unit
      *
