@@ -29,7 +29,7 @@ interface redirect {
   }): void;
 
   /**
-   * Redirect to a suitelet
+   * Redirect to a Suitelet
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4424988773}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4424988773.html}
    *
