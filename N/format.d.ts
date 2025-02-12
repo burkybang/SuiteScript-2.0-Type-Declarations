@@ -174,7 +174,7 @@ interface format {
 declare namespace format {
 
   /**
-   * Enum for field types
+   * Enum for format types
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388844232}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388844232.html}
    */
@@ -217,6 +217,7 @@ declare namespace format {
     RATE = 'rate',
     RATEHIGHPRECISION = 'ratehighprecision',
     SELECT = 'select',
+    SUBRECORD_FIELD_TYPE = 'summary',
     TEXT = 'text',
     TEXTAREA = 'textarea',
     TIME = 'time',
