@@ -171,6 +171,23 @@ interface llm {
      */
     promise(): Promise<number>;
   };
+
+  evaluatePrompt: {
+
+    /**
+     * Undocumented method
+     *
+     * @since 2025.1
+     */
+    (options: Record<string, unknown>): unknown;
+
+    /**
+     * Undocumented method
+     *
+     * @since 2025.1
+     */
+    promise(options: Record<string, unknown>): Promise<unknown>;
+  };
 }
 
 /**
