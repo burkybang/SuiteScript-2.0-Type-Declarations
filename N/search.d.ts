@@ -613,7 +613,7 @@ declare namespace search {
     'formuladatetime' |
     'formulanumeric' |
     'formulapercent' |
-    'formulatext'
+    'formulatext';
 
   type ColumnFunction =
     'percentOfTotal' | // % of Total, Output: percent
@@ -634,7 +634,7 @@ declare namespace search {
     'roundToHundredths' | // Round to Hundredths, Output: float
     'roundToTenths' | // Round to Tenths, Output: float
     'weekOfYear' | // Week of Year, Date Function, Output: text
-    'year' // Year, Date Function, Output: text
+    'year'; // Year, Date Function, Output: text
 
   /**
    *
@@ -716,6 +716,7 @@ declare namespace search {
     ALLOC_RECOMMENDATION_DETAIL = 'AllocRecommendationDetail',
     AMORTIZATION_SCHEDULE = 'amortizationschedule',
     AMORTIZATION_TEMPLATE = 'amortizationtemplate',
+    AS_CHARGED_PROJECT_REVENUE_RULE = 'aschargedprojectrevenuerule',
     ASSEMBLY_BUILD = 'assemblybuild',
     ASSEMBLY_ITEM = 'assemblyitem',
     ASSEMBLY_UNBUILD = 'assemblyunbuild',
@@ -751,6 +752,7 @@ declare namespace search {
     CASH_SALE = 'cashsale',
     CHALLENGE_SHOPPER_INPUT = 'ChallengeShopperInput',
     CHARGE = 'charge',
+    CHARGE_PERIOD_SEGMENT = 'ChargePeriodSegment',
     CHARGE_RULE = 'chargerule',
     CHECK = 'check',
     CLASSIFICATION = 'classification',
@@ -777,6 +779,7 @@ declare namespace search {
     CREDIT_MEMO = 'creditmemo',
     CURRENCY = 'currency',
     CURRENCY_EXCHANGE_RATE = 'CurrencyExchangeRate',
+    CURRENCY_RATE = 'currencyrate',
     CUSTOMER = 'customer',
     CUSTOMER_CATEGORY = 'customercategory',
     CUSTOMER_DEPOSIT = 'customerdeposit',
@@ -849,6 +852,7 @@ declare namespace search {
     INVENTORY_STATUS_CHANGE = 'inventorystatuschange',
     INVENTORY_STATUS_LOCATION = 'InventoryStatusLocation',
     INVENTORY_TRANSFER = 'inventorytransfer',
+    INVENTORY_WORKSHEET = 'inventoryworksheet',
     INVOICE = 'invoice',
     INVOICE_GROUP = 'invoicegroup',
     INVT_NUMBER_ITEM_BALANCE = 'InvtNumberItemBalance',
@@ -923,9 +927,11 @@ declare namespace search {
     PERIOD_END_JOURNAL = 'periodendjournal',
     PERMISSION = 'Permission',
     PHONE_CALL = 'phonecall',
+    PICK_DECOMPOSITION = 'pickdecomposition',
     PICK_STRATEGY = 'pickstrategy',
     PICK_TASK = 'picktask',
     PLANNED_ORDER = 'plannedorder',
+    PLANNING_ENGINE_CYCLE = 'PlanningEngineCycle',
     PLANNING_ENGINE_MESSAGE = 'PlanningEngineMessage',
     PLANNING_ENGINE_PEGGING = 'PlanningEnginePegging',
     PLANNING_ENGINE_RESULT = 'PlanningEngineResult',
@@ -936,6 +942,7 @@ declare namespace search {
     PLANNING_REPOSITORY_ITEM_LOCATION = 'PlanningRepositoryItemLocation',
     PLANNING_REPOSITORY_SOURCE = 'PlanningRepositorySource',
     PLANNING_RULE_GROUP = 'planningrulegroup',
+    PLANNING_VIEW = 'planningview',
     PORTLET = 'portlet',
     PRICE_BOOK = 'pricebook',
     PRICE_LEVEL = 'pricelevel',
@@ -952,8 +959,10 @@ declare namespace search {
     PURCHASE_CONTRACT = 'purchasecontract',
     PURCHASE_ORDER = 'purchaseorder',
     PURCHASE_REQUISITION = 'purchaserequisition',
+    RECEIVED_VENDOR_BILL = 'ReceivedVendorBill',
     RECENT_RECORD = 'RecentRecord',
     RESOURCE_ALLOCATION = 'resourceallocation',
+    RESOURCE_GROUP = 'resourcegroup',
     RESTLET = 'restlet',
     RES_ALLOCATION_TIME_OFF_CONFLICT = 'ResAllocationTimeOffConflict',
     RETURN_AUTHORIZATION = 'returnauthorization',
@@ -961,6 +970,7 @@ declare namespace search {
     REVENUE_COMMITMENT = 'revenuecommitment',
     REVENUE_COMMITMENT_REVERSAL = 'revenuecommitmentreversal',
     REVENUE_PLAN = 'revenueplan',
+    REV_REC_FIELD_MAPPING = 'revrecfieldmapping',
     REV_REC_PLAN_AND_SCHEDULE = 'RevRecPlanAndSchedule',
     REV_REC_SCHEDULE = 'revrecschedule',
     REV_REC_TEMPLATE = 'revrectemplate',
@@ -1005,6 +1015,7 @@ declare namespace search {
     TASK = 'task',
     TAX_DETAIL = 'TaxDetail',
     TAX_GROUP = 'taxgroup',
+    TAX_LIABILITY_PAYMENT = 'taxliabilitypayment',
     TAX_PERIOD = 'taxperiod',
     TAX_TYPE = 'taxtype',
     TERM = 'term',
