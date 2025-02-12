@@ -72,7 +72,7 @@ declare namespace compress {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584877701}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584877701.html}
    */
-  enum Type {
+  export enum Type {
     CPIO = 'CPIO',
     TAR = 'TAR',
     TGZ = 'TGZ',
