@@ -158,6 +158,8 @@ interface query {
 
     /**
      * Deletes query by id
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
      *
      * @param options
      * @param options.id Id of query to be delete
@@ -172,6 +174,8 @@ interface query {
 
     /**
      * Deletes query by id
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
      *
      * @param id Id of query to be delete
      *
@@ -185,6 +189,8 @@ interface query {
 
       /**
        * Deletes query by id asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
        *
        * @param id Id of query to be delete
        *
@@ -196,6 +202,8 @@ interface query {
 
       /**
        * Deletes query by id asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
        *
        * @param options
        * @param options.id Id of query to be delete
@@ -214,6 +222,8 @@ interface query {
 
     /**
      * Runs an arbitrary SuiteQL query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
      *
      * @governance 10 points
      *
@@ -228,6 +238,8 @@ interface query {
 
     /**
      * Runs an arbitrary SuiteQL query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
      *
      * @governance 10 points
      *
@@ -250,6 +262,8 @@ interface query {
 
       /**
        * Runs an arbitrary SuiteQL query asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
        *
        * @governance 10 points
        *
@@ -264,6 +278,8 @@ interface query {
 
       /**
        * Runs an arbitrary SuiteQL query asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
        *
        * @governance 10 points
        *
@@ -288,6 +304,8 @@ interface query {
 
     /**
      * Runs an arbitrary SuiteQL query as a paged query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
      *
      * @governance 10 points
      *
@@ -302,6 +320,8 @@ interface query {
 
     /**
      * Runs an arbitrary SuiteQL query as a paged query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
      *
      * @governance 10 points
      *
@@ -327,6 +347,8 @@ interface query {
 
       /**
        * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
        *
        * @governance 10 points
        *
@@ -341,6 +363,8 @@ interface query {
 
       /**
        * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
        *
        * @governance 10 points
        *
@@ -368,6 +392,8 @@ interface query {
 
     /**
      * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
      *
      * @governance 0 points
      *
@@ -384,6 +410,8 @@ interface query {
 
     /**
      * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
      *
      * @governance 0 points
      *
@@ -405,6 +433,8 @@ interface query {
 
       /**
        * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
        *
        * @governance 0 points
        *
@@ -421,6 +451,8 @@ interface query {
 
       /**
        * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
        *
        * @governance 0 points
        *
@@ -444,7 +476,9 @@ interface query {
 declare namespace query {
 
   /**
-   *
+   * Enum for aggregate functions
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878932}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878932.html}
    */
   export enum Aggregate {
     // Calculates the average value.
@@ -472,7 +506,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for date codes in relative dates
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544111587}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544111587.html}
    */
   export enum DateId {
     DAYS_AGO = 'dago',
@@ -494,7 +530,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for field contexts
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552071599}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552071599.html}
    */
   export enum FieldContext {
     // Displays converted currency amounts using the exchange rate that was in effect on a specific date.
@@ -514,7 +552,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for operators
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275752}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275752.html}
    */
   export enum Operator {
     AFTER = 'AFTER',
@@ -562,7 +602,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for date ranges in relative dates
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544111773}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544111773.html}
    */
   export const RelativeDateRange: {
     FISCAL_HALF_BEFORE_LAST: RelativeDate,
@@ -701,7 +743,9 @@ declare namespace query {
   };
 
   /**
-   *
+   * Enum for formula return types
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878969}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878969.html}
    */
   export enum ReturnType {
     ANY = 'ANY',
@@ -721,7 +765,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for sort locales
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819885}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819885.html}
    */
   export enum SortLocale {
     ARABIC = 'ARABIC',
@@ -900,7 +946,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for query types
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878994}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878994.html}
    */
   export enum Type {
     ACCOUNT = 'account',
@@ -1258,7 +1306,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for adjustment types for a period
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289865548}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289865548.html}
    */
   export enum PeriodAdjustment {
     ALL = 'ALL',
@@ -1266,7 +1316,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for period codes for a period
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289876878}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289876878.html}
    */
   export enum PeriodCode {
     FIRST_FISCAL_QUARTER_LAST_FY = 'Q1LFY',
@@ -1302,7 +1354,9 @@ declare namespace query {
   }
 
   /**
-   *
+   * Enum for period types for a period
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289949288}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289949288.html}
    */
   export enum PeriodType {
     START = 'START',
@@ -1310,12 +1364,16 @@ declare namespace query {
   }
 
   /**
-   * The query definition.
+   * The query definition
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275177}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275177.html}
    */
   export interface Query {
 
     /**
      * Returns the query type given upon the creation of the query object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275511}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275511.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1323,6 +1381,8 @@ declare namespace query {
 
     /**
      * Query condition
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781832}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781832.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Condition
      */
@@ -1330,6 +1390,8 @@ declare namespace query {
 
     /**
      * Columns to be returned from the query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781812}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781812.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Column array
      */
@@ -1337,6 +1399,8 @@ declare namespace query {
 
     /**
      * Specifies how the results will be sorted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781853}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781853.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting value of different type than Query.Sort array
      */
@@ -1345,6 +1409,8 @@ declare namespace query {
     /**
      * Children of the root component of the query. It is an object with key/value pairs where key is the name of the
      * child component and value is the corresponding Component object. This is a shortcut for the Query.root.child expression.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781899}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781899.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1352,6 +1418,8 @@ declare namespace query {
 
     /**
      * Id of this query, null if query is not saved
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819439}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819439.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1359,6 +1427,8 @@ declare namespace query {
 
     /**
      * Name of this query, null if query is not saved
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819481}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819481.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1367,6 +1437,8 @@ declare namespace query {
     /**
      * Access the root component of the query. It is the component that corresponds to the query type given upon the
      * creation of the whole Query object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781874}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781874.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1376,6 +1448,8 @@ declare namespace query {
 
       /**
        * Execute the query and return results.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780212}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780212.html}
        *
        * @governance 10 points
        *
@@ -1387,6 +1461,8 @@ declare namespace query {
 
         /**
          * Execute the query and return results.
+         * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780250}
+         * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780250.html}
          *
          * @governance 10 points
          *
@@ -1400,6 +1476,8 @@ declare namespace query {
 
       /**
        * Execute the query and return paged results.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780277}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780277.html}
        *
        * @governance 10 points
        *
@@ -1410,6 +1488,8 @@ declare namespace query {
 
       /**
        * Execute the query and return paged results.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780277}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780277.html}
        *
        * @governance 10 points
        *
@@ -1425,6 +1505,8 @@ declare namespace query {
 
         /**
          * Execute the query and return paged results asynchrounously
+         * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780308}
+         * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780308.html}
          *
          * @governance 10 points
          *
@@ -1435,6 +1517,8 @@ declare namespace query {
 
         /**
          * Execute the query and return paged results asynchrounously
+         * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780308}
+         * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780308.html}
          *
          * @governance 10 points
          *
@@ -1450,6 +1534,8 @@ declare namespace query {
 
     /**
      * Join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819144}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819144.html}
      *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
@@ -1459,7 +1545,9 @@ declare namespace query {
     }): Component;
 
     /**
-     * join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
+     * Join the root component of the Query with another query type. This is a shortcut for Query.root.autoJoin.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275377}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275377.html}
      *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
@@ -1470,6 +1558,8 @@ declare namespace query {
 
     /**
      * Join the root component of the Query with another (target) query type. This is a shortcut for Query.root.joinTo.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819329}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819329.html}
      *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
@@ -1482,6 +1572,8 @@ declare namespace query {
 
     /**
      * Join the root component of the Query with another (source) query type. This is a shortcut for Query.root.joinFrom.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819218}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819218.html}
      *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
@@ -1494,6 +1586,8 @@ declare namespace query {
 
     /**
      * Create a Condition object based on the root component of the Query. This is a shortcut for Query.root.createCondition.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780329}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780329.html}
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1521,6 +1615,8 @@ declare namespace query {
 
     /**
      * Create a Column object based on the root component of the Query. This is a shortcut for Query.root.createColumn.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780373}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780373.html}
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1559,6 +1655,8 @@ declare namespace query {
 
     /**
      * Create a Sort object based on the root component of the Query. This is a shortcut for Query.root.createSort.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780402}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780402.html}
      *
      * @param options
      * @param options.column The Column by which we want to sort.
@@ -1581,6 +1679,8 @@ declare namespace query {
     /**
      * Create a new Condition object that corresponds to a logical conjunction (AND) of the Condition objects given to
      * the method as arguments. The arguments must be one or more Condition objects.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780422}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780422.html}
      *
      * @param conditions
      */
@@ -1589,6 +1689,8 @@ declare namespace query {
     /**
      * Create a new Condition object that corresponds to a logical disjunction (OR) of the Condition objects given to
      * the method as arguments. The arguments must be one or more Condition objects.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780444}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780444.html}
      *
      * @param conditions
      */
@@ -1597,6 +1699,8 @@ declare namespace query {
     /**
      * Create a new Condition object that corresponds to a logical negation (NOT) of the Condition object given to the method
      * as argument.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780462}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780462.html}
      *
      * @param condition
      */
@@ -1604,6 +1708,8 @@ declare namespace query {
 
     /**
      * Converts this query.Query object to its corresponding SuiteQL representation
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960522744}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960522744.html}
      */
     toSuiteQL(): SuiteQL;
 
@@ -1621,11 +1727,15 @@ declare namespace query {
   /**
    * One component of the query definition. The Query object always contains at least one Component object called the root
    * component. Queries with multi-level joins contain multiple Component objects linked together into a parent/child hierarchy.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779141}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779141.html}
    */
   export interface Component {
 
     /**
      * Returns the query type of this component
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785195}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785195.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1633,6 +1743,8 @@ declare namespace query {
 
     /**
      * Inverse target. Returns the source query type from which is this component joined
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785292}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785292.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1640,6 +1752,8 @@ declare namespace query {
 
     /**
      * Polymorphic target. Returns the target target of this component
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785266}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785266.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1647,6 +1761,8 @@ declare namespace query {
 
     /**
      * Returns the Component that corresponds to the ancestor of this component in the query object model
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785228}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785228.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1655,6 +1771,8 @@ declare namespace query {
     /**
      * Children of this component. It is an object with key/value pairs where key is the name of the child component
      * and value is the corresponding Component object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785245}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785245.html}
      *
      * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
      */
@@ -1663,6 +1781,8 @@ declare namespace query {
     /**
      * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818573}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818573.html}
      *
      * @param options
      * @param options.fieldId The relationship field that will be used to determine the query type of the newly joined component and also the columns on which the query types will be joined together. For example "salesrep".
@@ -1677,6 +1797,8 @@ declare namespace query {
     /**
      * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784833}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784833.html}
      *
      * @param options
      * @param options.name The name of the relationship that will be used to determine the query type of the newly joined component and also the columns on which the query types will be joined together. For example "salesrep".
@@ -1691,6 +1813,8 @@ declare namespace query {
     /**
      * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818855}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818855.html}
      *
      * @param options
      * @param options.name The name of the relationship field on which join with other query type is performed. For example "entity".
@@ -1707,6 +1831,8 @@ declare namespace query {
     /**
      * Join this component with another query type. A new component corresponding to the given relationship is created
      * and joined with this one.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818705}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818705.html}
      *
      * @param options
      * @param options.name The name of the relationship field on which join with other query type is performed. For example "salesrep".
@@ -1722,6 +1848,8 @@ declare namespace query {
 
     /**
      * Create a Condition object based on this query component. Use either fieldId + operator + values or formula + (optional) type.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784922}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784922.html}
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1749,6 +1877,8 @@ declare namespace query {
 
     /**
      * Create a Column object based on this query component. Use either name or formula + (optional) type.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784945}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784945.html}
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1787,6 +1917,8 @@ declare namespace query {
 
     /**
      * Create a Sort object based on this query component
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785047}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785047.html}
      *
      * @param options
      * @param options.column The Column by which we want to sort.
