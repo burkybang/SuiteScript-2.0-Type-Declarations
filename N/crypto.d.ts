@@ -27,6 +27,22 @@ interface crypto_ {
   }): crypto_.SecretKey;
 
   /**
+   * Method used to create a new crypto_.SecretKey object
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
+   *
+   * @param options
+   * @param options.secret
+   * @param [options.encoding=encode.Encoding.HEX]
+   *
+   * @since 2015.2
+   */
+  createSecretKey(options: {
+    secret: string,
+    encoding?: encode.Encoding | `${encode.Encoding}`,
+  }): crypto_.SecretKey;
+
+  /**
    * Method used to create a crypto.Hash object
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
