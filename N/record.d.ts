@@ -454,6 +454,7 @@ interface record {
      * @param [options.options] additonal flags for submission
      * @param [options.options.enableSourcing=true] enable sourcing during record update
      * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @param [options.options.disableTriggers=false] disable triggers during record submission (uncodumented)
      * @return id of submitted record
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
@@ -467,6 +468,7 @@ interface record {
       options?: {
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
+        disableTriggers?: boolean,
       },
     }): number
 
@@ -484,6 +486,7 @@ interface record {
      * @param [options.options] additonal flags for submission
      * @param [options.options.enableSourcing=true] enable sourcing during record update
      * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
+     * @param [options.options.disableTriggers=false] disable triggers during record submission (uncodumented)
      * @return id of submitted record
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if type or id is missing
@@ -497,6 +500,7 @@ interface record {
       options?: {
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
+        disableTriggers?: boolean,
       },
     }): Promise<number>
   };
