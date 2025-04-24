@@ -32,7 +32,7 @@ interface render {
    */
   transaction(options: {
     entityId: number,
-    printMode?: string,
+    printMode?: render.PrintMode | `${render.PrintMode}`,
     formId?: number,
     inCustLocale?: boolean,
   }): file.File;
