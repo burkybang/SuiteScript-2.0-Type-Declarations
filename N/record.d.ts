@@ -452,7 +452,7 @@ interface record {
      * @param options.id record id
      * @param options.values field and value mapping to be submitted
      * @param [options.options] additonal flags for submission
-     * @param [options.options.enablesourcing=true] enable sourcing during record update
+     * @param [options.options.enableSourcing=true] enable sourcing during record update
      * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return id of submitted record
      *
@@ -465,7 +465,7 @@ interface record {
       id: number | string,
       values: Record<string, record.FieldValue>,
       options?: {
-        enablesourcing?: boolean,
+        enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
       },
     }): number
@@ -482,7 +482,7 @@ interface record {
      * @param options.id record id
      * @param options.values field and value mapping to be submitted
      * @param [options.options] additonal flags for submission
-     * @param [options.options.enablesourcing=true] enable sourcing during record update
+     * @param [options.options.enableSourcing=true] enable sourcing during record update
      * @param [options.options.ignoreMandatoryFields=false] ignore mandatory field during record submission
      * @return id of submitted record
      *
@@ -495,7 +495,7 @@ interface record {
       id: number | string,
       values: Record<string, record.FieldValue>,
       options?: {
-        enablesourcing?: boolean,
+        enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
       },
     }): Promise<number>
