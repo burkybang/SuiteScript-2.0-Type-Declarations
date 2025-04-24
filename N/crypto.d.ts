@@ -85,7 +85,7 @@ interface crypto_ {
    * @since 2015.2
    */
   createCipher(options: {
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+    algorithm: crypto_.EncryptionAlg | `${crypto_.EncryptionAlg}`,
     key: crypto_.SecretKey,
     padding?: crypto_.Padding | `${crypto_.Padding}`,
   }): crypto_.Cipher;
@@ -104,7 +104,7 @@ interface crypto_ {
    * @since 2015.2
    */
   createDecipher(options: {
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+    algorithm: crypto_.EncryptionAlg | `${crypto_.EncryptionAlg}`,
     key: crypto_.SecretKey,
     padding?: crypto_.Padding | `${crypto_.Padding}`,
     iv: string,
