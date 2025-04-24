@@ -484,35 +484,6 @@ interface search {
    * @param options.name the search return column name
    * @param [options.join] the join ID for this search return column
    * @param [options.summary] the summary type for this column
-   * @param [options.function] function used for this column
-   * @param [options.label] label used for this column
-   * @param [options.sort] sort direction for this column uses values from the Sort enum
-   * @return the created column object
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
-   *
-   * @since 2015.2
-   */
-  createColumn(options: {
-    name: string,
-    join?: string,
-    summary?: search.Summary | `${search.Summary}`,
-    function?: search.ColumnFunction
-    label?: string,
-    sort?: search.Sort | `${search.Sort}`,
-  }): search.Column;
-
-  /**
-   * Creates a search.Column object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
-   *
-   * @param options
-   * @param options.name the search return column name
-   * @param [options.join] the join ID for this search return column
-   * @param [options.summary] the summary type for this column
    * @param options.formula formula used for this column
    * @param [options.function] function used for this column
    * @param [options.label] label used for this column
@@ -535,29 +506,33 @@ interface search {
   }): search.Column;
 
   /**
-   * Creates a search.Filter object
+   * Creates a search.Column object
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
    *
    * @param options
-   * @param options.name internal ID of the search field
-   * @param [options.join] if executing a joined search, this is the join ID used for the search field specified in the name parameter
-   * @param options.operator search operator
-   * @param [options.values] values to be used as filter parameters
-   * @param [options.summary] summary type used for this filter
-   * @return the created filter object
+   * @param options.name the search return column name
+   * @param [options.join] the join ID for this search return column
+   * @param [options.summary] the summary type for this column
+   * @param [options.function] function used for this column
+   * @param [options.label] label used for this column
+   * @param [options.sort] sort direction for this column uses values from the Sort enum
+   * @return the created column object
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
    *
    * @since 2015.2
    */
-  createFilter(options: {
+  createColumn(options: {
     name: string,
     join?: string,
-    operator: search.Operator | `${search.Operator}`,
-    values?: string | number | Date | (string | number)[] | Date[],
     summary?: search.Summary | `${search.Summary}`,
-  }): search.Filter;
+    function?: search.ColumnFunction
+    label?: string,
+    sort?: search.Sort | `${search.Sort}`,
+  }): search.Column;
 
   /**
    * Creates a search.Filter object
@@ -580,6 +555,31 @@ interface search {
   createFilter(options: {
     name: search.FormulaName,
     formula: string,
+    operator: search.Operator | `${search.Operator}`,
+    values?: string | number | Date | (string | number)[] | Date[],
+    summary?: search.Summary | `${search.Summary}`,
+  }): search.Filter;
+
+  /**
+   * Creates a search.Filter object
+   *
+   * @param options
+   * @param options.name internal ID of the search field
+   * @param [options.join] if executing a joined search, this is the join ID used for the search field specified in the name parameter
+   * @param options.operator search operator
+   * @param [options.values] values to be used as filter parameters
+   * @param [options.summary] summary type used for this filter
+   * @return the created filter object
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
+   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
+   *
+   * @since 2015.2
+   */
+  createFilter(options: {
+    name: string,
+    join?: string,
     operator: search.Operator | `${search.Operator}`,
     values?: string | number | Date | (string | number)[] | Date[],
     summary?: search.Summary | `${search.Summary}`,
