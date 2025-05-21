@@ -91,12 +91,15 @@ declare namespace file {
 
   /**
    * Holds the string values for supported conflict resolution types
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_161167377495}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_161167377495.html}
    *
    * @restriction Server-side scripts only
    */
   export enum NameConflictResolution {
     FAIL = 'FAIL',
     OVERWRITE = 'OVERWRITE',
+    OVERWRITE_CONTENT_AND_ATTRIBUTES = 'OVERWRITE_CONTENT_AND_ATTRIBUTES',
     RENAME_TO_UNIQUE = 'RENAME_TO_UNIQUE',
   }
 
