@@ -157,6 +157,7 @@ interface StandardLine {
 
   /**
    *
+   * Returns the internal NetSuite ID for the custom segment value set on the line on a StandardLine object. Use this method to define plug-in implementation functionality based on the value for a GL impact line.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_95095135857#subsect_0815095325}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_95095135857.html#subsect_0815095325}
    *
