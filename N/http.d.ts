@@ -626,9 +626,9 @@ declare namespace http {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    getHeader(options: {
+    getHeader<T extends string | string[]>(options: {
       name: string,
-    }): string | string[];
+    }): T;
 
     /**
      * Generates and renders a PDF directly to the response

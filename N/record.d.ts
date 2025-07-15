@@ -622,7 +622,7 @@ interface record {
 
 declare namespace record {
 
-  type FieldValue = string | number | (string | number)[] | Date | boolean;
+  type FieldValue = string | string[] | number | Date | boolean;
 
   export type CustomType = `${'customrecord' | 'customtransaction' | 'customsale' | 'custompurchase'}${string}`;
 
@@ -1016,7 +1016,7 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    readonly type: format.Type | `${format.Type}`;
+    readonly type: Lowercase<serverWidget.FieldType>;
 
     /**
      * Indicates whether the column is disabled
@@ -1340,9 +1340,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getValue<FieldType extends string | string[] | number | Date | boolean>(
+    getValue<T extends FieldValue>(
       fieldId: string,
-    ): FieldType;
+    ): T;
 
     /**
      * Return value of the field
@@ -1357,9 +1357,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getValue<FieldType extends string | string[] | number | Date | boolean>(options: {
+    getValue<T extends FieldValue>(options: {
       fieldId: string,
-    }): FieldType;
+    }): T;
 
     /**
      * Set value of the field
@@ -1413,9 +1413,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getText(
+    getText<T extends string | string[]>(
       fieldId: string,
-    ): string;
+    ): T;
 
     /**
      * Get value of the field in text representation
@@ -1429,9 +1429,9 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getText(options: {
+    getText<T extends string | string[]>(options: {
       fieldId: string,
-    }): string;
+    }): T;
 
     /**
      * Set value of the field by text representation
@@ -1534,11 +1534,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(
+    getSublistValue<T extends FieldValue>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): FieldType;
+    ): T;
 
     /**
      * Return value of a sublist field
@@ -1556,11 +1556,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
+    getSublistValue<T extends FieldValue>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): FieldType;
+    }): T;
 
     /**
      * Set the value of a sublist field (available for deferred dynamic only)
@@ -1624,11 +1624,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistText(
+    getSublistText<T extends string | string[]>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): string;
+    ): T;
 
     /**
      * Return value of a sublist field in text representation
@@ -1646,11 +1646,11 @@ declare namespace record {
      *
      * @since 2015.2
      */
-    getSublistText(options: {
+    getSublistText<T extends string | string[]>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string;
+    }): T;
 
     /**
      * Set the value of a sublist field in text representation (available for deferred dynamic only)
@@ -1672,7 +1672,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       line: number,
-      text: string,
+      text: string | string[],
     ): this;
 
     /**
@@ -1696,7 +1696,7 @@ declare namespace record {
       sublistId: string,
       fieldId: string,
       line: number,
-      text: string,
+      text: string | string[],
     }): this;
 
     /**

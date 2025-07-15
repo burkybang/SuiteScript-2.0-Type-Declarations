@@ -1,5 +1,6 @@
 /// <reference path="../../typings.d.ts" />
 /// <reference path="./message.d.ts" />
+/// <reference path="../record.d.ts" />
 /// <reference path="../search.d.ts" />
 /// <reference path="../http.d.ts" />
 
@@ -330,7 +331,7 @@ declare namespace serverWidget {
     setSublistValue(options: {
       id: string,
       line: number,
-      value: string | number | boolean,
+      value: record.FieldValue,
     }): void;
 
     /**
@@ -457,7 +458,7 @@ declare namespace serverWidget {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4335275520}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4335275520.html}
      */
-    defaultValue: string | string[] | number | Date | boolean;
+    defaultValue: record.FieldValue;
 
     /**
      * If Rich Text Editing is enabled, you can use this property to set the height of the rich text field only.
@@ -658,9 +659,9 @@ declare namespace serverWidget {
      * @param options
      * @param options.id Internal id for the field
      */
-    getValue(options: {
+    getValue<T extends string | string[]>(options: {
       id: string,
-    }): string | string[];
+    }): T;
 
     /**
      * Get the number of lines in a sublist
@@ -680,11 +681,11 @@ declare namespace serverWidget {
      * @param options.id Internal id of the field
      * @param options.line line number
      */
-    getSublistValue(options: {
+    getSublistValue<T extends string | string[]>(options: {
       group: string,
       id: string,
       line: number,
-    }): string;
+    }): T;
   }
 
   /**

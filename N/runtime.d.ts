@@ -1,5 +1,6 @@
 /// <reference path="../typings.d.ts" />
 /// <reference path="./error.d.ts" />
+/// <reference path="./record.d.ts" />
 
 /**
  * SuiteScript module
@@ -216,18 +217,18 @@ declare namespace runtime {
      * Returns script parameter value which is defined per script
      * @param name The name of the parameter
      */
-    getParameter(
+    getParameter<T extends record.FieldValue>(
       name: string,
-    ): number | Date | string | string[] | boolean;
+    ): T;
 
     /**
      * Returns script parameter value which is defined per script
      * @param options
      * @param options.name The name of the parameter
      */
-    getParameter(options: {
+    getParameter<T extends record.FieldValue>(options: {
       name: string,
-    }): number | Date | string | string[] | boolean;
+    }): T;
 
     /**
      * Percentage complete specified for the current scheduled script execution

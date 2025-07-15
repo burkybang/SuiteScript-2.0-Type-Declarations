@@ -43,8 +43,6 @@ interface currentRecord {
 
 declare namespace currentRecord {
 
-  type FieldValue = string | number | (string | number)[] | Date | boolean;
-
   export interface CurrentRecordReadonly {
 
     /**
@@ -90,9 +88,9 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
-    getValue<FieldType extends string | string[] | number | Date | boolean>(
+    getValue<T extends record.FieldValue>(
       fieldId: string,
-    ): FieldType;
+    ): T;
 
     /**
      * Return value of the field
@@ -105,9 +103,9 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
-    getValue<FieldType extends string | string[] | number | Date | boolean>(options: {
+    getValue<T extends record.FieldValue>(options: {
       fieldId: string,
-    }): FieldType;
+    }): T;
 
     /**
      * Set value of the field
@@ -124,7 +122,7 @@ declare namespace currentRecord {
      */
     setValue(
       fieldId: string,
-      value: FieldValue,
+      value: record.FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     ): this;
@@ -145,7 +143,7 @@ declare namespace currentRecord {
      */
     setValue(options: {
       fieldId: string,
-      value: FieldValue,
+      value: record.FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
@@ -159,9 +157,9 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    getText(
+    getText<T extends string | string[]>(
       fieldId: string,
-    ): string | string[];
+    ): T;
 
     /**
      * Get value of the field in text representation
@@ -173,9 +171,9 @@ declare namespace currentRecord {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
      */
-    getText(options: {
+    getText<T extends string | string[]>(options: {
       fieldId: string,
-    }): string | string[];
+    }): T;
 
     /**
      * Set value of the field by text representation
@@ -251,11 +249,11 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
-    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(
+    getSublistValue<T extends record.FieldValue>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): FieldType;
+    ): T;
 
     /**
      * Return value of a sublist field
@@ -271,11 +269,11 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
      */
-    getSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
+    getSublistValue<T extends record.FieldValue>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): FieldType;
+    }): T;
 
     /**
      * Return value of a sublist field in text representation
@@ -291,11 +289,11 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
      * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
      */
-    getSublistText(options: {
+    getSublistText<T extends string | string[]>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): string;
+    }): T;
 
     /**
      * Return line count of sublist
@@ -554,10 +552,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistValue<FieldType extends string | string[] | number | Date | boolean>(
+    getCurrentSublistValue<T extends record.FieldValue>(
       sublistId: string,
       fieldId: string,
-    ): FieldType;
+    ): T;
 
     /**
      * Return value of a sublist field on the current selected sublist line
@@ -573,10 +571,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
+    getCurrentSublistValue<T extends record.FieldValue>(options: {
       sublistId: string,
       fieldId: string,
-    }): FieldType;
+    }): T;
 
     /**
      * Set the value for field in the current selected line
@@ -595,7 +593,7 @@ declare namespace currentRecord {
     setCurrentSublistValue(
       sublistId: string,
       fieldId: string,
-      value: FieldValue,
+      value: record.FieldValue,
     ): this;
 
     /**
@@ -618,7 +616,7 @@ declare namespace currentRecord {
     setCurrentSublistValue(options: {
       sublistId: string,
       fieldId: string,
-      value: FieldValue,
+      value: record.FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
@@ -636,10 +634,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistText(
+    getCurrentSublistText<T extends string | string[]>(
       sublistId: string,
       fieldId: string,
-    ): string;
+    ): T;
 
     /**
      * Return the value for field in the current selected line by text representation
@@ -655,10 +653,10 @@ declare namespace currentRecord {
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
-    getCurrentSublistText(options: {
+    getCurrentSublistText<T extends string | string[]>(options: {
       sublistId: string,
       fieldId: string,
-    }): string;
+    }): T;
 
     /**
      * Set the value for field in the current selected line by text representation
@@ -681,7 +679,7 @@ declare namespace currentRecord {
     setCurrentSublistText(
       sublistId: string,
       fieldId: string,
-      text: string,
+      text: string | string[],
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     ): this;
@@ -708,7 +706,7 @@ declare namespace currentRecord {
     setCurrentSublistText(options: {
       sublistId: string,
       fieldId: string,
-      text: string,
+      text: string | string[],
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;
@@ -1235,7 +1233,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: FieldValue,
+      value: record.FieldValue,
     ): this;
 
     /**
@@ -1258,7 +1256,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: FieldValue,
+      value: record.FieldValue,
       ignoreFieldChange?: boolean,
     }): this;
 
@@ -1323,7 +1321,7 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-      value: FieldValue,
+      value: record.FieldValue,
     ): this;
 
     /**
@@ -1349,7 +1347,7 @@ declare namespace currentRecord {
       fieldId: string,
       column: number,
       line: number,
-      value: FieldValue
+      value: record.FieldValue
     }): this;
 
     /**
@@ -1484,7 +1482,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: FieldValue,
+      value: record.FieldValue,
     ): this;
 
     /**
@@ -1509,7 +1507,7 @@ declare namespace currentRecord {
       sublistId: string,
       fieldId: string,
       column: number,
-      value: FieldValue,
+      value: record.FieldValue,
       ignoreFieldChange?: boolean,
       forceSyncSourcing?: boolean,
     }): this;

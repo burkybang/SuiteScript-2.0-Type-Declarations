@@ -30,7 +30,7 @@ interface task {
     taskType: task.TaskType.SCHEDULED_SCRIPT | `${task.TaskType.SCHEDULED_SCRIPT}`,
     scriptId: number | `custscript${string}` | string,
     deploymentId?: `custdeploy${string}` | string,
-    params?: Record<string, string | string[] | number | Date | boolean>,
+    params?: Record<string, record.FieldValue>,
   }): task.ScheduledScriptTask;
 
   /**
@@ -48,7 +48,7 @@ interface task {
     taskType: task.TaskType.MAP_REDUCE | `${task.TaskType.MAP_REDUCE}`,
     scriptId: number | `custscript${string}` | string,
     deploymentId?: `custdeploy${string}` | string,
-    params?: Record<string, string | string[] | number | Date | boolean>,
+    params?: Record<string, record.FieldValue>,
   }): task.MapReduceScriptTask;
 
   /**

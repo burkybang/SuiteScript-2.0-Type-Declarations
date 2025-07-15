@@ -2254,14 +2254,14 @@ declare namespace query {
      *
      * @param columnIndex
      */
-    getValue(columnIndex: number): string | number;
+    getValue<T extends string | number>(columnIndex: number): T;
 
     /**
      * Undocumented method
      *
      * @param alias
      */
-    getValueForAlias(alias: string): string | number;
+    getValueForAlias<T extends string | number>(alias: string): T;
 
     /**
      * Undocumented method
@@ -2269,7 +2269,7 @@ declare namespace query {
      * @param options
      * @param options.alias
      */
-    getValueForAlias(options: { alias: string }): string | number;
+    getValueForAlias<T extends string | number>(options: { alias: string }): T;
 
     /**
      * Returns the object type name

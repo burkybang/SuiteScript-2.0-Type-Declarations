@@ -1471,7 +1471,7 @@ declare namespace search {
      */
     readonly columns: Column[];
 
-    getAllValues(): Record<string, string | { value: string, text: string }[]>;
+    getAllValues<T extends Record<string, string | { value: string, text: string }[]>>(): T;
 
     /**
      * Returns the value of a specified search return column.
@@ -1483,7 +1483,7 @@ declare namespace search {
      * @return value of the search result column
      * @since 2015.2
      */
-    getValue(column: string | Column): string | boolean;
+    getValue<T extends string | boolean>(column: string | Column): T;
 
     /**
      * Returns the value of a specified search return column.
@@ -1498,11 +1498,11 @@ declare namespace search {
      * @return value of the search result column
      * @since 2015.2
      */
-    getValue(options: {
+    getValue<T extends string | boolean>(options: {
       name: string,
       join?: string,
       summary?: Summary | `${Summary}`,
-    }): string | boolean;
+    }): T;
 
     /**
      * Returns the UI display name (i.e. the text value) of a specified search return column.
