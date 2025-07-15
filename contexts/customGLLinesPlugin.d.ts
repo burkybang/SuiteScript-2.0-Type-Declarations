@@ -141,7 +141,7 @@ interface StandardLine {
   accountId: unknown;
   amount: string;
   creditAmount: string;
-  deditAmount: string;
+  debitAmount: string;
   subsidiaryId: number;
   departmentId: number;
   locationId: number;
