@@ -68,9 +68,9 @@ declare namespace GetInputContext {
  * @since 2015.2
  */
 type GetInputReturn = any[] | { [p: string]: any } |
-  search.Search | GetInputReturn.SearchReference |
-  query.Query | GetInputReturn.QueryReference | GetInputReturn.SuiteQLReference |
-  file.File | GetInputReturn.FileIdReference | GetInputReturn.FilePathReference;
+  search.Search | GetInputReturn.Search |
+  query.Query | GetInputReturn.Query | GetInputReturn.SuiteQL |
+  file.File | GetInputReturn.FileId | GetInputReturn.FilePath;
 
 declare namespace GetInputReturn {
 
@@ -80,7 +80,7 @@ declare namespace GetInputReturn {
    *
    * @since 2015.2
    */
-  export interface SearchReference {
+  export interface Search {
     type: 'search';
     id: number | string;
   }
@@ -91,7 +91,7 @@ declare namespace GetInputReturn {
    *
    * @since 2015.2
    */
-  export interface QueryReference {
+  export interface Query {
     type: 'query';
     id: number | string;
   }
@@ -102,7 +102,7 @@ declare namespace GetInputReturn {
    *
    * @since 2015.2
    */
-  export interface SuiteQLReference {
+  export interface SuiteQL {
     type: 'suiteql';
     query: string;
     params?: string[];
@@ -114,7 +114,7 @@ declare namespace GetInputReturn {
    *
    * @since 2015.2
    */
-  export interface FileIdReference {
+  export interface FileId {
     type: 'file';
     id: number | string;
   }
@@ -125,7 +125,7 @@ declare namespace GetInputReturn {
    *
    * @since 2015.2
    */
-  export interface FilePathReference {
+  export interface FilePath {
     type: 'file';
     path: string;
   }
