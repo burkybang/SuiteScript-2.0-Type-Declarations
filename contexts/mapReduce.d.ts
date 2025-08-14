@@ -69,13 +69,12 @@ declare namespace GetInputContext {
  */
 type GetInputReturn = any[] | { [p: string]: any } |
   search.Search | GetInputReturn.SearchReference |
-  query.Query | GetInputReturn.QueryReference |
-  file.File | GetInputReturn.FileReference;
+  query.Query | GetInputReturn.QueryReference | GetInputReturn.SuiteQLReference |
+  file.File | GetInputReturn.FileIdReference | GetInputReturn.FilePathReference;
 
 declare namespace GetInputReturn {
 
   /**
-   * search.Search Object Reference
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
    *
@@ -87,7 +86,6 @@ declare namespace GetInputReturn {
   }
 
   /**
-   * query.Query Object Reference
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
    *
@@ -99,13 +97,35 @@ declare namespace GetInputReturn {
   }
 
   /**
-   * query.Query Object Reference
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
    *
    * @since 2015.2
    */
-  export interface FileReference {
+  export interface SuiteQLReference {
+    type: 'suiteql';
+    query: string;
+    params?: string[];
+  }
+
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
+   *
+   * @since 2015.2
+   */
+  export interface FileIdReference {
+    type: 'file';
+    id: number | string;
+  }
+
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4412447940}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4412447940.html}
+   *
+   * @since 2015.2
+   */
+  export interface FilePathReference {
     type: 'file';
     path: string;
   }
