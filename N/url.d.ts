@@ -1,3 +1,5 @@
+/// <reference path="./record.d.ts" />
+
 /**
  * SuiteScript url module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358552918}
@@ -24,7 +26,7 @@ interface url {
    * @since 2015.1
    */
   resolveRecord(options: {
-    recordType: string,
+    recordType: record.Type | string,
     recordId?: number | string,
     isEditMode?: boolean,
     params?: {
