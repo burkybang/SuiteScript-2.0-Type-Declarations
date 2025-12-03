@@ -616,6 +616,7 @@ declare namespace search {
     'formulatext';
 
   type ColumnFunction =
+    'none' |
     'percentOfTotal' | // % of Total, Output: percent
     'absoluteValue' | // Absolute Value, Output: integer
     'ageInDays' | // Age In Days, Date Function, Output: integer
@@ -1366,7 +1367,19 @@ declare namespace search {
     /**
      * Convert to JSON object
      */
-    toJSON(): ExcludeMethods<this>;
+    toJSON(): {
+      formula: string;
+      function: ColumnFunction;
+      join: string;
+      label: string;
+      name: string;
+      sortdir: Sort | `${Sort}`;
+      summary: Summary | `${Summary}`;
+      type: string;
+      whenorderedby: string;
+      whenorderedbyjoin: string;
+      whenorderedbyalias: string;
+    };
   }
 
   export interface Setting {
