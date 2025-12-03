@@ -318,6 +318,11 @@ declare namespace sftp {
     list(options: {
       path: string,
       sort?: Sort | `${Sort}`,
-    }): Object[];
+    }): {
+      directory: boolean,
+      name: string,
+      size: number,
+      lastModified: string,
+    }[];
   }
 }
