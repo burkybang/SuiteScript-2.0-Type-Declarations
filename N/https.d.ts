@@ -457,6 +457,8 @@ declare namespace https {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
+    /** @since 2026.1 */
+    PATCH = 'PATCH',
     DELETE = 'DELETE',
     HEAD = 'HEAD',
   }
