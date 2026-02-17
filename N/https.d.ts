@@ -85,7 +85,7 @@ interface https {
     (options: {
       url: string,
       headers?: Record<string, string | number>,
-      body: string | Object,
+      body?: string | Object,
     }): https.ClientResponse;
 
     /**
@@ -109,7 +109,7 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-      body: string | Object,
+      body?: string | Object,
     }): Promise<https.ClientResponse>;
   };
 
@@ -136,7 +136,7 @@ interface https {
     (options: {
       url: string,
       headers?: Record<string, string | number>,
-      body: string | Object,
+      body?: string | Object,
     }): https.ClientResponse;
 
     /**
@@ -160,7 +160,7 @@ interface https {
     promise(options: {
       url: string,
       headers?: Record<string, string | number>,
-      body: string | Object,
+      body?: string | Object,
     }): Promise<https.ClientResponse>;
   };
 
