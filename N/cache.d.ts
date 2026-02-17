@@ -19,7 +19,7 @@ interface cache {
    */
   getCache(options: {
     name: string,
-    scope?: string,
+    scope?: cache.Scope,
   }): cache.Cache;
 }
 
@@ -66,7 +66,7 @@ declare namespace cache {
      *
      * @throws READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly scope: string;
+    readonly scope: Scope | `${Scope}`;
 
     /**
      * Get a value from the cache. If the key is not present, the loader will be called to generate the value which will
@@ -87,7 +87,7 @@ declare namespace cache {
      */
     get(options: {
       key: string,
-      loader?: Function,
+      loader?: (context: {key: string}) => string,
       ttl?: number,
     }): string;
 
