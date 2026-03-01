@@ -1,5 +1,4 @@
 /// <reference path="./define.d.ts" />
-/// <reference path="./require.d.ts" />
 /// <reference path="./typings.d.ts" />
 
 /// <reference path="./N/ui/dialog.d.ts" />
