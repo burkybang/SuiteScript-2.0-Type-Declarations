@@ -144,7 +144,7 @@ interface task {
   create(options: {
     taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
     savedSearchId: number | string,
-    filePath: number | string,
+    filePath: string,
   }): task.SearchTask;
 
   /**
@@ -176,7 +176,7 @@ interface task {
   create(options: {
     taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
     query: query.Query,
-    filePath: number | string,
+    filePath: string,
   }): task.QueryTask;
 
   /**
@@ -212,7 +212,7 @@ interface task {
     taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
     query: string,
     params?: (string | number | boolean)[],
-    filePath: number | string,
+    filePath: string,
   }): task.SuiteQLTask;
 
   /**
@@ -1077,7 +1077,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    fileId: number;
+    fileId: number | string;
 
     /**
      * Path of CVS file to export results of search into. See N/file.
@@ -1088,7 +1088,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    filePath: number;
+    filePath: string;
 
     /**
      * Completion scripts which will be run when the async search finishes.
@@ -1249,7 +1249,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    fileId: number;
+    fileId: number | string;
 
     /**
      * Path of CVS file to export results of search into. See N/file.
@@ -1260,7 +1260,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    filePath: number;
+    filePath: string;
 
     /**
      * Completion scripts which will be run when the async search finishes.
@@ -1426,7 +1426,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    fileId: number;
+    fileId: number | string;
 
     /**
      * Path of CVS file to export results of search into. See N/file.
@@ -1437,7 +1437,7 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} PROPERTY_VALUE_CONFLICT if trying to se both SearchTask#filePath and SearchTask#fileId
      */
-    filePath: number;
+    filePath: string;
 
     /**
      * Completion scripts which will be run when the async search finishes.
