@@ -24,6 +24,7 @@ interface SuiteScriptModuleMap {
   'N/machineTranslation': machineTranslation;
   'N/manufacturing/productionCharges': productionCharges;
   'N/pgp': pgp;
+  'N/piremoval': piremoval;
   'N/plugin': plugin;
   'N/portlet': portlet;
   'N/query': query;

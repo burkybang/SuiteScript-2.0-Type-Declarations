@@ -28,6 +28,7 @@
 /// <reference path="./N/machineTranslation.d.ts" />
 /// <reference path="./N/manufacturing/productionCharges.d.ts" />
 /// <reference path="./N/pgp.d.ts" />
+/// <reference path="./N/piremoval.d.ts" />
 /// <reference path="./N/plugin.d.ts" />
 /// <reference path="./N/portlet.d.ts" />
 /// <reference path="./N/query.d.ts" />
