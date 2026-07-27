@@ -227,8 +227,8 @@ declare namespace keyControl {
      * support subsidiary scoping; keys do not. The key form offers only "Restrict to Employees" and
      * "Restrict to Scripts", the `keyControl` API has no way to set subsidiaries (no `createKey`
      * parameter, no `Key` property), and the value is not derived from the employee restrictions. So
-     * for any key it reads as `[]`. The element type follows the documented "internal IDs" and the
-     * sibling `restrictions` field, which holds numeric internal IDs.
+     * for any key it reads as `[]`. When populated on the shared certificate metadata, the elements
+     * are numeric subsidiary internal IDs, matching this `number[]` typing.
      */
     readonly subsidiaries: number[];
   }
