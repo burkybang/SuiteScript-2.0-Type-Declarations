@@ -221,6 +221,12 @@ declare namespace keyControl {
 
     /**
      * Internal IDs of subsidiaries the key is scoped to (empty array if not scoped).
+     *
+     * This is populated only when a key is scoped to subsidiaries through the Keys UI
+     * (Setup > Company > Keys). The `keyControl` API cannot set it: `createKey(options)` has no
+     * subsidiaries parameter, `Key` has no subsidiaries property, and neither persists one. As a
+     * result it reads as an empty array for every key created from a script. The element type
+     * mirrors the documented "internal IDs" and the sibling `restrictions` field.
      */
     readonly subsidiaries: number[];
   }
