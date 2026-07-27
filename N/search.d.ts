@@ -5,7 +5,6 @@
  * SuiteScript search module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345764122}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345764122.html}
- *
  * @module N/search
  * @NApiVersion 2.x
  */
@@ -16,6 +15,11 @@ interface search {
     /**
      * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
      * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345171487}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345171487.html}
+     *
+     * @governance none
+     * @since 2015.2
      *
      * @param options
      * @param options.type the record internal ID of the record type you are searching
@@ -24,13 +28,15 @@ interface search {
      * @param [options.settings] a single search.Setting or string or an array that contains elements of the two types
      * @param [options.title] name of the search (when saved)
      * @param [options.id] customer ID of the search (when saved), it's a string starting with 'customsearch'
+     * @param [options.filterExpression] search filter expression as a nested array, e.g. [['fieldid', 'operator', 'value']]; an alternative to options.filters
+     * @param [options.packageId] the application ID (bundle or SuiteApp) for this search
+     * @param [options.isPublic] set to true to make a saved search public; defaults to false
      * @return the created search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing, or a filter in options.filters is missing its operator
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.filters is not an array
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if a filter in options.filters specifies an invalid operator
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR if options.filters is a malformed filter expression
      */
     (options: {
       type: search.Type | `${search.Type}` | string,
@@ -39,11 +45,19 @@ interface search {
       settings?: search.Setting | search.Setting[] | string,
       title?: string,
       id?: string,
+      filterExpression?: (string | number | (string | number | (string | number | [])[])[])[],
+      packageId?: string,
+      isPublic?: boolean,
     }): search.Search
 
     /**
      * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
      * calling Search.save() will save the search to the database, so it can be reused later in the UI or using search.load().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345171487}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345171487.html}
+     *
+     * @governance none
+     * @since 2015.2
      *
      * @param options
      * @param options.type the record internal ID of the record type you are searching
@@ -52,13 +66,15 @@ interface search {
      * @param [options.settings] a single search.Setting or string or an array that contains elements of the two types
      * @param [options.title] name of the search (when saved)
      * @param [options.id] customer ID of the search (when saved), it's a string starting with 'customsearch'
+     * @param [options.filterExpression] search filter expression as a nested array, e.g. [['fieldid', 'operator', 'value']]; an alternative to options.filters
+     * @param [options.packageId] the application ID (bundle or SuiteApp) for this search
+     * @param [options.isPublic] set to true to make a saved search public; defaults to false
      * @return the created search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when filters parameter is not a valid filter, array of filters or filter expression
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when columns parameter is not a valid column, string, or array of the two
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.type is missing, or a filter in options.filters is missing its operator
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.filters is not an array
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if a filter in options.filters specifies an invalid operator
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR if options.filters is a malformed filter expression
      */
     promise(options: {
       type: search.Type | `${search.Type}` | string,
@@ -67,6 +83,9 @@ interface search {
       settings?: search.Setting | search.Setting[] | string,
       title?: string,
       id?: string,
+      filterExpression?: (string | number | (string | number | (string | number | [])[])[])[],
+      packageId?: string,
+      isPublic?: boolean,
     }): Promise<search.Search>
   };
 
@@ -75,32 +94,36 @@ interface search {
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775360.html}
+     *
      * @governance 5 units
+     * @since 2015.2
      *
      * @param id the scriptid or internal ID of the search
      * @return the loaded search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     (id: string | number): search.Search
 
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775360.html}
+     *
      * @governance 5 units
+     * @since 2015.2
      *
      * @param options
      * @param options.id the scriptid or internal ID of the search
-     * @param [options.type] the type of search
+     * @param [options.type] the search type. Required for standalone search types (those with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch); optional otherwise, since the type is normally inferred from the corresponding record type
      * @return the loaded search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     (options: {
       id: string | number,
@@ -110,30 +133,36 @@ interface search {
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775360.html}
+     *
+     * @governance 5 units
+     * @since 2015.2
      *
      * @param id the scriptid or internal ID of the search
      * @return the loaded search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     promise(id: string | number): Promise<search.Search>
 
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
      * in conjunction with Search.save().
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775360}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775360.html}
+     *
+     * @governance 5 units
+     * @since 2015.2
      *
      * @param options
      * @param options.id the scriptid or internal ID of the search
-     * @param [options.type] the type of search
+     * @param [options.type] the search type. Required for standalone search types (those with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch); optional otherwise, since the type is normally inferred from the corresponding record type
      * @return the loaded search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     promise(options: {
       id: string | number,
@@ -145,58 +174,72 @@ interface search {
 
     /**
      * Deletes an existing saved search.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775501}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775501.html}
+     *
      * @governance 5 units
+     * @since 2015.2
      *
      * @param id the scriptid or internal ID of the search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     (id: string | number): void
 
     /**
      * Deletes an existing saved search.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775501}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775501.html}
+     *
      * @governance 5 units
+     * @since 2015.2
      *
      * @param options
      * @param options.id the scriptid or internal ID of the search
+     * @param [options.type] the search type. Required for standalone search types (those with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch); optional otherwise, since the type is normally inferred from the corresponding record type
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     (options: {
       id: string | number,
+      type?: search.Type | `${search.Type}` | string,
     }): void
 
     /**
      * Deletes an existing saved search.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775501}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775501.html}
+     *
+     * @governance 5 units
+     * @since 2015.2
      *
      * @param id the scriptid or internal ID of the search
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     promise(id: string | number): Promise<void>
 
     /**
      * Deletes an existing saved search.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775501}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775501.html}
+     *
+     * @governance 5 units
+     * @since 2015.2
      *
      * @param options
      * @param options.id the scriptid or internal ID of the search
+     * @param [options.type] the search type. Required for standalone search types (those with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch); optional otherwise, since the type is normally inferred from the corresponding record type
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     * @throws {error.SuiteScriptError} INVALID_SEARCH when a search with the given ID is not found
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
+     * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
     promise(options: {
       id: string | number,
+      type?: search.Type | `${search.Type}` | string,
     }): Promise<void>
   };
 
@@ -207,7 +250,11 @@ interface search {
      * Note that this API only works for records that support duplicate record detection. These records include
      * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
      * on how you want to search for duplicates.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775593}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775593.html}
+     *
      * @governance 10 units
+     * @since 2015.2
      *
      * @param options
      * @param options.type the record type you are checking duplicates for
@@ -216,8 +263,6 @@ interface search {
      * @return array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     (option: {
       type: search.Type | `${search.Type}` | string,
@@ -231,6 +276,11 @@ interface search {
      * Note that this API only works for records that support duplicate record detection. These records include
      * customers, leads, prospects, contacts, partners, and vendors. Use either field or id parameter depending
      * on how you want to search for duplicates.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775593}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775593.html}
+     *
+     * @governance 10 units
+     * @since 2015.2
      *
      * @param options
      * @param options.type the record type you are checking duplicates for
@@ -239,8 +289,6 @@ interface search {
      * @return array of result objects corresponding to the duplicate records results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     promise(option: {
       type: search.Type | `${search.Type}` | string,
@@ -253,15 +301,17 @@ interface search {
 
     /**
      * Performs a global search against a single keyword or multiple keywords.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775747}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775747.html}
+     *
      * @governance 10 units
+     * @since 2015.2
      *
      * @param options
      * @param options.keywords global search keywords string or expression
      * @return array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     (options: {
       keywords: string,
@@ -269,27 +319,32 @@ interface search {
 
     /**
      * Performs a global search against a single keyword or multiple keywords.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775747}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775747.html}
+     *
      * @governance 10 units
+     * @since 2015.2
      *
      * @param keywords global search keywords string or expression
      * @return array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     (keywords: string): search.Result[]
 
     /**
      * Performs a global search against a single keyword or multiple keywords.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775747}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775747.html}
+     *
+     * @governance 10 units
+     * @since 2015.2
      *
      * @param options
      * @param options.keywords global search keywords string or expression
      * @return array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     promise(option: {
       keywords: string,
@@ -297,13 +352,16 @@ interface search {
 
     /**
      * Performs a global search against a single keyword or multiple keywords.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345775747}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345775747.html}
+     *
+     * @governance 10 units
+     * @since 2015.2
      *
      * @param keywords global search keywords string or expression
      * @return array of result objects containing the following four columns: name, type (as shown in the UI), info1, and info2 results are limited to 1000 rows returns empty array if nothing is found
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
      */
     promise(keywords: string): Promise<search.Result[]>
   };
@@ -311,35 +369,22 @@ interface search {
   lookupFields: {
 
     /**
-     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-     * Note that the notation for joined fields is: join_id.field_name
+     * Performs a search for one or more body fields on a record. Supports joined-field lookups,
+     * where the notation for a joined field is join_id.field_name.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345776651}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345776651.html}
+     *
      * @governance 1 unit
+     * @since 2015.2
      *
      * @param options
-     * @param options.type the record internal ID of the record type you are searching
-     * @param options.id the internalId of the record
-     * @param options.columns array of column/field names to look up, or a single column/field name
-     * @return search results in the form of key/value pairs example:
-     *     {
-     *         foo: 'bar',
-     *         'name.join': 'othervalue',
-     *         select: [{
-     *             value: '123',
-     *             text: 'Some UI text'
-     *         }],
-     *         multiselect1: [],
-     *         multiselect2: [{
-     *             value: '3',
-     *             text: 'Green'
-     *         },{
-     *             value: '5',
-     *             text: 'Pinkish yellow'
-     *         }]
-     *     }
+     * @param options.type the record type you are searching
+     * @param options.id the internal ID of the record
+     * @param options.columns a single column/field name to look up
+     * @return an object keyed by column/field name; a select field returns {value, text}, a multiselect field returns an array of {value, text}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL if a column/field name in options.columns is invalid
      */<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
       id: string | number,
@@ -352,35 +397,20 @@ interface search {
     }
 
     /**
-     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-     * Note that the notation for joined fields is: join_id.field_name
+     * Performs a search for one or more body fields on a record. Supports joined-field lookups,
+     * where the notation for a joined field is join_id.field_name.
+     *
      * @governance 1 unit
+     * @since 2015.2
      *
      * @param options
-     * @param options.type the record internal ID of the record type you are searching
-     * @param options.id the internalId of the record
-     * @param options.columns array of column/field names to look up, or a single column/field name
-     * @return search results in the form of key/value pairs example:
-     *     {
-     *         foo: 'bar',
-     *         'name.join': 'othervalue',
-     *         select: [{
-     *             value: '123',
-     *             text: 'Some UI text'
-     *         }],
-     *         multiselect1: [],
-     *         multiselect2: [{
-     *             value: '3',
-     *             text: 'Green'
-     *         },{
-     *             value: '5',
-     *             text: 'Pinkish yellow'
-     *         }]
-     *     }
+     * @param options.type the record type you are searching
+     * @param options.id the internal ID of the record
+     * @param options.columns an array of column/field names to look up
+     * @return an object keyed by column/field name; a select field returns {value, text}, a multiselect field returns an array of {value, text}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL if a column/field name in options.columns is invalid
      */<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
       id: string | number,
@@ -393,34 +423,20 @@ interface search {
     }
 
     /**
-     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-     * Note that the notation for joined fields is: join_id.field_name
+     * Performs a search for one or more body fields on a record. Supports joined-field lookups,
+     * where the notation for a joined field is join_id.field_name.
+     *
+     * @governance 1 unit
+     * @since 2015.2
      *
      * @param options
-     * @param options.type the record internal ID of the record type you are searching
-     * @param options.id the internalId of the record
-     * @param options.columns array of column/field names to look up, or a single column/field name
-     * @return search results in the form of key/value pairs example:
-     *     {
-     *         foo: 'bar',
-     *         'name.join': 'othervalue',
-     *         select: [{
-     *             value: '123',
-     *             text: 'Some UI text'
-     *         }],
-     *         multiselect1: [],
-     *         multiselect2: [{
-     *             value: '3',
-     *             text: 'Green'
-     *         },{
-     *             value: '5',
-     *             text: 'Pinkish yellow'
-     *         }]
-     *     }
+     * @param options.type the record type you are searching
+     * @param options.id the internal ID of the record
+     * @param options.columns a single column/field name to look up
+     * @return a Promise resolving to an object keyed by column/field name; a select field returns {value, text}, a multiselect field returns an array of {value, text}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL if a column/field name in options.columns is invalid
      */
     promise<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
@@ -434,34 +450,22 @@ interface search {
     }>
 
     /**
-     * Performs a search for one or more body fields on a record. This function supports joined-field lookups.
-     * Note that the notation for joined fields is: join_id.field_name
+     * Performs a search for one or more body fields on a record. Supports joined-field lookups,
+     * where the notation for a joined field is join_id.field_name.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345776651}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345776651.html}
+     *
+     * @governance 1 unit
+     * @since 2015.2
      *
      * @param options
-     * @param options.type the record internal ID of the record type you are searching
-     * @param options.id the internalId of the record
-     * @param options.columns array of column/field names to look up, or a single column/field name
-     * @return search results in the form of key/value pairs example:
-     *     {
-     *         foo: 'bar',
-     *         'name.join': 'othervalue',
-     *         select: [{
-     *             value: '123',
-     *             text: 'Some UI text'
-     *         }],
-     *         multiselect1: [],
-     *         multiselect2: [{
-     *             value: '3',
-     *             text: 'Green'
-     *         },{
-     *             value: '5',
-     *             text: 'Pinkish yellow'
-     *         }]
-     *     }
+     * @param options.type the record type you are searching
+     * @param options.id the internal ID of the record
+     * @param options.columns an array of column/field names to look up
+     * @return a Promise resolving to an object keyed by column/field name; a select field returns {value, text}, a multiselect field returns an array of {value, text}
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-     *
-     * @since 2015.2
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL if a column/field name in options.columns is invalid
      */
     promise<ColumnName extends string>(options: {
       type: search.Type | `${search.Type}` | string,
@@ -477,8 +481,11 @@ interface search {
 
   /**
    * Creates a search.Column object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345776927}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345776927.html}
+   *
+   * @governance none
+   * @since 2015.2
    *
    * @param options
    * @param options.name the search return column name
@@ -490,11 +497,7 @@ interface search {
    * @param [options.sort] sort direction for this column uses values from the Sort enum
    * @return the created column object
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
-   *
-   * @since 2015.2
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.summary or options.function is not a recognized enum value
    */
   createColumn(options: {
     name: search.FormulaName,
@@ -507,8 +510,11 @@ interface search {
 
   /**
    * Creates a search.Column object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345776927}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345776927.html}
+   *
+   * @governance none
+   * @since 2015.2
    *
    * @param options
    * @param options.name the search return column name
@@ -519,11 +525,7 @@ interface search {
    * @param [options.sort] sort direction for this column uses values from the Sort enum
    * @return the created column object
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN_SUM if an unknown summary type is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN if an unknown function is provided
-   *
-   * @since 2015.2
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.summary or options.function is not a recognized enum value
    */
   createColumn(options: {
     name: string,
@@ -536,6 +538,11 @@ interface search {
 
   /**
    * Creates a search.Filter object
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345777107}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345777107.html}
+   *
+   * @governance none
+   * @since 2015.2
    *
    * @param options
    * @param options.name internal ID of the search field
@@ -546,11 +553,9 @@ interface search {
    * @param [options.summary] summary type used for this filter
    * @return the created filter object
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
-   *
-   * @since 2015.2
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.operator is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if options.operator is not a recognized operator
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.summary is not a recognized enum value
    */
   createFilter(options: {
     name: search.FormulaName,
@@ -562,6 +567,11 @@ interface search {
 
   /**
    * Creates a search.Filter object
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345777107}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345777107.html}
+   *
+   * @governance none
+   * @since 2015.2
    *
    * @param options
    * @param options.name internal ID of the search field
@@ -571,11 +581,9 @@ interface search {
    * @param [options.summary] summary type used for this filter
    * @return the created filter object
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if an unknown operator is provided
-   * @throws {error.SuiteScriptError} INVALID_SRCH_SUMMARY_TYP if an unknown summary type is provided
-   *
-   * @since 2015.2
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.operator is missing
+   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR if options.operator is not a recognized operator
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.summary is not a recognized enum value
    */
   createFilter(options: {
     name: string,
@@ -587,17 +595,18 @@ interface search {
 
   /**
    * Creates a search.Setting object.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1536171305}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1536171305.html}
+   *
+   * @governance none
+   * @since 2018.2
    *
    * @param options
    * @param options.name name of the result setting parameter
    * @param options.value value of the result settting parameter
    * @return the created setting object
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-   * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
-   *
-   * @since 2015.2
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.value is missing
    */
   createSetting(options: {
     name: string,
@@ -638,7 +647,10 @@ declare namespace search {
     'year'; // Year, Date Function, Output: text
 
   /**
-   *
+   * Holds the values for search operators to use with the search.Filter.
+   * See SuiteScript 2.x Search Operators for more information about the field types supported for each search operator type.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345782273}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345782273.html}
    */
   export enum Operator {
     AFTER = 'after',
@@ -682,7 +694,10 @@ declare namespace search {
   }
 
   /**
-   *
+   * Holds the values for summary types used by the Column.summary or Filter.summary properties.
+   * For more information about each search summary type, see SuiteScript 1.0 Documentation.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345777923}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345777923.html}
    */
   export enum Summary {
     GROUP = 'GROUP',
@@ -694,7 +709,9 @@ declare namespace search {
   }
 
   /**
-   *
+   * Holds the values for supported sorting directions used with search.createColumn(options).
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486581209}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486581209.html}
    */
   export enum Sort {
     ASC = 'ASC',
@@ -703,7 +720,10 @@ declare namespace search {
   }
 
   /**
-   *
+   * Holds the string values for search types supported in the N/search Module.
+   * Use this enum to set the value for the options.type parameter of the search.create(options) method.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4483165708}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4483165708.html}
    */
   export enum Type {
     ACCOUNT = 'account',
@@ -717,6 +737,7 @@ declare namespace search {
     ALLOC_RECOMMENDATION_DETAIL = 'AllocRecommendationDetail',
     AMORTIZATION_SCHEDULE = 'amortizationschedule',
     AMORTIZATION_TEMPLATE = 'amortizationtemplate',
+    ANALYTICAL_IMPACT = 'analyticalimpact',
     AS_CHARGED_PROJECT_REVENUE_RULE = 'aschargedprojectrevenuerule',
     ASSEMBLY_BUILD = 'assemblybuild',
     ASSEMBLY_ITEM = 'assemblyitem',
@@ -743,6 +764,7 @@ declare namespace search {
     BONUS = 'bonus',
     BONUS_TYPE = 'bonustype',
     BUDGET_EXCHANGE_RATE = 'budgetexchangerate',
+    BUDGET_IMPORT = 'budgetimport',
     BULK_OWNERSHIP_TRANSFER = 'bulkownershiptransfer',
     BUNDLE_INSTALLATION_SCRIPT = 'bundleinstallationscript',
     CALENDAR_EVENT = 'calendarevent',
@@ -812,6 +834,7 @@ declare namespace search {
     END_TO_END_TIME = 'EndToEndTime',
     ENTITY = 'entity',
     ENTITY_ACCOUNT_MAPPING = 'entityaccountmapping',
+    ENTITY_GROUP = 'entitygroup',
     ESTIMATE = 'estimate',
     EXPENSE_AMORTIZATION_EVENT = 'expenseamortizationevent',
     EXPENSE_AMORT_PLAN_AND_SCHEDULE = 'ExpenseAmortPlanAndSchedule',
@@ -819,6 +842,7 @@ declare namespace search {
     EXPENSE_PLAN = 'expenseplan',
     EXPENSE_REPORT = 'expensereport',
     EXPENSE_REPORT_POLICY = 'expensereportpolicy',
+    FAIR_VALUE_FORMULA = 'fairvalueformula',
     FAIR_VALUE_PRICE = 'fairvalueprice',
     FINANCIAL_INSTITUTION = 'financialinstitution',
     FIN_RPT_AGGREGATE_F_R = 'FinRptAggregateFR',
@@ -834,6 +858,8 @@ declare namespace search {
     GL_LINES_AUDIT_LOG = 'GlLinesAuditLog',
     GL_NUMBERING_SEQUENCE = 'glnumberingsequence',
     GOAL = 'goal',
+    HCM_JOB = 'hcmjob',
+    IMPACT_SUBCATEGORY = 'impactsubcategory',
     IMPORTED_EMPLOYEE_EXPENSE = 'importedemployeeexpense',
     INBOUND_SHIPMENT = 'inboundshipment',
     INSTALLMENT = 'Installment',
@@ -867,6 +893,7 @@ declare namespace search {
     ITEM_FULFILLMENT = 'itemfulfillment',
     ITEM_GROUP = 'itemgroup',
     ITEM_LOCATION_CONFIGURATION = 'itemlocationconfiguration',
+    ITEM_LOCATION_MAP = 'ItemLocationMap',
     ITEM_PROCESS_FAMILY = 'itemprocessfamily',
     ITEM_PROCESS_GROUP = 'itemprocessgroup',
     ITEM_RECEIPT = 'itemreceipt',
@@ -976,8 +1003,12 @@ declare namespace search {
     REV_REC_SCHEDULE = 'revrecschedule',
     REV_REC_TEMPLATE = 'revrectemplate',
     ROLE = 'Role',
+    SAAS_METRIC = 'saasmetric',
+    SALES_CAMPAIGN = 'salescampaign',
     SALES_CHANNEL = 'saleschannel',
     SALES_ORDER = 'salesorder',
+    SALES_PRICE_RULE = 'salespricerule',
+    SALES_PRICE_RULE_ENTRY = 'salespriceruleentry',
     SALES_ROLE = 'salesrole',
     SALES_TAX_ITEM = 'salestaxitem',
     SAVED_SEARCH = 'SavedSearch',
@@ -989,6 +1020,7 @@ declare namespace search {
     SERVICE_ITEM = 'serviceitem',
     SHIP_ITEM = 'shipitem',
     SHOPPING_CART = 'ShoppingCart',
+    SITE_CATEGORY = 'sitecategory',
     SOLUTION = 'solution',
     STATE = 'State',
     STATISTICAL_JOURNAL_ENTRY = 'statisticaljournalentry',
@@ -1018,6 +1050,7 @@ declare namespace search {
     TAX_GROUP = 'taxgroup',
     TAX_LIABILITY_PAYMENT = 'taxliabilitypayment',
     TAX_PERIOD = 'taxperiod',
+    TAX_SCHEDULE = 'taxschedule',
     TAX_TYPE = 'taxtype',
     TERM = 'term',
     TIMESHEET_APPROVAL = 'TimesheetApproval',
@@ -1050,6 +1083,7 @@ declare namespace search {
     WAVE = 'wave',
     WBS = 'wbs',
     WEBSITE = 'website',
+    WIN_LOSS_REASON = 'winlossreason',
     WORKFLOW_ACTION_SCRIPT = 'workflowactionscript',
     WORKPLACE = 'workplace',
     WORK_ORDER = 'workorder',
@@ -1059,60 +1093,97 @@ declare namespace search {
     ZONE = 'zone',
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392315904}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392315904.html}
+   */
   export interface Search {
 
     /**
      * Search type
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459534851073}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459534851073.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly searchType: search.Type | `${search.Type}` | string;
 
     /**
      * Internal ID of the search
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458892150878}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458892150878.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly searchId: number;
 
     /**
      * Search filters
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER when setting value of different type than search.Filter
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459415222167}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459415222167.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when an element of the array is not a search.Filter
      */
     filters: Filter[];
 
     /**
      * Allows to set or get the search filters in the form of a search filter expression
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_EXPR when setting invalid search filter expression
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458440490721}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458440490721.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when the value is not a valid search filter expression array
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_OPERATOR when the expression contains an invalid operator
      */
     filterExpression: (string | number | (string | number | (string | number | [])[])[])[];
 
     /**
      * Columns to be returned from the search
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COLUMN when setting value of different type than search.Column or string
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456374450683}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456374450683.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when an element of the array is not a search.Column
      */
     columns: Column[];
 
     /**
-     * Array of search.Setting objects or a string array of column names
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING if an unknown setting parameter name is provided
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE if an invalid setting parameter value is provided
+     * Array of search.Setting objects. An invalid setting name or value is not validated on assignment; it
+     * surfaces when the results are fetched (see search.ResultSet) as SSS_INVALID_SRCH_SETTING or
+     * SSS_INVALID_SRCH_SETTING_VALUE.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1536244062}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1536244062.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when an element of the array is not a search.Setting
      */
     settings: Setting[];
 
     /**
      * Name of the saved search. Needs to be set before saving the search
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458807006835}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458807006835.html}
      */
     title: string;
 
     /**
      * Custom ID of the saved search (string starting with 'customsearch'). If not set, then it is automatically
      * generated upon save.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455917297362}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455917297362.html}
      */
     id: string;
 
     /**
      * Specifies whether the search is public or private
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460638366698}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460638366698.html}
      */
     isPublic: boolean;
+
+    /**
+     * The application ID (bundle or SuiteApp) associated with the search
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156336419831}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156336419831.html}
+     */
+    packageId: string;
 
     save: {
 
@@ -1123,12 +1194,17 @@ declare namespace search {
        * 1) upon creation (parameters title and id of the options object)
        * 2) by explicitly setting the properties (e.g. Search.title = 'foo' Search.id = 'customsearch_bar' )
        * 3) by loading a previously saved search (the properties are inherited)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452655578613}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452655578613.html}
+       *
        * @governance 5 units
+       * @since 2015.2
+       *
        * @return the internal search ID of the saved search
+       *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
        * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
        * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
-       * @since 2015.2
        */
       (): number
 
@@ -1139,47 +1215,88 @@ declare namespace search {
        * 1) upon creation (parameters title and id of the options object)
        * 2) by explicitly setting the properties (e.g. Search.title = 'foo' Search.id = 'customsearch_bar' )
        * 3) by loading a previously saved search (the properties are inherited)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452655578613}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452655578613.html}
+       *
        * @governance 5 units
+       * @since 2015.2
+       *
        * @return the internal search ID of the saved search
+       *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if title property is not set
        * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
        * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
-       * @since 2015.2
        */
       promise(): Promise<number>
     };
 
     /**
-     * Runs the current search.
-     * @return the result set object
+     * Runs the current search. The returned result set is lazy: invalid columns or settings surface when the
+     * results are fetched (see search.ResultSet), not here.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452292724609}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452292724609.html}
+     *
+     * @governance none
      * @since 2015.2
+     *
+     * @return the result set object
      */
     run(): ResultSet;
 
     runPaged: {
 
       /**
-       * Runs the current search with a paged interface.
+       * Runs the current search with a paged interface. The Help Center documents 5 units, but at runtime the
+       * runPaged call itself bills 0 (paging governance is charged when pages are fetched).
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486596158}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486596158.html}
+       *
+       * @governance none
+       * @since 2016.1
+       *
        * @param [options]
        * @param [options.pageSize]
        * @return PagedData object that allows user to page through the search result
-       * @since 2016.1
        */
       (options?: {
         pageSize?: number,
-      }): PagedData
+      }): PagedData;
 
       /**
-       * Runs the current search with a paged interface.
+       * Runs the current search with a paged interface. The Help Center documents 5 units, but at runtime the
+       * runPaged call itself bills 0 (paging governance is charged when pages are fetched).
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486596158}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486596158.html}
+       *
+       * @governance none
+       * @since 2016.1
+       *
        * @param [options]
        * @param [options.pageSize]
        * @return PagedData object that allows user to page through the search result
-       * @since 2016.1
        */
       promise(options?: {
         pageSize?: number,
-      }): Promise<PagedData>
+      }): Promise<PagedData>;
     };
+
+    /**
+     * Redirects the current request to this search's definition page. Undocumented
+     * runtime method (not in the SuiteScript Help Center) intended for server-side
+     * contexts that issue a redirect, such as Suitelets or user event scripts.
+     *
+     * @governance none
+     */
+    redirectToSearch(): void;
+
+    /**
+     * Redirects the current request to this search's results page. Undocumented
+     * runtime method (not in the SuiteScript Help Center) intended for server-side
+     * contexts that issue a redirect, such as Suitelets or user event scripts.
+     *
+     * @governance none
+     */
+    redirectToSearchResults(): void;
 
     /**
      * Returns the object type name (search.Search)
@@ -1192,104 +1309,54 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
-  export interface SerializedFilterInput {
-
-    /**
-     * Summary type for this search filter
-     */
-    summarytype: Summary | `${Summary}` | null;
-
-    /**
-     * Formula used for this search filter
-     */
-    formula: string | null;
-
-    isnot: boolean;
-    isor: boolean;
-    leftparens: number;
-    rightparens: number;
-  }
-
-  export interface SerializedFilterOutput {
-
-    /**
-     * Field name for this search filter
-     */
-    name: string;
-
-    /**
-     * Join ID for this search filter
-     */
-    join: string;
-
-    /**
-     * Filter operator
-     */
-    operator: Operator | `${Operator}`;
-
-    /**
-     * Summary type for this search filter
-     */
-    summarytype: Summary | `${Summary}` | null;
-
-    /**
-     * Formula used for this search filter
-     */
-    formula: string | null;
-
-    isnot: boolean;
-    isor: boolean;
-    leftparens: number;
-    rightparens: number;
-    values: string[] | null;
-  }
-
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345767603}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345767603.html}
+   */
   export interface Filter {
 
     /**
      * Field name for this search filter
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459893737792}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459893737792.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly name: string;
 
     /**
      * Join ID for this search filter
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460736328124}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460736328124.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly join: string;
 
     /**
      * Filter operator
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452460571288}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452460571288.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly operator: Operator | `${Operator}`;
 
     /**
      * Summary type for this search filter
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_FILTER_SUM when setting invalid summary type
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46485229492}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46485229492.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when the value is not a valid summary type
      */
     summary: Summary | `${Summary}`;
 
     /**
      * Formula used for this search filter
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46683898925}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46683898925.html}
      */
     formula: string;
-
-    /**
-     * Clones a search.Filter object
-     */
-    _clone(): Filter;
-
-    /**
-     * Converts a serialized object into a search.Filter object
-     * @param filter
-     */
-    _unmarshal(filter: SerializedFilterInput): void;
-
-    /**
-     * Converts a search.Filter into a serialized object
-     */
-    _marshal(): SerializedFilterOutput;
 
     /**
      * Returns the object type name (search.Filter)
@@ -1299,42 +1366,73 @@ declare namespace search {
     /**
      * Convert to JSON object
      */
-    toJSON(): SerializedFilterOutput;
+    toJSON(): {
+      name: string;
+      join: string;
+      operator: Operator | `${Operator}`;
+      summarytype: Summary | `${Summary}` | null;
+      formula: string | null;
+      isnot: boolean;
+      isor: boolean;
+      leftparens: number;
+      rightparens: number;
+      values: string[] | null;
+    };
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345767216}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345767216.html}
+   */
   export interface Column {
 
     /**
      * The name of the search column
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456729370116}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456729370116.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly name: string;
 
     /**
      * The join ID for this search column
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460655456542}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460655456542.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly join: string;
 
     /**
      * The summary type for this search column
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455339294433}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455339294433.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly summary: Summary | `${Summary}`;
 
     /**
      * The formula used for this search column
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454645935058}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454645935058.html}
      */
     formula: string;
 
     /**
      * The label used for this search column
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459848266600}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459848266600.html}
      */
     label: string;
 
     /**
      * The function used in this search column
-     * @throws {error.SuiteScriptError} INVALID_SRCH_FUNCTN when setting an unknown function is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453268676757}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453268676757.html}
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when the value is not a valid function
      */
     function: ColumnFunction;
 
@@ -1348,11 +1446,16 @@ declare namespace search {
      * value. For example, can be set to find the most recent or earliest date, or the largest or smallest amount for a
      * record, and then the search.Column value for that record is returned. Can only be used when summary type is MIN
      * or MAX.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457130065917}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457130065917.html}
+     *
+     * @governance none
+     * @since 2015.2
+     *
      * @param options the options object
      * @param options.name name of the search column for which the minimal or maximal value should be found
      * @param options.join join id for this search column
      * @return this search column
-     * @since 2015.2
      */
     setWhenOrderedBy(options: {
       name: string,
@@ -1382,17 +1485,27 @@ declare namespace search {
     };
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1536244919}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1536244919.html}
+   */
   export interface Setting {
 
     /**
      * Name for this search setting
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1536177181}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1536177181.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly name: string;
 
     /**
      * value for this search setting
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1536177235}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1536177235.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly value: string;
 
@@ -1407,34 +1520,55 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345767679}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345767679.html}
+   */
   export interface ResultSet {
 
     /**
      * List of columns contained in this result set
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456520019530}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456520019530.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly columns: Column[];
 
     /**
      * Retrieve a slice of the search result set. Only 1000 results can be returned at a time. If there are fewer results
      * available than requested, then the array will be truncated.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456010986327}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456010986327.html}
+     *
      * @governance 10 units
+     * @since 2015.2
+     *
      * @param start the index number of the first result to return, inclusive
      * @param end the index number of the last result to return, exclusive
      * @return the requested slice of the search result set
-     * @since 2015.2
+     *
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
      */
     getRange(start: number, end: number): Result[];
 
     /**
      * Retrieve a slice of the search result set. Only 1000 results can be returned at a time. If there are fewer results
      * available than requested, then the array will be truncated.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456010986327}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456010986327.html}
+     *
      * @governance 10 units
+     * @since 2015.2
+     *
      * @param options the options object
      * @param options.start the index number of the first result to return, inclusive
      * @param options.end the index number of the last result to return, exclusive
      * @return the requested slice of the search result set
-     * @since 2015.2
+     *
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
      */
     getRange(options: {
       start: number,
@@ -1447,9 +1581,16 @@ declare namespace search {
      * result) If the return value of the callback is false, the iteration over results is stopped, otherwise it
      * continues. Note that the work done in the context of the callback function counts towards the governance of the
      * script that called it.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457160888671}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457160888671.html}
+     *
      * @governance 10 units
-     * @param callback the function called for each result in the result set
      * @since 2015.2
+     *
+     * @param callback the function called for each result in the result set
+     *
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
      */
     each(callback: (result: Result) => boolean): void;
 
@@ -1464,26 +1605,45 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345767112}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345767112.html}
+   */
   export interface Result {
 
     /**
      * Record type of the result
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456526428222}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456526428222.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly recordType: string;
 
     /**
      * Record internal ID of the result
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454656921386}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454656921386.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly id: string;
 
     /**
      * List of columns contained in this result
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452222534179}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452222534179.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly columns: Column[];
 
+    /**
+     * Returns all of this result's search return columns as an object keyed by column name.
+     *
+     * @governance none
+     * @return an object mapping each search column name to its value
+     */
     getAllValues<T extends Record<string, string | { value: string, text: string }[]>>(): T;
 
     /**
@@ -1492,9 +1652,14 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46988464355}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46988464355.html}
+     *
+     * @governance none
+     * @since 2015.2
+     *
      * @param column search return column name or object whose value you want to return
      * @return value of the search result column
-     * @since 2015.2
      */
     getValue<T extends string | boolean>(column: string | Column): T;
 
@@ -1504,12 +1669,17 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46917053222}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46917053222.html}
+     *
+     * @governance none
+     * @since 2015.2
+     *
      * @param options the options object
      * @param options.name the name of the search column whose value you want to return
      * @param [options.join] the join ID for this search column
      * @param [options.summary] the summary type used for this search column
      * @return value of the search result column
-     * @since 2015.2
      */
     getValue<T extends string | boolean>(options: {
       name: string,
@@ -1524,9 +1694,14 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460663391112}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460663391112.html}
+     *
+     * @governance none
+     * @since 2015.2
+     *
      * @param column search return column name or object whose value you want to return
      * @return UI display name (text value) of the search result column
-     * @since 2015.2
      */
     getText(column: string | Column): string;
 
@@ -1537,12 +1712,17 @@ declare namespace search {
      * 1) by providing a column name string
      * 2) by providing a search.Column object
      * 3) by providing name, join and summary parameters
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456658264159}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456658264159.html}
+     *
+     * @governance none
+     * @since 2015.2
+     *
      * @param options the options object
      * @param options.name the name of the search column whose value you want to return
      * @param [options.join] the join ID for this search column
      * @param [options.summary] the summary type used for this search column
      * @return UI display name (text value) of the search result column
-     * @since 2015.2
      */
     getText(options: {
       name: string,
@@ -1561,34 +1741,68 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486558900}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486558900.html}
+   */
   export interface PagedData {
 
     /**
      * Rows per page - defined in search definition [5 - 1000]
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486608636}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486608636.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    pageSize: number;
+    readonly pageSize: number;
 
     /**
      * Total row count
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486607957}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486607957.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    count: number;
+    readonly count: number;
 
     /**
+     * The page ranges that partition this result set
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486608251}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486608251.html}
      *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    pageRanges: PageRange[];
+    readonly pageRanges: PageRange[];
 
     /**
      * The search criteria used to execute the result set for this PagedData Object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486608824}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486608824.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    searchDefinition: Search;
+    readonly searchDefinition: Search;
 
     /**
+     * Fetches the page at the given index. The Help Center documents 5 units, but at runtime the call bills 0.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486609298}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486609298.html}
+     *
+     * @governance none
+     * @since 2016.1
+     *
      * @param index
      */
     fetch(index: number | string): search.Page;
 
     /**
+     * Fetches the page at the given index. The Help Center documents 5 units, but at runtime the call bills 0.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486609298}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486609298.html}
+     *
+     * @governance none
+     * @since 2016.1
+     *
      * @param options
      * @param options.index
      */
@@ -1607,42 +1821,76 @@ declare namespace search {
     toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486547978}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486547978.html}
+   */
   export interface Page {
 
     /**
      * The results from a paginated search
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486604985}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486604985.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    data: Result[];
+    readonly data: Result[];
 
     /**
      * Indicates whether the page is within the first range of the result set
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486603498}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486603498.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    isFirst: boolean;
+    readonly isFirst: boolean;
 
     /**
      * Indicates whether a page is within the last range of the result set
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486603745}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486603745.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    isLast: boolean;
+    readonly isLast: boolean;
 
     /**
      * The PagedData Object used to fetch this Page Object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486604468}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486604468.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    pagedData: PagedData;
+    readonly pagedData: PagedData;
 
     /**
      * The PageRange Object used to fetch this Page Object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486602257}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486602257.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    pageRange: PageRange;
+    readonly pageRange: PageRange;
 
     next: {
 
       /**
-       * Method used to fetch the next segment of data
+       * Method used to fetch the next segment of data. The Help Center documents 5 units, but at runtime the call bills 0.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486605324}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486605324.html}
+       *
+       * @governance none
+       * @since 2016.1
        */
       (): Page
 
       /**
        * Method used to asynchronously fetch the next segment of data
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486605324}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486605324.html}
+       *
+       * @governance none
+       * @since 2016.1
        */
       promise(): Promise<Page>
     };
@@ -1650,27 +1898,69 @@ declare namespace search {
     prev: {
 
       /**
-       * Method used to fetch the previous segment of data
+       * Method used to fetch the previous segment of data. The Help Center documents 5 units, but at runtime the call bills 0.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486606245}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486606245.html}
+       *
+       * @governance none
+       * @since 2016.1
        */
       (): Page
 
       /**
        * Method used to asynchronously fetch the previous segment of data
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486606245}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486606245.html}
+       *
+       * @governance none
+       * @since 2016.1
        */
       promise(): Promise<Page>
     };
+
+    /**
+     * Returns the object type name (search.Page)
+     */
+    toString(): 'search.Page';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486559010}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486559010.html}
+   */
   export interface PageRange {
 
     /**
      * Human-readable label with beginning and ending range identifiers
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486607482}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486607482.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    compoundLabel: string;
+    readonly compoundLabel: string;
 
     /**
      * The index of the pageRange
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4486606935}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4486606935.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    index: number;
+    readonly index: number;
+
+    /**
+     * Returns the object type name (search.PageRange)
+     */
+    toString(): 'search.PageRange';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 }
