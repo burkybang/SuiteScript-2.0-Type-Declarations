@@ -5,6 +5,7 @@ interface SuiteScriptModuleMap {
   'N/action': action;
   'N/auth': auth;
   'N/cache': cache;
+  'N/certificateControl': certificateControl;
   'N/compress': compress;
   'N/config': config;
   'N/crypto': crypto_;
