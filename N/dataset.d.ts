@@ -608,6 +608,8 @@ declare namespace dataset {
      * @param [options.id] The script ID of the dataset. Must start with `custdataset`.
      * @return An object containing the script ID of the saved dataset.
      *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT `options.name` is missing.
+     * @throws {error.SuiteScriptError} AT_LEAST_ONE_COLUMN_IS_REQUIRED The dataset has no columns.
      * @throws {error.SuiteScriptError} INVALID_ID_PREFIX The supplied `options.id` does not start with `custdataset`.
      */
     save(options: {
