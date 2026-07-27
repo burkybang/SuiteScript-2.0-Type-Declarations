@@ -1182,7 +1182,7 @@ interface workbook {
    *
    * @param options
    * @param options.filters The filters combined by this condition.
-   * @param options.operator The logical operator (e.g. `'AND'`, `'OR'`). Use values from `query.Operator`.
+   * @param options.operator The logical operator combining the filters (e.g. `'AND'`, `'OR'`).
    * @return A new `workbook.TableColumnCondition`.
    *
    * @throws {error.SuiteScriptError} INVALID_OPERATOR The `operator` is not a valid operator.
@@ -1203,7 +1203,7 @@ interface workbook {
    * @since 2020.2
    *
    * @param options
-   * @param options.operator The filter operator. Use values from `query.Operator`.
+   * @param options.operator The filter operator. Accepted values are `EQUAL`, `ANY_OF`, `GREATER`, `LESS`, `BETWEEN` (2 values), and `EMPTY` (0 values). These are workbook table-column filter operators, not `query.Operator` values.
    * @param options.values The filter values (supported element types: `null`, `object`, `boolean`, `number`, `string`, `Date`).
    * @param [options.caseSensitive] Whether string comparisons are case-sensitive. **Undocumented but accepted at runtime.**
    * @return A new `workbook.TableColumnFilter`.
@@ -2024,15 +2024,15 @@ declare namespace workbook {
     name: string;
 
     /**
-     * The chart series.
+     * The chart series, one entry per plotted measure.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159007989923}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159007989923.html}
      *
      * @since 2020.2
      *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE The value is not a `workbook.Series`.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE The value is not an array of `workbook.Series`.
      */
-    series: Series;
+    series: Series[];
 
     /**
      * The chart stacking mode. Use values from `workbook.Stacking`.
@@ -2950,8 +2950,8 @@ declare namespace workbook {
   interface MeasureValue {
 
     /**
-     * The measure whose value is being reported. (Best-guess type; the precise type is not
-     * documented — see interface JSDoc.)
+     * The measure whose value is being reported. In `runPivot()` results this is the
+     * `DataMeasure` (or `CalculatedMeasure`) that produced the value.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163170481168}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163170481168.html}
      *
@@ -2959,7 +2959,7 @@ declare namespace workbook {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY You attempted to set this property.
      */
-    readonly measure: CalculatedMeasure | DataMeasure | MeasureSelector;
+    readonly measure: CalculatedMeasure | DataMeasure;
 
     /**
      * The value of the measure. Discriminated by the measure's value type — for `Record`-typed
@@ -4305,8 +4305,7 @@ declare namespace workbook {
     filters: TableColumnFilter[];
 
     /**
-     * The logical operator combining the filters. Use values from `query.Operator` (e.g.
-     * `'AND'`, `'OR'`).
+     * The logical operator combining the filters (e.g. `'AND'`, `'OR'`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0519040723}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0519040723.html}
      *
@@ -4343,13 +4342,15 @@ declare namespace workbook {
     caseSensitive?: boolean;
 
     /**
-     * The operator for the table column filter. Use values from `query.Operator`.
+     * The operator for the table column filter. Accepted values are `EQUAL`, `ANY_OF`, `GREATER`,
+     * `LESS`, `BETWEEN` (2 values), and `EMPTY` (0 values). These are workbook table-column filter
+     * operators, not `query.Operator` values.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163182557155}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163182557155.html}
      *
      * @since 2021.2
      *
-     * @throws {error.SuiteScriptError} INVALID_OPERATOR The value of this property is not included in the `query.Operator` enum.
+     * @throws {error.SuiteScriptError} INVALID_OPERATOR The value of this property is not a valid table column filter operator.
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE The value specified for this property is not a string.
      */
     operator: string;
@@ -4462,14 +4463,13 @@ declare namespace workbook {
      *
      * @param options
      * @param options.id The pivot's identifier (`Pivot.id`).
-     * @return Pivot execution result. The exact shape is not documented; at minimum it contains
-     *   the intersections (`PivotIntersection[]`) of the executed pivot.
+     * @return The executed pivot's intersections, one per row/column cell.
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The `options.id` was not provided.
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE The `options.id` is not a string.
      */
     runPivot(options: {
       id: string,
-    }): object;
+    }): workbook.PivotIntersection[];
   }
 }
