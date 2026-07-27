@@ -254,7 +254,9 @@ interface documentCapture {
      * @throws {error.SuiteScriptError} INVALID_DOCUMENT_CAPTURE_RESULT The file is a real JSON file but doesn't have the shape of an async-document-capture result. Not documented in the Help Center.
      * @throws {error.SuiteScriptError} UNSUPPORTED_FILE_TYPE_1_USE_2 The file is not a JSON file (likely fires before `INVALID_DOCUMENT_CAPTURE_RESULT` for non-JSON file types — unverified).
      */
-    (options: { file: file.File }): documentCapture.Document;
+    (options: {
+      file: file.File,
+    }): documentCapture.Document;
 
     /**
      * Bare-file sync call. Functionally equivalent to the object form.
@@ -277,7 +279,9 @@ interface documentCapture {
      *
      * @throws {error.SuiteScriptError} See sync variants for the inferred/confirmed `@throws` codes.
      */
-    promise(options: { file: file.File }): Promise<documentCapture.Document>;
+    promise(options: {
+      file: file.File,
+    }): Promise<documentCapture.Document>;
 
     /**
      * Bare-file async call. Functionally equivalent to the object-form promise.
