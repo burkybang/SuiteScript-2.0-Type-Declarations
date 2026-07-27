@@ -253,17 +253,12 @@ declare namespace translation {
    * locale from an existing Handle.
    *
    * A Handle is hierarchical. When built via `translation.load`, its first-level keys are the aliases
-   * defined in the load call; within each alias, keys are the translation keys from the collection.
-   * Every leaf node is callable as a translator function (returning the translated string with any
-   * placeholders substituted); the type signature reflects this by making every node callable. Calling
-   * an intermediate (non-leaf) node is not supported at runtime.
-   *
-   * **Caveat:** the root Handle (and likely all intermediate non-leaf nodes) is NOT
-   * callable at runtime: `typeof handle === 'object'`, and `handle({...})` throws
-   * `TypeError: handle is not a function`. Only leaf nodes (Translator functions, reached via the alias
-   * and key path) are callable. The current self-callable interface is a JSDoc-ergonomics choice that
-   * permits `handle.alias.KEY()` to type-check; consumers should not call the root or intermediate
-   * Handle nodes.
+   * defined in the load call; within each alias, keys are the translation keys from the collection
+   * (uppercased at runtime). A `Handle` node is NOT callable (`typeof handle === 'object'`); indexing it
+   * yields a `Translator`. A leaf `Translator` is callable and returns the translated string, and can be
+   * indexed further to support hierarchical (nested) keys, which lets `handle.alias.KEY()` type-check.
+   * One imprecision: the alias-level node is typed as a (callable) `Translator` even though calling it
+   * throws at runtime, so only call leaf key nodes.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1541705125}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1541705125.html}
    *
@@ -271,24 +266,17 @@ declare namespace translation {
    */
   interface Handle {
     /**
-     * Returns the translated string for this leaf node. If the translation contains parameter
-     * placeholders (e.g. `{1}`, `{2}`), provide the corresponding values via `options.params`.
-     *
-     * @param [options]
-     * @param [options.params] The parameter values to inject into the translation string's placeholders (by 1-based position).
-     * @return The translated string with any placeholders substituted.
+     * Access a collection by its alias, or a translation key within a collection. A `Handle` is not
+     * callable; indexing it yields a `Translator` (callable at a leaf key, further indexable for
+     * nested keys).
      */
-    (options?: {
-      params: (string | number | boolean)[],
-    }): string;
-
-    [key: string]: Handle;
+    [key: string]: Translator;
   }
 
   /**
    * Represents a translator function that returns translated strings. The translated strings include
    * variables that are passed as parameters to the translator function. `translation.Translator` is what
-   * `translation.get(options)` returns; it is a single callable (not hierarchical).
+   * `translation.get(options)` returns; it is callable to produce the translated string.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1541706219}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1541706219.html}
    *
@@ -307,5 +295,10 @@ declare namespace translation {
     (options?: {
       params: (string | number | boolean)[],
     }): string;
+
+    /**
+     * Access a nested translation key (for hierarchical collections). Yields another `Translator`.
+     */
+    [key: string]: Translator;
   }
 }
