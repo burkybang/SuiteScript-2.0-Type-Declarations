@@ -21,6 +21,7 @@ interface SuiteScriptModuleMap {
   'N/https': https;
   'N/llm': llm;
   'N/log': log;
+  'N/machineTranslation': machineTranslation;
   'N/plugin': plugin;
   'N/portlet': portlet;
   'N/query': query;
