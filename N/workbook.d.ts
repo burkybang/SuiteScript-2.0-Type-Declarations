@@ -748,20 +748,23 @@ interface workbook {
   }): workbook.PivotAxis;
 
   /**
-   * Creates a pivot-storage handle.
+   * Allocates a numeric pivot-storage handle. This is the create-side counterpart to
+   * `workbook.loadPivotResults({id})`.
    *
-   * Undocumented in the Help Center; present at runtime.
+   * Undocumented in the Help Center; present at runtime. Returns a `number`, not an object, and the
+   * value increments on each call within an account. Any `options` argument is ignored.
    *
-   * Exposed as `workbook.createPivotStorage`. Returns a `number` (likely a handle/ID) rather than
-   * an object. The exact purpose and parameter shape are not documented; it appears to be the
-   * create-side counterpart to `workbook.loadPivotResults({id})`, for asynchronous pivot execution
-   * that stores results indexed by the returned handle.
+   * The handle it returns is an empty storage slot: no server-side API populates the slot, so
+   * `loadPivotResults` throws `INVALID_PIVOT_STORAGE_ID` for any handle a script allocates this way.
+   * These two methods are the server-side halves of the workbook UI's asynchronous pivot execution,
+   * which fills storage out of band. For pivot results from a script, use `Workbook.runPivot`, which
+   * returns the intersections directly.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159051729422}
    *
    * @restriction Server-side scripts only
    *
-   * @param [options] The parameter shape is not documented; accepts `{}` at minimum.
-   * @return A numeric handle.
+   * @param [options] Ignored at runtime.
+   * @return A numeric storage handle.
    */
   createPivotStorage(options?: object): number;
 
@@ -1307,27 +1310,31 @@ interface workbook {
   }): workbook.Workbook;
 
   /**
-   * Loads pivot results by handle.
+   * Loads stored pivot results by handle. This is the read-side counterpart to
+   * `workbook.createPivotStorage`.
    *
-   * Undocumented in the Help Center; present at runtime.
+   * Undocumented in the Help Center; present at runtime. The `id` is the numeric handle returned by
+   * `createPivotStorage`; a string throws `SSS_INVALID_TYPE_ARG`.
    *
-   * Exposed as `workbook.loadPivotResults`. Required argument: `id` (typed as `string` based on the
-   * `Workbook.runPivot({id})` pattern, but the accepted type might also be the `number` returned
-   * by `workbook.createPivotStorage`; the exact contract is not documented). It appears to retrieve
-   * stored pivot results after asynchronous execution (the read-side counterpart to
-   * `workbook.createPivotStorage`).
+   * In practice this is not usable from a script on its own: `createPivotStorage` only allocates an
+   * empty slot and no server-side API populates it, so this method throws `INVALID_PIVOT_STORAGE_ID`
+   * for any handle a script can create. The pair backs the workbook UI's asynchronous pivot
+   * execution, which fills storage out of band. For pivot results from a script, use
+   * `Workbook.runPivot`, which returns the intersections directly.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159052020752}
    *
    * @restriction Server-side scripts only
    *
    * @param options
-   * @param options.id Handle/identifier of the stored pivot results.
-   * @return Pivot result data. The exact shape is not documented.
+   * @param options.id Numeric handle of the stored pivot results (from `createPivotStorage`).
+   * @return The stored pivot result data.
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT `options.id` is missing.
+   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG `options.id` is not a number.
+   * @throws {error.SuiteScriptError} INVALID_PIVOT_STORAGE_ID `options.id` is not a valid, populated storage handle.
    */
   loadPivotResults(options: {
-    id: string | number,
+    id: number,
   }): object;
 }
 
@@ -3154,21 +3161,28 @@ declare namespace workbook {
     }): Page;
 
     /**
-     * Returns a `PagedIterator` for sequential iteration over all pages.
+     * Returns a `PagedIterator` for the set.
      *
-     * @return A `PagedIterator` that yields each `Page` of the set in order.
+     * Note: at runtime this iterator yields no pages. `next()` returns `{done: true}` on the first
+     * call and `each()` never invokes its callback, regardless of how many pages `pageRanges`
+     * reports. To enumerate pages reliably, call `fetch({index})` for each entry in `pageRanges`
+     * instead.
+     *
+     * @return A `PagedIterator` for the set. See the note above about its runtime behavior.
      */
     iterator(): PagedIterator;
   }
 
   /**
-   * A page iterator returned by `PagedInfoData.iterator()`. Supports both manual iteration (via
-   * `next()`) and callback-style iteration (via `each(callback)` — return `false` from the
-   * callback to stop early).
+   * A page iterator returned by `PagedInfoData.iterator()`. Exposes manual iteration (via `next()`)
+   * and callback-style iteration (via `each(callback)`, where returning `false` from the callback
+   * stops early). The two methods carry the standard NetSuite paged-iterator shapes
+   * (see `N/query.PagedData.iterator`).
    *
    * Undocumented in the Help Center; present at runtime. `Object.keys(paged.iterator())` yields
-   * `['next', 'each']`. The exact return type of `next()` and the callback signature for `each()`
-   * match the standard NetSuite paged-iterator pattern (see `N/query.PagedData.iterator`).
+   * `['next', 'each']`. However, this iterator does not actually yield pages: `next()` returns
+   * `{done: true}` on the first call and `each()` never invokes its callback. Enumerate pages with
+   * `PagedInfoData.fetch({index})` over `pageRanges` instead.
    *
    * @since 2021.2
    */
