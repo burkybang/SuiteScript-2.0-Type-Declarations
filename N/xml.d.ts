@@ -4,7 +4,6 @@
  * SuiteScript xml module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344917661}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344917661.html}
- *
  * @module N/xml
  * @NApiVersion 2.x
  */
@@ -15,8 +14,6 @@ interface xml {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344922681}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344922681.html}
    *
-   * @type {xml.Parser}
-   *
    * @since 2015.2
    */
   Parser: xml.Parser;
@@ -25,8 +22,6 @@ interface xml {
    * Encapsulates the functionality to run XPath expressions
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344925104}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344925104.html}
-   *
-   * @type {xml.XPath}
    *
    * @since 2015.2
    */
@@ -37,31 +32,61 @@ interface xml {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
    *
-   * @param {Object} options
-   * @param {string} options.xmlText the XML text to be escaped
-   * @return {string} the escaped XML
-   *
+   * @governance none
+   * @restriction Client-side and server-side scripts
    * @since 2015.2
+   *
+   * @param options
+   * @param options.xmlText the XML text to be escaped
+   * @return the escaped XML
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
    */
   escape(options: {
     xmlText: string,
   }): string;
 
   /**
+   * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
+   *
+   * @governance none
+   * @restriction Client-side and server-side scripts
+   * @since 2015.2
+   *
+   * @param xmlText the XML text to be escaped
+   * @return the escaped XML
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
+   */
+  escape(
+    xmlText: string,
+  ): string;
+
+  /**
    * Validates a supplied XML document against a supplied XML Schema (XSD Document)
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345173468}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345173468.html}
    *
-   * @param {Object} options
-   * @param {Document} options.xml the XML document object
-   * @param {number|string} options.xsdFilePathOrId ID or path to the XSD file to validate the XML object against
-   * @param {number|string} [options.importFolderPathOrId] ID or path to a folder in the file cabinet containing additional XSD schemas which are imported by the parent XSD provided via "xsdFilePathOrId"
-   *
-   * @throws {error.SuiteScriptError} SSS_XML_DOES_NOT_CONFORM_TO_SCHEMA if XML provided is invalid with respect to the provided schema
-   * @throws {error.SuiteScriptError} SSS_INVALID_XML_SCHEMA_OR_DEPENDENCY if schema is an incorrectly structured XSD, or a dependent schema could not be found
-   * @return {void}
-   *
+   * @governance none
+   * @restriction Server-side scripts only
    * @since 2015.2
+   *
+   * @param options
+   * @param options.xml the XML document object
+   * @param options.xsdFilePathOrId ID or path to the XSD file to validate the XML object against
+   * @param [options.importFolderPathOrId] ID or path to a folder in the file cabinet containing additional XSD schemas which are imported by the parent XSD provided via "xsdFilePathOrId"
+   *
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xml or xsdFilePathOrId is missing or null
+   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xml is not an xml.Document (or other XML node)
+   * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION if xsdFilePathOrId is a file ID that does not exist or is not accessible
+   * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST if xsdFilePathOrId is a file path that does not resolve to an existing file
+   * @throws {error.SuiteScriptError} ILLEGAL_REQUEST_FOR_A_FILE_THAT_ISNT_DOWNLOADABLE if the referenced XSD file is not downloadable
+   * @throws {error.SuiteScriptError} SSS_INVALID_XML_SCHEMA_OR_DEPENDENCY if schema is an incorrectly structured XSD, or a dependent schema could not be found
+   * @throws {error.SuiteScriptError} SSS_XML_DOES_NOT_CONFORM_TO_SCHEMA if XML provided is invalid with respect to the provided schema
    */
   validate(options: {
     xml: xml.Document,
@@ -98,7 +123,6 @@ declare namespace xml {
    * XML Parser Object
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344922681}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344922681.html}
-   *
    * @protected
    * @constructor
    */
@@ -109,10 +133,14 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
      *
-     * @param {string} text XML text
-     * @return {Document}
-     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
      * @since 2015.2
+     *
+     * @param text XML text
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
      */
     fromString(
       text: string,
@@ -123,11 +151,15 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
      *
-     * @param {Object} options
-     * @param {string} options.text XML text
-     * @return {Document}
-     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
      * @since 2015.2
+     *
+     * @param options
+     * @param options.text XML text
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
      */
     fromString(options: {
       text: string,
@@ -138,14 +170,37 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
      *
-     * @param {Document} options.document XML Document object
-     * @return {string}
-     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
      * @since 2015.2
+     *
+     * @param options
+     * @param options.document XML Document object
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
      */
     toString(options: {
       document: Document,
     }): string;
+
+    /**
+     * Generate a String from an XML Document object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param document XML Document object
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
+     */
+    toString(
+      document: Document,
+    ): string;
   }
 
   /**
@@ -156,239 +211,209 @@ declare namespace xml {
   export interface XPath {
 
     /**
-     * Returns an Array of Nodes matching the provided XPath expression
+     * Returns an Array of Nodes matching the provided XPath expression.
+     *
+     * A malformed XPath expression is not reported as a parse error; it surfaces at runtime as a generic UNEXPECTED_ERROR.
+     * An XPath that selects attributes (e.g. `//@id`) returns Attr nodes; these expose `name`/`value` but their Node properties (nodeType, nodeName, etc.) read `undefined`.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344925105}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344925105.html}
      *
-     * @param {string} options.xpath an XPath expression
-     * @param {Node | Element | Document} options.node XML node being queried
-     * @return {(Node | Element)[]} nodes associated with the current result
-     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
      * @since 2015.2
+     *
+     * @param options
+     * @param options.xpath an XPath expression
+     * @param options.node XML node being queried
+     * @return nodes associated with the current result
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xpath or node is missing or null
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if node is not an XML node
      */
     select(options: {
       xpath: string,
       node: Node | Element | Document,
-    }): (Node | Element)[];
+    }): (Node | Element | Attr)[];
   }
 
   /**
    * Return a new instance of XML Node
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4346057759}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4346057759.html}
-   *
-   * @classDescription Encapsulation of W3C DOM Node
    * @constructor
    *
    * @since 2015.2
+   *
+   * @classDescription Encapsulation of W3C DOM Node
    */
   export interface Node {
 
     /**
      * A map of key/value (string->Attr) pairs containing the attributes of this node (if it is an Element) or null otherwise
+     * Map keys replace the colon of a qualified attribute name with an underscore (e.g. `p:lang` is keyed as `p_lang`, `xmlns:x` as `xmlns_x`); the Attr's own `name` property keeps the real qualified name (`p:lang`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46127868652}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46127868652.html}
      *
-     * @type {Object<string, Attr>}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    attributes: {
+    readonly attributes: {
       [p: string]: Attr,
-    };
+    } | null;
 
     /**
      * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459509521483}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459509521483.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    baseURI: string;
+    readonly baseURI: string | null;
 
     /**
      * An array of all children of this node. If there are no children, this is an empty array.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459823547362}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459823547362.html}
      *
-     * @type {(Node | Element)[]}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    childNodes: (Node | Element)[];
+    readonly childNodes: (Node | Element)[];
 
     /**
      * The first child of this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460666442870}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460666442870.html}
      *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    firstChild: Node | Element;
+    readonly firstChild: Node | Element | null;
 
     /**
      * The last child of this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457311035155}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457311035155.html}
      *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    lastChild: Node | Element;
+    readonly lastChild: Node | Element | null;
 
     /**
-     * The local part of the qualified name of this node
+     * The local part of the qualified name of this node, or null for nodes that have no local name (e.g. text, comment, CDATA, and document nodes)
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460875793456}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460875793456.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    localName: string;
+    readonly localName: string | null;
 
     /**
      * The namespace URI of this node, or null if it is unspecified
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456845336913}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456845336913.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    namespaceURI: string;
+    readonly namespaceURI: string | null;
 
     /**
      * The node immediately following this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455924011229}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455924011229.html}
      *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    nextSibling: Node | Element;
+    readonly nextSibling: Node | Element | null;
 
     /**
      * The name of this node, depending on its type
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458950439452}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458950439452.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    nodeName: string;
+    readonly nodeName: string;
 
     /**
      * The type of the underlying object
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456552673339}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456552673339.html}
      *
-     * @type {NodeType}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    nodeType: NodeType | `${NodeType}`;
+    readonly nodeType: NodeType | `${NodeType}`;
 
     /**
-     * The value of this node, depending on its type
-     * When it is defined to be null, setting it has no effect, including if the node is read-only.
+     * The value of this node, depending on its type. Null for nodes (such as elements and documents) that have no value; setting it on those nodes has no effect.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454531188964}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454531188964.html}
      *
-     * @type {string}
-     *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
      */
-    nodeValue: string;
+    nodeValue: string | null;
 
     /**
-     * The Document object associated with this node
+     * The Document object associated with this node, or null for the Document node itself
      * This is also the Document object used to create new nodes.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458963562010}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458963562010.html}
      *
-     * @type {Document}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    ownerDocument: Document;
+    readonly ownerDocument: Document | null;
 
     /**
-     * The parent of this node
+     * The parent of this node, or null if there is no parent (e.g. the Document node, or a node not yet attached to a tree)
      * All nodes, except Attr, Document, DocumentFragment, Entity, and Notation may have a parent.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46910644531}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46910644531.html}
      *
-     * @type {Node | Element | Document}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    parentNode: Node | Element | Document;
+    readonly parentNode: Node | Element | Document | null;
 
     /**
      * The namespace prefix of this node, or null if it is unspecified
      * When it is defined to be null, setting it has no effect, including if the node is read-only.
+     * Writable at runtime, though the Help Center lists this property as read-only.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460653930663}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460653930663.html}
      *
-     * @type {string}
-     *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to set the property value
      */
-    prefix: string;
+    prefix: string | null;
 
     /**
      * The node immediately preceding this node or null if there is no such node
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46856323242}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46856323242.html}
      *
-     * @type {Node | Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    previousSibling: Node | Element;
+    readonly previousSibling: Node | Element | null;
 
     /**
-     * This attribute returns the text content of this node and its descendants. When it is defined to be null, setting it has no effect.
+     * This attribute returns the text content of this node and its descendants. Null for nodes (such as the document node) that have no text content; setting it on those nodes has no effect.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458147827147}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458147827147.html}
      *
-     * @type {string}
-     *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if it's not possible to get or set the property value
      */
-    textContent: string;
+    textContent: string | null;
 
     /**
      * Adds the node newChild to the end of the list of children of this node. If the newChild is already in the tree, it is first removed.
+     *
+     * DOM-level violations (for example, appending a node created by a different document) surface at runtime as a raw `org.w3c.dom.DOMException` (e.g. WRONG_DOCUMENT_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459708190917}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459708190917.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.newChild the node to add
-     * @return {Node | Element} the node added
+     * @governance none
      *
-     * @throws {error.SuiteScriptError} SSS_DOM_EXCEPTION if node cannot be appended for some reason
+     * @param options
+     * @param options.newChild the node to add
+     * @return the node added
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if newChild is missing or null
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be appended for some reason
      */
     appendChild<NewChildNode extends (Node | Element)>(options: {
       newChild: NewChildNode,
@@ -399,9 +424,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46211181640}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46211181640.html}
      *
-     * @param {Object} options
-     * @param {boolean} options.deep if true, recursively clone the subtree under the specified node; if false, clone only the node itself (and its attributes, if it is an Element)
-     * @return {Node | Element} the duplicate node
+     * @governance none
+     *
+     * @param options
+     * @param options.deep if true, recursively clone the subtree under the specified node; if false, clone only the node itself (and its attributes, if it is an Element)
+     * @return the duplicate node
      */
     cloneNode(options: {
       deep: boolean
@@ -413,9 +440,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460349365233}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460349365233.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.other the node to compare against the reference node
-     * @return {number} how the node is positioned relatively to the reference node
+     * @governance none
+     *
+     * @param options
+     * @param options.other the node to compare against the reference node
+     * @return how the node is positioned relatively to the reference node
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION when the nodes cannot be compared
      */
@@ -428,7 +457,9 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460054565428}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460054565428.html}
      *
-     * @return {boolean} true if this node has any attributes, false otherwise
+     * @governance none
+     *
+     * @return true if this node has any attributes, false otherwise
      */
     hasAttributes(): boolean;
 
@@ -437,26 +468,33 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453459411620}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453459411620.html}
      *
-     * @return {boolean} true if this node has any children, false otherwise
+     * @governance none
+     *
+     * @return true if this node has any children, false otherwise
      */
     hasChildNodes(): boolean;
 
     /**
      * Inserts the node newChild before the existing child node refChild. If refChild is null, insert newChild at the end of the list of children.
      * If the newChild is already in the tree, it is first removed.
+     *
+     * DOM-level violations (for example, inserting a node created by a different document) surface at runtime as a raw `org.w3c.dom.DOMException` (e.g. WRONG_DOCUMENT_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452156005859}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452156005859.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.newChild the node to insert
-     * @param {Node | Element} options.refChild the reference node, i.e., the node before which the new node will be inserted
-     * @return {Node | Element} the node being inserted
+     * @governance none
      *
+     * @param options
+     * @param options.newChild the node to insert
+     * @param [options.refChild] the reference node, i.e., the node before which the new node will be inserted; if null or omitted, newChild is appended at the end of the list of children
+     * @return the node being inserted
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if newChild is missing or null
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be inserted for some reason
      */
     insertBefore<NewChildNode extends (Node | Element)>(options: {
       newChild: NewChildNode,
-      refChild: Node | Element,
+      refChild?: Node | Element | null,
     }): NewChildNode;
 
     /**
@@ -464,9 +502,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46175476074}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46175476074.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI to look for
-     * @return {boolean} true if the specified namespaceURI is the default namespace, false otherwise
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI to look for
+     * @return true if the specified namespaceURI is the default namespace, false otherwise
      */
     isDefaultNamespace(options: {
       namespaceURI: string,
@@ -484,9 +524,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453230529784}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453230529784.html}
      *
-     * @param {Object} options
-     * @param {Node | Element | Document} options.other the node to compare equality with
-     * @return {boolean} true if the nodes are equal, false otherwise
+     * @governance none
+     *
+     * @param options
+     * @param options.other the node to compare equality with
+     * @return true if the nodes are equal, false otherwise
      */
     isEqualNode(options: {
       other: Node | Element | Document,
@@ -500,9 +542,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454356628417}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454356628417.html}
      *
-     * @param {Object} options
-     * @param {Node | Element | Document} options.other the node to test against
-     * @return {boolean} true if the nodes are the same, false otherwise
+     * @governance none
+     *
+     * @param options
+     * @param options.other the node to test against
+     * @return true if the nodes are the same, false otherwise
      */
     isSameNode(options: {
       other: Node | Element | Document,
@@ -513,13 +557,15 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46200805664}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46200805664.html}
      *
-     * @param {Object} options
-     * @param {string} options.prefix the prefix to look for; if this parameter is null, the method will return the default namespace URI if any
-     * @return {string} the associated namespace URI or null if none is found
+     * @governance none
+     *
+     * @param options
+     * @param options.prefix the prefix to look for; if this parameter is null, the method will return the default namespace URI if any
+     * @return the associated namespace URI or null if none is found
      */
     lookupNamespaceURI(options: {
-      prefix: string,
-    }): string;
+      prefix: string | null,
+    }): string | null;
 
     /**
      * Look up the prefix associated to the given namespace URI, starting from this node.
@@ -527,13 +573,15 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456616149901}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456616149901.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI to look for
-     * @return {string} an associated namespace prefix if found or null if none is found; if more than one prefix are associated to the namespace prefix, the returned namespace prefix is implementation dependent
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI to look for
+     * @return an associated namespace prefix if found or null if none is found; if more than one prefix are associated to the namespace prefix, the returned namespace prefix is implementation dependent
      */
     lookupPrefix(options: {
       namespaceURI: string,
-    }): string;
+    }): string | null;
 
     /**
      * Puts all Text nodes in the full depth of the sub-tree underneath this Node, including attribute nodes, into a "normal" form
@@ -542,18 +590,25 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457614685057}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457614685057.html}
      *
-     * @return {void}
+     * @governance none
+     *
      */
     normalize(): void;
 
     /**
      * Removes the child node indicated by oldChild from the list of children, and returns it
+     *
+     * Removing a node that is not a child of this node surfaces at runtime as a raw `org.w3c.dom.DOMException` (NOT_FOUND_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454751220702}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454751220702.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.oldChild the node being removed
-     * @return {Node | Element} the node removed
+     * @governance none
+     *
+     * @param options
+     * @param options.oldChild the node being removed
+     * @return the node removed
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if oldChild is missing or null
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be removed for some reason
      */
     removeChild<OldChildNode extends (Node | Element)>(options: {
@@ -563,90 +618,83 @@ declare namespace xml {
     /**
      * Replaces the child node oldChild with newChild in the list of children, and returns the oldChild node
      * If the newChild is already in the tree, it is first removed.
+     *
+     * Returns the replaced (old) child node, not the new one.
+     * DOM-level violations (for example, replacing a node that is not a child of this node, or supplying a newChild created by a different document) surface at runtime as a raw `org.w3c.dom.DOMException` (e.g. NOT_FOUND_ERR, WRONG_DOCUMENT_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456990295409}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456990295409.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.newChild the new node to put in the child list
-     * @param {Node | Element} options.oldChild the node being replaced in the list
-     * @return {Node | Element} the node replaced
+     * @governance none
      *
+     * @param options
+     * @param options.newChild the new node to put in the child list
+     * @param options.oldChild the node being replaced in the list
+     * @return the node replaced
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if newChild or oldChild is missing or null
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if node cannot be replaced for some reason
      */
-    replaceChild<NewChildNode extends (Node | Element)>(options: {
-      newChild: NewChildNode,
-      oldChild: Node | Element,
-    }): NewChildNode;
+    replaceChild<OldChildNode extends (Node | Element)>(options: {
+      newChild: Node | Element,
+      oldChild: OldChildNode,
+    }): OldChildNode;
   }
 
   /**
    * Return a new instance of XML Document
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392323653}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392323653.html}
-   *
-   * @classDescription Encapsulation of W3C DOM Document
    * @constructor
    *
    * @since 2015.2
+   *
+   * @classDescription Encapsulation of W3C DOM Document
    */
   export interface Document extends Element {
 
     /**
-     * The Document Type Declaration associated with this document
+     * The Document Type Declaration associated with this document, or null if there is none
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454703308105}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454703308105.html}
      *
-     * @type {Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    doctype: Element;
+    readonly doctype: Element | null;
 
     /**
      * This is a convenience attribute that allows direct access to the child node that is the document element of the document.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452410827636}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452410827636.html}
      *
-     * @type {Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    documentElement: Element;
+    readonly documentElement: Element;
 
     /**
      * The location of the document or null if undefined
+     * Null at runtime; setting it has no effect.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455008483886}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455008483886.html}
-     *
-     * @type {string}
      */
-    documentURI: string;
+    documentURI: string | null;
 
     /**
      * An attribute specifying the encoding used for this document at the time of the parsing
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452187744140}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452187744140.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    inputEncoding: string;
+    readonly inputEncoding: string;
 
     /**
-     * An attribute specifying, as part of the XML declaration, the encoding of this document
+     * An attribute specifying, as part of the XML declaration, the encoding of this document, or null if no encoding is specified in the XML declaration
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453554931640}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453554931640.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    xmlEncoding: string;
+    readonly xmlEncoding: string | null;
 
     /**
      * An attribute specifying, as part of the XML declaration, whether this document is standalone
@@ -654,18 +702,15 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459471374510}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459471374510.html}
      *
-     * @type {boolean}
-     *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
      */
     xmlStandalone: boolean;
 
     /**
      * An attribute specifying, as part of the XML declaration, the version number of this document
+     * Writable at runtime, though the Help Center lists this property as read-only.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460908752440}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460908752440.html}
-     *
-     * @type {string}
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the property cannot be set
      */
@@ -678,9 +723,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453612609863}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453612609863.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.source the node to move into this document
-     * @return {Node | Element} the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
+     * @governance none
+     *
+     * @param options
+     * @param options.source the node to move into this document
+     * @return the adopted node, or null if this operation fails, such as when the source node comes from a different implementation
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be adopted for some reason
      */
@@ -690,13 +737,17 @@ declare namespace xml {
 
     /**
      * Creates an attribute node of the given name
+     *
+     * An invalid name surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456575866698}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456575866698.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute
-     * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
-     * @return {Attr} new attribute node object with name and attribute value set as expected and localName, prefix, and namespaceURI set to null
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute
+     * @param [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
+     * @return new attribute node object with name and attribute value set as expected and localName, prefix, and namespaceURI set to null
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
      */
@@ -707,19 +758,23 @@ declare namespace xml {
 
     /**
      * Creates an attribute of the given qualified name and namespace URI
+     *
+     * An invalid qualifiedName surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452244812011}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452244812011.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to create; can be null
-     * @param {string} options.qualifiedName the qualified name of the attribute to instantiate
-     * @param {string} [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
-     * @return {Attr} new attribute node object with name, attribute value, namespaceURI, prefix and localName set accordingly
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to create; can be null
+     * @param options.qualifiedName the qualified name of the attribute to instantiate
+     * @param [options.value] the value of the attribute; if omitted, the value of the attribute will be empty string
+     * @return new attribute node object with name, attribute value, namespaceURI, prefix and localName set accordingly
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be created
      */
     createAttributeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       qualifiedName: string,
       value?: string,
     }): Attr;
@@ -729,9 +784,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46463562011}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46463562011.html}
      *
-     * @param {Object} options
-     * @param {string} options.data the data for the CDATASection contents
-     * @return {Node} the new CDATASection node
+     * @governance none
+     *
+     * @param options
+     * @param options.data the data for the CDATASection contents
+     * @return the new CDATASection node
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the CDATASection node cannot be created
      */
@@ -744,9 +801,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460454650877}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460454650877.html}
      *
-     * @param {Object} options
-     * @param {string} options.data the data for the node
-     * @return {Node} the new Comment node
+     * @governance none
+     *
+     * @param options
+     * @param options.data the data for the node
+     * @return the new Comment node
      */
     createComment(options: {
       data: string,
@@ -757,18 +816,24 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457661987304}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457661987304.html}
      *
-     * @return {Node} a new DocumentFragment
+     * @governance none
+     *
+     * @return a new DocumentFragment
      */
     createDocumentFragment(): Node;
 
     /**
      * Creates an element of the type specified
+     *
+     * An invalid tagName surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452954040527}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452954040527.html}
      *
-     * @param {Object} options
-     * @param {string} options.tagName the name of the element type to instantiate; for XML, this is case-sensitive
-     * @return {Element} a new Element object with the nodeName attribute set to tagName, and localName, prefix, and namespaceURI set to null
+     * @governance none
+     *
+     * @param options
+     * @param options.tagName the name of the element type to instantiate; for XML, this is case-sensitive
+     * @return a new Element object with the nodeName attribute set to tagName, and localName, prefix, and namespaceURI set to null
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
      */
@@ -778,30 +843,38 @@ declare namespace xml {
 
     /**
      * Creates an element of the given qualified name and namespace URI
+     *
+     * An invalid qualifiedName surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458257690428}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458257690428.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the element to create; can be null
-     * @param {string} options.qualifiedName the qualified name of the element type to instantiate
-     * @return {Element} a new Element object with the nodeName, localName, prefix, and namespaceURI set accordingly
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the element to create; can be null
+     * @param options.qualifiedName the qualified name of the element type to instantiate
+     * @return a new Element object with the nodeName, localName, prefix, and namespaceURI set accordingly
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the Element node cannot be created
      */
     createElementNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       qualifiedName: string,
     }): Element;
 
     /**
      * Creates a ProcessingInstruction node given the specified name and data strings
+     *
+     * An invalid target surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453675170898}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453675170898.html}
      *
-     * @param {Object} options
-     * @param {string} options.target the target part of the processing instruction
-     * @param {string} options.data the data for the node
-     * @return {Node} the new ProcessingInstruction object
+     * @governance none
+     *
+     * @param options
+     * @param options.target the target part of the processing instruction
+     * @param options.data the data for the node
+     * @return the new ProcessingInstruction object
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the ProcessingInstruction node cannot be created
      */
@@ -815,23 +888,31 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458155761718}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458155761718.html}
      *
-     * @param {Object} options
-     * @param {string} options.data the data for the node
-     * @return {Node} the new Text node
+     * @governance none
+     *
+     * @param options
+     * @param options.data the data for the node
+     * @return the new Text node
      */
     createTextNode(options: {
       data: string
     }): Node;
 
     /**
-     * Returns the Element that has an ID attribute with the given value
-     * If no such element exists, this returns null.
+     * Returns the Element that has an attribute of type ID with the given value
+     *
+     * Only attributes explicitly declared as type ID (via a DTD `<!ATTLIST ... ID>` declaration) are recognized — an attribute merely named `id` does not qualify, so this is rarely usable against typical NetSuite XML. On a match it returns the Element. Unlike the W3C DOM spec, it does NOT return null when there is no match: at runtime every not-found case (including documents with no ID-typed attributes) throws SSS_MISSING_REQD_ARGUMENT referencing an internal `xmlelem` argument.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458778015135}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458778015135.html}
      *
-     * @param {Object} options
-     * @param {string} options.elementId the unique id value for an element
-     * @return {Element} the matching Element or null if there is none
+     * @governance none
+     *
+     * @param options
+     * @param options.elementId the unique id value for an element
+     * @return the matching Element
+     *
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if elementId is not a string
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if no element with a matching ID-typed attribute is found — NetSuite throws this (surfacing as an internal `xmlelem` argument) instead of returning null
      */
     getElementById(options: {
       elementId: string
@@ -842,9 +923,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457710510253}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457710510253.html}
      *
-     * @param {Object} options
-     * @param {string} options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
-     * @return {Element[]} an array containing all the matched Elements
+     * @governance none
+     *
+     * @param options
+     * @param options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
+     * @return an array containing all the matched Elements
      */
     getElementsByTagName(options: {
       tagName: string
@@ -855,10 +938,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460907836913}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460907836913.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
-     * @param {string} options.localName the local name of the elements to match on; the special value "*" matches all local names
-     * @return {Element[]} an array containing all the matched Elements
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
+     * @param options.localName the local name of the elements to match on; the special value "*" matches all local names
+     * @return an array containing all the matched Elements
      */
     getElementsByTagNameNS(options: {
       namespaceURI: string,
@@ -871,10 +956,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457609802245}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457609802245.html}
      *
-     * @param {Object} options
-     * @param {Node | Element} options.importedNode the node to import
-     * @param {boolean} options.deep if true, recursively import the subtree under the specified node; if false, import only the node itself, as explained above
-     * @return {Node | Element} the imported node that belongs to this Document
+     * @governance none
+     *
+     * @param options
+     * @param options.importedNode the node to import
+     * @param options.deep if true, recursively import the subtree under the specified node; if false, import only the node itself, as explained above
+     * @return the imported node that belongs to this Document
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the node cannot be imported for some reason
      */
@@ -888,11 +975,11 @@ declare namespace xml {
    * Return a new instance of XML Element
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345167426}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345167426.html}
-   *
-   * @classDescription Encapsulation of W3C DOM Element
    * @constructor
    *
    * @since 2015.2
+   *
+   * @classDescription Encapsulation of W3C DOM Element
    */
   export interface Element extends Node {
 
@@ -901,20 +988,19 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458841796874}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458841796874.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    tagName: string;
+    readonly tagName: string;
 
     /**
      * Retrieves an attribute value by name
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
      *
-     * @param {string} name the name of the attribute to retrieve
-     * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+     * @governance none
+     *
+     * @param name the name of the attribute to retrieve
+     * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
      */
     getAttribute(
       name: string,
@@ -925,9 +1011,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute to retrieve
-     * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute to retrieve
+     * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
      */
     getAttribute(options: {
       name: string,
@@ -938,56 +1026,64 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4588427395}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4588427395.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute to retrieve
-     * @return {Attr} the Attr node with the specified name or null if there is no such attribute
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute to retrieve
+     * @return the Attr node with the specified name or null if there is no such attribute
      */
     getAttributeNode(options: {
       name: string,
-    }): Attr;
+    }): Attr | null;
 
     /**
      * Retrieves an attribute node by local name and namespace URI
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452000061035}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452000061035.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to retrieve; can be null
-     * @param {string} options.localName the local name of the attribute to retrieve
-     * @return {Attr} the Attr node with the specified attribute local name and namespace URI or null if there is no such attribute
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to retrieve; can be null
+     * @param options.localName the local name of the attribute to retrieve
+     * @return the Attr node with the specified attribute local name and namespace URI or null if there is no such attribute
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
      */
     getAttributeNodeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       localName: string,
-    }): Attr;
+    }): Attr | null;
 
     /**
      * Retrieves an attribute value by local name and namespace URI
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453436523437}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453436523437.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to retrieve; can be null
-     * @param {string} options.localName the local name of the attribute to retrieve
-     * @return {string} the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to retrieve; can be null
+     * @param options.localName the local name of the attribute to retrieve
+     * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be retrieved for some reason
      */
     getAttributeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       localName: string,
-    }): Attr;
+    }): string;
 
     /**
      * Returns an array of all descendant Elements with a given tag name, in document order
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_452163024902}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_452163024902.html}
      *
-     * @param {Object} options
-     * @param {string} options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
-     * @return {Element[]} an array of matching Element nodes
+     * @governance none
+     *
+     * @param options
+     * @param options.tagName the name of the tag to match on; the special value "*" matches all tags; for XML, the tagName parameter is case-sensitive
+     * @return an array of matching Element nodes
      */
     getElementsByTagName(options: {
       tagName: string,
@@ -998,10 +1094,12 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454667602538}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454667602538.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
-     * @param {string} options.localName the local name of the elements to match on; the special value "*" matches all local names
-     * @return {Element[]} an array of matching Element nodes
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the elements to match on; the special value "*" matches all namespaces
+     * @param options.localName the local name of the elements to match on; the special value "*" matches all local names
+     * @return an array of matching Element nodes
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the elements cannot be retrieved for some reason
      */
@@ -1015,9 +1113,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453276306152}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453276306152.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute to look for
-     * @return {boolean} true if an attribute with the given name is specified on this element or has a default value, false otherwise
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute to look for
+     * @return true if an attribute with the given name is specified on this element or has a default value, false otherwise
      */
     hasAttribute(options: {
       name: string,
@@ -1028,15 +1128,17 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_458537536620}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_458537536620.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to look for; can be null
-     * @param {string} options.localName the local name of the attribute to look for
-     * @return {boolean} true if an attribute with the given local name and namespace URI is specified or has a default value on this element, false otherwise
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to look for; can be null
+     * @param options.localName the local name of the attribute to look for
+     * @return true if an attribute with the given local name and namespace URI is specified or has a default value on this element, false otherwise
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the command cannot be performed for some reason
      */
     hasAttributeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       localName: string,
     }): boolean;
 
@@ -1045,9 +1147,11 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457329345702}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457329345702.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute to remove
-     * @return {void}
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute to remove
+     *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
      */
     removeAttribute(options: {
@@ -1056,14 +1160,18 @@ declare namespace xml {
 
     /**
      * Removes the specified attribute node
+     *
+     * Removing an Attr that is not on this element surfaces at runtime as a raw `org.w3c.dom.DOMException` (NOT_FOUND_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454500366210}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454500366210.html}
      *
-     * @param {Object} options
-     * @param {Attr} options.oldAttr the Attr node to remove from the attribute list
-     * @return {Attr} the Attr node that was removed
+     * @governance none
      *
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
+     * @param options
+     * @param options.oldAttr the Attr node to remove from the attribute list
+     * @return the Attr node that was removed
+     *
+     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
      */
     removeAttributeNode<OldAttr extends Attr>(options: {
       oldAttr: OldAttr,
@@ -1074,28 +1182,32 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460859619139}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460859619139.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to remove; can be null
-     * @param {string} options.localName the local name of the attribute to remove
-     * @return {void}
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to remove; can be null
+     * @param options.localName the local name of the attribute to remove
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be removed for some reason
      */
     removeAttributeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       localName: string,
     }): void;
 
     /**
      * Adds a new attribute
      * If an attribute with that name is already present in the element, its value is changed to be that of the value parameter.
+     *
+     * An invalid name surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455326171874}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455326171874.html}
      *
-     * @param {Object} options
-     * @param {string} options.name the name of the attribute to create or alter
-     * @param {string} options.value value to set in string form
-     * @return {void}
+     * @governance none
+     *
+     * @param options
+     * @param options.name the name of the attribute to create or alter
+     * @param options.value value to set in string form
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
@@ -1110,15 +1222,17 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454052368163}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454052368163.html}
      *
-     * @param {Object} options
-     * @param {Attr} options.newAttr the Attr node to add to the attribute list
-     * @return {Attr} if the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
+     * @governance none
+     *
+     * @param options
+     * @param options.newAttr the Attr node to add to the attribute list
+     * @return if the newAttr attribute replaces an existing attribute, the replaced Attr node is returned, otherwise null is returned
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
-    setAttributeNode<NewAttr extends Attr>(options: {
-      newAttr: NewAttr,
-    }): NewAttr;
+    setAttributeNode(options: {
+      newAttr: Attr,
+    }): Attr | null;
 
     /**
      * Adds a new attribute node
@@ -1126,32 +1240,37 @@ declare namespace xml {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_454328857421}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_454328857421.html}
      *
-     * @param {Object} options
-     * @param {Attr} options.newAttr the Attr node to add to the attribute list
-     * @return {Attr} if the newAttr attribute replaces an existing attribute with the same local name and namespace URI, the replaced Attr node is returned, otherwise null is returned
+     * @governance none
+     *
+     * @param options
+     * @param options.newAttr the Attr node to add to the attribute list
+     * @return if the newAttr attribute replaces an existing attribute with the same local name and namespace URI, the replaced Attr node is returned, otherwise null is returned
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
-    setAttributeNodeNS<NewAttr extends Attr>(options: {
-      newAttr: NewAttr,
-    }): NewAttr;
+    setAttributeNodeNS(options: {
+      newAttr: Attr,
+    }): Attr | null;
 
     /**
      * Adds a new attribute. If an attribute with the same local name and namespace URI is already present on the element, its prefix is changed
      * to be the prefix part of the qualifiedName, and its value is changed to be the value parameter.
+     *
+     * An invalid qualifiedName surfaces at runtime as a raw `org.w3c.dom.DOMException` (INVALID_CHARACTER_ERR), not a wrapped error.SuiteScriptError.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456093383788}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456093383788.html}
      *
-     * @param {Object} options
-     * @param {string} options.namespaceURI the namespace URI of the attribute to create or alter; can be null
-     * @param {string} options.qualifiedName the qualified name of the attribute to create or alter
-     * @param {string} options.value value to set in string form
-     * @return {void}
+     * @governance none
+     *
+     * @param options
+     * @param options.namespaceURI the namespace URI of the attribute to create or alter; can be null
+     * @param options.qualifiedName the qualified name of the attribute to create or alter
+     * @param options.value value to set in string form
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the attribute cannot be added for some reason
      */
     setAttributeNS(options: {
-      namespaceURI: string,
+      namespaceURI: string | null,
       qualifiedName: string,
       value: string,
     }): void;
@@ -1161,52 +1280,43 @@ declare namespace xml {
    * Return a new instance of XML Attr
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4345169036}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4345169036.html}
-   *
-   * @classDescription Encapsulation of W3C DOM Attr
-   *
    * @protected
    * @constructor
    *
    * @since 2015.2
+   *
+   * @classDescription Encapsulation of W3C DOM Attr
    */
   export interface Attr {
 
     /**
      * Returns the name of this attribute
-     * If Node.localName is different from null, this property is a qualified name.
+     * For a namespaced attribute this is the qualified name (e.g. `p:lang`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46766296386}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46766296386.html}
      *
-     * @type {string}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    name: string;
+    readonly name: string;
 
     /**
-     * The Element node this attribute is attached to or null if this attribute is not in use
+     * The Element node this attribute is attached to, or null if this attribute is not in use (e.g. one just created via Document.createAttribute and not yet set on an element)
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46546264648}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46546264648.html}
      *
-     * @type {Element}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    ownerElement: Element;
+    readonly ownerElement: Element | null;
 
     /**
      * True if this attribute was explicitly given a value in the instance document, false otherwise
+     * Read-only at runtime, although the Help Center does not mark this property read-only.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_460958801268}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_460958801268.html}
      *
-     * @type {boolean}
-     * @readonly
-     *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    specified: boolean;
+    readonly specified: boolean;
 
     /**
      * The attribute value. On retrieval, the value of the attribute is returned as a string. Character and general entity
@@ -1214,8 +1324,6 @@ declare namespace xml {
      * i.e. any characters that an XML processor would recognize as markup are instead treated as literal text.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46829772949}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46829772949.html}
-     *
-     * @type {string}
      *
      * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if the value cannot be set for some reason
      */
