@@ -5,7 +5,6 @@
  * SuiteScript currentRecord module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4625600928}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4625600928.html}
- *
  * @module N/currentRecord
  * @NApiVersion 2.x
  */
@@ -15,14 +14,17 @@ interface currentRecord {
 
     /**
      * Retrieves a currentRecord object that represents the record active on the current page
+     *
+     * At runtime this returns undefined when there is no current record in the execution context (for example, when
+     * called server-side); the declared return type assumes the supported client-side context.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637729624}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637729624.html}
      *
+     * @governance none
      * @restriction Client-side scripts only
+     * @since 2016.2
      *
      * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
-     *
-     * @since 2016.2
      */
     (): currentRecord.CurrentRecordReadonly;
 
@@ -31,11 +33,11 @@ interface currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637734729}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637734729.html}
      *
+     * @governance none
      * @restriction Client-side scripts only
+     * @since 2016.2
      *
      * @throws {error.SuiteScriptError} CANNOT_CREATE_RECORD_INSTANCE if current record page is not scriptable or an error occurred when creating the record object
-     *
-     * @since 2016.2
      */
     promise(): Promise<currentRecord.CurrentRecordReadonly>;
   };
@@ -43,21 +45,28 @@ interface currentRecord {
 
 declare namespace currentRecord {
 
+  /**
+   * @since 2016.2
+   */
   export interface CurrentRecordReadonly {
 
     /**
-     * The internal ID of the record
+     * The internal ID of the record, or null if the record has not been saved
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576907}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637576907.html}
+     *
+     * @since 2016.2
      */
-    readonly id: number;
+    readonly id: number | null;
 
     /**
      * The type of the record
+     *
+     * This property is not available for subrecords.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576636}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637576636.html}
      *
-     * @restriction This property is not available for subrecords
+     * @since 2016.2
      */
     readonly type: record.Type | `${record.Type}` | record.CustomType | string;
 
@@ -65,170 +74,536 @@ declare namespace currentRecord {
      * Indicates whether the record is in dynamic or standard mode
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637576809}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637576809.html}
+     *
+     * @since 2016.2
      */
     readonly isDynamic: boolean;
 
     /**
      * Indicates whether the record is read-only or editable
+     *
+     * Undocumented in the Help Center; present at runtime.
      */
     readonly isReadOnly: boolean;
 
     /**
      * Indicates whether the record is new or not
+     *
+     * Undocumented in the Help Center; present at runtime.
      */
     readonly isNew: boolean;
 
     /**
+     * Provides a macro to be executed
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992196}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992196.html}
+     *
+     * @governance none
+     * @since 2018.2
+     *
+     * @param options
+     * @param options.id macro id
+     * @return executor function for the macro specified by options
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if id is missing or undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_MACRO_ID if the macro id is not valid for this record type
+     */
+    getMacro(options: {
+      id: string,
+    }): record.Macro;
+
+    /**
+     * Provides a plain JavaScript object of available macro objects defined for a record type, indexed by the Macro ID
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992211}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992211.html}
+     *
+     * @governance none
+     * @since 2018.2
+     *
+     * @return a set of macros (@see Macro) defined on the record indexed by macroId; an empty object if the record type
+     *     has no macros
+     */
+    getMacros(): alias.Record<string, record.Macro>;
+
+    executeMacro: {
+
+      /**
+       * Performs macro operation and returns result
+       *
+       * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+       * object, which shares this implementation — see the links below.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1509992174}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1509992174.html}
+       *
+       * @governance none
+       * @since 2018.2
+       *
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] macro arguments
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if id is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_MACRO_ID if the macro id is not valid for this record type
+       */
+      (options: {
+        id: string,
+        params?: alias.Record<string, any>,
+      }): {
+        notifications: alias.Record<string, unknown>[],
+        response: alias.Record<string, unknown>,
+      };
+
+      /**
+       * Performs macro operation and returns its result wrapped in a promise
+       *
+       * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+       * object, which shares this implementation — see the links below.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510066072}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510066072.html}
+       *
+       * @governance none
+       * @since 2018.2
+       *
+       * @param options
+       * @param options.id macro id
+       * @param [options.params] macro arguments
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if id is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_MACRO_ID if the macro id is not valid for this record type
+       */
+      promise(options: {
+        id: string,
+        params?: alias.Record<string, any>,
+      }): Promise<{
+        notifications: alias.Record<string, unknown>[],
+        response: alias.Record<string, unknown>,
+      }>;
+    };
+
+    /**
      * Return value of the field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582256.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
     getValue<T extends record.FieldValue>(
       fieldId: string,
-    ): T;
+    ): T | undefined;
 
     /**
      * Return value of the field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582256}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582256.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setText
      */
     getValue<T extends record.FieldValue>(options: {
       fieldId: string,
-    }): T;
+    }): T | undefined;
 
-    /**
-     * Set value of the field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
-     *
-     * @param fieldId
-     * @param value
-     * @param [ignoreFieldChange=false] Ignore the field change script
-     * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    setValue(
-      fieldId: string,
-      value: record.FieldValue,
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    ): this;
+    setValue: {
 
-    /**
-     * Set value of the field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
-     *
-     * @param options
-     * @param options.fieldId
-     * @param options.value
-     * @param [options.ignoreFieldChange=false] Ignore the field change script
-     * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    setValue(options: {
-      fieldId: string,
-      value: record.FieldValue,
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    }): this;
+      /**
+       * Set value of the field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @param value
+       * @param [ignoreFieldChange=false] Ignore the field change script
+       * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(
+        this: R,
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      ): R;
 
-    /**
-     * Get value of the field in text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
-     *
-     * @param fieldId
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    getText<T extends string | string[]>(
-      fieldId: string,
-    ): T;
+      /**
+       * Set value of the field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @param options.value
+       * @param [options.ignoreFieldChange=false] Ignore the field change script
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(this: R, options: {
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): R;
 
-    /**
-     * Get value of the field in text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
-     *
-     * @param options
-     * @param options.fieldId
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    getText<T extends string | string[]>(options: {
-      fieldId: string,
-    }): T;
+      /**
+       * Set value of the field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @param value
+       * @param [ignoreFieldChange=false] Ignore the field change script
+       * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      ): Promise<CurrentRecordReadonly>;
 
-    /**
-     * Set value of the field by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
-     *
-     * @param fieldId
-     * @param text ----- The text or texts to change the field value to.
-     *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
-     *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
-     *     parameter accepts only a single string value.
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    setText(
-      fieldId: string,
-      text: string | string[],
-    ): this;
+      /**
+       * Set value of the field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577499}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577499.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @param options.value
+       * @param [options.ignoreFieldChange=false] Ignore the field change script
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(options: {
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
-    /**
-     * Set value of the field by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
-     *
-     * @param options
-     * @param options.fieldId
-     * @param options.text ----- The text or texts to change the field value to.
-     *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
-     *     null value. Passing in null deselects all currentlsy selected values. If the field type is not multiselect: this
-     *     parameter accepts only a single string value.
-     * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
-     */
-    setText(options: {
-      fieldId: string,
-      text: string | string[],
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    }): this;
+    getText: {
+
+      /**
+       * Get value of the field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <T extends string | string[]>(
+        fieldId: string,
+      ): T | undefined;
+
+      /**
+       * Get value of the field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <T extends string | string[]>(options: {
+        fieldId: string,
+      }): T | undefined;
+
+      /**
+       * Get value of the field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise<T extends string | string[]>(
+        fieldId: string,
+      ): Promise<T | undefined>;
+
+      /**
+       * Get value of the field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582421}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582421.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise<T extends string | string[]>(options: {
+        fieldId: string,
+      }): Promise<T | undefined>;
+    };
+
+    setText: {
+
+      /**
+       * Set value of the field by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @param text The text or texts to change the field value to.
+       *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
+       *     null value. Passing in null deselects all currently selected values. If the field type is not multiselect: this
+       *     parameter accepts only a single string value.
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(
+        this: R,
+        fieldId: string,
+        text: string | string[],
+      ): R;
+
+      /**
+       * Set value of the field by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @param options.text The text or texts to change the field value to.
+       *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
+       *     null value. Passing in null deselects all currently selected values. If the field type is not multiselect: this
+       *     parameter accepts only a single string value.
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(this: R, options: {
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): R;
+
+      /**
+       * Set value of the field by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @param text The text or texts to change the field value to.
+       *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
+       *     null value. Passing in null deselects all currently selected values. If the field type is not multiselect: this
+       *     parameter accepts only a single string value.
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(
+        fieldId: string,
+        text: string | string[],
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Set value of the field by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637577945}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637577945.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @param options.text The text or texts to change the field value to.
+       *    If the field type is multiselect: - This parameter accepts an array of string values. - This parameter accepts a
+       *     null value. Passing in null deselects all currently selected values. If the field type is not multiselect: this
+       *     parameter accepts only a single string value.
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(options: {
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    removeField: {
+
+      /**
+       * Remove a field from the current form and clear its value
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Server-side, the observable effect is that the field's value is cleared; the field remains returned by getField
+       * and listed by getFields. An unknown fieldId is a silent no-op.
+       *
+       * @governance none
+       *
+       * @param fieldId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(
+        this: R,
+        fieldId: string,
+      ): R;
+
+      /**
+       * Remove a field from the current form and clear its value
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Server-side, the observable effect is that the field's value is cleared; the field remains returned by getField
+       * and listed by getFields. An unknown fieldId is a silent no-op.
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.fieldId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      <R>(this: R, options: {
+        fieldId: string,
+      }): R;
+
+      /**
+       * Remove a field from the current form and clear its value
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Server-side, the observable effect is that the field's value is cleared; the field remains returned by getField
+       * and listed by getFields. An unknown fieldId is a silent no-op.
+       *
+       * @governance none
+       *
+       * @param fieldId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(
+        fieldId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Remove a field from the current form and clear its value
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Server-side, the observable effect is that the field's value is cleared; the field remains returned by getField
+       * and listed by getFields. An unknown fieldId is a silent no-op.
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.fieldId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if fieldId is missing or undefined
+       */
+      promise(options: {
+        fieldId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586103}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637586103.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
+     * @param sublistId
+     * @param fieldId
+     * @param value
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+     */
+    findSublistLineWithValue(
+      sublistId: string,
+      fieldId: string,
+      value: string | string[] | number | Date | boolean,
+    ): number;
+
+    /**
+     * Return the line number for the first occurrence of a field value in a sublist and return -1 if not found
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586103}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637586103.html}
+     *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId
      * @param options.fieldId
      * @param options.value
      *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or field is missing
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
      */
     findSublistLineWithValue(options: {
       sublistId: string,
@@ -241,279 +616,812 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583237.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId
      * @param fieldId
      * @param line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
      */
     getSublistValue<T extends record.FieldValue>(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): T;
+    ): T | undefined;
 
     /**
      * Return value of a sublist field
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583237}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583237.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId
      * @param options.fieldId
      * @param options.line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked after using setSublistText
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
      */
     getSublistValue<T extends record.FieldValue>(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): T;
+    }): T | undefined;
+
+    getSublistText: {
+
+      /**
+       * Return value of a sublist field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583397.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param line
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
+       */
+      <T extends string | string[]>(
+        sublistId: string,
+        fieldId: string,
+        line: number,
+      ): T | undefined;
+
+      /**
+       * Return value of a sublist field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583397.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.line
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
+       */
+      <T extends string | string[]>(options: {
+        sublistId: string,
+        fieldId: string,
+        line: number,
+      }): T | undefined;
+
+      /**
+       * Return value of a sublist field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583397.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param line
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
+       */
+      promise<T extends string | string[]>(
+        sublistId: string,
+        fieldId: string,
+        line: number,
+      ): Promise<T | undefined>;
+
+      /**
+       * Return value of a sublist field in text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583397.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.line
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
+       */
+      promise<T extends string | string[]>(options: {
+        sublistId: string,
+        fieldId: string,
+        line: number,
+      }): Promise<T | undefined>;
+    };
 
     /**
-     * Return value of a sublist field in text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583397}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583397.html}
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     * @param options.line
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, fieldId, or line is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id, field id, or line number
-     * @throws {error.SuiteScriptError} SSS_INVALID_API_USAGE if invoked prior using setSublistText
-     */
-    getSublistText<T extends string | string[]>(options: {
-      sublistId: string,
-      fieldId: string,
-      line: number,
-    }): T;
-
-    /**
-     * Return line count of sublist
+     * Return line count of sublist, or -1 if the sublist does not exist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584890.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      */
     getLineCount(
       sublistId: string,
     ): number;
 
     /**
-     * Return line count of sublist
+     * Return line count of sublist, or -1 if the sublist does not exist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584890}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584890.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
      */
     getLineCount(options: {
       sublistId: string,
     }): number;
 
-    /**
-     * Insert a sublist line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.line
-     * @param [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and beforeLineInstanceId are provided
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and beforeLineInstanceId
-     *     are missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
-     *     editable or before exists and before is an instanceId that does not point to a line in the sublist.
-     */
-    insertLine(options: {
-      sublistId: string,
-      line: number,
-      ignoreRecalc?: boolean,
-    }): this;
+    insertLine: {
 
-    /**
-     * Remove a sublist line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.line
-     * @param [ignoreRecalc=false] options.ignoreRecalc ignore recalc scripting
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both line and lineInstanceId are provided
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or both line and lineInstanceId are
-     *     missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId or line index is invalid or if machine is not
-     *     editable
-     */
-    removeLine(options: {
-      sublistId: string,
-      line: number,
-      ignoreRecalc?: boolean,
-    }): this;
+      /**
+       * Insert a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @param [ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      ): R;
 
-    /**
-     * Select a new line at the end of sublist
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
-     */
-    selectNewLine(
-      sublistId: string,
-    ): this;
+      /**
+       * Insert a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @param [options.ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      }): R;
 
-    /**
-     * Select a new line at the end of sublist
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
-     */
-    selectNewLine(options: {
-      sublistId: string,
-    }): this;
+      /**
+       * Insert a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @param [ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      promise(
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      ): Promise<CurrentRecordReadonly>;
 
-    /**
-     * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @param line
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
-     */
-    selectLine(
-      sublistId: string,
-      line: number,
-    ): this;
+      /**
+       * Insert a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581252}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581252.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @param [options.ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      promise(options: {
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
-    /**
-     * Selects an existing line in a sublist (dynamic mode only)
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.line
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
-     */
-    selectLine(options: {
-      sublistId: string,
-      line: number,
-    }): this;
+    removeLine: {
 
-    /**
-     * Cancel the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
-     */
-    cancelLine(
-      sublistId: string,
-    ): this;
+      /**
+       * Remove a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580808}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580808.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @param [ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      ): R;
 
-    /**
-     * Cancel the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
-     */
-    cancelLine(options: {
-      sublistId: string,
-    }): this;
+      /**
+       * Remove a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580808}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580808.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @param [options.ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      }): R;
 
-    /**
-     * Commit the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
-     */
-    commitLine(
-      sublistId: string,
-    ): this;
+      /**
+       * Remove a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580808}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580808.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @param [ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      promise(
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      ): Promise<CurrentRecordReadonly>;
 
-    /**
-     * Commit the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
-     */
-    commitLine(options: {
-      sublistId: string,
-    }): this;
+      /**
+       * Remove a sublist line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580808}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580808.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @param [options.ignoreRecalc=false] ignore recalc scripting
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line index is invalid or if the
+       *     sublist is not editable
+       */
+      promise(options: {
+        sublistId: string,
+        line: number,
+        ignoreRecalc?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    moveLine: {
+
+      /**
+       * Move a sublist line from one position to another
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Sublists must support line moving: a sublist that does not throws SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES.
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       *
+       * @param sublistId
+       * @param from the line index to move from
+       * @param to the line index to move to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, from, or to is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id is invalid
+       * @throws {error.SuiteScriptError} SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES if the sublist does not support moving lines
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        from: number,
+        to: number,
+      ): R;
+
+      /**
+       * Move a sublist line from one position to another
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Sublists must support line moving: a sublist that does not throws SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES.
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.from the line index to move from
+       * @param options.to the line index to move to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, from, or to is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id is invalid
+       * @throws {error.SuiteScriptError} SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES if the sublist does not support moving lines
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        from: number,
+        to: number,
+      }): R;
+
+      /**
+       * Move a sublist line from one position to another
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Sublists must support line moving: a sublist that does not throws SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES.
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       *
+       * @param sublistId
+       * @param from the line index to move from
+       * @param to the line index to move to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, from, or to is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id is invalid
+       * @throws {error.SuiteScriptError} SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES if the sublist does not support moving lines
+       */
+      promise(
+        sublistId: string,
+        from: number,
+        to: number,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Move a sublist line from one position to another
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Sublists must support line moving: a sublist that does not throws SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES.
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.from the line index to move from
+       * @param options.to the line index to move to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId, from, or to is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id is invalid
+       * @throws {error.SuiteScriptError} SSS_SUBLIST_DOESNT_SUPPORT_MOVING_LINES if the sublist does not support moving lines
+       */
+      promise(options: {
+        sublistId: string,
+        from: number,
+        to: number,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    selectNewLine: {
+
+      /**
+       * Select a new line at the end of sublist
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+      ): R;
+
+      /**
+       * Select a new line at the end of sublist
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+      }): R;
+
+      /**
+       * Select a new line at the end of sublist
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+       */
+      promise(
+        sublistId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Select a new line at the end of sublist
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580046}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580046.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or sublist is not editable
+       */
+      promise(options: {
+        sublistId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    selectLine: {
+
+      /**
+       * Selects an existing line in a sublist (dynamic mode only)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        line: number,
+      ): R;
+
+      /**
+       * Selects an existing line in a sublist (dynamic mode only)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        line: number,
+      }): R;
+
+      /**
+       * Selects an existing line in a sublist (dynamic mode only)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param line
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+       */
+      promise(
+        sublistId: string,
+        line: number,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Selects an existing line in a sublist (dynamic mode only)
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580249}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580249.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.line
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or line is missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if a required argument is invalid or the sublist is not editable
+       */
+      promise(options: {
+        sublistId: string,
+        line: number,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    cancelLine: {
+
+      /**
+       * Cancel the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+      ): R;
+
+      /**
+       * Cancel the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+      }): R;
+
+      /**
+       * Cancel the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+       */
+      promise(
+        sublistId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Cancel the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637546866}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637546866.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if sublistId is invalid or if machine is not editable
+       */
+      promise(options: {
+        sublistId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    commitLine: {
+
+      /**
+       * Commit the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+      ): R;
+
+      /**
+       * Commit the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+      }): R;
+
+      /**
+       * Commit the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+       */
+      promise(
+        sublistId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Commit the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637565703}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637565703.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId is missing or undefined
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id
+       */
+      promise(options: {
+        sublistId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Return the line number of the currently selected line
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585731.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param sublistId
      *
@@ -528,7 +1436,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585731}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585731.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId
@@ -544,177 +1454,344 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585213.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param sublistId
      * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistValue<T extends record.FieldValue>(
       sublistId: string,
       fieldId: string,
-    ): T;
+    ): T | undefined;
 
     /**
      * Return value of a sublist field on the current selected sublist line
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585213}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585213.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId
      * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
      */
     getCurrentSublistValue<T extends record.FieldValue>(options: {
       sublistId: string,
       fieldId: string,
-    }): T;
+    }): T | undefined;
 
-    /**
-     * Set the value for field in the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
-     *
-     * @param sublistId
-     * @param fieldId
-     * @param value
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
-     *     if user tries to edit readonly sublist field
-     */
-    setCurrentSublistValue(
-      sublistId: string,
-      fieldId: string,
-      value: record.FieldValue,
-    ): this;
+    setCurrentSublistValue: {
 
-    /**
-     * Set the value for field in the current selected line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     * @param options.value
-     * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
-     *     if user tries to edit readonly sublist field
-     */
-    setCurrentSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      value: record.FieldValue,
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    }): this;
+      /**
+       * Set the value for field in the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param value
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+        value: record.FieldValue,
+      ): R;
 
-    /**
-     * Return the value for field in the current selected line by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @param fieldId
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
-     */
-    getCurrentSublistText<T extends string | string[]>(
-      sublistId: string,
-      fieldId: string,
-    ): T;
+      /**
+       * Set the value for field in the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.value
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): R;
 
-    /**
-     * Return the value for field in the current selected line by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if invalid sublist id or field id
-     */
-    getCurrentSublistText<T extends string | string[]>(options: {
-      sublistId: string,
-      fieldId: string,
-    }): T;
+      /**
+       * Set the value for field in the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param value
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+        value: record.FieldValue,
+      ): Promise<CurrentRecordReadonly>;
 
-    /**
-     * Set the value for field in the current selected line by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @param fieldId
-     * @param text
-     * @param [ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
-     *     if user tries to edit readonly sublist field
-     */
-    setCurrentSublistText(
-      sublistId: string,
-      fieldId: string,
-      text: string | string[],
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    ): this;
+      /**
+       * Set the value for field in the current selected line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579473}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579473.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.value
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
-    /**
-     * Set the value for field in the current selected line by text representation
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     * @param options.text
-     * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
-     * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD
-     *     if user tries to edit readonly sublist field
-     */
-    setCurrentSublistText(options: {
-      sublistId: string,
-      fieldId: string,
-      text: string | string[],
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    }): this;
+    getCurrentSublistText: {
+
+      /**
+       * Return the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       */
+      <T extends string | string[]>(
+        sublistId: string,
+        fieldId: string,
+      ): T | undefined;
+
+      /**
+       * Return the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       */
+      <T extends string | string[]>(options: {
+        sublistId: string,
+        fieldId: string,
+      }): T | undefined;
+
+      /**
+       * Return the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       */
+      promise<T extends string | string[]>(
+        sublistId: string,
+        fieldId: string,
+      ): Promise<T | undefined>;
+
+      /**
+       * Return the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585436}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585436.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       */
+      promise<T extends string | string[]>(options: {
+        sublistId: string,
+        fieldId: string,
+      }): Promise<T | undefined>;
+    };
+
+    setCurrentSublistText: {
+
+      /**
+       * Set the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param text
+       * @param [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      ): R;
+
+      /**
+       * Set the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.text
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): R;
+
+      /**
+       * Set the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @param text
+       * @param [ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Set the value for field in the current selected line by text representation
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579678}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579678.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @param options.text
+       * @param [options.ignoreFieldChange=false] ignore field change script and slaving event if set to true
+       * @param [options.forceSyncSourcing=false] Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
+       * @throws {error.SuiteScriptError} A_SCRIPT_IS_ATTEMPTING_TO_EDIT_THE_1_SUBLIST_THIS_SUBLIST_IS_CURRENTLY_IN_READONLY_MODE_AND_CANNOT_BE_EDITED_CALL_YOUR_NETSUITE_ADMINISTRATOR_TO_DISABLE_THIS_SCRIPT_IF_YOU_NEED_TO_SUBMIT_THIS_RECORD if user tries to edit readonly sublist field
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+        text: string | string[],
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Return a value indicating if the field has a subrecord
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581381.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param fieldId
      */
@@ -727,6 +1804,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581381}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581381.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.fieldId
      */
@@ -734,72 +1814,165 @@ declare namespace currentRecord {
       fieldId: string,
     }): boolean;
 
-    /**
-     * Get the subrecord for the associated field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
-     *
-     * @param fieldId
-     * @return client-side subrecord implementation
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
-     * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
-     * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
-     * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
-     */
-    getSubrecord(
-      fieldId: string,
-    ): CurrentRecordReadonly;
+    getSubrecord: {
 
-    /**
-     * Get the subrecord for the associated field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
-     *
-     * @param options
-     * @param options.fieldId
-     * @return client-side subrecord implementation
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
-     * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
-     * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
-     * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
-     */
-    getSubrecord(options: {
-      fieldId: string,
-    }): CurrentRecordReadonly;
+      /**
+       * Get the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @return client-side subrecord implementation
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+       * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+       * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+       * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
+       */
+      (
+        fieldId: string,
+      ): CurrentRecordReadonly;
 
-    /**
-     * Remove the subrecord for the associated field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
-     *
-     * @param fieldId
-     * @return same object for chaining
-     */
-    removeSubrecord(
-      fieldId: string,
-    ): this;
+      /**
+       * Get the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @return client-side subrecord implementation
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+       * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+       * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+       * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
+       */
+      (options: {
+        fieldId: string,
+      }): CurrentRecordReadonly;
 
-    /**
-     * Remove the subrecord for the associated field
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
-     *
-     * @param options
-     * @param options.fieldId
-     * @return same object for chaining
-     */
-    removeSubrecord(options: {
-      fieldId: string,
-    }): this;
+      /**
+       * Get the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @return client-side subrecord implementation
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+       * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+       * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+       * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
+       */
+      promise(
+        fieldId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Get the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583010}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583010.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @return client-side subrecord implementation
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
+       * @throws {error.SuiteScriptError} FIELD_1_IS_NOT_A_SUBRECORD_FIELD if field is not a subrecord field
+       * @throws {error.SuiteScriptError} FIELD_1_IS_DISABLED_YOU_CANNOT_APPLY_SUBRECORD_OPERATION_ON_THIS_FIELD if field is disable
+       * @throws {error.SuiteScriptError} SSS_INVALID_FIELD_ON_SUBRECORD_OPERATION if field does not refer to a subrecord
+       */
+      promise(options: {
+        fieldId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    removeSubrecord: {
+
+      /**
+       * Remove the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @return same object for chaining
+       */
+      <R>(
+        this: R,
+        fieldId: string,
+      ): R;
+
+      /**
+       * Remove the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @return same object for chaining
+       */
+      <R>(this: R, options: {
+        fieldId: string,
+      }): R;
+
+      /**
+       * Remove the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param fieldId
+       * @return same object for chaining
+       */
+      promise(
+        fieldId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Remove the subrecord for the associated field
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637580399}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637580399.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.fieldId
+       * @return same object for chaining
+       */
+      promise(options: {
+        fieldId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Return a value indicating if the associated sublist field has a subrecord
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581548}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581548.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param sublistId
      * @param fieldId
@@ -816,7 +1989,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581548}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581548.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId
@@ -834,7 +2009,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582063}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582063.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param sublistId
      * @param fieldId
@@ -849,7 +2026,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637582063}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637582063.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId
@@ -860,79 +2039,172 @@ declare namespace currentRecord {
       fieldId: string,
     }): boolean;
 
-    /**
-     * Get the subrecord for the associated sublist field on the current line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @param fieldId
-     * @return client-side subrecord implementation
-     */
-    getCurrentSublistSubrecord(
-      sublistId: string,
-      fieldId: string,
-    ): CurrentRecordReadonly;
+    getCurrentSublistSubrecord: {
 
-    /**
-     * Get the subrecord for the associated sublist field on the current line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     * @return client-side subrecord implementation
-     */
-    getCurrentSublistSubrecord(options: {
-      sublistId: string,
-      fieldId: string,
-    }): CurrentRecordReadonly;
+      /**
+       * Get the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @return client-side subrecord implementation
+       */
+      (
+        sublistId: string,
+        fieldId: string,
+      ): CurrentRecordReadonly;
 
-    /**
-     * Remove the subrecord for the associated sublist field on the current line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId
-     * @param fieldId
-     * @return same object for chaining
-     */
-    removeCurrentSublistSubrecord(
-      sublistId: string,
-      fieldId: string,
-    ): this;
+      /**
+       * Get the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @return client-side subrecord implementation
+       */
+      (options: {
+        sublistId: string,
+        fieldId: string,
+      }): CurrentRecordReadonly;
 
-    /**
-     * Remove the subrecord for the associated sublist field on the current line
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId
-     * @param options.fieldId
-     * @return same object for chaining
-     */
-    removeCurrentSublistSubrecord(options: {
-      sublistId: string,
-      fieldId: string,
-    }): this;
+      /**
+       * Get the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @return client-side subrecord implementation
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Get the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585570}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585570.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @return client-side subrecord implementation
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
+
+    removeCurrentSublistSubrecord: {
+
+      /**
+       * Remove the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @return same object for chaining
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+      ): R;
+
+      /**
+       * Remove the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @return same object for chaining
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+      }): R;
+
+      /**
+       * Remove the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId
+       * @param fieldId
+       * @return same object for chaining
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Remove the subrecord for the associated sublist field on the current line
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637581076}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637581076.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId
+       * @param options.fieldId
+       * @return same object for chaining
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Return array of names of all sublists
+     *
+     * Not available when using `currentRecord.get()`.
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4599718205}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4599718205.html}
      *
-     * @restriction Not available when using `currentRecord.get()`
-     *
+     * @governance none
      * @since 2015.2
      */
     getSublists(): string[];
@@ -942,31 +2214,41 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583811.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId
      */
     getSublist(
       sublistId: string,
-    ): Sublist;
+    ): Sublist | null;
 
     /**
      * Returns the specified sublist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583811}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583811.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId
      */
     getSublist(options: {
       sublistId: string,
-    }): Sublist;
+    }): Sublist | null;
 
     /**
      * Return array of field IDs of all body fields including machine header fields and matrix header fields
+     *
+     * Not available when using `currentRecord.get()`.
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152646}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152646.html}
      *
-     * @restriction Not available when using `currentRecord.get()`
-     *
+     * @governance none
      * @since 2015.2
      */
     getFields(): string[];
@@ -976,18 +2258,24 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585044.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.fieldId is missing or undefined
      */
     getField(
       fieldId: string,
-    ): Field;
+    ): Field | null;
 
     /**
      * Return field object from record
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585044}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585044.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.fieldId
@@ -996,20 +2284,24 @@ declare namespace currentRecord {
      */
     getField(options: {
       fieldId: string,
-    }): Field;
+    }): Field | null;
 
     /**
      * Return array of names of all fields in a sublist
+     *
+     * Not available when using `currentRecord.get()`.
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
-     * @restriction Not available when using `currentRecord.get()`
+     * @governance none
+     * @since 2015.2
      *
      * @param sublistId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
-     *
-     * @since 2015.2
      */
     getSublistFields(
       sublistId: string,
@@ -1017,17 +2309,21 @@ declare namespace currentRecord {
 
     /**
      * Return array of names of all fields in a sublist
+     *
+     * Not available when using `currentRecord.get()`.
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4273152943}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4273152943.html}
      *
-     * @restriction Not available when using `currentRecord.get()`
+     * @governance none
+     * @since 2015.2
      *
      * @param options
      * @param options.sublistId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options.sublistId is missing or undefined
-     *
-     * @since 2015.2
      */
     getSublistFields(options: {
       sublistId: string,
@@ -1038,23 +2334,29 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583684}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583684.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId
      * @param fieldId
      * @param line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
      */
     getSublistField(
       sublistId: string,
       fieldId: string,
       line: number,
-    ): Field;
+    ): Field | null;
 
     /**
      * Return field object from record's sublist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637583684}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637583684.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId
@@ -1062,61 +2364,73 @@ declare namespace currentRecord {
      * @param options.line
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if line number is invalid
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the sublist id or line number is invalid
      */
     getSublistField(options: {
       sublistId: string,
       fieldId: string,
       line: number,
-    }): Field;
+    }): Field | null;
 
     /**
      * Return field object from record's sublist current line
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4659853446.html}
-     * @restriction only available in dynamic record
+     *
+     * @governance none
+     * @restriction Only available in dynamic mode
+     * @since 2015.2
      *
      * @param sublistId
      * @param fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     *
-     * @since 2015.2
      */
     getCurrentSublistField(
       sublistId: string,
       fieldId: string,
-    ): Field;
+    ): Field | null;
 
     /**
      * Return field object from record's sublist current line
+     *
+     * Not documented on the CurrentRecord Help Center page; present at runtime. Documented for the N/record Record
+     * object, which shares this implementation — see the links below.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4659853446}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4659853446.html}
-     * @restriction only available in dynamic record
+     *
+     * @governance none
+     * @restriction Only available in dynamic mode
+     * @since 2015.2
      *
      * @param options
      * @param options.sublistId
      * @param options.fieldId
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if sublistId or fieldId is missing
-     *
-     * @since 2015.2
      */
     getCurrentSublistField(options: {
       sublistId: string,
       fieldId: string,
-    }): Field;
+    }): Field | null;
 
     /**
      * Get the field for the specified header in the matrix
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584607}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584607.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
      * @param column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixHeaderField(
       sublistId: string,
@@ -1129,12 +2443,16 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584607}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584607.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
      * @param options.fieldId the id of the matrix field
      * @param options.column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixHeaderField(options: {
       sublistId: string,
@@ -1147,12 +2465,16 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584261}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584261.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
      * @param column the column number for the field
      * @param line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixSublistField(
       sublistId: string,
@@ -1166,6 +2488,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584261}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584261.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
      * @param options.fieldId the id of the matrix field
@@ -1173,6 +2498,7 @@ declare namespace currentRecord {
      * @param options.line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixSublistField(options: {
       sublistId: string,
@@ -1186,11 +2512,15 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584433}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584433.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
      * @param column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
@@ -1203,12 +2533,16 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584433}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584433.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
      * @param options.fieldId the id of the matrix field
      * @param options.column the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixHeaderValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
@@ -1216,54 +2550,121 @@ declare namespace currentRecord {
       column: number,
     }): FieldType;
 
-    /**
-     * Set the value for the associated header in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
-     *
-     * @param sublistId the id of sublist in which the matrix is in.
-     * @param fieldId the id of the matrix field
-     * @param column the column number for the field
-     * @param value the value to set it to
-     *
-     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setMatrixHeaderValue(
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      value: record.FieldValue,
-    ): this;
+    setMatrixHeaderValue: {
 
-    /**
-     * Set the value for the associated header in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
-     *
-     * @param options
-     * @param options.sublistId the id of sublist in which the matrix is in.
-     * @param options.fieldId the id of the matrix field
-     * @param options.column the column number for the field
-     * @param options.value the value to set it to
-     * @param [options.ignoreFieldChange] Ignore the field change script (default false)
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setMatrixHeaderValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      value: record.FieldValue,
-      ignoreFieldChange?: boolean,
-    }): this;
+      /**
+       * Set the value for the associated header in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId the id of sublist in which the matrix is in.
+       * @param fieldId the id of the matrix field
+       * @param column the column number for the field
+       * @param value the value to set it to
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+      ): R;
+
+      /**
+       * Set the value for the associated header in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId the id of sublist in which the matrix is in.
+       * @param options.fieldId the id of the matrix field
+       * @param options.column the column number for the field
+       * @param options.value the value to set it to
+       * @param [options.ignoreFieldChange] Ignore the field change script (default false)
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+      }): R;
+
+      /**
+       * Set the value for the associated header in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId the id of sublist in which the matrix is in.
+       * @param fieldId the id of the matrix field
+       * @param column the column number for the field
+       * @param value the value to set it to
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Set the value for the associated header in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579241}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579241.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId the id of sublist in which the matrix is in.
+       * @param options.fieldId the id of the matrix field
+       * @param options.column the column number for the field
+       * @param options.value the value to set it to
+       * @param [options.ignoreFieldChange] Ignore the field change script (default false)
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Get the value for the associated field in the matrix
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584028}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584028.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
@@ -1271,6 +2672,7 @@ declare namespace currentRecord {
      * @param line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
@@ -1284,6 +2686,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584028}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584028.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
      * @param options.fieldId the id of the matrix field
@@ -1291,6 +2696,7 @@ declare namespace currentRecord {
      * @param options.line the line number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
@@ -1299,61 +2705,123 @@ declare namespace currentRecord {
       line: number,
     }): FieldType;
 
-    /**
-     * Set the value for the associated field in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
-     *
-     * @restriction only available in deferred dynamic record
-     *
-     * @param sublistId the id of sublist in which the matrix is in.
-     * @param fieldId the id of the matrix field
-     * @param column the column number for the field
-     * @param line the line number for the field
-     * @param value the value to set it to
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setMatrixSublistValue(
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      line: number,
-      value: record.FieldValue,
-    ): this;
+    setMatrixSublistValue: {
 
-    /**
-     * Set the value for the associated field in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
-     *
-     * @restriction only available in deferred dynamic record
-     *
-     * @param options
-     * @param options.sublistId the id of sublist in which the matrix is in.
-     * @param options.fieldId the id of the matrix field
-     * @param options.column the column number for the field
-     * @param options.line the line number for the field
-     * @param options.value the value to set it to
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setMatrixSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      line: number,
-      value: record.FieldValue
-    }): this;
+      /**
+       * Set the value for the associated field in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId the id of sublist in which the matrix is in.
+       * @param fieldId the id of the matrix field
+       * @param column the column number for the field
+       * @param line the line number for the field
+       * @param value the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        line: number,
+        value: record.FieldValue,
+      ): R;
+
+      /**
+       * Set the value for the associated field in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId the id of sublist in which the matrix is in.
+       * @param options.fieldId the id of the matrix field
+       * @param options.column the column number for the field
+       * @param options.line the line number for the field
+       * @param options.value the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        line: number,
+        value: record.FieldValue
+      }): R;
+
+      /**
+       * Set the value for the associated field in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param sublistId the id of sublist in which the matrix is in.
+       * @param fieldId the id of the matrix field
+       * @param column the column number for the field
+       * @param line the line number for the field
+       * @param value the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        line: number,
+        value: record.FieldValue,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Set the value for the associated field in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579037}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579037.html}
+       *
+       * @governance none
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId the id of sublist in which the matrix is in.
+       * @param options.fieldId the id of the matrix field
+       * @param options.column the column number for the field
+       * @param options.line the line number for the field
+       * @param options.value the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} INVALID_FLD_VALUE if value type does not match field type
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        line: number,
+        value: record.FieldValue
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586269}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637586269.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
@@ -1375,6 +2843,9 @@ declare namespace currentRecord {
      * Returns the line number of the first line that contains the specified value in the specified column of the matrix
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637586269}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637586269.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
@@ -1398,6 +2869,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584779}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584779.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param sublistId the id of sublist in which the matrix is in.
      * @param fieldId the id of the matrix field
      *
@@ -1412,6 +2886,9 @@ declare namespace currentRecord {
      * Returns the number of columns for the specified matrix.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637584779}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637584779.html}
+     *
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId the id of sublist in which the matrix is in.
@@ -1429,13 +2906,16 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585905}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585905.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param sublistId - the id of sublist in which the matrix is in.
      * @param fieldId - the id of the matrix field
      * @param column - the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getCurrentMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(
       sublistId: string,
@@ -1448,7 +2928,9 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637585905}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637585905.html}
      *
+     * @governance none
      * @restriction Only available in dynamic mode
+     * @since 2016.2
      *
      * @param options
      * @param options.sublistId - the id of sublist in which the matrix is in.
@@ -1456,6 +2938,7 @@ declare namespace currentRecord {
      * @param options.column - the column number for the field
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+     * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
      */
     getCurrentMatrixSublistValue<FieldType extends string | string[] | number | Date | boolean>(options: {
       sublistId: string,
@@ -1463,71 +2946,141 @@ declare namespace currentRecord {
       column: number,
     }): FieldType;
 
-    /**
-     * Set the value for the line currently selected in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param sublistId - the id of sublist in which the matrix is in.
-     * @param fieldId - the id of the matrix field
-     * @param column - the column number for the field
-     * @param value - the value to set it to
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setCurrentMatrixSublistValue(
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      value: record.FieldValue,
-    ): this;
+    setCurrentMatrixSublistValue: {
 
-    /**
-     * Set the value for the line currently selected in the matrix
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
-     *
-     * @restriction Only available in dynamic mode
-     *
-     * @param options
-     * @param options.sublistId - the id of sublist in which the matrix is in.
-     * @param options.fieldId - the id of the matrix field
-     * @param options.column - the column number for the field
-     * @param options.value - the value to set it to
-     * @param [options.ignoreFieldChange=false] - Ignore the field change script (default false)
-     * @param [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
-     * @return same object for chaining
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
-     */
-    setCurrentMatrixSublistValue(options: {
-      sublistId: string,
-      fieldId: string,
-      column: number,
-      value: record.FieldValue,
-      ignoreFieldChange?: boolean,
-      forceSyncSourcing?: boolean,
-    }): this;
+      /**
+       * Set the value for the line currently selected in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId - the id of sublist in which the matrix is in.
+       * @param fieldId - the id of the matrix field
+       * @param column - the column number for the field
+       * @param value - the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      <R>(
+        this: R,
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+      ): R;
+
+      /**
+       * Set the value for the line currently selected in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId - the id of sublist in which the matrix is in.
+       * @param options.fieldId - the id of the matrix field
+       * @param options.column - the column number for the field
+       * @param options.value - the value to set it to
+       * @param [options.ignoreFieldChange=false] - Ignore the field change script (default false)
+       * @param [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      <R>(this: R, options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): R;
+
+      /**
+       * Set the value for the line currently selected in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param sublistId - the id of sublist in which the matrix is in.
+       * @param fieldId - the id of the matrix field
+       * @param column - the column number for the field
+       * @param value - the value to set it to
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      promise(
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+      ): Promise<CurrentRecordReadonly>;
+
+      /**
+       * Set the value for the line currently selected in the matrix
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4637579872}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4637579872.html}
+       *
+       * @governance none
+       * @restriction Only available in dynamic mode
+       * @since 2016.2
+       *
+       * @param options
+       * @param options.sublistId - the id of sublist in which the matrix is in.
+       * @param options.fieldId - the id of the matrix field
+       * @param options.column - the column number for the field
+       * @param options.value - the value to set it to
+       * @param [options.ignoreFieldChange=false] - Ignore the field change script (default false)
+       * @param [options.forceSyncSourcing=false] - Indicates whether to perform field sourcing synchronously
+       * @return same object for chaining
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if any required values are missing
+       * @throws {error.SuiteScriptError} SSS_INVALID_SUBLIST_OPERATION if the specified column is invalid
+       */
+      promise(options: {
+        sublistId: string,
+        fieldId: string,
+        column: number,
+        value: record.FieldValue,
+        ignoreFieldChange?: boolean,
+        forceSyncSourcing?: boolean,
+      }): Promise<CurrentRecordReadonly>;
+    };
 
     /**
      * Returns the object type name
-     * @see Not Documented in NetSuite Help Center
      *
-     * @since 2015.2
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @governance none
      */
     toString(): 'dynamic record';
 
     /**
      * Convert to JSON object
-     * @see Not Documented in NetSuite Help Center
      *
-     * @since 2015.2
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @governance none
      */
-    toJSON(): ExcludeMethods<this> & {
-      [p: string]: any,
+    toJSON(): {
+      type: string;
+      isDynamic: boolean;
+      fields: alias.Record<string, string | string[]>;
+      sublists: alias.Record<string, alias.Record<string, alias.Record<string, string | string[]>>>;
     };
   }
 
@@ -1541,18 +3094,17 @@ declare namespace currentRecord {
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       * @since 2015.2
        *
        * @param [options]
        * @param [options.enableSourcing=false] enable sourcing during record update
        * @param [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
        * @return id of submitted record
-       *
-       * @since 2015.2
        */
       (options?: {
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
-      }): number
+      }): number;
 
       /**
        * Save record updates to the system
@@ -1560,52 +3112,51 @@ declare namespace currentRecord {
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4267286323.html}
        *
        * @governance 20 units for transactions, 4 for custom records, 10 for all other records
+       * @since 2015.2
        *
        * @param [enableSourcing=false] enable sourcing during record update
        * @param [ignoreMandatoryFields=false] ignore mandatory field during record submission
        * @return id of submitted record
-       *
-       * @since 2015.2
        */
       (
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
-      ): number
+      ): number;
 
       /**
        * Save record updates to the system
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
+       *
+       * @governance none
+       * @since 2015.2
        *
        * @param [options]
        * @param [options.enableSourcing=false] enable sourcing during record update
        * @param [options.ignoreMandatoryFields=false] ignore mandatory field during record submission
-       *
        * @return id of submitted record
-       *
-       * @since 2015.2
        */
       promise(options?: {
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
-      }): Promise<number>
+      }): Promise<number>;
 
       /**
        * Save record updates to the system
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
+       * @governance none
+       * @since 2015.2
+       *
        * @param [enableSourcing=false] enable sourcing during record update
        * @param [ignoreMandatoryFields=false] ignore mandatory field during record submission
-       *
        * @return id of submitted record
-       *
-       * @since 2015.2
        */
       promise(
         enableSourcing?: boolean,
         ignoreMandatoryFields?: boolean,
-      ): Promise<number>
+      ): Promise<number>;
     };
   }
 
@@ -1665,6 +3216,9 @@ declare namespace currentRecord {
 
     /**
      * Is the field disabled?
+     *
+     * Available only in client context (client scripts). Accessing this property server-side on a dynamic record
+     * throws a ReferenceError — the server-side field proxy does not expose it.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794215939}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4794215939.html}
      *
@@ -1679,7 +3233,7 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    isPopup: boolean;
+    readonly isPopup: boolean;
 
     /**
      * Is the field set to display on the record form?
@@ -1701,27 +3255,32 @@ declare namespace currentRecord {
 
     /**
      * Can the field be edited on the record form?
+     *
+     * Available only in client context (client scripts). Accessing this property server-side on a dynamic record
+     * throws a ReferenceError — the server-side field proxy does not expose it.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4794213415}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4794213415.html}
      *
      * @since 2016.2
      */
-    isReadOnly: boolean;
+    readonly isReadOnly: boolean;
 
     /**
      * Returns an array of available options on a standard or custom select, multiselect, or radio field as key-value pairs
+     *
+     * Only the first 1,000 available options are returned. If there are more than 1,000 available options, an empty
+     * array [] is returned.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4834781098}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4834781098.html}
      *
-     * @restriction Only the first 1,000 available options are returned in an array. If there are more than 1,000 available options, an empty array [] is returned.
+     * @governance none
+     * @since 2016.2
      *
      * @param [options] NetSuite Help Center says this is required, but it's not
      * @param [options.filter] A search string to filter the select options that are returned.
      * @param [options.operator='contains']  Defaults to the "contains" operator
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
-     *
-     * @since 2016.2
      */
     getSelectOptions(options?: {
       filter?: string,
@@ -1733,26 +3292,32 @@ declare namespace currentRecord {
 
     /**
      * Inserts an option into certain types of select and multiselect fields
+     *
+     * This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event
+     * script. The IDs for these fields always have a prefix of custpage.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4779675098.html}
      *
-     * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
+     * @governance none
+     * @since 2016.2
      *
      * @param value The internal id of the option
      * @param text  The display text for this option
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
-     *
-     * @since 2016.2
      */
     insertSelectOption(value: string | number, text: string): void;
 
     /**
      * Inserts an option into certain types of select and multiselect fields
+     *
+     * This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event
+     * script. The IDs for these fields always have a prefix of custpage.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4779675098}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4779675098.html}
      *
-     * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.value The internal id of the option
@@ -1760,8 +3325,6 @@ declare namespace currentRecord {
      * @param [options.isSelected=false] If true, this option is selected
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
-     *
-     * @since 2016.2
      */
     insertSelectOption(options: {
       value: string | number,
@@ -1771,17 +3334,19 @@ declare namespace currentRecord {
 
     /**
      * Removes a select option from certain types of select and multiselect fields
+     *
+     * This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event
+     * script. The IDs for these fields always have a prefix of custpage.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4780315055}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4780315055.html}
      *
-     * @restriction This method is usable only in select fields that were added by a front-end Suitelet or beforeLoad user event script. The IDs for these fields always have a prefix of custpage.
+     * @governance none
+     * @since 2016.2
      *
      * @param options
      * @param options.value The internal id of the option
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if this method is used on a field that is not of type "select" or "multiselect" and whose ID doesn't begin with the prefix "custpage"
-     *
-     * @since 2016.2
      */
     removeSelectOption(options: {
       value: string | number,
@@ -1790,8 +3355,8 @@ declare namespace currentRecord {
 
   /**
    * Encapsulates a sublist on the current record
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4793291846}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4793291846.html}
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501618457}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1501618457.html}
    *
    * @since 2016.2
    */
@@ -1802,27 +3367,31 @@ declare namespace currentRecord {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1501619036.html}
      *
-     * @param fieldId
-     *
+     * @governance none
      * @since 2016.2
+     *
+     * @param fieldId
+     * @return the column, or null if the field id is not a column of this sublist
      */
     getColumn(
       fieldId: string,
-    ): Column;
+    ): Column | null;
 
     /**
      * Returns a column in the sublist
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619036}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1501619036.html}
      *
+     * @governance none
+     * @since 2016.2
+     *
      * @param options
      * @param options.fieldId
-     *
-     * @since 2016.2
+     * @return the column, or null if the field id is not a column of this sublist
      */
     getColumn(options: {
       fieldId: string,
-    }): Column;
+    }): Column | null;
 
     /**
      * Returns the internal ID of the sublist
@@ -1849,7 +3418,7 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    readonly isDisplay: boolean;
+    isDisplay: boolean;
 
     /**
      * Returns the sublist type
@@ -1858,7 +3427,34 @@ declare namespace currentRecord {
      *
      * @since 2016.2
      */
-    readonly type: string;
+    readonly type: Lowercase<serverWidget.SublistType>;
+
+    /**
+     * Indicates whether the sublist supports the multi-line buffer feature
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2016.2
+     */
+    readonly isMultilineEditable: boolean;
+
+    /**
+     * Returns the object type name
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2016.2
+     */
+    toString(): 'sublist.Sublist';
+
+    /**
+     * Convert to JSON object
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2016.2
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
@@ -1898,7 +3494,10 @@ declare namespace currentRecord {
     isMandatory: boolean;
 
     /**
-     * Returns the internal ID of the column
+     * Returns the label of the column
+     *
+     * The Help Center page for this property describes it as "Returns the internal ID of the column" — a copy-paste
+     * error in the docs; the property holds the column's display label.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1501619880}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1501619880.html}
      *
@@ -1923,5 +3522,47 @@ declare namespace currentRecord {
      * @since 2016.2
      */
     readonly type: Lowercase<serverWidget.FieldType>;
+
+    /**
+     * Indicates whether the column is displayed
+     *
+     * Not documented on the currentRecord.Column Help Center page; present at runtime. Documented for the N/record
+     * sublist.Column object, which shares this implementation — see the links below.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593019143}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593019143.html}
+     *
+     * @since 2020.2
+     */
+    isDisplay: boolean;
+
+    /**
+     * Indicates whether the column is sortable
+     *
+     * Not documented on the currentRecord.Column Help Center page; present at runtime. Documented for the N/record
+     * sublist.Column object, which shares this implementation — see the links below.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158593039336}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158593039336.html}
+     *
+     * @since 2020.2
+     */
+    readonly isSortable: boolean;
+
+    /**
+     * Returns the object type name
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2016.2
+     */
+    toString(): 'sublist.Column';
+
+    /**
+     * Convert to JSON object
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2016.2
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 }
