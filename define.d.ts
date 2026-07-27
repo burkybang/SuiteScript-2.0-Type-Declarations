@@ -10,6 +10,7 @@ interface SuiteScriptModuleMap {
   'N/crypto': crypto_;
   'N/currency': currency;
   'N/currentRecord': currentRecord;
+  'N/documentCapture': documentCapture;
   'N/email': email;
   'N/encode': encode;
   'N/error': error;
