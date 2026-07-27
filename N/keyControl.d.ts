@@ -220,13 +220,15 @@ declare namespace keyControl {
     readonly scriptRestrictions: string[];
 
     /**
-     * Internal IDs of subsidiaries the key is scoped to (empty array if not scoped).
+     * Internal IDs of subsidiaries the key is scoped to. For keys this is always an empty array.
      *
-     * This is populated only when a key is scoped to subsidiaries through the Keys UI
-     * (Setup > Company > Keys). The `keyControl` API cannot set it: `createKey(options)` has no
-     * subsidiaries parameter, `Key` has no subsidiaries property, and neither persists one. As a
-     * result it reads as an empty array for every key created from a script. The element type
-     * mirrors the documented "internal IDs" and the sibling `restrictions` field.
+     * Keys and certificates share one backend (the Keys page is the certificate settings page in
+     * "keys" mode), so `KeyMetadata` shares this field with the certificate metadata. Certificates
+     * support subsidiary scoping; keys do not. The key form offers only "Restrict to Employees" and
+     * "Restrict to Scripts", the `keyControl` API has no way to set subsidiaries (no `createKey`
+     * parameter, no `Key` property), and the value is not derived from the employee restrictions. So
+     * for any key it reads as `[]`. The element type follows the documented "internal IDs" and the
+     * sibling `restrictions` field, which holds numeric internal IDs.
      */
     readonly subsidiaries: number[];
   }
