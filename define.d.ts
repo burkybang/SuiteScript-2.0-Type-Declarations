@@ -29,6 +29,7 @@ interface SuiteScriptModuleMap {
   'N/redirect': redirect;
   'N/render': render;
   'N/runtime': runtime;
+  'N/scriptTypes/restlet': restlet;
   'N/search': search;
   'N/sessionRecordHandler': sessionRecordHandler;
   'N/sftp': sftp;
