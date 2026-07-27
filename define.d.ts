@@ -6,6 +6,7 @@ interface SuiteScriptModuleMap {
   'N/auth': auth;
   'N/cache': cache;
   'N/certificateControl': certificateControl;
+  'N/commerce/recordView': recordView;
   'N/compress': compress;
   'N/config': config;
   'N/crypto': crypto_;

@@ -8,6 +8,7 @@
 /// <reference path="./N/auth.d.ts" />
 /// <reference path="./N/cache.d.ts" />
 /// <reference path="./N/certificateControl.d.ts" />
+/// <reference path="./N/commerce/recordView.d.ts" />
 /// <reference path="./N/config.d.ts" />
 /// <reference path="./N/compress.d.ts" />
 /// <reference path="./N/crypto.d.ts" />
