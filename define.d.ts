@@ -22,6 +22,7 @@ interface SuiteScriptModuleMap {
   'N/llm': llm;
   'N/log': log;
   'N/machineTranslation': machineTranslation;
+  'N/manufacturing/productionCharges': productionCharges;
   'N/plugin': plugin;
   'N/portlet': portlet;
   'N/query': query;
