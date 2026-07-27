@@ -43,6 +43,7 @@ interface SuiteScriptModuleMap {
   'N/sso': sso;
   'N/suiteAppInfo': suiteAppInfo;
   'N/task': task;
+  'N/task/accounting/recognition': recognition;
   'N/transaction': transaction;
   'N/translation': translation;
   'N/ui': ui;
