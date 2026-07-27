@@ -22,12 +22,16 @@ interface llm {
    * @param options
    * @param options.text - Text of the chat message
    * @param options.role - Role (author) of the chat message
+   * @param [options.toolCalls] - Tool calls to attach to the message (for a `CHATBOT` turn that invoked tools)
+   * @param [options.toolResults] - Tool results to attach to the message (for a `TOOL` turn returning tool output)
    *
    * @throws {error.SuiteScriptError} INVALID_CHAT_ROLE when the role is outside of the ChatRole enum
    */
   createChatMessage(options: {
     text: string,
     role: llm.ChatRole | `${llm.ChatRole}`,
+    toolCalls?: llm.ToolCall[],
+    toolResults?: llm.ToolResult[],
   }): llm.ChatMessage;
 
   /**
