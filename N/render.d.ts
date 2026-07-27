@@ -542,6 +542,7 @@ declare namespace render {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
      * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
      */
     addQuery(options: {
       templateName: string,
@@ -564,6 +565,7 @@ declare namespace render {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
      * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
      */
     addQuery(options: {
       templateName: string,
