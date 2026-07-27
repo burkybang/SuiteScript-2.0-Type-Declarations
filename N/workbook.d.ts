@@ -349,9 +349,10 @@ interface workbook {
    * Creates a constant `Expression` — wraps a literal value as an Expression for use in
    * predicates and parameters.
    *
-   * Note: of the values declared in `ConstantType`, the runtime accepts `TEXT`, `INTEGER`,
-   * `BOOLEAN`, `CURRENCY`, `DURATION`. Rejected: `FLOAT` (use `DECIMAL`?), `DATE`, `DATETIME`
-   * (use `DATE_TIME`?), `NULL`. Returns an `Expression` with `functionId === 'CONSTANT'`.
+   * Note: of the values declared in `ConstantType`, `createConstant` accepts `BOOLEAN`,
+   * `CURRENCY`, `DURATION`, `INTEGER`, `RANGE`, `TEXT`, and `RECORD_KEY`. `NUMBER`, `DECIMAL`,
+   * `DATE`, and `DATE_TIME` are rejected with an invalid-type-argument error. Returns an
+   * `Expression` with `functionId === 'CONSTANT'`.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159051033752}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159051033752.html}
    *
@@ -372,12 +373,11 @@ interface workbook {
   }): workbook.Expression;
 
   /**
-   * Creates a currency object — pairs an amount with a currency record ID.
+   * Creates a currency value: pairs a monetary amount with a currency code.
    *
-   * Note: both `amount` and `id` are required. The `id`'s expected type is unclear: an integer,
-   * a numeric string `'1'` (throws `INVALID_CURRENCY: '1'`), an internal-id object
-   * `{internalId: 1}`, and the actual numeric currency ID are all rejected. The accepted form is
-   * not documented.
+   * Note: both `amount` and `id` are required. `id` is the currency's code, such as `'USD'`,
+   * passed as a string. Numeric ids are rejected with an invalid-type-argument error, and an
+   * unknown code throws `INVALID_CURRENCY`.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163170128090}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163170128090.html}
    *
@@ -387,7 +387,7 @@ interface workbook {
    *
    * @param options
    * @param options.amount The monetary amount.
-   * @param options.id The currency identifier (exact accepted type is not documented).
+   * @param options.id The currency code, such as `'USD'`, as a string.
    * @return A new `workbook.Currency`.
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT A required argument is missing.
@@ -395,7 +395,7 @@ interface workbook {
    */
   createCurrency(options: {
     amount: number,
-    id: string | number,
+    id: string,
   }): workbook.Currency;
 
   /**
