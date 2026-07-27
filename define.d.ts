@@ -12,6 +12,8 @@ interface SuiteScriptModuleMap {
   'N/crypto': crypto_;
   'N/currency': currency;
   'N/currentRecord': currentRecord;
+  'N/dataset': dataset;
+  'N/datasetLink': datasetLink;
   'N/documentCapture': documentCapture;
   'N/email': email;
   'N/encode': encode;
@@ -54,6 +56,7 @@ interface SuiteScriptModuleMap {
   'N/ui/serverWidget': serverWidget;
   'N/url': url;
   'N/util': util;
+  'N/workbook': workbook;
   'N/workflow': workflow;
   'N/xml': xml;
 
