@@ -3011,7 +3011,7 @@ declare namespace query {
     readonly metadataProvider: MetadataProvider | `${MetadataProvider}` | undefined;
 
     /**
-     * Undocumented property
+     * Undocumented in the Help Center; present at runtime.
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
