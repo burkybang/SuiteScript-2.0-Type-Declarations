@@ -19,6 +19,7 @@ interface SuiteScriptModuleMap {
   'N/format/i18n': i18n;
   'N/http': http;
   'N/https': https;
+  'N/https/clientCertificate': clientCertificate;
   'N/llm': llm;
   'N/log': log;
   'N/machineTranslation': machineTranslation;
