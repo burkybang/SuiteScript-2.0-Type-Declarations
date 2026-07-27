@@ -441,8 +441,13 @@ interface workbook {
   }): workbook.DataDimensionItem;
 
   /**
-   * Creates a data measure — a measure aggregating an expression (or list of expressions) using
-   * the given aggregation function.
+   * Creates a data measure: an aggregation of an expression (or, for `COUNT_DISTINCT`, a list of
+   * expressions) using the given aggregation function.
+   *
+   * Which expression parameter to pass is fixed by the aggregation, not free choice: `COUNT_DISTINCT`
+   * requires `expressions` (an array) and rejects `expression`, while every other aggregation
+   * requires `expression` (a single expression) and rejects `expressions`. Supplying both always
+   * throws `MUTUALLY_EXCLUSIVE_ARGUMENTS`.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159020026220}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159020026220.html}
    *
@@ -452,10 +457,14 @@ interface workbook {
    *
    * @param options
    * @param options.aggregation Aggregation function. Use values from `workbook.Aggregation`.
-   * @param [options.expression] The expression to aggregate (XOR with `expressions`).
-   * @param [options.expressions] Multiple expressions to aggregate (XOR with `expression`).
+   * @param [options.expression] The single expression to aggregate. Required for every aggregation except `COUNT_DISTINCT`; rejected for `COUNT_DISTINCT`.
+   * @param [options.expressions] The list of expressions to aggregate. Required for `COUNT_DISTINCT`; rejected for every other aggregation.
    * @param options.label The measure label (string or translated `Expression`).
    * @return A new `workbook.DataMeasure`.
+   *
+   * @throws {error.SuiteScriptError} EXPRESSIONS_MUST_BE_SPECIFIED_WHEN_USING_COUNT_DISTINCT_AGGREGATION `COUNT_DISTINCT` was used without `expressions`.
+   * @throws {error.SuiteScriptError} EXPRESSION_MUST_BE_SPECIFIED_WHEN_USING_OTHER_THAN_COUNT_DISTINCT_AGGREGATION A non-`COUNT_DISTINCT` aggregation was used without `expression`.
+   * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS Both `expression` and `expressions` were supplied.
    */
   createDataMeasure(options: {
     aggregation: workbook.Aggregation | `${workbook.Aggregation}` | string,
@@ -2534,10 +2543,11 @@ declare namespace workbook {
    * A data measure object — a numeric aggregation of an expression (e.g. `SUM(amount)`,
    * `COUNT_DISTINCT(customer)`). Use `workbook.createDataMeasure(options)` to create this object.
    *
-   * **Mutually exclusive:** `expression` (single) and `expressions` (array) are mutually exclusive
-   * at creation. Passing both throws `MUTUALLY_EXCLUSIVE_ARGUMENTS`. Whichever one is supplied is
-   * reflected on the resulting object; the other property exists but is `undefined`. Typed below
-   * as optional on both.
+   * **Aggregation determines which is set:** a `COUNT_DISTINCT` measure carries `expressions` (an
+   * array) and leaves `expression` `undefined`; every other aggregation carries `expression` (a
+   * single expression) and leaves `expressions` `undefined`. The two are mutually exclusive at
+   * creation (passing both throws `MUTUALLY_EXCLUSIVE_ARGUMENTS`), which is why both are typed
+   * optional below.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163170291911}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163170291911.html}
    *
@@ -2559,8 +2569,8 @@ declare namespace workbook {
     aggregation: Aggregation | `${Aggregation}` | string;
 
     /**
-     * The single expression the measure aggregates. Mutually exclusive with `expressions`.
-     * `undefined` when `expressions` was used at creation.
+     * The single expression the measure aggregates. Set for every aggregation except
+     * `COUNT_DISTINCT`; `undefined` on a `COUNT_DISTINCT` measure (which uses `expressions`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163170291911}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163170291911.html}
      *
@@ -2572,8 +2582,8 @@ declare namespace workbook {
     expression?: Expression;
 
     /**
-     * The list of expressions the measure aggregates. Mutually exclusive with `expression`.
-     * `undefined` when `expression` was used at creation.
+     * The list of expressions the measure aggregates. Set only on a `COUNT_DISTINCT` measure;
+     * `undefined` for every other aggregation (which uses `expression`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_163170291911}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_163170291911.html}
      *
