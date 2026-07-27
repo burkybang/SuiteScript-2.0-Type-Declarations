@@ -44,7 +44,6 @@ interface SuiteScriptModuleMap {
   'N/runtime': runtime;
   'N/scriptTypes/restlet': restlet;
   'N/search': search;
-  'N/sessionRecordHandler': sessionRecordHandler;
   'N/sftp': sftp;
   'N/sso': sso;
   'N/suiteAppInfo': suiteAppInfo;
