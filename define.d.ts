@@ -36,6 +36,7 @@ interface SuiteScriptModuleMap {
   'N/suiteAppInfo': suiteAppInfo;
   'N/task': task;
   'N/transaction': transaction;
+  'N/translation': translation;
   'N/ui': ui;
   'N/ui/dialog': dialog;
   'N/ui/message': message;
