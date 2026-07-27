@@ -19,16 +19,16 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024767}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024767.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested.
      * @param [options.headers] The HTTP headers.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.url` parameter is not specified.
      */
     (options: {
@@ -41,16 +41,16 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440810374}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440810374.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested.
      * @param [options.headers] The HTTP headers.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.url` parameter is not specified.
      */
     promise(options: {
@@ -66,9 +66,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024574}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024574.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested.
@@ -76,7 +76,7 @@ interface http {
      * @param [options.body] The POST data.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." The URL specified in the `options.url` parameter must be a fully qualified URL.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." The URL specified in the `options.url` parameter must be a fully qualified URL.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}." The `options.body` or `options.url` parameter is not specified.
      * @throws {error.SuiteScriptError} SSS_REQUEST_LOOP_DETECTED "This script executes a recursive function that has exceeded the limit for the number of times a script can call itself using an HTTP request. Please examine the script for a potential infinite recursion problem." A script is calling back into itself recursively using an HTTP/HTTPS request.
      */
@@ -91,9 +91,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440816463}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440816463.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested.
@@ -101,7 +101,7 @@ interface http {
      * @param [options.body] The POST data.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." The URL specified in the `options.url` parameter must be a fully qualified URL.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." The URL specified in the `options.url` parameter must be a fully qualified URL.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}." The `options.body` or `options.url` parameter is not specified.
      * @throws {error.SuiteScriptError} SSS_REQUEST_LOOP_DETECTED "This script executes a recursive function that has exceeded the limit for the number of times a script can call itself using an HTTP request. Please examine the script for a potential infinite recursion problem." A script is calling back into itself recursively using an HTTP/HTTPS request.
      */
@@ -119,9 +119,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024367}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024367.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested
@@ -129,7 +129,7 @@ interface http {
      * @param [options.body] The PUT data.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.body` or `options.url` parameter is not specified.
      */
     (options: {
@@ -143,9 +143,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440817389}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440817389.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested
@@ -153,7 +153,7 @@ interface http {
      * @param [options.body] The PUT data.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.body` or `options.url` parameter is not specified.
      */
     promise(options: {
@@ -170,16 +170,16 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024970}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024970.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested
      * @param [options.headers] The HTTP headers.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.url` parameter is not specified.
      */
     (options: {
@@ -192,16 +192,16 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440810687}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440810687.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.url The HTTP URL being requested
      * @param [options.headers] The HTTP headers.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.url` parameter is not specified.
      */
     promise(options: {
@@ -217,9 +217,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426024227}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426024227.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.method The HTTP request method. Set using `http.Method`.
@@ -228,7 +228,7 @@ interface http {
      * @param [options.body] The body content to send in the HTTP request.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.method` or `options.url` parameter is not specified.
      */
     (options: {
@@ -243,9 +243,9 @@ interface http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440816259}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440816259.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Client and server scripts
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
      *
      * @param options
      * @param options.method The HTTP request method. Set using `http.Method`.
@@ -254,7 +254,7 @@ interface http {
      * @param [options.body] The body content to send in the HTTP request.
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable.
-     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP/HTTPS URL." An invalid URL is specified in the `options.url` parameter.
+     * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTP URL." An invalid URL is specified in the `options.url` parameter.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.method` or `options.url` parameter is not specified.
      */
     promise(options: {
@@ -274,8 +274,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426027649}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426027649.html}
    *
+   * @restriction Client-side and server-side scripts
    * @since 2015.2
-   * @restriction Client and server scripts
    */
   export enum Method {
     GET = 'GET',
@@ -293,8 +293,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426027147}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426027147.html}
    *
+   * @restriction Client-side and server-side scripts
    * @since 2015.2
-   * @restriction Client and server scripts
    */
   export enum CacheDuration {
     UNIQUE = 'UNIQUE',
@@ -309,8 +309,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1492804577}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1492804577.html}
    *
+   * @restriction Client-side and server-side scripts
    * @since 2015.2
-   * @restriction Client and server scripts
    */
   export enum RedirectType {
     RECORD = 'RECORD',
@@ -325,8 +325,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4299069814}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4299069814.html}
    *
+   * @restriction Server-side scripts only
    * @since 2015.2
-   * @restriction Server scripts
    */
   export interface ClientResponse {
 
@@ -365,11 +365,19 @@ declare namespace http {
 
     /**
      * Returns the object type name (http.ClientResponse)
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toString(): string;
 
     /**
      * Convert to JSON object
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -379,8 +387,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4314608702}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4314608702.html}
    *
+   * @restriction Server-side scripts only
    * @since 2015.2
-   * @restriction Server scripts
    */
   export interface ServerRequest {
 
@@ -466,9 +474,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4314815897}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4314815897.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.group The sublist internal ID.
@@ -484,9 +492,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4314828231}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4314828231.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.group The sublist internal ID.
@@ -503,11 +511,19 @@ declare namespace http {
 
     /**
      * Returns the object type name (http.ServerRequest)
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toString(): string;
 
     /**
      * Convert to JSON object
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toJSON(): ExcludeMethods<this>;
   }
@@ -517,8 +533,8 @@ declare namespace http {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4314609319}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4314609319.html}
    *
+   * @restriction Server-side scripts only
    * @since 2015.2
-   * @restriction Server scripts
    */
   export interface ServerResponse {
 
@@ -527,8 +543,8 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4314846555}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4314846555.html}
      *
+     * @restriction Server-side scripts only
      * @since 2015.2
-     * @restriction Server scripts
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY You attempted to edit this property. This property is read-only.
      */
@@ -539,9 +555,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4315325840}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4315325840.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.name The name of the header.
@@ -560,9 +576,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4315356945}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4315356945.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.name The name of the header.
@@ -581,9 +597,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4321649843}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4321649843.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.name The name of the header.
@@ -599,9 +615,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4315616450}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4315616450.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.identifier The primary ID for this resource. The value you use varies depending on the value of `options.type`, as follows:
@@ -629,9 +645,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4316382571}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4316382571.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param output The string being written.
      *
@@ -645,9 +661,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4316382571}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4316382571.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.output The string being written.
@@ -664,9 +680,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4316493873}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4316493873.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param output The string being written.
      *
@@ -680,9 +696,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4316493873}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4316493873.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.output The string being written.
@@ -699,9 +715,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426014272}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426014272.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param assistant A standalone page Object in the form of an assistant.
      *
@@ -714,9 +730,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426014272}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426014272.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param form A standalone page Object in the form of a form.
      *
@@ -729,9 +745,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426014272}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426014272.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param list A standalone page Object in the form of a list.
      *
@@ -744,9 +760,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426014272}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426014272.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.pageObject A standalone page Object in the form of an assistant, form, or list.
@@ -762,9 +778,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426015540}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426015540.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.file A file.File Object that encapsulates the file to be written.
@@ -783,9 +799,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426014776}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426014776.html}
      *
-     * @since 2015.2
      * @governance 10 units
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.xmlString Content of the PDF.
@@ -801,9 +817,9 @@ declare namespace http {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4426015213}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4426015213.html}
      *
-     * @since 2015.2
      * @governance none
-     * @restriction Server scripts
+     * @restriction Server-side scripts only
+     * @since 2015.2
      *
      * @param options
      * @param options.type The value of the caching duration. Use `http.CacheDuration` to set this value.
@@ -816,11 +832,19 @@ declare namespace http {
 
     /**
      * Returns the object type name (http.ServerResponse)
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toString(): string;
 
     /**
      * Convert to JSON object
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @since 2015.2
      */
     toJSON(): ExcludeMethods<this>;
   }
