@@ -10,6 +10,7 @@ interface SuiteScriptModuleMap {
   'N/compress': compress;
   'N/config': config;
   'N/crypto': crypto_;
+  'N/crypto/certificate': certificate;
   'N/currency': currency;
   'N/currentRecord': currentRecord;
   'N/dataset': dataset;
