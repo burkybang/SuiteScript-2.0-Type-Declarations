@@ -671,7 +671,9 @@ declare namespace documentCapture {
 
   /**
    * An extracted page from a document. Sub-arrays (`fields`, `lines`, `tables`, `words`,
-   * `detectedDocumentTypes`) are populated only when the matching feature is requested.
+   * `detectedDocumentTypes`) are populated only when the matching feature is requested; when a
+   * feature is not requested its array is present but empty (`[]`), never `undefined` or `null`,
+   * which is why they are typed as non-optional arrays.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0704100841}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0704100841.html}
    *
@@ -680,8 +682,9 @@ declare namespace documentCapture {
   interface Page {
 
     /**
-     * Confidence levels indicating which document types this page resembles. Each entry has a
-     * `documentType` (one of the `DocumentType` enum values) and a `confidence` between 0 and 1.
+     * A ranked list of candidate document types this page resembles (highest `confidence` first),
+     * not just the single best match. Each entry has a `documentType` (one of the `DocumentType`
+     * enum values) and a `confidence` between 0 and 1.
      *
      * Populated only when the `DOCUMENT_CLASSIFICATION` feature is requested.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_28102340830}
