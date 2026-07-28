@@ -61,6 +61,16 @@ interface recordView {
    * the wrong wrapper AND a wrong array wrapper `[{...}, ...]`); the actual viewWebsite return is
    * a single object. The Help Center Syntax sample on the same page also has a variable-name bug
    * (assigns to `result.viewItems` instead of `result.viewWebsite`).
+   *
+   * **Collection fields return Java `Map` proxies, not plain objects.** For example
+   * `shiptocountries` is an array whose elements are Java `Map`s, so each serializes as `{}` under
+   * `JSON.stringify`; read them via `.get(key)` / `.keySet()` / `.entrySet()`. Each
+   * `shiptocountries` element carries `internalid` (the country code, e.g. `'AD'`),
+   * `postalcodesystem` (boolean), and `states` (an array).
+   *
+   * **Supported fields are a curated subset.** Observed accepted names include `internalid`,
+   * `displayname`, `isinactive`, and `shiptocountries`; arbitrary record field names (e.g. `name`,
+   * `hosts`, `createddate`) are rejected with `INVALID_VALUE_1_FOR_PARAMETER_2`.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544630269}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544630269.html}
    *
@@ -77,7 +87,7 @@ interface recordView {
    * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If a parameter has the wrong type (e.g. `fields` not an array, `id` a string).
    * @throws {error.SuiteScriptError} FIELD_1_CANNOT_BE_EMPTY If a required property is missing from `options` entirely (e.g. `options.id` undefined).
    * @throws {error.SuiteScriptError} FLD_CANNOT_BE_EMPTY If `fields` is provided but empty. (Distinct code from `FIELD_1_CANNOT_BE_EMPTY`.)
-   * @throws {error.SuiteScriptError} INVALID_VALUE_1_FOR_PARAMETER_2 If the supplied website ID does not exist. Not documented in the Help Center.
+   * @throws {error.SuiteScriptError} INVALID_VALUE_1_FOR_PARAMETER_2 If the supplied website ID does not exist, or if a requested field name is not a supported website field (the message names the offending value, e.g. `Invalid value '[createddate]' for parameter 'fields'`). Not documented in the Help Center.
    */
   viewWebsite(options: {
     id: number,
