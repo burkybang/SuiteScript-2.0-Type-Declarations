@@ -339,6 +339,9 @@ declare namespace documentCapture {
   /**
    * Holds values for the type of an extracted field. Returned via `Field.type` when the
    * `FIELD_EXTRACTION` feature is requested. Describes the semantic category of the field's data.
+   * In an invoice extraction the observed `Field.type` was `KEY_VALUE`, and line-item data came back
+   * through `Page.tables` rather than as `LINE_ITEM*` fields, so those enum values are carried from
+   * the docs but were not reproduced at runtime here.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0704103558}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0704103558.html}
    *
