@@ -1014,7 +1014,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158228614995}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158228614995.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly taskId: string;
 
@@ -1023,14 +1023,14 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_453959899902}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_453959899902.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.CsvImportTaskStatus).
      */
-    toString(): string;
+    toString(): 'task.CsvImportTaskStatus';
 
     /**
      * Convert to JSON object
