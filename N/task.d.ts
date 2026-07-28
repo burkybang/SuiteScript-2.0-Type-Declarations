@@ -1986,7 +1986,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158221207526}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158221207526.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly taskId: string;
 
@@ -1995,7 +1995,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544127664}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544127664.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
@@ -2004,7 +2004,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128774}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128774.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly pending: number;
 
@@ -2013,7 +2013,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128436.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly succeeded: number;
 
@@ -2022,7 +2022,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128556}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128556.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly failed: number;
 
@@ -2031,43 +2031,59 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128319}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128319.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly complete: number;
 
     /**
-     * The results of successfully executed record action tasks. The value of the property is the task instance ID and the corresponding action result.
+     * The results of successfully executed record action tasks. The property key is the record instance ID and the value is the corresponding action result.
+     *
+     * Note: the runtime shape differs from the Help Center. Each result carries `response` (with the record `id` and a `successful` flag, plus action-specific properties such as `displayName` and `recordActivationState` for the activate/inactivate actions) and a `notifications` array. There is no `action`, `recordCount`, or `success` property; the flag is spelled `successful`. Action-specific `response` properties are covered by the index signature.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128024}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128024.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly results: Record<`${number}`, {
-      notifications: any[],
       response: {
-        action: string,
         id: string,
-        recordCount: number,
-        success: boolean,
+        successful: boolean,
+        [p: string]: string | number | boolean | null,
       },
+      notifications: {
+        title: string,
+        severity: {
+          label: string,
+          value: number,
+        },
+      }[],
     }>;
 
     /**
-     * The error details of failed action executions. The value of the property is the record instance ID and the corresponding error details.
+     * The error details of failed action executions. The property key is the record instance ID and the value is the corresponding error details.
+     *
+     * Note: at runtime each error is `{ code, message }` (e.g. `RECORD_DOES_NOT_EXIST` / "Record does not exist"), not `{ name, message }` as the Help Center implies.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544128200}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544128200.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly errors: Record<`${number}`, {
-      name: string,
+      code: string,
       message: string,
     }>;
 
     /**
+     * Re-queries the server for the latest status and refreshes this instance in place. Returns nothing.
+     *
+     * Note: not documented in the Help Center but present at runtime alongside `toString`/`toJSON`.
+     */
+    refresh(): void;
+
+    /**
      * Returns the object type name (task.RecordActionTaskStatus)
      */
-    toString(): string;
+    toString(): 'task.RecordActionTaskStatus';
 
     /**
      * Convert to JSON object
