@@ -59,6 +59,7 @@ interface kpi {
    * @return A snapshot of the calculated scorecard: its periods, KPIs, and per-cell results.
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options.scorecardId` is missing.
+   * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If `scorecardId` does not identify a scorecard the current role can access ("You do not have access to this report."). A nonexistent ID surfaces the same way; NetSuite does not distinguish missing from inaccessible here.
    */
   calculateScorecard(options: {
     scorecardId: number,
