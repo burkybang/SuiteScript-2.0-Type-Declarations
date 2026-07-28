@@ -51,7 +51,7 @@ interface plugin {
    * @param options
    * @param options.type Script ID of the custom plug-in type.
    * @param [options.implementation] Script ID of the custom plug-in implementation. When omitted, the currently-selected or default implementation is loaded.
-   * @return An object implementing the custom plug-in type. Callers should supply the type parameter `T` to describe the plug-in's interface; otherwise the result is typed as `{ [key: string]: any }` (the shape is defined entirely by the plug-in type and is unknown to this module).
+   * @return An object implementing the custom plug-in type. Its own properties are exactly the plug-in type's methods; the SuiteScript layer adds no standard wrapper properties, and the prototype is plain `Object`. Callers should supply the type parameter `T` to describe the plug-in's interface; otherwise the result is typed as `{ [key: string]: any }` (the shape is defined entirely by the plug-in type and is unknown to this module).
    *
    * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is `null`/`undefined`, or `options.type` is `null` or an empty string.
    * @throws {error.SuiteScriptError} UNABLE_TO_FIND_IMPLEMENTATION_1_FOR_PLUGIN_2 If the plug-in type cannot be resolved or no matching implementation is available. This fires when (a) no plug-in type exists with the given script ID, (b) `options.implementation` is provided but doesn't match any implementation of the type, OR (c) the plug-in type exists in the account but the executing script does not have a declared dependency on it (so it cannot be loaded from this script context). The error `message` is formatted as `"Unable to find implementation <impl-or-'null'> for plugin <type>"`.
