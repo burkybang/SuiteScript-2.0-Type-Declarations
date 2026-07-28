@@ -362,16 +362,15 @@ declare namespace certificateControl {
 
     /**
      * The script ID of the certificate, or `null` if the operation isn't associated with a specific
-     * certificate (observed `null` for `'find'` operations).
+     * certificate (observed `null` for `'find'` and `'verifyXmlSignature'` operations).
      */
     readonly id: string | null;
 
     /**
-     * The operation performed. NetSuite emits a lowercase form of `certificateControl.Operation`
-     * values at runtime (e.g. `'find'` for `Operation.FIND`). Other members'
-     * runtime case has not been verified.
+     * The operation performed, reported as the string value of `certificateControl.Operation` (e.g.
+     * `'find'`, `'sign'`, `'signXml'`, `'verify'`, `'verifyXmlSignature'`).
      */
-    readonly operation: string;
+    readonly operation: certificateControl.Operation | `${certificateControl.Operation}`;
 
     /**
      * The internal ID of the script that used the certificate, or `-1` if no script context.
