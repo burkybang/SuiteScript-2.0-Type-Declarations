@@ -256,9 +256,12 @@ declare namespace piremoval {
      *
      * **Not validated at save:** contrary to the docs' claim that `save()`
      * throws `_1_JOB_WAS_NOT_FOUND` for nonexistent record IDs, `save()` succeeds
-     * even with `recordIds: [999999999]` (no such customer). The actual existence check appears to
-     * happen at `run()` time, not save. Field IDs and workflow IDs ARE validated at save (those throw
-     * `_1_WAS_NOT_FOUND`), but record IDs are not.
+     * even with `recordIds: [999999999]` (no such customer). Field IDs and workflow IDs ARE
+     * validated at save (those throw `_1_WAS_NOT_FOUND`), but record IDs are not. A nonexistent
+     * record ID surfaces only at `run()` time, and even then it does not throw or fail the task: the
+     * task still reaches `'COMPLETE'`, with the failure captured in `status.logList` as a
+     * `{type: 'FIELDVALUE', status: 'ERROR', message: 'That record does not exist.', exception: 'That record does not exist.'}`
+     * entry.
      *
      * **All elements are stringified post-save**: even when assigned as numbers (`[3]`), the runtime
      * reads them back as strings (`['3']`) on the in-memory task after save and on `loadTask`-loaded
@@ -439,10 +442,11 @@ declare namespace piremoval {
      *
      * Undocumented in the Help Center; present at runtime.
      *
-     * Verified shape (on a freshly-`createTask`'d task):
+     * Verified shape:
      * `{id, recordType, recordIds, fieldIds, workflowIds, historyOnly, historyReplacement}`. Notably
      * `status` is omitted from `toJSON()` output despite being a regular property — diverges from the
-     * default `ExcludeMethods<this>` pattern used elsewhere in this repo.
+     * default `ExcludeMethods<this>` pattern used elsewhere in this repo. The omission is permanent,
+     * not lifecycle-dependent: a `COMPLETE` task (post-`run()`) omits `status` just like a fresh one.
      *
      * @since 2019.2
      *
@@ -474,9 +478,10 @@ declare namespace piremoval {
   interface PiRemovalTaskLogItem {
 
     /**
-     * Exception message for the log item, typically an unexpected error from NetSuite. **`null` on
-     * non-error log entries** (e.g. lifecycle events like create/delete): `null` for both lifecycle
-     * log entries, despite the docs claiming this is a `string`.
+     * Exception message for the log item. On an `'ERROR'`-severity entry it carries the failure
+     * message (observed identical to `message`, e.g. `'That record does not exist.'` for a
+     * nonexistent record ID). `null` on non-error entries (lifecycle events and `'SUCCESS'` category
+     * entries), despite the docs typing it a plain `string`.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156174844834}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156174844834.html}
      *
@@ -500,9 +505,9 @@ declare namespace piremoval {
      * **Severity of this log item — NOT a task status.** The original docs claim this returns one
      * of the `task.TaskStatus` values (`PENDING`, `PROCESSING`, `COMPLETE`, `FAILED`), but at runtime
      * it is a log severity level, not a task status. Confirmed values: `'INFO'` on lifecycle entries
-     * (create / save / delete / started / processing) and `'SUCCESS'` on the per-category entries a
-     * `run()` emits. `'WARN'` and `'ERROR'` are inferred from typical logging conventions (not yet
-     * observed).
+     * (create / save / delete / started / processing), `'SUCCESS'` on the per-category entries a
+     * `run()` emits, and `'ERROR'` on a per-category entry when that category hit a failure (e.g. a
+     * nonexistent record). `'WARN'` is inferred from typical logging conventions (not yet observed).
      *
      * This is a separate concept from `PiRemovalTaskStatus.status` (which IS a task status of type
      * `piremoval.Status`). The original docs conflated the two.
@@ -583,9 +588,12 @@ declare namespace piremoval {
      *
      * The original docs claim this returns one of the `task.TaskStatus` values (`PENDING`,
      * `PROCESSING`, `COMPLETE`, `FAILED`), but the `piremoval` module exposes its own `piremoval.Status`
-     * enum. Two values are confirmed at runtime: `'CREATED'`
-     * on a freshly-saved task, and `'DELETED'` after `deleteTask`. The other enum members
-     * (`PENDING`/`COMPLETE`/`ERROR`/`NOT_APPLIED`) are inferred to apply during/after `run()`.
+     * enum. Confirmed at runtime: `'CREATED'` (freshly-saved), `'DELETED'` (after `deleteTask`), and
+     * `'PENDING'` → `'COMPLETE'` across a `run()`. Note `'COMPLETE'` is reached even when individual
+     * records fail (e.g. a nonexistent record ID): such failures are captured as `'ERROR'`-severity
+     * `logList` entries rather than failing the task. `'ERROR'` and `'NOT_APPLIED'` as task-level
+     * status values remain unobserved (re-running against already-removed data still reports
+     * `'COMPLETE'`).
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156174807831}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156174807831.html}
      *
