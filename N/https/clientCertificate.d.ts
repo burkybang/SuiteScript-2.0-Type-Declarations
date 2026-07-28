@@ -36,7 +36,7 @@ interface clientCertificate {
    * @param [options.headers] The HTTPS headers associated with the request.
    * @return The server's response to the HTTPS request.
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" One of `options.url`, `options.certId`, or `options.body` is not specified.
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "{HTTP method}: Missing a required argument: {param name}" (the message is prefixed with the request method, e.g. `GET:`) One of `options.url`, `options.certId`, or `options.body` is not specified.
    * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTPS URL." An invalid URL is specified in the `options.url` parameter.
    * @throws {error.SuiteScriptError} CERTIFICATE_NOT_FOUND "Certificate '{certId}' not found" The `options.certId` value does not resolve to a client certificate in this account.
    * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable. *(Inferred from N/https sibling.)*
@@ -65,7 +65,7 @@ interface clientCertificate {
    * @param [options.headers] The HTTPS headers associated with the request.
    * @return The server's response to the HTTPS request.
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" One of `options.url` or `options.certId` is not specified.
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "{HTTP method}: Missing a required argument: {param name}" (the message is prefixed with the request method, e.g. `GET:`) One of `options.url` or `options.certId` is not specified.
    * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTPS URL." An invalid URL is specified in the `options.url` parameter.
    * @throws {error.SuiteScriptError} CERTIFICATE_NOT_FOUND "Certificate '{certId}' not found" The `options.certId` value does not resolve to a client certificate in this account.
    * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable. *(Inferred from N/https sibling.)*
@@ -94,7 +94,7 @@ interface clientCertificate {
    * @param [options.headers] The HTTPS headers associated with the request.
    * @return The server's response to the HTTPS request.
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" One of `options.url`, `options.body`, or `options.certId` is not specified.
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "{HTTP method}: Missing a required argument: {param name}" (the message is prefixed with the request method, e.g. `GET:`) One of `options.url`, `options.body`, or `options.certId` is not specified.
    * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTPS URL." An invalid URL is specified in the `options.url` parameter.
    * @throws {error.SuiteScriptError} CERTIFICATE_NOT_FOUND "Certificate '{certId}' not found" The `options.certId` value does not resolve to a client certificate in this account.
    * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable. *(Inferred from N/https sibling.)*
@@ -123,7 +123,7 @@ interface clientCertificate {
    * @param [options.headers] The HTTPS headers associated with the request.
    * @return The server's response to the HTTPS request.
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" One of `options.url` or `options.certId` is not specified.
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "{HTTP method}: Missing a required argument: {param name}" (the message is prefixed with the request method, e.g. `GET:`) One of `options.url` or `options.certId` is not specified.
    * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTPS URL." An invalid URL is specified in the `options.url` parameter.
    * @throws {error.SuiteScriptError} CERTIFICATE_NOT_FOUND "Certificate '{certId}' not found" The `options.certId` value does not resolve to a client certificate in this account.
    * @throws {error.SuiteScriptError} SSS_INVALID_HOST_CERT "An untrusted, unsupported, or invalid certificate was found for this host." The client and server could not negotiate the desired level of security. The connection is no longer usable. *(Inferred from N/https sibling.)*
@@ -154,7 +154,7 @@ interface clientCertificate {
    * @param [options.body] The body content to send in the HTTPS request. Only the `PUT`, `POST`, and `PATCH` `https.Method` values support this parameter (and require it); all other methods ignore it.
    * @return The server's response to the HTTPS request.
    *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" One of `options.url`, `options.certId`, or `options.method` is not specified (or `options.body` when `options.method` is `POST`, `PUT`, or `PATCH`).
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "{HTTP method}: Missing a required argument: {param name}" (the message is prefixed with the request method, e.g. `GET:`) One of `options.url`, `options.certId`, or `options.method` is not specified (or `options.body` when `options.method` is `POST`, `PUT`, or `PATCH`).
    * @throws {error.SuiteScriptError} INVALID_HTTP_METHOD "Invalid HTTP method: {method}" The `options.method` value is not a recognized HTTP method.
    * @throws {error.SuiteScriptError} SSS_INVALID_URL "The URL must be a fully qualified HTTPS URL." An invalid URL is specified in the `options.url` parameter.
    * @throws {error.SuiteScriptError} CERTIFICATE_NOT_FOUND "Certificate '{certId}' not found" The `options.certId` value does not resolve to a client certificate in this account.
