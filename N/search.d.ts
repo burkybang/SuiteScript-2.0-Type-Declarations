@@ -1549,7 +1549,8 @@ declare namespace search {
      * @return the requested slice of the search result set
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains a setting with an invalid name
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE when a setting has a valid name but an invalid value
      */
     getRange(start: number, end: number): Result[];
 
@@ -1568,7 +1569,8 @@ declare namespace search {
      * @return the requested slice of the search result set
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains a setting with an invalid name
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE when a setting has a valid name but an invalid value
      */
     getRange(options: {
       start: number,
@@ -1590,7 +1592,8 @@ declare namespace search {
      * @param callback the function called for each result in the result set
      *
      * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_COL when the search contains an invalid column
-     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains an invalid setting
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING when the search contains a setting with an invalid name
+     * @throws {error.SuiteScriptError} SSS_INVALID_SRCH_SETTING_VALUE when a setting has a valid name but an invalid value
      */
     each(callback: (result: Result) => boolean): void;
 
