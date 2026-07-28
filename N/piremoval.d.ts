@@ -192,9 +192,9 @@ declare namespace piremoval {
     fieldIds: string[];
 
     /**
-     * Indicates whether the PI removal task removes system note information only. If `true`, removes
-     * information from system notes only. If `false`, removes information from system notes, workflow
-     * history, and field values.
+     * Indicates whether the PI removal task removes system note information only. The docs state that
+     * `true` removes system notes only and `false` additionally removes workflow history and field
+     * values. Both halves of that are inaccurate at runtime (see below).
      *
      * **Major doc bug — `false` is silently rejected.** The docs claim the default is `false`, but
      * **`true` is effectively the only stable value:**
@@ -204,9 +204,11 @@ declare namespace piremoval {
      *   populated, and with both populated.
      * - `save()` does NOT change the value to `false` either; reloading via `loadTask` returns `true`.
      *
-     * The documented effect of `false` (deleting field values and workflow history rather than just
-     * system notes) appears unreachable via the public N/piremoval API. Consumers
-     * relying on `false` to delete field values should expect that path to be a no-op.
+     * And the documented meaning of `true` ("system notes only") is wrong. A `run()` at the forced
+     * `true` value masks the targeted fields' CURRENT values to placeholders (e.g. phone
+     * `000000000`, email `PI_removed@example.com`) AND replaces their system-note history with
+     * `historyReplacement`, and it processes workflow history as well. So field-value removal is not
+     * unreachable: it happens under the only reachable (`true`) mode.
      *
      * The setter is otherwise a strict boolean type check — string `'true'` or number `1` is rejected
      * with `WRONG_PARAMETER_TYPE: Wrong parameter type: options.historyOnly is expected as boolean.`
@@ -302,7 +304,11 @@ declare namespace piremoval {
      * - **After `deleteTask()`** → `status` transitions to `'DELETED'`, `logList` appends a second
      *   entry: `{type: 'OTHER', status: 'INFO', message: 'Deleted', exception: null}`. The task
      *   remains loadable via `loadTask` (soft delete).
-     * - **After `run()`** → presumably transitions through `PENDING` → `COMPLETE`/`ERROR` (not documented).
+     * - **After `run()`** → transitions `'CREATED'` → `'PENDING'` (returns immediately; processing is
+     *   asynchronous) → `'COMPLETE'`. `logList` gains `Started`, `Processing` (both `type: 'OTHER'`,
+     *   `status: 'INFO'`), then one entry per category processed: `type: 'FIELDVALUE'`,
+     *   `'SYSTEMNOTE'`, `'WORKFLOW'`, each `status: 'SUCCESS'` with a `message` like `'Count: 2'`
+     *   (`'WORKFLOW'` reads `'Count: 0, Workflow History: 0'`). `'ERROR'` is the presumed failure state.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156174701248}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156174701248.html}
      *
@@ -356,6 +362,13 @@ declare namespace piremoval {
     /**
      * Runs the PI removal task. **This is the only destructive call on the module — PI is permanently
      * removed from the targeted records with no undo.** The task must be saved first.
+     *
+     * Returns immediately (`void`); processing is asynchronous. For the targeted fields it masks the
+     * records' current values to placeholders (e.g. phone `000000000`, email
+     * `PI_removed@example.com`) and replaces their system-note history with `historyReplacement`.
+     * The task's `status` moves `'CREATED'` → `'PENDING'` → `'COMPLETE'`; poll `getTaskStatus` and
+     * read `status.logList` for the per-category results. See `historyOnly` for why field values are
+     * removed even though the docs describe the reachable mode as system-notes-only.
      *
      * All validation for the task (for example, ensuring that the specified record IDs are valid)
      * occurs when the task is saved using `PiRemovalTask.save()`, not when it is run.
@@ -486,9 +499,10 @@ declare namespace piremoval {
     /**
      * **Severity of this log item — NOT a task status.** The original docs claim this returns one
      * of the `task.TaskStatus` values (`PENDING`, `PROCESSING`, `COMPLETE`, `FAILED`), but at runtime
-     * it returns `'INFO'` on both creation and deletion log entries — clearly a log severity
-     * level, not a task status. Other values likely include `'WARN'` and `'ERROR'` (inferred from
-     * typical logging conventions).
+     * it is a log severity level, not a task status. Confirmed values: `'INFO'` on lifecycle entries
+     * (create / save / delete / started / processing) and `'SUCCESS'` on the per-category entries a
+     * `run()` emits. `'WARN'` and `'ERROR'` are inferred from typical logging conventions (not yet
+     * observed).
      *
      * This is a separate concept from `PiRemovalTaskStatus.status` (which IS a task status of type
      * `piremoval.Status`). The original docs conflated the two.
@@ -497,21 +511,19 @@ declare namespace piremoval {
      *
      * @since 2019.2
      */
-    readonly status: 'INFO' | 'WARN' | 'ERROR' | string;
+    readonly status: 'INFO' | 'SUCCESS' | 'WARN' | 'ERROR' | string;
 
     /**
-     * Indicates the change described by this log item. The original docs list `'FieldValue'`,
-     * `'SystemNote'`, and `'Workflow'` as the possible values, but at runtime `'OTHER'` appears
-     * on both the save-time and delete-time lifecycle log entries — `'OTHER'` appears to be the value
-     * for task-level lifecycle events, while the documented values likely apply to logs generated
-     * during actual PI removal (`run()`-time logs, not documented). No formal enum exists for these
-     * values.
+     * Indicates the change described by this log item. Lifecycle entries (create / save / delete /
+     * started / processing) use `'OTHER'`. A `run()` then emits one entry per processed category, and
+     * at runtime these are UPPERCASE `'FIELDVALUE'`, `'SYSTEMNOTE'`, and `'WORKFLOW'`, not the
+     * mixed-case `'FieldValue'`/`'SystemNote'`/`'Workflow'` the docs list. No formal enum exists.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156174886448}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156174886448.html}
      *
      * @since 2019.2
      */
-    readonly type: 'OTHER' | 'FieldValue' | 'SystemNote' | 'Workflow' | string;
+    readonly type: 'OTHER' | 'FIELDVALUE' | 'SYSTEMNOTE' | 'WORKFLOW' | string;
 
     /**
      * Returns a stable runtime class identifier — the literal string `'piremoval.PiRemovalTaskLogItem'`.
