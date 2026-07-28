@@ -1212,7 +1212,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_459607788085}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_459607788085.html}
      *
-     * @governance 20 units
+     * @governance 100 units (the Help Center documents 20, but the actual runtime cost is 100)
      * @restriction Server-side scripts only
      * @since 2015.2
      *
@@ -1252,7 +1252,7 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158221094722}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158221094722.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly taskId: string;
 
@@ -1261,14 +1261,14 @@ declare namespace task {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_46640258788}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_46640258788.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly status: task.TaskStatus | `${task.TaskStatus}`;
 
     /**
      * Returns the object type name (task.WorkflowTriggerTaskStatus)
      */
-    toString(): string;
+    toString(): 'task.WorkflowTriggerTaskStatus';
 
     /**
      * Convert to JSON object
