@@ -14,7 +14,7 @@
 interface CustomizeGlImpactContext {
   standardLines: StandardLines;
   customLines: CustomLines;
-  transactionRecord: Omit<record.RecordReadonly, `set${string}`>;
+  transactionRecord: Omit<record.Record, `set${string}`>;
   book: AccountingBook;
 }
 

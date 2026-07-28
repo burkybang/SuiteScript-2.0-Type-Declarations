@@ -1,6 +1,5 @@
 /// <reference path="./error.d.ts" />
 /// <reference path="./record.d.ts" />
-/// <reference path="./currentRecord.d.ts" />
 
 /**
  * SuiteScript config module
@@ -44,7 +43,7 @@ interface config {
   }): record.Record;
 
   /**
-   * Loads a configuration page as a `currentRecord.CurrentRecord` (dynamic mode). The returned
+   * Loads a configuration page as a `record.DynamicRecord` (dynamic mode). The returned
    * record exposes preference names and IDs via the usual record-member API and also includes
    * dynamic-mode methods: `getMacros`/`getMacro`/`executeMacro` for macros and `selectLine` /
    * `commitLine` / `cancelLine` / `selectNewLine` for current-sublist-line manipulation.
@@ -72,7 +71,7 @@ interface config {
   load(options: {
     type: config.Type | `${config.Type}` | string,
     isDynamic: true,
-  }): currentRecord.CurrentRecord;
+  }): record.DynamicRecord;
 
   /**
    * Loads a configuration page as a `record.Record` (standard mode).
@@ -104,7 +103,7 @@ interface config {
   load(type: config.Type | `${config.Type}` | string, isDynamic?: false): record.Record;
 
   /**
-   * Loads a configuration page as a `currentRecord.CurrentRecord` (dynamic mode).
+   * Loads a configuration page as a `record.DynamicRecord` (dynamic mode).
    * Positional-form overload of {@link config.load}; equivalent to
    * `config.load({type, isDynamic: true})`. The returned record exposes
    * preference names and IDs via the usual record-member API and also
@@ -132,7 +131,7 @@ interface config {
    * @throws {TypeError} (Java-layer leak) If `type` is a plain object or array, the underlying Java method crashes before the string-validation layer.
    * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If the executing role lacks the permission required to access the requested configuration page (e.g. `config.Type.TIME_POST` / `config.Type.TIME_VOID` require the "Transactions > Post Time" permission).
    */
-  load(type: config.Type | `${config.Type}` | string, isDynamic: true): currentRecord.CurrentRecord;
+  load(type: config.Type | `${config.Type}` | string, isDynamic: true): record.DynamicRecord;
 }
 
 /**

@@ -36,12 +36,12 @@ interface BeforeLoadContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407991781}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407991781.html}
    *
-   * @type {record.RecordReadonly} newRecord
+   * @type {record.Record} newRecord
    * @readonly
    *
    * @since 2015.2
    */
-  newRecord: record.RecordReadonly;
+  newRecord: record.Record;
 
   /**
    * The current UI form
@@ -134,24 +134,24 @@ interface BeforeSubmitContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407992070.html}
    *
-   * @type {record.RecordReadonly} newRecord
+   * @type {record.Record} newRecord
    * @readonly
    *
    * @since 2015.2
    */
-  newRecord: record.RecordReadonly;
+  newRecord: record.Record;
 
   /**
    * The old record before it was modified - Unavailable during create
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992070}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407992070.html}
    *
-   * @type {record.RecordReadonly} oldRecord
+   * @type {record.Record} oldRecord
    * @readonly
    *
    * @since 2015.2
    */
-  oldRecord?: record.RecordReadonly;
+  oldRecord?: record.Record;
 }
 
 declare namespace BeforeSubmitContext {
@@ -219,24 +219,24 @@ interface AfterSubmitContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407992281.html}
    *
-   * @type {record.RecordReadonly} newRecord
+   * @type {record.Record} newRecord
    * @readonly
    *
    * @since 2015.2
    */
-  newRecord: record.RecordReadonly;
+  newRecord: record.Record;
 
   /**
    * The old record before it was modified - Unavailable during create
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4407992281}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4407992281.html}
    *
-   * @type {record.RecordReadonly} oldRecord
+   * @type {record.Record} oldRecord
    * @readonly
    *
    * @since 2015.2
    */
-  oldRecord?: record.RecordReadonly;
+  oldRecord?: record.Record;
 }
 
 declare namespace AfterSubmitContext {

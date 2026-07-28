@@ -465,13 +465,13 @@ declare namespace render {
      * @since 2015.2
      *
      * @param templateName Name to use for the record inside the FreeMarker template
-     * @param record Record or RecordReadonly instance to bind
+     * @param record Record instance to bind
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
      */
     addRecord(
       templateName: string,
-      record: record.Record | record.RecordReadonly,
+      record: record.Record,
     ): void;
 
     /**
@@ -487,13 +487,13 @@ declare namespace render {
      *
      * @param options
      * @param options.templateName Name to use for the record inside the FreeMarker template
-     * @param options.record Record or RecordReadonly instance to bind
+     * @param options.record Record instance to bind
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
      */
     addRecord(options: {
       templateName: string,
-      record: record.Record | record.RecordReadonly,
+      record: record.Record,
     }): void;
 
     /**

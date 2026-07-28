@@ -5,7 +5,6 @@
  */
 
 /// <reference path="../N/record.d.ts" />
-/// <reference path="../N/currentRecord.d.ts" />
 /// <reference path="../N/ui/serverWidget.d.ts" />
 
 /**
@@ -22,24 +21,24 @@ interface OnActionContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
-   * @type {record.RecordReadonly | currentRecord.CurrentRecordReadonly}
+   * @type {record.Record | record.DynamicRecord}
    * @readonly
    *
    * @since 2016.1
    */
-  newRecord: record.RecordReadonly | currentRecord.CurrentRecordReadonly;
+  newRecord: record.Record | record.DynamicRecord;
 
   /**
    * The old record. Saving is not permitted
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4460429414}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4460429414.html}
    *
-   * @type {record.RecordReadonly | currentRecord.CurrentRecordReadonly}
+   * @type {record.Record | record.DynamicRecord}
    * @readonly
    *
    * @since 2016.1
    */
-  oldRecord: record.RecordReadonly | currentRecord.CurrentRecordReadonly;
+  oldRecord: record.Record | record.DynamicRecord;
 
   /**
    * The current form that the script uses to interact with the record. This parameter is available only in the beforeLoad context.
