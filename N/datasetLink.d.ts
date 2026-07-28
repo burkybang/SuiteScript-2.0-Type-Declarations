@@ -61,8 +61,8 @@ interface datasetLink {
    * @param options.id The ID of the linked dataset. Required at runtime despite docs marking it optional.
    * @return A `datasetLink.DatasetLink` object representing the linked datasets.
    *
-   * @throws {error.SuiteScriptError} NO_DATASET_DEFINED The `options.datasets` parameter is an empty array (documented; runtime emits `SSS_MISSING_REQD_ARGUMENT` instead — same condition, different code).
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The `options.id` parameter (or other required parameter) is not specified.
+   * @throws {error.SuiteScriptError} NO_DATASET_DEFINED The `options.datasets` parameter is an empty array ("No dataset defined"). Fires only once `id` is present; a missing `id` is validated first and throws `SSS_MISSING_REQD_ARGUMENT`.
+   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT A required parameter (notably `options.id`) is not specified. The runtime message names the whole `options` argument and leaks the internal method name: "datasetLink.createDatasetLink: Missing a required argument: options".
    */
   create(options: {
     datasets: dataset.Dataset[],
