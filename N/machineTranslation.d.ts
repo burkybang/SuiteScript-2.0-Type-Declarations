@@ -230,6 +230,12 @@ declare namespace machineTranslation {
    * `text` is the translated text and `language` is the language the document was translated
    * into.
    *
+   * **Ad-hoc input parity**: passing a plain `{id, text, language?}` object to `translate` behaves
+   * identically to a `createDocument`-built `Document`: the same target translation, the same
+   * automatic source-language detection when `language` is omitted, and the `Response.results`
+   * entries are `machineTranslation.Document` instances either way. The ad-hoc form is a pure
+   * convenience shorthand with no behavioral difference.
+   *
    * **Object characteristics**: `constructor.name === 'NetSuiteObject'`,
    * NOT frozen (`Object.isFrozen === false`), NOT sealed (arbitrary property assignments stick
    * silently — `doc.unknownProp = 'foo'` succeeds and persists). However, the three documented
@@ -314,9 +320,15 @@ declare namespace machineTranslation {
    * provided document couldn't be translated (for example, if it contains unrecognized
    * characters).
    *
-   * Error objects are returned in `Response.errors`. If no errors occurred during translation,
-   * `Response.errors` is empty. All properties are read-only; attempting to set any property
-   * throws a `READ_ONLY` error.
+   * Error objects are returned only in `Response.errors` (the `Response` exposes no other
+   * error-bearing property). If no errors occurred during translation, `Response.errors` is empty.
+   * All properties are read-only; attempting to set any property throws a `READ_ONLY` error.
+   *
+   * In practice the service is highly tolerant, so a per-document error is hard to induce: emoji,
+   * symbols, digit-only text, single very long tokens, mixed scripts, and even a mismatched declared
+   * source `language` all pass through (translated, garbled, or unchanged) with an empty
+   * `Response.errors`. This `{documentId, message}` shape is carried from the docs but was not
+   * reproduced at runtime; a real error likely requires a service-side failure.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0604035004}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0604035004.html}
    *
