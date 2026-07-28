@@ -193,10 +193,10 @@ interface render {
    * Creates a GL impact PDF for a transaction. Undocumented in the Help
    * Center; present at runtime.
    *
-   * Beyond `internalId`, the full parameter shape is unknown — calls with
-   * common candidate parameters (`accountingBookId`, `formId`, `locale`)
-   * all yield `UNEXPECTED_ERROR` on a bogus `internalId`, so we can't tell
-   * whether they are accepted or ignored. Pass only `internalId`.
+   * Only `internalId` is honored. Extra properties (e.g. `accountingBookId`, `formId`,
+   * `inCustLocale`) are silently accepted but ignored: against a real transaction they produce a
+   * byte-identical PDF, and even an unrecognized property is accepted without error. Pass only
+   * `internalId`.
    *
    * @governance 10 units
    * @restriction Server-side scripts only
@@ -497,15 +497,13 @@ declare namespace render {
     }): void;
 
     /**
-     * Binds a search result to a template variable.
+     * Binds a set of search results to a template variable.
      *
-     * Note: at the time of this writing, this method rejects every
-     * `search.Result` value passed to it with `WRONG_PARAMETER_TYPE:
-     * searchResult is expected as search.Result.` — including instances
-     * returned from `search.create(...).run().getRange(...)` whose
-     * `toString()` is `'search.Result'`. This appears to be a NetSuite
-     * runtime bug; the documented type remains `search.Result` and the
-     * type definition is preserved as documented.
+     * Note: despite the docs typing `searchResult` as a single `search.Result` (and the runtime
+     * error message reading `searchResult is expected as search.Result`), the method actually
+     * requires an ARRAY of results: `search.Result[]`, as returned by `ResultSet.getRange`. A single
+     * `search.Result`, a `ResultSet`, a `Search`, and a `Result` from an `each` callback are all
+     * rejected with `WRONG_PARAMETER_TYPE`. Typed below as `search.Result[]`.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456249023436}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456249023436.html}
      *
@@ -514,15 +512,15 @@ declare namespace render {
      * @since 2015.2
      *
      * @param options
-     * @param options.templateName Name to use for the search result inside the FreeMarker template
-     * @param options.searchResult Search result to bind
+     * @param options.templateName Name to use for the search results inside the FreeMarker template
+     * @param options.searchResult The array of search results to bind (e.g. from `ResultSet.getRange`)
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Currently fires on every input — see note above
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `searchResult` is not an array of `search.Result` (a single `Result`, a `ResultSet`, or a `Search` are all rejected)
      */
     addSearchResults(options: {
       templateName: string,
-      searchResult: search.Result,
+      searchResult: search.Result[],
     }): void;
 
     /**
