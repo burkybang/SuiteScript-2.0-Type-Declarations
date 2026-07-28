@@ -976,11 +976,12 @@ declare namespace task {
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_5594909667.html}
      *
      * @governance 100 units
-     * @restriction Server-side scripts only
+     * @restriction Scheduled, RESTlet, and Bundle Installation scripts only. The Help Center says "server-side scripts", but at runtime other server contexts (Suitelet, user event, on-demand) reject the call.
      * @since 2015.2
      *
      * @return taskId
      *
+     * @throws {error.SuiteScriptError} NLAPISUBMITCSVIMPORT_IS_ONLY_SUPPORTED_IN_SCHEDULED_RESTLET_AND_BUNDLE_INSTALLATION_SCRIPTS If called outside a Scheduled, RESTlet, or Bundle Installation script.
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `importFile` or `mappingId` was not set before submit (validated in that order).
      * @throws {error.SuiteScriptError} CANT_FIND_SAVED_IMPORT If `mappingId` does not correspond to an existing saved import map ("No saved import with internalId {id}").
      * @throws {error.SuiteScriptError} FAILED_TO_SUBMIT_JOB_REQUEST_1 when task cannot be submitted for some reason
