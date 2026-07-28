@@ -518,7 +518,7 @@ declare namespace dataset {
      * Note: docs and runtime disagree on how `columnId`/`alias` interact:
      * - `alias` is the only actually-required parameter
      * - `columnId` alone throws `SSS_MISSING_REQD_ARGUMENT: Missing a required argument: options.alias`
-     * - Supplying both does NOT throw `MUTUALLY_EXCLUSIVE_ARGUMENTS` despite what docs claim; the call succeeds
+     * - Supplying both does NOT throw `MUTUALLY_EXCLUSIVE_ARGUMENTS` despite what docs claim; the call succeeds using `alias` and **ignores `columnId` entirely** (the returned Expression's `parameters` carries only `{ dataset, alias }`, so even a nonexistent `columnId` is silently dropped)
      * - Supplying neither throws `SSS_MISSING_REQD_ARGUMENT` (not `NEITHER_ARGUMENT_DEFINED` as docs claim)
      *
      * (The official code sample also shows `getExpressionFromColumn({columnId: 16, alias: 'myExpression'})`,
@@ -532,7 +532,7 @@ declare namespace dataset {
      *
      * @param options
      * @param options.alias The alias of the column.
-     * @param [options.columnId] The numeric ID of the column. Optional at runtime even though docs mark it required.
+     * @param [options.columnId] The numeric ID of the column. Optional at runtime even though docs mark it required, and ignored whenever `alias` is supplied.
      * @return An expression referring to the column.
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The `options.alias` parameter is not specified.
@@ -660,24 +660,30 @@ declare namespace dataset {
    * `{name, description, record, id, columns}`.
    *
    * Notable runtime quirks:
-   * - `name` is **not** a plain string — it's a Java-lambda-like object (effectively a
-   *   `getTranslation`-bearing wrapper) used for translation. Its `toString()` returns a Java
-   *   identifier, not the resolved name.
-   * - Each `column.type` is a **Java enum object** (not a plain string). Its `toString()` returns
-   *   the type name (e.g. `'UNKNOWN'`, `'STRING'`), and it exposes `name`, `ordinal`, `isNumeric`.
-   *
-   * Both are typed loosely as `object` since the precise shape isn't documented and may vary.
+   * - `name` is **not** a plain string: it's a Java-backed translation wrapper. Call its
+   *   `getTranslation()` method to read the resolved name (e.g. `'Orders and Returns'`); its own
+   *   `toString()` returns an opaque Java identifier (a `ContextTranslatable{...}` or
+   *   `...$$Lambda@...` string), not the name.
+   * - Each `column.type` is a **Java enum proxy** (not a plain string). `toString()` and `name()`
+   *   both return the type name (e.g. `'STRING'`, `'UNKNOWN'`); `ordinal()` and `isNumeric()` are
+   *   also exposed as methods (alongside the usual Java `Object`/`Enum` methods).
    *
    * @since 2021.2
    */
   interface DescribeInfo {
 
     /**
-     * The name of the dataset. At runtime, an opaque "translation handle" object — call
-     * `toString()` to get a string representation (which may be a Java identifier, not the
-     * actual name). Use the dataset's `name` field from `dataset.list()` for a plain-string name.
+     * The name of the dataset, as a Java-backed translation wrapper. Call `getTranslation()` to
+     * read the resolved name as a plain string (e.g. `'Orders and Returns'`). The object's own
+     * `toString()` returns an opaque Java identifier, not the name.
      */
-    readonly name: object;
+    readonly name: {
+
+      /**
+       * Returns the resolved dataset name as a plain string (e.g. `'Orders and Returns'`).
+       */
+      getTranslation(): string,
+    };
 
     /**
      * The description of the dataset, or `null`.
@@ -705,10 +711,33 @@ declare namespace dataset {
       readonly alias: string,
 
       /**
-       * The column's type. A Java-enum-like object at runtime — `toString()` returns the type
-       * name (e.g. `'STRING'`, `'INTEGER'`, `'UNKNOWN'`). Exposes `name` and `ordinal` properties.
+       * The column's data type, as a Java enum proxy. `toString()` and `name()` both return the
+       * type name (e.g. `'STRING'`, `'UNKNOWN'`); `ordinal()` returns the enum position and
+       * `isNumeric()` whether the type is numeric. (The object also carries the usual Java
+       * `Object`/`Enum` methods, e.g. `equals`, `hashCode`, `compareTo`.)
        */
-      readonly type: object,
+      readonly type: {
+
+        /**
+         * Returns the type name, e.g. `'STRING'`, `'UNKNOWN'`.
+         */
+        toString(): string,
+
+        /**
+         * Returns the type name, e.g. `'STRING'`, `'UNKNOWN'` (same value as `toString()`).
+         */
+        name(): string,
+
+        /**
+         * Returns the enum ordinal (position) of the type.
+         */
+        ordinal(): number,
+
+        /**
+         * Returns whether the type is numeric.
+         */
+        isNumeric(): boolean,
+      },
     }[];
   }
 
