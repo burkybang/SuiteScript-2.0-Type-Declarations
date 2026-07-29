@@ -453,48 +453,51 @@ declare namespace render {
       id: number,
     }): void;
 
-    /**
-     * Binds a record to a template variable. The bound record is exposed
-     * inside the FreeMarker template under the supplied `templateName`.
-     * Both positional and options-bag forms are accepted.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param templateName Name to use for the record inside the FreeMarker template
-     * @param record Record instance to bind
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
-     */
-    addRecord(
-      templateName: string,
-      record: record.Record,
-    ): void;
+    addRecord: {
 
-    /**
-     * Binds a record to a template variable. The bound record is exposed
-     * inside the FreeMarker template under the supplied `templateName`.
-     * Both positional and options-bag forms are accepted.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.templateName Name to use for the record inside the FreeMarker template
-     * @param options.record Record instance to bind
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
-     */
-    addRecord(options: {
-      templateName: string,
-      record: record.Record,
-    }): void;
+      /**
+       * Binds a record to a template variable. The bound record is exposed
+       * inside the FreeMarker template under the supplied `templateName`.
+       * Both positional and options-bag forms are accepted.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param templateName Name to use for the record inside the FreeMarker template
+       * @param record Record instance to bind
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
+       */
+      (
+        templateName: string,
+        record: record.Record,
+      ): void;
+
+      /**
+       * Binds a record to a template variable. The bound record is exposed
+       * inside the FreeMarker template under the supplied `templateName`.
+       * Both positional and options-bag forms are accepted.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_456543212890}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_456543212890.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.templateName Name to use for the record inside the FreeMarker template
+       * @param options.record Record instance to bind
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
+       */
+      (options: {
+        templateName: string,
+        record: record.Record,
+      }): void;
+    };
 
     /**
      * Binds a set of search results to a template variable.
@@ -523,52 +526,55 @@ declare namespace render {
       searchResult: search.Result[],
     }): void;
 
-    /**
-     * Binds a saved query (referenced by script ID) to a template variable.
-     * Undocumented in the Help Center; present at runtime.
-     *
-     * Mutually exclusive with the `query` form — passing both raises an
-     * error.
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2018.2
-     *
-     * @param options
-     * @param options.templateName Name to use for the query inside the FreeMarker template
-     * @param options.id Script ID of a saved query
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
-     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
-     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
-     */
-    addQuery(options: {
-      templateName: string,
-      id: string,
-    }): void;
+    addQuery: {
 
-    /**
-     * Binds a `query.Query` instance to a template variable. Undocumented in
-     * the Help Center; present at runtime.
-     *
-     * Mutually exclusive with the `id` form — passing both raises an error.
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2018.2
-     *
-     * @param options
-     * @param options.templateName Name to use for the query inside the FreeMarker template
-     * @param options.query A `query.Query` instance
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
-     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
-     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
-     */
-    addQuery(options: {
-      templateName: string,
-      query: query.Query,
-    }): void;
+      /**
+       * Binds a saved query (referenced by script ID) to a template variable.
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * Mutually exclusive with the `query` form — passing both raises an
+       * error.
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2018.2
+       *
+       * @param options
+       * @param options.templateName Name to use for the query inside the FreeMarker template
+       * @param options.id Script ID of a saved query
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
+       * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
+       * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
+       */
+      (options: {
+        templateName: string,
+        id: string,
+      }): void;
+
+      /**
+       * Binds a `query.Query` instance to a template variable. Undocumented in
+       * the Help Center; present at runtime.
+       *
+       * Mutually exclusive with the `id` form — passing both raises an error.
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2018.2
+       *
+       * @param options
+       * @param options.templateName Name to use for the query inside the FreeMarker template
+       * @param options.query A `query.Query` instance
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `templateName` is missing or null
+       * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If neither `id` nor `query` is provided
+       * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `id` and `query` are provided
+       */
+      (options: {
+        templateName: string,
+        query: query.Query,
+      }): void;
+    };
 
     /**
      * Adds an XML, JSON, or object data source to the template under the
@@ -641,40 +647,43 @@ declare namespace render {
      */
     renderAsPdf(): file.File;
 
-    /**
-     * Renders the template as a PDF directly to a Suitelet's HTTP response.
-     * Positional form. Use this when the script context is a Suitelet
-     * generating PDF output to the browser.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param response The Suitelet's `http.ServerResponse` instance
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `response` is missing or null
-     */
-    renderPdfToResponse(response: http.ServerResponse): void;
+    renderPdfToResponse: {
 
-    /**
-     * Renders the template as a PDF directly to a Suitelet's HTTP response.
-     * Options-bag form. Undocumented in the Help Center; present at runtime
-     * alongside the positional form.
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.response The Suitelet's `http.ServerResponse` instance
-     *
-     * @throws {error.SuiteScriptError} MISSING_PDF_PARAMETERS If `options` is empty or if `response` is missing or null
-     */
-    renderPdfToResponse(options: {
-      response: http.ServerResponse,
-    }): void;
+      /**
+       * Renders the template as a PDF directly to a Suitelet's HTTP response.
+       * Positional form. Use this when the script context is a Suitelet
+       * generating PDF output to the browser.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param response The Suitelet's `http.ServerResponse` instance
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `response` is missing or null
+       */
+      (response: http.ServerResponse): void;
+
+      /**
+       * Renders the template as a PDF directly to a Suitelet's HTTP response.
+       * Options-bag form. Undocumented in the Help Center; present at runtime
+       * alongside the positional form.
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.response The Suitelet's `http.ServerResponse` instance
+       *
+       * @throws {error.SuiteScriptError} MISSING_PDF_PARAMETERS If `options` is empty or if `response` is missing or null
+       */
+      (options: {
+        response: http.ServerResponse,
+      }): void;
+    };
 
     /**
      * Returns the class-name literal for this object. Undocumented in the

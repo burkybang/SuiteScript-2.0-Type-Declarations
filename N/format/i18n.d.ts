@@ -75,74 +75,77 @@ interface i18n {
     locale?: string,
   }): string;
 
-  /**
-   * Creates a `CurrencyFormatter` configured for a specific currency or locale.
-   * Exactly one of `currency` or `locale` must be provided — both is an error,
-   * neither is an error.
-   *
-   * When `currency` is specified, the formatter uses that currency's symbol
-   * and the account's default locale. When `locale` is specified, the
-   * formatter uses the locale's default currency (e.g. `'de-DE'` → EUR,
-   * `'ja-JP'` → JPY) and locale-appropriate number formatting (group
-   * separator, decimal separator, negative-number style).
-   *
-   * The `Currency` enum lists all ISO currency codes the type system
-   * supports, but at runtime only currencies enabled in the current
-   * account are valid — passing an enabled-elsewhere code (e.g. `'JPY'`
-   * in an account where JPY isn't enabled) errors with
-   * `SSS_INVALID_CURRENCY_ID`. The locale form bypasses this check
-   * (i.e. `{locale: 'ja-JP'}` works even when JPY isn't enabled, returning
-   * a formatter with `currency: 'JPY'`).
-   *
-   * Malformed-but-unrecognized locales (e.g. `'xx-XX'`) silently fall back
-   * to defaults — the formatter is returned without error. Only locales
-   * the platform fails to parse at all (e.g. `'bogus-locale'`) raise
-   * `INVALID_LOCALE`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2019.1
-   *
-   * @param options
-   * @param options.currency An enabled currency code (e.g. `i18n.Currency.USD` or `'USD'`). Mutually exclusive with `options.locale`.
-   * @return A `CurrencyFormatter` configured with the resolved currency, locale, symbol, and embedded `NumberFormatter`.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.currency` is missing/null/empty string.
-   * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If both `options.currency` and `options.locale` are missing or null.
-   * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `options.currency` and `options.locale` are provided.
-   * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY_ID If `options.currency` is not a recognized currency, or is not enabled in the current account.
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options.currency` is not a string.
-   */
-  getCurrencyFormatter(options: {
-    currency: i18n.Currency | `${i18n.Currency}`,
-  }): i18n.CurrencyFormatter;
+  getCurrencyFormatter: {
 
-  /**
-   * Creates a `CurrencyFormatter` configured from a locale's default currency.
-   * Exactly one of `currency` or `locale` must be provided — both is an
-   * error, neither is an error.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2019.1
-   *
-   * @param options
-   * @param options.locale A BCP-47 locale tag (e.g. `'de-DE'`, `'ja-JP'`). Mutually exclusive with `options.currency`.
-   * @return A `CurrencyFormatter` configured with the locale's default currency, locale, symbol, and embedded `NumberFormatter`.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.locale` is missing/null/empty string.
-   * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If both `options.currency` and `options.locale` are missing or null.
-   * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `options.currency` and `options.locale` are provided.
-   * @throws {error.SuiteScriptError} INVALID_LOCALE If `options.locale` is in a form the platform cannot parse.
-   * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options.locale` is not a string.
-   */
-  getCurrencyFormatter(options: {
-    locale: string,
-  }): i18n.CurrencyFormatter;
+    /**
+     * Creates a `CurrencyFormatter` configured for a specific currency or locale.
+     * Exactly one of `currency` or `locale` must be provided — both is an error,
+     * neither is an error.
+     *
+     * When `currency` is specified, the formatter uses that currency's symbol
+     * and the account's default locale. When `locale` is specified, the
+     * formatter uses the locale's default currency (e.g. `'de-DE'` → EUR,
+     * `'ja-JP'` → JPY) and locale-appropriate number formatting (group
+     * separator, decimal separator, negative-number style).
+     *
+     * The `Currency` enum lists all ISO currency codes the type system
+     * supports, but at runtime only currencies enabled in the current
+     * account are valid — passing an enabled-elsewhere code (e.g. `'JPY'`
+     * in an account where JPY isn't enabled) errors with
+     * `SSS_INVALID_CURRENCY_ID`. The locale form bypasses this check
+     * (i.e. `{locale: 'ja-JP'}` works even when JPY isn't enabled, returning
+     * a formatter with `currency: 'JPY'`).
+     *
+     * Malformed-but-unrecognized locales (e.g. `'xx-XX'`) silently fall back
+     * to defaults — the formatter is returned without error. Only locales
+     * the platform fails to parse at all (e.g. `'bogus-locale'`) raise
+     * `INVALID_LOCALE`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2019.1
+     *
+     * @param options
+     * @param options.currency An enabled currency code (e.g. `i18n.Currency.USD` or `'USD'`). Mutually exclusive with `options.locale`.
+     * @return A `CurrencyFormatter` configured with the resolved currency, locale, symbol, and embedded `NumberFormatter`.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.currency` is missing/null/empty string.
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If both `options.currency` and `options.locale` are missing or null.
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `options.currency` and `options.locale` are provided.
+     * @throws {error.SuiteScriptError} SSS_INVALID_CURRENCY_ID If `options.currency` is not a recognized currency, or is not enabled in the current account.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options.currency` is not a string.
+     */
+    (options: {
+      currency: i18n.Currency | `${i18n.Currency}`,
+    }): i18n.CurrencyFormatter;
+
+    /**
+     * Creates a `CurrencyFormatter` configured from a locale's default currency.
+     * Exactly one of `currency` or `locale` must be provided — both is an
+     * error, neither is an error.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1558023369}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1558023369.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2019.1
+     *
+     * @param options
+     * @param options.locale A BCP-47 locale tag (e.g. `'de-DE'`, `'ja-JP'`). Mutually exclusive with `options.currency`.
+     * @return A `CurrencyFormatter` configured with the locale's default currency, locale, symbol, and embedded `NumberFormatter`.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.locale` is missing/null/empty string.
+     * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED If both `options.currency` and `options.locale` are missing or null.
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `options.currency` and `options.locale` are provided.
+     * @throws {error.SuiteScriptError} INVALID_LOCALE If `options.locale` is in a form the platform cannot parse.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options.locale` is not a string.
+     */
+    (options: {
+      locale: string,
+    }): i18n.CurrencyFormatter;
+  };
 
   /**
    * Creates a `NumberFormatter` configured for number-to-string formatting.

@@ -55,51 +55,54 @@ interface recognition {
     taskId: number | string,
   }): recognition.MergeArrangementsTaskStatus;
 
-  /**
-   * Creates a merge task that combines entire revenue arrangements (when `taskType` is
-   * `TaskType.MERGE_ARRANGEMENTS_TASK`).
-   *
-   * After creating the task, populate its properties (such as `MergeArrangementsTask.arrangements`)
-   * before calling `MergeArrangementsTask.submit()`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1554995115}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1554995115.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2019.2
-   *
-   * @param options
-   * @param options.taskType The type of merge task to create. Use `TaskType.MERGE_ARRANGEMENTS_TASK`.
-   * @return The newly-created (unsubmitted) merge-arrangements task.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Required `options.taskType` is missing (also fires for no-args calls and empty `{}`). Error message prefix is `task.create`, indicating internal forwarding to `N/task`.   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE The `options.taskType` parameter represents an invalid task type.
-   */
-  create(options: {
-    taskType: recognition.TaskType.MERGE_ARRANGEMENTS_TASK | `${recognition.TaskType.MERGE_ARRANGEMENTS_TASK}`,
-  }): recognition.MergeArrangementsTask;
+  create: {
 
-  /**
-   * Creates a merge task that combines individual revenue elements (when `taskType` is
-   * `TaskType.MERGE_ELEMENTS_TASK`).
-   *
-   * After creating the task, populate its properties (such as `MergeElementsTask.elements`)
-   * before calling `MergeElementsTask.submit()`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1554995115}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1554995115.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2019.2
-   *
-   * @param options
-   * @param options.taskType The type of merge task to create. Use `TaskType.MERGE_ELEMENTS_TASK`.
-   * @return The newly-created (unsubmitted) merge-elements task.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Required `options.taskType` is missing.   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE The `options.taskType` parameter represents an invalid task type.
-   */
-  create(options: {
-    taskType: recognition.TaskType.MERGE_ELEMENTS_TASK | `${recognition.TaskType.MERGE_ELEMENTS_TASK}`,
-  }): recognition.MergeElementsTask;
+    /**
+     * Creates a merge task that combines entire revenue arrangements (when `taskType` is
+     * `TaskType.MERGE_ARRANGEMENTS_TASK`).
+     *
+     * After creating the task, populate its properties (such as `MergeArrangementsTask.arrangements`)
+     * before calling `MergeArrangementsTask.submit()`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1554995115}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1554995115.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2019.2
+     *
+     * @param options
+     * @param options.taskType The type of merge task to create. Use `TaskType.MERGE_ARRANGEMENTS_TASK`.
+     * @return The newly-created (unsubmitted) merge-arrangements task.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Required `options.taskType` is missing (also fires for no-args calls and empty `{}`). Error message prefix is `task.create`, indicating internal forwarding to `N/task`.   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE The `options.taskType` parameter represents an invalid task type.
+     */
+    (options: {
+      taskType: recognition.TaskType.MERGE_ARRANGEMENTS_TASK | `${recognition.TaskType.MERGE_ARRANGEMENTS_TASK}`,
+    }): recognition.MergeArrangementsTask;
+
+    /**
+     * Creates a merge task that combines individual revenue elements (when `taskType` is
+     * `TaskType.MERGE_ELEMENTS_TASK`).
+     *
+     * After creating the task, populate its properties (such as `MergeElementsTask.elements`)
+     * before calling `MergeElementsTask.submit()`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1554995115}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1554995115.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2019.2
+     *
+     * @param options
+     * @param options.taskType The type of merge task to create. Use `TaskType.MERGE_ELEMENTS_TASK`.
+     * @return The newly-created (unsubmitted) merge-elements task.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT Required `options.taskType` is missing.   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE The `options.taskType` parameter represents an invalid task type.
+     */
+    (options: {
+      taskType: recognition.TaskType.MERGE_ELEMENTS_TASK | `${recognition.TaskType.MERGE_ELEMENTS_TASK}`,
+    }): recognition.MergeElementsTask;
+  };
 }
 
 declare namespace recognition {

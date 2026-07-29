@@ -22,191 +22,200 @@
  */
 interface crypto_ {
 
-  /**
-   * Creates a new SecretKey object referenced by the `guid` of a SuiteScript "secret"
-   * field (a CustomList or Custom Record field holding an encrypted value managed by
-   * NetSuite). The same SecretKey instance can then be passed to `createHmac`,
-   * `createCipher`, or `createDecipher`.
-   *
-   * Mutually exclusive with the `secret` form — passing both throws
-   * `MUTUALLY_EXCLUSIVE_ARGUMENTS`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.guid GUID of the secret stored in a SuiteScript field
-   * @param [options.encoding=encode.Encoding.HEX] Encoding of the underlying secret value
-   * @return A new SecretKey bound to the given GUID
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if both `guid` and `secret` are absent (error names `options.guid` when neither is provided)
-   * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `guid` and `secret` are provided in the same call
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
-   */
-  createSecretKey(options: {
-    guid: string,
-    encoding?: encode.Encoding | `${encode.Encoding}`,
-  }): crypto_.SecretKey;
+  createSecretKey: {
 
-  /**
-   * Creates a new SecretKey object referenced by the script ID of an API Secret
-   * (a NetSuite-managed encrypted value addressed by `custsecret_*` identifier).
-   * The same SecretKey instance can then be passed to `createHmac`, `createCipher`,
-   * or `createDecipher`.
-   *
-   * Mutually exclusive with the `guid` form — passing both throws
-   * `MUTUALLY_EXCLUSIVE_ARGUMENTS`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2021.1
-   *
-   * @param options
-   * @param options.secret Script ID of an API Secret (e.g. `custsecret_my_secret`)
-   * @param [options.encoding=encode.Encoding.HEX] Encoding of the underlying secret value
-   * @return A new SecretKey bound to the given secret
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if both `guid` and `secret` are absent (error names `options.guid` when neither is provided)
-   * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `guid` and `secret` are provided in the same call
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
-   */
-  createSecretKey(options: {
-    secret: string,
-    encoding?: encode.Encoding | `${encode.Encoding}`,
-  }): crypto_.SecretKey;
+    /**
+     * Creates a new SecretKey object referenced by the `guid` of a SuiteScript "secret"
+     * field (a CustomList or Custom Record field holding an encrypted value managed by
+     * NetSuite). The same SecretKey instance can then be passed to `createHmac`,
+     * `createCipher`, or `createDecipher`.
+     *
+     * Mutually exclusive with the `secret` form — passing both throws
+     * `MUTUALLY_EXCLUSIVE_ARGUMENTS`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.guid GUID of the secret stored in a SuiteScript field
+     * @param [options.encoding=encode.Encoding.HEX] Encoding of the underlying secret value
+     * @return A new SecretKey bound to the given GUID
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if both `guid` and `secret` are absent (error names `options.guid` when neither is provided)
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `guid` and `secret` are provided in the same call
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
+     */
+    (options: {
+      guid: string,
+      encoding?: encode.Encoding | `${encode.Encoding}`,
+    }): crypto_.SecretKey;
 
-  /**
-   * Positional form of `createSecretKey`. The single string argument is treated as
-   * a GUID or secret script ID interchangeably — both succeed at the constructor
-   * stage. Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param guidOrSecret GUID of a SuiteScript secret field, or script ID of an API Secret
-   * @param [encoding=encode.Encoding.HEX] Encoding of the underlying secret value
-   * @return A new SecretKey
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
-   */
-  createSecretKey(
-    guidOrSecret: string,
-    encoding?: encode.Encoding | `${encode.Encoding}`,
-  ): crypto_.SecretKey;
+    /**
+     * Creates a new SecretKey object referenced by the script ID of an API Secret
+     * (a NetSuite-managed encrypted value addressed by `custsecret_*` identifier).
+     * The same SecretKey instance can then be passed to `createHmac`, `createCipher`,
+     * or `createDecipher`.
+     *
+     * Mutually exclusive with the `guid` form — passing both throws
+     * `MUTUALLY_EXCLUSIVE_ARGUMENTS`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2021.1
+     *
+     * @param options
+     * @param options.secret Script ID of an API Secret (e.g. `custsecret_my_secret`)
+     * @param [options.encoding=encode.Encoding.HEX] Encoding of the underlying secret value
+     * @return A new SecretKey bound to the given secret
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if both `guid` and `secret` are absent (error names `options.guid` when neither is provided)
+     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS If both `guid` and `secret` are provided in the same call
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
+     */
+    (options: {
+      secret: string,
+      encoding?: encode.Encoding | `${encode.Encoding}`,
+    }): crypto_.SecretKey;
 
-  /**
-   * Creates a `crypto.Hash` object for computing a message digest. Returned Hash is a
-   * stateful streaming hasher: call `update` to feed data, `digest` to finalize. The
-   * Hash remains usable after `digest`; further `update` / `digest` calls accumulate
-   * onto the existing state rather than producing the same digest again.
-   *
-   * Note: although `HashAlg` only enumerates supported algorithms (SHA256 and SHA512),
-   * the runtime enum object additionally contains `SHA1` and `MD5`. Passing either
-   * raises `HASHING_ALGORITHM_IS_NO_LONGER_VALID` — the type file excludes them so
-   * IntelliSense reflects the usable API.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.algorithm Hashing algorithm — `SHA256` or `SHA512`
-   * @return A new Hash bound to the given algorithm
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `algorithm` is missing or null
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive — lowercase `sha256` rejected)
-   * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5` (both present in the runtime enum but rejected as obsolete)
-   */
-  createHash(options: {
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
-  }): crypto_.Hash;
+    /**
+     * Positional form of `createSecretKey`. The single string argument is treated as
+     * a GUID or secret script ID interchangeably — both succeed at the constructor
+     * stage. Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358653390}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358653390.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param guidOrSecret GUID of a SuiteScript secret field, or script ID of an API Secret
+     * @param [encoding=encode.Encoding.HEX] Encoding of the underlying secret value
+     * @return A new SecretKey
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `encoding` is not one of the `encode.Encoding` values (case-sensitive)
+     */
+    (
+      guidOrSecret: string,
+      encoding?: encode.Encoding | `${encode.Encoding}`,
+    ): crypto_.SecretKey;
+  };
 
-  /**
-   * Positional form of `createHash`. Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param algorithm Hashing algorithm — `SHA256` or `SHA512`
-   * @return A new Hash bound to the given algorithm
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `algorithm` is missing or null
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
-   * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
-   */
-  createHash(
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
-  ): crypto_.Hash;
+  createHash: {
 
-  /**
-   * Creates a `crypto.Hmac` object for computing a keyed message digest. Returned
-   * Hmac is a stateful streaming hasher: call `update` to feed data, `digest` to
-   * compute the keyed digest.
-   *
-   * The `key` argument must be a `SecretKey` produced by `createSecretKey`. Passing
-   * a plain string raises a Java-layer error (surfaced as `UNEXPECTED_ERROR`).
-   *
-   * Note: the runtime `HashAlg` enum contains `SHA1` and `MD5` in addition to the
-   * supported `SHA256` and `SHA512`. Passing `SHA1` or `MD5` raises
-   * `HASHING_ALGORITHM_IS_NO_LONGER_VALID`.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647613.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.algorithm Hashing algorithm — `SHA256` or `SHA512`
-   * @param options.key Secret key produced by `createSecretKey`
-   * @return A new Hmac
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `algorithm` or `key` is missing or null
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
-   * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
-   * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `key` is not a SecretKey instance (Java-layer TypeError leak)
-   */
-  createHmac(options: {
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
-    key: crypto_.SecretKey,
-  }): crypto_.Hmac;
+    /**
+     * Creates a `crypto.Hash` object for computing a message digest. Returned Hash is a
+     * stateful streaming hasher: call `update` to feed data, `digest` to finalize. The
+     * Hash remains usable after `digest`; further `update` / `digest` calls accumulate
+     * onto the existing state rather than producing the same digest again.
+     *
+     * Note: although `HashAlg` only enumerates supported algorithms (SHA256 and SHA512),
+     * the runtime enum object additionally contains `SHA1` and `MD5`. Passing either
+     * raises `HASHING_ALGORITHM_IS_NO_LONGER_VALID` — the type file excludes them so
+     * IntelliSense reflects the usable API.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.algorithm Hashing algorithm — `SHA256` or `SHA512`
+     * @return A new Hash bound to the given algorithm
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `algorithm` is missing or null
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive — lowercase `sha256` rejected)
+     * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5` (both present in the runtime enum but rejected as obsolete)
+     */
+    (options: {
+      algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+    }): crypto_.Hash;
 
-  /**
-   * Positional form of `createHmac`. Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647613.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param algorithm Hashing algorithm — `SHA256` or `SHA512`
-   * @param key Secret key produced by `createSecretKey`
-   * @return A new Hmac
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `algorithm` or `key` is missing or null
-   * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
-   * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
-   * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `key` is not a SecretKey instance (Java-layer TypeError leak)
-   */
-  createHmac(
-    algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
-    key: crypto_.SecretKey,
-  ): crypto_.Hmac;
+    /**
+     * Positional form of `createHash`. Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647370}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647370.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param algorithm Hashing algorithm — `SHA256` or `SHA512`
+     * @return A new Hash bound to the given algorithm
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `algorithm` is missing or null
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
+     * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
+     */
+    (
+      algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+    ): crypto_.Hash;
+  };
+
+  createHmac: {
+
+    /**
+     * Creates a `crypto.Hmac` object for computing a keyed message digest. Returned
+     * Hmac is a stateful streaming hasher: call `update` to feed data, `digest` to
+     * compute the keyed digest.
+     *
+     * The `key` argument must be a `SecretKey` produced by `createSecretKey`. Passing
+     * a plain string raises a Java-layer error (surfaced as `UNEXPECTED_ERROR`).
+     *
+     * Note: the runtime `HashAlg` enum contains `SHA1` and `MD5` in addition to the
+     * supported `SHA256` and `SHA512`. Passing `SHA1` or `MD5` raises
+     * `HASHING_ALGORITHM_IS_NO_LONGER_VALID`.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647613.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.algorithm Hashing algorithm — `SHA256` or `SHA512`
+     * @param options.key Secret key produced by `createSecretKey`
+     * @return A new Hmac
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if `algorithm` or `key` is missing or null
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
+     * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
+     * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `key` is not a SecretKey instance (Java-layer TypeError leak)
+     */
+    (options: {
+      algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+      key: crypto_.SecretKey,
+    }): crypto_.Hmac;
+
+    /**
+     * Positional form of `createHmac`. Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4358647613}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4358647613.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param algorithm Hashing algorithm — `SHA256` or `SHA512`
+     * @param key Secret key produced by `createSecretKey`
+     * @return A new Hmac
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `algorithm` or `key` is missing or null
+     * @throws {error.SuiteScriptError} INVALID_ENUM_TYPE_VALUE If `algorithm` is not a recognized HashAlg value (case-sensitive)
+     * @throws {error.SuiteScriptError} HASHING_ALGORITHM_IS_NO_LONGER_VALID If `algorithm` is `SHA1` or `MD5`
+     * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `key` is not a SecretKey instance (Java-layer TypeError leak)
+     */
+    (
+      algorithm: crypto_.HashAlg | `${crypto_.HashAlg}`,
+      key: crypto_.SecretKey,
+    ): crypto_.Hmac;
+  };
 
   /**
    * Creates a `crypto.Cipher` object for AES encryption. Returned Cipher is a

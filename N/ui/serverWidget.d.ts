@@ -13,98 +13,107 @@
  */
 interface serverWidget {
 
-  /**
-   * Instantiate a assistant object (specifying the title, and whether to hide the menu)
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param title form title
-   * @param [hideNavBar=false]
-   */
-  createAssistant(
-    title: string,
-    hideNavBar?: boolean,
-  ): serverWidget.Assistant;
+  createAssistant: {
 
-  /**
-   * Instantiate a assistant object (specifying the title, and whether to hide the menu)
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.title form title
-   * @param [options.hideNavBar=false]
-   */
-  createAssistant(options: {
-    title: string,
-    hideNavBar?: boolean,
-  }): serverWidget.Assistant;
+    /**
+     * Instantiate a assistant object (specifying the title, and whether to hide the menu)
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param title form title
+     * @param [hideNavBar=false]
+     */
+    (
+      title: string,
+      hideNavBar?: boolean,
+    ): serverWidget.Assistant;
 
-  /**
-   * Instantiate a form object (specifying the title, and whether to hide the menu)
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param title form title
-   * @param [hideNavBar=false]
-   */
-  createForm(
-    title: string,
-    hideNavBar?: boolean,
-  ): serverWidget.Form;
+    /**
+     * Instantiate a assistant object (specifying the title, and whether to hide the menu)
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.title form title
+     * @param [options.hideNavBar=false]
+     */
+    (options: {
+      title: string,
+      hideNavBar?: boolean,
+    }): serverWidget.Assistant;
+  };
 
-  /**
-   * Instantiate a form object (specifying the title, and whether to hide the menu)
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.title form title
-   * @param [options.hideNavBar=false] (optional)
-   */
-  createForm(options: {
-    title: string,
-    hideNavBar?: boolean,
-  }): serverWidget.Form;
+  createForm: {
 
-  /**
-   * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
-   *
-   * @governance none
-   * @restriction Supported only by Suitelet scripts
-   * @since 2015.2
-   *
-   * @param title list title
-   * @param [hideNavBar=false]
-   */
-  createList(
-    title: string,
-    hideNavBar?: boolean,
-  ): serverWidget.List;
+    /**
+     * Instantiate a form object (specifying the title, and whether to hide the menu)
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param title form title
+     * @param [hideNavBar=false]
+     */
+    (
+      title: string,
+      hideNavBar?: boolean,
+    ): serverWidget.Form;
 
-  /**
-   * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
-   *
-   * @governance none
-   * @restriction Supported only by Suitelet scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.title list title
-   * @param [options.hideNavBar=false]
-   */
-  createList(options: {
-    title: string,
-    hideNavBar?: boolean,
-  }): serverWidget.List;
+    /**
+     * Instantiate a form object (specifying the title, and whether to hide the menu)
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.title form title
+     * @param [options.hideNavBar=false] (optional)
+     */
+    (options: {
+      title: string,
+      hideNavBar?: boolean,
+    }): serverWidget.Form;
+  };
+
+  createList: {
+
+    /**
+     * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
+     *
+     * @governance none
+     * @restriction Supported only by Suitelet scripts
+     * @since 2015.2
+     *
+     * @param title list title
+     * @param [hideNavBar=false]
+     */
+    (
+      title: string,
+      hideNavBar?: boolean,
+    ): serverWidget.List;
+
+    /**
+     * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
+     *
+     * @governance none
+     * @restriction Supported only by Suitelet scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.title list title
+     * @param [options.hideNavBar=false]
+     */
+    (options: {
+      title: string,
+      hideNavBar?: boolean,
+    }): serverWidget.List;
+  };
 }
 
 declare namespace serverWidget {
@@ -410,28 +419,31 @@ declare namespace serverWidget {
       source?: string,
     }): Field;
 
-    /**
-     * Gets field from sublist
-     *
-     * @governance none
-     *
-     * @param id ID of the field to get
-     */
-    getField(
-      id: string,
-    ): Field;
+    getField: {
 
-    /**
-     * Gets field from sublist
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id ID of the field to get
-     */
-    getField(options: {
-      id: string,
-    }): Field;
+      /**
+       * Gets field from sublist
+       *
+       * @governance none
+       *
+       * @param id ID of the field to get
+       */
+      (
+        id: string,
+      ): Field;
+
+      /**
+       * Gets field from sublist
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id ID of the field to get
+       */
+      (options: {
+        id: string,
+      }): Field;
+    };
 
     /**
      * Convert to JSON object
@@ -630,32 +642,35 @@ declare namespace serverWidget {
       displayType: FieldDisplayType | `${FieldDisplayType}`,
     }): Field;
 
-    /**
-     * Set help text for a field
-     *
-     * @governance none
-     *
-     * @param help The help text for the field
-     * @return same object for chaining
-     */
-    setHelpText(
-      help: string,
-    ): Field;
+    setHelpText: {
 
-    /**
-     * Set help text for a field
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.help The help text for the field
-     * @param [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
-     * @return same object for chaining
-     */
-    setHelpText(options: {
-      help: string,
-      showInlineForAssistant?: boolean,
-    }): Field;
+      /**
+       * Set help text for a field
+       *
+       * @governance none
+       *
+       * @param help The help text for the field
+       * @return same object for chaining
+       */
+      (
+        help: string,
+      ): Field;
+
+      /**
+       * Set help text for a field
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.help The help text for the field
+       * @param [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
+       * @return same object for chaining
+       */
+      (options: {
+        help: string,
+        showInlineForAssistant?: boolean,
+      }): Field;
+    };
 
     /**
      * Get the select options for a field
@@ -1210,50 +1225,53 @@ declare namespace serverWidget {
      */
     clientScriptModulePath: string;
 
-    /**
-     * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
-     * once the pageInit script is completed. The method takes either an already created Message object or the options
-     * object that would be used for creating the message.
-     *
-     * @governance none
-     *
-     * @param message the message object to be displayed in browser
-     */
-    addPageInitMessage(message: message.Message): void;
+    addPageInitMessage: {
 
-    /**
-     * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
-     * once the pageInit script is completed. The method takes either an already created Message object or the options
-     * object that would be used for creating the message.
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.type The type of message, see message.Type
-     * @param [options.title] The title of the message. Defaults to empty string.
-     * @param [options.message] The content of the message. Defaults to empty string.
-     * @param [options.duration] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
-     */
-    addPageInitMessage(options: {
-      type: message.Type | `${message.Type}`,
-      title?: string,
-      message?: string,
-      duration?: number | string,
-    }): void;
+      /**
+       * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+       * once the pageInit script is completed. The method takes either an already created Message object or the options
+       * object that would be used for creating the message.
+       *
+       * @governance none
+       *
+       * @param message the message object to be displayed in browser
+       */
+      (message: message.Message): void;
 
-    /**
-     * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
-     * once the pageInit script is completed. The method takes either an already created Message object or the options
-     * object that would be used for creating the message.
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.message the message object to be displayed in browser
-     */
-    addPageInitMessage(options: {
-      message: message.Message,
-    }): void;
+      /**
+       * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+       * once the pageInit script is completed. The method takes either an already created Message object or the options
+       * object that would be used for creating the message.
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.type The type of message, see message.Type
+       * @param [options.title] The title of the message. Defaults to empty string.
+       * @param [options.message] The content of the message. Defaults to empty string.
+       * @param [options.duration] The amount of time (in milliseconds) to show the message. Default is 0 (show forever)
+       */
+      (options: {
+        type: message.Type | `${message.Type}`,
+        title?: string,
+        message?: string,
+        duration?: number | string,
+      }): void;
+
+      /**
+       * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+       * once the pageInit script is completed. The method takes either an already created Message object or the options
+       * object that would be used for creating the message.
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.message the message object to be displayed in browser
+       */
+      (options: {
+        message: message.Message,
+      }): void;
+    };
 
     /**
      * Adds a button to the ui form
@@ -1314,70 +1332,73 @@ declare namespace serverWidget {
       container?: string,
     }): Field;
 
-    /**
-     * Add a field to the form
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id Internal id for the field
-     * @param options.label UI label for the field
-     * @param options.type  Type of the field
-     * @param [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
-     * @param [options.container] Tab or Field Group to add the field to
-     */
-    addField(options: {
-      id: string,
-      label: string,
-      type: FieldType.SELECT | FieldType.MULTISELECT
-        | `${FieldType.SELECT | FieldType.MULTISELECT}`,
-      source?: string | number,
-      container?: string,
-    }): Field;
+    addField: {
 
-    /**
-     * Add a field to the form
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id Internal id for the field
-     * @param options.label UI label for the field
-     * @param options.type Type of the field
-     * @param [options.container] Tab or Field Group to add the field to
-     */
-    addField(options: {
-      id: string,
-      label: string,
-      type: FieldType | `${FieldType}` | string,
-      container?: string,
-    }): Field;
+      /**
+       * Add a field to the form
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id Internal id for the field
+       * @param options.label UI label for the field
+       * @param options.type  Type of the field
+       * @param [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
+       * @param [options.container] Tab or Field Group to add the field to
+       */
+      (options: {
+        id: string,
+        label: string,
+        type: FieldType.SELECT | FieldType.MULTISELECT
+          | `${FieldType.SELECT | FieldType.MULTISELECT}`,
+        source?: string | number,
+        container?: string,
+      }): Field;
 
-    /**
-     * Add a field to the form
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id Internal id for the field
-     * @param options.label UI label for the field
-     * @param options.type  Type of the field
-     * @param [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
-     * @param [options.container] Tab or Field Group to add the field to
-     */
-    addField(options: {
-      id: string,
-      label: string,
-      type: FieldType.RADIO | `${FieldType.RADIO}`,
-      source: string,
-      container?: string,
-    }): Field;
+      /**
+       * Add a field to the form
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id Internal id for the field
+       * @param options.label UI label for the field
+       * @param options.type Type of the field
+       * @param [options.container] Tab or Field Group to add the field to
+       */
+      (options: {
+        id: string,
+        label: string,
+        type: FieldType | `${FieldType}` | string,
+        container?: string,
+      }): Field;
+
+      /**
+       * Add a field to the form
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4337905245}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4337905245.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id Internal id for the field
+       * @param options.label UI label for the field
+       * @param options.type  Type of the field
+       * @param [options.source] The internalId or scriptId of the source list for this field if it is a select (List/Record) or multi-select field
+       * @param [options.container] Tab or Field Group to add the field to
+       */
+      (options: {
+        id: string,
+        label: string,
+        type: FieldType.RADIO | `${FieldType.RADIO}`,
+        source: string,
+        container?: string,
+      }): Field;
+    };
 
     /**
      * Add a field group to the form
@@ -1459,70 +1480,79 @@ declare namespace serverWidget {
       label: string,
     }): Tab;
 
-    /**
-     * Add a Reset button to the form
-     *
-     * @governance none
-     *
-     * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
-     */
-    addResetButton(label?: string): Button;
+    addResetButton: {
 
-    /**
-     * Add a Reset button to the form
-     *
-     * @governance none
-     *
-     * @param [options]
-     * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
-     */
-    addResetButton(options?: {
-      label?: string,
-    }): Button;
+      /**
+       * Add a Reset button to the form
+       *
+       * @governance none
+       *
+       * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
+       */
+      (label?: string): Button;
 
-    /**
-     * Add a Submit button to the form
-     *
-     * @governance none
-     *
-     * @param [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
-     */
-    addSubmitButton(label?: string): Button;
+      /**
+       * Add a Reset button to the form
+       *
+       * @governance none
+       *
+       * @param [options]
+       * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
+       */
+      (options?: {
+        label?: string,
+      }): Button;
+    };
 
-    /**
-     * Add a Submit button to the form
-     *
-     * @governance none
-     *
-     * @param [options]
-     * @param [options.label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
-     */
-    addSubmitButton(options?: {
-      label?: string,
-    }): Button;
+    addSubmitButton: {
 
-    /**
-     * Get a Button object from its id
-     *
-     * @governance none
-     *
-     * @param id The id of the button to get
-     */
-    getButton(
-      id: string,
-    ): Button;
+      /**
+       * Add a Submit button to the form
+       *
+       * @governance none
+       *
+       * @param [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
+       */
+      (label?: string): Button;
 
-    /**
-     * Get a Button object from its id
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id The id of the button to get
-     */
-    getButton(options: {
-      id: string,
-    }): Button;
+      /**
+       * Add a Submit button to the form
+       *
+       * @governance none
+       *
+       * @param [options]
+       * @param [options.label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
+       */
+      (options?: {
+        label?: string,
+      }): Button;
+    };
+
+    getButton: {
+
+      /**
+       * Get a Button object from its id
+       *
+       * @governance none
+       *
+       * @param id The id of the button to get
+       */
+      (
+        id: string,
+      ): Button;
+
+      /**
+       * Get a Button object from its id
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id The id of the button to get
+       */
+      (options: {
+        id: string,
+      }): Button;
+    };
 
     /**
      * Get a Field object from its id
@@ -1567,28 +1597,31 @@ declare namespace serverWidget {
      */
     getTabs(): string[];
 
-    /**
-     * Get a Sublist object from its id
-     *
-     * @governance none
-     *
-     * @param id The id for the Sublist to get
-     */
-    getSublist(
-      id: string,
-    ): Sublist;
+    getSublist: {
 
-    /**
-     * Get a Sublist object from its id
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.id The id for the Sublist to get
-     */
-    getSublist(options: {
-      id: string,
-    }): Sublist;
+      /**
+       * Get a Sublist object from its id
+       *
+       * @governance none
+       *
+       * @param id The id for the Sublist to get
+       */
+      (
+        id: string,
+      ): Sublist;
+
+      /**
+       * Get a Sublist object from its id
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.id The id for the Sublist to get
+       */
+      (options: {
+        id: string,
+      }): Sublist;
+    };
 
     /**
      * Insert a field before another field
@@ -1658,30 +1691,33 @@ declare namespace serverWidget {
       id: string,
     }): void;
 
-    /**
-     * Set the default values of many fields at once
-     *
-     * @governance none
-     *
-     * @param values
-     */
-    updateDefaultValues(values: {
-      [p: string]: string,
-    }): void;
+    updateDefaultValues: {
 
-    /**
-     * Set the default values of many fields at once
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.values
-     */
-    updateDefaultValues(options: {
-      values: {
+      /**
+       * Set the default values of many fields at once
+       *
+       * @governance none
+       *
+       * @param values
+       */
+      (values: {
         [p: string]: string,
-      },
-    }): void;
+      }): void;
+
+      /**
+       * Set the default values of many fields at once
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.values
+       */
+      (options: {
+        values: {
+          [p: string]: string,
+        },
+      }): void;
+    };
 
     /**
      * Convert to JSON object
@@ -1806,47 +1842,53 @@ declare namespace serverWidget {
       url: string,
     }): List;
 
-    /**
-     * Add a row (Array of name/value pairs or search.Result)
-     *
-     * @governance none
-     *
-     * @param row  An Array of rows containing name/value pairs containing the values for corresponding
-     */
-    addRow(row: search.Result | Record<string, string>): List;
+    addRow: {
 
-    /**
-     * Add a row (Array of name/value pairs or search.Result)
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.row  An Array of rows containing name/value pairs containing the values for corresponding
-     */
-    addRow(options: {
-      row: search.Result | Record<string, string>,
-    }): List;
+      /**
+       * Add a row (Array of name/value pairs or search.Result)
+       *
+       * @governance none
+       *
+       * @param row  An Array of rows containing name/value pairs containing the values for corresponding
+       */
+      (row: search.Result | Record<string, string>): List;
 
-    /**
-     * Adds multiple rows (Array of search.Result or name/value pair Arrays)
-     *
-     * @governance none
-     *
-     * @param rows Array of search.Result or name/value pair Arrays
-     */
-    addRows(rows: search.Result[] | Record<string, string>[]): List;
+      /**
+       * Add a row (Array of name/value pairs or search.Result)
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.row  An Array of rows containing name/value pairs containing the values for corresponding
+       */
+      (options: {
+        row: search.Result | Record<string, string>,
+      }): List;
+    };
 
-    /**
-     * Adds multiple rows (Array of search.Result or name/value pair Arrays)
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.rows Array of search.Result or name/value pair Arrays
-     */
-    addRows(options: {
-      rows: search.Result[] | Record<string, string>[],
-    }): List;
+    addRows: {
+
+      /**
+       * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+       *
+       * @governance none
+       *
+       * @param rows Array of search.Result or name/value pair Arrays
+       */
+      (rows: search.Result[] | Record<string, string>[]): List;
+
+      /**
+       * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.rows Array of search.Result or name/value pair Arrays
+       */
+      (options: {
+        rows: search.Result[] | Record<string, string>[],
+      }): List;
+    };
 
     /**
      * Convert to JSON object

@@ -123,74 +123,77 @@ interface file {
     id: number | string,
   }): void;
 
-  /**
-   * Loads an existing file from the NetSuite File Cabinet. The file's
-   * content is NOT loaded into memory until `File.getContents()`,
-   * `File.lines.iterator()`, or similar is called — `load` returns a
-   * lightweight wrapper.
-   *
-   * The argument can be a numeric/string internal ID, or an absolute path
-   * (e.g. `'SuiteScripts/folder/file.txt'`), or a relative path
-   * (e.g. `'./folder/file.txt'` or `'../sibling/file.txt'`).
-   *
-   * Unknown IDs surface as `INSUFFICIENT_PERMISSION` (NOT
-   * `RCRD_DSNT_EXIST`) — the runtime treats "no such ID" identically to
-   * "no access" to avoid leaking ID existence. Unknown PATHS surface as
-   * `RCRD_DSNT_EXIST`.
-   *
-   * The file size limit for this method is 2 GB.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4226574300}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4226574300.html}
-   *
-   * @governance 10 units
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param id The internal ID (number or numeric string) or absolute/relative path to the file.
-   * @return The loaded `File` wrapper.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `id` is missing, `null`, or empty string. Message format: `"file.load: Missing a required argument: id"`.
-   * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If the file ID is not found OR the script lacks access. Message: `"You do not have access to the media item you selected."` Note: NetSuite uses this error code for both genuine permission denials and unknown-ID lookups, to avoid leaking ID existence.
-   * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If a path is supplied that doesn't resolve to any file. Message format: `"That record does not exist. path: <path>"`.
-   */
-  load(
-    id: number | string,
-  ): file.File;
+  load: {
 
-  /**
-   * Loads an existing file from the NetSuite File Cabinet. The file's
-   * content is NOT loaded into memory until `File.getContents()`,
-   * `File.lines.iterator()`, or similar is called — `load` returns a
-   * lightweight wrapper.
-   *
-   * The `id` can be a numeric/string internal ID, or an absolute path
-   * (e.g. `'SuiteScripts/folder/file.txt'`), or a relative path
-   * (e.g. `'./folder/file.txt'` or `'../sibling/file.txt'`).
-   *
-   * Unknown IDs surface as `INSUFFICIENT_PERMISSION` (NOT
-   * `RCRD_DSNT_EXIST`) — the runtime treats "no such ID" identically to
-   * "no access" to avoid leaking ID existence. Unknown PATHS surface as
-   * `RCRD_DSNT_EXIST`.
-   *
-   * The file size limit for this method is 2 GB.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4226574300}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4226574300.html}
-   *
-   * @governance 10 units
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.id The internal ID (number or numeric string) or absolute/relative path to the file.
-   * @return The loaded `File` wrapper.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or if `options.id` is missing/null/empty. Message format: `"file.load: Missing a required argument: id"`.
-   * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If the file ID is not found OR the script lacks access. Message: `"You do not have access to the media item you selected."` NetSuite uses this code for both genuine permission denials and unknown-ID lookups.
-   * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If a path is supplied that doesn't resolve to any file. Message format: `"That record does not exist. path: <path>"`.
-   */
-  load(options: {
-    id: number | string,
-  }): file.File;
+    /**
+     * Loads an existing file from the NetSuite File Cabinet. The file's
+     * content is NOT loaded into memory until `File.getContents()`,
+     * `File.lines.iterator()`, or similar is called — `load` returns a
+     * lightweight wrapper.
+     *
+     * The argument can be a numeric/string internal ID, or an absolute path
+     * (e.g. `'SuiteScripts/folder/file.txt'`), or a relative path
+     * (e.g. `'./folder/file.txt'` or `'../sibling/file.txt'`).
+     *
+     * Unknown IDs surface as `INSUFFICIENT_PERMISSION` (NOT
+     * `RCRD_DSNT_EXIST`) — the runtime treats "no such ID" identically to
+     * "no access" to avoid leaking ID existence. Unknown PATHS surface as
+     * `RCRD_DSNT_EXIST`.
+     *
+     * The file size limit for this method is 2 GB.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4226574300}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4226574300.html}
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param id The internal ID (number or numeric string) or absolute/relative path to the file.
+     * @return The loaded `File` wrapper.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `id` is missing, `null`, or empty string. Message format: `"file.load: Missing a required argument: id"`.
+     * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If the file ID is not found OR the script lacks access. Message: `"You do not have access to the media item you selected."` Note: NetSuite uses this error code for both genuine permission denials and unknown-ID lookups, to avoid leaking ID existence.
+     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If a path is supplied that doesn't resolve to any file. Message format: `"That record does not exist. path: <path>"`.
+     */
+    (
+      id: number | string,
+    ): file.File;
+
+    /**
+     * Loads an existing file from the NetSuite File Cabinet. The file's
+     * content is NOT loaded into memory until `File.getContents()`,
+     * `File.lines.iterator()`, or similar is called — `load` returns a
+     * lightweight wrapper.
+     *
+     * The `id` can be a numeric/string internal ID, or an absolute path
+     * (e.g. `'SuiteScripts/folder/file.txt'`), or a relative path
+     * (e.g. `'./folder/file.txt'` or `'../sibling/file.txt'`).
+     *
+     * Unknown IDs surface as `INSUFFICIENT_PERMISSION` (NOT
+     * `RCRD_DSNT_EXIST`) — the runtime treats "no such ID" identically to
+     * "no access" to avoid leaking ID existence. Unknown PATHS surface as
+     * `RCRD_DSNT_EXIST`.
+     *
+     * The file size limit for this method is 2 GB.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4226574300}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4226574300.html}
+     *
+     * @governance 10 units
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.id The internal ID (number or numeric string) or absolute/relative path to the file.
+     * @return The loaded `File` wrapper.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or if `options.id` is missing/null/empty. Message format: `"file.load: Missing a required argument: id"`.
+     * @throws {error.SuiteScriptError} INSUFFICIENT_PERMISSION If the file ID is not found OR the script lacks access. Message: `"You do not have access to the media item you selected."` NetSuite uses this code for both genuine permission denials and unknown-ID lookups.
+     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If a path is supplied that doesn't resolve to any file. Message format: `"That record does not exist. path: <path>"`.
+     */
+    (options: {
+      id: number | string,
+    }): file.File;
+  };
 }
 
 declare namespace file {

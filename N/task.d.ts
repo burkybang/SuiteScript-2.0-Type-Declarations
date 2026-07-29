@@ -16,399 +16,402 @@
  */
 interface task {
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.scriptId
-   * @param [options.deploymentId]
-   * @param [options.params]
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.SCHEDULED_SCRIPT | `${task.TaskType.SCHEDULED_SCRIPT}`,
-    scriptId: number | `custscript${string}` | string,
-    deploymentId?: `custdeploy${string}` | string,
-    params?: Record<string, record.FieldValue>,
-  }): task.ScheduledScriptTask;
+  create: {
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.scriptId
-   * @param [options.deploymentId]
-   * @param [options.params]
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.MAP_REDUCE | `${task.TaskType.MAP_REDUCE}`,
-    scriptId: number | `custscript${string}` | string,
-    deploymentId?: `custdeploy${string}` | string,
-    params?: Record<string, record.FieldValue>,
-  }): task.MapReduceScriptTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.scriptId
+     * @param [options.deploymentId]
+     * @param [options.params]
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.SCHEDULED_SCRIPT | `${task.TaskType.SCHEDULED_SCRIPT}`,
+      scriptId: number | `custscript${string}` | string,
+      deploymentId?: `custdeploy${string}` | string,
+      params?: Record<string, record.FieldValue>,
+    }): task.ScheduledScriptTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param [options.importFile]
-   * @param [options.linkedFiles]
-   * @param options.mappingId
-   * @param [options.name]
-   * @param [options.queueId]
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.CSV_IMPORT | `${task.TaskType.CSV_IMPORT}`,
-    importFile?: file.File | string,
-    linkedFiles?: Record<string, file.File | string>,
-    mappingId: number | string,
-    name?: string,
-    queueId?: number | string,
-  }): task.CsvImportTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.scriptId
+     * @param [options.deploymentId]
+     * @param [options.params]
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.MAP_REDUCE | `${task.TaskType.MAP_REDUCE}`,
+      scriptId: number | `custscript${string}` | string,
+      deploymentId?: `custdeploy${string}` | string,
+      params?: Record<string, record.FieldValue>,
+    }): task.MapReduceScriptTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.dedupeMode
-   * @param options.entityType
-   * @param [options.masterRecordId]
-   * @param [options.masterSelectionMode]
-   * @param options.recordIds
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.ENTITY_DEDUPLICATION | `${task.TaskType.ENTITY_DEDUPLICATION}`,
-    dedupeMode: task.DedupeMode | `${task.DedupeMode}`,
-    entityType: task.DedupeEntityType | `${task.DedupeEntityType}`,
-    masterRecordId?: number | string,
-    masterSelectionMode?: task.MasterSelectionMode,
-    recordIds: (number | string)[],
-  }): task.EntityDeduplicationTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param [options.importFile]
+     * @param [options.linkedFiles]
+     * @param options.mappingId
+     * @param [options.name]
+     * @param [options.queueId]
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.CSV_IMPORT | `${task.TaskType.CSV_IMPORT}`,
+      importFile?: file.File | string,
+      linkedFiles?: Record<string, file.File | string>,
+      mappingId: number | string,
+      name?: string,
+      queueId?: number | string,
+    }): task.CsvImportTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param [options.params]
-   * @param options.recordId
-   * @param options.recordType
-   * @param options.workflowId
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.WORKFLOW_TRIGGER | `${task.TaskType.WORKFLOW_TRIGGER}`,
-    params?: Record<string, record.FieldValue>,
-    recordId: number | string,
-    recordType: record.Type | `${record.Type}` | record.CustomType | string,
-    workflowId: number | string,
-  }): task.WorkflowTriggerTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.dedupeMode
+     * @param options.entityType
+     * @param [options.masterRecordId]
+     * @param [options.masterSelectionMode]
+     * @param options.recordIds
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.ENTITY_DEDUPLICATION | `${task.TaskType.ENTITY_DEDUPLICATION}`,
+      dedupeMode: task.DedupeMode | `${task.DedupeMode}`,
+      entityType: task.DedupeEntityType | `${task.DedupeEntityType}`,
+      masterRecordId?: number | string,
+      masterSelectionMode?: task.MasterSelectionMode,
+      recordIds: (number | string)[],
+    }): task.EntityDeduplicationTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2017.1
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.savedSearchId
-   * @param options.fileId
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
-    savedSearchId: number | string,
-    fileId: number | string,
-  }): task.SearchTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2017.1
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.savedSearchId
-   * @param options.filePath
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
-    savedSearchId: number | string,
-    filePath: string,
-  }): task.SearchTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2020.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.query
-   * @param options.fileId
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
-    query: query.Query,
-    fileId: number | string,
-  }): task.QueryTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2020.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.query
-   * @param options.filePath
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
-    query: query.Query,
-    filePath: string,
-  }): task.QueryTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2020.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.query
-   * @param [options.params]
-   * @param options.fileId
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
-    query: string,
-    params?: (string | number | boolean)[],
-    fileId: number | string,
-  }): task.SuiteQLTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2020.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.query
-   * @param [options.params]
-   * @param options.filePath
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
-    query: string,
-    params?: (string | number | boolean)[],
-    filePath: string,
-  }): task.SuiteQLTask;
-
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2019.1
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.recordType
-   * @param options.action
-   * @param [options.condition]
-   * @param options.params
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
-    recordType: record.Type | `${record.Type}` | record.CustomType | string,
-    action: action.ActionID | `${action.ActionID}`,
-    condition: task.ActionCondition | `${task.ActionCondition}`,
-    params: {
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param [options.params]
+     * @param options.recordId
+     * @param options.recordType
+     * @param options.workflowId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.WORKFLOW_TRIGGER | `${task.TaskType.WORKFLOW_TRIGGER}`,
+      params?: Record<string, record.FieldValue>,
       recordId: number | string,
-      [p: string]: string | string[] | number | Date | boolean,
-    }[],
-  }): task.RecordActionTask;
+      recordType: record.Type | `${record.Type}` | record.CustomType | string,
+      workflowId: number | string,
+    }): task.WorkflowTriggerTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2019.1
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param options.recordType
-   * @param options.action
-   * @param [options.condition]
-   * @param options.paramCallback
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
-    recordType: record.Type | `${record.Type}` | record.CustomType | string,
-    action: action.ActionID | `${action.ActionID}`,
-    condition: task.ActionCondition | `${task.ActionCondition}`,
-    paramCallback: <RecordID extends number | string>(recordId: RecordID) => {
-      recordId: RecordID,
-      [p: string]: string | string[] | number | Date | boolean,
-    },
-  }): task.RecordActionTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2017.1
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.savedSearchId
+     * @param options.fileId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
+      savedSearchId: number | string,
+      fileId: number | string,
+    }): task.SearchTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2025.2
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param [options.inputFile]
-   * @param [options.documentType]
-   * @param [options.features]
-   * @param [options.language]
-   * @param [options.ociConfig]
-   * @param [options.outputFilePath]
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.DOCUMENT_CAPTURE | `${task.TaskType.DOCUMENT_CAPTURE}`,
-    inputFile?: file.File,
-    documentType?: documentCapture.DocumentType | `${documentCapture.DocumentType}`,
-    features?: (documentCapture.Feature | `${documentCapture.Feature}`)[],
-    language?: documentCapture.Language | `${documentCapture.Language}`,
-    ociConfig?: documentCapture.OciConfig,
-    outputFilePath?: string,
-  }): task.DocumentCaptureTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2017.1
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.savedSearchId
+     * @param options.filePath
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.SEARCH | `${task.TaskType.SEARCH}`,
+      savedSearchId: number | string,
+      filePath: string,
+    }): task.SearchTask;
 
-  /**
-   * Creates a task of the given type and returns the task object
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   *
-   * The PIVOT task type is undocumented in the Help Center; present at runtime. It returns a task.PivotExecutionTask, the asynchronous counterpart to workbook.Workbook.runPivot(options) [N/workbook].
-   *
-   * @param options
-   * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
-   * @param [options.workbook]
-   * @param [options.pivotId]
-   * @param [options.pivotStorageId]
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
-   * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
-   */
-  create(options: {
-    taskType: task.TaskType.PIVOT | `${task.TaskType.PIVOT}`,
-    workbook?: workbook.Workbook | string,
-    pivotId?: string,
-    pivotStorageId?: number,
-  }): task.PivotExecutionTask;
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2020.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.query
+     * @param options.fileId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
+      query: query.Query,
+      fileId: number | string,
+    }): task.QueryTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2020.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.query
+     * @param options.filePath
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.QUERY | `${task.TaskType.QUERY}`,
+      query: query.Query,
+      filePath: string,
+    }): task.QueryTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2020.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.query
+     * @param [options.params]
+     * @param options.fileId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
+      query: string,
+      params?: (string | number | boolean)[],
+      fileId: number | string,
+    }): task.SuiteQLTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2020.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.query
+     * @param [options.params]
+     * @param options.filePath
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.SUITE_QL | `${task.TaskType.SUITE_QL}`,
+      query: string,
+      params?: (string | number | boolean)[],
+      filePath: string,
+    }): task.SuiteQLTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2019.1
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.recordType
+     * @param options.action
+     * @param [options.condition]
+     * @param options.params
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
+      recordType: record.Type | `${record.Type}` | record.CustomType | string,
+      action: action.ActionID | `${action.ActionID}`,
+      condition: task.ActionCondition | `${task.ActionCondition}`,
+      params: {
+        recordId: number | string,
+        [p: string]: string | string[] | number | Date | boolean,
+      }[],
+    }): task.RecordActionTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2019.1
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param options.recordType
+     * @param options.action
+     * @param [options.condition]
+     * @param options.paramCallback
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.RECORD_ACTION | `${task.TaskType.RECORD_ACTION}`,
+      recordType: record.Type | `${record.Type}` | record.CustomType | string,
+      action: action.ActionID | `${action.ActionID}`,
+      condition: task.ActionCondition | `${task.ActionCondition}`,
+      paramCallback: <RecordID extends number | string>(recordId: RecordID) => {
+        recordId: RecordID,
+        [p: string]: string | string[] | number | Date | boolean,
+      },
+    }): task.RecordActionTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2025.2
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param [options.inputFile]
+     * @param [options.documentType]
+     * @param [options.features]
+     * @param [options.language]
+     * @param [options.ociConfig]
+     * @param [options.outputFilePath]
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.DOCUMENT_CAPTURE | `${task.TaskType.DOCUMENT_CAPTURE}`,
+      inputFile?: file.File,
+      documentType?: documentCapture.DocumentType | `${documentCapture.DocumentType}`,
+      features?: (documentCapture.Feature | `${documentCapture.Feature}`)[],
+      language?: documentCapture.Language | `${documentCapture.Language}`,
+      ociConfig?: documentCapture.OciConfig,
+      outputFilePath?: string,
+    }): task.DocumentCaptureTask;
+
+    /**
+     * Creates a task of the given type and returns the task object
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392320106}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392320106.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     *
+     * The PIVOT task type is undocumented in the Help Center; present at runtime. It returns a task.PivotExecutionTask, the asynchronous counterpart to workbook.Workbook.runPivot(options) [N/workbook].
+     *
+     * @param options
+     * @param options.taskType specifies the type of task to be created; use values from the task.TaskType enum
+     * @param [options.workbook]
+     * @param [options.pivotId]
+     * @param [options.pivotStorageId]
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.taskType` is missing/null.
+     * @throws {error.SuiteScriptError} INVALID_TASK_TYPE If `options.taskType` is not a recognized task type. Note: the runtime code is `INVALID_TASK_TYPE`, unprefixed.
+     */
+    (options: {
+      taskType: task.TaskType.PIVOT | `${task.TaskType.PIVOT}`,
+      workbook?: workbook.Workbook | string,
+      pivotId?: string,
+      pivotStorageId?: number,
+    }): task.PivotExecutionTask;
+  };
 
   /**
    * Check current status of a submitted task. The task to be checked is identified by its task ID.
@@ -1349,38 +1352,41 @@ declare namespace task {
       },
     };
 
-    /**
-     * Adds an inbound dependency (completion script). The task must be a
-     * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-     * `{taskType, scriptId, deploymentId}` object is rejected with
-     * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
-     *
-     * @governance none
-     *
-     * @param task
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(task: ScheduledScriptTask | MapReduceScriptTask): void;
+    addInboundDependency: {
 
-    /**
-     * Adds an inbound dependency (completion script). Object form of
-     * {@link addInboundDependency}.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(options: {
-      task: ScheduledScriptTask | MapReduceScriptTask,
-    }): void;
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
+
+      /**
+       * Adds an inbound dependency (completion script). Object form of
+       * {@link addInboundDependency}.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (options: {
+        task: ScheduledScriptTask | MapReduceScriptTask,
+      }): void;
+    };
 
     /**
      * Submits the task and returns a unique ID. Sets inbound dependency (task) id in inboundDependencies attribute on successful submit
@@ -1546,38 +1552,41 @@ declare namespace task {
       },
     };
 
-    /**
-     * Adds an inbound dependency (completion script). The task must be a
-     * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-     * `{taskType, scriptId, deploymentId}` object is rejected with
-     * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
-     *
-     * @governance none
-     *
-     * @param task
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(task: ScheduledScriptTask | MapReduceScriptTask): void;
+    addInboundDependency: {
 
-    /**
-     * Adds an inbound dependency (completion script). Object form of
-     * {@link addInboundDependency}.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(options: {
-      task: ScheduledScriptTask | MapReduceScriptTask,
-    }): void;
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
+
+      /**
+       * Adds an inbound dependency (completion script). Object form of
+       * {@link addInboundDependency}.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (options: {
+        task: ScheduledScriptTask | MapReduceScriptTask,
+      }): void;
+    };
 
     /**
      * Submits the task and returns a unique ID. Sets inbound dependency (task) id in inboundDependencies attribute on successful submit
@@ -1748,38 +1757,41 @@ declare namespace task {
       },
     };
 
-    /**
-     * Adds an inbound dependency (completion script). The task must be a
-     * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-     * `{taskType, scriptId, deploymentId}` object is rejected with
-     * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
-     *
-     * @governance none
-     *
-     * @param task
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(task: ScheduledScriptTask | MapReduceScriptTask): void;
+    addInboundDependency: {
 
-    /**
-     * Adds an inbound dependency (completion script). Object form of
-     * {@link addInboundDependency}.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
-     */
-    addInboundDependency(options: {
-      task: ScheduledScriptTask | MapReduceScriptTask,
-    }): void;
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
+
+      /**
+       * Adds an inbound dependency (completion script). Object form of
+       * {@link addInboundDependency}.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.task The ScheduledScriptTask or MapReduceScriptTask instance to add as a dependency.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (options: {
+        task: ScheduledScriptTask | MapReduceScriptTask,
+      }): void;
+    };
 
     /**
      * Submits the task and returns a unique ID. Sets inbound dependency (task) id in inboundDependencies attribute on successful submit
@@ -2190,38 +2202,41 @@ declare namespace task {
       },
     };
 
-    /**
-     * Adds a scheduled script task as a dependent task. The task must be a `ScheduledScriptTask` instance; a plain `{taskType, scriptId, deploymentId}` object is rejected with WRONG_PARAMETER_TYPE (despite the Help Center documenting that form), and map/reduce tasks are not accepted. Accepts the task positionally or as `{task}`. Only one dependent task may be added per call.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2025.2
-     *
-     * @param task The ScheduledScriptTask instance to add as a dependent task.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask instance.
-     */
-    addInboundDependency(task: ScheduledScriptTask): void;
+    addInboundDependency: {
 
-    /**
-     * Adds a scheduled script task as a dependent task. Object form of {@link addInboundDependency}.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2025.2
-     *
-     * @param options
-     * @param options.task The ScheduledScriptTask instance to add as a dependent task.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask instance.
-     */
-    addInboundDependency(options: {
-      task: ScheduledScriptTask,
-    }): void;
+      /**
+       * Adds a scheduled script task as a dependent task. The task must be a `ScheduledScriptTask` instance; a plain `{taskType, scriptId, deploymentId}` object is rejected with WRONG_PARAMETER_TYPE (despite the Help Center documenting that form), and map/reduce tasks are not accepted. Accepts the task positionally or as `{task}`. Only one dependent task may be added per call.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2025.2
+       *
+       * @param task The ScheduledScriptTask instance to add as a dependent task.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask instance.
+       */
+      (task: ScheduledScriptTask): void;
+
+      /**
+       * Adds a scheduled script task as a dependent task. Object form of {@link addInboundDependency}.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2025.2
+       *
+       * @param options
+       * @param options.task The ScheduledScriptTask instance to add as a dependent task.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a ScheduledScriptTask instance.
+       */
+      (options: {
+        task: ScheduledScriptTask,
+      }): void;
+    };
 
     /**
      * Submits the document capture task for asynchronous processing and returns a unique task ID. On a successful submission, the IDs of any dependent tasks (added via DocumentCaptureTask.addInboundDependency(options)) are added to the DocumentCaptureTask.inboundDependencies property.
@@ -2349,23 +2364,27 @@ declare namespace task {
       },
     };
 
-    /**
-     * Registers a dependent task that runs after this pivot execution task completes. Accepts a task.ScheduledScriptTask or task.MapReduceScriptTask instance, passed positionally.
-     *
-     * Undocumented in the Help Center; present at runtime.
-     * @param dependentTask the scheduled-script or map/reduce task to run after this task
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `dependentTask` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance (for example, a plain `{ taskType, scriptId }` object literal is rejected).
-     */
-    addInboundDependency(dependentTask: task.ScheduledScriptTask | task.MapReduceScriptTask): void;
-    /**
-     * Registers a dependent task that runs after this pivot execution task completes. Accepts an options object whose `task` property is a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
-     *
-     * Undocumented in the Help Center; present at runtime.
-     * @param options
-     * @param options.task the scheduled-script or map/reduce task to run after this task
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
-     */
-    addInboundDependency(options: { task: task.ScheduledScriptTask | task.MapReduceScriptTask }): void;
+    addInboundDependency: {
+
+      /**
+       * Registers a dependent task that runs after this pivot execution task completes. Accepts a task.ScheduledScriptTask or task.MapReduceScriptTask instance, passed positionally.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       * @param dependentTask the scheduled-script or map/reduce task to run after this task
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `dependentTask` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance (for example, a plain `{ taskType, scriptId }` object literal is rejected).
+       */
+      (dependentTask: task.ScheduledScriptTask | task.MapReduceScriptTask): void;
+
+      /**
+       * Registers a dependent task that runs after this pivot execution task completes. Accepts an options object whose `task` property is a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       * @param options
+       * @param options.task the scheduled-script or map/reduce task to run after this task
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
+       */
+      (options: { task: task.ScheduledScriptTask | task.MapReduceScriptTask }): void;
+    };
 
     /**
      * Submits the pivot execution task to the NetSuite task queue and returns the task ID. The pivot runs asynchronously.

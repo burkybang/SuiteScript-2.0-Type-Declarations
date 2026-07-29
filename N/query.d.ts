@@ -2821,30 +2821,33 @@ declare namespace query {
      */
     asMappedResults<MappedResult extends Record<string, string | number>>(): MappedResult[];
 
-    /**
-     * Returns the result-value type (a query.ReturnType value) for a given column alias.
-     *
-     * Undocumented in the Help Center; present at runtime.
-     *
-     * @param alias
-     *
-     * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
-     */
-    getTypeForAlias(alias: string): ReturnType | `${ReturnType}`;
+    getTypeForAlias: {
 
-    /**
-     * Returns the result-value type (a query.ReturnType value) for a given column alias.
-     *
-     * Undocumented in the Help Center; present at runtime.
-     *
-     * @param options
-     * @param options.alias
-     *
-     * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
-     */
-    getTypeForAlias(options: {
-      alias: string,
-    }): ReturnType | `${ReturnType}`;
+      /**
+       * Returns the result-value type (a query.ReturnType value) for a given column alias.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * @param alias
+       *
+       * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
+       */
+      (alias: string): ReturnType | `${ReturnType}`;
+
+      /**
+       * Returns the result-value type (a query.ReturnType value) for a given column alias.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * @param options
+       * @param options.alias
+       *
+       * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
+       */
+      (options: {
+        alias: string,
+      }): ReturnType | `${ReturnType}`;
+    };
 
     /**
      * Standard object for iterating through results
@@ -2902,22 +2905,25 @@ declare namespace query {
      */
     getValue<T extends string | number>(columnIndex: number): T;
 
-    /**
-     * Undocumented method
-     *
-     * @param alias
-     */
-    getValueForAlias<T extends string | number>(alias: string): T;
+    getValueForAlias: {
 
-    /**
-     * Undocumented method
-     *
-     * @param options
-     * @param options.alias
-     */
-    getValueForAlias<T extends string | number>(options: {
-      alias: string,
-    }): T;
+      /**
+       * Undocumented method
+       *
+       * @param alias
+       */
+      <T extends string | number>(alias: string): T;
+
+      /**
+       * Undocumented method
+       *
+       * @param options
+       * @param options.alias
+       */
+      <T extends string | number>(options: {
+        alias: string,
+      }): T;
+    };
 
     /**
      * Returns the object type name
