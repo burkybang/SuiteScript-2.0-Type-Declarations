@@ -212,99 +212,102 @@ declare namespace compress {
       directory?: string,
     }): void;
 
-    /**
-     * Builds the archive from the pending files and returns it as a transient
-     * `file.File`. The archive type is detected from the `name` extension:
-     * `.cpio`, `.tar`, `.tar.gz`, `.tar.bz2`, `.tgz`, `.tbz2`, or `.zip`.
-     *
-     * Extension matching is CASE-SENSITIVE — `report.ZIP` is unrecognized.
-     * Names without any extension (e.g. `"out"` or `"out."`) are also
-     * unrecognized.
-     *
-     * The archiver can be reused: this overload (and the one with explicit
-     * `type`) can both be called multiple times on the same archiver, including
-     * after calling `add` again to grow the collection. An empty archiver (no
-     * files added) is allowed and produces a valid empty archive of the chosen
-     * format.
-     *
-     * The returned file's `fileType` depends on the archive format:
-     *  - ZIP → `file.Type.ZIP`
-     *  - TAR → `file.Type.TAR`
-     *  - TGZ, TBZ2 (and `.tar.gz`, `.tar.bz2`) → `file.Type.TARCOMP`
-     *  - CPIO → `file.Type.MISCBINARY`
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584789142}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584789142.html}
-     *
-     * @governance 25 units
-     * @restriction Server-side scripts only
-     * @since 2020.2
-     *
-     * @param options
-     * @param options.name The name of the archive file. Must include a recognized extension (`.cpio`, `.tar`, `.tar.gz`, `.tar.bz2`, `.tgz`, `.tbz2`, `.zip`) — extension matching is case-sensitive. Empty string is treated as missing (`SSS_MISSING_REQD_ARGUMENT`); non-string values are rejected with `SSS_INVALID_TYPE_ARG`. For names without a recognized extension, use the overload that accepts `options.type` instead.
-     * @return A new transient `file.File` containing the archive, named per `options.name` with `fileType` matching the archive format.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, or `undefined` — error message: `"Archiver.archive: Missing a required argument: options"`. Also thrown if `options.name` is missing, `null`, `undefined`, or an empty string — error message: `"Archiver.archive: Missing a required argument: options.name"`.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options` is a non-object primitive (string, number, boolean), or if `options.name` is a non-string value. Error message format: `"You have entered an invalid type argument: options"` or `"...options.name"`.
-     * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION If `options.name` does not end in a recognized extension and `options.type` is not specified. Error message format: `"Unrecognized archive file extension: '<name>'"`.
-     * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS If the contents cannot be retrieved for any of the pending files.
-     */
-    archive(options: {
-      name: `${string}${'.cpio' | '.tar' | '.tar.gz' | '.tar.bz2' | '.tgz' | '.tbz2' | '.zip'}`,
-    }): file.File;
+    archive: {
 
-    /**
-     * Builds the archive from the pending files and returns it as a transient
-     * `file.File`, using the explicit `type` parameter to select the archive
-     * format. Use this overload when `options.name` does not have a recognized
-     * extension (e.g. `"report.foo"`), or when overriding the implied extension.
-     *
-     * The `type` parameter matches case-INSENSITIVELY at the input boundary
-     * (`"ZIP"`, `"Zip"`, `"zip"` all resolve to ZIP) but rejects whitespace
-     * (`"ZIP "` with trailing space is unsupported). Non-string `type` values
-     * (numbers, booleans) are rejected with `SSS_INVALID_TYPE_ARG`. A `null`
-     * `type` falls through to extension-based detection rather than failing
-     * with a type error.
-     *
-     * **Runtime quirk:** the `name` must still contain at least one `.`
-     * followed by one or more characters (e.g. `"report.foo"` works,
-     * `"report"` or `"report."` does NOT) regardless of the `type` value.
-     * Names without any extension throw `UNEXPECTED_ERROR` rather than using
-     * the `type` parameter as the documentation implies — a NetSuite-side bug.
-     *
-     * The archiver can be reused: this overload (and the extension-only one)
-     * can both be called multiple times on the same archiver, including after
-     * calling `add` again to grow the collection. An empty archiver (no files
-     * added) is allowed and produces a valid empty archive of the chosen
-     * format.
-     *
-     * The returned file's `fileType` depends on the archive format:
-     *  - ZIP → `file.Type.ZIP`
-     *  - TAR → `file.Type.TAR`
-     *  - TGZ, TBZ2 → `file.Type.TARCOMP`
-     *  - CPIO → `file.Type.MISCBINARY`
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584789142}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584789142.html}
-     *
-     * @governance 25 units
-     * @restriction Server-side scripts only
-     * @since 2020.2
-     *
-     * @param options
-     * @param options.name The name of the archive file. Must contain a `.` followed by at least one character (a non-empty extension-like suffix) — bare names like `"report"` or `"report."` trigger `UNEXPECTED_ERROR` even when `type` is supplied. Empty string is treated as missing; non-string values are rejected with `SSS_INVALID_TYPE_ARG`.
-     * @param options.type The archive type. Matched case-insensitively against `compress.Type` values (`"ZIP"`, `"Zip"`, `"zip"` all work). Non-string values (numbers, booleans) throw `SSS_INVALID_TYPE_ARG`; unrecognized strings throw `COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE`. No trimming — leading/trailing whitespace causes the value to be rejected as unsupported.
-     * @return A new transient `file.File` containing the archive, named per `options.name` with `fileType` matching the archive format.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, or `undefined` — error message: `"Archiver.archive: Missing a required argument: options"`. Also thrown if `options.name` is missing, `null`, `undefined`, or an empty string — error message: `"Archiver.archive: Missing a required argument: options.name"`.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options` is a non-object primitive (string, number, boolean), or if `options.name` is a non-string, or if `options.type` is a non-string non-nullish value (e.g. number, boolean). Error message format: `"You have entered an invalid type argument: options"` or `"...options.name"` or `"...options.type"`.
-     * @throws {error.SuiteScriptError} COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE If `options.type` is a string that does not match any `compress.Type` value (case-insensitive). Error message format: `"Unsupported archive type: '<value>'"`. Empty string and whitespace-padded values also throw this error.
-     * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION If `options.type` is `null` (or otherwise nullish) and `options.name` does not end in a recognized extension. Error message format: `"Unrecognized archive file extension: '<name>'"`.
-     * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS If the contents cannot be retrieved for any of the pending files.
-     * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `options.name` lacks any extension-like structure (e.g. `"report"` or `"report."`) — the runtime crashes before honoring the `type` parameter. Generic message: `"An unexpected SuiteScript error has occurred"`. Workaround: include any non-empty extension on the name (e.g. `"report.archive"`) and rely on `type` to select the format.
-     */
-    archive(options: {
-      name: string,
-      type: Type | `${Type}`,
-    }): file.File;
+      /**
+       * Builds the archive from the pending files and returns it as a transient
+       * `file.File`. The archive type is detected from the `name` extension:
+       * `.cpio`, `.tar`, `.tar.gz`, `.tar.bz2`, `.tgz`, `.tbz2`, or `.zip`.
+       *
+       * Extension matching is CASE-SENSITIVE — `report.ZIP` is unrecognized.
+       * Names without any extension (e.g. `"out"` or `"out."`) are also
+       * unrecognized.
+       *
+       * The archiver can be reused: this overload (and the one with explicit
+       * `type`) can both be called multiple times on the same archiver, including
+       * after calling `add` again to grow the collection. An empty archiver (no
+       * files added) is allowed and produces a valid empty archive of the chosen
+       * format.
+       *
+       * The returned file's `fileType` depends on the archive format:
+       *  - ZIP → `file.Type.ZIP`
+       *  - TAR → `file.Type.TAR`
+       *  - TGZ, TBZ2 (and `.tar.gz`, `.tar.bz2`) → `file.Type.TARCOMP`
+       *  - CPIO → `file.Type.MISCBINARY`
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584789142}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584789142.html}
+       *
+       * @governance 25 units
+       * @restriction Server-side scripts only
+       * @since 2020.2
+       *
+       * @param options
+       * @param options.name The name of the archive file. Must include a recognized extension (`.cpio`, `.tar`, `.tar.gz`, `.tar.bz2`, `.tgz`, `.tbz2`, `.zip`) — extension matching is case-sensitive. Empty string is treated as missing (`SSS_MISSING_REQD_ARGUMENT`); non-string values are rejected with `SSS_INVALID_TYPE_ARG`. For names without a recognized extension, use the overload that accepts `options.type` instead.
+       * @return A new transient `file.File` containing the archive, named per `options.name` with `fileType` matching the archive format.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, or `undefined` — error message: `"Archiver.archive: Missing a required argument: options"`. Also thrown if `options.name` is missing, `null`, `undefined`, or an empty string — error message: `"Archiver.archive: Missing a required argument: options.name"`.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options` is a non-object primitive (string, number, boolean), or if `options.name` is a non-string value. Error message format: `"You have entered an invalid type argument: options"` or `"...options.name"`.
+       * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION If `options.name` does not end in a recognized extension and `options.type` is not specified. Error message format: `"Unrecognized archive file extension: '<name>'"`.
+       * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS If the contents cannot be retrieved for any of the pending files.
+       */
+      (options: {
+        name: `${string}${'.cpio' | '.tar' | '.tar.gz' | '.tar.bz2' | '.tgz' | '.tbz2' | '.zip'}`,
+      }): file.File;
+
+      /**
+       * Builds the archive from the pending files and returns it as a transient
+       * `file.File`, using the explicit `type` parameter to select the archive
+       * format. Use this overload when `options.name` does not have a recognized
+       * extension (e.g. `"report.foo"`), or when overriding the implied extension.
+       *
+       * The `type` parameter matches case-INSENSITIVELY at the input boundary
+       * (`"ZIP"`, `"Zip"`, `"zip"` all resolve to ZIP) but rejects whitespace
+       * (`"ZIP "` with trailing space is unsupported). Non-string `type` values
+       * (numbers, booleans) are rejected with `SSS_INVALID_TYPE_ARG`. A `null`
+       * `type` falls through to extension-based detection rather than failing
+       * with a type error.
+       *
+       * **Runtime quirk:** the `name` must still contain at least one `.`
+       * followed by one or more characters (e.g. `"report.foo"` works,
+       * `"report"` or `"report."` does NOT) regardless of the `type` value.
+       * Names without any extension throw `UNEXPECTED_ERROR` rather than using
+       * the `type` parameter as the documentation implies — a NetSuite-side bug.
+       *
+       * The archiver can be reused: this overload (and the extension-only one)
+       * can both be called multiple times on the same archiver, including after
+       * calling `add` again to grow the collection. An empty archiver (no files
+       * added) is allowed and produces a valid empty archive of the chosen
+       * format.
+       *
+       * The returned file's `fileType` depends on the archive format:
+       *  - ZIP → `file.Type.ZIP`
+       *  - TAR → `file.Type.TAR`
+       *  - TGZ, TBZ2 → `file.Type.TARCOMP`
+       *  - CPIO → `file.Type.MISCBINARY`
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158584789142}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158584789142.html}
+       *
+       * @governance 25 units
+       * @restriction Server-side scripts only
+       * @since 2020.2
+       *
+       * @param options
+       * @param options.name The name of the archive file. Must contain a `.` followed by at least one character (a non-empty extension-like suffix) — bare names like `"report"` or `"report."` trigger `UNEXPECTED_ERROR` even when `type` is supplied. Empty string is treated as missing; non-string values are rejected with `SSS_INVALID_TYPE_ARG`.
+       * @param options.type The archive type. Matched case-insensitively against `compress.Type` values (`"ZIP"`, `"Zip"`, `"zip"` all work). Non-string values (numbers, booleans) throw `SSS_INVALID_TYPE_ARG`; unrecognized strings throw `COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE`. No trimming — leading/trailing whitespace causes the value to be rejected as unsupported.
+       * @return A new transient `file.File` containing the archive, named per `options.name` with `fileType` matching the archive format.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, or `undefined` — error message: `"Archiver.archive: Missing a required argument: options"`. Also thrown if `options.name` is missing, `null`, `undefined`, or an empty string — error message: `"Archiver.archive: Missing a required argument: options.name"`.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG If `options` is a non-object primitive (string, number, boolean), or if `options.name` is a non-string, or if `options.type` is a non-string non-nullish value (e.g. number, boolean). Error message format: `"You have entered an invalid type argument: options"` or `"...options.name"` or `"...options.type"`.
+       * @throws {error.SuiteScriptError} COMPRESS_API_UNSUPPORTED_ARCHIVE_TYPE If `options.type` is a string that does not match any `compress.Type` value (case-insensitive). Error message format: `"Unsupported archive type: '<value>'"`. Empty string and whitespace-padded values also throw this error.
+       * @throws {error.SuiteScriptError} COMPRESS_API_UNRECOGNIZED_ARCHIVE_FILE_EXTENSION If `options.type` is `null` (or otherwise nullish) and `options.name` does not end in a recognized extension. Error message format: `"Unrecognized archive file extension: '<name>'"`.
+       * @throws {error.SuiteScriptError} COMPRESS_API_UNABLE_TO_RETRIEVE_FILE_CONTENTS If the contents cannot be retrieved for any of the pending files.
+       * @throws {error.SuiteScriptError} UNEXPECTED_ERROR If `options.name` lacks any extension-like structure (e.g. `"report"` or `"report."`) — the runtime crashes before honoring the `type` parameter. Generic message: `"An unexpected SuiteScript error has occurred"`. Workaround: include any non-empty extension on the name (e.g. `"report.archive"`) and rely on `type` to select the format.
+       */
+      (options: {
+        name: string,
+        type: Type | `${Type}`,
+      }): file.File;
+    };
 
     /**
      * Returns the class-identifier literal `"compress.Archiver"`. Used by

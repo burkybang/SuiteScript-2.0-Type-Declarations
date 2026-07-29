@@ -187,82 +187,85 @@ interface llm {
       ociConfig?: llm.OciConfig,
     }): llm.Response;
 
-    /**
-     * Returns a response from the LLM for the given prompt asynchronously
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
-     *
-     * @governance 100 units
-     * @since 2024.1
-     *
-     * @param prompt - Prompt for the LLM
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
-     */
-    promise(prompt: string): Promise<llm.Response>;
+    promise: {
 
-    /**
-     * Returns a response from the LLM for the given prompt asynchronously
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
-     *
-     * @governance 100 units
-     * @since 2024.1
-     *
-     * @param options
-     * @param options.prompt - Prompt for the LLM
-     * @param [options.modelFamily] - LLM model family to use; defaults to Cohere Command
-     * @param [options.modelParameters] - Parameters of the model
-     * @param [options.documents] - Source documents for retrieval-augmented generation (RAG)
-     * @param [options.chatHistory] - Chat history to be taken into consideration
-     * @param [options.preamble] - Preamble for the text generation
-     * @param [options.safetyMode] - Safety mode applied to the request
-     * @param [options.responseFormat] - JSON schema describing the structured response format
-     * @param [options.tools] - Tools the LLM may call during generation. Undocumented in the Help Center; present at runtime.
-     * @param [options.webSearchContext] - Amount of web-search context to use. Undocumented in the Help Center; present at runtime.
-     * @param [options.verbosity] - Verbosity of the generated response. Undocumented in the Help Center; present at runtime.
-     * @param [options.reasoningEffort] - Reasoning effort the model should apply. Undocumented in the Help Center; present at runtime.
-     * @param [options.timeout=30000] - Timeout in milliseconds, defaults to 30000
-     * @param [options.ociConfig] - Config needed for unlimited usage
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
-     * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both presencePenalty and frequencyPenalty are used in model parameters
-     * @throws {error.SuiteScriptError} UNRECOGNIZED_MODEL_PARAMETERS if an unknown model parameter has been used
-     * @throws {error.SuiteScriptError} UNRECOGNIZED_OCI_CONFIG_PARAMETERS if an unknown parameter for OCI configuration has been used
-     * @throws {error.SuiteScriptError} ONLY_API_SECRET_IS_ACCEPTED if privateKey or fingerprint are not API secrets
-     * @throws {error.SuiteScriptError} INVALID_MODEL_FAMILY_VALUE if modelFamily is not a valid value
-     * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_PREAMBLE if the model does not accept a preamble
-     * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_DOCUMENTS if the model does not accept documents
-     * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_RESPONSE_FORMAT if the model does not accept a response format
-     * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_SAFETY_MODE if the model does not accept a safety mode
-     * @throws {error.SuiteScriptError} DOCUMENT_IDS_MUST_BE_UNIQUE if two documents share the same id
-     * @throws {error.SuiteScriptError} INAPPROPRIATE_CONTENT_DETECTED if the request or response is flagged as inappropriate
-     * @throws {error.SuiteScriptError} INVALID_SAFETY_MODE if safetyMode is not a valid value
-     * @throws {error.SuiteScriptError} INVALID_MAX_TOKENS_VALUE if maxTokens value is less than 0 or greater than 4000
-     * @throws {error.SuiteScriptError} INVALID_TEMPERATURE_VALUE if temperature value is less than 0 or greater than 1
-     * @throws {error.SuiteScriptError} INVALID_TOP_K_VALUE if topK value is less than 0 or greater than 500
-     * @throws {error.SuiteScriptError} INVALID_TOP_P_VALUE if topP value is less than 0 or greater than 1
-     * @throws {error.SuiteScriptError} INVALID_FREQUENCY_PENALTY_VALUE if frequencyPenalty value is less than 0 or greater than 1
-     * @throws {error.SuiteScriptError} INVALID_PRESENCE_PENALTY_VALUE if presencePenalty value is less than 0 or greater than 1
-     * @throws {error.SuiteScriptError} MAXIMUM_PARALLEL_REQUESTS_LIMIT_EXCEEDED if number of parallel requests to the LLM is greater than 5
-     * @throws {error.SuiteScriptError} RESPONSE_FORMAT_HAS_INVALID_JSON_SCHEMA if responseFormat is not a valid JSON schema
-     */
-    promise(options: {
-      prompt: string,
-      modelFamily?: llm.ModelFamily | `${llm.ModelFamily}`,
-      modelParameters?: llm.ModelParameters,
-      documents?: llm.Document[],
-      chatHistory?: llm.ChatMessage[],
-      preamble?: string,
-      safetyMode?: llm.SafetyMode | `${llm.SafetyMode}`,
-      responseFormat?: object,
-      tools?: llm.Tool[],
-      webSearchContext?: llm.WebSearchContext | `${llm.WebSearchContext}`,
-      verbosity?: llm.Verbosity | `${llm.Verbosity}`,
-      reasoningEffort?: llm.ReasoningEffort | `${llm.ReasoningEffort}`,
-      timeout?: number,
-      ociConfig?: llm.OciConfig,
-    }): Promise<llm.Response>;
+      /**
+       * Returns a response from the LLM for the given prompt asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
+       *
+       * @governance 100 units
+       * @since 2024.1
+       *
+       * @param prompt - Prompt for the LLM
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
+       */
+      (prompt: string): Promise<llm.Response>;
+
+      /**
+       * Returns a response from the LLM for the given prompt asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
+       *
+       * @governance 100 units
+       * @since 2024.1
+       *
+       * @param options
+       * @param options.prompt - Prompt for the LLM
+       * @param [options.modelFamily] - LLM model family to use; defaults to Cohere Command
+       * @param [options.modelParameters] - Parameters of the model
+       * @param [options.documents] - Source documents for retrieval-augmented generation (RAG)
+       * @param [options.chatHistory] - Chat history to be taken into consideration
+       * @param [options.preamble] - Preamble for the text generation
+       * @param [options.safetyMode] - Safety mode applied to the request
+       * @param [options.responseFormat] - JSON schema describing the structured response format
+       * @param [options.tools] - Tools the LLM may call during generation. Undocumented in the Help Center; present at runtime.
+       * @param [options.webSearchContext] - Amount of web-search context to use. Undocumented in the Help Center; present at runtime.
+       * @param [options.verbosity] - Verbosity of the generated response. Undocumented in the Help Center; present at runtime.
+       * @param [options.reasoningEffort] - Reasoning effort the model should apply. Undocumented in the Help Center; present at runtime.
+       * @param [options.timeout=30000] - Timeout in milliseconds, defaults to 30000
+       * @param [options.ociConfig] - Config needed for unlimited usage
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
+       * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS if both presencePenalty and frequencyPenalty are used in model parameters
+       * @throws {error.SuiteScriptError} UNRECOGNIZED_MODEL_PARAMETERS if an unknown model parameter has been used
+       * @throws {error.SuiteScriptError} UNRECOGNIZED_OCI_CONFIG_PARAMETERS if an unknown parameter for OCI configuration has been used
+       * @throws {error.SuiteScriptError} ONLY_API_SECRET_IS_ACCEPTED if privateKey or fingerprint are not API secrets
+       * @throws {error.SuiteScriptError} INVALID_MODEL_FAMILY_VALUE if modelFamily is not a valid value
+       * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_PREAMBLE if the model does not accept a preamble
+       * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_DOCUMENTS if the model does not accept documents
+       * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_RESPONSE_FORMAT if the model does not accept a response format
+       * @throws {error.SuiteScriptError} MODEL_1_DOES_NOT_ACCEPT_SAFETY_MODE if the model does not accept a safety mode
+       * @throws {error.SuiteScriptError} DOCUMENT_IDS_MUST_BE_UNIQUE if two documents share the same id
+       * @throws {error.SuiteScriptError} INAPPROPRIATE_CONTENT_DETECTED if the request or response is flagged as inappropriate
+       * @throws {error.SuiteScriptError} INVALID_SAFETY_MODE if safetyMode is not a valid value
+       * @throws {error.SuiteScriptError} INVALID_MAX_TOKENS_VALUE if maxTokens value is less than 0 or greater than 4000
+       * @throws {error.SuiteScriptError} INVALID_TEMPERATURE_VALUE if temperature value is less than 0 or greater than 1
+       * @throws {error.SuiteScriptError} INVALID_TOP_K_VALUE if topK value is less than 0 or greater than 500
+       * @throws {error.SuiteScriptError} INVALID_TOP_P_VALUE if topP value is less than 0 or greater than 1
+       * @throws {error.SuiteScriptError} INVALID_FREQUENCY_PENALTY_VALUE if frequencyPenalty value is less than 0 or greater than 1
+       * @throws {error.SuiteScriptError} INVALID_PRESENCE_PENALTY_VALUE if presencePenalty value is less than 0 or greater than 1
+       * @throws {error.SuiteScriptError} MAXIMUM_PARALLEL_REQUESTS_LIMIT_EXCEEDED if number of parallel requests to the LLM is greater than 5
+       * @throws {error.SuiteScriptError} RESPONSE_FORMAT_HAS_INVALID_JSON_SCHEMA if responseFormat is not a valid JSON schema
+       */
+      (options: {
+        prompt: string,
+        modelFamily?: llm.ModelFamily | `${llm.ModelFamily}`,
+        modelParameters?: llm.ModelParameters,
+        documents?: llm.Document[],
+        chatHistory?: llm.ChatMessage[],
+        preamble?: string,
+        safetyMode?: llm.SafetyMode | `${llm.SafetyMode}`,
+        responseFormat?: object,
+        tools?: llm.Tool[],
+        webSearchContext?: llm.WebSearchContext | `${llm.WebSearchContext}`,
+        verbosity?: llm.Verbosity | `${llm.Verbosity}`,
+        reasoningEffort?: llm.ReasoningEffort | `${llm.ReasoningEffort}`,
+        timeout?: number,
+        ociConfig?: llm.OciConfig,
+      }): Promise<llm.Response>;
+    };
   };
 
   /**

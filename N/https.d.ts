@@ -460,41 +460,44 @@ interface https {
     body?: string | Object,
   }): https.ClientResponse;
 
-  /**
-   * Creates and returns a crypto.SecretKey Object. This method can take a GUID or a secret.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.guid A GUID used to generate a secret key. Use Form.addCredentialField(options) to generate a GUID.
-   * @param [options.encoding] Specifies the encoding for the Secret Key.
-   */
-  createSecretKey(options: {
-    guid: string,
-    encoding?: https.Encoding | `${https.Encoding}`,
-  }): crypto_.SecretKey;
+  createSecretKey: {
 
-  /**
-   * Creates and returns a crypto.SecretKey Object. This method can take a GUID or a secret.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
-   *
-   * @governance none
-   * @restriction Server-side scripts only
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.secret The script ID of the secret used for authentication. You can store secrets at Setup > Company > API Secrets. For more information, see Secrets Management.
-   * @param [options.encoding] Specifies the encoding for the Secret Key.
-   */
-  createSecretKey(options: {
-    secret: string,
-    encoding?: https.Encoding | `${https.Encoding}`,
-  }): crypto_.SecretKey;
+    /**
+     * Creates and returns a crypto.SecretKey Object. This method can take a GUID or a secret.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.guid A GUID used to generate a secret key. Use Form.addCredentialField(options) to generate a GUID.
+     * @param [options.encoding] Specifies the encoding for the Secret Key.
+     */
+    (options: {
+      guid: string,
+      encoding?: https.Encoding | `${https.Encoding}`,
+    }): crypto_.SecretKey;
+
+    /**
+     * Creates and returns a crypto.SecretKey Object. This method can take a GUID or a secret.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4418247967}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4418247967.html}
+     *
+     * @governance none
+     * @restriction Server-side scripts only
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.secret The script ID of the secret used for authentication. You can store secrets at Setup > Company > API Secrets. For more information, see Secrets Management.
+     * @param [options.encoding] Specifies the encoding for the Secret Key.
+     */
+    (options: {
+      secret: string,
+      encoding?: https.Encoding | `${https.Encoding}`,
+    }): crypto_.SecretKey;
+  };
 
   /**
    * Creates and returns an https.SecureString. The input for the secure string can be a GUID or a secret. For more information about secrets, see Secrets Management.
@@ -921,138 +924,147 @@ declare namespace https {
       parameters?: Record<string, string>,
     }): void;
 
-    /**
-     * Writes information (text, xml, html) to the response.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567651956}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567651956.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param output The string being written.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
-     */
-    write(output: string): void;
+    write: {
 
-    /**
-     * Writes information (text, xml, html) to the response.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567651956}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567651956.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.output The string being written.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
-     */
-    write(options: {
-      output: string,
-    }): void;
+      /**
+       * Writes information (text, xml, html) to the response.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567651956}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567651956.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param output The string being written.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
+       */
+      (output: string): void;
 
-    /**
-     * Writes line information (text, xml, html) to the response.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632751}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632751.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param output The string being written.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
-     */
-    writeLine(output: string): void;
+      /**
+       * Writes information (text, xml, html) to the response.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567651956}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567651956.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.output The string being written.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
+       */
+      (options: {
+        output: string,
+      }): void;
+    };
 
-    /**
-     * Writes line information (text, xml, html) to the response.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632751}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632751.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.output The string being written.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
-     */
-    writeLine(options: {
-      output: string,
-    }): void;
+    writeLine: {
 
-    /**
-     * Generates a page.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param assistant A standalone page Object in the form of an assistant.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
-     */
-    writePage(assistant: serverWidget.Assistant): void;
+      /**
+       * Writes line information (text, xml, html) to the response.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632751}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632751.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param output The string being written.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
+       */
+      (output: string): void;
 
-    /**
-     * Generates a page.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param form A standalone page Object in the form of a form.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
-     */
-    writePage(form: serverWidget.Form): void;
+      /**
+       * Writes line information (text, xml, html) to the response.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632751}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632751.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.output The string being written.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.output` parameter is not specified.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE "{param name}" The value input for `options.output` is not a string.
+       */
+      (options: {
+        output: string,
+      }): void;
+    };
 
-    /**
-     * Generates a page.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param list A standalone page Object in the form of a list.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
-     */
-    writePage(list: serverWidget.List): void;
+    writePage: {
 
-    /**
-     * Generates a page.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.pageObject A standalone page Object in the form of an assistant, form, or list.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
-     */
-    writePage(options: {
-      pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
-    }): void;
+      /**
+       * Generates a page.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param assistant A standalone page Object in the form of an assistant.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
+       */
+      (assistant: serverWidget.Assistant): void;
+
+      /**
+       * Generates a page.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param form A standalone page Object in the form of a form.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
+       */
+      (form: serverWidget.Form): void;
+
+      /**
+       * Generates a page.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param list A standalone page Object in the form of a list.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
+       */
+      (list: serverWidget.List): void;
+
+      /**
+       * Generates a page.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4567632500}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4567632500.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.pageObject A standalone page Object in the form of an assistant, form, or list.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT "Missing a required argument: {param name}" The `options.pageObject` parameter is not specified.
+       */
+      (options: {
+        pageObject: serverWidget.Assistant | serverWidget.Form | serverWidget.List,
+      }): void;
+    };
 
     /**
      * Writes a file to the response.

@@ -270,28 +270,31 @@ interface documentCapture {
      */
     (file: file.File): documentCapture.Document;
 
-    /**
-     * Object-form async call.
-     *
-     * @param options
-     * @param options.file The JSON file to parse. Must be located in the NetSuite File Cabinet.
-     * @return Promise resolving to the parsed document.
-     *
-     * @throws {error.SuiteScriptError} See sync variants for the inferred/confirmed `@throws` codes.
-     */
-    promise(options: {
-      file: file.File,
-    }): Promise<documentCapture.Document>;
+    promise: {
 
-    /**
-     * Bare-file async call. Functionally equivalent to the object-form promise.
-     *
-     * @param file The JSON file to parse. Must be located in the NetSuite File Cabinet.
-     * @return Promise resolving to the parsed document.
-     *
-     * @throws {error.SuiteScriptError} See sync variants for the inferred/confirmed `@throws` codes.
-     */
-    promise(file: file.File): Promise<documentCapture.Document>;
+      /**
+       * Object-form async call.
+       *
+       * @param options
+       * @param options.file The JSON file to parse. Must be located in the NetSuite File Cabinet.
+       * @return Promise resolving to the parsed document.
+       *
+       * @throws {error.SuiteScriptError} See sync variants for the inferred/confirmed `@throws` codes.
+       */
+      (options: {
+        file: file.File,
+      }): Promise<documentCapture.Document>;
+
+      /**
+       * Bare-file async call. Functionally equivalent to the object-form promise.
+       *
+       * @param file The JSON file to parse. Must be located in the NetSuite File Cabinet.
+       * @return Promise resolving to the parsed document.
+       *
+       * @throws {error.SuiteScriptError} See sync variants for the inferred/confirmed `@throws` codes.
+       */
+      (file: file.File): Promise<documentCapture.Document>;
+    };
   };
 }
 

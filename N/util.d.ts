@@ -15,67 +15,70 @@
  */
 interface util {
 
-  /**
-   * Iterates over each member of an Array, calling `callback` for each element.
-   * Returns the original collection unchanged.
-   *
-   * Behavior notes that may surprise consumers familiar with native
-   * `Array.prototype.forEach` or Underscore/Lodash `_.each`:
-   *  - The callback's return value is IGNORED — returning `false` does NOT
-   *    short-circuit the iteration (all elements are visited regardless).
-   *  - Sparse-array holes ARE visited with `value === undefined`, where
-   *    native `Array.forEach` would skip them.
-   *  - Non-iterable inputs (`null`, `undefined`, strings, numbers, booleans,
-   *    empty arrays) are silently accepted — the callback is simply not
-   *    invoked.
-   *  - A missing, `null`, or non-function `callback` throws a plain
-   *    `TypeError: callback is not a function` (NOT a `SuiteScriptError`).
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2016.1
-   *
-   * @param iterable The Array to iterate over.
-   * @param callback Invoked once per element with `(value, index, originalArray)`. Return value is ignored.
-   * @return The original `iterable` Array, returned unchanged for chaining.
-   *
-   * @throws {TypeError} If `callback` is missing, `null`, or a non-function value. Message format: `"callback is not a function"`. Not wrapped as a `SuiteScriptError`.
-   */
-  each<T>(iterable: T[], callback: (value: T, index: number, arr: T[]) => void): T[];
+  each: {
 
-  /**
-   * Iterates over each own enumerable property of an Object, calling `callback`
-   * for each entry. Returns the original collection unchanged.
-   *
-   * Behavior notes:
-   *  - Inherited properties from the prototype chain are NOT visited (own
-   *    properties only — equivalent to `for...in` filtered by
-   *    `hasOwnProperty`).
-   *  - The callback's return value is IGNORED — returning `false` does NOT
-   *    short-circuit the iteration.
-   *  - Non-iterable inputs (`null`, `undefined`, primitives) are silently
-   *    accepted — the callback is simply not invoked.
-   *  - Array-like objects with a numeric `length` property are iterated in
-   *    array-style (numeric `key`, indices `0` to `length - 1`) rather than
-   *    object-style.
-   *  - A missing, `null`, or non-function `callback` throws a plain
-   *    `TypeError: callback is not a function` (NOT a `SuiteScriptError`).
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2016.1
-   *
-   * @param iterable The Object whose own properties to iterate over.
-   * @param callback Invoked once per own property with `(value, key, originalObject)`. Return value is ignored.
-   * @return The original `iterable` Object, returned unchanged for chaining.
-   *
-   * @throws {TypeError} If `callback` is missing, `null`, or a non-function value. Message format: `"callback is not a function"`. Not wrapped as a `SuiteScriptError`.
-   */
-  each<V>(iterable: { [key: string]: V }, callback: (value: V, key: string, obj: { [key: string]: V }) => void): { [key: string]: V };
+    /**
+     * Iterates over each member of an Array, calling `callback` for each element.
+     * Returns the original collection unchanged.
+     *
+     * Behavior notes that may surprise consumers familiar with native
+     * `Array.prototype.forEach` or Underscore/Lodash `_.each`:
+     *  - The callback's return value is IGNORED — returning `false` does NOT
+     *    short-circuit the iteration (all elements are visited regardless).
+     *  - Sparse-array holes ARE visited with `value === undefined`, where
+     *    native `Array.forEach` would skip them.
+     *  - Non-iterable inputs (`null`, `undefined`, strings, numbers, booleans,
+     *    empty arrays) are silently accepted — the callback is simply not
+     *    invoked.
+     *  - A missing, `null`, or non-function `callback` throws a plain
+     *    `TypeError: callback is not a function` (NOT a `SuiteScriptError`).
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2016.1
+     *
+     * @param iterable The Array to iterate over.
+     * @param callback Invoked once per element with `(value, index, originalArray)`. Return value is ignored.
+     * @return The original `iterable` Array, returned unchanged for chaining.
+     *
+     * @throws {TypeError} If `callback` is missing, `null`, or a non-function value. Message format: `"callback is not a function"`. Not wrapped as a `SuiteScriptError`.
+     */
+    <T>(iterable: T[], callback: (value: T, index: number, arr: T[]) => void): T[];
+
+    /**
+     * Iterates over each own enumerable property of an Object, calling `callback`
+     * for each entry. Returns the original collection unchanged.
+     *
+     * Behavior notes:
+     *  - Inherited properties from the prototype chain are NOT visited (own
+     *    properties only — equivalent to `for...in` filtered by
+     *    `hasOwnProperty`).
+     *  - The callback's return value is IGNORED — returning `false` does NOT
+     *    short-circuit the iteration.
+     *  - Non-iterable inputs (`null`, `undefined`, primitives) are silently
+     *    accepted — the callback is simply not invoked.
+     *  - Array-like objects with a numeric `length` property are iterated in
+     *    array-style (numeric `key`, indices `0` to `length - 1`) rather than
+     *    object-style.
+     *  - A missing, `null`, or non-function `callback` throws a plain
+     *    `TypeError: callback is not a function` (NOT a `SuiteScriptError`).
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4541697371}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4541697371.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2016.1
+     *
+     * @param iterable The Object whose own properties to iterate over.
+     * @param callback Invoked once per own property with `(value, key, originalObject)`. Return value is ignored.
+     * @return The original `iterable` Object, returned unchanged for chaining.
+     *
+     * @throws {TypeError} If `callback` is missing, `null`, or a non-function value. Message format: `"callback is not a function"`. Not wrapped as a `SuiteScriptError`.
+     */
+    <V>(iterable: { [key: string]: V }, callback: (value: V, key: string, obj: { [key: string]: V }) => void): { [key: string]: V };
+  };
 
   /**
    * Shallow-copies the own enumerable properties of `contributor` onto

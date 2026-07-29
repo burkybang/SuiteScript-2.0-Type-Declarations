@@ -29,266 +29,272 @@
  */
 interface format {
 
-  /**
-   * Parses a formatted string value back to its raw value, using the formatting
-   * rules implied by the field `type`. The appropriate preference format is
-   * the one selected at *Home > Set Preferences*.
-   *
-   * For `DATETIME` and `DATETIMETZ` values, the returned `Date` reflects the
-   * parsed instant in the specified `timezone` (or the user's preference
-   * timezone if omitted). For `DATETIME` (without `TZ`), the `timezone` option
-   * is silently ignored.
-   *
-   * If `value` cannot be parsed as the requested `type` (or `type` is unknown),
-   * the runtime returns `options.value` unchanged — so the return type is a
-   * union of the parsed form (`Date` for date types) and the input string.
-   *
-   * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
-   * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. The
-   * runtime treats every JS-falsy value EXCEPT `0` as "missing" before the
-   * method body runs. `value: 0` is accepted and stringified to `"0"`
-   * pre-parse.
-   *
-   * Note on `CHECKBOX` parsing strictness: only the exact string `'T'`
-   * (uppercase) returns `true`. Every other string — `'t'`, `'1'`, `'yes'`,
-   * `'true'`, etc. — returns `false`. This is undocumented.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.value The formatted string to parse.
-   * @param options.type The field type (e.g. `DATE`, `DATETIME`, `DATETIMETZ`). Accepts a `format.Type` enum value or its literal-string equivalent (e.g. `format.Type.DATE` or `'date'`).
-   * @param [options.timezone] (`DATETIMETZ` only) The time zone the string represents. Accepts a `format.Timezone` enum value or its literal-string equivalent. If omitted, the user-preference timezone is used. If invalid, the runtime silently falls back to `GMT`. Silently ignored for `DATETIME` and non-datetime types.
-   * @return The parsed `Date` if `value` parses as a date type; otherwise `options.value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  parse(options: {
-    value: string,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
-      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
-    timezone?: format.Timezone | `${format.Timezone}`,
-  }): Date | string;
+  parse: {
 
-  /**
-   * Parses a formatted string value back to its raw value for non-date field
-   * types. Numeric types return `number`; checkbox returns `boolean`; text-like
-   * types return `string`.
-   *
-   * If `value` cannot be parsed (e.g. a malformed numeric, an unknown `type`,
-   * or a value that doesn't match the type's expected format), the runtime
-   * returns `options.value` unchanged.
-   *
-   * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
-   * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. The
-   * runtime treats every JS-falsy value EXCEPT `0` as "missing" before the
-   * method body runs.
-   *
-   * Note on `CHECKBOX` parsing strictness: only the exact string `'T'`
-   * (uppercase) returns `true`. Every other string — `'t'`, `'1'`, `'yes'`,
-   * `'true'`, etc. — returns `false`. This is undocumented.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.value The formatted string to parse.
-   * @param options.type The field type (e.g. `INTEGER`, `FLOAT`, `CURRENCY`, `CHECKBOX`). Excludes date types — use the date-typed overload for those. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @return The parsed value (`number` for numeric types, `boolean` for checkbox, `string` for text-like) if parseable; otherwise `options.value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  parse(options: {
-    value: string | number | Date,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
-      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
-  }): string | number | boolean;
+    /**
+     * Parses a formatted string value back to its raw value, using the formatting
+     * rules implied by the field `type`. The appropriate preference format is
+     * the one selected at *Home > Set Preferences*.
+     *
+     * For `DATETIME` and `DATETIMETZ` values, the returned `Date` reflects the
+     * parsed instant in the specified `timezone` (or the user's preference
+     * timezone if omitted). For `DATETIME` (without `TZ`), the `timezone` option
+     * is silently ignored.
+     *
+     * If `value` cannot be parsed as the requested `type` (or `type` is unknown),
+     * the runtime returns `options.value` unchanged — so the return type is a
+     * union of the parsed form (`Date` for date types) and the input string.
+     *
+     * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
+     * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. The
+     * runtime treats every JS-falsy value EXCEPT `0` as "missing" before the
+     * method body runs. `value: 0` is accepted and stringified to `"0"`
+     * pre-parse.
+     *
+     * Note on `CHECKBOX` parsing strictness: only the exact string `'T'`
+     * (uppercase) returns `true`. Every other string — `'t'`, `'1'`, `'yes'`,
+     * `'true'`, etc. — returns `false`. This is undocumented.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.value The formatted string to parse.
+     * @param options.type The field type (e.g. `DATE`, `DATETIME`, `DATETIMETZ`). Accepts a `format.Type` enum value or its literal-string equivalent (e.g. `format.Type.DATE` or `'date'`).
+     * @param [options.timezone] (`DATETIMETZ` only) The time zone the string represents. Accepts a `format.Timezone` enum value or its literal-string equivalent. If omitted, the user-preference timezone is used. If invalid, the runtime silently falls back to `GMT`. Silently ignored for `DATETIME` and non-datetime types.
+     * @return The parsed `Date` if `value` parses as a date type; otherwise `options.value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (options: {
+      value: string,
+      type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+        | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+      timezone?: format.Timezone | `${format.Timezone}`,
+    }): Date | string;
 
-  /**
-   * Undocumented positional-form overload of `format.parse` for date types
-   * (`DATE`, `DATETIME`, `DATETIMETZ`). Functionally equivalent to the
-   * options-bag form; arguments map positionally to `options.value`,
-   * `options.type`, and `options.timezone`.
-   *
-   * Undocumented in the Help Center; present at runtime. The function's
-   * declared arity is 2 — the timezone argument is accepted via the
-   * arguments object.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param value The formatted string to parse.
-   * @param type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @param [timezone] (`DATETIMETZ` only) The time zone the string represents. Same semantics as the options-bag form's `timezone` parameter.
-   * @return The parsed `Date` if `value` parses as a date type; otherwise `value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  parse(
-    value: string,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
-      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
-    timezone?: format.Timezone | `${format.Timezone}`,
-  ): Date | string;
+    /**
+     * Parses a formatted string value back to its raw value for non-date field
+     * types. Numeric types return `number`; checkbox returns `boolean`; text-like
+     * types return `string`.
+     *
+     * If `value` cannot be parsed (e.g. a malformed numeric, an unknown `type`,
+     * or a value that doesn't match the type's expected format), the runtime
+     * returns `options.value` unchanged.
+     *
+     * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
+     * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. The
+     * runtime treats every JS-falsy value EXCEPT `0` as "missing" before the
+     * method body runs.
+     *
+     * Note on `CHECKBOX` parsing strictness: only the exact string `'T'`
+     * (uppercase) returns `true`. Every other string — `'t'`, `'1'`, `'yes'`,
+     * `'true'`, etc. — returns `false`. This is undocumented.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.value The formatted string to parse.
+     * @param options.type The field type (e.g. `INTEGER`, `FLOAT`, `CURRENCY`, `CHECKBOX`). Excludes date types — use the date-typed overload for those. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @return The parsed value (`number` for numeric types, `boolean` for checkbox, `string` for text-like) if parseable; otherwise `options.value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (options: {
+      value: string | number | Date,
+      type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+        | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
+    }): string | number | boolean;
 
-  /**
-   * Undocumented positional-form overload of `format.parse` for non-date field
-   * types. Functionally equivalent to the options-bag form; arguments map
-   * positionally to `options.value` and `options.type`.
-   *
-   * Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param value The formatted string to parse.
-   * @param type The non-date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @return The parsed value (`number` for numeric types, `boolean` for checkbox, `string` for text-like) if parseable; otherwise `value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  parse(
-    value: string | number | Date,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
-      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
-  ): string | number | boolean;
+    /**
+     * Undocumented positional-form overload of `format.parse` for date types
+     * (`DATE`, `DATETIME`, `DATETIMETZ`). Functionally equivalent to the
+     * options-bag form; arguments map positionally to `options.value`,
+     * `options.type`, and `options.timezone`.
+     *
+     * Undocumented in the Help Center; present at runtime. The function's
+     * declared arity is 2 — the timezone argument is accepted via the
+     * arguments object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param value The formatted string to parse.
+     * @param type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @param [timezone] (`DATETIMETZ` only) The time zone the string represents. Same semantics as the options-bag form's `timezone` parameter.
+     * @return The parsed `Date` if `value` parses as a date type; otherwise `value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (
+      value: string,
+      type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+        | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+      timezone?: format.Timezone | `${format.Timezone}`,
+    ): Date | string;
 
-  /**
-   * Formats a raw value as its preference-formatted string representation,
-   * using the formatting rules implied by the field `type`. For `DATETIMETZ`,
-   * the `timezone` option controls the formatted output's offset.
-   *
-   * If `value` cannot be formatted as the requested `type` (or `type` is
-   * unknown), the runtime returns `options.value` unchanged — so the return
-   * type is a union of `string` and the input type.
-   *
-   * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
-   * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. `value: 0`
-   * is accepted and formats as `"0"` for numeric types.
-   *
-   * Note on context-timezone differences: for client scripts, the formatted
-   * string reflects the user's system time. For server scripts (and
-   * scheduled, user-event, RESTlet, etc.), the formatted string reflects the
-   * current time in Pacific Time. Daylight Savings Time is respected.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.value The raw value to format.
-   * @param options.type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @param [options.timezone] (`DATETIMETZ` only) The time zone for the formatted output. Accepts a `format.Timezone` enum value or its literal-string equivalent. If omitted, the user-preference timezone is used. If invalid, the runtime silently falls back to `GMT`. Silently ignored for `DATETIME` and non-datetime types despite Help Center claims to the contrary.
-   * @return The formatted string if `value` is format-able; otherwise `options.value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  format(options: {
-    value: Date | string | number,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
-      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
-    timezone?: format.Timezone | `${format.Timezone}`,
-  }): string | Date;
+    /**
+     * Undocumented positional-form overload of `format.parse` for non-date field
+     * types. Functionally equivalent to the options-bag form; arguments map
+     * positionally to `options.value` and `options.type`.
+     *
+     * Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388837989}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388837989.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param value The formatted string to parse.
+     * @param type The non-date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @return The parsed value (`number` for numeric types, `boolean` for checkbox, `string` for text-like) if parseable; otherwise `value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (
+      value: string | number | Date,
+      type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+        | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
+    ): string | number | boolean;
+  };
 
-  /**
-   * Formats a raw value as its preference-formatted string representation for
-   * non-date field types. Numeric values format as locale-aware strings;
-   * checkbox values format as `'T'` or `'F'`; text-like types format with any
-   * `type`-specific decoration (e.g. `PERCENT` appends `%`).
-   *
-   * If `value` cannot be formatted (e.g. for an unknown `type`, or for a
-   * value that doesn't match the type's expectations), the runtime returns
-   * `options.value` unchanged.
-   *
-   * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
-   * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. `value: 0`
-   * is accepted and formats as `"0"` for numeric types.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.value The raw value to format.
-   * @param options.type The non-date field type. Excludes date types — use the date-typed overload for those. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @return The formatted string if `value` is format-able; otherwise `options.value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  format(options: {
-    value: Date | string | number,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
-      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
-  }): string | Date | number;
+  format: {
 
-  /**
-   * Undocumented positional-form overload of `format.format` for date types.
-   * Functionally equivalent to the options-bag form; arguments map
-   * positionally to `options.value`, `options.type`, and `options.timezone`.
-   *
-   * Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param value The raw value to format.
-   * @param type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @param [timezone] (`DATETIMETZ` only) The time zone for the formatted output. Same semantics as the options-bag form's `timezone` parameter.
-   * @return The formatted string if `value` is format-able; otherwise `value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  format(
-    value: Date | string | number,
-    type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
-      | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
-    timezone?: format.Timezone | `${format.Timezone}`,
-  ): string | Date;
+    /**
+     * Formats a raw value as its preference-formatted string representation,
+     * using the formatting rules implied by the field `type`. For `DATETIMETZ`,
+     * the `timezone` option controls the formatted output's offset.
+     *
+     * If `value` cannot be formatted as the requested `type` (or `type` is
+     * unknown), the runtime returns `options.value` unchanged — so the return
+     * type is a union of `string` and the input type.
+     *
+     * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
+     * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. `value: 0`
+     * is accepted and formats as `"0"` for numeric types.
+     *
+     * Note on context-timezone differences: for client scripts, the formatted
+     * string reflects the user's system time. For server scripts (and
+     * scheduled, user-event, RESTlet, etc.), the formatted string reflects the
+     * current time in Pacific Time. Daylight Savings Time is respected.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.value The raw value to format.
+     * @param options.type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @param [options.timezone] (`DATETIMETZ` only) The time zone for the formatted output. Accepts a `format.Timezone` enum value or its literal-string equivalent. If omitted, the user-preference timezone is used. If invalid, the runtime silently falls back to `GMT`. Silently ignored for `DATETIME` and non-datetime types despite Help Center claims to the contrary.
+     * @return The formatted string if `value` is format-able; otherwise `options.value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (options: {
+      value: Date | string | number,
+      type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+        | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+      timezone?: format.Timezone | `${format.Timezone}`,
+    }): string | Date;
 
-  /**
-   * Undocumented positional-form overload of `format.format` for non-date
-   * field types. Functionally equivalent to the options-bag form; arguments
-   * map positionally to `options.value` and `options.type`.
-   *
-   * Undocumented in the Help Center; present at runtime.
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param value The raw value to format.
-   * @param type The non-date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
-   * @return The formatted string if `value` is format-able; otherwise `value` unchanged.
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
-   */
-  format(
-    value: Date | string | number,
-    type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
-      | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
-  ): string | Date | number;
+    /**
+     * Formats a raw value as its preference-formatted string representation for
+     * non-date field types. Numeric values format as locale-aware strings;
+     * checkbox values format as `'T'` or `'F'`; text-like types format with any
+     * `type`-specific decoration (e.g. `PERCENT` appends `%`).
+     *
+     * If `value` cannot be formatted (e.g. for an unknown `type`, or for a
+     * value that doesn't match the type's expectations), the runtime returns
+     * `options.value` unchanged.
+     *
+     * Note on the truthy-check bug: `value: false`, `value: ''`, `value: null`,
+     * and `value: undefined` all trigger `SSS_MISSING_REQD_ARGUMENT`. `value: 0`
+     * is accepted and formats as `"0"` for numeric types.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.value The raw value to format.
+     * @param options.type The non-date field type. Excludes date types — use the date-typed overload for those. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @return The formatted string if `value` is format-able; otherwise `options.value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.value` or `options.type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (options: {
+      value: Date | string | number,
+      type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+        | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
+    }): string | Date | number;
+
+    /**
+     * Undocumented positional-form overload of `format.format` for date types.
+     * Functionally equivalent to the options-bag form; arguments map
+     * positionally to `options.value`, `options.type`, and `options.timezone`.
+     *
+     * Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param value The raw value to format.
+     * @param type The date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @param [timezone] (`DATETIMETZ` only) The time zone for the formatted output. Same semantics as the options-bag form's `timezone` parameter.
+     * @return The formatted string if `value` is format-able; otherwise `value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (
+      value: Date | string | number,
+      type: format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ
+        | `${format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ}`,
+      timezone?: format.Timezone | `${format.Timezone}`,
+    ): string | Date;
+
+    /**
+     * Undocumented positional-form overload of `format.format` for non-date
+     * field types. Functionally equivalent to the options-bag form; arguments
+     * map positionally to `options.value` and `options.type`.
+     *
+     * Undocumented in the Help Center; present at runtime.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4388843892}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4388843892.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param value The raw value to format.
+     * @param type The non-date field type. Accepts a `format.Type` enum value or its literal-string equivalent.
+     * @return The formatted string if `value` is format-able; otherwise `value` unchanged.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `value` or `type` is missing/null/`false`/empty-string (pre-validation; not governance-billed).
+     */
+    (
+      value: Date | string | number,
+      type: Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>
+        | `${Exclude<format.Type, format.Type.DATE | format.Type.DATETIME | format.Type.DATETIMETZ>}`,
+    ): string | Date | number;
+  };
 
   /**
    * Direct access to the `N/format/i18n` submodule. Equivalent to importing

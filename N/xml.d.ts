@@ -27,44 +27,47 @@ interface xml {
    */
   XPath: xml.XPath;
 
-  /**
-   * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param options
-   * @param options.xmlText the XML text to be escaped
-   * @return the escaped XML
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
-   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
-   */
-  escape(options: {
-    xmlText: string,
-  }): string;
+  escape: {
 
-  /**
-   * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
-   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
-   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
-   *
-   * @governance none
-   * @restriction Client-side and server-side scripts
-   * @since 2015.2
-   *
-   * @param xmlText the XML text to be escaped
-   * @return the escaped XML
-   *
-   * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
-   * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
-   */
-  escape(
-    xmlText: string,
-  ): string;
+    /**
+     * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.xmlText the XML text to be escaped
+     * @return the escaped XML
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
+     */
+    (options: {
+      xmlText: string,
+    }): string;
+
+    /**
+     * Prepares a String for use in XML by escaping XML markup (for example, angle brackets, quotation marks, and ampersands)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4392331185}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4392331185.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param xmlText the XML text to be escaped
+     * @return the escaped XML
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if xmlText is missing or null
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if xmlText is not a string
+     */
+    (
+      xmlText: string,
+    ): string;
+  };
 
   /**
    * Validates a supplied XML document against a supplied XML Schema (XSD Document)
@@ -128,79 +131,85 @@ declare namespace xml {
    */
   export interface Parser {
 
-    /**
-     * Generate XML Document object from a string
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param text XML text
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
-     */
-    fromString(
-      text: string,
-    ): Document;
+    fromString: {
 
-    /**
-     * Generate XML Document object from a string
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.text XML text
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
-     * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
-     */
-    fromString(options: {
-      text: string,
-    }): Document;
+      /**
+       * Generate XML Document object from a string
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
+       *
+       * @governance none
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param text XML text
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
+       * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
+       */
+      (
+        text: string,
+      ): Document;
 
-    /**
-     * Generate a String from an XML Document object
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.document XML Document object
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
-     */
-    toString(options: {
-      document: Document,
-    }): string;
+      /**
+       * Generate XML Document object from a string
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924195}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924195.html}
+       *
+       * @governance none
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.text XML text
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
+       * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
+       */
+      (options: {
+        text: string,
+      }): Document;
+    };
 
-    /**
-     * Generate a String from an XML Document object
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param document XML Document object
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
-     */
-    toString(
-      document: Document,
-    ): string;
+    toString: {
+
+      /**
+       * Generate a String from an XML Document object
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
+       *
+       * @governance none
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.document XML Document object
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
+       */
+      (options: {
+        document: Document,
+      }): string;
+
+      /**
+       * Generate a String from an XML Document object
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4344924636}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344924636.html}
+       *
+       * @governance none
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param document XML Document object
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if document is missing or null
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if document is not an xml.Document
+       */
+      (
+        document: Document,
+      ): string;
+    };
   }
 
   /**
@@ -992,34 +1001,37 @@ declare namespace xml {
      */
     readonly tagName: string;
 
-    /**
-     * Retrieves an attribute value by name
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
-     *
-     * @governance none
-     *
-     * @param name the name of the attribute to retrieve
-     * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
-     */
-    getAttribute(
-      name: string,
-    ): string;
+    getAttribute: {
 
-    /**
-     * Retrieves an attribute value by name
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
-     *
-     * @governance none
-     *
-     * @param options
-     * @param options.name the name of the attribute to retrieve
-     * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
-     */
-    getAttribute(options: {
-      name: string,
-    }): string;
+      /**
+       * Retrieves an attribute value by name
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
+       *
+       * @governance none
+       *
+       * @param name the name of the attribute to retrieve
+       * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+       */
+      (
+        name: string,
+      ): string;
+
+      /**
+       * Retrieves an attribute value by name
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_457730651854}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_457730651854.html}
+       *
+       * @governance none
+       *
+       * @param options
+       * @param options.name the name of the attribute to retrieve
+       * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
+       */
+      (options: {
+        name: string,
+      }): string;
+    };
 
     /**
      * Retrieves an attribute node by name

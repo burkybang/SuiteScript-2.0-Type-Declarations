@@ -242,51 +242,54 @@ interface email {
      */
     (campaignEventId: number | string, recipientId: number | string): number;
 
-    /**
-     * Sends a single on-demand campaign email to a specified recipient and returns a campaign response ID to track the email. The campaign must use a Lead Nurturing (campaigndrip) sublist.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440807100}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440807100.html}
-     *
-     * @governance 10 units
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.campaignEventId The internal ID of the campaign event.
-     * @param options.recipientId The internal ID of the recipient. The recipient's record must contain an email address.
-     * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails.
-     *
-     * @throws {error.SuiteScriptError} SSS_INVALID_CMPGN_EVENT_ID The campaign event is invalid, disabled, or is not a Lead Nurturing Email event.
-     * @throws {error.SuiteScriptError} SSS_AUTHOR_MUST_BE_EMPLOYEE The author internal id or email must match an employee.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TO_EMAIL One or more recipient emails are not valid.
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT {method name}: Missing a required argument: {param name}
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Wrong parameter type: {param name} is expected as {param type}.
-     */
-    promise(options: {
-      campaignEventId: number | string,
-      recipientId: number | string,
-    }): Promise<number>;
+    promise: {
 
-    /**
-     * Sends a single on-demand campaign email to a specified recipient and returns a campaign response ID to track the email. The campaign must use a Lead Nurturing (campaigndrip) sublist.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440807100}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440807100.html}
-     *
-     * @governance 10 units
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param campaignEventId The internal ID of the campaign event.
-     * @param recipientId The internal ID of the recipient. The recipient's record must contain an email address.
-     * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails.
-     *
-     * @throws {error.SuiteScriptError} SSS_INVALID_CMPGN_EVENT_ID The campaign event is invalid, disabled, or is not a Lead Nurturing Email event.
-     * @throws {error.SuiteScriptError} SSS_AUTHOR_MUST_BE_EMPLOYEE The author internal id or email must match an employee.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TO_EMAIL One or more recipient emails are not valid.
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT {method name}: Missing a required argument: {param name}
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Wrong parameter type: {param name} is expected as {param type}.
-     */
-    promise(campaignEventId: number | string, recipientId: number | string): Promise<number>;
+      /**
+       * Sends a single on-demand campaign email to a specified recipient and returns a campaign response ID to track the email. The campaign must use a Lead Nurturing (campaigndrip) sublist.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440807100}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440807100.html}
+       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.campaignEventId The internal ID of the campaign event.
+       * @param options.recipientId The internal ID of the recipient. The recipient's record must contain an email address.
+       * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails.
+       *
+       * @throws {error.SuiteScriptError} SSS_INVALID_CMPGN_EVENT_ID The campaign event is invalid, disabled, or is not a Lead Nurturing Email event.
+       * @throws {error.SuiteScriptError} SSS_AUTHOR_MUST_BE_EMPLOYEE The author internal id or email must match an employee.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TO_EMAIL One or more recipient emails are not valid.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT {method name}: Missing a required argument: {param name}
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Wrong parameter type: {param name} is expected as {param type}.
+       */
+      (options: {
+        campaignEventId: number | string,
+        recipientId: number | string,
+      }): Promise<number>;
+
+      /**
+       * Sends a single on-demand campaign email to a specified recipient and returns a campaign response ID to track the email. The campaign must use a Lead Nurturing (campaigndrip) sublist.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440807100}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440807100.html}
+       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param campaignEventId The internal ID of the campaign event.
+       * @param recipientId The internal ID of the recipient. The recipient's record must contain an email address.
+       * @return A campaign response ID (tracking code) as an integer, or -1 if the send fails.
+       *
+       * @throws {error.SuiteScriptError} SSS_INVALID_CMPGN_EVENT_ID The campaign event is invalid, disabled, or is not a Lead Nurturing Email event.
+       * @throws {error.SuiteScriptError} SSS_AUTHOR_MUST_BE_EMPLOYEE The author internal id or email must match an employee.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TO_EMAIL One or more recipient emails are not valid.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT {method name}: Missing a required argument: {param name}
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Wrong parameter type: {param name} is expected as {param type}.
+       */
+      (campaignEventId: number | string, recipientId: number | string): Promise<number>;
+    };
   };
 
 }

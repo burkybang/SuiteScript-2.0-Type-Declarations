@@ -65,36 +65,39 @@ declare namespace message {
    */
   export interface Message {
 
-    /**
-     * Shows the message.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497866594}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497866594.html}
-     *
-     * @governance none
-     * @restriction Client-side scripts only
-     * @since 2016.1
-     *
-     * @param [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
-     */
-    show(duration?: number | string): void;
+    show: {
 
-    /**
-     * Shows the message.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497866594}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497866594.html}
-     *
-     * @governance none
-     * @restriction Client-side scripts only
-     * @since 2016.1
-     *
-     * @param [options]
-     * @param [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
-     *
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
-     */
-    show(options?: {
-      duration?: number | string,
-    }): void;
+      /**
+       * Shows the message.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497866594}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497866594.html}
+       *
+       * @governance none
+       * @restriction Client-side scripts only
+       * @since 2016.1
+       *
+       * @param [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
+       */
+      (duration?: number | string): void;
+
+      /**
+       * Shows the message.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4497866594}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4497866594.html}
+       *
+       * @governance none
+       * @restriction Client-side scripts only
+       * @since 2016.1
+       *
+       * @param [options]
+       * @param [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
+       */
+      (options?: {
+        duration?: number | string,
+      }): void;
+    };
 
     /**
      * Hides the message.
