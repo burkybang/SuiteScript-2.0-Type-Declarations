@@ -11,6 +11,7 @@ interface SuiteScriptModuleMap {
   'N/config': config;
   'N/crypto': crypto_;
   'N/crypto/certificate': certificate;
+  'N/crypto/random': random;
   'N/currency': currency;
   'N/currentRecord': currentRecord;
   'N/dataset': dataset;
