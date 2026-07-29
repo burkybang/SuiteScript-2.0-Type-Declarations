@@ -4,7 +4,7 @@
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4489981198.html}
  */
 
-/// <reference path="../N/currentRecord.d.ts" />
+/// <reference path="../N/record.d.ts" />
 
 /**
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671}
@@ -31,12 +31,12 @@ interface PageInitContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410597671}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410597671.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    *
    * @since 2015.2
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 }
 
 /**
@@ -52,10 +52,10 @@ interface ValidateFieldContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693152}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693152.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -111,10 +111,10 @@ interface FieldChangedContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692508}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410692508.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -170,10 +170,10 @@ interface PostSourcingContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692646}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410692646.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -218,10 +218,10 @@ interface LineInitContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693004}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693004.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -247,10 +247,10 @@ interface ValidateLineContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693302}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693302.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -276,10 +276,10 @@ interface ValidateInsertContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693455}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693455.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -305,10 +305,10 @@ interface ValidateDeleteContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693608}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693608.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -334,10 +334,10 @@ interface SublistChangedContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410692812}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410692812.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 
   /**
    * The internal ID of the sublist
@@ -373,8 +373,8 @@ interface SaveRecordContext {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4410693749}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4410693749.html}
    *
-   * @type {currentRecord.CurrentRecord}
+   * @type {record.DynamicRecord}
    * @readonly
    */
-  currentRecord: currentRecord.CurrentRecordReadonly;
+  currentRecord: record.DynamicRecord;
 }

@@ -1,6 +1,5 @@
 /// <reference path="./error.d.ts" />
 /// <reference path="./record.d.ts" />
-/// <reference path="./currentRecord.d.ts" />
 
 /**
  * SuiteScript recordContext module
@@ -66,7 +65,7 @@ interface recordContext {
      * @since 2020.2
      *
      * @param options
-     * @param options.record The loaded record object. May be a `record.Record`, `record.RecordReadonly`, `currentRecord.CurrentRecord`, or `currentRecord.CurrentRecordReadonly`.
+     * @param options.record The loaded record object. May be a `record.Record` (standard mode) or `record.DynamicRecord` (dynamic mode).
      * @param [options.contextTypes] Array of context type names to retrieve. Each value must be an UPPERCASE `recordContext.ContextType` enum value or literal string — runtime matching is case-sensitive (`'localization'` is rejected with `UNKNOWN_CONTEXT_TYPE`). Defaulting behavior: if omitted, `null`, or a bare string (not an array), the parameter is treated as `['LOCALIZATION']`. An empty array `[]` returns an empty result `{}`. An empty string `''` is rejected with `UNKNOWN_CONTEXT_TYPE`.
      * @return Object whose keys are the lowercased context type names and whose values are `string[]`. Generic parameter narrows the return type to the specific keys requested.
      *
@@ -76,7 +75,7 @@ interface recordContext {
      * @throws {error.SuiteScriptError} UNKNOWN_CONTEXT_TYPE If `options.contextTypes` contains a value that isn't a recognized context type.
      */
     <ContextTypes extends recordContext.ContextType[]>(options: {
-      record: record.Record | record.RecordReadonly | currentRecord.CurrentRecord | currentRecord.CurrentRecordReadonly,
+      record: record.Record | record.DynamicRecord,
       contextTypes?: ContextTypes,
     }): recordContext.RecordContext<ContextTypes>;
 
@@ -132,7 +131,7 @@ interface recordContext {
        * @since 2020.2
        *
        * @param options
-       * @param options.record The loaded record object. May be a `record.Record`, `record.RecordReadonly`, `currentRecord.CurrentRecord`, or `currentRecord.CurrentRecordReadonly`.
+       * @param options.record The loaded record object. May be a `record.Record` (standard mode) or `record.DynamicRecord` (dynamic mode).
        * @param [options.contextTypes] Array of context type names to retrieve. Each value must be an UPPERCASE `recordContext.ContextType` enum value or literal string — runtime matching is case-sensitive (`'localization'` is rejected with `UNKNOWN_CONTEXT_TYPE`). Defaulting behavior: if omitted, `null`, or a bare string (not an array), the parameter is treated as `['LOCALIZATION']`. An empty array `[]` returns an empty result `{}`. An empty string `''` is rejected with `UNKNOWN_CONTEXT_TYPE`.
        * @return Promise resolving to an object whose keys are the lowercased context type names and whose values are `string[]`.
        *
@@ -142,7 +141,7 @@ interface recordContext {
        * @throws {error.SuiteScriptError} UNKNOWN_CONTEXT_TYPE If `options.contextTypes` contains an unrecognized value.
        */
       <ContextTypes extends recordContext.ContextType[]>(options: {
-        record: record.Record | record.RecordReadonly | currentRecord.CurrentRecord | currentRecord.CurrentRecordReadonly,
+        record: record.Record | record.DynamicRecord,
         contextTypes?: ContextTypes,
       }): Promise<recordContext.RecordContext<ContextTypes>>;
     };
