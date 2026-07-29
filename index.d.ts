@@ -14,6 +14,7 @@
 /// <reference path="./N/crypto/random.d.ts" />
 /// <reference path="./N/currency.d.ts" />
 /// <reference path="./N/currentRecord.d.ts" />
+/// <reference path="./N/documentCapture.d.ts" />
 /// <reference path="./N/email.d.ts" />
 /// <reference path="./N/encode.d.ts" />
 /// <reference path="./N/error.d.ts" />
