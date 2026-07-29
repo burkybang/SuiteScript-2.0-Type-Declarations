@@ -20,6 +20,7 @@ interface SuiteScriptModuleMap {
   'N/http': http;
   'N/https': https;
   'N/https/clientCertificate': clientCertificate;
+  'N/keyControl': keyControl;
   'N/llm': llm;
   'N/log': log;
   'N/machineTranslation': machineTranslation;
