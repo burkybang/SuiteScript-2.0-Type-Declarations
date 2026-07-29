@@ -47,6 +47,7 @@
 /// <reference path="./N/sso.d.ts" />
 /// <reference path="./N/suiteAppInfo.d.ts" />
 /// <reference path="./N/task.d.ts" />
+/// <reference path="./N/task/accounting/recognition.d.ts" />
 /// <reference path="./N/transaction.d.ts" />
 /// <reference path="./N/translation.d.ts" />
 /// <reference path="./N/ui.d.ts" />
