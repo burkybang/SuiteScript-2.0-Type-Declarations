@@ -25,6 +25,7 @@
 /// <reference path="./N/https.d.ts" />
 /// <reference path="./N/https/clientCertificate.d.ts" />
 /// <reference path="./N/keyControl.d.ts" />
+/// <reference path="./N/kpi.d.ts" />
 /// <reference path="./N/llm.d.ts" />
 /// <reference path="./N/log.d.ts" />
 /// <reference path="./N/machineTranslation.d.ts" />

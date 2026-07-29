@@ -21,6 +21,7 @@ interface SuiteScriptModuleMap {
   'N/https': https;
   'N/https/clientCertificate': clientCertificate;
   'N/keyControl': keyControl;
+  'N/kpi': kpi;
   'N/llm': llm;
   'N/log': log;
   'N/machineTranslation': machineTranslation;
