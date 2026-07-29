@@ -5,7 +5,6 @@
  * SuiteScript query module
  * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275060}
  * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275060.html}
- *
  * @module N/query
  * @NApiVersion 2.x
  */
@@ -14,28 +13,36 @@ interface query {
   create: {
 
     /**
-     * Create a Query object with a single query component based on the given query type
+     * Creates a `query.Query` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
      *
-     * @param type
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2018.1
      *
-     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
+     * @param type The query type that you want to use for the initial query definition.
+     *
+     * @throws {error.SuiteScriptError} INVALID_SEARCH_TYPE The specified query type is invalid.
      */
     (type: query.Type | `${query.Type}` | string): query.Query;
 
     /**
-     * Create a Query object with a single query component based on the given query type
+     * Creates a `query.Query` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
      *
-     * @param options
-     * @param options.type
-     * @param [options.columns] An array of objects to be used as query columns
-     * @param [options.condition] A condition for the query
-     * @param [options.sort] An array of objects representing sort options
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2018.1
      *
-     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE when query type is invalid
+     * @param options
+     * @param options.type The query type that you want to use for the initial query definition.
+     * @param [options.columns] An array of objects to be used as query columns.
+     * @param [options.condition] A condition for the query.
+     * @param [options.sort] An array of objects representing sort options.
+     *
+     * @throws {error.SuiteScriptError} INVALID_SEARCH_TYPE The specified query type is invalid.
      */
     (options: {
       type: query.Type | `${query.Type}` | string,
@@ -46,13 +53,19 @@ interface query {
   };
 
   /**
-   * Creates a query.RelativeDate object that represents a date relative to the current date
+   * Creates a `query.RelativeDate` object that represents a date relative to the current date.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544108154}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544108154.html}
    *
+   * @governance none
+   * @restriction Client-side and server-side scripts
+   * @since 2019.1
+   *
    * @param options
-   * @param options.dateId ID of the relative date to create
-   * @param options.value Value to use to create the relative date
+   * @param options.dateId The ID of the relative date to create.
+   * @param options.value The value to use to create the relative date.
+   *
+   * @throws {error.SuiteScriptError} INVALID_DATE_ID The specified value for `options.dateId` is not a value from the `query.DateId` enum.
    */
   createRelativeDate(options: {
     dateId: query.DateId | `${query.DateId}`,
@@ -62,25 +75,41 @@ interface query {
   createPeriod: {
 
     /**
-     * Creates a query.Period object
-     * `adjustment` defaults to PeriodAdjustment.NOT_LAST
-     * `type` defaults to PeriodType.START
+     * Creates a `query.Period` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
      *
-     * @param code The code of the period to create
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
+     *
+     * @param code The code of the period to create.
+     *
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_ADJUSTMENT The specified period adjustment is not a value from the `query.PeriodAdjustment` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_CODE The specified period code is not a value from the `query.PeriodCode` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_TYPE The specified period type is not a value from the `query.PeriodType` enum.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Any of the parameters is not a string.
      */
     (code: query.PeriodCode | `${query.PeriodCode}`): query.Period;
 
     /**
-     * Creates a query.Period object
+     * Creates a `query.Period` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
      *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
+     *
      * @param options
-     * @param options.code The code of the period to create
-     * @param [options.adjustment = PeriodAdjustment.NOT_LAST] The adjustment of the period to create
-     * @param [options.type = PeriodType.START] The type of the period to create
+     * @param options.code The code of the period to create.
+     * @param [options.adjustment] The adjustment of the period to create.
+     * @param [options.type] The type of the period to create.
+     *
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_ADJUSTMENT The specified period adjustment is not a value from the `query.PeriodAdjustment` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_CODE The specified period code is not a value from the `query.PeriodCode` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_TYPE The specified period type is not a value from the `query.PeriodType` enum.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Any of the parameters is not a string.
      */
     (options: {
       code: query.PeriodCode | `${query.PeriodCode}`,
@@ -92,29 +121,37 @@ interface query {
   load: {
 
     /**
-     * Loads query by id
+     * Loads an existing query as a `query.Query` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
      *
-     * @param id Id of query to be loaded
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+     * @param id The workbook ID or dataset ID of the query definition to load.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+     * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+     * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
      */
     (id: number | string): query.Query;
 
     /**
-     * Loads query by id
+     * Loads an existing query as a `query.Query` object.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
      *
-     * @param options
-     * @param options.id Id of query to be loaded
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+     * @param options
+     * @param options.id The workbook ID or dataset ID of the query definition to load.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+     * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+     * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
      */
     (options: {
       id: number | string,
@@ -123,30 +160,37 @@ interface query {
     promise: {
 
       /**
-       * Loads query by id
+       * Loads an existing query asynchronously as a `query.Query` object.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
        *
-       * @param options
-       * @param options.id Id of query to be loaded
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+       * @param id The workbook ID or dataset ID of the query definition to load.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+       * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+       * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
        */
       (id: number | string): Promise<query.Query>;
 
       /**
-       * Loads query by id
+       * Loads an existing query asynchronously as a `query.Query` object.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
        *
-       * @param options
-       * @param options.id Id of query to be loaded
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY if query doesn't exist or no permissions to load it
+       * @param options
+       * @param options.id The workbook ID or dataset ID of the query definition to load.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+       * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+       * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
        */
       (options: {
         id: number | string,
@@ -157,60 +201,68 @@ interface query {
   delete: {
 
     /**
-     * Deletes query by id
+     * Deletes an existing query.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
      *
-     * @param options
-     * @param options.id Id of query to be delete
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+     * @param id The script ID of the query to delete.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
+     */
+    (id: number | string): void;
+
+    /**
+     * Deletes an existing query.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
+     *
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
+     *
+     * @param options
+     * @param options.id The script ID of the query to delete.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
      */
     (options: {
       id: number | string,
     }): void;
 
-    /**
-     * Deletes query by id
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
-     *
-     * @param id Id of query to be delete
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
-     */
-    (id: number | string): void;
-
     promise: {
 
       /**
-       * Deletes query by id asynchronously
+       * Deletes an existing query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
        *
-       * @param id Id of query to be delete
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+       * @param id The script ID of the query to delete.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
        */
       (id: number | string): Promise<void>;
 
       /**
-       * Deletes query by id asynchronously
+       * Deletes an existing query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
        *
-       * @param options
-       * @param options.id Id of query to be delete
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or id are undefined
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object or id isn't number
-       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY if query doesn't exist or no permissions to delete it
+       * @param options
+       * @param options.id The script ID of the query to delete.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
        */
       (options: {
         id: number | string,
@@ -221,76 +273,80 @@ interface query {
   runSuiteQL: {
 
     /**
-     * Runs an arbitrary SuiteQL query
+     * Runs an arbitrary SuiteQL query.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
      *
-     * @governance 10 points
-     *
-     * @param query
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
      * @since 2020.1
+     *
+     * @param query The string representation of the SuiteQL query to run.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
      */
     (query: string): query.ResultSet;
 
     /**
-     * Runs an arbitrary SuiteQL query
+     * Runs an arbitrary SuiteQL query.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
      *
-     * @governance 10 points
-     *
-     * @param query
-     * @param [params]
-     * @param [customScriptId]
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
      * @since 2020.1
+     *
+     * @param options
+     * @param options.query The string representation of the SuiteQL query to run.
+     * @param [options.params] The parameters to use in the SuiteQL query.
+     * @param [options.customScriptId] A unique identifier used for potential performance issues in a query.
+     * @param [options.metaDataProvider] Indicates whether the query should fail if you lack the necessary permissions for some fields or records.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
      */
     (options: {
       query: string,
       params?: (string | number | boolean)[],
       customScriptId?: string,
+      metaDataProvider?: query.MetadataProvider | `${query.MetadataProvider}`,
     }): query.ResultSet;
 
     promise: {
 
       /**
-       * Runs an arbitrary SuiteQL query asynchronously
+       * Asynchronously runs an arbitrary SuiteQL query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
        *
-       * @governance 10 points
-       *
-       * @param query
-       *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
        * @since 2020.1
+       *
+       * @param query The string representation of the SuiteQL query to run.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
        */
       (query: string): Promise<query.ResultSet>;
 
       /**
-       * Runs an arbitrary SuiteQL query asynchronously
+       * Asynchronously runs an arbitrary SuiteQL query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
        *
-       * @governance 10 points
-       *
-       * @param query
-       * @param [params]
-       * @param [customScriptId]
-       *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
        * @since 2020.1
+       *
+       * @param options
+       * @param options.query The string representation of the SuiteQL query to run.
+       * @param [options.params] The parameters to use in the SuiteQL query.
+       * @param [options.customScriptId] A unique identifier used for potential performance issues in a query.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
        */
       (options: {
         query: string,
@@ -303,81 +359,83 @@ interface query {
   runSuiteQLPaged: {
 
     /**
-     * Runs an arbitrary SuiteQL query as a paged query
+     * Runs an arbitrary SuiteQL query as a paged query.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
      *
-     * @governance 10 points
-     *
-     * @param query
-     *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
      * @since 2020.1
+     *
+     * @param query The string representation of the SuiteQL query to run.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
      */
     (query: string): query.PagedData;
 
     /**
-     * Runs an arbitrary SuiteQL query as a paged query
+     * Runs an arbitrary SuiteQL query as a paged query.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
      *
-     * @governance 10 points
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
      *
      * @param options
-     * @param options.query
-     * @param [options.params]
-     * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-     * @param [customScriptId]
+     * @param options.query The string representation of the SuiteQL query to run.
+     * @param [options.params] The parameters to use in the SuiteQL query.
+     * @param [options.pageSize] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
+     * @param [options.customScriptId] A unique identifier used for potential performance issues in a query.
+     * @param [options.metaDataProvider] Indicates whether the query should fail if you lack the necessary permissions for some fields or records.
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-     *
-     * @since 2020.1
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
      */
     (options: {
       query: string,
       params?: (string | number | boolean)[],
       pageSize?: PageSize,
       customScriptId?: string,
+      metaDataProvider?: query.MetadataProvider | `${query.MetadataProvider}`,
     }): query.PagedData;
 
     promise: {
 
       /**
-       * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       * Asynchronously runs an arbitrary SuiteQL query as a paged query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
        *
-       * @governance 10 points
-       *
-       * @param query
-       *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
        * @since 2020.1
+       *
+       * @param query The string representation of the SuiteQL query to run.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
        */
       (query: string): Promise<query.PagedData>;
 
       /**
-       * Runs an arbitrary SuiteQL query as a paged query asynchronously
+       * Asynchronously runs an arbitrary SuiteQL query as a paged query.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
        *
-       * @governance 10 points
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
+       * @since 2020.1
        *
        * @param options
-       * @param options.query
-       * @param [options.params]
-       * @param [options.pageSize=50] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-       * @param [customScriptId]
+       * @param options.query The string representation of the SuiteQL query to run.
+       * @param [options.params] The parameters to use in the SuiteQL query.
+       * @param [options.pageSize] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
+       * @param [options.customScriptId] A unique identifier used for potential performance issues in a query.
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or params are undefined
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if types other than string, number, or boolean are included in the options.params array
-       *
-       * @since 2020.1
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
        */
       (options: {
         query: string,
@@ -395,16 +453,15 @@ interface query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
      *
-     * @governance 0 points
+     * @governance 5 units
+     * @since 2020.1
      *
      * @param workbookId
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
      * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
      * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-     *
-     * @since 2020.1
      */
     (workbookId: string): { name: string, scriptId: string }[];
 
@@ -413,17 +470,16 @@ interface query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
      *
-     * @governance 0 points
+     * @governance 5 units
+     * @since 2020.1
      *
      * @param options
      * @param options.workbookId
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
      * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
      * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-     *
-     * @since 2020.1
      */
     (options: {
       workbookId: string,
@@ -436,16 +492,15 @@ interface query {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
        *
-       * @governance 0 points
+       * @governance 5 units
+       * @since 2020.1
        *
        * @param workbookId
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
        * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
        * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
        * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-       *
-       * @since 2020.1
        */
       (workbookId: string): Promise<{ name: string, scriptId: string }[]>;
 
@@ -454,17 +509,16 @@ interface query {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
        *
-       * @governance 0 points
+       * @governance 5 units
+       * @since 2020.1
        *
        * @param options
        * @param options.workbookId
        *
-       * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options or workbookId are undefined
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
        * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
        * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
        * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-       *
-       * @since 2020.1
        */
       (options: {
         workbookId: string,
@@ -474,6 +528,19 @@ interface query {
 }
 
 declare namespace query {
+
+  /**
+   * Enum that determines how field and record metadata is resolved when a SuiteQL query runs.
+   *
+   * Undocumented in the Help Center; present at runtime as a frozen module member (`query.MetadataProvider`).
+   * Used as the type of the `metaDataProvider` option on `runSuiteQL` and `runSuiteQLPaged`. The resulting
+   * `ResultSet.metadataProvider` / `PagedData.metadataProvider` property reports the provider in effect
+   * (observed to be `SUITE_QL` for SuiteQL queries regardless of the option passed).
+   */
+  export enum MetadataProvider {
+    STATIC = 'STATIC',
+    SUITE_QL = 'SUITE_QL',
+  }
 
   /**
    * Enum for aggregate functions
@@ -602,144 +669,287 @@ declare namespace query {
   }
 
   /**
-   * Enum for date ranges in relative dates
+   * Holds query.RelativeDate object values for supported date ranges in relative dates. This "enum" is used to pass the
+   * `values` argument to Query.createCondition(options) and Component.createCondition(options), and as the value of the
+   * RelativeDate.value property. Each member is a pre-built query.RelativeDate object (NOT a string) representing a date
+   * range relative to the current date - e.g. `query.createCondition({ fieldId, operator: query.Operator.WITHIN, values:
+   * query.RelativeDateRange.THIS_MONTH })`. The members look similar to query.DateId values but serve a different purpose:
+   * use query.DateId with query.createRelativeDate(options) to build a RelativeDate; use query.RelativeDateRange members
+   * directly as condition values. Declared as a `const` object rather than an `enum` because enum members cannot hold
+   * object values; runtime-verified each member is a frozen query.RelativeDate (ctor `RelativeDate`). The abbreviation in
+   * each member's comment is the internal date-range code exposed as RelativeDate.dateId.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544111773}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544111773.html}
+   *
+   * @since 2019.1
    */
   export const RelativeDateRange: {
-    FISCAL_HALF_BEFORE_LAST: RelativeDate,
-    FISCAL_HALF_BEFORE_LAST_TO_DATE: RelativeDate,
-    FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
-    FISCAL_QUARTER_BEFORE_LAST_TO_DATE: RelativeDate,
-    FISCAL_YEAR_BEFORE_LAST: RelativeDate,
-    FISCAL_YEAR_BEFORE_LAST_TO_DATE: RelativeDate,
-    FIVE_DAYS_AGO: RelativeDate,
-    FIVE_DAYS_FROM_NOW: RelativeDate,
-    FOUR_DAYS_AGO: RelativeDate,
-    FOUR_DAYS_FROM_NOW: RelativeDate,
-    FOUR_WEEKS_STARTING_THIS_WEEK: RelativeDate,
-    LAST_BUSINESS_WEEK: RelativeDate,
-    LAST_FISCAL_HALF: RelativeDate,
-    LAST_FISCAL_HALF_ONE_FISCAL_YEAR_AGO: RelativeDate,
-    LAST_FISCAL_HALF_TO_DATE: RelativeDate,
-    LAST_FISCAL_QUARTER: RelativeDate,
-    LAST_FISCAL_QUARTER_ONE_FISCAL_YEAR_AGO: RelativeDate,
-    LAST_FISCAL_QUARTER_TO_DATE: RelativeDate,
-    LAST_FISCAL_QUARTER_TWO_FISCAL_YEARS_AGO: RelativeDate,
-    LAST_FISCAL_YEAR: RelativeDate,
-    LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
-    LAST_MONTH: RelativeDate,
-    LAST_MONTH_ONE_FISCAL_QUARTER_AGO: RelativeDate,
-    LAST_MONTH_ONE_FISCAL_YEAR_AGO: RelativeDate,
-    LAST_MONTH_TO_DATE: RelativeDate,
-    LAST_MONTH_TWO_FISCAL_QUARTERS_AGO: RelativeDate,
-    LAST_MONTH_TWO_FISCAL_YEARS_AGO: RelativeDate,
-    LAST_ROLLING_HALF: RelativeDate,
-    LAST_ROLLING_QUARTER: RelativeDate,
-    LAST_ROLLING_YEAR: RelativeDate,
-    LAST_WEEK: RelativeDate,
-    LAST_WEEK_TO_DATE: RelativeDate,
-    LAST_YEAR: RelativeDate,
-    LAST_YEAR_TO_DATE: RelativeDate,
-    MONTH_AFTER_NEXT: RelativeDate,
-    MONTH_AFTER_NEXT_TO_DATE: RelativeDate,
-    MONTH_BEFORE_LAST: RelativeDate,
-    MONTH_BEFORE_LAST_TO_DATE: RelativeDate,
-    NEXT_BUSINESS_WEEK: RelativeDate,
-    NEXT_FISCAL_HALF: RelativeDate,
-    NEXT_FISCAL_QUARTER: RelativeDate,
-    NEXT_FISCAL_YEAR: RelativeDate,
-    NEXT_FOUR_WEEKS: RelativeDate,
-    NEXT_MONTH: RelativeDate,
-    NEXT_ONE_HALF: RelativeDate,
-    NEXT_ONE_MONTH: RelativeDate,
-    NEXT_ONE_QUARTER: RelativeDate,
-    NEXT_ONE_WEEK: RelativeDate,
-    NEXT_ONE_YEAR: RelativeDate,
-    NEXT_WEEK: RelativeDate,
-    NINETY_DAYS_AGO: RelativeDate,
-    NINETY_DAYS_FROM_NOW: RelativeDate,
-    ONE_YEAR_BEFORE_LAST: RelativeDate,
-    PREVIOUS_FISCAL_QUARTERS_LAST_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_FISCAL_QUARTERS_THIS_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_MONTHS_LAST_FISCAL_HALF: RelativeDate,
-    PREVIOUS_MONTHS_LAST_FISCAL_QUARTER: RelativeDate,
-    PREVIOUS_MONTHS_LAST_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_MONTHS_SAME_FISCAL_HALF_LAST_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_MONTHS_SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_MONTHS_THIS_FISCAL_HALF: RelativeDate,
-    PREVIOUS_MONTHS_THIS_FISCAL_QUARTER: RelativeDate,
-    PREVIOUS_MONTHS_THIS_FISCAL_YEAR: RelativeDate,
-    PREVIOUS_ONE_DAY: RelativeDate,
-    PREVIOUS_ONE_HALF: RelativeDate,
-    PREVIOUS_ONE_MONTH: RelativeDate,
-    PREVIOUS_ONE_QUARTER: RelativeDate,
-    PREVIOUS_ONE_WEEK: RelativeDate,
-    PREVIOUS_ONE_YEAR: RelativeDate,
-    PREVIOUS_ROLLING_HALF: RelativeDate,
-    PREVIOUS_ROLLING_QUARTER: RelativeDate,
-    PREVIOUS_ROLLING_YEAR: RelativeDate,
-    SAME_DAY_FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
-    SAME_DAY_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
-    SAME_DAY_LAST_FISCAL_QUARTER: RelativeDate,
-    SAME_DAY_LAST_FISCAL_YEAR: RelativeDate,
-    SAME_DAY_LAST_MONTH: RelativeDate,
-    SAME_DAY_LAST_WEEK: RelativeDate,
-    SAME_DAY_MONTH_BEFORE_LAST: RelativeDate,
-    SAME_DAY_WEEK_BEFORE_LAST: RelativeDate,
-    SAME_FISCAL_HALF_LAST_FISCAL_YEAR: RelativeDate,
-    SAME_FISCAL_HALF_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
-    SAME_FISCAL_QUARTER_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
-    SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR: RelativeDate,
-    SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
-    SAME_MONTH_FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
-    SAME_MONTH_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
-    SAME_MONTH_LAST_FISCAL_QUARTER: RelativeDate,
-    SAME_MONTH_LAST_FISCAL_QUARTER_TO_DATE: RelativeDate,
-    SAME_MONTH_LAST_FISCAL_YEAR: RelativeDate,
-    SAME_MONTH_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
-    SAME_WEEK_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
-    SAME_WEEK_LAST_FISCAL_YEAR: RelativeDate,
-    SIXTY_DAYS_AGO: RelativeDate,
-    SIXTY_DAYS_FROM_NOW: RelativeDate,
-    TEN_DAYS_AGO: RelativeDate,
-    TEN_DAYS_FROM_NOW: RelativeDate,
-    THIRTY_DAYS_AGO: RelativeDate,
-    THIRTY_DAYS_FROM_NOW: RelativeDate,
-    THIS_BUSINESS_WEEK: RelativeDate,
-    THIS_FISCAL_HALF: RelativeDate,
-    THIS_FISCAL_HALF_TO_DATE: RelativeDate,
-    THIS_FISCAL_QUARTER: RelativeDate,
-    THIS_FISCAL_QUARTER_TO_DATE: RelativeDate,
-    THIS_FISCAL_YEAR: RelativeDate,
-    THIS_FISCAL_YEAR_TO_DATE: RelativeDate,
-    THIS_MONTH: RelativeDate,
-    THIS_MONTH_TO_DATE: RelativeDate,
-    THIS_ROLLING_HALF: RelativeDate,
-    THIS_ROLLING_QUARTER: RelativeDate,
-    THIS_ROLLING_YEAR: RelativeDate,
-    THIS_WEEK: RelativeDate,
-    THIS_WEEK_TO_DATE: RelativeDate,
-    THIS_YEAR: RelativeDate,
-    THIS_YEAR_TO_DATE: RelativeDate,
-    THREE_DAYS_AGO: RelativeDate,
-    THREE_DAYS_FROM_NOW: RelativeDate,
-    THREE_FISCAL_QUARTERS_AGO: RelativeDate,
-    THREE_FISCAL_QUARTERS_AGO_TO_DATE: RelativeDate,
-    THREE_FISCAL_YEARS_AGO: RelativeDate,
-    THREE_FISCAL_YEARS_AGO_TO_DATE: RelativeDate,
-    THREE_MONTHS_AGO: RelativeDate,
-    THREE_MONTHS_AGO_TO_DATE: RelativeDate,
-    TODAY: RelativeDate,
-    TODAY_TO_END_OF_THIS_MONTH: RelativeDate,
-    TOMORROW: RelativeDate,
-    TWO_DAYS_AGO: RelativeDate,
-    TWO_DAYS_FROM_NOW: RelativeDate,
-    WEEK_AFTER_NEXT: RelativeDate,
-    WEEK_AFTER_NEXT_TO_DATE: RelativeDate,
-    WEEK_BEFORE_LAST: RelativeDate,
-    WEEK_BEFORE_LAST_TO_DATE: RelativeDate,
-    YESTERDAY: RelativeDate,
+    // FHBL
+    readonly FISCAL_HALF_BEFORE_LAST: RelativeDate,
+    // FHBLTD
+    readonly FISCAL_HALF_BEFORE_LAST_TO_DATE: RelativeDate,
+    // FQBL
+    readonly FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
+    // FQBLTD
+    readonly FISCAL_QUARTER_BEFORE_LAST_TO_DATE: RelativeDate,
+    // FYBL
+    readonly FISCAL_YEAR_BEFORE_LAST: RelativeDate,
+    // FYBLTD
+    readonly FISCAL_YEAR_BEFORE_LAST_TO_DATE: RelativeDate,
+    // DAGO5
+    readonly FIVE_DAYS_AGO: RelativeDate,
+    // DFN5
+    readonly FIVE_DAYS_FROM_NOW: RelativeDate,
+    // DAGO4
+    readonly FOUR_DAYS_AGO: RelativeDate,
+    // DFN4
+    readonly FOUR_DAYS_FROM_NOW: RelativeDate,
+    // TWN3W
+    readonly FOUR_WEEKS_STARTING_THIS_WEEK: RelativeDate,
+    // LBW
+    readonly LAST_BUSINESS_WEEK: RelativeDate,
+    // LFH
+    readonly LAST_FISCAL_HALF: RelativeDate,
+    // LFHLFY
+    readonly LAST_FISCAL_HALF_ONE_FISCAL_YEAR_AGO: RelativeDate,
+    // LFHTD
+    readonly LAST_FISCAL_HALF_TO_DATE: RelativeDate,
+    // LFQ
+    readonly LAST_FISCAL_QUARTER: RelativeDate,
+    // LFQLFY
+    readonly LAST_FISCAL_QUARTER_ONE_FISCAL_YEAR_AGO: RelativeDate,
+    // LFQTD
+    readonly LAST_FISCAL_QUARTER_TO_DATE: RelativeDate,
+    // LFQFYBL
+    readonly LAST_FISCAL_QUARTER_TWO_FISCAL_YEARS_AGO: RelativeDate,
+    // LFY
+    readonly LAST_FISCAL_YEAR: RelativeDate,
+    // LFYTD
+    readonly LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
+    // LM
+    readonly LAST_MONTH: RelativeDate,
+    // LMLFQ
+    readonly LAST_MONTH_ONE_FISCAL_QUARTER_AGO: RelativeDate,
+    // LMLFY
+    readonly LAST_MONTH_ONE_FISCAL_YEAR_AGO: RelativeDate,
+    // LMTD
+    readonly LAST_MONTH_TO_DATE: RelativeDate,
+    // LMFQBL
+    readonly LAST_MONTH_TWO_FISCAL_QUARTERS_AGO: RelativeDate,
+    // LMFYBL
+    readonly LAST_MONTH_TWO_FISCAL_YEARS_AGO: RelativeDate,
+    // LRH
+    readonly LAST_ROLLING_HALF: RelativeDate,
+    // LRQ
+    readonly LAST_ROLLING_QUARTER: RelativeDate,
+    // LRY
+    readonly LAST_ROLLING_YEAR: RelativeDate,
+    // LW
+    readonly LAST_WEEK: RelativeDate,
+    // LWTD
+    readonly LAST_WEEK_TO_DATE: RelativeDate,
+    // LY
+    readonly LAST_YEAR: RelativeDate,
+    // LYTD
+    readonly LAST_YEAR_TO_DATE: RelativeDate,
+    // MAN
+    readonly MONTH_AFTER_NEXT: RelativeDate,
+    // MANTD
+    readonly MONTH_AFTER_NEXT_TO_DATE: RelativeDate,
+    // MBL
+    readonly MONTH_BEFORE_LAST: RelativeDate,
+    // MBLTD
+    readonly MONTH_BEFORE_LAST_TO_DATE: RelativeDate,
+    // NBW
+    readonly NEXT_BUSINESS_WEEK: RelativeDate,
+    // NFH
+    readonly NEXT_FISCAL_HALF: RelativeDate,
+    // NFQ
+    readonly NEXT_FISCAL_QUARTER: RelativeDate,
+    // NFY
+    readonly NEXT_FISCAL_YEAR: RelativeDate,
+    // N4W
+    readonly NEXT_FOUR_WEEKS: RelativeDate,
+    // NM
+    readonly NEXT_MONTH: RelativeDate,
+    // NOH
+    readonly NEXT_ONE_HALF: RelativeDate,
+    // NOM
+    readonly NEXT_ONE_MONTH: RelativeDate,
+    // NOQ
+    readonly NEXT_ONE_QUARTER: RelativeDate,
+    // NOW
+    readonly NEXT_ONE_WEEK: RelativeDate,
+    // NOY
+    readonly NEXT_ONE_YEAR: RelativeDate,
+    // NW
+    readonly NEXT_WEEK: RelativeDate,
+    // DAGO90
+    readonly NINETY_DAYS_AGO: RelativeDate,
+    // DFN90
+    readonly NINETY_DAYS_FROM_NOW: RelativeDate,
+    // OYBL
+    readonly ONE_YEAR_BEFORE_LAST: RelativeDate,
+    // PQLFY
+    readonly PREVIOUS_FISCAL_QUARTERS_LAST_FISCAL_YEAR: RelativeDate,
+    // PQTFY
+    readonly PREVIOUS_FISCAL_QUARTERS_THIS_FISCAL_YEAR: RelativeDate,
+    // PMLFH
+    readonly PREVIOUS_MONTHS_LAST_FISCAL_HALF: RelativeDate,
+    // PMLFQ
+    readonly PREVIOUS_MONTHS_LAST_FISCAL_QUARTER: RelativeDate,
+    // PMLFY
+    readonly PREVIOUS_MONTHS_LAST_FISCAL_YEAR: RelativeDate,
+    // PMSFHLFY
+    readonly PREVIOUS_MONTHS_SAME_FISCAL_HALF_LAST_FISCAL_YEAR: RelativeDate,
+    // PMSFQLFY
+    readonly PREVIOUS_MONTHS_SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR: RelativeDate,
+    // PMTFH
+    readonly PREVIOUS_MONTHS_THIS_FISCAL_HALF: RelativeDate,
+    // PMTFQ
+    readonly PREVIOUS_MONTHS_THIS_FISCAL_QUARTER: RelativeDate,
+    // PMTFY
+    readonly PREVIOUS_MONTHS_THIS_FISCAL_YEAR: RelativeDate,
+    // OD
+    readonly PREVIOUS_ONE_DAY: RelativeDate,
+    // OH
+    readonly PREVIOUS_ONE_HALF: RelativeDate,
+    // OM
+    readonly PREVIOUS_ONE_MONTH: RelativeDate,
+    // OQ
+    readonly PREVIOUS_ONE_QUARTER: RelativeDate,
+    // OW
+    readonly PREVIOUS_ONE_WEEK: RelativeDate,
+    // OY
+    readonly PREVIOUS_ONE_YEAR: RelativeDate,
+    // PRH
+    readonly PREVIOUS_ROLLING_HALF: RelativeDate,
+    // PRQ
+    readonly PREVIOUS_ROLLING_QUARTER: RelativeDate,
+    // PRY
+    readonly PREVIOUS_ROLLING_YEAR: RelativeDate,
+    // SDFQBL
+    readonly SAME_DAY_FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
+    // SDFYBL
+    readonly SAME_DAY_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
+    // SDLFQ
+    readonly SAME_DAY_LAST_FISCAL_QUARTER: RelativeDate,
+    // SDLFY
+    readonly SAME_DAY_LAST_FISCAL_YEAR: RelativeDate,
+    // SDLM
+    readonly SAME_DAY_LAST_MONTH: RelativeDate,
+    // SDLW
+    readonly SAME_DAY_LAST_WEEK: RelativeDate,
+    // SDMBL
+    readonly SAME_DAY_MONTH_BEFORE_LAST: RelativeDate,
+    // SDWBL
+    readonly SAME_DAY_WEEK_BEFORE_LAST: RelativeDate,
+    // SFHLFY
+    readonly SAME_FISCAL_HALF_LAST_FISCAL_YEAR: RelativeDate,
+    // SFHLFYTD
+    readonly SAME_FISCAL_HALF_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
+    // SFQFYBL
+    readonly SAME_FISCAL_QUARTER_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
+    // SFQLFY
+    readonly SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR: RelativeDate,
+    // SFQLFYTD
+    readonly SAME_FISCAL_QUARTER_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
+    // SMFQBL
+    readonly SAME_MONTH_FISCAL_QUARTER_BEFORE_LAST: RelativeDate,
+    // SMFYBL
+    readonly SAME_MONTH_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
+    // SMLFQ
+    readonly SAME_MONTH_LAST_FISCAL_QUARTER: RelativeDate,
+    // SMLFQTD
+    readonly SAME_MONTH_LAST_FISCAL_QUARTER_TO_DATE: RelativeDate,
+    // SMLFY
+    readonly SAME_MONTH_LAST_FISCAL_YEAR: RelativeDate,
+    // SMLFYTD
+    readonly SAME_MONTH_LAST_FISCAL_YEAR_TO_DATE: RelativeDate,
+    // SWFYBL
+    readonly SAME_WEEK_FISCAL_YEAR_BEFORE_LAST: RelativeDate,
+    // SWLFY
+    readonly SAME_WEEK_LAST_FISCAL_YEAR: RelativeDate,
+    // DAGO60
+    readonly SIXTY_DAYS_AGO: RelativeDate,
+    // DFN60
+    readonly SIXTY_DAYS_FROM_NOW: RelativeDate,
+    // DAGO10
+    readonly TEN_DAYS_AGO: RelativeDate,
+    // DFN10
+    readonly TEN_DAYS_FROM_NOW: RelativeDate,
+    // DAGO30
+    readonly THIRTY_DAYS_AGO: RelativeDate,
+    // DFN30
+    readonly THIRTY_DAYS_FROM_NOW: RelativeDate,
+    // TBW
+    readonly THIS_BUSINESS_WEEK: RelativeDate,
+    // TFH
+    readonly THIS_FISCAL_HALF: RelativeDate,
+    // TFHTD
+    readonly THIS_FISCAL_HALF_TO_DATE: RelativeDate,
+    // TFQ
+    readonly THIS_FISCAL_QUARTER: RelativeDate,
+    // TFQTD
+    readonly THIS_FISCAL_QUARTER_TO_DATE: RelativeDate,
+    // TFY
+    readonly THIS_FISCAL_YEAR: RelativeDate,
+    // TFYTD
+    readonly THIS_FISCAL_YEAR_TO_DATE: RelativeDate,
+    // TM
+    readonly THIS_MONTH: RelativeDate,
+    // TMTD
+    readonly THIS_MONTH_TO_DATE: RelativeDate,
+    // TRH
+    readonly THIS_ROLLING_HALF: RelativeDate,
+    // TRQ
+    readonly THIS_ROLLING_QUARTER: RelativeDate,
+    // TRY
+    readonly THIS_ROLLING_YEAR: RelativeDate,
+    // TW
+    readonly THIS_WEEK: RelativeDate,
+    // TWTD
+    readonly THIS_WEEK_TO_DATE: RelativeDate,
+    // TY
+    readonly THIS_YEAR: RelativeDate,
+    // TYTD
+    readonly THIS_YEAR_TO_DATE: RelativeDate,
+    // DAGO3
+    readonly THREE_DAYS_AGO: RelativeDate,
+    // DFN3
+    readonly THREE_DAYS_FROM_NOW: RelativeDate,
+    // FQB
+    readonly THREE_FISCAL_QUARTERS_AGO: RelativeDate,
+    // FQBTD
+    readonly THREE_FISCAL_QUARTERS_AGO_TO_DATE: RelativeDate,
+    // FYB
+    readonly THREE_FISCAL_YEARS_AGO: RelativeDate,
+    // FYBTD
+    readonly THREE_FISCAL_YEARS_AGO_TO_DATE: RelativeDate,
+    // MB
+    readonly THREE_MONTHS_AGO: RelativeDate,
+    // MBTD
+    readonly THREE_MONTHS_AGO_TO_DATE: RelativeDate,
+    // TODAY
+    readonly TODAY: RelativeDate,
+    // TODAYTTM
+    readonly TODAY_TO_END_OF_THIS_MONTH: RelativeDate,
+    // TOMORROW
+    readonly TOMORROW: RelativeDate,
+    // DAGO2
+    readonly TWO_DAYS_AGO: RelativeDate,
+    // DFN2
+    readonly TWO_DAYS_FROM_NOW: RelativeDate,
+    // WAN
+    readonly WEEK_AFTER_NEXT: RelativeDate,
+    // WANTD
+    readonly WEEK_AFTER_NEXT_TO_DATE: RelativeDate,
+    // WBL
+    readonly WEEK_BEFORE_LAST: RelativeDate,
+    // WBLTD
+    readonly WEEK_BEFORE_LAST_TO_DATE: RelativeDate,
+    // YESTERDAY
+    readonly YESTERDAY: RelativeDate,
   };
 
   /**
@@ -1303,6 +1513,174 @@ declare namespace query {
     WORKFLOW_ACTION_SCRIPT = 'workflowactionscript',
     WORKFLOW_ACTION_SCRIPT_DEPLOYMENT = 'workflowactionscriptdeployment',
     WORK_CALENDAR = 'workcalendar',
+
+    // ---- Additional documented query types (runtime + Help Center) ----
+    BOM = 'bom',
+    BOM_REVISION = 'bomrevision',
+    BOM_REVISION_COMPONENT = 'bomrevisioncomponent',
+    CUSTOM_TRANSACTION_TYPE = 'customtransactiontype',
+    INBOUND_SHIPMENT = 'inboundshipment',
+    INVOICE_GROUP = 'invoicegroup',
+    ISSUE = 'issue',
+    ISSUE_PRIORITY = 'issuepriority',
+    ISSUE_SEVERITY = 'issueseverity',
+    ISSUE_STATUS = 'issuestatus',
+    PLANNED_ORDER = 'plannedorder',
+    PLANNING_ITEM_CATEGORY = 'planningitemcategory',
+    PLANNING_ITEM_GROUP = 'planningitemgroup',
+    PLANNING_ITEM_GROUP_SOURCE = 'planningitemgroupsource',
+    PLANNING_RULE_GROUP = 'planningrulegroup',
+    PLANNING_VIEW = 'planningview',
+    PREDICTED_RISK_TRAIN_EVAL_HISTORY = 'predictedrisktrainevalhistory',
+    REV_REC_SCHEDULE = 'revrecschedule',
+    REV_REC_TEMPLATE = 'revrectemplate',
+    SALES_ROLE = 'salesrole',
+    SUPPLY_CHAIN_SNAPSHOT = 'supplychainsnapshot',
+    SUPPLY_CHAIN_SNAPSHOT_SIMULATION = 'supplychainsnapshotsimulation',
+    SUPPLY_CHANGE_ORDER = 'supplychangeorder',
+    SUPPLY_PLAN_DEFINITION = 'supplyplandefinition',
+
+    // ---- Undocumented in the Help Center; present at runtime ----
+    ACCOUNTS_PAYABLE_AGING_ART = 'accountspayableagingart',
+    ACCOUNTS_RECEIVABLE_AGING_ART = 'accountsreceivableagingart',
+    ADV_INTERCOMPANY_JOURNAL_ENTRY = 'advintercompanyjournalentry',
+    ALLOCATION_BATCH = 'allocationbatch',
+    ASSEMBLY_BUILD = 'assemblybuild',
+    ASSEMBLY_ITEM = 'assemblyitem',
+    ASSEMBLY_UNBUILD = 'assemblyunbuild',
+    BANKING_IMPORT = 'bankingimport',
+    BANKING_STATEMENT = 'bankingstatement',
+    BANKING_TRANSACTION = 'bankingtransaction',
+    BANK_STATEMENT_PARSER_PLUGIN = 'bankstatementparserplugin',
+    BIN_TRANSFER = 'bintransfer',
+    BIN_WORKSHEET = 'binworksheet',
+    BLANKET_PURCHASE_ORDER = 'blanketpurchaseorder',
+    // Runtime member name for the same value the Help Center documents as BUDGETCATEGORY (above); both map to 'budgetcategory'.
+    BUDGET_CATEGORY = 'budgetcategory',
+    CASE_FIELD_RULE = 'casefieldrule',
+    CASH_REFUND = 'cashrefund',
+    CASH_SALE = 'cashsale',
+    CENTER_CATEGORY = 'centercategory',
+    CENTER_LINK = 'centerlink',
+    CENTER_TAB = 'centertab',
+    CHECK = 'check',
+    COMMISSION = 'commission',
+    COMMISSION_PLAN = 'commissionplan',
+    COMMISSION_SCHEDULE = 'commissionschedule',
+    CREDIT_CARD_CHARGE = 'creditcardcharge',
+    CREDIT_CARD_REFUND = 'creditcardrefund',
+    CREDIT_MEMO = 'creditmemo',
+    CUSTOMER_CHARGE = 'customercharge',
+    CUSTOMER_DEPOSIT = 'customerdeposit',
+    CUSTOMER_FIELD_RULE = 'customerfieldrule',
+    CUSTOMER_PAYMENT = 'customerpayment',
+    CUSTOMER_REFUND = 'customerrefund',
+    CUSTOM_TRANSACTION_STATUS = 'customtransactionstatus',
+    DEPOSIT = 'deposit',
+    DEPOSIT_APPLICATION = 'depositapplication',
+    DESCRIPTION_ITEM = 'descriptionitem',
+    DISCOUNT_ITEM = 'discountitem',
+    EDUCATION = 'education',
+    EMAIL_LAYOUT = 'emaillayout',
+    ENTITY_STATUS_HISTORY = 'entitystatushistory',
+    ESCALATION_FIELD_RULE = 'escalationfieldrule',
+    ESTIMATE = 'estimate',
+    ETHNICITY = 'ethnicity',
+    EXPENSE_REPORT = 'expensereport',
+    FINANCIAL_INSTITUTION = 'financialinstitution',
+    INBOUND_SHIPMENT_LINK = 'inboundshipmentlink',
+    INTEGRATION_APP = 'integrationapp',
+    INTERCOMPANY_JOURNAL_ENTRY = 'intercompanyjournalentry',
+    INTERCOMPANY_TRANSFER_ORDER = 'intercompanytransferorder',
+    INVENTORY_ADJUSTMENT = 'inventoryadjustment',
+    INVENTORY_COST_ACCOUNTING = 'inventorycostaccounting',
+    INVENTORY_COST_REVALUATION = 'inventorycostrevaluation',
+    INVENTORY_COUNT = 'inventorycount',
+    INVENTORY_DISTRIBUTION = 'inventorydistribution',
+    INVENTORY_ITEM = 'inventoryitem',
+    INVENTORY_STATUS_CHANGE = 'inventorystatuschange',
+    INVENTORY_TRANSFER = 'inventorytransfer',
+    INVENTORY_WORKSHEET = 'inventoryworksheet',
+    INVOICE = 'invoice',
+    ISSUE_PRODUCT = 'issueproduct',
+    ISSUE_TAG = 'issuetag',
+    ITEM_FULFILLMENT = 'itemfulfillment',
+    ITEM_GROUP = 'itemgroup',
+    ITEM_RECEIPT = 'itemreceipt',
+    JOURNAL_ENTRY = 'journalentry',
+    JOURNAL_TRANSACTIONS = 'journaltransactions',
+    KIT_ITEM = 'kititem',
+    LOT_NUMBERED_ASSEMBLY_ITEM = 'lotnumberedassemblyitem',
+    LOT_NUMBERED_INVENTORY_ITEM = 'lotnumberedinventoryitem',
+    MARITAL_STATUS = 'maritalstatus',
+    MARKUP_ITEM = 'markupitem',
+    MONTH_END_ELIMINATION_DETAIL = 'monthendeliminationdetail',
+    NON_INVENTORY_PURCHASE_ITEM = 'noninventorypurchaseitem',
+    NON_INVENTORY_RESALE_ITEM = 'noninventoryresaleitem',
+    NON_INVENTORY_SALE_ITEM = 'noninventorysaleitem',
+    OPPORTUNITY = 'opportunity',
+    OTHER_CHARGE_PURCHASE_ITEM = 'otherchargepurchaseitem',
+    OTHER_CHARGE_RESALE_ITEM = 'otherchargeresaleitem',
+    OTHER_CHARGE_SALE_ITEM = 'otherchargesaleitem',
+    OWNERSHIP_TRANSFER = 'ownershiptransfer',
+    PAYMENT_ITEM = 'paymentitem',
+    PERIOD_CLOSE_READINESS_METRIC = 'periodclosereadinessmetric',
+    PLANNING_ENGINE_CYCLE = 'planningenginecycle',
+    PLANNING_ENGINE_MESSAGE = 'planningenginemessage',
+    PLANNING_ENGINE_PEGGING = 'planningenginepegging',
+    PLANNING_ENGINE_RESULT = 'planningengineresult',
+    PLANNING_REPOSITORY_ALLOCATION = 'planningrepositoryallocation',
+    PLANNING_REPOSITORY_BOM_EDGE = 'planningrepositorybomedge',
+    PLANNING_REPOSITORY_ITEM_LOCATION = 'planningrepositoryitemlocation',
+    PLANNING_REPOSITORY_SOURCE = 'planningrepositorysource',
+    PRINT_LAYOUT = 'printlayout',
+    PURCHASE_CONTRACT = 'purchasecontract',
+    PURCHASE_ORDER = 'purchaseorder',
+    PURCHASE_ORDER_ART = 'purchaseorderart',
+    PURCHASE_REQUISITION = 'purchaserequisition',
+    REALIZED_GAIN_OR_LOSS = 'realizedgainorloss',
+    RECENT_ACTIVITY_STATUS = 'recentactivitystatus',
+    RECENT_ACTIVITY_TYPE = 'recentactivitytype',
+    RECENT_TRANSACTIONS_WITHOUT_JOURNAL = 'recenttransactionswithoutjournal',
+    REC_SYS_CRM_CONVERSION = 'recsyscrmconversion',
+    RESIDENT_STATUS = 'residentstatus',
+    RETURN_AUTHORIZATION = 'returnauthorization',
+    REV_REC_FIELD_MAPPING_CUSTOM_FIELD = 'revrecfieldmappingcustomfield',
+    ROUNDING_GAIN_OR_LOSS = 'roundinggainorloss',
+    SALES_ORDER = 'salesorder',
+    SALES_PRICING_OVERVIEW = 'salespricingoverview',
+    SALES_TAX_PAYMENT = 'salestaxpayment',
+    SAVED_REPORT = 'savedreport',
+    SAVED_SEARCH = 'savedsearch',
+    SERIALIZED_ASSEMBLY_ITEM = 'serializedassemblyitem',
+    SERIALIZED_INVENTORY_ITEM = 'serializedinventoryitem',
+    SERVICE_PURCHASE_ITEM = 'servicepurchaseitem',
+    SERVICE_RESALE_ITEM = 'serviceresaleitem',
+    SERVICE_SALE_ITEM = 'servicesaleitem',
+    STATISTICAL_ACCOUNT = 'statisticalaccount',
+    SUBTOTAL_ITEM = 'subtotalitem',
+    SUPPORT_CASE_ISSUE = 'supportcaseissue',
+    SYSTEM_JOURNAL = 'systemjournal',
+    TAX_ACCT = 'taxacct',
+    TAX_GROUP = 'taxgroup',
+    TAX_PERIOD = 'taxperiod',
+    TAX_SCHEDULE = 'taxschedule',
+    TRANSACTION_BIN_NUMBERS = 'transactionbinnumbers',
+    TRANSFER = 'transfer',
+    TRANSFER_ORDER = 'transferorder',
+    UN_REALIZED_GAIN_OR_LOSS = 'unrealizedgainorloss',
+    VAT_LIABILITY = 'vatliability',
+    VENDOR_BILL = 'vendorbill',
+    VENDOR_CREDIT = 'vendorcredit',
+    VENDOR_PAYMENT = 'vendorpayment',
+    VENDOR_RETURN_AUTHORIZATION = 'vendorreturnauthorization',
+    VISA_TYPE = 'visatype',
+    WEEKLY_TIME_TRACKING = 'weeklytimetracking',
+    WORKFLOW = 'workflow',
+    WORK_ORDER = 'workorder',
+    WORK_ORDER_CLOSE = 'workorderclose',
+    WORK_ORDER_COMPLETION = 'workordercompletion',
+    WORK_ORDER_ISSUE = 'workorderissue',
   }
 
   /**
@@ -1375,7 +1753,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275511}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275511.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: Type | `${Type}` | string;
 
@@ -1412,7 +1790,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781899}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781899.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly child: Object;
 
@@ -1421,7 +1799,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819439}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819439.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly id: number;
 
@@ -1430,7 +1808,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819481}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819481.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly name: string;
 
@@ -1440,7 +1818,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510781874}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510781874.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly root: Component;
 
@@ -1537,6 +1915,8 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819144}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819144.html}
      *
+     * @governance none
+     *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
      */
@@ -1549,6 +1929,8 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275377}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275377.html}
      *
+     * @governance none
+     *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
      */
@@ -1560,6 +1942,8 @@ declare namespace query {
      * Join the root component of the Query with another (target) query type. This is a shortcut for Query.root.joinTo.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819329}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819329.html}
+     *
+     * @governance none
      *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
@@ -1575,6 +1959,8 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819218}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819218.html}
      *
+     * @governance none
+     *
      * @param options
      * @param options.fieldId Column type (field type) that joins the parent component to the new component
      * @param options.source Search type of the component joined to this component
@@ -1589,6 +1975,9 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780329}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780329.html}
      *
+     * @governance none
+     * @since 2018.1
+     *
      * @param options
      * @param [options.fieldId] Field (column) id
      * @param options.operator Use the Operator enum
@@ -1596,13 +1985,18 @@ declare namespace query {
      * @param [options.formula] Formula
      * @param [options.type] Explicitly define value type in case it is not determined correctly from the formula. Use the ReturnType enum.
      * @param [options.aggregate] Aggregate function. Use the Aggregate enum.
+     * @param [options.caseSensitive] Indicates whether the condition is case sensitive
+     * @param [options.context] Field context for values in the query result column
+     * @param options.context.name Name of the field context
+     * @param [options.context.params] Additional parameters to use with the specified field context. Required when context.name is the CONVERTED field context, which needs both context.params.currencyId and context.params.date.
+     * @param [options.context.params.currencyId] ID of the currency to convert to
+     * @param [options.context.params.date] Date to use for the actual exchange rate between the base currency and the currency to convert to
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options are undefined
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object
      * @throws {error.SuiteScriptError} OPERATOR_ARITY_MISMATCH if requested operator cannot work with specified number of arguments
      * @throws {error.SuiteScriptError} INVALID_SEARCH_OPERATOR if wrong query operator is used
-     *
-     * @since 2018.1
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if context.name is the CONVERTED field context and context.params.currencyId or context.params.date is not provided
      */
     createCondition(options: {
       fieldId?: string,
@@ -1611,12 +2005,23 @@ declare namespace query {
       formula?: string,
       type?: string,
       aggregate?: Aggregate | `${Aggregate}`,
+      caseSensitive?: boolean,
+      context?: FieldContext | `${FieldContext}` | {
+        name: FieldContext | `${FieldContext}`,
+        params?: {
+          currencyId?: number,
+          date?: RelativeDate | Date,
+        },
+      },
     }): Condition;
 
     /**
      * Create a Column object based on the root component of the Query. This is a shortcut for Query.root.createColumn.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780373}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780373.html}
+     *
+     * @governance none
+     * @since 2018.1
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1625,17 +2030,16 @@ declare namespace query {
      * @param [options.aggregate] Aggregate function. Use the Aggregate enum.
      * @param [options.groupBy] Indicates that we want the results grouped by this column used together with aggregate function defined on other columns.
      * @param [options.context] Field context for values in the query result column
-     * @param [options.context.name] Name of the field context
-     * @param [options.context.params] Additional parameters to use with the specified field context
+     * @param options.context.name Name of the field context
+     * @param [options.context.params] Additional parameters to use with the specified field context. Required when context.name is the CONVERTED field context, which needs both context.params.currencyId and context.params.date.
      * @param [options.context.params.currencyId] ID of the currency to convert to
      * @param [options.context.params.date] Date to use for the actual exchange rate between the base currency and the currency to convert to
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options are undefined
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS when two mutually arguments are defined
      * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED when neither of two mandatory arguments is defined
-     *
-     * @since 2018.1
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if context.name is the CONVERTED field context and context.params.currencyId or context.params.date is not provided
      */
     createColumn(options: {
       fieldId?: string,
@@ -1644,8 +2048,8 @@ declare namespace query {
       aggregate?: Aggregate | `${Aggregate}`,
       alias?: string,
       groupBy?: boolean,
-      context?: {
-        name?: string,
+      context?: FieldContext | `${FieldContext}` | {
+        name: FieldContext | `${FieldContext}`,
         params?: {
           currencyId?: number,
           date?: RelativeDate | Date,
@@ -1658,6 +2062,9 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780402}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780402.html}
      *
+     * @governance none
+     * @since 2018.1
+     *
      * @param options
      * @param options.column The Column by which we want to sort.
      * @param [options.ascending] The sort direction. True by default.
@@ -1665,8 +2072,6 @@ declare namespace query {
      * @param [options.caseSensitive] Indicates whether the sort is case sensitive
      * @param [options.locale] Locale to use for the sort
      * @param [options.nullsLast] Indicates whether query results with null values are listed at the end of the query results
-     *
-     * @since 2018.1
      */
     createSort(options: {
       column: Column | Object,
@@ -1682,6 +2087,8 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780422}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780422.html}
      *
+     * @governance none
+     *
      * @param conditions
      */
     and(...conditions: Condition[]): Condition;
@@ -1691,6 +2098,8 @@ declare namespace query {
      * the method as arguments. The arguments must be one or more Condition objects.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780444}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780444.html}
+     *
+     * @governance none
      *
      * @param conditions
      */
@@ -1702,6 +2111,8 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780462}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780462.html}
      *
+     * @governance none
+     *
      * @param condition
      */
     not(condition: Condition): Condition;
@@ -1710,8 +2121,21 @@ declare namespace query {
      * Converts this query.Query object to its corresponding SuiteQL representation
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960522744}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960522744.html}
+     *
+     * @governance none
      */
     toSuiteQL(): SuiteQL;
+
+    /**
+     * Converts this query.Query object to its corresponding SuiteQL representation, omitting the BUILTIN_RESULT.TYPE_*
+     * result-type wrapper functions that toSuiteQL() emits (the generated SQL selects the raw column expressions instead).
+     * Returns a query.SuiteQL object.
+     *
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @governance none
+     */
+    toSuiteQLWithoutResultFunctions(): SuiteQL;
 
     /**
      * Returns the object type name
@@ -1737,7 +2161,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785195}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785195.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: Type | `${Type}` | string;
 
@@ -1746,27 +2170,27 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785292}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785292.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly source: string;
+    readonly source: string | null;
 
     /**
-     * Polymorphic target. Returns the target target of this component
+     * Polymorphic target. Returns the target of this component
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785266}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785266.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly target: string;
+    readonly target: string | null;
 
     /**
      * Returns the Component that corresponds to the ancestor of this component in the query object model
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785228}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785228.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly parent: string;
+    readonly parent: Component | null;
 
     /**
      * Children of this component. It is an object with key/value pairs where key is the name of the child component
@@ -1774,7 +2198,7 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785245}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785245.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly child: Record<string, Component>;
 
@@ -1784,10 +2208,12 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818573}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818573.html}
      *
+     * @governance none
+     *
      * @param options
      * @param options.fieldId The relationship field that will be used to determine the query type of the newly joined component and also the columns on which the query types will be joined together. For example "salesrep".
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if fieldId is undefined
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if fieldId is undefined
      * @throws {error.SuiteScriptError} RELATIONSHIP_ALREADY_USED if relationship is already used
      */
     autoJoin(options: {
@@ -1800,10 +2226,12 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784833}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784833.html}
      *
-     * @param options
-     * @param options.name The name of the relationship that will be used to determine the query type of the newly joined component and also the columns on which the query types will be joined together. For example "salesrep".
+     * @governance none
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if name is undefined
+     * @param options
+     * @param options.fieldId The relationship field that will be used to determine the query type of the newly joined component and also the columns on which the query types will be joined together. For example "salesrep".
+     *
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG if fieldId is undefined
      * @throws {error.SuiteScriptError} RELATIONSHIP_ALREADY_USED if relationship is already used
      */
     join(options: {
@@ -1816,11 +2244,13 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818855}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818855.html}
      *
-     * @param options
-     * @param options.name The name of the relationship field on which join with other query type is performed. For example "entity".
-     * @param options.target The target target of the join. It is the specialized query type with which is this component joined. For example query.Type.CUSTOMER
+     * @governance none
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if relationship is undefined
+     * @param options
+     * @param options.fieldId The relationship field on which join with other query type is performed. For example "entity".
+     * @param options.target The target of the join. It is the specialized query type with which is this component joined. For example query.Type.CUSTOMER
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if target is undefined
      * @throws {error.SuiteScriptError} RELATIONSHIP_ALREADY_USED if relationship is already used
      */
     joinTo(options: {
@@ -1834,11 +2264,13 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530818705}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530818705.html}
      *
+     * @governance none
+     *
      * @param options
-     * @param options.name The name of the relationship field on which join with other query type is performed. For example "salesrep".
+     * @param options.fieldId The relationship field on which join with other query type is performed. For example "salesrep".
      * @param options.source The query type on which is relationship field used to create the join with this component. For example query.Type.CUSTOMER
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if relationship is undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if source is undefined
      * @throws {error.SuiteScriptError} RELATIONSHIP_ALREADY_USED if relationship is already used
      */
     joinFrom(options: {
@@ -1851,6 +2283,9 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784922}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784922.html}
      *
+     * @governance none
+     * @since 2018.1
+     *
      * @param options
      * @param [options.fieldId] Field (column) id
      * @param options.operator Use the Operator enum
@@ -1858,27 +2293,43 @@ declare namespace query {
      * @param [options.formula] Formula
      * @param [options.type] Explicitly define value type in case it is not determined correctly from the formula. Use the ReturnType enum.
      * @param [options.aggregate] Aggregate function. Use the Aggregate enum.
+     * @param [options.caseSensitive] Indicates whether the condition is case sensitive
+     * @param [options.context] Field context for values in the query result column
+     * @param options.context.name Name of the field context
+     * @param [options.context.params] Additional parameters to use with the specified field context. Required when context.name is the CONVERTED field context, which needs both context.params.currencyId and context.params.date.
+     * @param [options.context.params.currencyId] ID of the currency to convert to
+     * @param [options.context.params.date] Date to use for the actual exchange rate between the base currency and the currency to convert to
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options are undefined
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object
      * @throws {error.SuiteScriptError} OPERATOR_ARITY_MISMATCH if requested operator cannot work with specified number of arguments
      * @throws {error.SuiteScriptError} INVALID_SEARCH_OPERATOR if wrong query operator is used
-     *
-     * @since 2018.1
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if context.name is the CONVERTED field context and context.params.currencyId or context.params.date is not provided
      */
     createCondition(options: {
       fieldId?: string,
       operator: Operator | `${Operator}`,
-      values?: string[] | Date[],
+      values?: string | number | boolean | Date | RelativeDate | Period | string[] | number[] | boolean[] | Date[] | RelativeDate[] | Period[],
       formula?: string,
       type?: string,
       aggregate?: Aggregate | `${Aggregate}`,
+      caseSensitive?: boolean,
+      context?: FieldContext | `${FieldContext}` | {
+        name: FieldContext | `${FieldContext}`,
+        params?: {
+          currencyId?: number,
+          date?: RelativeDate | Date,
+        },
+      },
     }): Condition;
 
     /**
      * Create a Column object based on this query component. Use either name or formula + (optional) type.
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510784945}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510784945.html}
+     *
+     * @governance none
+     * @since 2018.1
      *
      * @param options
      * @param [options.fieldId] Field (column) id
@@ -1887,17 +2338,16 @@ declare namespace query {
      * @param [options.aggregate] Aggregate function. Use the Aggregate enum.
      * @param [options.groupBy] Indicates that we want the results grouped by this column used together with aggregate function defined on other columns.
      * @param [options.context] Field context for values in the query result column
-     * @param [options.context.name] Name of the field context
-     * @param [options.context.params] Additional parameters to use with the specified field context
+     * @param options.context.name Name of the field context
+     * @param [options.context.params] Additional parameters to use with the specified field context. Required when context.name is the CONVERTED field context, which needs both context.params.currencyId and context.params.date.
      * @param [options.context.params.currencyId] ID of the currency to convert to
      * @param [options.context.params.date] Date to use for the actual exchange rate between the base currency and the currency to convert to
      *
-     * @throws {error.SuiteScriptError} MISSING_REQD_ARGUMENT if options are undefined
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options are undefined
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options isn't object
      * @throws {error.SuiteScriptError} MUTUALLY_EXCLUSIVE_ARGUMENTS when two mutually arguments are defined
      * @throws {error.SuiteScriptError} NEITHER_ARGUMENT_DEFINED when neither of two mandatory arguments is defined
-     *
-     * @since 2018.1
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if context.name is the CONVERTED field context and context.params.currencyId or context.params.date is not provided
      */
     createColumn(options: {
       fieldId?: string,
@@ -1906,8 +2356,8 @@ declare namespace query {
       aggregate?: Aggregate | `${Aggregate}`,
       alias?: string,
       groupBy?: boolean,
-      context?: {
-        name?: string,
+      context?: FieldContext | `${FieldContext}` | {
+        name: FieldContext | `${FieldContext}`,
         params?: {
           currencyId?: number,
           date?: RelativeDate | Date,
@@ -1920,6 +2370,9 @@ declare namespace query {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510785047}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510785047.html}
      *
+     * @governance none
+     * @since 2018.1
+     *
      * @param options
      * @param options.column The Column by which we want to sort.
      * @param [options.ascending] The sort direction. True by default.
@@ -1927,8 +2380,6 @@ declare namespace query {
      * @param [options.caseSensitive] Indicates whether the sort is case sensitive
      * @param [options.locale] Locale to use for the sort
      * @param [options.nullsLast] Indicates whether query results with null values are listed at the end of the query results
-     *
-     * @since 2018.1
      */
     createSort(options: {
       column: Column,
@@ -1937,70 +2388,146 @@ declare namespace query {
       locale?: SortLocale | `${SortLocale}`,
       nullsLast?: boolean,
     }): Sort;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Component';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
    * Specifies a return column.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779196}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779196.html}
    */
   export interface Column {
 
     /**
      * Id of column field
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510788976}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510788976.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly fieldId: string;
 
     /**
      * Returns the Component to which this column belongs
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789028}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789028.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly component: Component;
 
     /**
      * Formula
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789062}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789062.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly formula: string;
 
     /**
      * Desired value type of the formula (if it was explicitly stated upon Column creation)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789090}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789090.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: ReturnType | `${ReturnType}`;
 
     /**
-     * Aggregate function
+     * A label is important if the query object is used as the data source for printing
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158291894456}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158291894456.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    readonly label: string;
+
+    /**
+     * An alternate name for a column used in mapped results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156336566313}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156336566313.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    readonly alias: string;
+
+    /**
+     * The field context for values in the query result column
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109085}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109085.html}
+     *
+     * The Help Center types this as a field-context name string, but at runtime the getter returns an object
+     * (`{ name, params? }`) mirroring the `createColumn` `context` option, or `undefined` when no context was set.
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    readonly context: {
+      name: FieldContext | `${FieldContext}`,
+      params?: {
+        currencyId?: number,
+        date?: RelativeDate | Date,
+      },
+    } | undefined;
+
+    /**
+     * Aggregate function
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789115}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789115.html}
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly aggregate: Aggregate | `${Aggregate}`;
 
     /**
      * The group-by flag
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789147}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789147.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly groupBy: boolean;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Column';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
    * Specifies sorting by the values of a given column and the sort direction.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779222}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779222.html}
    */
   export interface Sort {
 
     /**
      * The query column by which we want to sort
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510790467}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510790467.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly column: Column;
 
     /**
      * Flag indicating if sort is ascending
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530897548}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530897548.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting wrong sort order is attempted
      */
@@ -2008,6 +2535,8 @@ declare namespace query {
 
     /**
      * Sort case sensitivity
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819572}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819572.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
@@ -2022,93 +2551,161 @@ declare namespace query {
 
     /**
      * Sort locale
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819644}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819644.html}
      *
      * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE when setting non-boolean parameter
      */
     locale: SortLocale | `${SortLocale}`;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Sort';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
    * Specifies the condition used to filter the results. It can consist of other Condition objects.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779210}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779210.html}
    */
   export interface Condition {
 
     /**
      * This is only applicable to "non-leaf" conditions that were created by AND-ing, OR-ing or NOT-ing other Condition objects.
      * In such case this property holds the child Component objects that are arguments of the logical operation.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789455}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789455.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly children: Condition[];
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789485}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789485.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly fieldId: string;
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789501}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789501.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly operator: Operator | `${Operator}`;
 
     /**
      * Values. This is only applicable to "leaf" conditions (equivalent to the former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789525}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789525.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly values: string[] | Date[];
+    readonly values: string | number | boolean | Date | RelativeDate | Period | string[] | number[] | boolean[] | Date[] | RelativeDate[] | Period[];
 
     /**
      * Formula. This is only applicable to "leaf" conditions (equivalent to the former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789560}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789560.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly formula: string;
 
     /**
      * Return type of the formula, if explicitly specified. This is only applicable to "leaf" conditions (equivalent to the
      * former Filter).
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789582}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789582.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: ReturnType | `${ReturnType}`;
 
     /**
      * This is only applicable to "leaf" conditions (equivalent to the former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789603}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789603.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly aggregate: Aggregate | `${Aggregate}`;
 
     /**
      * Query component to which this condition belongs. This is only applicable to "leaf" conditions (equivalent to the
      * former Filter)
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510789643}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510789643.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly component: Component;
+
+    /**
+     * Field context for values in the query result column. This is only applicable to "leaf" conditions (equivalent to the former Filter).
+     *
+     * Undocumented in the Help Center; present and functional at runtime (verified). Returns null when the context is not set.
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
+     */
+    readonly context: {
+      name: FieldContext | `${FieldContext}`,
+      params?: {
+        currencyId?: number,
+        date?: RelativeDate | Date,
+      },
+    } | null;
+
+    /**
+     * Indicates whether the condition is case sensitive. This is only applicable to "leaf" conditions (equivalent to the former Filter).
+     *
+     * Undocumented in the Help Center; present and functional at runtime (verified). Writable; defaults to false.
+     */
+    caseSensitive: boolean;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Condition';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
    * Encapsulates a relative date to use in query conditions
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109440}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109440.html}
    */
   export interface RelativeDate {
 
     /**
      * Holds the date ID of the relative date
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109453}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109453.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly dateId: DateId | `${DateId}`;
 
     /**
      * References the start of the relative date
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109794}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109794.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly start: {
       type: 'start',
@@ -2118,8 +2715,10 @@ declare namespace query {
 
     /**
      * References the end of the relative date
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109465}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109465.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly end: {
       type: 'end',
@@ -2129,8 +2728,10 @@ declare namespace query {
 
     /**
      * Describes the interval that the relative date represents
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109758}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109758.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly interval: {
       type: 'interval',
@@ -2140,68 +2741,101 @@ declare namespace query {
 
     /**
      * Holds the value of the relative date range
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1544109837}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1544109837.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly value: number | undefined;
 
     /**
      * Indicates whether the relative date represents a range of dates or a specific moment in time
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552334952}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552334952.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly isRange: boolean;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.RelativeDate';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
   /**
    * Set of results returned by the query.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779235}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779235.html}
    */
   export interface ResultSet {
 
     /**
      * The actual query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510857646}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510857646.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly results: Result[];
 
     /**
      * The types of the return values. Array of values from the ReturnType enum. Number and order of values in the array exactly matches the columns property
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510857678}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510857678.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly types: (ReturnType | `${ReturnType}`)[];
 
     /**
      * The return columns
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510857693}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510857693.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly columns: Column[] | null;
 
     /**
-     * Undocumented property
+     * The metadata provider in effect for this object. Observed to report query.MetadataProvider.SUITE_QL for
+     * SuiteQL-backed results.
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly metadataProvider: string | undefined;
+    readonly metadataProvider: MetadataProvider | `${MetadataProvider}` | undefined;
 
     /**
      * Returns the query result set as an array of mapped results. A mapped result is a JavaScript object with key-value pairs. In this object, the key is either the field ID or the alias that was used for the corresponding query.Column object. When you call this method, Result.asMap() is called on each query.Result object in the result set.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156336700395}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156336700395.html}
+     *
+     * @governance none
      */
     asMappedResults<MappedResult extends Record<string, string | number>>(): MappedResult[];
 
     /**
-     * Undocumented property
+     * Returns the result-value type (a query.ReturnType value) for a given column alias.
+     *
+     * Undocumented in the Help Center; present at runtime.
      *
      * @param alias
      *
      * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
      */
-    getTypeForAlias(alias: string): string;
+    getTypeForAlias(alias: string): ReturnType | `${ReturnType}`;
 
     /**
-     * Undocumented property
+     * Returns the result-value type (a query.ReturnType value) for a given column alias.
+     *
+     * Undocumented in the Help Center; present at runtime.
      *
      * @param options
      * @param options.alias
@@ -2210,10 +2844,12 @@ declare namespace query {
      */
     getTypeForAlias(options: {
       alias: string,
-    }): string;
+    }): ReturnType | `${ReturnType}`;
 
     /**
      * Standard object for iterating through results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510790932}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510790932.html}
      *
      * @governance 10 points for each page returned
      */
@@ -2232,25 +2868,35 @@ declare namespace query {
 
   /**
    * Corresponds to a single row of the ResultSet.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779258}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779258.html}
    */
   export interface Result {
 
     /**
      * The result values. Value types correspond to the ResultSet.types property. Number and order of values in the array
      * exactly matches the ResultSet#types, ResultSet#columns or Result#columns property
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510859061}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510859061.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly values: (string | number)[];
 
     /**
      * Returns the query result as a mapped result. A mapped result is a JavaScript object with key-value pairs.
      * In this object, the key is either the field ID or the alias that was used.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_156336629343}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_156336629343.html}
+     *
+     * @governance none
      */
     asMap<MappedResult extends Record<string, string | number>>(): MappedResult;
 
     /**
      * Undocumented method
+     *
+     * @governance none
      *
      * @param columnIndex
      */
@@ -2269,7 +2915,9 @@ declare namespace query {
      * @param options
      * @param options.alias
      */
-    getValueForAlias<T extends string | number>(options: { alias: string }): T;
+    getValueForAlias<T extends string | number>(options: {
+      alias: string,
+    }): T;
 
     /**
      * Returns the object type name
@@ -2284,41 +2932,53 @@ declare namespace query {
 
   /**
    * One page of the paged query results
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779287}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779287.html}
    */
   export interface Page {
 
     /**
      * Whether the page is the first of the paged query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878267}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878267.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly isFirst: boolean;
 
     /**
      * Whether the page is the last of the paged query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878292}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878292.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly isLast: boolean;
 
     /**
      * The query results contained in this page
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878060}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878060.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly data: ResultSet;
 
     /**
      * The range of query results for this page
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878146}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878146.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly pageRange: PageRange;
 
     /**
      * The set of paged query results that this page is from
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878184}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878184.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly pagedData: PagedData;
 
@@ -2335,20 +2995,25 @@ declare namespace query {
 
   /**
    * Encapsulates a set of paged query results. This object also contains information about the set of paged results it encapsulates.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779273}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779273.html}
    */
   export interface PagedData {
 
     /**
-     * Undocumented property
+     * The metadata provider in effect for this object. Observed to report query.MetadataProvider.SUITE_QL for
+     * SuiteQL-backed results.
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * Undocumented in the Help Center; present at runtime.
+     *
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly metadataProvider: string | undefined;
+    readonly metadataProvider: MetadataProvider | `${MetadataProvider}` | undefined;
 
     /**
-     * Undocumented property
+     * Undocumented in the Help Center; present at runtime.
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly queryDefinition: {
       query: string,
@@ -2357,22 +3022,28 @@ declare namespace query {
 
     /**
      * Describes the total number of paged query result rows
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510861385}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510861385.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly count: number;
 
     /**
      * Describes the number of query result rows per page
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510861410}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510861410.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly pageSize: PageSize;
 
     /**
      * Holds an array of page ranges for the paged query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510861433}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510861433.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly pageRanges: PageRange[];
 
@@ -2418,6 +3089,10 @@ declare namespace query {
 
     /**
      * Standard object for iterating through results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510861317}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510861317.html}
+     *
+     * @governance 10 units
      */
     iterator(): NetSuiteIterator<Page>;
 
@@ -2434,99 +3109,137 @@ declare namespace query {
 
   /**
    * Encapsulates the range of query results for a page.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510779296}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510779296.html}
    */
   export interface PageRange {
 
     /**
      * Describes the array index for this page range
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878655}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878655.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly index: number;
 
     /**
      * Describes the number of query result rows in this page range
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510878735}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510878735.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly size: number;
   }
 
   /**
    * A period of time to use in query conditions.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289614570}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289614570.html}
    */
   export interface Period {
 
     /**
      * The adjustment of the period
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289613523}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289613523.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly adjustment: PeriodAdjustment | `${PeriodAdjustment}`;
 
     /**
      * The code of the period
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289612641}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289612641.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly code: PeriodCode | `${PeriodCode}`;
 
     /**
      * The type of the period
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289645227}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289645227.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: PeriodType | `${PeriodType}`;
+
+    /**
+     * Returns the object type name
+     */
+    toString(): 'query.Period';
+
+    /**
+     * Convert to JSON object
+     */
+    toJSON(): ExcludeMethods<this>;
   }
 
+  /**
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960384819}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960384819.html}
+   */
   export interface SuiteQL {
 
     /**
      * The type of the query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960456167}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960456167.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly type: Type | `${Type}` | string;
 
     /**
      * The string representation of the SuiteQL query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960443690}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960443690.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly query: string;
 
     /**
      * The parameters for the query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960427733}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960427733.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly params: (string | number | boolean)[];
 
     /**
      * The result columns to be returned from the query
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960405619}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960405619.html}
      *
-     * @throws {error.SuiteScriptError} READ_ONLY when setting the property is attempted
+     * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
     readonly columns: Column[];
 
     /**
      * Runs the SuiteQL query and returns the query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960470046}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960470046.html}
      *
      * @governance 10 points
-     *
      * @since 2020.1
      */
     run(): ResultSet;
 
     /**
      * Runs the SuiteQL query as a paged query and returns the paged query results
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960491275}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960491275.html}
      *
      * @governance 10 points
+     * @since 2020.1
      *
      * @param [options]
      * @param [options.pageSize] The size of each page in the query results. The default value is 50 results per page. The minimum page size is 5 results per page, and the maximum page size is 1000 results per page.
-     *
-     * @since 2020.1
      */
     runPaged(options?: {
       pageSize?: PageSize,
