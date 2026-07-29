@@ -23,6 +23,7 @@
 /// <reference path="./N/format/i18n.d.ts" />
 /// <reference path="./N/http.d.ts" />
 /// <reference path="./N/https.d.ts" />
+/// <reference path="./N/https/clientCertificate.d.ts" />
 /// <reference path="./N/llm.d.ts" />
 /// <reference path="./N/log.d.ts" />
 /// <reference path="./N/machineTranslation.d.ts" />
