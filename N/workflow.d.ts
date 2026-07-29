@@ -14,6 +14,8 @@ interface workflow {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344303916.html}
    *
    * @governance 20 units
+   * @restriction Server-side scripts only
+   * @since 2015.2
    *
    * @param {Object} options
    * @param {string} options.recordType Record type ID of the workflow base record
@@ -21,8 +23,6 @@ interface workflow {
    * @param {number|string} options.workflowId Internal ID or script ID of the workflow definition
    * @param {Object<string, *>} [options.defaultValues] Object containing key/value pairs providing default values for field defined on the specified workflow
    * @return {number} Internal ID of workflow instance that was initiated
-   *
-   * @since 2015.2
    */
   initiate(options: {
     recordType: string,
@@ -39,6 +39,8 @@ interface workflow {
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4344892270.html}
    *
    * @governance 20 units
+   * @restriction Server-side scripts only
+   * @since 2015.2
    *
    * @param {Object} options
    * @param {string} options.recordType Record type ID of the workflow base record
@@ -48,8 +50,6 @@ interface workflow {
    * @param {number|string} [options.actionId] Internal ID or script ID of the workflow action (usually button pressed)
    * @param {number|string} [options.stateId] Internal ID or script ID of the workflow state containing the action
    * @return {number} Internal ID of workflow instance that was triggered
-   *
-   * @since 2015.2
    */
   trigger(options: {
     recordId: number | string,
