@@ -3128,7 +3128,7 @@ declare namespace currentRecord {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
-       * @governance none
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        * @since 2015.2
        *
        * @param [options]
@@ -3146,7 +3146,7 @@ declare namespace currentRecord {
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440842328}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440842328.html}
        *
-       * @governance none
+       * @governance 20 units for transactions, 4 for custom records, 10 for all other records
        * @since 2015.2
        *
        * @param [enableSourcing=false] enable sourcing during record update
