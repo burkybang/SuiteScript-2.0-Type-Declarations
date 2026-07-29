@@ -2,14 +2,11 @@
  * SuiteScript module registry — maps module names to their exported types.
  */
 interface SuiteScriptModuleMap {
-  'N/ui/dialog': dialog;
-  'N/ui/message': message;
-  'N/ui/serverWidget': serverWidget;
   'N/action': action;
   'N/auth': auth;
   'N/cache': cache;
-  'N/config': config;
   'N/compress': compress;
+  'N/config': config;
   'N/crypto': crypto_;
   'N/currency': currency;
   'N/currentRecord': currentRecord;
@@ -39,6 +36,9 @@ interface SuiteScriptModuleMap {
   'N/task': task;
   'N/transaction': transaction;
   'N/ui': ui;
+  'N/ui/dialog': dialog;
+  'N/ui/message': message;
+  'N/ui/serverWidget': serverWidget;
   'N/url': url;
   'N/util': util;
   'N/workflow': workflow;
