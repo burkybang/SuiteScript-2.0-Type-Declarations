@@ -7,7 +7,7 @@
  *
  * @module N/portlet
  * @NApiVersion 2.x
- * @restriction Server-side scripts only
+ * @restriction Client-side scripts only
  */
 interface portlet {
 
@@ -16,9 +16,11 @@ interface portlet {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4473511255}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4473511255.html}
    *
-   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
-   *
+   * @governance none
+   * @restriction Client-side scripts only
    * @since 2016.1
+   *
+   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
    */
   refresh(): void;
 
@@ -27,9 +29,11 @@ interface portlet {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4473510937}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4473510937.html}
    *
-   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
-   *
+   * @governance none
+   * @restriction Client-side scripts only
    * @since 2016.1
+   *
+   * @throws {error.SuiteScriptError} SSS_INVALID_UI_OBJECT_TYPE if portlet is not FORM type
    */
   resize(): void;
 }
