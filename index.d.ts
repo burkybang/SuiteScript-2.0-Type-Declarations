@@ -46,7 +46,6 @@
 /// <reference path="./N/runtime.d.ts" />
 /// <reference path="./N/scriptTypes/restlet.d.ts" />
 /// <reference path="./N/search.d.ts" />
-/// <reference path="./N/sessionRecordHandler.d.ts" />
 /// <reference path="./N/sftp.d.ts" />
 /// <reference path="./N/sso.d.ts" />
 /// <reference path="./N/suiteAppInfo.d.ts" />
