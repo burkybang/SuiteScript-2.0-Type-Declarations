@@ -29,7 +29,7 @@ interface dataset {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158989971922}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158989971922.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2020.2
    *
@@ -63,7 +63,7 @@ interface dataset {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158990102328}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158990102328.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2020.2
    *
@@ -98,7 +98,7 @@ interface dataset {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158990217350}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158990217350.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2020.2
    *
@@ -125,7 +125,7 @@ interface dataset {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158990279568}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158990279568.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2020.2
    *
@@ -152,7 +152,7 @@ interface dataset {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_162853138869}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162853138869.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2021.2
    *
@@ -526,7 +526,7 @@ declare namespace dataset {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158948233177}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158948233177.html}
      *
-     * @governance None
+     * @governance none
      * @restriction Server-side scripts only
      * @since 2020.2
      *
@@ -682,7 +682,7 @@ declare namespace dataset {
       /**
        * Returns the resolved dataset name as a plain string (e.g. `'Orders and Returns'`).
        */
-      getTranslation(): string,
+      getTranslation(): string;
     };
 
     /**
@@ -721,22 +721,22 @@ declare namespace dataset {
         /**
          * Returns the type name, e.g. `'STRING'`, `'UNKNOWN'`.
          */
-        toString(): string,
+        toString(): string;
 
         /**
          * Returns the type name, e.g. `'STRING'`, `'UNKNOWN'` (same value as `toString()`).
          */
-        name(): string,
+        name(): string;
 
         /**
          * Returns the enum ordinal (position) of the type.
          */
-        ordinal(): number,
+        ordinal(): number;
 
         /**
          * Returns whether the type is numeric.
          */
-        isNumeric(): boolean,
+        isNumeric(): boolean;
       },
     }[];
   }

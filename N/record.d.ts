@@ -35,7 +35,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.Record
+    }): record.Record;
 
     /**
      * Create a new record object based on provided type
@@ -58,7 +58,7 @@ interface record {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.DynamicRecord
+    }): record.DynamicRecord;
 
     promise: {
 
@@ -83,7 +83,7 @@ interface record {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         isDynamic?: false,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.Record>
+      }): Promise<record.Record>;
 
       /**
        * Create a new record object based on provided type
@@ -106,7 +106,7 @@ interface record {
         type: record.Type | `${record.Type}` | record.CustomType | string,
         isDynamic: true,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.DynamicRecord>
+      }): Promise<record.DynamicRecord>;
     };
   };
 
@@ -136,7 +136,7 @@ interface record {
       id: number | string,
       isDynamic?: false,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.Record
+    }): record.Record;
 
     /**
      * Load an existing nlobjRecord from the database based on provided type, id
@@ -162,7 +162,7 @@ interface record {
       id: number | string,
       isDynamic: true,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.DynamicRecord
+    }): record.DynamicRecord;
 
     promise: {
 
@@ -190,7 +190,7 @@ interface record {
         id: number | string,
         isDynamic?: false,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.Record>
+      }): Promise<record.Record>;
 
       /**
        * Load an existing nlobjRecord from the database based on provided type, id
@@ -216,7 +216,7 @@ interface record {
         id: number | string,
         isDynamic: true,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.DynamicRecord>
+      }): Promise<record.DynamicRecord>;
     };
   };
 
@@ -246,7 +246,7 @@ interface record {
       id: number | string,
       isDynamic?: false,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.Record
+    }): record.Record;
 
     /**
      * Copy a record object based on provided type, id
@@ -272,7 +272,7 @@ interface record {
       id: number | string,
       isDynamic: true,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.DynamicRecord
+    }): record.DynamicRecord;
 
     promise: {
 
@@ -300,7 +300,7 @@ interface record {
         id: number | string,
         isDynamic?: false,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.Record>
+      }): Promise<record.Record>;
 
       /**
        * Copy a record object based on provided type, id
@@ -326,7 +326,7 @@ interface record {
         id: number | string,
         isDynamic: true,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.DynamicRecord>
+      }): Promise<record.DynamicRecord>;
     };
   };
 
@@ -358,7 +358,7 @@ interface record {
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic?: false,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.Record
+    }): record.Record;
 
     /**
      * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
@@ -386,7 +386,7 @@ interface record {
       toType: record.Type | `${record.Type}` | record.CustomType | string,
       isDynamic: true,
       defaultValues?: Record<string, record.FieldValue>,
-    }): record.DynamicRecord
+    }): record.DynamicRecord;
 
     promise: {
 
@@ -416,7 +416,7 @@ interface record {
         toType: record.Type | `${record.Type}` | record.CustomType | string,
         isDynamic?: false,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.Record>
+      }): Promise<record.Record>;
 
       /**
        * Transform a record into another type (i.e. salesOrder -> invoice -or- opportunity -> estimate)
@@ -444,7 +444,7 @@ interface record {
         toType: record.Type | `${record.Type}` | record.CustomType | string,
         isDynamic: true,
         defaultValues?: Record<string, record.FieldValue>,
-      }): Promise<record.DynamicRecord>
+      }): Promise<record.DynamicRecord>;
     };
   };
 
@@ -471,7 +471,7 @@ interface record {
     (options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
-    }): number
+    }): number;
 
     /**
      * Delete a record object based on provided type, id and return the id of deleted record
@@ -494,7 +494,7 @@ interface record {
     promise(options: {
       type: record.Type | `${record.Type}` | record.CustomType | string,
       id: number | string,
-    }): Promise<number>
+    }): Promise<number>;
   };
 
   submitFields: {
@@ -533,7 +533,7 @@ interface record {
         ignoreMandatoryFields?: boolean,
         disableTriggers?: boolean,
       },
-    }): number
+    }): number;
 
     /**
      * Commit record field updates to the system
@@ -569,7 +569,7 @@ interface record {
         ignoreMandatoryFields?: boolean,
         disableTriggers?: boolean,
       },
-    }): Promise<number>
+    }): Promise<number>;
   };
 
   attach: {
@@ -600,7 +600,7 @@ interface record {
         id: number | string,
       },
       attributes?: Record<string, string | number>,
-    }): void
+    }): void;
 
     /**
      * Attach record to another record
@@ -628,7 +628,7 @@ interface record {
         id: number | string,
       },
       attributes?: Record<string, string | number>,
-    }): Promise<void>
+    }): Promise<void>;
   };
 
   detach: {

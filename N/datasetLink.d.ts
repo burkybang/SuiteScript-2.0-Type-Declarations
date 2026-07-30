@@ -51,7 +51,7 @@ interface datasetLink {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_162626675925}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162626675925.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2021.2
    *

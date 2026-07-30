@@ -48,7 +48,7 @@ interface search {
       filterExpression?: (string | number | (string | number | (string | number | [])[])[])[],
       packageId?: string,
       isPublic?: boolean,
-    }): search.Search
+    }): search.Search;
 
     /**
      * Creates a new search. The search can be modified and run as an ad-hoc search, without saving it. Alternatively,
@@ -86,7 +86,7 @@ interface search {
       filterExpression?: (string | number | (string | number | (string | number | [])[])[])[],
       packageId?: string,
       isPublic?: boolean,
-    }): Promise<search.Search>
+    }): Promise<search.Search>;
   };
 
   load: {
@@ -106,7 +106,7 @@ interface search {
      * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
      * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
-    (id: string | number): search.Search
+    (id: string | number): search.Search;
 
     /**
      * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
@@ -128,7 +128,7 @@ interface search {
     (options: {
       id: string | number,
       type?: search.Type | `${search.Type}` | string,
-    }): search.Search
+    }): search.Search;
 
     promise: {
 
@@ -147,7 +147,7 @@ interface search {
        * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
        * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
        */
-      (id: string | number): Promise<search.Search>
+      (id: string | number): Promise<search.Search>;
 
       /**
        * Loads an existing saved search. The saved search could have been created using the UI, or created using search.create()
@@ -169,7 +169,7 @@ interface search {
       (options: {
         id: string | number,
         type?: search.Type | `${search.Type}` | string,
-      }): Promise<search.Search>
+      }): Promise<search.Search>;
     };
   };
 
@@ -188,7 +188,7 @@ interface search {
      * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
      * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
      */
-    (id: string | number): void
+    (id: string | number): void;
 
     /**
      * Deletes an existing saved search.
@@ -208,7 +208,7 @@ interface search {
     (options: {
       id: string | number,
       type?: search.Type | `${search.Type}` | string,
-    }): void
+    }): void;
 
     promise: {
 
@@ -225,7 +225,7 @@ interface search {
        * @throws {error.SuiteScriptError} INVALID_SEARCH if no saved search matches the id, or the supplied type does not match the search's type
        * @throws {error.SuiteScriptError} UNABLE_TO_DETERMINE_RECORD_TYPE_FOR_SAVED_SEARCH_ID_1 if type is omitted for a standalone search type (one with no corresponding record type, e.g. DeletedRecord, Role, Permission, SavedSearch)
        */
-      (id: string | number): Promise<void>
+      (id: string | number): Promise<void>;
 
       /**
        * Deletes an existing saved search.
@@ -245,7 +245,7 @@ interface search {
       (options: {
         id: string | number,
         type?: search.Type | `${search.Type}` | string,
-      }): Promise<void>
+      }): Promise<void>;
     };
   };
 
@@ -274,7 +274,7 @@ interface search {
       type: search.Type | `${search.Type}` | string,
       fields?: Record<string, string | number>,
       id?: number,
-    }): search.Result[]
+    }): search.Result[];
 
 
     /**
@@ -300,7 +300,7 @@ interface search {
       type: search.Type | `${search.Type}` | string,
       fields?: Record<string, string | number>,
       id?: number,
-    }): Promise<search.Result[]>
+    }): Promise<search.Result[]>;
   };
 
   global: {
@@ -321,7 +321,7 @@ interface search {
      */
     (options: {
       keywords: string,
-    }): search.Result[]
+    }): search.Result[];
 
     /**
      * Performs a global search against a single keyword or multiple keywords.
@@ -336,7 +336,7 @@ interface search {
      *
      * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
      */
-    (keywords: string): search.Result[]
+    (keywords: string): search.Result[];
 
     promise: {
 
@@ -356,7 +356,7 @@ interface search {
        */
       (option: {
         keywords: string,
-      }): Promise<search.Result[]>
+      }): Promise<search.Result[]>;
 
       /**
        * Performs a global search against a single keyword or multiple keywords.
@@ -371,7 +371,7 @@ interface search {
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if a required parameter is missing
        */
-      (keywords: string): Promise<search.Result[]>
+      (keywords: string): Promise<search.Result[]>;
     };
   };
 
@@ -403,7 +403,7 @@ interface search {
         value: string,
         text: string,
       }[])
-    }
+    };
 
     /**
      * Performs a search for one or more body fields on a record. Supports joined-field lookups,
@@ -429,7 +429,7 @@ interface search {
         value: string,
         text: string,
       }[])
-    }
+    };
 
     promise: {
 
@@ -458,7 +458,7 @@ interface search {
           value: string,
           text: string,
         }[])
-      }>
+      }>;
 
       /**
        * Performs a search for one or more body fields on a record. Supports joined-field lookups,
@@ -487,7 +487,7 @@ interface search {
           value: string,
           text: string,
         }[])
-      }>
+      }>;
     };
   };
 
@@ -1224,7 +1224,7 @@ declare namespace search {
        * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
        * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
        */
-      (): number
+      (): number;
 
       /**
        * Saves the current search as a saved search. Before calling save() the title property must be set. The optional
@@ -1245,7 +1245,7 @@ declare namespace search {
        * @throws {error.SuiteScriptError} NAME_ALREADY_IN_USE if the search name (title property) is not unique
        * @throws {error.SuiteScriptError} SSS_DUPLICATE_SEARCH_SCRIPT_ID if the search ID (id property) is not unique
        */
-      promise(): Promise<number>
+      promise(): Promise<number>;
     };
 
     /**
@@ -1915,7 +1915,7 @@ declare namespace search {
        * @governance none
        * @since 2016.1
        */
-      (): Page
+      (): Page;
 
       /**
        * Method used to asynchronously fetch the next segment of data
@@ -1925,7 +1925,7 @@ declare namespace search {
        * @governance none
        * @since 2016.1
        */
-      promise(): Promise<Page>
+      promise(): Promise<Page>;
     };
 
     prev: {
@@ -1938,7 +1938,7 @@ declare namespace search {
        * @governance none
        * @since 2016.1
        */
-      (): Page
+      (): Page;
 
       /**
        * Method used to asynchronously fetch the previous segment of data
@@ -1948,7 +1948,7 @@ declare namespace search {
        * @governance none
        * @since 2016.1
        */
-      promise(): Promise<Page>
+      promise(): Promise<Page>;
     };
 
     /**
