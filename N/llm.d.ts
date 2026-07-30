@@ -1288,7 +1288,7 @@ declare namespace llm {
     /**
      * Arguments for the call, keyed by parameter name (e.g. { location: 'Paris' })
      */
-    readonly parameters: { [key: string]: unknown };
+    readonly parameters: Record<string, unknown>;
 
     /**
      * Convert to JSON object

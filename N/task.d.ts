@@ -1342,15 +1342,13 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    readonly inboundDependencies: {
-      [index: string]: {
+    readonly inboundDependencies: Record<string, {
         type: `task.ScheduledScriptTask` | `task.MapReduceScriptTask`,
         id?: string,
         scriptId: `customscript${string}`,
         deploymentId: `customdeploy${string}`,
         params?: Record<string, string | number | boolean>,
-      },
-    };
+      }>;
 
     addInboundDependency: {
 
@@ -1542,15 +1540,13 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    readonly inboundDependencies: {
-      [index: string]: {
+    readonly inboundDependencies: Record<string, {
         type: `task.ScheduledScriptTask` | `task.MapReduceScriptTask`,
         id?: string,
         scriptId: `customscript${string}`,
         deploymentId: `customdeploy${string}`,
         params?: Record<string, string | number | boolean>,
-      },
-    };
+      }>;
 
     addInboundDependency: {
 
@@ -1747,15 +1743,13 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    readonly inboundDependencies: {
-      [index: string]: {
+    readonly inboundDependencies: Record<string, {
         type: `task.ScheduledScriptTask` | `task.MapReduceScriptTask`,
         id?: string,
         scriptId: `customscript${string}`,
         deploymentId: `customdeploy${string}`,
         params?: Record<string, string | number | boolean>,
-      },
-    };
+      }>;
 
     addInboundDependency: {
 
@@ -2192,15 +2186,13 @@ declare namespace task {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting of the property is attempted
      */
-    readonly inboundDependencies: {
-      [index: string]: {
+    readonly inboundDependencies: Record<string, {
         type: `task.ScheduledScriptTask`,
         id?: string,
         scriptId: `customscript${string}`,
         deploymentId?: `customdeploy${string}`,
         params?: Record<string, string | number | boolean>,
-      },
-    };
+      }>;
 
     addInboundDependency: {
 
@@ -2354,15 +2346,13 @@ declare namespace task {
      * Undocumented in the Help Center; present at runtime.
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly inboundDependencies: {
-      [index: string]: {
+    readonly inboundDependencies: Record<string, {
         type: 'task.ScheduledScriptTask' | 'task.MapReduceScriptTask',
         id?: string,
         scriptId: `customscript${string}`,
         deploymentId?: `customdeploy${string}`,
-        params?: { [fieldId: string]: record.FieldValue },
-      },
-    };
+        params?: Record<string, record.FieldValue>,
+      }>;
 
     addInboundDependency: {
 

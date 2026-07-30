@@ -77,7 +77,7 @@ interface util {
      *
      * @throws {TypeError} If `callback` is missing, `null`, or a non-function value. Message format: `"callback is not a function"`. Not wrapped as a `SuiteScriptError`.
      */
-    <V>(iterable: { [key: string]: V }, callback: (value: V, key: string, obj: { [key: string]: V }) => void): { [key: string]: V };
+    <V>(iterable: Record<string, V>, callback: (value: V, key: string, obj: Record<string, V>) => void): Record<string, V>;
   };
 
   /**
@@ -161,7 +161,7 @@ interface util {
    *
    * @throws {TypeError} If `value` is an object whose prototype is `null` (e.g. `Object.create(null)`). Message format: `"obj.hasOwnProperty is not a function"`. Not wrapped as a `SuiteScriptError`.
    */
-  isObject(value: unknown): value is { [key: string]: any };
+  isObject(value: unknown): value is Record<string, any>;
 
   /**
    * Returns `true` if `value` is a JavaScript Function (including arrow

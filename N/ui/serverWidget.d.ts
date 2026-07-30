@@ -1700,9 +1700,7 @@ declare namespace serverWidget {
        *
        * @param values
        */
-      (values: {
-        [p: string]: string,
-      }): void;
+      (values: Record<string, string>): void;
 
       /**
        * Set the default values of many fields at once
@@ -1713,9 +1711,7 @@ declare namespace serverWidget {
        * @param options.values
        */
       (options: {
-        values: {
-          [p: string]: string,
-        },
+        values: Record<string, string>,
       }): void;
     };
 

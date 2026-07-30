@@ -571,7 +571,7 @@ declare namespace runtime {
      *
      * @return A plain object mapping all session keys to their stored values.
      */
-    toJSON(): { [key: string]: string | null };
+    toJSON(): Record<string, string | null>;
   }
 
   /**

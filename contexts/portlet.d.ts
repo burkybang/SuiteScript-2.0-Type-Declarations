@@ -210,9 +210,7 @@ declare namespace PortletParams {
      * @since 2016.2
      */
     addRow(options: {
-      row: search.Result | {
-        [p: string]: string,
-      },
+      row: search.Result | Record<string, string>,
     }): Portlet;
 
     /**
@@ -227,9 +225,7 @@ declare namespace PortletParams {
      * @since 2016.2
      */
     addRows(options: {
-      rows: search.Result[] | {
-        [p: string]: string,
-      }[],
+      rows: search.Result[] | Record<string, string>[],
     }): Portlet;
 
     /**

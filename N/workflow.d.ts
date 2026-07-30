@@ -28,9 +28,7 @@ interface workflow {
     recordType: string,
     recordId: number | string,
     workflowId: number | string,
-    defaultValues?: {
-      [p: string]: any,
-    },
+    defaultValues?: Record<string, any>,
   }): number;
 
   /**

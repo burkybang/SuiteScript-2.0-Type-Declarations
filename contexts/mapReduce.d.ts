@@ -67,7 +67,7 @@ declare namespace GetInputContext {
  *
  * @since 2015.2
  */
-type GetInputReturn = any[] | { [p: string]: any } |
+type GetInputReturn = any[] | Record<string, any> |
   search.Search | GetInputReturn.Search |
   query.Query | GetInputReturn.Query | GetInputReturn.SuiteQL |
   file.File | GetInputReturn.FileId | GetInputReturn.FilePath;

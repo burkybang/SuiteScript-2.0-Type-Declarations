@@ -48,7 +48,7 @@ interface recordView {
     ids: number[],
     fields: string[],
     fieldOptions?: { includeVat?: boolean | string, [key: string]: unknown },
-  }): { [fieldName: string]: string | number | boolean | null | object }[];
+  }): Record<string, string | number | boolean | null | object>[];
 
   /**
    * Retrieves the website details with requested website fields.
@@ -92,6 +92,6 @@ interface recordView {
   viewWebsite(options: {
     id: number,
     fields: string[],
-    fieldOptions?: { [key: string]: unknown },
-  }): { [fieldName: string]: string | number | boolean | null | object };
+    fieldOptions?: Record<string, unknown>,
+  }): Record<string, string | number | boolean | null | object>;
 }
