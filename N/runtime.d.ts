@@ -84,6 +84,27 @@ interface runtime {
   isFeatureInEffect: {
 
     /**
+     * Checks whether a feature is enabled in the current account.
+     * @see [SuiteAnswers: Feature Names and IDs]{@link https://suiteanswers.custhelp.com/app/answers/detail/a_id/10417}
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296530135}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296530135.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.feature The internal ID of the feature to check.
+     * @return `true` if the feature is enabled; `false` if not enabled or unknown.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options.feature` is missing, `null`, or empty string. Message format: `"runtime.isFeatureInEffect: Missing a required argument: options.feature"`.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options` is `{}` (treated as a `null` feature), or `options.feature` is a non-string non-empty value. Message: `"Wrong parameter type: feature is expected as string. "`.
+     */
+    (options: {
+      feature: string,
+    }): boolean;
+
+    /**
      * Checks whether a feature is enabled in the current account. Pass the
      * feature's internal ID (e.g. `'SUBSIDIARIES'`, `'MULTILANGUAGE'`,
      * `'INVENTORY'`). Unknown feature IDs silently return `false` rather
@@ -105,27 +126,6 @@ interface runtime {
     (
       feature: string,
     ): boolean;
-
-    /**
-     * Checks whether a feature is enabled in the current account.
-     * @see [SuiteAnswers: Feature Names and IDs]{@link https://suiteanswers.custhelp.com/app/answers/detail/a_id/10417}
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296530135}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296530135.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.feature The internal ID of the feature to check.
-     * @return `true` if the feature is enabled; `false` if not enabled or unknown.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options.feature` is missing, `null`, or empty string. Message format: `"runtime.isFeatureInEffect: Missing a required argument: options.feature"`.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options` is `{}` (treated as a `null` feature), or `options.feature` is a non-string non-empty value. Message: `"Wrong parameter type: feature is expected as string. "`.
-     */
-    (options: {
-      feature: string,
-    }): boolean;
   };
 
   /**
@@ -412,15 +412,16 @@ declare namespace runtime {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param name The script parameter's internal ID (e.g. `'custscript_max_rows'`).
+       * @param options
+       * @param options.name The script parameter's internal ID (e.g. `'custscript_max_rows'`).
        * @return The parameter value, or `null` if not set.
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing, `null`, or empty string. Message format: `"Script.getParameter: Missing a required argument: name"`.
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null/empty, or `options.name` is missing/null/empty string. Message format: `"Script.getParameter: Missing a required argument: name"`.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
        */
-      <T extends record.FieldValue>(
+      <T extends record.FieldValue>(options: {
         name: string,
-      ): T;
+      }): T;
 
       /**
        * Returns the value of a script parameter for the currently executing
@@ -436,16 +437,15 @@ declare namespace runtime {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param options
-       * @param options.name The script parameter's internal ID (e.g. `'custscript_max_rows'`).
+       * @param name The script parameter's internal ID (e.g. `'custscript_max_rows'`).
        * @return The parameter value, or `null` if not set.
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null/empty, or `options.name` is missing/null/empty string. Message format: `"Script.getParameter: Missing a required argument: name"`.
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing, `null`, or empty string. Message format: `"Script.getParameter: Missing a required argument: name"`.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
        */
-      <T extends record.FieldValue>(options: {
+      <T extends record.FieldValue>(
         name: string,
-      }): T;
+      ): T;
     };
 
     /**
@@ -719,13 +719,16 @@ declare namespace runtime {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param name The permission's internal ID.
+       * @param options
+       * @param options.name The permission's internal ID.
        * @return One of the `Permission` enum values as a number (0–4).
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing/null/empty. Message format: `"User.getPermission: Missing a required argument: name"`.
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.name` is missing/null/empty. Message format: `"User.getPermission: Missing a required argument: name"`.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
        */
-      (name: string): Permission | 0 | 1 | 2 | 3 | 4;
+      (options: {
+        name: string,
+      }): Permission | 0 | 1 | 2 | 3 | 4;
 
       /**
        * Returns the user's permission level for the given permission
@@ -745,42 +748,16 @@ declare namespace runtime {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param options
-       * @param options.name The permission's internal ID.
+       * @param name The permission's internal ID.
        * @return One of the `Permission` enum values as a number (0–4).
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing/null, or `options.name` is missing/null/empty. Message format: `"User.getPermission: Missing a required argument: name"`.
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing/null/empty. Message format: `"User.getPermission: Missing a required argument: name"`.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
        */
-      (options: {
-        name: string,
-      }): Permission | 0 | 1 | 2 | 3 | 4;
+      (name: string): Permission | 0 | 1 | 2 | 3 | 4;
     };
 
     getPreference: {
-
-      /**
-       * Returns the value of a NetSuite preference for the current user
-       * (General Preferences and Accounting Preferences are exposed).
-       * Returns `null` for unknown or unset preference IDs.
-       *
-       * If the script is configured to "Execute as Administrator" on
-       * the script deployment, permission-protected preferences are
-       * returned as if the user had `Permission.FULL`.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296668859}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296668859.html}
-       *
-       * @governance none
-       * @restriction Client-side and server-side scripts
-       * @since 2015.2
-       *
-       * @param name The preference's internal ID (e.g. `'DATEFORMAT'`).
-       * @return The preference value as a string, or `null` if unknown/unset.
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing/null/empty. Message format: `"User.getPreference: Missing a required argument: name"`.
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
-       */
-      (name: string): string | null;
 
       /**
        * Returns the value of a NetSuite preference for the current user
@@ -807,6 +784,29 @@ declare namespace runtime {
       (options: {
         name: string,
       }): string | null;
+
+      /**
+       * Returns the value of a NetSuite preference for the current user
+       * (General Preferences and Accounting Preferences are exposed).
+       * Returns `null` for unknown or unset preference IDs.
+       *
+       * If the script is configured to "Execute as Administrator" on
+       * the script deployment, permission-protected preferences are
+       * returned as if the user had `Permission.FULL`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4296668859}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4296668859.html}
+       *
+       * @governance none
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param name The preference's internal ID (e.g. `'DATEFORMAT'`).
+       * @return The preference value as a string, or `null` if unknown/unset.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `name` is missing/null/empty. Message format: `"User.getPreference: Missing a required argument: name"`.
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `name` is a non-string. Message: `"Wrong parameter type: name is expected as string. "`.
+       */
+      (name: string): string | null;
     };
 
     /**

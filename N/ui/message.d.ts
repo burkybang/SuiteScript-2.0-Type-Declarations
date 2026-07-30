@@ -76,9 +76,14 @@ declare namespace message {
        * @restriction Client-side scripts only
        * @since 2016.1
        *
-       * @param [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
+       * @param [options]
+       * @param [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
        */
-      (duration?: number | string): void;
+      (options?: {
+        duration?: number | string,
+      }): void;
 
       /**
        * Shows the message.
@@ -89,14 +94,9 @@ declare namespace message {
        * @restriction Client-side scripts only
        * @since 2016.1
        *
-       * @param [options]
-       * @param [options.duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
-       *
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if options.duration is specified with a non-numerical value.
+       * @param [duration=0] The amount of time (in milliseconds) to show the message. Default is 0 (show forever). A string is parsed to a number.
        */
-      (options?: {
-        duration?: number | string,
-      }): void;
+      (duration?: number | string): void;
     };
 
     /**

@@ -21,21 +21,6 @@ interface query {
      * @restriction Client-side and server-side scripts
      * @since 2018.1
      *
-     * @param type The query type that you want to use for the initial query definition.
-     *
-     * @throws {error.SuiteScriptError} INVALID_SEARCH_TYPE The specified query type is invalid.
-     */
-    (type: query.Type | `${query.Type}` | string): query.Query;
-
-    /**
-     * Creates a `query.Query` object.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2018.1
-     *
      * @param options
      * @param options.type The query type that you want to use for the initial query definition.
      * @param [options.columns] An array of objects to be used as query columns.
@@ -50,6 +35,21 @@ interface query {
       condition?: Parameters<query.Query['createCondition']>[0],
       sort?: Parameters<query.Query['createSort']>[0][],
     }): query.Query;
+
+    /**
+     * Creates a `query.Query` object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510275581}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510275581.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2018.1
+     *
+     * @param type The query type that you want to use for the initial query definition.
+     *
+     * @throws {error.SuiteScriptError} INVALID_SEARCH_TYPE The specified query type is invalid.
+     */
+    (type: query.Type | `${query.Type}` | string): query.Query;
   };
 
   /**
@@ -83,24 +83,6 @@ interface query {
      * @restriction Client-side and server-side scripts
      * @since 2020.1
      *
-     * @param code The code of the period to create.
-     *
-     * @throws {error.SuiteScriptError} INVALID_PERIOD_ADJUSTMENT The specified period adjustment is not a value from the `query.PeriodAdjustment` enum.
-     * @throws {error.SuiteScriptError} INVALID_PERIOD_CODE The specified period code is not a value from the `query.PeriodCode` enum.
-     * @throws {error.SuiteScriptError} INVALID_PERIOD_TYPE The specified period type is not a value from the `query.PeriodType` enum.
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Any of the parameters is not a string.
-     */
-    (code: query.PeriodCode | `${query.PeriodCode}`): query.Period;
-
-    /**
-     * Creates a `query.Period` object.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
-     *
-     * @governance none
-     * @restriction Client-side and server-side scripts
-     * @since 2020.1
-     *
      * @param options
      * @param options.code The code of the period to create.
      * @param [options.adjustment] The adjustment of the period to create.
@@ -116,26 +98,27 @@ interface query {
       adjustment?: query.PeriodAdjustment | `${query.PeriodAdjustment}`,
       type?: query.PeriodType | `${query.PeriodType}`,
     }): query.Period;
+
+    /**
+     * Creates a `query.Period` object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289670344}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289670344.html}
+     *
+     * @governance none
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
+     *
+     * @param code The code of the period to create.
+     *
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_ADJUSTMENT The specified period adjustment is not a value from the `query.PeriodAdjustment` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_CODE The specified period code is not a value from the `query.PeriodCode` enum.
+     * @throws {error.SuiteScriptError} INVALID_PERIOD_TYPE The specified period type is not a value from the `query.PeriodType` enum.
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE Any of the parameters is not a string.
+     */
+    (code: query.PeriodCode | `${query.PeriodCode}`): query.Period;
   };
 
   load: {
-
-    /**
-     * Loads an existing query as a `query.Query` object.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
-     *
-     * @governance 5 units
-     * @restriction Client-side and server-side scripts
-     * @since 2018.2
-     *
-     * @param id The workbook ID or dataset ID of the query definition to load.
-     *
-     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
-     * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
-     * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
-     */
-    (id: number | string): query.Query;
 
     /**
      * Loads an existing query as a `query.Query` object.
@@ -157,24 +140,24 @@ interface query {
       id: number | string,
     }): query.Query;
 
-    promise: {
+    /**
+     * Loads an existing query as a `query.Query` object.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510349101}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510349101.html}
+     *
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
+     *
+     * @param id The workbook ID or dataset ID of the query definition to load.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+     * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+     * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
+     */
+    (id: number | string): query.Query;
 
-      /**
-       * Loads an existing query asynchronously as a `query.Query` object.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
-       *
-       * @governance 5 units
-       * @restriction Client-side and server-side scripts
-       * @since 2018.2
-       *
-       * @param id The workbook ID or dataset ID of the query definition to load.
-       *
-       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
-       * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
-       * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
-       */
-      (id: number | string): Promise<query.Query>;
+    promise: {
 
       /**
        * Loads an existing query asynchronously as a `query.Query` object.
@@ -195,25 +178,27 @@ interface query {
       (options: {
         id: number | string,
       }): Promise<query.Query>;
+
+      /**
+       * Loads an existing query asynchronously as a `query.Query` object.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1552419444}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1552419444.html}
+       *
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
+       *
+       * @param id The workbook ID or dataset ID of the query definition to load.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_LOAD_QUERY A query with the specified ID cannot be loaded because the query does not exist or you do not have permission to load it.
+       * @throws {error.SuiteScriptError} WORKBOOK_MORE_TABLEVIEWS_ARE_ASSIGNED More than one table view is included in the specified workbook or dataset.
+       * @throws {error.SuiteScriptError} WORKBOOK_NO_TABLEVIEW_IS_ASSIGNED No table views are included in the specified workbook or dataset.
+       */
+      (id: number | string): Promise<query.Query>;
     };
   };
 
   delete: {
-
-    /**
-     * Deletes an existing query.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
-     *
-     * @governance 5 units
-     * @restriction Client-side and server-side scripts
-     * @since 2018.2
-     *
-     * @param id The script ID of the query to delete.
-     *
-     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
-     */
-    (id: number | string): void;
 
     /**
      * Deletes an existing query.
@@ -233,22 +218,22 @@ interface query {
       id: number | string,
     }): void;
 
-    promise: {
+    /**
+     * Deletes an existing query.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
+     *
+     * @governance 5 units
+     * @restriction Client-side and server-side scripts
+     * @since 2018.2
+     *
+     * @param id The script ID of the query to delete.
+     *
+     * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
+     */
+    (id: number | string): void;
 
-      /**
-       * Deletes an existing query.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
-       *
-       * @governance 5 units
-       * @restriction Client-side and server-side scripts
-       * @since 2018.2
-       *
-       * @param id The script ID of the query to delete.
-       *
-       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
-       */
-      (id: number | string): Promise<void>;
+    promise: {
 
       /**
        * Deletes an existing query.
@@ -267,26 +252,25 @@ interface query {
       (options: {
         id: number | string,
       }): Promise<void>;
+
+      /**
+       * Deletes an existing query.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530819817}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530819817.html}
+       *
+       * @governance 5 units
+       * @restriction Client-side and server-side scripts
+       * @since 2018.2
+       *
+       * @param id The script ID of the query to delete.
+       *
+       * @throws {error.SuiteScriptError} UNABLE_TO_DELETE_QUERY A query with the specified ID cannot be deleted because the query does not exist or you do not have permission to delete it.
+       */
+      (id: number | string): Promise<void>;
     };
   };
 
   runSuiteQL: {
-
-    /**
-     * Runs an arbitrary SuiteQL query.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
-     *
-     * @governance 10 units
-     * @restriction Client-side and server-side scripts
-     * @since 2020.1
-     *
-     * @param query The string representation of the SuiteQL query to run.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
-     */
-    (query: string): query.ResultSet;
 
     /**
      * Runs an arbitrary SuiteQL query.
@@ -313,23 +297,23 @@ interface query {
       metaDataProvider?: query.MetadataProvider | `${query.MetadataProvider}`,
     }): query.ResultSet;
 
-    promise: {
+    /**
+     * Runs an arbitrary SuiteQL query.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960542026}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960542026.html}
+     *
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
+     *
+     * @param query The string representation of the SuiteQL query to run.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
+     */
+    (query: string): query.ResultSet;
 
-      /**
-       * Asynchronously runs an arbitrary SuiteQL query.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
-       *
-       * @governance 10 units
-       * @restriction Client-side and server-side scripts
-       * @since 2020.1
-       *
-       * @param query The string representation of the SuiteQL query to run.
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
-       */
-      (query: string): Promise<query.ResultSet>;
+    promise: {
 
       /**
        * Asynchronously runs an arbitrary SuiteQL query.
@@ -353,26 +337,26 @@ interface query {
         params?: (string | number | boolean)[],
         customScriptId?: string,
       }): Promise<query.ResultSet>;
+
+      /**
+       * Asynchronously runs an arbitrary SuiteQL query.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_0429104416}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0429104416.html}
+       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
+       * @since 2020.1
+       *
+       * @param query The string representation of the SuiteQL query to run.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
+       */
+      (query: string): Promise<query.ResultSet>;
     };
   };
 
   runSuiteQLPaged: {
-
-    /**
-     * Runs an arbitrary SuiteQL query as a paged query.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
-     *
-     * @governance 10 units
-     * @restriction Client-side and server-side scripts
-     * @since 2020.1
-     *
-     * @param query The string representation of the SuiteQL query to run.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
-     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
-     */
-    (query: string): query.PagedData;
 
     /**
      * Runs an arbitrary SuiteQL query as a paged query.
@@ -401,23 +385,23 @@ interface query {
       metaDataProvider?: query.MetadataProvider | `${query.MetadataProvider}`,
     }): query.PagedData;
 
-    promise: {
+    /**
+     * Runs an arbitrary SuiteQL query as a paged query.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_157960586441}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157960586441.html}
+     *
+     * @governance 10 units
+     * @restriction Client-side and server-side scripts
+     * @since 2020.1
+     *
+     * @param query The string representation of the SuiteQL query to run.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+     * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
+     */
+    (query: string): query.PagedData;
 
-      /**
-       * Asynchronously runs an arbitrary SuiteQL query as a paged query.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
-       *
-       * @governance 10 units
-       * @restriction Client-side and server-side scripts
-       * @since 2020.1
-       *
-       * @param query The string representation of the SuiteQL query to run.
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
-       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
-       */
-      (query: string): Promise<query.PagedData>;
+    promise: {
 
       /**
        * Asynchronously runs an arbitrary SuiteQL query as a paged query.
@@ -443,27 +427,26 @@ interface query {
         pageSize?: PageSize,
         customScriptId?: string,
       }): Promise<query.PagedData>;
+
+      /**
+       * Asynchronously runs an arbitrary SuiteQL query as a paged query.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_0429112941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0429112941.html}
+       *
+       * @governance 10 units
+       * @restriction Client-side and server-side scripts
+       * @since 2020.1
+       *
+       * @param query The string representation of the SuiteQL query to run.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT The parameter is missing.
+       * @throws {error.SuiteScriptError} SSS_INVALID_TYPE_ARG Types other than string, number, or boolean are included in `options.params`.
+       */
+      (query: string): Promise<query.PagedData>;
     };
   };
 
   listTables: {
-
-    /**
-     * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
-     *
-     * @governance 5 units
-     * @since 2020.1
-     *
-     * @param workbookId
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
-     * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
-     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
-     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-     */
-    (workbookId: string): { name: string, scriptId: string }[];
 
     /**
      * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
@@ -485,24 +468,24 @@ interface query {
       workbookId: string,
     }): { name: string, scriptId: string }[];
 
-    promise: {
+    /**
+     * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
+     *
+     * @governance 5 units
+     * @since 2020.1
+     *
+     * @param workbookId
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
+     * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+     * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+     * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+     */
+    (workbookId: string): { name: string, scriptId: string }[];
 
-      /**
-       * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
-       *
-       * @governance 5 units
-       * @since 2020.1
-       *
-       * @param workbookId
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
-       * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
-       * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
-       */
-      (workbookId: string): Promise<{ name: string, scriptId: string }[]>;
+    promise: {
 
       /**
        * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
@@ -523,6 +506,23 @@ interface query {
       (options: {
         workbookId: string,
       }): Promise<{ name: string, scriptId: string }[]>;
+
+      /**
+       * Lists the table view objects that are included in a workbook in SuiteAnalytics Workbook asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_158289760700}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158289760700.html}
+       *
+       * @governance 5 units
+       * @since 2020.1
+       *
+       * @param workbookId
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if options or workbookId are undefined
+       * @throws {error.SuiteScriptError} SCRIPT_ID_OF_WORKBOOK_IS_REQUIRED if workbookId represents an analytical record that is not a workbook
+       * @throws {error.SuiteScriptError} SSS_INVALID_SCRIPT_ID_1 if workbookId is not valid
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE if workbookId is not a string
+       */
+      (workbookId: string): Promise<{ name: string, scriptId: string }[]>;
     };
   };
 }
@@ -1859,18 +1859,6 @@ declare namespace query {
        *
        * @governance 10 points
        *
-       * @param [pageSize]
-       * @return The paged query object
-       */
-      (pageSize?: number): PagedData;
-
-      /**
-       * Execute the query and return paged results.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780277}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780277.html}
-       *
-       * @governance 10 points
-       *
        * @param [options]
        * @param [options.pageSize]
        * @return The paged query object
@@ -1879,19 +1867,19 @@ declare namespace query {
         pageSize?: number,
       }): PagedData;
 
-      promise: {
+      /**
+       * Execute the query and return paged results.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780277}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780277.html}
+       *
+       * @governance 10 points
+       *
+       * @param [pageSize]
+       * @return The paged query object
+       */
+      (pageSize?: number): PagedData;
 
-        /**
-         * Execute the query and return paged results asynchrounously
-         * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780308}
-         * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780308.html}
-         *
-         * @governance 10 points
-         *
-         * @param [pageSize]
-         * @return The paged query object
-         */
-        (pageSize?: number): Promise<PagedData>;
+      promise: {
 
         /**
          * Execute the query and return paged results asynchrounously
@@ -1907,6 +1895,18 @@ declare namespace query {
         (options?: {
           pageSize?: number,
         }): Promise<PagedData>;
+
+        /**
+         * Execute the query and return paged results asynchrounously
+         * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1510780308}
+         * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1510780308.html}
+         *
+         * @governance 10 points
+         *
+         * @param [pageSize]
+         * @return The paged query object
+         */
+        (pageSize?: number): Promise<PagedData>;
       };
     };
 
@@ -2828,17 +2828,6 @@ declare namespace query {
        *
        * Undocumented in the Help Center; present at runtime.
        *
-       * @param alias
-       *
-       * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
-       */
-      (alias: string): ReturnType | `${ReturnType}`;
-
-      /**
-       * Returns the result-value type (a query.ReturnType value) for a given column alias.
-       *
-       * Undocumented in the Help Center; present at runtime.
-       *
        * @param options
        * @param options.alias
        *
@@ -2847,6 +2836,17 @@ declare namespace query {
       (options: {
         alias: string,
       }): ReturnType | `${ReturnType}`;
+
+      /**
+       * Returns the result-value type (a query.ReturnType value) for a given column alias.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       *
+       * @param alias
+       *
+       * @throws {error.SuiteScriptError} CANNOT_DETERMINE_TYPE_FOR_ALIAS Cannot determine type for alias
+       */
+      (alias: string): ReturnType | `${ReturnType}`;
     };
 
     /**
@@ -2910,19 +2910,19 @@ declare namespace query {
       /**
        * Undocumented method
        *
-       * @param alias
-       */
-      <T extends string | number>(alias: string): T;
-
-      /**
-       * Undocumented method
-       *
        * @param options
        * @param options.alias
        */
       <T extends string | number>(options: {
         alias: string,
       }): T;
+
+      /**
+       * Undocumented method
+       *
+       * @param alias
+       */
+      <T extends string | number>(alias: string): T;
     };
 
     /**
@@ -3058,13 +3058,6 @@ declare namespace query {
       /**
        * Fetch a specific page of the paged query results
        *
-       * @param index
-       */
-      (index: number): query.Page;
-
-      /**
-       * Fetch a specific page of the paged query results
-       *
        * @param options
        * @param options.index
        */
@@ -3072,14 +3065,14 @@ declare namespace query {
         index: number,
       }): query.Page;
 
-      promise: {
+      /**
+       * Fetch a specific page of the paged query results
+       *
+       * @param index
+       */
+      (index: number): query.Page;
 
-        /**
-         * Fetch a specific page of the paged query results asynchronously
-         *
-         * @param index
-         */
-        (index: number): Promise<query.Page>;
+      promise: {
 
         /**
          * Fetch a specific page of the paged query results asynchronously
@@ -3090,6 +3083,13 @@ declare namespace query {
         (options: {
           index: number,
         }): Promise<query.Page>;
+
+        /**
+         * Fetch a specific page of the paged query results asynchronously
+         *
+         * @param index
+         */
+        (index: number): Promise<query.Page>;
       };
     };
 

@@ -466,15 +466,16 @@ declare namespace render {
        * @restriction Server-side scripts only
        * @since 2015.2
        *
-       * @param templateName Name to use for the record inside the FreeMarker template
-       * @param record Record instance to bind
+       * @param options
+       * @param options.templateName Name to use for the record inside the FreeMarker template
+       * @param options.record Record instance to bind
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
        */
-      (
+      (options: {
         templateName: string,
         record: record.Record,
-      ): void;
+      }): void;
 
       /**
        * Binds a record to a template variable. The bound record is exposed
@@ -487,16 +488,15 @@ declare namespace render {
        * @restriction Server-side scripts only
        * @since 2015.2
        *
-       * @param options
-       * @param options.templateName Name to use for the record inside the FreeMarker template
-       * @param options.record Record instance to bind
+       * @param templateName Name to use for the record inside the FreeMarker template
+       * @param record Record instance to bind
        *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing or null, or if either field is missing or null
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If no arguments are provided
        */
-      (options: {
+      (
         templateName: string,
         record: record.Record,
-      }): void;
+      ): void;
     };
 
     /**
@@ -651,23 +651,6 @@ declare namespace render {
 
       /**
        * Renders the template as a PDF directly to a Suitelet's HTTP response.
-       * Positional form. Use this when the script context is a Suitelet
-       * generating PDF output to the browser.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
-       *
-       * @governance none
-       * @restriction Server-side scripts only
-       * @since 2015.2
-       *
-       * @param response The Suitelet's `http.ServerResponse` instance
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `response` is missing or null
-       */
-      (response: http.ServerResponse): void;
-
-      /**
-       * Renders the template as a PDF directly to a Suitelet's HTTP response.
        * Options-bag form. Undocumented in the Help Center; present at runtime
        * alongside the positional form.
        *
@@ -683,6 +666,23 @@ declare namespace render {
       (options: {
         response: http.ServerResponse,
       }): void;
+
+      /**
+       * Renders the template as a PDF directly to a Suitelet's HTTP response.
+       * Positional form. Use this when the script context is a Suitelet
+       * generating PDF output to the browser.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_455108276366}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_455108276366.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2015.2
+       *
+       * @param response The Suitelet's `http.ServerResponse` instance
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `response` is missing or null
+       */
+      (response: http.ServerResponse): void;
     };
 
     /**

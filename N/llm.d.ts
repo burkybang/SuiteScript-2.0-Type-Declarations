@@ -118,20 +118,6 @@ interface llm {
      * @governance 100 units
      * @since 2024.1
      *
-     * @param prompt - Prompt for the LLM
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
-     */
-    (prompt: string): llm.Response;
-
-    /**
-     * Returns a response from the LLM for the given prompt
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
-     *
-     * @governance 100 units
-     * @since 2024.1
-     *
      * @param options
      * @param options.prompt - Prompt for the LLM
      * @param [options.modelFamily] - LLM model family to use; defaults to Cohere Command
@@ -187,21 +173,21 @@ interface llm {
       ociConfig?: llm.OciConfig,
     }): llm.Response;
 
-    promise: {
+    /**
+     * Returns a response from the LLM for the given prompt
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
+     *
+     * @governance 100 units
+     * @since 2024.1
+     *
+     * @param prompt - Prompt for the LLM
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
+     */
+    (prompt: string): llm.Response;
 
-      /**
-       * Returns a response from the LLM for the given prompt asynchronously
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
-       *
-       * @governance 100 units
-       * @since 2024.1
-       *
-       * @param prompt - Prompt for the LLM
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
-       */
-      (prompt: string): Promise<llm.Response>;
+    promise: {
 
       /**
        * Returns a response from the LLM for the given prompt asynchronously
@@ -265,6 +251,20 @@ interface llm {
         timeout?: number,
         ociConfig?: llm.OciConfig,
       }): Promise<llm.Response>;
+
+      /**
+       * Returns a response from the LLM for the given prompt asynchronously
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_1014032554}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1014032554.html}
+       *
+       * @governance 100 units
+       * @since 2024.1
+       *
+       * @param prompt - Prompt for the LLM
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if prompt is missing
+       */
+      (prompt: string): Promise<llm.Response>;
     };
   };
 

@@ -37,6 +37,39 @@ interface transaction {
   void: {
 
     /**
+     * Voids a transaction record and returns the ID of the resulting
+     * record. Behavior depends on the account's preference settings —
+     * for accounts configured for direct voids the returned ID is the
+     * voided record itself (and that record is mutated in place to
+     * zero values); for accounts configured for voids by reversing
+     * journal, the returned ID belongs to a newly-created journal
+     * entry that offsets the original transaction (the original is
+     * unchanged).
+     *
+     * After voiding, the transaction record cannot be modified in ways
+     * that impact the general ledger.
+     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
+     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4413165692.html}
+     *
+     * @governance 10 units (charged on every call that progresses past argument-presence validation — i.e. missing-argument failures cost 0, but invalid-type and record-not-found failures both cost the full 10).
+     * @restriction Client-side and server-side scripts
+     * @since 2015.2
+     *
+     * @param options
+     * @param options.type The internal record-type ID of the transaction to void (e.g. `'vendorpayment'`, `'journalentry'`). Pass a `transaction.Type` enum value or its underlying string literal. The runtime validates `type` BEFORE `id`.
+     * @param options.id The internal ID of the transaction record to void.
+     * @return The internal ID of the voided record (direct void) OR the newly-created reversing-journal record (reversing-journal void) — a number in both cases.
+     *
+     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, `undefined`, or if `options.type` or `options.id` is missing, `null`, `undefined`, or empty string. Message format: `"void: Missing a required argument: <field>"` — note the prefix is bare `void:` rather than `transaction.void:`. Validation order checks `type` first, then `id`.
+     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE If `options.type` is not a known record type, or is known but not voidable in this account (because the type is non-transactional like `'customer'`, or because the account's enabled features don't support voiding that type). Two distinct message formats: (a) for unknown type strings, `"The record type [<VALUE_UPPERCASED>] is invalid."` (the supplied value appears in the message, uppercased); (b) for known-but-non-voidable or account-restricted types, the bare string `"Invalid Record Type"` (no value in message).
+     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If `options.type` was accepted but no record with `options.id` exists in this account. Message: `"That record does not exist.{1}"` — note the literal `{1}` placeholder is leaked by NetSuite's templating layer (an unfilled message variable).
+     */
+    (options: {
+      type: transaction.Type | `${transaction.Type}` | string,
+      id: number | string,
+    }): number;
+
+    /**
      * Voids a transaction record and returns the ID of the resulting record.
      * Positional-form overload of {@link transaction.void}; equivalent to
      * `transaction.void({type, id})`. Behavior depends on the account's
@@ -76,40 +109,48 @@ interface transaction {
       id: number | string,
     ): number;
 
-    /**
-     * Voids a transaction record and returns the ID of the resulting
-     * record. Behavior depends on the account's preference settings —
-     * for accounts configured for direct voids the returned ID is the
-     * voided record itself (and that record is mutated in place to
-     * zero values); for accounts configured for voids by reversing
-     * journal, the returned ID belongs to a newly-created journal
-     * entry that offsets the original transaction (the original is
-     * unchanged).
-     *
-     * After voiding, the transaction record cannot be modified in ways
-     * that impact the general ledger.
-     * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4413165692}
-     * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4413165692.html}
-     *
-     * @governance 10 units (charged on every call that progresses past argument-presence validation — i.e. missing-argument failures cost 0, but invalid-type and record-not-found failures both cost the full 10).
-     * @restriction Client-side and server-side scripts
-     * @since 2015.2
-     *
-     * @param options
-     * @param options.type The internal record-type ID of the transaction to void (e.g. `'vendorpayment'`, `'journalentry'`). Pass a `transaction.Type` enum value or its underlying string literal. The runtime validates `type` BEFORE `id`.
-     * @param options.id The internal ID of the transaction record to void.
-     * @return The internal ID of the voided record (direct void) OR the newly-created reversing-journal record (reversing-journal void) — a number in both cases.
-     *
-     * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT If `options` is missing, `null`, `undefined`, or if `options.type` or `options.id` is missing, `null`, `undefined`, or empty string. Message format: `"void: Missing a required argument: <field>"` — note the prefix is bare `void:` rather than `transaction.void:`. Validation order checks `type` first, then `id`.
-     * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE If `options.type` is not a known record type, or is known but not voidable in this account (because the type is non-transactional like `'customer'`, or because the account's enabled features don't support voiding that type). Two distinct message formats: (a) for unknown type strings, `"The record type [<VALUE_UPPERCASED>] is invalid."` (the supplied value appears in the message, uppercased); (b) for known-but-non-voidable or account-restricted types, the bare string `"Invalid Record Type"` (no value in message).
-     * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST If `options.type` was accepted but no record with `options.id` exists in this account. Message: `"That record does not exist.{1}"` — note the literal `{1}` placeholder is leaked by NetSuite's templating layer (an unfilled message variable).
-     */
-    (options: {
-      type: transaction.Type | `${transaction.Type}` | string,
-      id: number | string,
-    }): number;
-
     promise: {
+
+      /**
+       * Voids a transaction record asynchronously and returns a Promise
+       * resolving to the ID of the resulting record. Behavior depends on the
+       * account's preference settings — for accounts configured for direct
+       * voids the resolved ID is the voided record itself (and that record
+       * is mutated in place to zero values); for accounts configured for
+       * voids by reversing journal, the resolved ID belongs to a newly-created
+       * journal entry that offsets the original transaction (the original is
+       * unchanged).
+       *
+       * Failures from both argument-validation and runtime paths surface as
+       * Promise rejections rather than synchronous throws.
+       *
+       * Account-level type restrictions apply: the `transaction.Type` enum
+       * lists types voidable in some account configurations, but enabled
+       * features (Advanced Receiving, Multi-Currency, Revenue Recognition,
+       * etc.) determine which types can actually be voided in the current
+       * account. Types listed in the enum but disabled for the current
+       * account surface as `INVALID_RCRD_TYPE: "Invalid Record Type"` at
+       * call time.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440850256.html}
+       *
+       * @governance 10 units (charged on every call that progresses past argument-presence validation — missing-argument failures cost 0, but invalid-type and record-not-found failures both cost the full 10).
+       * @restriction Client-side and server-side scripts
+       * @since 2015.2
+       *
+       * @param options
+       * @param options.type The internal record-type ID of the transaction to void (e.g. `'vendorpayment'`, `'journalentry'`). Pass a `transaction.Type` enum value or its underlying string literal. The runtime validates `type` BEFORE `id`.
+       * @param options.id The internal ID of the transaction record to void.
+       * @return A Promise resolving to the internal ID of the voided record (direct void) or the newly-created reversing-journal record (reversing-journal void) — a number in both cases.
+       *
+       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT (via Promise rejection) If `options` is missing, `null`, `undefined`, or if `options.type` or `options.id` is missing, `null`, `undefined`, or empty string. Message format: `"void: Missing a required argument: <field>"` — note the prefix is bare `void:` rather than `transaction.void:`. Validation order checks `type` first, then `id`.
+       * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE (via Promise rejection) If `options.type` is not a known record type, or is known but not voidable in this account. Two distinct message formats: (a) for unknown type strings, `"The record type [<VALUE_UPPERCASED>] is invalid."` (the supplied value appears in the message, uppercased); (b) for known-but-non-voidable or account-restricted types, the bare string `"Invalid Record Type"` (no value in message).
+       * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST (via Promise rejection) If `options.type` was accepted but no record with `options.id` exists in this account. Message: `"That record does not exist.{1}"` — note the literal `{1}` placeholder is leaked by NetSuite's templating layer.
+       */
+      (options: {
+        type: transaction.Type | `${transaction.Type}` | string,
+        id: number | string,
+      }): Promise<number>;
 
       /**
        * Voids a transaction record asynchronously and returns a Promise
@@ -152,47 +193,6 @@ interface transaction {
         type: transaction.Type | `${transaction.Type}` | string,
         id: number | string,
       ): Promise<number>;
-
-      /**
-       * Voids a transaction record asynchronously and returns a Promise
-       * resolving to the ID of the resulting record. Behavior depends on the
-       * account's preference settings — for accounts configured for direct
-       * voids the resolved ID is the voided record itself (and that record
-       * is mutated in place to zero values); for accounts configured for
-       * voids by reversing journal, the resolved ID belongs to a newly-created
-       * journal entry that offsets the original transaction (the original is
-       * unchanged).
-       *
-       * Failures from both argument-validation and runtime paths surface as
-       * Promise rejections rather than synchronous throws.
-       *
-       * Account-level type restrictions apply: the `transaction.Type` enum
-       * lists types voidable in some account configurations, but enabled
-       * features (Advanced Receiving, Multi-Currency, Revenue Recognition,
-       * etc.) determine which types can actually be voided in the current
-       * account. Types listed in the enum but disabled for the current
-       * account surface as `INVALID_RCRD_TYPE: "Invalid Record Type"` at
-       * call time.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_4440850256}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4440850256.html}
-       *
-       * @governance 10 units (charged on every call that progresses past argument-presence validation — missing-argument failures cost 0, but invalid-type and record-not-found failures both cost the full 10).
-       * @restriction Client-side and server-side scripts
-       * @since 2015.2
-       *
-       * @param options
-       * @param options.type The internal record-type ID of the transaction to void (e.g. `'vendorpayment'`, `'journalentry'`). Pass a `transaction.Type` enum value or its underlying string literal. The runtime validates `type` BEFORE `id`.
-       * @param options.id The internal ID of the transaction record to void.
-       * @return A Promise resolving to the internal ID of the voided record (direct void) or the newly-created reversing-journal record (reversing-journal void) — a number in both cases.
-       *
-       * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT (via Promise rejection) If `options` is missing, `null`, `undefined`, or if `options.type` or `options.id` is missing, `null`, `undefined`, or empty string. Message format: `"void: Missing a required argument: <field>"` — note the prefix is bare `void:` rather than `transaction.void:`. Validation order checks `type` first, then `id`.
-       * @throws {error.SuiteScriptError} INVALID_RCRD_TYPE (via Promise rejection) If `options.type` is not a known record type, or is known but not voidable in this account. Two distinct message formats: (a) for unknown type strings, `"The record type [<VALUE_UPPERCASED>] is invalid."` (the supplied value appears in the message, uppercased); (b) for known-but-non-voidable or account-restricted types, the bare string `"Invalid Record Type"` (no value in message).
-       * @throws {error.SuiteScriptError} RCRD_DSNT_EXIST (via Promise rejection) If `options.type` was accepted but no record with `options.id` exists in this account. Message: `"That record does not exist.{1}"` — note the literal `{1}` placeholder is leaked by NetSuite's templating layer.
-       */
-      (options: {
-        type: transaction.Type | `${transaction.Type}` | string,
-        id: number | string,
-      }): Promise<number>;
     };
   };
 }
