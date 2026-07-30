@@ -717,18 +717,18 @@ declare namespace SummarizeContext {
 
 interface KeysIterator {
   iterator(): {
-    each(callback: (key: string, executionCount: number, completionState: 'PENDING' | 'FAILED' | 'COMPLETE') => boolean): void
+    each(callback: (key: string, executionCount: number, completionState: 'PENDING' | 'FAILED' | 'COMPLETE') => boolean): void;
   };
 }
 
 interface ErrorsIterator {
   iterator(): {
-    each(callback: (key: string, error: string, executionNo: number) => boolean): void
+    each(callback: (key: string, error: string, executionNo: number) => boolean): void;
   };
 }
 
 interface OutputIterator {
   iterator(): {
-    each(callback: (key: string, value: string) => boolean): void
+    each(callback: (key: string, value: string) => boolean): void;
   };
 }

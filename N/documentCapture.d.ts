@@ -163,7 +163,7 @@ interface documentCapture {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_70083055604}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_70083055604.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2025.2
    */
@@ -195,7 +195,7 @@ interface documentCapture {
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_42084005061}
    * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_42084005061.html}
    *
-   * @governance None
+   * @governance none
    * @restriction Server-side scripts only
    * @since 2025.2
    */
@@ -537,7 +537,7 @@ declare namespace documentCapture {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_93100953424}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_93100953424.html}
      *
-     * @governance None
+     * @governance none
      * @restriction Server-side scripts only
      * @since 2025.2
      *
@@ -747,7 +747,7 @@ declare namespace documentCapture {
      * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_65101108674}
      * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_65101108674.html}
      *
-     * @governance None
+     * @governance none
      * @restriction Server-side scripts only
      * @since 2025.2
      *
