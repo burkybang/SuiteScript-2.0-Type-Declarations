@@ -1355,22 +1355,6 @@ declare namespace task {
     addInboundDependency: {
 
       /**
-       * Adds an inbound dependency (completion script). The task must be a
-       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-       * `{taskType, scriptId, deploymentId}` object is rejected with
-       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
-       *
-       * @governance none
-       *
-       * @param task
-       *
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-       */
-      (task: ScheduledScriptTask | MapReduceScriptTask): void;
-
-      /**
        * Adds an inbound dependency (completion script). Object form of
        * {@link addInboundDependency}.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
@@ -1386,6 +1370,22 @@ declare namespace task {
       (options: {
         task: ScheduledScriptTask | MapReduceScriptTask,
       }): void;
+
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_1530711128}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1530711128.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
     };
 
     /**
@@ -1555,22 +1555,6 @@ declare namespace task {
     addInboundDependency: {
 
       /**
-       * Adds an inbound dependency (completion script). The task must be a
-       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-       * `{taskType, scriptId, deploymentId}` object is rejected with
-       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
-       *
-       * @governance none
-       *
-       * @param task
-       *
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-       */
-      (task: ScheduledScriptTask | MapReduceScriptTask): void;
-
-      /**
        * Adds an inbound dependency (completion script). Object form of
        * {@link addInboundDependency}.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
@@ -1586,6 +1570,22 @@ declare namespace task {
       (options: {
         task: ScheduledScriptTask | MapReduceScriptTask,
       }): void;
+
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223731551}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223731551.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
     };
 
     /**
@@ -1760,22 +1760,6 @@ declare namespace task {
     addInboundDependency: {
 
       /**
-       * Adds an inbound dependency (completion script). The task must be a
-       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
-       * `{taskType, scriptId, deploymentId}` object is rejected with
-       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
-       *
-       * @governance none
-       *
-       * @param task
-       *
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
-       */
-      (task: ScheduledScriptTask | MapReduceScriptTask): void;
-
-      /**
        * Adds an inbound dependency (completion script). Object form of
        * {@link addInboundDependency}.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
@@ -1791,6 +1775,22 @@ declare namespace task {
       (options: {
         task: ScheduledScriptTask | MapReduceScriptTask,
       }): void;
+
+      /**
+       * Adds an inbound dependency (completion script). The task must be a
+       * `ScheduledScriptTask` or `MapReduceScriptTask` instance (a plain
+       * `{taskType, scriptId, deploymentId}` object is rejected with
+       * WRONG_PARAMETER_TYPE). Accepts the task positionally or as `{task}`.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159223844941}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159223844941.html}
+       *
+       * @governance none
+       *
+       * @param task
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask or MapReduceScriptTask instance.
+       */
+      (task: ScheduledScriptTask | MapReduceScriptTask): void;
     };
 
     /**
@@ -2205,21 +2205,6 @@ declare namespace task {
     addInboundDependency: {
 
       /**
-       * Adds a scheduled script task as a dependent task. The task must be a `ScheduledScriptTask` instance; a plain `{taskType, scriptId, deploymentId}` object is rejected with WRONG_PARAMETER_TYPE (despite the Help Center documenting that form), and map/reduce tasks are not accepted. Accepts the task positionally or as `{task}`. Only one dependent task may be added per call.
-       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
-       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
-       *
-       * @governance none
-       * @restriction Server-side scripts only
-       * @since 2025.2
-       *
-       * @param task The ScheduledScriptTask instance to add as a dependent task.
-       *
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask instance.
-       */
-      (task: ScheduledScriptTask): void;
-
-      /**
        * Adds a scheduled script task as a dependent task. Object form of {@link addInboundDependency}.
        * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
        * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
@@ -2236,6 +2221,21 @@ declare namespace task {
       (options: {
         task: ScheduledScriptTask,
       }): void;
+
+      /**
+       * Adds a scheduled script task as a dependent task. The task must be a `ScheduledScriptTask` instance; a plain `{taskType, scriptId, deploymentId}` object is rejected with WRONG_PARAMETER_TYPE (despite the Help Center documenting that form), and map/reduce tasks are not accepted. Accepts the task positionally or as `{task}`. Only one dependent task may be added per call.
+       * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_3075210437}
+       * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_3075210437.html}
+       *
+       * @governance none
+       * @restriction Server-side scripts only
+       * @since 2025.2
+       *
+       * @param task The ScheduledScriptTask instance to add as a dependent task.
+       *
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If the argument is not a ScheduledScriptTask instance.
+       */
+      (task: ScheduledScriptTask): void;
     };
 
     /**
@@ -2367,15 +2367,6 @@ declare namespace task {
     addInboundDependency: {
 
       /**
-       * Registers a dependent task that runs after this pivot execution task completes. Accepts a task.ScheduledScriptTask or task.MapReduceScriptTask instance, passed positionally.
-       *
-       * Undocumented in the Help Center; present at runtime.
-       * @param dependentTask the scheduled-script or map/reduce task to run after this task
-       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `dependentTask` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance (for example, a plain `{ taskType, scriptId }` object literal is rejected).
-       */
-      (dependentTask: task.ScheduledScriptTask | task.MapReduceScriptTask): void;
-
-      /**
        * Registers a dependent task that runs after this pivot execution task completes. Accepts an options object whose `task` property is a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
        *
        * Undocumented in the Help Center; present at runtime.
@@ -2384,6 +2375,15 @@ declare namespace task {
        * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `options.task` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance.
        */
       (options: { task: task.ScheduledScriptTask | task.MapReduceScriptTask }): void;
+
+      /**
+       * Registers a dependent task that runs after this pivot execution task completes. Accepts a task.ScheduledScriptTask or task.MapReduceScriptTask instance, passed positionally.
+       *
+       * Undocumented in the Help Center; present at runtime.
+       * @param dependentTask the scheduled-script or map/reduce task to run after this task
+       * @throws {error.SuiteScriptError} WRONG_PARAMETER_TYPE If `dependentTask` is not a task.ScheduledScriptTask or task.MapReduceScriptTask instance (for example, a plain `{ taskType, scriptId }` object literal is rejected).
+       */
+      (dependentTask: task.ScheduledScriptTask | task.MapReduceScriptTask): void;
     };
 
     /**

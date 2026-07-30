@@ -142,14 +142,15 @@ declare namespace xml {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param text XML text
+       * @param options
+       * @param options.text XML text
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
        * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
        */
-      (
+      (options: {
         text: string,
-      ): Document;
+      }): Document;
 
       /**
        * Generate XML Document object from a string
@@ -160,15 +161,14 @@ declare namespace xml {
        * @restriction Client-side and server-side scripts
        * @since 2015.2
        *
-       * @param options
-       * @param options.text XML text
+       * @param text XML text
        *
        * @throws {error.SuiteScriptError} SSS_MISSING_REQD_ARGUMENT if text is missing or null
        * @throws {error.SuiteScriptError} SSS_XML_DOM_EXCEPTION if text is not well-formed XML
        */
-      (options: {
+      (
         text: string,
-      }): Document;
+      ): Document;
     };
 
     toString: {
@@ -1010,12 +1010,13 @@ declare namespace xml {
        *
        * @governance none
        *
-       * @param name the name of the attribute to retrieve
+       * @param options
+       * @param options.name the name of the attribute to retrieve
        * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
        */
-      (
+      (options: {
         name: string,
-      ): string;
+      }): string;
 
       /**
        * Retrieves an attribute value by name
@@ -1024,13 +1025,12 @@ declare namespace xml {
        *
        * @governance none
        *
-       * @param options
-       * @param options.name the name of the attribute to retrieve
+       * @param name the name of the attribute to retrieve
        * @return the Attr value as a string, or the empty string if that attribute does not have a specified or default value
        */
-      (options: {
+      (
         name: string,
-      }): string;
+      ): string;
     };
 
     /**

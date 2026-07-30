@@ -22,21 +22,6 @@ interface serverWidget {
      * @restriction Server-side scripts only
      * @since 2015.2
      *
-     * @param title form title
-     * @param [hideNavBar=false]
-     */
-    (
-      title: string,
-      hideNavBar?: boolean,
-    ): serverWidget.Assistant;
-
-    /**
-     * Instantiate a assistant object (specifying the title, and whether to hide the menu)
-     *
-     * @governance none
-     * @restriction Server-side scripts only
-     * @since 2015.2
-     *
      * @param options
      * @param options.title form title
      * @param [options.hideNavBar=false]
@@ -45,12 +30,9 @@ interface serverWidget {
       title: string,
       hideNavBar?: boolean,
     }): serverWidget.Assistant;
-  };
-
-  createForm: {
 
     /**
-     * Instantiate a form object (specifying the title, and whether to hide the menu)
+     * Instantiate a assistant object (specifying the title, and whether to hide the menu)
      *
      * @governance none
      * @restriction Server-side scripts only
@@ -62,7 +44,10 @@ interface serverWidget {
     (
       title: string,
       hideNavBar?: boolean,
-    ): serverWidget.Form;
+    ): serverWidget.Assistant;
+  };
+
+  createForm: {
 
     /**
      * Instantiate a form object (specifying the title, and whether to hide the menu)
@@ -79,24 +64,24 @@ interface serverWidget {
       title: string,
       hideNavBar?: boolean,
     }): serverWidget.Form;
-  };
-
-  createList: {
 
     /**
-     * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
+     * Instantiate a form object (specifying the title, and whether to hide the menu)
      *
      * @governance none
-     * @restriction Supported only by Suitelet scripts
+     * @restriction Server-side scripts only
      * @since 2015.2
      *
-     * @param title list title
+     * @param title form title
      * @param [hideNavBar=false]
      */
     (
       title: string,
       hideNavBar?: boolean,
-    ): serverWidget.List;
+    ): serverWidget.Form;
+  };
+
+  createList: {
 
     /**
      * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
@@ -113,6 +98,21 @@ interface serverWidget {
       title: string,
       hideNavBar?: boolean,
     }): serverWidget.List;
+
+    /**
+     * Instantiate a List object (specifying the title, and whether to hide the navigation bar)
+     *
+     * @governance none
+     * @restriction Supported only by Suitelet scripts
+     * @since 2015.2
+     *
+     * @param title list title
+     * @param [hideNavBar=false]
+     */
+    (
+      title: string,
+      hideNavBar?: boolean,
+    ): serverWidget.List;
   };
 }
 
@@ -426,23 +426,23 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param id ID of the field to get
-       */
-      (
-        id: string,
-      ): Field;
-
-      /**
-       * Gets field from sublist
-       *
-       * @governance none
-       *
        * @param options
        * @param options.id ID of the field to get
        */
       (options: {
         id: string,
       }): Field;
+
+      /**
+       * Gets field from sublist
+       *
+       * @governance none
+       *
+       * @param id ID of the field to get
+       */
+      (
+        id: string,
+      ): Field;
     };
 
     /**
@@ -649,18 +649,6 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param help The help text for the field
-       * @return same object for chaining
-       */
-      (
-        help: string,
-      ): Field;
-
-      /**
-       * Set help text for a field
-       *
-       * @governance none
-       *
        * @param options
        * @param options.help The help text for the field
        * @param [options.showInlineForAssistant] This means that field help will appear only in a field help popup box when the field label is clicked
@@ -670,6 +658,18 @@ declare namespace serverWidget {
         help: string,
         showInlineForAssistant?: boolean,
       }): Field;
+
+      /**
+       * Set help text for a field
+       *
+       * @governance none
+       *
+       * @param help The help text for the field
+       * @return same object for chaining
+       */
+      (
+        help: string,
+      ): Field;
     };
 
     /**
@@ -1234,17 +1234,6 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param message the message object to be displayed in browser
-       */
-      (message: message.Message): void;
-
-      /**
-       * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
-       * once the pageInit script is completed. The method takes either an already created Message object or the options
-       * object that would be used for creating the message.
-       *
-       * @governance none
-       *
        * @param options
        * @param options.type The type of message, see message.Type
        * @param [options.title] The title of the message. Defaults to empty string.
@@ -1271,6 +1260,17 @@ declare namespace serverWidget {
       (options: {
         message: message.Message,
       }): void;
+
+      /**
+       * This method is called during a beforeLoad UE or a suitelet and the message is later displayed on the client side,
+       * once the pageInit script is completed. The method takes either an already created Message object or the options
+       * object that would be used for creating the message.
+       *
+       * @governance none
+       *
+       * @param message the message object to be displayed in browser
+       */
+      (message: message.Message): void;
     };
 
     /**
@@ -1487,33 +1487,24 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
-       */
-      (label?: string): Button;
-
-      /**
-       * Add a Reset button to the form
-       *
-       * @governance none
-       *
        * @param [options]
        * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
        */
       (options?: {
         label?: string,
       }): Button;
-    };
-
-    addSubmitButton: {
 
       /**
-       * Add a Submit button to the form
+       * Add a Reset button to the form
        *
        * @governance none
        *
-       * @param [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
+       * @param [options.label='Reset']  The UI label used for this button. If no label is provided, the label defaults to Reset.
        */
       (label?: string): Button;
+    };
+
+    addSubmitButton: {
 
       /**
        * Add a Submit button to the form
@@ -1526,20 +1517,18 @@ declare namespace serverWidget {
       (options?: {
         label?: string,
       }): Button;
-    };
-
-    getButton: {
 
       /**
-       * Get a Button object from its id
+       * Add a Submit button to the form
        *
        * @governance none
        *
-       * @param id The id of the button to get
+       * @param [label='Save'] The UI label for this button. If no label is provided, the label defaults to Save.
        */
-      (
-        id: string,
-      ): Button;
+      (label?: string): Button;
+    };
+
+    getButton: {
 
       /**
        * Get a Button object from its id
@@ -1552,6 +1541,17 @@ declare namespace serverWidget {
       (options: {
         id: string,
       }): Button;
+
+      /**
+       * Get a Button object from its id
+       *
+       * @governance none
+       *
+       * @param id The id of the button to get
+       */
+      (
+        id: string,
+      ): Button;
     };
 
     /**
@@ -1604,23 +1604,23 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param id The id for the Sublist to get
-       */
-      (
-        id: string,
-      ): Sublist;
-
-      /**
-       * Get a Sublist object from its id
-       *
-       * @governance none
-       *
        * @param options
        * @param options.id The id for the Sublist to get
        */
       (options: {
         id: string,
       }): Sublist;
+
+      /**
+       * Get a Sublist object from its id
+       *
+       * @governance none
+       *
+       * @param id The id for the Sublist to get
+       */
+      (
+        id: string,
+      ): Sublist;
     };
 
     /**
@@ -1849,33 +1849,24 @@ declare namespace serverWidget {
        *
        * @governance none
        *
-       * @param row  An Array of rows containing name/value pairs containing the values for corresponding
-       */
-      (row: search.Result | Record<string, string>): List;
-
-      /**
-       * Add a row (Array of name/value pairs or search.Result)
-       *
-       * @governance none
-       *
        * @param options
        * @param options.row  An Array of rows containing name/value pairs containing the values for corresponding
        */
       (options: {
         row: search.Result | Record<string, string>,
       }): List;
-    };
-
-    addRows: {
 
       /**
-       * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+       * Add a row (Array of name/value pairs or search.Result)
        *
        * @governance none
        *
-       * @param rows Array of search.Result or name/value pair Arrays
+       * @param row  An Array of rows containing name/value pairs containing the values for corresponding
        */
-      (rows: search.Result[] | Record<string, string>[]): List;
+      (row: search.Result | Record<string, string>): List;
+    };
+
+    addRows: {
 
       /**
        * Adds multiple rows (Array of search.Result or name/value pair Arrays)
@@ -1888,6 +1879,15 @@ declare namespace serverWidget {
       (options: {
         rows: search.Result[] | Record<string, string>[],
       }): List;
+
+      /**
+       * Adds multiple rows (Array of search.Result or name/value pair Arrays)
+       *
+       * @governance none
+       *
+       * @param rows Array of search.Result or name/value pair Arrays
+       */
+      (rows: search.Result[] | Record<string, string>[]): List;
     };
 
     /**
