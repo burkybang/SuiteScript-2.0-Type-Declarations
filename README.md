@@ -29,7 +29,45 @@
 The SuiteCloud IDE Plug-in by NetSuite for WebStorm comes with incomplete type declarations, so if you have that
 installed, it will interfere with the type declarations from this repo.
 
-Here's how to remove NetSuite's built-in type declarations on Windows.
+### Automated Removal (Recommended)
+
+A modified version of the NetSuite SuiteCloud IDE Plug-in for WebStorm repository is available that removes the SuiteScript type files
+automatically.
+
+### Manual Removal
+
+A manual method is also available, but it requires you to repeat the steps every time the SuiteCloud IDE Plug-in gets updated.
+
+## Setup (Automated Removal)
+
+### 1. Set up the custom plugin repository
+
+1. Open WebStorm
+2. Go to **Settings** → **Plugins**
+3. Click the **gear icon** (⚙) near the top → **Manage Plugin Repositories...**
+4. If the default NetSuite repository URL is listed (`https://system.netsuite.com/...`), select it and replace it with the URL below.
+   Otherwise, click **Add** (+) and enter it:
+   ```
+   https://burkybang.com/suitecloud-ide-plugin/updatePlugins.xml
+   ```
+5. Click **OK**
+
+### 2. Install
+
+1. In **Settings** → **Plugins**, switch to the **Marketplace** tab
+2. Search for **SuiteCloud**
+3. You should see **SuiteCloud IDE Plug-in for WebStorm (No Types)**
+4. Click **Install** and restart WebStorm when prompted
+
+> **Already have the plugin installed?** WebStorm will show it as already installed since it's the same plugin. That's fine. Future updates
+> will automatically use the types-removed version. If you want to remove the types immediately, uninstall the plugin, restart WebStorm, then
+> reinstall it from the Marketplace OR follow the manual steps below.
+
+![Installed No Types Plug-in](README%20Images/Installed%20No%20Types%20Plug-in.png "Installed No Types Plug-in")
+
+## Setup (Manual Removal)
+
+Here's how to manually remove NetSuite's built-in type declarations on Windows.
 
 **Note:** _You will need to do this every time the SuiteCloud IDE Plug-in gets updated._
 
