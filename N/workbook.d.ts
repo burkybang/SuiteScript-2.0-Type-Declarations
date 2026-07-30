@@ -264,7 +264,7 @@ interface workbook {
    *
    * @throws {error.SuiteScriptError} You have entered an invalid type argument: `options` is missing or not an object.
    */
-  createComplexRecordKey(options: { [key: string]: any }): workbook.RecordKey;
+  createComplexRecordKey(options: Record<string, any>): workbook.RecordKey;
 
   /**
    * Creates a conditional filter — a filter that excludes rows or columns based on a predicate

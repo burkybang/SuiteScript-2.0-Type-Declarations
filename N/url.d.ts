@@ -47,9 +47,7 @@ interface url {
     recordType: record.Type | `${record.Type}` | record.CustomType | string,
     recordId?: number | string,
     isEditMode?: boolean,
-    params?: {
-      [p: string]: string | number | boolean,
-    },
+    params?: Record<string, string | number | boolean>,
   }): string;
 
   resolveTaskLink: {
@@ -82,9 +80,7 @@ interface url {
      */
     (options: {
       id: string,
-      params?: {
-        [p: string]: string | number | boolean,
-      },
+      params?: Record<string, string | number | boolean>,
     }): string;
 
     /**
@@ -116,9 +112,7 @@ interface url {
      */
     (
       id: string,
-      params?: {
-        [p: string]: string | number | boolean,
-      },
+      params?: Record<string, string | number | boolean>,
     ): string;
   };
 
@@ -157,9 +151,7 @@ interface url {
     scriptId: number | string,
     deploymentId: number | string,
     returnExternalUrl?: boolean,
-    params?: {
-      [p: string]: string | number | boolean,
-    },
+    params?: Record<string, string | number | boolean>,
   }): string;
 
   /**
@@ -220,9 +212,7 @@ interface url {
      */
     (options: {
       domain: string,
-      params?: {
-        [p: string]: string | number | boolean,
-      },
+      params?: Record<string, string | number | boolean>,
     }): string;
 
     /**
@@ -251,9 +241,7 @@ interface url {
      */
     (
       domain: string,
-      params?: {
-        [p: string]: string | number | boolean,
-      },
+      params?: Record<string, string | number | boolean>,
     ): string;
   };
 }

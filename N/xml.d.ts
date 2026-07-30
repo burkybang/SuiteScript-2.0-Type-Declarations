@@ -265,9 +265,7 @@ declare namespace xml {
      *
      * @throws {error.SuiteScriptError} READ_ONLY_PROPERTY when setting the property is attempted
      */
-    readonly attributes: {
-      [p: string]: Attr,
-    } | null;
+    readonly attributes: Record<string, Attr> | null;
 
     /**
      * The absolute base URI of this node or null if the implementation wasn't able to obtain an absolute URI
