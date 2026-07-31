@@ -769,6 +769,7 @@ interface workbook {
    * which fills storage out of band. For pivot results from a script, use `Workbook.runPivot`, which
    * returns the intersections directly.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159051729422}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159051729422.html}
    *
    * @restriction Server-side scripts only
    *
@@ -1331,6 +1332,7 @@ interface workbook {
    * execution, which fills storage out of band. For pivot results from a script, use
    * `Workbook.runPivot`, which returns the intersections directly.
    * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=section_159052020752}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_159052020752.html}
    *
    * @restriction Server-side scripts only
    *
