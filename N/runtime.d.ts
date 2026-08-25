@@ -129,6 +129,26 @@ interface runtime {
   };
 
   /**
+   * Checks whether NetSuite Next is active for the user running the script. Use it to branch
+   * script logic on whether the current user is working in NetSuite Next.
+   *
+   * Note: for scheduled and map/reduce scripts the result depends on the user the script runs
+   * as. When NetSuite runs the script as the System user, this method returns `false`.
+   *
+   * The method takes no parameters; surplus arguments are ignored at runtime rather than
+   * rejected.
+   * @see [Help Center (Private)]{@link https://system.netsuite.com/app/help/helpcenter.nl?fid=article_92152343123}
+   * @see [Help Center (Public)]{@link https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_92152343123.html}
+   *
+   * @governance none
+   * @restriction Client-side and server-side scripts
+   * @since 2026.1
+   *
+   * @return `true` if NetSuite Next is active for the current user; `false` otherwise.
+   */
+  isNextActive(): boolean;
+
+  /**
    * The number of scheduled-script queues available to the current
    * account. Reflects the account's SuiteCloud Plus settings, not the
    * number of queues actually in use by deployments. For map/reduce and
